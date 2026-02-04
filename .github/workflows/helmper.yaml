@@ -48,9 +48,7 @@ jobs:
           
           chmod +x helmper-linux-amd64
           sudo mv helmper-linux-amd64 /usr/local/bin/helmper
-          
-          echo "Verifying installation..."
-          helmper --help
+        
         env:
           GH_TOKEN: ${{ github.token }}
 
