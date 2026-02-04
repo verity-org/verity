@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>descope/renovate-config"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update docker image tags in COPA workflow",
+      "managerFilePatterns": [
+        "/^\\.github/workflows/copa\\.ya?ml$/"
+      ],
+      "datasourceTemplate": "docker",
+      "matchStrings": [
+        "image: (?<packageName>.+?)\\s+tag: (?<currentValue>.+)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "regex"
+      ],
+      "automerge": true
+    }
+  ]
+}
