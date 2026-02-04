@@ -77,6 +77,8 @@ jobs:
         env:
           COSIGN_EXPERIMENTAL: "1"
         run: |
+          mkdir -p ./.helmper-out/tars
+          mkdir -p ./.helmper-out/reports
           helmper
 
       - name: Upload Vulnerability Reports
