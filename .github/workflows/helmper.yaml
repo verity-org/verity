@@ -17,23 +17,19 @@ permissions:
 jobs:
   helmper:
     runs-on: ubuntu-latest
-    
-    services:
-      trivy:
-        image: ghcr.io/aquasecurity/trivy:0.69.0
-        ports:
-          - 8887:8887
-        options: >-
-          --entrypoint=trivy
-          server
-          --listen=0.0.0.0:8887
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Wait for Trivy Server
+      - name: Start Trivy Server
         run: |
+          docker run -d \
+            --name trivy-server \
+            -p 8887:8887 \
+            ghcr.io/aquasecurity/trivy:0.69.0 \
+            server --listen=0.0.0.0:8887
+          
           timeout 60 bash -c 'until curl -f http://localhost:8887/healthz 2>/dev/null; do echo "Waiting for Trivy..."; sleep 2; done'
           echo "Trivy server is ready"
 
@@ -105,3 +101,9 @@ jobs:
           
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "✅ Helmper execution completed. Check artifacts for detailed reports." >> $GITHUB_STEP_SUMMARY
+
+      - name: Cleanup Trivy Server
+        if: always()
+        run: |
+          docker stop trivy-server || true
+          docker rm trivy-server || true
