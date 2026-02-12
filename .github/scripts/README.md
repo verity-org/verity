@@ -26,22 +26,27 @@ Installs the latest version of Copa (Project Copacetic) from GitHub releases.
 
 ---
 
-### start-buildkit.sh
-Starts BuildKit as a Docker container and waits for it to be ready.
+## BuildKit Setup
 
-```bash
-./.github/scripts/start-buildkit.sh [version]
+Workflows use the **official** `docker/setup-buildx-action@v3` instead of a custom script.
+
+This action:
+- Sets up Docker Buildx (which uses BuildKit)
+- Doesn't require privileged mode
+- Creates a builder accessible at `docker-container://buildx_buildkit_default`
+- Automatically maintained by Docker
+
+**Example workflow usage:**
+```yaml
+- name: Set up Docker Buildx
+  uses: docker/setup-buildx-action@v3
+
+- name: Run Copa patching
+  run: |
+    ./verity -chart Chart.yaml -output charts \
+      -patch \
+      -buildkit-addr docker-container://buildx_buildkit_default
 ```
-
-**Arguments:**
-- `version` - BuildKit version (default: v0.19.0)
-
-**Example:**
-```bash
-./.github/scripts/start-buildkit.sh v0.20.0
-```
-
-**Used by:** ci.yaml, scheduled-scan.yaml, patch-on-pr.yaml
 
 ---
 
