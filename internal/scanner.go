@@ -1,9 +1,11 @@
 package internal
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"strings"
+	"time"
 
 	"gopkg.in/yaml.v3"
 	"helm.sh/helm/v3/pkg/chart"
@@ -44,7 +46,7 @@ func ParseImagesFile(path string) ([]Image, error) {
 	if len(values) == 0 {
 		return nil, nil
 	}
-	return dedup(findImages(values, "", "")), nil
+	return dedup(findImages(values, "", "", nil)), nil
 }
 
 // ScanForImages loads a chart directory and finds all container image references.
@@ -53,34 +55,78 @@ func ScanForImages(chartPath string) ([]Image, error) {
 	if err != nil {
 		return nil, fmt.Errorf("loading chart %s: %w", chartPath, err)
 	}
-	return dedup(scanChart(ch, "")), nil
+	cache := map[string]string{} // shared across all subcharts
+	return dedup(scanChart(ch, "", cache)), nil
 }
 
-func scanChart(ch *chart.Chart, prefix string) []Image {
+func scanChart(ch *chart.Chart, prefix string, cache map[string]string) []Image {
 	var images []Image
 
 	if ch.Values != nil {
-		images = append(images, findImages(ch.Values, prefix, ch.Metadata.AppVersion)...)
+		images = append(images, findImages(ch.Values, prefix, ch.Metadata.AppVersion, cache)...)
 	}
 
 	for _, dep := range ch.Dependencies() {
-		images = append(images, scanChart(dep, joinPath(prefix, dep.Name()))...)
+		images = append(images, scanChart(dep, joinPath(prefix, dep.Name()), cache)...)
 	}
 
 	return images
 }
 
-func findImages(values map[string]interface{}, prefix, appVersion string) []Image {
+// tagChecker is the function used to probe whether an image tag exists.
+// Replaceable in tests for deterministic behavior.
+var tagChecker func(ctx context.Context, ref string) bool = imageExists
+
+func findImages(values map[string]interface{}, prefix, appVersion string, cache map[string]string) []Image {
+	if cache == nil {
+		cache = map[string]string{}
+	}
 	var images []Image
 	walk(values, prefix, "", func(path string, img Image) {
 		img.Path = path
-		// If tag is empty and appVersion is available, use it as-is
+		// If tag is empty and appVersion is available, resolve the correct tag.
+		// Chart templates vary: some use appVersion as-is, others prepend "v".
+		// We check which variant actually exists in the registry.
 		if img.Tag == "" && appVersion != "" {
-			img.Tag = appVersion
+			key := img.Registry + "/" + img.Repository + "@" + appVersion
+			if cached, ok := cache[key]; ok {
+				img.Tag = cached
+			} else {
+				img.Tag = resolveTag(img, appVersion)
+				cache[key] = img.Tag
+			}
 		}
 		images = append(images, img)
 	})
 	return images
+}
+
+// resolveTag determines the correct image tag when falling back to appVersion.
+// It checks the registry to see if appVersion or "v"+appVersion exists as a tag,
+// since chart templates vary in whether they prepend "v" to Chart.AppVersion.
+func resolveTag(img Image, appVersion string) string {
+	if strings.HasPrefix(appVersion, "v") {
+		return appVersion
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	// Try appVersion as-is first
+	candidate := img
+	candidate.Tag = appVersion
+	if tagChecker(ctx, candidate.Reference()) {
+		return appVersion
+	}
+
+	// Try with "v" prefix
+	candidate.Tag = "v" + appVersion
+	if tagChecker(ctx, candidate.Reference()) {
+		return "v" + appVersion
+	}
+
+	// Default to as-is if neither resolves (will fail at pull time with a clear error)
+	return appVersion
 }
 
 func walk(node interface{}, path, parentKey string, fn func(string, Image)) {
