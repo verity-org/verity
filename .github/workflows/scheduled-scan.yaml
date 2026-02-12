@@ -1,0 +1,108 @@
+name: Scheduled Vulnerability Scan
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+
+jobs:
+  scan-and-patch:
+    name: Scan for New Vulnerabilities
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io --username "${{ github.actor }}" --password-stdin
+
+      - name: Login to GHCR (Helm)
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io --username "${{ github.actor }}" --password-stdin
+
+      - name: Build verity
+        run: go build -o verity .
+
+      - name: Install Trivy
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+
+      - name: Install Copa
+        run: |
+          COPA_VERSION=$(curl -s https://api.github.com/repos/project-copacetic/copacetic/releases/latest | jq -r .tag_name | sed 's/^v//')
+          curl -fsSL -o copa.tar.gz "https://github.com/project-copacetic/copacetic/releases/download/v${COPA_VERSION}/copa_${COPA_VERSION}_linux_amd64.tar.gz"
+          tar -xzf copa.tar.gz copa
+          sudo mv copa /usr/local/bin/
+
+      - name: Start BuildKit
+        run: |
+          docker run --detach --privileged --name buildkitd \
+            --entrypoint buildkitd --rm "moby/buildkit:v0.19.0"
+          for i in $(seq 1 30); do
+            if docker exec buildkitd buildctl debug workers >/dev/null 2>&1; then
+              echo "BuildKit ready"
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Scan and patch images
+        run: |
+          ./verity -chart Chart.yaml -output charts \
+            -patch \
+            -registry ghcr.io/${{ github.repository_owner }} \
+            -buildkit-addr docker-container://buildkitd \
+            -report-dir /tmp/trivy-reports
+
+      - name: Check for changes
+        id: check-changes
+        run: |
+          if git diff --quiet charts/; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No new patches needed"
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "New patches available"
+          fi
+
+      - name: Create Pull Request
+        if: steps.check-changes.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: update patched images with latest security fixes"
+          title: "Security: Update patched images"
+          body: |
+            ## Scheduled Vulnerability Scan
+
+            This PR updates wrapper charts with newly discovered vulnerability patches.
+
+            ### Changes
+            - Re-scanned all charts for vulnerabilities
+            - Applied Copa patches to fixable vulnerabilities
+            - Updated wrapper chart images
+
+            ### Reports
+            Trivy vulnerability reports are attached to the workflow run.
+
+            🤖 Automated by scheduled vulnerability scanning
+          branch: security/scheduled-patch-${{ github.run_number }}
+          delete-branch: true
+          labels: |
+            security
+            automated
+
+      - name: Upload vulnerability reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-reports-scheduled
+          path: /tmp/trivy-reports/*.json
+          retention-days: 30

@@ -3,8 +3,9 @@ name: CI
 on:
   pull_request:
     branches: [main]
-  push:
-    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'charts/**'
 
 permissions:
   contents: read
@@ -22,7 +23,10 @@ jobs:
           go-version-file: go.mod
 
       - name: Run tests
-        run: go test ./...
+        run: go test -v ./...
+
+      - name: Build verity
+        run: go build -o verity .
 
   scan:
     name: Scan Chart Images
@@ -44,10 +48,18 @@ jobs:
         run: ./verity -chart Chart.yaml -output charts
 
       - name: Show discovered images
-        run: cat charts/*/values.yaml
+        run: |
+          echo "=== Discovered Images ==="
+          cat charts/*/values.yaml
+
+      - name: Upload scan results
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-results
+          path: charts/*/values.yaml
 
   patch:
-    name: Copa Patch Images
+    name: Validate Patching
     runs-on: ubuntu-latest
     needs: scan
     steps:
@@ -86,12 +98,57 @@ jobs:
             sleep 1
           done
 
-      - name: Patch images
+      - name: Patch images and create wrapper charts
         run: |
           ./verity -chart Chart.yaml -output charts \
             -patch \
             -buildkit-addr docker-container://buildkitd \
             -report-dir /tmp/trivy-reports
+
+      - name: Validate wrapper charts
+        run: |
+          echo "=== Validating Wrapper Charts ==="
+          for chart_dir in charts/*-verity; do
+            if [ ! -d "$chart_dir" ]; then
+              continue
+            fi
+
+            chart_name=$(basename "$chart_dir")
+            echo "Validating ${chart_name}..."
+
+            # Check required files exist
+            for file in Chart.yaml values.yaml .helmignore; do
+              if [ ! -f "${chart_dir}/${file}" ]; then
+                echo "❌ Missing ${file} in ${chart_name}"
+                exit 1
+              fi
+            done
+
+            # Validate Chart.yaml structure
+            if ! yq eval '.apiVersion' "${chart_dir}/Chart.yaml" | grep -q "v2"; then
+              echo "❌ Invalid apiVersion in ${chart_name}/Chart.yaml"
+              exit 1
+            fi
+
+            if ! yq eval '.dependencies | length' "${chart_dir}/Chart.yaml" | grep -q "1"; then
+              echo "❌ Missing or invalid dependencies in ${chart_name}/Chart.yaml"
+              exit 1
+            fi
+
+            # Lint the chart
+            helm lint "${chart_dir}" || {
+              echo "❌ Helm lint failed for ${chart_name}"
+              exit 1
+            }
+
+            echo "✅ ${chart_name} is valid"
+          done
+
+      - name: Upload wrapper charts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wrapper-charts
+          path: charts/*-verity/
 
       - name: Upload vulnerability reports
         if: always()
@@ -100,4 +157,3 @@ jobs:
           name: trivy-reports
           path: /tmp/trivy-reports/*.json
           retention-days: 30
-
