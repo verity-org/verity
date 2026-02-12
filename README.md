@@ -12,7 +12,7 @@ Verity automatically scans Helm chart dependencies for container image vulnerabi
 # Install prometheus with security-patched images
 helm install my-prometheus \
   oci://ghcr.io/descope/charts/prometheus-verity \
-  --version 1.0.0
+  --version 25.8.0-0
 
 # With custom values (patched images automatically included)
 helm install my-prometheus \
@@ -76,6 +76,27 @@ prometheus:
       repository: alertmanager
       tag: v0.26.0-patched
 ```
+
+### Versioning Strategy
+
+Wrapper chart versions mirror the upstream chart version with a patch level suffix:
+
+**Format:** `{upstream-version}-{patch-level}`
+
+**Examples:**
+```
+prometheus 25.8.0 → prometheus-verity 25.8.0-0 (initial patch)
+                 → prometheus-verity 25.8.0-1 (new CVEs found)
+                 → prometheus-verity 25.8.0-2 (more patches)
+prometheus 25.9.0 → prometheus-verity 25.9.0-0 (chart update, reset)
+```
+
+**When versions change:**
+- **Chart Update (Renovate):** Base version changes, patch level resets to `-0`
+- **New CVEs (Scheduled Scan):** Patch level increments (future enhancement)
+- **Manual Patch:** Patch level increments
+
+This keeps the relationship to upstream charts clear while tracking security updates independently.
 
 ## Automation
 

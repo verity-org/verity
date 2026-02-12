@@ -276,6 +276,11 @@ func TestCreateWrapperChart(t *testing.T) {
 		t.Errorf("Expected apiVersion 'v2', got %v", chart["apiVersion"])
 	}
 
+	// Check version mirrors upstream with patch level
+	if chart["version"] != "25.8.0-0" {
+		t.Errorf("Expected version '25.8.0-0', got %v", chart["version"])
+	}
+
 	// Check dependencies
 	deps, ok := chart["dependencies"].([]interface{})
 	if !ok || len(deps) != 1 {

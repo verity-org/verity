@@ -30,9 +30,12 @@ func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir string
 	}
 
 	// Create Chart.yaml
+	// Version format: {upstream-version}-{patch-level}
+	// Example: prometheus 25.8.0 → prometheus-verity 25.8.0-0
+	// Patch level increments when new security patches are applied to the same upstream version
 	wrapper := WrapperChart{
 		Name:         chartName,
-		Version:      "1.0.0",
+		Version:      dep.Version + "-0",
 		Description:  fmt.Sprintf("%s with Copa-patched container images", dep.Name),
 		Dependencies: []Dependency{dep},
 	}
