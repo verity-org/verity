@@ -179,3 +179,142 @@ func TestCountFixable(t *testing.T) {
 		t.Errorf("countFixable() = %d, want 3", count)
 	}
 }
+
+func TestCreateWrapperChart(t *testing.T) {
+	tmpDir := t.TempDir()
+
+	dep := Dependency{
+		Name:       "prometheus",
+		Version:    "25.8.0",
+		Repository: "oci://ghcr.io/prometheus-community/charts",
+	}
+
+	results := []*PatchResult{
+		{
+			Original: Image{
+				Registry:   "quay.io",
+				Repository: "prometheus/prometheus",
+				Tag:        "v2.48.0",
+				Path:       "server.image",
+			},
+			Patched: Image{
+				Registry:   "ghcr.io/descope",
+				Repository: "prometheus",
+				Tag:        "v2.48.0-patched",
+			},
+			Skipped:   false,
+			Error:     nil,
+			VulnCount: 5,
+		},
+		{
+			Original: Image{
+				Registry:   "quay.io",
+				Repository: "prometheus/alertmanager",
+				Tag:        "v0.26.0",
+				Path:       "alertmanager.image",
+			},
+			Patched: Image{
+				Registry:   "ghcr.io/descope",
+				Repository: "alertmanager",
+				Tag:        "v0.26.0-patched",
+			},
+			Skipped:   false,
+			Error:     nil,
+			VulnCount: 3,
+		},
+	}
+
+	err := CreateWrapperChart(dep, results, tmpDir)
+	if err != nil {
+		t.Fatalf("CreateWrapperChart failed: %v", err)
+	}
+
+	chartDir := filepath.Join(tmpDir, "prometheus-verity")
+
+	// Check Chart.yaml exists and has correct content
+	chartYamlPath := filepath.Join(chartDir, "Chart.yaml")
+	if _, err := os.Stat(chartYamlPath); err != nil {
+		t.Errorf("Chart.yaml not found: %v", err)
+	}
+
+	chartData, err := os.ReadFile(chartYamlPath)
+	if err != nil {
+		t.Fatalf("Failed to read Chart.yaml: %v", err)
+	}
+
+	var chart map[string]interface{}
+	if err := yaml.Unmarshal(chartData, &chart); err != nil {
+		t.Fatalf("Failed to parse Chart.yaml: %v", err)
+	}
+
+	if chart["name"] != "prometheus-verity" {
+		t.Errorf("Expected name 'prometheus-verity', got %v", chart["name"])
+	}
+
+	if chart["apiVersion"] != "v2" {
+		t.Errorf("Expected apiVersion 'v2', got %v", chart["apiVersion"])
+	}
+
+	// Check dependencies
+	deps, ok := chart["dependencies"].([]interface{})
+	if !ok || len(deps) != 1 {
+		t.Fatalf("Expected 1 dependency, got %v", chart["dependencies"])
+	}
+
+	depMap := deps[0].(map[string]interface{})
+	if depMap["name"] != "prometheus" {
+		t.Errorf("Expected dependency name 'prometheus', got %v", depMap["name"])
+	}
+	if depMap["version"] != "25.8.0" {
+		t.Errorf("Expected dependency version '25.8.0', got %v", depMap["version"])
+	}
+
+	// Check values.yaml exists and has namespaced content
+	valuesPath := filepath.Join(chartDir, "values.yaml")
+	if _, err := os.Stat(valuesPath); err != nil {
+		t.Errorf("values.yaml not found: %v", err)
+	}
+
+	valuesData, err := os.ReadFile(valuesPath)
+	if err != nil {
+		t.Fatalf("Failed to read values.yaml: %v", err)
+	}
+
+	var values map[string]interface{}
+	if err := yaml.Unmarshal(valuesData, &values); err != nil {
+		t.Fatalf("Failed to parse values.yaml: %v", err)
+	}
+
+	// Values should be namespaced under "prometheus"
+	promValues, ok := values["prometheus"].(map[string]interface{})
+	if !ok {
+		t.Fatalf("Expected values to be namespaced under 'prometheus', got %v", values)
+	}
+
+	// Check server.image is set
+	server, ok := promValues["server"].(map[string]interface{})
+	if !ok {
+		t.Fatalf("Expected prometheus.server, got %v", promValues)
+	}
+
+	serverImage, ok := server["image"].(map[string]interface{})
+	if !ok {
+		t.Fatalf("Expected prometheus.server.image, got %v", server)
+	}
+
+	if serverImage["repository"] != "prometheus" {
+		t.Errorf("Expected repository 'prometheus', got %v", serverImage["repository"])
+	}
+	if serverImage["tag"] != "v2.48.0-patched" {
+		t.Errorf("Expected tag 'v2.48.0-patched', got %v", serverImage["tag"])
+	}
+	if serverImage["registry"] != "ghcr.io/descope" {
+		t.Errorf("Expected registry 'ghcr.io/descope', got %v", serverImage["registry"])
+	}
+
+	// Check .helmignore exists
+	helmignorePath := filepath.Join(chartDir, ".helmignore")
+	if _, err := os.Stat(helmignorePath); err != nil {
+		t.Errorf(".helmignore not found: %v", err)
+	}
+}

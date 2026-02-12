@@ -3,10 +3,118 @@ package internal
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"gopkg.in/yaml.v3"
 )
+
+// WrapperChart represents a Helm chart that wraps another chart with patched images.
+type WrapperChart struct {
+	Name         string
+	Version      string
+	Description  string
+	Dependencies []Dependency
+}
+
+// CreateWrapperChart creates a complete Helm chart directory that subcharts the original
+// with patched image values. This allows users to install the wrapper chart and get
+// patched images while still being able to customize all original chart values.
+func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir string) error {
+	chartName := dep.Name + "-verity"
+	chartDir := filepath.Join(outputDir, chartName)
+
+	if err := os.MkdirAll(chartDir, 0o755); err != nil {
+		return fmt.Errorf("creating chart directory: %w", err)
+	}
+
+	// Create Chart.yaml
+	wrapper := WrapperChart{
+		Name:         chartName,
+		Version:      "1.0.0",
+		Description:  fmt.Sprintf("%s with Copa-patched container images", dep.Name),
+		Dependencies: []Dependency{dep},
+	}
+	if err := writeChartYaml(filepath.Join(chartDir, "Chart.yaml"), wrapper); err != nil {
+		return err
+	}
+
+	// Create values.yaml with patched images namespaced under the dependency name
+	if err := GenerateNamespacedValuesOverride(dep.Name, results, filepath.Join(chartDir, "values.yaml")); err != nil {
+		return err
+	}
+
+	// Create .helmignore
+	helmignore := `# Patterns to ignore when building packages
+.git/
+.gitignore
+*.swp
+*.bak
+*.tmp
+*~
+.DS_Store
+`
+	if err := os.WriteFile(filepath.Join(chartDir, ".helmignore"), []byte(helmignore), 0o644); err != nil {
+		return fmt.Errorf("writing .helmignore: %w", err)
+	}
+
+	return nil
+}
+
+func writeChartYaml(path string, chart WrapperChart) error {
+	type chartYaml struct {
+		APIVersion   string       `yaml:"apiVersion"`
+		Name         string       `yaml:"name"`
+		Description  string       `yaml:"description"`
+		Type         string       `yaml:"type"`
+		Version      string       `yaml:"version"`
+		Dependencies []Dependency `yaml:"dependencies"`
+	}
+
+	c := chartYaml{
+		APIVersion:   "v2",
+		Name:         chart.Name,
+		Description:  chart.Description,
+		Type:         "application",
+		Version:      chart.Version,
+		Dependencies: chart.Dependencies,
+	}
+
+	data, err := yaml.Marshal(c)
+	if err != nil {
+		return fmt.Errorf("marshaling Chart.yaml: %w", err)
+	}
+	return os.WriteFile(path, data, 0o644)
+}
+
+// GenerateNamespacedValuesOverride generates a values.yaml file with patched images
+// namespaced under the chart name. This allows the values to be used with a parent
+// chart that subcharts the original.
+func GenerateNamespacedValuesOverride(chartName string, results []*PatchResult, path string) error {
+	inner := make(map[string]interface{})
+
+	for _, r := range results {
+		if r.Error != nil || r.Skipped {
+			continue
+		}
+		setImageAtPath(inner, r.Original.Path, r.Patched)
+	}
+
+	if len(inner) == 0 {
+		return nil
+	}
+
+	// Wrap the values under the chart name
+	root := map[string]interface{}{
+		chartName: inner,
+	}
+
+	data, err := yaml.Marshal(root)
+	if err != nil {
+		return fmt.Errorf("marshaling values override: %w", err)
+	}
+	return os.WriteFile(path, data, 0o644)
+}
 
 // GenerateValuesOverride builds a Helm values override file that remaps
 // original image references to their patched equivalents.

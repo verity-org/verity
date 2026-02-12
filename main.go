@@ -98,16 +98,15 @@ func main() {
 			}
 		}
 
-		// Write a Helm values override with patched image refs.
-		overrideFile := filepath.Join(outDir, "patched-values.yaml")
-		if err := internal.GenerateValuesOverride(results, overrideFile); err != nil {
-			log.Fatalf("Failed to write %s: %v", overrideFile, err)
-		}
-		fmt.Printf("\n  Values override → %s\n", overrideFile)
-
 		if failed > 0 {
 			log.Fatalf("  %d image(s) failed to patch", failed)
 		}
+
+		// Create a wrapper chart that subcharts the original with patched images
+		if err := internal.CreateWrapperChart(dep, results, *outputDir); err != nil {
+			log.Fatalf("Failed to create wrapper chart: %v", err)
+		}
+		fmt.Printf("\n  Wrapper chart → %s/%s-verity\n", *outputDir, dep.Name)
 	}
 }
 
