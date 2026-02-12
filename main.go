@@ -82,7 +82,7 @@ func main() {
 				fmt.Printf("    ERROR: %v\n", r.Error)
 				failed++
 			} else if r.Skipped {
-				fmt.Printf("    No patchable OS vulnerabilities, skipped\n")
+				fmt.Printf("    Skipped: %s\n", r.SkipReason)
 			} else {
 				fmt.Printf("    Patched → %s  (%d vulns fixed)\n", r.Patched.Reference(), r.VulnCount)
 			}
@@ -140,7 +140,7 @@ func main() {
 						fmt.Printf("    ERROR: %v\n", r.Error)
 						failed++
 					} else if r.Skipped {
-						fmt.Printf("    No patchable OS vulnerabilities, skipped\n")
+						fmt.Printf("    Skipped: %s\n", r.SkipReason)
 					} else {
 						fmt.Printf("    Patched → %s  (%d vulns fixed)\n", r.Patched.Reference(), r.VulnCount)
 					}

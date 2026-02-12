@@ -36,6 +36,7 @@ type PatchResult struct {
 	Patched    Image
 	VulnCount  int
 	Skipped    bool
+	SkipReason string // Human-readable reason when Skipped is true
 	Error      error
 	ReportPath string // Path to Trivy JSON report
 }
@@ -43,18 +44,70 @@ type PatchResult struct {
 // PatchImage scans an image for OS vulnerabilities using Trivy,
 // patches fixable ones with Copa, and optionally pushes the
 // patched image to a target registry.
+//
+// When a target registry is set, it first checks whether a patched
+// image already exists there. If so, it scans the patched image
+// instead of the upstream — skipping entirely when no new fixable
+// vulns are found, or re-patching from upstream when they are.
 func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult {
 	result := &PatchResult{Original: img}
-	ref := img.Reference()
 
-	// 0. Pull image via go-containerregistry and save as OCI layout for Trivy.
+	tag := img.Tag
+	if tag == "" {
+		tag = "latest"
+	}
+	patchedTag := tag + "-patched"
+
+	// Check if a patched image already exists in the target registry.
+	if opts.TargetRegistry != "" {
+		patchedRef := Image{
+			Registry:   opts.TargetRegistry,
+			Repository: img.Repository,
+			Tag:        patchedTag,
+		}
+		if imageExists(ctx, patchedRef.Reference()) {
+			fmt.Printf("    Found existing patched image %s, checking for new vulns ...\n", patchedRef.Reference())
+
+			// Scan the existing patched image for new fixable vulns.
+			ociDir := filepath.Join(opts.WorkDir, "oci", sanitize(patchedRef.Reference()))
+			if err := pullAndSaveOCI(ctx, patchedRef.Reference(), ociDir); err != nil {
+				result.Error = fmt.Errorf("pulling patched image %s: %w", patchedRef.Reference(), err)
+				return result
+			}
+
+			reportPath := filepath.Join(opts.ReportDir, sanitize(patchedRef.Reference())+".json")
+			result.ReportPath = reportPath
+			if err := trivyScan(ctx, ociDir, reportPath); err != nil {
+				result.Error = fmt.Errorf("scanning patched image %s: %w", patchedRef.Reference(), err)
+				return result
+			}
+
+			vulns, err := countFixable(reportPath)
+			if err != nil {
+				result.Error = fmt.Errorf("reading report for %s: %w", patchedRef.Reference(), err)
+				return result
+			}
+
+			if vulns == 0 {
+				result.Skipped = true
+				result.SkipReason = "patched image up to date"
+				result.Patched = patchedRef
+				return result
+			}
+
+			fmt.Printf("    Patched image has %d new fixable vuln(s), re-patching from upstream ...\n", vulns)
+			// Fall through to re-patch from upstream.
+		}
+	}
+
+	// Normal flow: pull upstream, scan, patch, push.
+	ref := img.Reference()
 	ociDir := filepath.Join(opts.WorkDir, "oci", sanitize(ref))
 	if err := pullAndSaveOCI(ctx, ref, ociDir); err != nil {
 		result.Error = fmt.Errorf("pulling %s: %w", ref, err)
 		return result
 	}
 
-	// 1. Scan the OCI layout with Trivy.
 	reportPath := filepath.Join(opts.ReportDir, sanitize(ref)+".json")
 	result.ReportPath = reportPath
 	if err := trivyScan(ctx, ociDir, reportPath); err != nil {
@@ -71,17 +124,12 @@ func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult 
 
 	if vulns == 0 {
 		result.Skipped = true
+		result.SkipReason = "no fixable vulnerabilities"
 		result.Patched = img
 		return result
 	}
 
-	// 2. Patch with Copa (requires BuildKit).
-	tag := img.Tag
-	if tag == "" {
-		tag = "latest"
-	}
-	patchedTag := tag + "-patched"
-
+	// Patch with Copa (requires BuildKit).
 	if err := copaPatch(ctx, ref, reportPath, patchedTag, opts.BuildKitAddr); err != nil {
 		result.Error = fmt.Errorf("patching %s: %w", ref, err)
 		return result
@@ -90,7 +138,7 @@ func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult 
 	localPatched := img
 	localPatched.Tag = patchedTag
 
-	// 3. Optionally push to target registry.
+	// Optionally push to target registry.
 	if opts.TargetRegistry != "" {
 		target := Image{
 			Registry:   opts.TargetRegistry,
@@ -107,6 +155,17 @@ func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult 
 	}
 
 	return result
+}
+
+// imageExists checks whether an image reference exists in a remote registry
+// using a HEAD request (crane.Head). Returns false on any error.
+func imageExists(ctx context.Context, ref string) bool {
+	opts := []crane.Option{
+		crane.WithAuthFromKeychain(authn.DefaultKeychain),
+		crane.WithContext(ctx),
+	}
+	_, err := crane.Head(ref, opts...)
+	return err == nil
 }
 
 // pullAndSaveOCI pulls an image from a registry using go-containerregistry
