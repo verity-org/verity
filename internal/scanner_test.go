@@ -1,8 +1,10 @@
 package internal
 
 import (
+	"context"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -36,7 +38,7 @@ func TestFindImages(t *testing.T) {
 		},
 	}
 
-	images := findImages(values, "", "")
+	images := findImages(values, "", "", nil)
 
 	if len(images) < 3 {
 		t.Fatalf("expected at least 3 images, got %d", len(images))
@@ -111,6 +113,7 @@ func TestLooksLikeImage(t *testing.T) {
 }
 
 func TestFindImagesWithEmptyTag(t *testing.T) {
+	// Test with appVersion that has "v" prefix — used as-is, no registry check needed
 	values := map[string]interface{}{
 		"server": map[string]interface{}{
 			"image": map[string]interface{}{
@@ -118,17 +121,8 @@ func TestFindImagesWithEmptyTag(t *testing.T) {
 				"tag":        "",
 			},
 		},
-		"kube-state-metrics": map[string]interface{}{
-			"image": map[string]interface{}{
-				"registry":   "registry.k8s.io",
-				"repository": "kube-state-metrics/kube-state-metrics",
-				"tag":        "",
-			},
-		},
 	}
-
-	// Test with appVersion that has "v" prefix
-	images := findImages(values, "", "v2.48.0")
+	images := findImages(values, "", "v2.48.0", nil)
 	refs := map[string]bool{}
 	for _, img := range images {
 		refs[img.Reference()] = true
@@ -137,14 +131,65 @@ func TestFindImagesWithEmptyTag(t *testing.T) {
 		t.Errorf("expected image with tag from appVersion (v prefix): got %v", refs)
 	}
 
-	// Test with appVersion without "v" prefix — should be used as-is
-	images = findImages(values, "", "2.10.1")
+	// Test resolveTag selecting "v" prefix when only v-prefixed tag exists
+	orig := tagChecker
+	defer func() { tagChecker = orig }()
+	tagChecker = func(_ context.Context, ref string) bool {
+		// Simulate: only v-prefixed tag exists
+		return strings.HasSuffix(ref, ":v2.10.1")
+	}
+
+	values = map[string]interface{}{
+		"kube-state-metrics": map[string]interface{}{
+			"image": map[string]interface{}{
+				"registry":   "registry.k8s.io",
+				"repository": "kube-state-metrics/kube-state-metrics",
+				"tag":        "",
+			},
+		},
+	}
+	images = findImages(values, "", "2.10.1", nil)
 	refs = map[string]bool{}
 	for _, img := range images {
 		refs[img.Reference()] = true
 	}
-	if !refs["registry.k8s.io/kube-state-metrics/kube-state-metrics:2.10.1"] {
-		t.Errorf("expected image with tag from appVersion (as-is): got %v", refs)
+	if !refs["registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.10.1"] {
+		t.Errorf("expected v-prefixed tag when only v variant exists: got %v", refs)
+	}
+
+	// Test resolveTag using appVersion as-is when it exists without "v"
+	tagChecker = func(_ context.Context, ref string) bool {
+		// Simulate: only non-v tag exists
+		return strings.HasSuffix(ref, ":0.50.0-distroless-libc")
+	}
+
+	values = map[string]interface{}{
+		"vector": map[string]interface{}{
+			"image": map[string]interface{}{
+				"repository": "timberio/vector",
+				"tag":        "",
+			},
+		},
+	}
+	images = findImages(values, "", "0.50.0-distroless-libc", nil)
+	refs = map[string]bool{}
+	for _, img := range images {
+		refs[img.Reference()] = true
+	}
+	if !refs["timberio/vector:0.50.0-distroless-libc"] {
+		t.Errorf("expected appVersion as-is when it exists: got %v", refs)
+	}
+
+	// Test fallback to as-is when registry is unreachable
+	tagChecker = func(_ context.Context, _ string) bool { return false }
+
+	images = findImages(values, "", "9.9.9", nil)
+	refs = map[string]bool{}
+	for _, img := range images {
+		refs[img.Reference()] = true
+	}
+	if !refs["timberio/vector:9.9.9"] {
+		t.Errorf("expected appVersion as-is when registry unreachable: got %v", refs)
 	}
 }
 
