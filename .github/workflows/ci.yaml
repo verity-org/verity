@@ -39,7 +39,11 @@ jobs:
           go-version-file: go.mod
 
       - name: Login to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io --username "${{ github.actor }}" --password-stdin
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build verity
         run: go build -o verity .
@@ -70,33 +74,23 @@ jobs:
           go-version-file: go.mod
 
       - name: Login to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io --username "${{ github.actor }}" --password-stdin
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build verity
         run: go build -o verity .
 
       - name: Install Trivy
-        run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+        run: ./.github/scripts/install-trivy.sh
 
       - name: Install Copa
-        run: |
-          COPA_VERSION=$(curl -s https://api.github.com/repos/project-copacetic/copacetic/releases/latest | jq -r .tag_name | sed 's/^v//')
-          curl -fsSL -o copa.tar.gz "https://github.com/project-copacetic/copacetic/releases/download/v${COPA_VERSION}/copa_${COPA_VERSION}_linux_amd64.tar.gz"
-          tar -xzf copa.tar.gz copa
-          sudo mv copa /usr/local/bin/
+        run: ./.github/scripts/install-copa.sh
 
       - name: Start BuildKit
-        run: |
-          docker run --detach --privileged --name buildkitd \
-            --entrypoint buildkitd --rm "moby/buildkit:v0.19.0"
-          for i in $(seq 1 30); do
-            if docker exec buildkitd buildctl debug workers >/dev/null 2>&1; then
-              echo "BuildKit ready"
-              break
-            fi
-            sleep 1
-          done
+        run: ./.github/scripts/start-buildkit.sh
 
       - name: Patch images and create wrapper charts
         run: |
@@ -106,43 +100,7 @@ jobs:
             -report-dir /tmp/trivy-reports
 
       - name: Validate wrapper charts
-        run: |
-          echo "=== Validating Wrapper Charts ==="
-          for chart_dir in charts/*-verity; do
-            if [ ! -d "$chart_dir" ]; then
-              continue
-            fi
-
-            chart_name=$(basename "$chart_dir")
-            echo "Validating ${chart_name}..."
-
-            # Check required files exist
-            for file in Chart.yaml values.yaml .helmignore; do
-              if [ ! -f "${chart_dir}/${file}" ]; then
-                echo "❌ Missing ${file} in ${chart_name}"
-                exit 1
-              fi
-            done
-
-            # Validate Chart.yaml structure
-            if ! yq eval '.apiVersion' "${chart_dir}/Chart.yaml" | grep -q "v2"; then
-              echo "❌ Invalid apiVersion in ${chart_name}/Chart.yaml"
-              exit 1
-            fi
-
-            if ! yq eval '.dependencies | length' "${chart_dir}/Chart.yaml" | grep -q "1"; then
-              echo "❌ Missing or invalid dependencies in ${chart_name}/Chart.yaml"
-              exit 1
-            fi
-
-            # Lint the chart
-            helm lint "${chart_dir}" || {
-              echo "❌ Helm lint failed for ${chart_name}"
-              exit 1
-            }
-
-            echo "✅ ${chart_name} is valid"
-          done
+        run: ./.github/scripts/validate-charts.sh .
 
       - name: Upload wrapper charts
         uses: actions/upload-artifact@v4

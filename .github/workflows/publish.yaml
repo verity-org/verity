@@ -19,130 +19,27 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - name: Login to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io --username "${{ github.actor }}" --password-stdin
+      - name: Login to GHCR (Docker)
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Login to GHCR (Helm)
         run: echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io --username "${{ github.actor }}" --password-stdin
 
-      - name: Find wrapper charts
-        id: find-charts
-        run: |
-          if [ ! -d charts ]; then
-            echo "No charts directory found"
-            echo "charts=" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          charts=$(find charts -maxdepth 1 -type d -name "*-verity" -exec basename {} \; | jq -R -s -c 'split("\n")[:-1]')
-          echo "charts=${charts}" >> $GITHUB_OUTPUT
-          echo "Found charts: ${charts}"
-
       - name: Publish wrapper charts
-        if: steps.find-charts.outputs.charts != ''
-        run: |
-          charts='${{ steps.find-charts.outputs.charts }}'
+        run: ./.github/scripts/publish-charts.sh . ghcr.io ${{ github.repository_owner }}
 
-          echo "${charts}" | jq -r '.[]' | while read chart; do
-            if [ -z "$chart" ]; then
-              continue
-            fi
-
-            echo "Publishing chart: ${chart}"
-            chart_dir="charts/${chart}"
-
-            # Build dependencies
-            helm dependency build "${chart_dir}"
-
-            # Package chart
-            helm package "${chart_dir}" --destination /tmp/charts
-
-            # Get chart version
-            version=$(yq eval '.version' "${chart_dir}/Chart.yaml")
-
-            # Push to GHCR
-            helm push "/tmp/charts/${chart}-${version}.tgz" oci://ghcr.io/${{ github.repository_owner }}/charts
-
-            echo "✅ Published ${chart}:${version}"
-          done
-
-      - name: Push patched images to GHCR
-        if: steps.find-charts.outputs.charts != ''
-        run: |
-          charts='${{ steps.find-charts.outputs.charts }}'
-
-          echo "${charts}" | jq -r '.[]' | while read chart; do
-            if [ -z "$chart" ]; then
-              continue
-            fi
-
-            chart_dir="charts/${chart}"
-            values_file="${chart_dir}/values.yaml"
-
-            if [ ! -f "${values_file}" ]; then
-              echo "No values.yaml found for ${chart}, skipping"
-              continue
-            fi
-
-            # Extract base chart name (remove -verity suffix)
-            base_chart="${chart%-verity}"
-
-            echo "Processing images from ${chart}..."
-
-            # Extract image references from values.yaml
-            # This assumes the structure: chartname.*.image.{registry,repository,tag}
-            yq eval ".${base_chart}" "${values_file}" -o json | \
-            jq -r '.. | objects | select(has("registry") and has("repository") and has("tag")) |
-                   "\(.registry)/\(.repository):\(.tag)"' | \
-            while read image; do
-              if [ -n "$image" ] && [[ "$image" == ghcr.io/${{ github.repository_owner }}/* ]]; then
-                echo "Verifying image exists: ${image}"
-
-                # Check if image was already pushed during patching
-                if docker manifest inspect "${image}" >/dev/null 2>&1; then
-                  echo "✅ Image already exists: ${image}"
-                else
-                  echo "⚠️  Image not found: ${image} (may need to re-run patching)"
-                fi
-              fi
-            done
-          done
+      - name: Verify patched images
+        run: ./.github/scripts/verify-images.sh . ghcr.io ${{ github.repository_owner }}
 
       - name: Generate chart index
-        if: steps.find-charts.outputs.charts != ''
-        run: |
-          charts='${{ steps.find-charts.outputs.charts }}'
-
-          echo "# Verity Patched Charts" > /tmp/index.md
-          echo "" >> /tmp/index.md
-          echo "Self-maintained registry of security-patched Helm charts." >> /tmp/index.md
-          echo "" >> /tmp/index.md
-          echo "## Available Charts" >> /tmp/index.md
-          echo "" >> /tmp/index.md
-
-          echo "${charts}" | jq -r '.[]' | while read chart; do
-            if [ -z "$chart" ]; then
-              continue
-            fi
-
-            chart_dir="charts/${chart}"
-            version=$(yq eval '.version' "${chart_dir}/Chart.yaml")
-            description=$(yq eval '.description' "${chart_dir}/Chart.yaml")
-
-            echo "### ${chart}" >> /tmp/index.md
-            echo "" >> /tmp/index.md
-            echo "${description}" >> /tmp/index.md
-            echo "" >> /tmp/index.md
-            echo '```bash' >> /tmp/index.md
-            echo "helm install my-release oci://ghcr.io/${{ github.repository_owner }}/charts/${chart} --version ${version}" >> /tmp/index.md
-            echo '```' >> /tmp/index.md
-            echo "" >> /tmp/index.md
-          done
-
-          cat /tmp/index.md
+        run: ./.github/scripts/generate-index.sh . /tmp/index.md ghcr.io ${{ github.repository_owner }}
 
       - name: Upload chart index
-        if: steps.find-charts.outputs.charts != ''
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: chart-index
