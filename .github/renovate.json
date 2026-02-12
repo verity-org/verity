@@ -16,6 +16,13 @@
   "separateMultipleMajor": true,
   "packageRules": [
     {
+      "description": "Ignore generated wrapper charts — managed by verity",
+      "matchFileNames": [
+        "charts/**"
+      ],
+      "enabled": false
+    },
+    {
       "description": "Helm chart dependencies in root Chart.yaml",
       "matchManagers": [
         "helmv3"
