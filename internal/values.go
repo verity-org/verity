@@ -27,12 +27,14 @@ type WrapperChart struct {
 //
 // If registry is provided, it queries for existing wrapper chart versions to auto-increment
 // the patch level. Otherwise, defaults to patch level 0.
-func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir, registry string) error {
+//
+// Returns the wrapper chart version that was created.
+func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir, registry string) (string, error) {
 	chartName := dep.Name + "-verity"
 	chartDir := filepath.Join(outputDir, chartName)
 
 	if err := os.MkdirAll(chartDir, 0o755); err != nil {
-		return fmt.Errorf("creating chart directory: %w", err)
+		return "", fmt.Errorf("creating chart directory: %w", err)
 	}
 
 	// Determine patch level by querying registry for existing versions
@@ -54,12 +56,12 @@ func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir, regis
 		Dependencies: []Dependency{dep},
 	}
 	if err := writeChartYaml(filepath.Join(chartDir, "Chart.yaml"), wrapper); err != nil {
-		return err
+		return "", err
 	}
 
 	// Create values.yaml with patched images namespaced under the dependency name
 	if err := GenerateNamespacedValuesOverride(dep.Name, results, filepath.Join(chartDir, "values.yaml")); err != nil {
-		return err
+		return "", err
 	}
 
 	// Create .helmignore
@@ -73,13 +75,13 @@ func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir, regis
 .DS_Store
 `
 	if err := os.WriteFile(filepath.Join(chartDir, ".helmignore"), []byte(helmignore), 0o644); err != nil {
-		return fmt.Errorf("writing .helmignore: %w", err)
+		return "", fmt.Errorf("writing .helmignore: %w", err)
 	}
 
 	// Create reports/ directory and copy Trivy JSON reports
 	reportsDir := filepath.Join(chartDir, "reports")
 	if err := os.MkdirAll(reportsDir, 0o755); err != nil {
-		return fmt.Errorf("creating reports directory: %w", err)
+		return "", fmt.Errorf("creating reports directory: %w", err)
 	}
 
 	for _, r := range results {
@@ -89,12 +91,12 @@ func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir, regis
 			reportName := filepath.Base(r.ReportPath)
 			destPath := filepath.Join(reportsDir, reportName)
 			if err := copyFile(r.ReportPath, destPath); err != nil {
-				return fmt.Errorf("copying report %s: %w", reportName, err)
+				return "", fmt.Errorf("copying report %s: %w", reportName, err)
 			}
 		}
 	}
 
-	return nil
+	return version, nil
 }
 
 func writeChartYaml(path string, chart WrapperChart) error {

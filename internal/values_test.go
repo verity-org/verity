@@ -245,9 +245,13 @@ func TestCreateWrapperChart(t *testing.T) {
 		},
 	}
 
-	err := CreateWrapperChart(dep, results, tmpDir, "")
+	version, err := CreateWrapperChart(dep, results, tmpDir, "")
 	if err != nil {
 		t.Fatalf("CreateWrapperChart failed: %v", err)
+	}
+
+	if version != "25.8.0-0" {
+		t.Errorf("Expected version '25.8.0-0', got %s", version)
 	}
 
 	chartDir := filepath.Join(tmpDir, "prometheus-verity")
