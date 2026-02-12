@@ -99,7 +99,7 @@ jobs:
         run: |
           ./verity -chart Chart.yaml -output charts \
             -patch \
-            -buildkit-addr docker-container://${{ steps.buildx.outputs.name }} \
+            -buildkit-addr docker-container://buildx_buildkit_${{ steps.buildx.outputs.name }}0 \
             -report-dir /tmp/trivy-reports
 
       - name: Validate wrapper charts

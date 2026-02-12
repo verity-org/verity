@@ -57,7 +57,7 @@ jobs:
           ./verity -chart Chart.yaml -output charts \
             -patch \
             -registry ghcr.io/${{ github.repository_owner }} \
-            -buildkit-addr docker-container://${{ steps.buildx.outputs.name }} \
+            -buildkit-addr docker-container://buildx_buildkit_${{ steps.buildx.outputs.name }}0 \
             -report-dir /tmp/trivy-reports
 
       - name: Commit and push patched charts
