@@ -85,14 +85,19 @@ func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir, regis
 	}
 
 	for _, r := range results {
-		// Copy the trivy report even if patching was skipped or failed
-		// This provides transparency about all scanned images
-		if r.ReportPath != "" {
-			reportName := filepath.Base(r.ReportPath)
-			destPath := filepath.Join(reportsDir, reportName)
-			if err := copyFile(r.ReportPath, destPath); err != nil {
-				return "", fmt.Errorf("copying report %s: %w", reportName, err)
-			}
+		// Prefer the upstream (pre-patch) report for "before" data.
+		src := r.UpstreamReportPath
+		if src == "" {
+			src = r.ReportPath
+		}
+		if src == "" {
+			continue
+		}
+		// Always name by the original image ref so site data can match it.
+		reportName := sanitize(r.Original.Reference()) + ".json"
+		destPath := filepath.Join(reportsDir, reportName)
+		if err := copyFile(src, destPath); err != nil {
+			return "", fmt.Errorf("copying report %s: %w", reportName, err)
 		}
 	}
 

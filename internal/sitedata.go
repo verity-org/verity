@@ -96,7 +96,8 @@ type trivyVulnFull struct {
 
 // GenerateSiteData walks the charts directory and standalone images file
 // to produce a catalog.json for the Astro static site.
-func GenerateSiteData(chartsDir, imagesFile, registry, outputPath string) error {
+// reportsDir is the directory containing standalone image Trivy reports.
+func GenerateSiteData(chartsDir, imagesFile, reportsDir, registry, outputPath string) error {
 	data := SiteData{
 		GeneratedAt: time.Now().UTC().Format(time.RFC3339),
 		Registry:    registry,
@@ -111,7 +112,7 @@ func GenerateSiteData(chartsDir, imagesFile, registry, outputPath string) error 
 
 	// Discover standalone images
 	if imagesFile != "" {
-		standalone, err := discoverStandaloneImages(imagesFile, chartsDir, registry)
+		standalone, err := discoverStandaloneImages(imagesFile, reportsDir, registry)
 		if err != nil {
 			return fmt.Errorf("discovering standalone images: %w", err)
 		}
@@ -474,13 +475,18 @@ func SaveStandaloneReports(results []*PatchResult, reportsDir string) error {
 	}
 
 	for _, r := range results {
-		if r.ReportPath == "" {
+		// Prefer the upstream (pre-patch) report for "before" data.
+		src := r.UpstreamReportPath
+		if src == "" {
+			src = r.ReportPath
+		}
+		if src == "" {
 			continue
 		}
 		// Use the original image ref for the filename, not the patched one.
 		reportName := sanitize(r.Original.Reference()) + ".json"
 		destPath := filepath.Join(reportsDir, reportName)
-		if err := copyFile(r.ReportPath, destPath); err != nil {
+		if err := copyFile(src, destPath); err != nil {
 			return fmt.Errorf("copying report for %s: %w", r.Original.Reference(), err)
 		}
 	}
@@ -488,21 +494,19 @@ func SaveStandaloneReports(results []*PatchResult, reportsDir string) error {
 }
 
 // discoverStandaloneImages reads the standalone images values file and
-// finds reports for each image in the standalone reports directory.
-func discoverStandaloneImages(imagesFile, chartsDir, registry string) ([]SiteImage, error) {
+// finds reports for each image in the reports directory.
+func discoverStandaloneImages(imagesFile, reportsDir, registry string) ([]SiteImage, error) {
 	images, err := ParseImagesFile(imagesFile)
 	if err != nil {
 		return nil, err
 	}
-
-	standaloneReportsDir := filepath.Join(chartsDir, "_standalone", "reports")
 
 	var siteImages []SiteImage
 	for _, img := range images {
 		ref := img.Reference()
 		sanitizedRef := sanitize(ref)
 
-		reportPath := filepath.Join(standaloneReportsDir, sanitizedRef+".json")
+		reportPath := filepath.Join(reportsDir, sanitizedRef+".json")
 		report, err := parseTrivyReportFull(reportPath)
 
 		patchedRef := buildPatchedRef(ref, registry)

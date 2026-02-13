@@ -95,7 +95,7 @@ dependencies:
 
 	// Run GenerateSiteData
 	outputPath := filepath.Join(tmpDir, "output", "catalog.json")
-	err := GenerateSiteData(chartsDir, imagesFile, "ghcr.io/testorg", outputPath)
+	err := GenerateSiteData(chartsDir, imagesFile, filepath.Join(tmpDir, "reports"), "ghcr.io/testorg", outputPath)
 	if err != nil {
 		t.Fatalf("GenerateSiteData failed: %v", err)
 	}
@@ -338,15 +338,15 @@ func TestSaveStandaloneReports(t *testing.T) {
 func TestGenerateSiteDataWithStandaloneReports(t *testing.T) {
 	tmpDir := t.TempDir()
 	chartsDir := filepath.Join(tmpDir, "charts")
-	standaloneReportsDir := filepath.Join(chartsDir, "_standalone", "reports")
+	reportsDir := filepath.Join(tmpDir, "reports")
 
-	if err := os.MkdirAll(standaloneReportsDir, 0o755); err != nil {
+	if err := os.MkdirAll(reportsDir, 0o755); err != nil {
 		t.Fatal(err)
 	}
 
 	// Write a standalone report
 	report := `{"Metadata":{"OS":{"Family":"alpine","Name":"3.19"}},"Results":[{"Vulnerabilities":[{"VulnerabilityID":"CVE-2024-1111","PkgName":"busybox","InstalledVersion":"1.36.0","FixedVersion":"1.36.1","Severity":"MEDIUM","Title":"busybox overflow"}]}]}`
-	if err := os.WriteFile(filepath.Join(standaloneReportsDir, "docker.io_library_redis_7.0.0.json"), []byte(report), 0o644); err != nil {
+	if err := os.WriteFile(filepath.Join(reportsDir, "docker.io_library_redis_7.0.0.json"), []byte(report), 0o644); err != nil {
 		t.Fatal(err)
 	}
 
@@ -363,7 +363,7 @@ func TestGenerateSiteDataWithStandaloneReports(t *testing.T) {
 	}
 
 	outputPath := filepath.Join(tmpDir, "catalog.json")
-	if err := GenerateSiteData(chartsDir, imagesFile, "ghcr.io/testorg", outputPath); err != nil {
+	if err := GenerateSiteData(chartsDir, imagesFile, reportsDir, "ghcr.io/testorg", outputPath); err != nil {
 		t.Fatalf("GenerateSiteData failed: %v", err)
 	}
 

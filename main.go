@@ -154,8 +154,7 @@ func main() {
 				}
 
 				// Save standalone reports to persistent directory
-				standaloneReportsDir := filepath.Join(*outputDir, "_standalone", "reports")
-				if err := internal.SaveStandaloneReports(results, standaloneReportsDir); err != nil {
+				if err := internal.SaveStandaloneReports(results, "reports"); err != nil {
 					log.Fatalf("Failed to save standalone reports: %v", err)
 				}
 			}
@@ -164,7 +163,7 @@ func main() {
 
 	// Generate site catalog JSON
 	if *siteDataPath != "" {
-		if err := internal.GenerateSiteData(*outputDir, *imagesFile, *registry, *siteDataPath); err != nil {
+		if err := internal.GenerateSiteData(*outputDir, *imagesFile, "reports", *registry, *siteDataPath); err != nil {
 			log.Fatalf("Failed to generate site data: %v", err)
 		}
 		fmt.Printf("\nSite data → %s\n", *siteDataPath)
