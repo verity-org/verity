@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VulnTable from '../../components/VulnTable.astro';
+import SeverityBreakdown from '../../components/SeverityBreakdown.astro';
+import CopyButton from '../../components/CopyButton.astro';
+import { catalog, getAllImages, shortName } from '../../lib/catalog';
+import type { SiteImage } from '../../lib/catalog';
+
+export function getStaticPaths() {
+  const all = getAllImages();
+  return all.map((image) => ({
+    params: { id: image.id },
+    props: { image },
+  }));
+}
+
+interface Props {
+  image: SiteImage;
+}
+
+const { image } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const display = shortName(image.originalRef);
+
+// Find parent chart for breadcrumb
+const parentChart = image.chartName
+  ? catalog.charts.find((c) => c.name === image.chartName)
+  : undefined;
+---
+
+<BaseLayout title={`${display} — Verity`}>
+  <nav class="text-sm text-gray-500 mb-6">
+    <a href={base} class="hover:text-gray-700">Home</a>
+    {parentChart && (
+      <>
+        <span class="mx-1">/</span>
+        <a href={`${base}charts/${parentChart.name}/`} class="hover:text-gray-700">
+          {parentChart.name}
+        </a>
+      </>
+    )}
+    <span class="mx-1">/</span>
+    <span class="text-gray-900 truncate">{display.split('/').pop()?.split(':')[0]}</span>
+  </nav>
+
+  <div class="mb-8">
+    <h1 class="text-xl font-bold font-mono break-all mb-2">{image.originalRef}</h1>
+    {image.os && (
+      <p class="text-sm text-gray-500">Base OS: {image.os}</p>
+    )}
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+    <div class="bg-red-50 border border-red-100 rounded-lg p-4">
+      <div class="text-xs text-red-600 uppercase tracking-wide mb-1">Original</div>
+      <div class="font-mono text-sm break-all">{image.originalRef}</div>
+      <div class="mt-3 flex items-center gap-2">
+        <CopyButton text={image.originalRef} />
+        {image.vulnSummary.fixable > 0 && (
+          <span class="text-sm text-red-700 font-medium">
+            {image.vulnSummary.fixable} fixable vuln{image.vulnSummary.fixable !== 1 && 's'}
+          </span>
+        )}
+      </div>
+    </div>
+    <div class="bg-green-50 border border-green-100 rounded-lg p-4">
+      <div class="text-xs text-green-600 uppercase tracking-wide mb-1">Patched</div>
+      <div class="font-mono text-sm break-all">{image.patchedRef}</div>
+      <div class="mt-3 flex items-center gap-2">
+        <CopyButton text={image.patchedRef} />
+        <span class="text-sm text-green-700 font-medium">0 fixable vulns</span>
+      </div>
+    </div>
+  </div>
+
+  {image.vulnSummary.total > 0 && (
+    <div class="mb-8">
+      <h2 class="text-lg font-semibold mb-3">
+        Original Scan
+        <span class="text-sm font-normal text-gray-500 ml-2">
+          {image.vulnSummary.fixable} of {image.vulnSummary.total} vulnerabilities fixed by Copa
+        </span>
+      </h2>
+      <SeverityBreakdown summary={image.vulnSummary} />
+    </div>
+  )}
+
+  <section>
+    <h2 class="text-lg font-semibold mb-4">
+      Vulnerabilities (pre-patch)
+      {image.vulnSummary.total > 0 && (
+        <span class="text-sm font-normal text-gray-500 ml-2">
+          {image.vulnSummary.total} found, {image.vulnSummary.fixable} fixed
+        </span>
+      )}
+    </h2>
+    <VulnTable vulnerabilities={image.vulnerabilities} />
+  </section>
+</BaseLayout>

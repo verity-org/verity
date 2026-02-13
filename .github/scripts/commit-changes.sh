@@ -15,6 +15,10 @@ fi
 
 echo "Changes detected, committing..."
 git add "${CHARTS_DIR}/"
+# Also stage standalone image reports if they exist
+if [ -d "${CHARTS_DIR}/_standalone/reports" ]; then
+  git add "${CHARTS_DIR}/_standalone/reports/"
+fi
 git commit -m "chore: patch images for updated chart versions
 
 Automatically patched container images using Copa after chart version update.
