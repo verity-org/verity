@@ -1,0 +1,32 @@
+---
+interface Props {
+  placeholder?: string;
+  targetId: string;
+}
+
+const { placeholder = 'Search images...', targetId } = Astro.props;
+---
+
+<input
+  type="text"
+  placeholder={placeholder}
+  class="w-full sm:w-72 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+  data-search-input={targetId}
+/>
+
+<script>
+  document.querySelectorAll<HTMLInputElement>('[data-search-input]').forEach((input) => {
+    const targetId = input.getAttribute('data-search-input');
+    if (!targetId) return;
+    const container = document.getElementById(targetId);
+    if (!container) return;
+
+    input.addEventListener('input', () => {
+      const query = input.value.toLowerCase();
+      container.querySelectorAll<HTMLElement>('[data-searchable]').forEach((el) => {
+        const text = el.getAttribute('data-searchable') || '';
+        el.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+  });
+</script>

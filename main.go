@@ -19,6 +19,7 @@ func main() {
 	registry := flag.String("registry", "", "target registry for patched images (e.g. ghcr.io/descope)")
 	buildkitAddr := flag.String("buildkit-addr", "", "BuildKit address for Copa (e.g. docker-container://buildkitd)")
 	reportDir := flag.String("report-dir", "", "directory to store Trivy JSON reports (default: temp dir)")
+	siteDataPath := flag.String("site-data", "", "generate site catalog JSON at this path")
 	flag.Parse()
 
 	chart, err := internal.ParseChartFile(*chartFile)
@@ -131,10 +132,12 @@ func main() {
 				}
 
 				failed := 0
+				var results []*internal.PatchResult
 				ctx := context.Background()
 				for _, img := range images {
 					fmt.Printf("\n  Patching %s ...\n", img.Reference())
 					r := internal.PatchImage(ctx, img, opts)
+					results = append(results, r)
 
 					if r.Error != nil {
 						fmt.Printf("    ERROR: %v\n", r.Error)
@@ -149,8 +152,22 @@ func main() {
 				if failed > 0 {
 					log.Fatalf("  %d standalone image(s) failed to patch", failed)
 				}
+
+				// Save standalone reports to persistent directory
+				standaloneReportsDir := filepath.Join(*outputDir, "_standalone", "reports")
+				if err := internal.SaveStandaloneReports(results, standaloneReportsDir); err != nil {
+					log.Fatalf("Failed to save standalone reports: %v", err)
+				}
 			}
 		}
+	}
+
+	// Generate site catalog JSON
+	if *siteDataPath != "" {
+		if err := internal.GenerateSiteData(*outputDir, *imagesFile, *registry, *siteDataPath); err != nil {
+			log.Fatalf("Failed to generate site data: %v", err)
+		}
+		fmt.Printf("\nSite data → %s\n", *siteDataPath)
 	}
 }
 

@@ -1,0 +1,43 @@
+---
+import type { SiteImage } from '../lib/catalog';
+import { shortName } from '../lib/catalog';
+import VulnBadge from './VulnBadge.astro';
+import { SEVERITY_ORDER } from '../lib/severity';
+
+interface Props {
+  image: SiteImage;
+}
+
+const { image } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const display = shortName(image.originalRef);
+---
+
+<a
+  href={`${base}images/${image.id}/`}
+  class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-gray-400 hover:shadow-sm transition-all"
+  data-searchable={image.originalRef.toLowerCase()}
+>
+  <div class="min-w-0 flex-1">
+    <div class="font-mono text-sm truncate">{display}</div>
+    {image.os && <div class="text-xs text-gray-400">{image.os}</div>}
+  </div>
+  <div class="flex items-center gap-2 ml-4 shrink-0">
+    {image.vulnSummary.fixable > 0 ? (
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-gray-400 line-through">{image.vulnSummary.fixable} vuln{image.vulnSummary.fixable !== 1 && 's'}</span>
+        <span class="text-green-600 text-sm font-medium">0 fixable</span>
+        <div class="flex gap-1">
+          {SEVERITY_ORDER.map(
+            (sev) =>
+              image.vulnSummary.severityCounts[sev] > 0 && (
+                <VulnBadge severity={sev} count={image.vulnSummary.severityCounts[sev]} />
+              )
+          )}
+        </div>
+      </div>
+    ) : (
+      <span class="text-green-600 text-sm font-medium">clean</span>
+    )}
+  </div>
+</a>

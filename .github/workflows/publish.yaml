@@ -7,6 +7,8 @@ on:
 permissions:
   contents: read
   packages: write
+  pages: write
+  id-token: write
 
 jobs:
   publish:
@@ -54,3 +56,37 @@ jobs:
           name: chart-index
           path: /tmp/index.md
           retention-days: 90
+
+      - name: Generate site data
+        run: ./verity -site-data site/src/data/catalog.json -images values.yaml -registry ghcr.io/${{ github.repository_owner }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: site/package-lock.json
+
+      - name: Build Astro site
+        working-directory: site
+        run: npm ci && npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site/dist
+
+  deploy-site:
+    name: Deploy to GitHub Pages
+    needs: publish
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
