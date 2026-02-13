@@ -67,7 +67,8 @@ jobs:
             -patch \
             -registry ghcr.io/${{ github.repository_owner }} \
             -buildkit-addr docker-container://buildx_buildkit_${{ steps.buildx.outputs.name }}0 \
-            -report-dir /tmp/trivy-reports
+            -report-dir /tmp/trivy-reports \
+            -site-data site/src/data/catalog.json
 
       - name: Commit and push patched charts
         run: ./.github/scripts/commit-changes.sh charts
