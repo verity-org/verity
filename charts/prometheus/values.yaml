@@ -1,17 +1,23 @@
 prometheus:
+    alertmanager:
+        image:
+            repository: ""
+    configmapReload:
+        prometheus:
+            image:
+                repository: ""
     kube-state-metrics:
         image:
-            registry: ghcr.io/descope
-            repository: kube-state-metrics/kube-state-metrics
-            tag: v2.10.1-patched
+            repository: ""
         kubeRBACProxy:
             image:
-                registry: ghcr.io/descope
-                repository: brancz/kube-rbac-proxy
-                tag: v0.14.0-patched
+                repository: ""
     prometheus-node-exporter:
-        kubeRBACProxy:
-            image:
-                registry: ghcr.io/descope
-                repository: brancz/kube-rbac-proxy
-                tag: v0.15.0-patched
+        image:
+            repository: ""
+    prometheus-pushgateway:
+        image:
+            repository: ""
+    server:
+        image:
+            repository: ""

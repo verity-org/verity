@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-13T14:01:27Z",
+  "generatedAt": "2026-02-13T16:16:33Z",
   "registry": "ghcr.io/descope",
   "summary": {
     "totalCharts": 1,
@@ -20,7 +20,7 @@
           "id": "quay.io_brancz_kube-rbac-proxy_v0.14.0",
           "originalRef": "quay.io/brancz/kube-rbac-proxy:v0.14.0",
           "patchedRef": "ghcr.io/descope/brancz/kube-rbac-proxy:v0.14.0-patched",
-          "valuesPath": "prometheus.kube-state-metrics.kubeRBACProxy.image",
+          "valuesPath": "",
           "os": "debian 11.5",
           "vulnSummary": {
             "total": 4,
@@ -69,7 +69,7 @@
           "id": "quay.io_brancz_kube-rbac-proxy_v0.15.0",
           "originalRef": "quay.io/brancz/kube-rbac-proxy:v0.15.0",
           "patchedRef": "ghcr.io/descope/brancz/kube-rbac-proxy:v0.15.0-patched",
-          "valuesPath": "prometheus.prometheus-node-exporter.kubeRBACProxy.image",
+          "valuesPath": "",
           "os": "debian 11.8",
           "vulnSummary": {
             "total": 4,
@@ -286,7 +286,7 @@
           "id": "registry.k8s.io_kube-state-metrics_kube-state-metrics_v2.10.1",
           "originalRef": "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.10.1",
           "patchedRef": "ghcr.io/descope/kube-state-metrics/kube-state-metrics:v2.10.1-patched",
-          "valuesPath": "prometheus.kube-state-metrics.image",
+          "valuesPath": "",
           "os": "debian 11.8",
           "vulnSummary": {
             "total": 4,
@@ -768,6 +768,19 @@
           "title": "openssl: OpenSSL: Denial of Service via type confusion in PKCS#7 signature verification"
         }
       ]
+    },
+    {
+      "id": "docker.io_grafana_grafana_12.3.3",
+      "originalRef": "docker.io/grafana/grafana:12.3.3",
+      "patchedRef": "ghcr.io/descope/grafana/grafana:12.3.3-patched",
+      "valuesPath": "grafana.image",
+      "os": "alpine 3.23.3",
+      "vulnSummary": {
+        "total": 0,
+        "fixable": 0,
+        "severityCounts": {}
+      },
+      "vulnerabilities": []
     },
     {
       "id": "quay.io_prometheus-operator_prometheus-config-reloader_v0.89.0",
