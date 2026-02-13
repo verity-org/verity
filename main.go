@@ -62,6 +62,13 @@ func main() {
 		}
 
 		// Apply image overrides before patching (e.g. swap distroless tags for Copa-compatible ones).
+		// Track original tags so we can record overrides in results.
+		origTags := make(map[string]string) // repo -> original tag
+		if len(overrides) > 0 {
+			for _, img := range images {
+				origTags[img.Repository] = img.Tag
+			}
+		}
 		images = internal.ApplyOverrides(images, overrides)
 
 		fmt.Printf("  Found %d images\n", len(images))
@@ -95,6 +102,12 @@ func main() {
 		for _, img := range images {
 			fmt.Printf("\n  Patching %s ...\n", img.Reference())
 			r := internal.PatchImage(ctx, img, opts)
+
+			// Record if image tag was overridden.
+			if orig, ok := origTags[img.Repository]; ok && orig != img.Tag {
+				r.OverriddenFrom = orig
+			}
+
 			results = append(results, r)
 
 			if r.Error != nil {
