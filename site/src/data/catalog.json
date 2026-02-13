@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-13T22:39:44Z",
+  "generatedAt": "2026-02-13T22:53:06Z",
   "registry": "ghcr.io/descope",
   "summary": {
     "totalCharts": 2,
@@ -118,7 +118,7 @@
           "id": "quay.io_brancz_kube-rbac-proxy_v0.20.2",
           "originalRef": "quay.io/brancz/kube-rbac-proxy:v0.20.2",
           "patchedRef": "ghcr.io/descope/brancz/kube-rbac-proxy:v0.20.2-patched",
-          "valuesPath": "kube-state-metrics.kubeRBACProxy.image",
+          "valuesPath": "prometheus.kube-state-metrics.kubeRBACProxy.image",
           "os": "debian 12.13",
           "vulnSummary": {
             "total": 0,
@@ -1794,10 +1794,10 @@
       "vulnerabilities": []
     },
     {
-      "id": "quay.io_opstree_redis_v8.4.0",
-      "originalRef": "quay.io/opstree/redis:v8.4.0",
-      "patchedRef": "ghcr.io/descope/opstree/redis:v8.4.0-patched",
-      "valuesPath": "redis.image",
+      "id": "quay.io_opstree_redis-sentinel_v8.4.0",
+      "originalRef": "quay.io/opstree/redis-sentinel:v8.4.0",
+      "patchedRef": "ghcr.io/descope/opstree/redis-sentinel:v8.4.0-patched",
+      "valuesPath": "redis-sentinel.image",
       "os": "alpine 3.22.2",
       "vulnSummary": {
         "total": 24,
@@ -2017,6 +2017,19 @@
       "vulnerabilities": []
     },
     {
+      "id": "quay.io_prometheus_prometheus_v3.9.1",
+      "originalRef": "quay.io/prometheus/prometheus:v3.9.1",
+      "patchedRef": "ghcr.io/descope/prometheus/prometheus:v3.9.1-patched",
+      "valuesPath": "prometheus.image",
+      "os": "",
+      "vulnSummary": {
+        "total": 0,
+        "fixable": 0,
+        "severityCounts": {}
+      },
+      "vulnerabilities": []
+    },
+    {
       "id": "docker.io_rabbitmqoperator_cluster-operator_2.19.1",
       "originalRef": "docker.io/rabbitmqoperator/cluster-operator:2.19.1",
       "patchedRef": "ghcr.io/descope/rabbitmqoperator/cluster-operator:2.19.1-patched",
@@ -2030,74 +2043,10 @@
       "vulnerabilities": []
     },
     {
-      "id": "docker.io_library_rabbitmq_4.2.3",
-      "originalRef": "docker.io/library/rabbitmq:4.2.3",
-      "patchedRef": "ghcr.io/descope/library/rabbitmq:4.2.3-patched",
-      "valuesPath": "rabbitmq.image",
-      "os": "ubuntu 24.04",
-      "vulnSummary": {
-        "total": 6,
-        "fixable": 6,
-        "severityCounts": {
-          "MEDIUM": 6
-        }
-      },
-      "vulnerabilities": [
-        {
-          "id": "CVE-2025-15281",
-          "pkgName": "libc-bin",
-          "installedVersion": "2.39-0ubuntu8.6",
-          "fixedVersion": "2.39-0ubuntu8.7",
-          "severity": "MEDIUM",
-          "title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory"
-        },
-        {
-          "id": "CVE-2026-0861",
-          "pkgName": "libc-bin",
-          "installedVersion": "2.39-0ubuntu8.6",
-          "fixedVersion": "2.39-0ubuntu8.7",
-          "severity": "MEDIUM",
-          "title": "glibc: Integer overflow in memalign leads to heap corruption"
-        },
-        {
-          "id": "CVE-2026-0915",
-          "pkgName": "libc-bin",
-          "installedVersion": "2.39-0ubuntu8.6",
-          "fixedVersion": "2.39-0ubuntu8.7",
-          "severity": "MEDIUM",
-          "title": "glibc: glibc: Information disclosure via zero-valued network query"
-        },
-        {
-          "id": "CVE-2025-15281",
-          "pkgName": "libc6",
-          "installedVersion": "2.39-0ubuntu8.6",
-          "fixedVersion": "2.39-0ubuntu8.7",
-          "severity": "MEDIUM",
-          "title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory"
-        },
-        {
-          "id": "CVE-2026-0861",
-          "pkgName": "libc6",
-          "installedVersion": "2.39-0ubuntu8.6",
-          "fixedVersion": "2.39-0ubuntu8.7",
-          "severity": "MEDIUM",
-          "title": "glibc: Integer overflow in memalign leads to heap corruption"
-        },
-        {
-          "id": "CVE-2026-0915",
-          "pkgName": "libc6",
-          "installedVersion": "2.39-0ubuntu8.6",
-          "fixedVersion": "2.39-0ubuntu8.7",
-          "severity": "MEDIUM",
-          "title": "glibc: glibc: Information disclosure via zero-valued network query"
-        }
-      ]
-    },
-    {
-      "id": "quay.io_opstree_redis-sentinel_v8.4.0",
-      "originalRef": "quay.io/opstree/redis-sentinel:v8.4.0",
-      "patchedRef": "ghcr.io/descope/opstree/redis-sentinel:v8.4.0-patched",
-      "valuesPath": "redis-sentinel.image",
+      "id": "quay.io_opstree_redis_v8.4.0",
+      "originalRef": "quay.io/opstree/redis:v8.4.0",
+      "patchedRef": "ghcr.io/descope/opstree/redis:v8.4.0-patched",
+      "valuesPath": "redis.image",
       "os": "alpine 3.22.2",
       "vulnSummary": {
         "total": 24,
@@ -2308,19 +2257,6 @@
       "originalRef": "quay.io/prometheus-operator/prometheus-config-reloader:v0.89.0",
       "patchedRef": "ghcr.io/descope/prometheus-operator/prometheus-config-reloader:v0.89.0-patched",
       "valuesPath": "prometheus-config-reloader.image",
-      "os": "",
-      "vulnSummary": {
-        "total": 0,
-        "fixable": 0,
-        "severityCounts": {}
-      },
-      "vulnerabilities": []
-    },
-    {
-      "id": "quay.io_prometheus_prometheus_v3.9.1",
-      "originalRef": "quay.io/prometheus/prometheus:v3.9.1",
-      "patchedRef": "ghcr.io/descope/prometheus/prometheus:v3.9.1-patched",
-      "valuesPath": "prometheus.image",
       "os": "",
       "vulnSummary": {
         "total": 0,
@@ -2585,6 +2521,70 @@
           "fixedVersion": "1.37.0-r20",
           "severity": "LOW",
           "title": "In tar in BusyBox through 1.37.0, a TAR archive can have filenames hid ..."
+        }
+      ]
+    },
+    {
+      "id": "docker.io_library_rabbitmq_4.2.3",
+      "originalRef": "docker.io/library/rabbitmq:4.2.3",
+      "patchedRef": "ghcr.io/descope/library/rabbitmq:4.2.3-patched",
+      "valuesPath": "rabbitmq.image",
+      "os": "ubuntu 24.04",
+      "vulnSummary": {
+        "total": 6,
+        "fixable": 6,
+        "severityCounts": {
+          "MEDIUM": 6
+        }
+      },
+      "vulnerabilities": [
+        {
+          "id": "CVE-2025-15281",
+          "pkgName": "libc-bin",
+          "installedVersion": "2.39-0ubuntu8.6",
+          "fixedVersion": "2.39-0ubuntu8.7",
+          "severity": "MEDIUM",
+          "title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory"
+        },
+        {
+          "id": "CVE-2026-0861",
+          "pkgName": "libc-bin",
+          "installedVersion": "2.39-0ubuntu8.6",
+          "fixedVersion": "2.39-0ubuntu8.7",
+          "severity": "MEDIUM",
+          "title": "glibc: Integer overflow in memalign leads to heap corruption"
+        },
+        {
+          "id": "CVE-2026-0915",
+          "pkgName": "libc-bin",
+          "installedVersion": "2.39-0ubuntu8.6",
+          "fixedVersion": "2.39-0ubuntu8.7",
+          "severity": "MEDIUM",
+          "title": "glibc: glibc: Information disclosure via zero-valued network query"
+        },
+        {
+          "id": "CVE-2025-15281",
+          "pkgName": "libc6",
+          "installedVersion": "2.39-0ubuntu8.6",
+          "fixedVersion": "2.39-0ubuntu8.7",
+          "severity": "MEDIUM",
+          "title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory"
+        },
+        {
+          "id": "CVE-2026-0861",
+          "pkgName": "libc6",
+          "installedVersion": "2.39-0ubuntu8.6",
+          "fixedVersion": "2.39-0ubuntu8.7",
+          "severity": "MEDIUM",
+          "title": "glibc: Integer overflow in memalign leads to heap corruption"
+        },
+        {
+          "id": "CVE-2026-0915",
+          "pkgName": "libc6",
+          "installedVersion": "2.39-0ubuntu8.6",
+          "fixedVersion": "2.39-0ubuntu8.7",
+          "severity": "MEDIUM",
+          "title": "glibc: glibc: Information disclosure via zero-valued network query"
         }
       ]
     }
