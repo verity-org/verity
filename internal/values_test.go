@@ -354,16 +354,18 @@ func TestCreateWrapperChart(t *testing.T) {
 		t.Errorf("reports/ directory not found: %v", err)
 	}
 
-	// Check that both reports were copied
-	if _, err := os.Stat(filepath.Join(reportsDir2, "prometheus.json")); err != nil {
-		t.Errorf("prometheus.json report not found: %v", err)
+	// Check that both reports were copied (named by sanitized original ref)
+	promReport := filepath.Join(reportsDir2, "quay.io_prometheus_prometheus_v2.48.0.json")
+	if _, err := os.Stat(promReport); err != nil {
+		t.Errorf("prometheus report not found: %v", err)
 	}
-	if _, err := os.Stat(filepath.Join(reportsDir2, "alertmanager.json")); err != nil {
-		t.Errorf("alertmanager.json report not found: %v", err)
+	alertReport := filepath.Join(reportsDir2, "quay.io_prometheus_alertmanager_v0.26.0.json")
+	if _, err := os.Stat(alertReport); err != nil {
+		t.Errorf("alertmanager report not found: %v", err)
 	}
 
 	// Verify report content is correct
-	reportData, err := os.ReadFile(filepath.Join(reportsDir2, "prometheus.json"))
+	reportData, err := os.ReadFile(promReport)
 	if err != nil {
 		t.Fatalf("Failed to read copied report: %v", err)
 	}
