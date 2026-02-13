@@ -140,7 +140,24 @@ func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult 
 	if vulns == 0 {
 		result.Skipped = true
 		result.SkipReason = "no fixable vulnerabilities"
-		result.Patched = img
+
+		// Mirror the image to the target registry even when no patching is
+		// needed, so consumers always see the latest version available and
+		// have a clear upgrade path.
+		if opts.TargetRegistry != "" {
+			target := Image{
+				Registry:   opts.TargetRegistry,
+				Repository: img.Repository,
+				Tag:        patchedTag,
+			}
+			if err := mirrorImage(ctx, ref, target.Reference()); err != nil {
+				result.Error = fmt.Errorf("mirroring %s to %s: %w", ref, target.Reference(), err)
+				return result
+			}
+			result.Patched = target
+		} else {
+			result.Patched = img
+		}
 		return result
 	}
 
@@ -243,6 +260,17 @@ func copaPatch(ctx context.Context, imageRef, reportPath, patchedTag, buildkitAd
 		return fmt.Errorf("copa patch %s: %w", imageRef, err)
 	}
 	return nil
+}
+
+// mirrorImage copies an image between registries using crane.Copy.
+// Used to publish images that need no patching to the target registry.
+func mirrorImage(ctx context.Context, srcRef, dstRef string) error {
+	opts := []crane.Option{
+		crane.WithAuthFromKeychain(authn.DefaultKeychain),
+		crane.WithContext(ctx),
+	}
+	fmt.Printf("    Mirroring %s → %s ...\n", srcRef, dstRef)
+	return crane.Copy(srcRef, dstRef, opts...)
 }
 
 // dockerRetag tags a local image and pushes it to a remote registry.
