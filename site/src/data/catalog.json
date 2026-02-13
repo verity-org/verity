@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-13T13:36:42Z",
+  "generatedAt": "2026-02-13T13:37:59Z",
   "registry": "ghcr.io/descope",
   "summary": {
     "totalCharts": 1,
@@ -349,19 +349,6 @@
     }
   ],
   "standaloneImages": [
-    {
-      "id": "quay.io_opstree_redis-exporter_v1.80.2",
-      "originalRef": "quay.io/opstree/redis-exporter:v1.80.2",
-      "patchedRef": "ghcr.io/descope/opstree/redis-exporter:v1.80.2-patched",
-      "valuesPath": "redis-exporter.image",
-      "os": "",
-      "vulnSummary": {
-        "total": 0,
-        "fixable": 0,
-        "severityCounts": {}
-      },
-      "vulnerabilities": []
-    },
     {
       "id": "quay.io_opstree_redis_v8.4.0",
       "originalRef": "quay.io/opstree/redis:v8.4.0",
@@ -1278,6 +1265,19 @@
       ]
     },
     {
+      "id": "docker.io_rabbitmqoperator_cluster-operator_2.19.0",
+      "originalRef": "docker.io/rabbitmqoperator/cluster-operator:2.19.0",
+      "patchedRef": "ghcr.io/descope/rabbitmqoperator/cluster-operator:2.19.0-patched",
+      "valuesPath": "rabbitmqoperator.image",
+      "os": "",
+      "vulnSummary": {
+        "total": 0,
+        "fixable": 0,
+        "severityCounts": {}
+      },
+      "vulnerabilities": []
+    },
+    {
       "id": "docker.io_library_rabbitmq_4.2.2",
       "originalRef": "docker.io/library/rabbitmq:4.2.2",
       "patchedRef": "ghcr.io/descope/library/rabbitmq:4.2.2-patched",
@@ -1471,10 +1471,10 @@
       ]
     },
     {
-      "id": "docker.io_rabbitmqoperator_cluster-operator_2.19.0",
-      "originalRef": "docker.io/rabbitmqoperator/cluster-operator:2.19.0",
-      "patchedRef": "ghcr.io/descope/rabbitmqoperator/cluster-operator:2.19.0-patched",
-      "valuesPath": "rabbitmqoperator.image",
+      "id": "quay.io_opstree_redis-exporter_v1.80.2",
+      "originalRef": "quay.io/opstree/redis-exporter:v1.80.2",
+      "patchedRef": "ghcr.io/descope/opstree/redis-exporter:v1.80.2-patched",
+      "valuesPath": "redis-exporter.image",
       "os": "",
       "vulnSummary": {
         "total": 0,
