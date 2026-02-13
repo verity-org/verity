@@ -137,7 +137,13 @@ func GenerateNamespacedValuesOverride(chartName string, results []*PatchResult, 
 	inner := make(map[string]interface{})
 
 	for _, r := range results {
-		if r.Error != nil || r.Skipped {
+		if r.Error != nil {
+			continue
+		}
+		// Include skipped images that have a valid patched ref (e.g. already
+		// patched in registry). This ensures values.yaml stays current even
+		// when all images are up-to-date and no new patching occurs.
+		if r.Skipped && r.Patched.Repository == "" {
 			continue
 		}
 		setImageAtPath(inner, r.Original.Path, r.Patched)
@@ -168,7 +174,10 @@ func GenerateValuesOverride(results []*PatchResult, path string) error {
 	root := make(map[string]interface{})
 
 	for _, r := range results {
-		if r.Error != nil || r.Skipped {
+		if r.Error != nil {
+			continue
+		}
+		if r.Skipped && r.Patched.Repository == "" {
 			continue
 		}
 		setImageAtPath(root, r.Original.Path, r.Patched)
