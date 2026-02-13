@@ -106,6 +106,11 @@ func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir, regis
 		return "", fmt.Errorf("saving overrides: %w", err)
 	}
 
+	// Save image paths so site data can populate valuesPath for all images.
+	if err := SaveImagePaths(results, chartDir); err != nil {
+		return "", fmt.Errorf("saving image paths: %w", err)
+	}
+
 	return version, nil
 }
 
@@ -142,19 +147,27 @@ func GenerateNamespacedValuesOverride(chartName string, results []*PatchResult, 
 	inner := make(map[string]interface{})
 
 	for _, r := range results {
-		if r.Error != nil || r.Skipped {
+		if r.Error != nil {
+			continue
+		}
+		// Include skipped images only when they have a genuinely different
+		// patched ref (e.g. already patched in registry). Skip when the
+		// patched ref is empty or equals the original upstream ref, so we
+		// don't write upstream refs into the values override.
+		if r.Skipped && (r.Patched.Repository == "" || r.Patched.Reference() == r.Original.Reference()) {
 			continue
 		}
 		setImageAtPath(inner, r.Original.Path, r.Patched)
 	}
 
-	if len(inner) == 0 {
-		return nil
-	}
-
-	// Wrap the values under the chart name
+	// Wrap the values under the chart name. When no images qualify,
+	// still write an empty file to clear any stale upstream refs
+	// from a previous run.
 	root := map[string]interface{}{
 		chartName: inner,
+	}
+	if len(inner) == 0 {
+		root = map[string]interface{}{}
 	}
 
 	data, err := yaml.Marshal(root)
@@ -189,14 +202,13 @@ func GenerateValuesOverride(results []*PatchResult, path string) error {
 	root := make(map[string]interface{})
 
 	for _, r := range results {
-		if r.Error != nil || r.Skipped {
+		if r.Error != nil {
+			continue
+		}
+		if r.Skipped && (r.Patched.Repository == "" || r.Patched.Reference() == r.Original.Reference()) {
 			continue
 		}
 		setImageAtPath(root, r.Original.Path, r.Patched)
-	}
-
-	if len(root) == 0 {
-		return nil
 	}
 
 	data, err := yaml.Marshal(root)

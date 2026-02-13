@@ -38,17 +38,29 @@ func TestGenerateValuesOverride(t *testing.T) {
 			VulnCount: 5,
 		},
 		{
-			// Skipped — should not appear in override.
+			// Skipped with no patched ref — should not appear in override.
 			Original: Image{
 				Repository: "quay.io/prometheus/node-exporter",
 				Tag:        "v1.7.0",
 				Path:       "nodeExporter.image",
 			},
-			Patched: Image{
-				Repository: "quay.io/prometheus/node-exporter",
-				Tag:        "v1.7.0",
+			Skipped:    true,
+			SkipReason: "no fixable vulnerabilities",
+		},
+		{
+			// Skipped with valid patched ref — SHOULD appear in override.
+			Original: Image{
+				Repository: "quay.io/prometheus/pushgateway",
+				Tag:        "v1.6.2",
+				Path:       "pushgateway.image",
 			},
-			Skipped: true,
+			Patched: Image{
+				Registry:   "ghcr.io/descope",
+				Repository: "prometheus/pushgateway",
+				Tag:        "v1.6.2-patched",
+			},
+			Skipped:    true,
+			SkipReason: "patched image up to date",
 		},
 		{
 			// Error — should not appear in override.
@@ -117,21 +129,40 @@ func TestGenerateValuesOverride(t *testing.T) {
 		t.Error("server.image should not have registry key")
 	}
 
-	// Skipped and errored images should not appear.
+	// Skipped without patched ref and errored images should not appear.
 	if _, ok := got["nodeExporter"]; ok {
-		t.Error("nodeExporter should not appear in override (was skipped)")
+		t.Error("nodeExporter should not appear in override (skipped with no patched ref)")
 	}
 	if _, ok := got["broken"]; ok {
 		t.Error("broken should not appear in override (had error)")
 	}
+
+	// Skipped with valid patched ref SHOULD appear.
+	pg, ok := got["pushgateway"].(map[string]interface{})
+	if !ok {
+		t.Fatal("missing pushgateway key (skipped image with patched ref should be included)")
+	}
+	pgImg, ok := pg["image"].(map[string]interface{})
+	if !ok {
+		t.Fatal("missing pushgateway.image key")
+	}
+	if pgImg["registry"] != "ghcr.io/descope" {
+		t.Errorf("pushgateway.image.registry = %v, want ghcr.io/descope", pgImg["registry"])
+	}
+	if pgImg["repository"] != "prometheus/pushgateway" {
+		t.Errorf("pushgateway.image.repository = %v, want prometheus/pushgateway", pgImg["repository"])
+	}
+	if pgImg["tag"] != "v1.6.2-patched" {
+		t.Errorf("pushgateway.image.tag = %v, want v1.6.2-patched", pgImg["tag"])
+	}
 }
 
-func TestGenerateValuesOverride_AllSkipped(t *testing.T) {
+func TestGenerateValuesOverride_AllSkippedNoPatchedRef(t *testing.T) {
 	results := []*PatchResult{
 		{
-			Original: Image{Repository: "nginx", Tag: "1.25", Path: "image"},
-			Patched:  Image{Repository: "nginx", Tag: "1.25"},
-			Skipped:  true,
+			Original:   Image{Repository: "nginx", Tag: "1.25", Path: "image"},
+			Skipped:    true,
+			SkipReason: "no fixable vulnerabilities",
 		},
 	}
 
@@ -142,9 +173,104 @@ func TestGenerateValuesOverride_AllSkipped(t *testing.T) {
 		t.Fatalf("GenerateValuesOverride() error: %v", err)
 	}
 
-	// When all are skipped, no file should be written.
-	if _, err := os.Stat(outFile); !os.IsNotExist(err) {
-		t.Error("expected no file to be written when all results are skipped")
+	// When all are skipped with no patched refs, an empty YAML should be written
+	// to clear any stale values from a previous run.
+	data, err := os.ReadFile(outFile)
+	if err != nil {
+		t.Fatalf("expected file to be written: %v", err)
+	}
+	var got map[string]interface{}
+	if err := yaml.Unmarshal(data, &got); err != nil {
+		t.Fatalf("parsing output YAML: %v", err)
+	}
+	if len(got) != 0 {
+		t.Errorf("expected empty YAML, got %v", got)
+	}
+}
+
+func TestGenerateValuesOverride_AllSkippedWithPatchedRef(t *testing.T) {
+	results := []*PatchResult{
+		{
+			Original: Image{Repository: "nginx", Tag: "1.25", Path: "image"},
+			Patched: Image{
+				Registry:   "ghcr.io/descope",
+				Repository: "library/nginx",
+				Tag:        "1.25-patched",
+			},
+			Skipped:    true,
+			SkipReason: "patched image up to date",
+		},
+	}
+
+	dir := t.TempDir()
+	outFile := filepath.Join(dir, "patched-values.yaml")
+
+	if err := GenerateValuesOverride(results, outFile); err != nil {
+		t.Fatalf("GenerateValuesOverride() error: %v", err)
+	}
+
+	// Skipped images with valid patched refs should produce a values file.
+	data, err := os.ReadFile(outFile)
+	if err != nil {
+		t.Fatalf("expected values file to be written: %v", err)
+	}
+
+	var got map[string]interface{}
+	if err := yaml.Unmarshal(data, &got); err != nil {
+		t.Fatalf("parsing output YAML: %v", err)
+	}
+
+	img, ok := got["image"].(map[string]interface{})
+	if !ok {
+		t.Fatal("missing image key")
+	}
+	if img["repository"] != "library/nginx" {
+		t.Errorf("image.repository = %v, want library/nginx", img["repository"])
+	}
+	if img["tag"] != "1.25-patched" {
+		t.Errorf("image.tag = %v, want 1.25-patched", img["tag"])
+	}
+}
+
+func TestGenerateValuesOverride_SkippedWithUpstreamRef(t *testing.T) {
+	// When a skipped image's Patched ref equals the Original (no fixable vulns,
+	// no existing patched image), it should NOT appear in the values override.
+	results := []*PatchResult{
+		{
+			Original: Image{
+				Registry:   "quay.io",
+				Repository: "prometheus/node-exporter",
+				Tag:        "v1.7.0",
+				Path:       "nodeExporter.image",
+			},
+			Patched: Image{
+				Registry:   "quay.io",
+				Repository: "prometheus/node-exporter",
+				Tag:        "v1.7.0",
+			},
+			Skipped:    true,
+			SkipReason: "no fixable vulnerabilities",
+		},
+	}
+
+	dir := t.TempDir()
+	outFile := filepath.Join(dir, "patched-values.yaml")
+
+	if err := GenerateValuesOverride(results, outFile); err != nil {
+		t.Fatalf("GenerateValuesOverride() error: %v", err)
+	}
+
+	// Skipped images where Patched == Original should produce an empty YAML.
+	data, err := os.ReadFile(outFile)
+	if err != nil {
+		t.Fatalf("expected file to be written: %v", err)
+	}
+	var got map[string]interface{}
+	if err := yaml.Unmarshal(data, &got); err != nil {
+		t.Fatalf("parsing output YAML: %v", err)
+	}
+	if len(got) != 0 {
+		t.Errorf("expected empty YAML, got %v", got)
 	}
 }
 
