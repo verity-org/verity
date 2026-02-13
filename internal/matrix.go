@@ -206,8 +206,11 @@ func PatchSingleImage(ctx context.Context, imageRef string, opts PatchOptions, r
 		entry.PatchedRepository = result.Patched.Repository
 		entry.PatchedTag = result.Patched.Tag
 	}
-	// For skipped images that have an existing patched ref, record it.
-	if result.Skipped && result.Patched.Repository != "" {
+	// For skipped images that have a genuinely different patched ref
+	// (e.g. already patched in registry), record it. Don't record when
+	// the patched ref equals the original upstream ref.
+	if result.Skipped && result.Patched.Repository != "" &&
+		result.Patched.Reference() != result.Original.Reference() {
 		entry.PatchedRegistry = result.Patched.Registry
 		entry.PatchedRepository = result.Patched.Repository
 		entry.PatchedTag = result.Patched.Tag

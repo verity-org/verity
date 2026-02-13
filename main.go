@@ -36,8 +36,6 @@ func main() {
 	flag.Parse()
 
 	// Validate mutual exclusivity of mode flags.
-	// Note: -site-data is both an option for -assemble and a standalone mode,
-	// so it is only counted when no explicit mode flag is set.
 	modeCount := 0
 	for _, set := range []bool{*discover, *patchSingle, *assemble, *scan} {
 		if set {
@@ -49,6 +47,11 @@ func main() {
 	}
 	if modeCount > 1 {
 		log.Fatal("Only one mode flag may be specified at a time (-discover, -patch-single, -assemble, -scan, -site-data)")
+	}
+	// -site-data is valid as a standalone mode or combined with -assemble,
+	// but reject it with other modes to avoid silent no-ops.
+	if *siteDataPath != "" && (*discover || *patchSingle || *scan) {
+		log.Fatal("-site-data can only be used standalone or with -assemble")
 	}
 
 	switch {

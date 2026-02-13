@@ -145,10 +145,11 @@ func GenerateNamespacedValuesOverride(chartName string, results []*PatchResult, 
 		if r.Error != nil {
 			continue
 		}
-		// Include skipped images that have a valid patched ref (e.g. already
-		// patched in registry). This ensures values.yaml stays current even
-		// when all images are up-to-date and no new patching occurs.
-		if r.Skipped && r.Patched.Repository == "" {
+		// Include skipped images only when they have a genuinely different
+		// patched ref (e.g. already patched in registry). Skip when the
+		// patched ref is empty or equals the original upstream ref, so we
+		// don't write upstream refs into the values override.
+		if r.Skipped && (r.Patched.Repository == "" || r.Patched.Reference() == r.Original.Reference()) {
 			continue
 		}
 		setImageAtPath(inner, r.Original.Path, r.Patched)
@@ -198,7 +199,7 @@ func GenerateValuesOverride(results []*PatchResult, path string) error {
 		if r.Error != nil {
 			continue
 		}
-		if r.Skipped && r.Patched.Repository == "" {
+		if r.Skipped && (r.Patched.Repository == "" || r.Patched.Reference() == r.Original.Reference()) {
 			continue
 		}
 		setImageAtPath(root, r.Original.Path, r.Patched)

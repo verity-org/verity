@@ -223,6 +223,41 @@ func TestGenerateValuesOverride_AllSkippedWithPatchedRef(t *testing.T) {
 	}
 }
 
+func TestGenerateValuesOverride_SkippedWithUpstreamRef(t *testing.T) {
+	// When a skipped image's Patched ref equals the Original (no fixable vulns,
+	// no existing patched image), it should NOT appear in the values override.
+	results := []*PatchResult{
+		{
+			Original: Image{
+				Registry:   "quay.io",
+				Repository: "prometheus/node-exporter",
+				Tag:        "v1.7.0",
+				Path:       "nodeExporter.image",
+			},
+			Patched: Image{
+				Registry:   "quay.io",
+				Repository: "prometheus/node-exporter",
+				Tag:        "v1.7.0",
+			},
+			Skipped:    true,
+			SkipReason: "no fixable vulnerabilities",
+		},
+	}
+
+	dir := t.TempDir()
+	outFile := filepath.Join(dir, "patched-values.yaml")
+
+	if err := GenerateValuesOverride(results, outFile); err != nil {
+		t.Fatalf("GenerateValuesOverride() error: %v", err)
+	}
+
+	// Skipped images where Patched == Original should not produce a file.
+	if _, err := os.Stat(outFile); !os.IsNotExist(err) {
+		data, _ := os.ReadFile(outFile)
+		t.Errorf("expected no file when skipped image has upstream ref, got:\n%s", string(data))
+	}
+}
+
 func TestCountFixable(t *testing.T) {
 	report := `{
 		"Results": [
