@@ -32,13 +32,14 @@ type PatchOptions struct {
 
 // PatchResult holds the outcome of patching a single image.
 type PatchResult struct {
-	Original   Image
-	Patched    Image
-	VulnCount  int
-	Skipped    bool
-	SkipReason string // Human-readable reason when Skipped is true
-	Error      error
-	ReportPath string // Path to Trivy JSON report
+	Original           Image
+	Patched            Image
+	VulnCount          int
+	Skipped            bool
+	SkipReason         string // Human-readable reason when Skipped is true
+	Error              error
+	ReportPath         string // Path to Trivy JSON report (may be patched image scan)
+	UpstreamReportPath string // Path to Trivy JSON report of the original upstream image
 }
 
 // PatchImage scans an image for OS vulnerabilities using Trivy,
@@ -88,6 +89,18 @@ func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult 
 				return result
 			}
 
+			// Also scan the original upstream image so we have "before" data.
+			upstreamRef := img.Reference()
+			upstreamOciDir := filepath.Join(opts.WorkDir, "oci", sanitize(upstreamRef))
+			upstreamReportPath := filepath.Join(opts.ReportDir, sanitize(upstreamRef)+".json")
+			if err := pullAndSaveOCI(ctx, upstreamRef, upstreamOciDir); err != nil {
+				fmt.Printf("    WARN: could not pull upstream %s for report: %v\n", upstreamRef, err)
+			} else if err := trivyScan(ctx, upstreamOciDir, upstreamReportPath); err != nil {
+				fmt.Printf("    WARN: could not scan upstream %s for report: %v\n", upstreamRef, err)
+			} else {
+				result.UpstreamReportPath = upstreamReportPath
+			}
+
 			if vulns == 0 {
 				result.Skipped = true
 				result.SkipReason = "patched image up to date"
@@ -110,6 +123,7 @@ func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult 
 
 	reportPath := filepath.Join(opts.ReportDir, sanitize(ref)+".json")
 	result.ReportPath = reportPath
+	result.UpstreamReportPath = reportPath
 	if err := trivyScan(ctx, ociDir, reportPath); err != nil {
 		result.Error = fmt.Errorf("scanning %s: %w", ref, err)
 		return result

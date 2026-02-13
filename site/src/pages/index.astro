@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ChartCard from '../components/ChartCard.astro';
+import ImageRow from '../components/ImageRow.astro';
+import SearchFilter from '../components/SearchFilter.astro';
+import { catalog } from '../lib/catalog';
+---
+
+<BaseLayout title="Verity — Security-Patched Registry">
+  <HeroSection />
+
+  {catalog.charts.length > 0 && (
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Charts</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {catalog.charts.map((chart) => (
+          <ChartCard chart={chart} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {catalog.standaloneImages.length > 0 && (
+    <section>
+      <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+        <h2 class="text-xl font-semibold">Standalone Images</h2>
+        <SearchFilter targetId="standalone-list" />
+      </div>
+      <div id="standalone-list" class="space-y-2">
+        {catalog.standaloneImages.map((image) => (
+          <ImageRow image={image} />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
