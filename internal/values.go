@@ -101,6 +101,11 @@ func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir, regis
 		}
 	}
 
+	// Save override metadata for site data generation.
+	if err := SaveOverrides(results, chartDir); err != nil {
+		return "", fmt.Errorf("saving overrides: %w", err)
+	}
+
 	return version, nil
 }
 
