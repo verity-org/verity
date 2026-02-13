@@ -151,6 +151,13 @@ jobs:
         with:
           go-version-file: go.mod
 
+      - name: Login to GHCR (Docker)
+        uses: docker/login-action@v3.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Login to GHCR (Helm)
         run: echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io --username "${{ github.actor }}" --password-stdin
 
@@ -175,19 +182,16 @@ jobs:
           mkdir -p .verity/results .verity/reports
 
           # Each patch-result-* artifact is in its own subdirectory.
-          # Flatten results and reports into single directories.
+          # upload-artifact strips the common prefix (.verity/), so files
+          # are at results/ and reports/ inside the artifact directory.
           for artifact_dir in .verity/artifacts/patch-result-*; do
             [ -d "$artifact_dir" ] || continue
-            if [ -d "$artifact_dir/.verity/results" ]; then
-              cp -n "$artifact_dir/.verity/results/"*.json .verity/results/ 2>/dev/null || true
-            fi
-            if [ -d "$artifact_dir/.verity/reports" ]; then
-              cp -n "$artifact_dir/.verity/reports/"*.json .verity/reports/ 2>/dev/null || true
-            fi
+            find "$artifact_dir" -name '*.json' -path '*/results/*' -exec cp -n {} .verity/results/ \; 2>/dev/null || true
+            find "$artifact_dir" -name '*.json' -path '*/reports/*' -exec cp -n {} .verity/reports/ \; 2>/dev/null || true
           done
 
-          echo "Results: $(ls .verity/results/ | wc -l) files"
-          echo "Reports: $(ls .verity/reports/ | wc -l) files"
+          echo "Results: $(ls .verity/results/ 2>/dev/null | wc -l) files"
+          echo "Reports: $(ls .verity/reports/ 2>/dev/null | wc -l) files"
 
       - name: Assemble wrapper charts
         run: |
