@@ -173,9 +173,18 @@ func TestGenerateValuesOverride_AllSkippedNoPatchedRef(t *testing.T) {
 		t.Fatalf("GenerateValuesOverride() error: %v", err)
 	}
 
-	// When all are skipped with no patched refs, no file should be written.
-	if _, err := os.Stat(outFile); !os.IsNotExist(err) {
-		t.Error("expected no file to be written when all results are skipped without patched refs")
+	// When all are skipped with no patched refs, an empty YAML should be written
+	// to clear any stale values from a previous run.
+	data, err := os.ReadFile(outFile)
+	if err != nil {
+		t.Fatalf("expected file to be written: %v", err)
+	}
+	var got map[string]interface{}
+	if err := yaml.Unmarshal(data, &got); err != nil {
+		t.Fatalf("parsing output YAML: %v", err)
+	}
+	if len(got) != 0 {
+		t.Errorf("expected empty YAML, got %v", got)
 	}
 }
 
@@ -251,10 +260,17 @@ func TestGenerateValuesOverride_SkippedWithUpstreamRef(t *testing.T) {
 		t.Fatalf("GenerateValuesOverride() error: %v", err)
 	}
 
-	// Skipped images where Patched == Original should not produce a file.
-	if _, err := os.Stat(outFile); !os.IsNotExist(err) {
-		data, _ := os.ReadFile(outFile)
-		t.Errorf("expected no file when skipped image has upstream ref, got:\n%s", string(data))
+	// Skipped images where Patched == Original should produce an empty YAML.
+	data, err := os.ReadFile(outFile)
+	if err != nil {
+		t.Fatalf("expected file to be written: %v", err)
+	}
+	var got map[string]interface{}
+	if err := yaml.Unmarshal(data, &got); err != nil {
+		t.Fatalf("parsing output YAML: %v", err)
+	}
+	if len(got) != 0 {
+		t.Errorf("expected empty YAML, got %v", got)
 	}
 }
 

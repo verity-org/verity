@@ -155,13 +155,14 @@ func GenerateNamespacedValuesOverride(chartName string, results []*PatchResult, 
 		setImageAtPath(inner, r.Original.Path, r.Patched)
 	}
 
-	if len(inner) == 0 {
-		return nil
-	}
-
-	// Wrap the values under the chart name
+	// Wrap the values under the chart name. When no images qualify,
+	// still write an empty file to clear any stale upstream refs
+	// from a previous run.
 	root := map[string]interface{}{
 		chartName: inner,
+	}
+	if len(inner) == 0 {
+		root = map[string]interface{}{}
 	}
 
 	data, err := yaml.Marshal(root)
@@ -203,10 +204,6 @@ func GenerateValuesOverride(results []*PatchResult, path string) error {
 			continue
 		}
 		setImageAtPath(root, r.Original.Path, r.Patched)
-	}
-
-	if len(root) == 0 {
-		return nil
 	}
 
 	data, err := yaml.Marshal(root)
