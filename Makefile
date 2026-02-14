@@ -44,6 +44,26 @@ lint:
 	@which golangci-lint > /dev/null || (echo "golangci-lint not found. Run: make install-tools" && exit 1)
 	golangci-lint run --timeout=5m
 
+# Check Go formatting (gofumpt)
+lint-fmt:
+	@which gofumpt > /dev/null || (echo "gofumpt not found. Run: make install-tools" && exit 1)
+	@echo "Checking Go formatting..."
+	@gofumpt -l . | tee /tmp/gofumpt.txt
+	@if [ -s /tmp/gofumpt.txt ]; then \
+		echo "Files need formatting. Run: make fmt-strict"; \
+		exit 1; \
+	fi
+
+# Strict formatting (gofumpt)
+fmt-strict:
+	@which gofumpt > /dev/null || (echo "gofumpt not found. Run: make install-tools" && exit 1)
+	gofumpt -w .
+
+# Check for Go vulnerabilities
+lint-vuln:
+	@which govulncheck > /dev/null || (echo "govulncheck not found. Run: make install-tools" && exit 1)
+	govulncheck ./...
+
 # Lint workflows
 lint-workflows:
 	@which actionlint > /dev/null || (echo "actionlint not found. Run: make install-tools" && exit 1)
@@ -51,16 +71,33 @@ lint-workflows:
 
 # Lint YAML files
 lint-yaml:
-	@which yamllint > /dev/null || (echo "yamllint not found. Run: pip install yamllint" && exit 1)
+	@which yamllint > /dev/null || (echo "yamllint not found. Run: make install-tools" && exit 1)
 	yamllint .
 
 # Lint shell scripts
 lint-shell:
-	@which shellcheck > /dev/null || (echo "shellcheck not found. Install from: https://shellcheck.net" && exit 1)
+	@which shellcheck > /dev/null || (echo "shellcheck not found. Run: make install-tools" && exit 1)
 	shellcheck .github/scripts/*.sh
 
+# Lint markdown files
+lint-markdown:
+	@which markdownlint > /dev/null || (echo "markdownlint not found. Run: make install-tools" && exit 1)
+	markdownlint "*.md" "**/*.md" --ignore node_modules --ignore site/node_modules
+
+# Lint and check frontend code
+lint-frontend:
+	cd site && npm run lint
+
+# Format frontend code
+fmt-frontend:
+	cd site && npx prettier --write "src/**/*.{js,ts,astro,css,json,md}"
+
+# Check frontend formatting
+check-frontend:
+	cd site && npx prettier --check "src/**/*.{js,ts,astro,css,json,md}"
+
 # Run all quality checks
-quality: fmt vet lint lint-workflows lint-yaml lint-shell sec test
+quality: fmt vet lint lint-fmt lint-vuln lint-workflows lint-yaml lint-shell lint-markdown check-frontend sec test
 	@echo "✓ All quality checks passed!"
 
 # Clean build artifacts

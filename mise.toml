@@ -1,12 +1,21 @@
 [tools]
-crane = "latest"
+# Core tools
 go = "1.25.0"
 node = "22.22.0"
-golangci-lint = "2"
+crane = "latest"
 helm = "latest"
 claude-code = "latest"
+
+# Go tools
+"go:github.com/golangci/golangci-lint/cmd/golangci-lint" = "latest"
+"go:mvdan.cc/gofumpt" = "latest"
+"go:golang.org/x/vuln/cmd/govulncheck" = "latest"
 
 # Linting tools
 actionlint = "latest"
 shellcheck = "latest"
 yamllint = "latest"
+
+# Node/formatting tools
+"npm:prettier" = "latest"
+"npm:markdownlint-cli" = "latest"
