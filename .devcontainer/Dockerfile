@@ -21,6 +21,3 @@ RUN echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
 
 # Pre-install project tools (keep in sync with mise.toml)
 RUN mise use -g go@1.26 node@22 golangci-lint@2
-
-# Install Claude Code globally
-RUN npm install -g @anthropic-ai/claude-code
