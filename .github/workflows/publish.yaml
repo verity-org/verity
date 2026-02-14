@@ -9,6 +9,7 @@ permissions:
   packages: write
   pages: write
   id-token: write
+  attestations: write
 
 jobs:
   publish:
@@ -45,6 +46,12 @@ jobs:
 
       - name: Verify patched images
         run: ./.github/scripts/verify-images.sh . ghcr.io ${{ github.repository_owner }}
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # v3
+
+      - name: Sign charts
+        run: ./.github/scripts/sign-charts.sh . ghcr.io ${{ github.repository_owner }}
 
       - name: Generate chart index
         run: ./.github/scripts/generate-index.sh . /tmp/index.md ghcr.io ${{ github.repository_owner }}
