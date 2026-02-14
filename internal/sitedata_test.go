@@ -433,8 +433,8 @@ func TestComputeSummaryMultipleVersions(t *testing.T) {
 }
 
 func TestDiscoverRegistryVersions(t *testing.T) {
-	if os.Getenv("CI") == "" {
-		t.Skip("skipping registry test outside CI")
+	if os.Getenv("QUAY_PASSWORD") == "" {
+		t.Skip("QUAY_PASSWORD not set, skipping registry integration test")
 	}
 
 	// Discover all versions except the "local" one (28.9.1-4).
@@ -505,8 +505,8 @@ func TestDiscoverRegistryVersions(t *testing.T) {
 }
 
 func TestDiscoverRegistryVersionsNonExistent(t *testing.T) {
-	if os.Getenv("CI") == "" {
-		t.Skip("skipping registry test outside CI")
+	if os.Getenv("QUAY_PASSWORD") == "" {
+		t.Skip("QUAY_PASSWORD not set, skipping registry integration test")
 	}
 
 	// Non-existent chart should return empty, not error.
