@@ -117,7 +117,7 @@ jobs:
       - name: Ensure Quay.io repo is public
         if: always()
         env:
-          QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+          QUAY_API_TOKEN: ${{ secrets.QUAY_API_TOKEN }}
         run: |
           result_file=$(find .verity/results -name '*.json' -print -quit 2>/dev/null)
           [ -z "$result_file" ] && exit 0
@@ -269,6 +269,8 @@ jobs:
 
       - name: Publish wrapper charts to OCI
         if: steps.check-changes.outputs.changes == 'true'
+        env:
+          QUAY_API_TOKEN: ${{ secrets.QUAY_API_TOKEN }}
         run: ./.github/scripts/publish-charts.sh . quay.io verity
 
       - name: Push standalone reports to OCI
@@ -281,7 +283,7 @@ jobs:
       - name: Ensure standalone-reports repo is public
         if: steps.check-changes.outputs.changes == 'true'
         env:
-          QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+          QUAY_API_TOKEN: ${{ secrets.QUAY_API_TOKEN }}
         run: ./.github/scripts/quay-make-public.sh verity standalone-reports || true
 
       - name: Create Pull Request

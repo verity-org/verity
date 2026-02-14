@@ -36,6 +36,8 @@ jobs:
         run: echo "${{ secrets.QUAY_PASSWORD }}" | helm registry login quay.io --username "${{ secrets.QUAY_USERNAME }}" --password-stdin
 
       - name: Publish wrapper charts
+        env:
+          QUAY_API_TOKEN: ${{ secrets.QUAY_API_TOKEN }}
         run: ./.github/scripts/publish-charts.sh . quay.io verity
 
       - name: Push standalone reports to OCI
@@ -48,7 +50,7 @@ jobs:
       - name: Ensure standalone-reports repo is public
         if: hashFiles('reports/*.json') != ''
         env:
-          QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+          QUAY_API_TOKEN: ${{ secrets.QUAY_API_TOKEN }}
         run: ./.github/scripts/quay-make-public.sh verity standalone-reports || true
 
       - name: Verify patched images
