@@ -222,7 +222,7 @@ func discoverCharts(chartsDir, registry string) ([]SiteChart, error) {
 		return nil, err
 	}
 
-	charts := make([]SiteChart, 0)
+	charts := []SiteChart{}
 	for _, entry := range entries {
 		if !entry.IsDir() {
 			continue
@@ -271,7 +271,7 @@ func discoverRegistryVersions(chartName, skipVersion, repository, registry strin
 
 	const maxConsecutiveFailures = 5
 
-	charts := make([]SiteChart, 0)
+	charts := []SiteChart{}
 	var consecutiveFailures int
 	for _, tag := range tags {
 		if skipVersion != "" && tag == skipVersion {
