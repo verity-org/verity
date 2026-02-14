@@ -222,7 +222,7 @@ func discoverCharts(chartsDir, registry string) ([]SiteChart, error) {
 		return nil, err
 	}
 
-	var charts []SiteChart
+	charts := []SiteChart{}
 	for _, entry := range entries {
 		if !entry.IsDir() {
 			continue
@@ -271,7 +271,7 @@ func discoverRegistryVersions(chartName, skipVersion, repository, registry strin
 
 	const maxConsecutiveFailures = 5
 
-	var charts []SiteChart
+	charts := []SiteChart{}
 	var consecutiveFailures int
 	for _, tag := range tags {
 		if skipVersion != "" && tag == skipVersion {
@@ -348,14 +348,14 @@ func listChartTags(registry, chartName string) ([]string, error) {
 		if strings.Contains(errMsg, "NAME_UNKNOWN") ||
 			strings.Contains(errMsg, "NOT_FOUND") ||
 			strings.Contains(errMsg, "404") {
-			return nil, nil
+			return []string{}, nil
 		}
 		// Quay.io returns UNAUTHORIZED for repos that don't exist (to prevent
 		// repo enumeration). Treat as empty but warn — this can also indicate
 		// real auth/config issues (expired credentials, private repo).
 		if strings.Contains(errMsg, "UNAUTHORIZED") {
 			fmt.Fprintf(os.Stderr, "Warning: UNAUTHORIZED listing tags for %s (repo may not exist or credentials may be missing)\n", chartRef)
-			return nil, nil
+			return []string{}, nil
 		}
 		return nil, fmt.Errorf("listing tags with crane for %s: %w", chartRef, err)
 	}
