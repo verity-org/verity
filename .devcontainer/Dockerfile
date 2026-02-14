@@ -20,4 +20,4 @@ ENV PATH="/home/vscode/.local/share/mise/shims:/home/vscode/.local/bin:${PATH}"
 RUN echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
 
 # Pre-install project tools (keep in sync with mise.toml)
-RUN mise use -g go@1.26 node@22 golangci-lint@2
+RUN mise use -g go@1.25.0 node@22.22.0 golangci-lint@2
