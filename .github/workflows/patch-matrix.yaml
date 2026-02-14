@@ -178,7 +178,12 @@ jobs:
 
       - name: Sign image with cosign
         if: steps.digest.outputs.has_image == 'true'
-        run: cosign sign --yes "${{ steps.digest.outputs.image }}@${{ steps.digest.outputs.digest }}"
+        env:
+          QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
+          QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+        run: |
+          cosign login quay.io -u "$QUAY_USERNAME" -p "$QUAY_PASSWORD"
+          cosign sign --yes "${{ steps.digest.outputs.image }}@${{ steps.digest.outputs.digest }}"
 
       - name: Attest build provenance
         if: steps.digest.outputs.has_image == 'true'
