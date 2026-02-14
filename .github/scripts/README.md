@@ -80,7 +80,7 @@ Publishes wrapper charts to OCI registry.
 
 **Example:**
 ```bash
-./.github/scripts/publish-charts.sh . ghcr.io descope
+./.github/scripts/publish-charts.sh . quay.io verity
 ```
 
 **Actions:**
@@ -106,7 +106,7 @@ Verifies patched images exist in the registry.
 
 **Example:**
 ```bash
-./.github/scripts/verify-images.sh . ghcr.io descope
+./.github/scripts/verify-images.sh . quay.io verity
 ```
 
 **Actions:**
@@ -133,7 +133,7 @@ Generates a markdown index of published charts.
 
 **Example:**
 ```bash
-./.github/scripts/generate-index.sh . /tmp/index.md ghcr.io descope
+./.github/scripts/generate-index.sh . /tmp/index.md quay.io verity
 ```
 
 **Output:** Markdown file with installation commands for each chart
