@@ -16,5 +16,8 @@ actionlint = "latest"
 shellcheck = "latest"
 yamllint = "latest"
 
-# Note: Node-based linters (prettier, markdownlint, eslint) are managed
+# Global Node tools (for root-level linting)
+"npm:markdownlint-cli" = "latest"
+
+# Note: Site-specific Node tools (prettier, eslint) are managed
 # in site/package.json as dev dependencies

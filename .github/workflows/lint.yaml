@@ -118,9 +118,13 @@ jobs:
           install: true
           cache: true
 
+      - name: Install site dependencies
+        working-directory: site
+        run: npm ci
+
       - name: Check Prettier formatting
         working-directory: site
-        run: npx prettier --check "src/**/*.{js,ts,astro,css,json,md}"
+        run: npm run format:check
 
   markdown-lint:
     name: Markdown Lint
