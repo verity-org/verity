@@ -72,15 +72,16 @@ clean:
 
 # Install development tools
 install-tools:
-	@echo "Installing Go tools..."
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-	go install github.com/securego/gosec/v2/cmd/gosec@latest
-	go install golang.org/x/tools/cmd/goimports@latest
-	@echo "Installing actionlint..."
-	go install github.com/rhysd/actionlint/cmd/actionlint@latest
+	@echo "Installing tools via mise..."
+	@which mise > /dev/null || (echo "mise not found. Install from: https://mise.jdx.dev" && exit 1)
+	mise install
 	@echo ""
-	@echo "✓ Go tools installed!"
+	@echo "✓ All tools installed via mise!"
 	@echo ""
-	@echo "Additional tools (install separately):"
-	@echo "  - yamllint: pip install yamllint"
-	@echo "  - shellcheck: brew install shellcheck (macOS) or apt install shellcheck (Linux)"
+	@echo "Installed tools:"
+	@echo "  - golangci-lint (Go linter)"
+	@echo "  - actionlint (GitHub Actions linter)"
+	@echo "  - yamllint (YAML linter)"
+	@echo "  - shellcheck (Shell script linter)"
+	@echo ""
+	@echo "Run 'mise list' to see all installed tools"

@@ -6,10 +6,9 @@ Thank you for contributing to Verity! This guide will help you set up your devel
 
 ### Prerequisites
 
-- **Go**: Version specified in `go.mod`
-- **mise**: Tool version manager (optional but recommended)
-- **Docker**: Required for Copa patching
-- **Helm**: Chart management
+- **mise**: Tool version manager (recommended - installs everything)
+  - Install: <https://mise.jdx.dev>
+- **Docker**: Required for Copa patching (runtime dependency)
 
 ### Quick Start
 
@@ -18,11 +17,13 @@ Thank you for contributing to Verity! This guide will help you set up your devel
 git clone https://github.com/descope/verity.git
 cd verity
 
-# Install development tools
-make install-tools
-
-# Or use mise (automatic from mise.toml)
+# Install ALL tools via mise (recommended)
 mise install
+# Installs: go, node, golangci-lint, actionlint, yamllint,
+#           shellcheck, helm, crane, claude-code
+
+# Or install manually (if mise not available)
+make install-tools
 
 # Build the project
 make build
