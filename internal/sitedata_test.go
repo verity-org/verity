@@ -524,3 +524,154 @@ func TestDiscoverRegistryVersionsNonExistent(t *testing.T) {
 		t.Errorf("expected 0 charts, got %d", len(charts))
 	}
 }
+
+func TestParseWrapperChartStubImageFallback(t *testing.T) {
+	// Test the stub image fallback when reports/ is missing but paths.json
+	// and values.yaml indicate patched images exist.
+	tmpDir := t.TempDir()
+	chartDir := filepath.Join(tmpDir, "myapp")
+
+	if err := os.MkdirAll(chartDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+
+	// Write Chart.yaml
+	chartYaml := `apiVersion: v2
+name: myapp
+description: Test chart
+type: application
+version: 1.0.0-0
+dependencies:
+  - name: myapp
+    version: "1.0.0"
+    repository: oci://ghcr.io/example/charts
+`
+	if err := os.WriteFile(filepath.Join(chartDir, "Chart.yaml"), []byte(chartYaml), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	// Write values.yaml with patched image
+	valuesYaml := `myapp:
+  image:
+    registry: quay.io/verity
+    repository: myorg/myapp
+    tag: v1.0.0-patched
+`
+	if err := os.WriteFile(filepath.Join(chartDir, "values.yaml"), []byte(valuesYaml), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	// Write paths.json (sanitized ID → values path mapping)
+	pathsJSON := `{
+  "docker.io_myorg_myapp_v1.0.0": ".myapp.image"
+}`
+	if err := os.WriteFile(filepath.Join(chartDir, "paths.json"), []byte(pathsJSON), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	// Do NOT create reports/ directory - this triggers the stub fallback
+
+	// Parse the chart
+	chart, err := parseWrapperChart(tmpDir, "myapp", "quay.io/verity")
+	if err != nil {
+		t.Fatalf("parseWrapperChart failed: %v", err)
+	}
+
+	// Verify stub image was created
+	if len(chart.Images) != 1 {
+		t.Fatalf("expected 1 stub image, got %d", len(chart.Images))
+	}
+
+	img := chart.Images[0]
+
+	// Verify correct fields
+	if img.ID != "docker.io_myorg_myapp_v1.0.0" {
+		t.Errorf("expected ID docker.io_myorg_myapp_v1.0.0, got %s", img.ID)
+	}
+	if img.OriginalRef != "docker.io/myorg/myapp:v1.0.0" {
+		t.Errorf("expected OriginalRef docker.io/myorg/myapp:v1.0.0, got %s", img.OriginalRef)
+	}
+	if img.PatchedRef != "quay.io/verity/myorg/myapp:v1.0.0-patched" {
+		t.Errorf("expected PatchedRef quay.io/verity/myorg/myapp:v1.0.0-patched, got %s", img.PatchedRef)
+	}
+	if img.ValuesPath != ".myapp.image" {
+		t.Errorf("expected ValuesPath .myapp.image, got %s", img.ValuesPath)
+	}
+
+	// Verify 0 vulnerabilities (stub)
+	if img.VulnSummary.Total != 0 {
+		t.Errorf("expected 0 total vulns (stub), got %d", img.VulnSummary.Total)
+	}
+	if img.VulnSummary.Fixable != 0 {
+		t.Errorf("expected 0 fixable vulns (stub), got %d", img.VulnSummary.Fixable)
+	}
+	if len(img.Vulnerabilities) != 0 {
+		t.Errorf("expected 0 vulnerabilities list (stub), got %d", len(img.Vulnerabilities))
+	}
+
+	// Verify ChartName is populated
+	if img.ChartName != "myapp" {
+		t.Errorf("expected ChartName myapp, got %s", img.ChartName)
+	}
+}
+
+func TestParseWrapperChartStubImageSorting(t *testing.T) {
+	// Test that stub images are sorted deterministically
+	tmpDir := t.TempDir()
+	chartDir := filepath.Join(tmpDir, "test")
+
+	if err := os.MkdirAll(chartDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+
+	chartYaml := `apiVersion: v2
+name: test
+version: 1.0.0
+dependencies:
+  - name: test
+    version: "1.0.0"
+    repository: oci://example.com/charts
+`
+	if err := os.WriteFile(filepath.Join(chartDir, "Chart.yaml"), []byte(chartYaml), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	valuesYaml := `app: {}`
+	if err := os.WriteFile(filepath.Join(chartDir, "values.yaml"), []byte(valuesYaml), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	// Multiple images in paths.json (map iteration is nondeterministic)
+	pathsJSON := `{
+  "zulu.io_zorg_zapp_v3.0.0": ".zapp.image",
+  "alpha.io_aorg_aapp_v1.0.0": ".aapp.image",
+  "beta.io_borg_bapp_v2.0.0": ".bapp.image"
+}`
+	if err := os.WriteFile(filepath.Join(chartDir, "paths.json"), []byte(pathsJSON), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	// Parse multiple times to verify stable ordering
+	for run := 0; run < 5; run++ {
+		chart, err := parseWrapperChart(tmpDir, "test", "quay.io/verity")
+		if err != nil {
+			t.Fatalf("run %d: parseWrapperChart failed: %v", run, err)
+		}
+
+		if len(chart.Images) != 3 {
+			t.Fatalf("run %d: expected 3 images, got %d", run, len(chart.Images))
+		}
+
+		// Verify sorted by OriginalRef
+		expectedOrder := []string{
+			"alpha.io/aorg/aapp:v1.0.0",
+			"beta.io/borg/bapp:v2.0.0",
+			"zulu.io/zorg/zapp:v3.0.0",
+		}
+		for i, expected := range expectedOrder {
+			if chart.Images[i].OriginalRef != expected {
+				t.Errorf("run %d: image[%d] expected %s, got %s", run, i, expected, chart.Images[i].OriginalRef)
+			}
+		}
+	}
+}

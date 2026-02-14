@@ -217,7 +217,7 @@ func discoverCharts(chartsDir, registry string) ([]SiteChart, error) {
 	entries, err := os.ReadDir(chartsDir)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return nil, nil
+			return []SiteChart{}, nil
 		}
 		return nil, err
 	}
@@ -528,6 +528,63 @@ func parseWrapperChart(chartsDir, name, registry string) (SiteChart, error) {
 			}
 			images = filtered
 		}
+	}
+
+	// After filtering, if no report-backed images remain but we have imagePaths or patchedImages,
+	// create stub entries to show which images are patched (with 0 vulnerabilities).
+	// This handles the case where OCI packages lack reports/ (gitignored by design).
+	if len(images) == 0 && (len(imagePaths) > 0 || len(patchedImages) > 0) {
+		// First choice: use paths.json (has sanitized ID → values path mapping).
+		if len(imagePaths) > 0 {
+			images = make([]SiteImage, 0, len(imagePaths))
+			for id, valuesPath := range imagePaths {
+				// Reconstruct original ref from sanitized ID (same as matchReportsToImages).
+				originalRef := unsanitize(id)
+
+				// Find or build the patched ref.
+				patchedRef := ""
+				if info, ok := patchedImages[id]; ok {
+					patchedRef = fmt.Sprintf("%s/%s:%s", info.Registry, info.Repository, info.Tag)
+				} else {
+					// Build patched ref from original ref.
+					patchedRef = buildPatchedRef(originalRef, registry)
+				}
+
+				images = append(images, SiteImage{
+					ID:              id,
+					OriginalRef:     originalRef, // Reconstructed from sanitized ID
+					PatchedRef:      patchedRef,
+					ValuesPath:      valuesPath, // From paths.json (not original ref!)
+					VulnSummary:     VulnSummary{SeverityCounts: make(map[string]int)},
+					Vulnerabilities: []SiteVuln{},
+					ChartName:       name,
+				})
+			}
+		} else if len(patchedImages) > 0 {
+			// Fallback: use patchedImages (reconstruct original refs from sanitized IDs).
+			images = make([]SiteImage, 0, len(patchedImages))
+			for id, info := range patchedImages {
+				originalRef := unsanitize(id)
+				patchedRef := fmt.Sprintf("%s/%s:%s", info.Registry, info.Repository, info.Tag)
+				images = append(images, SiteImage{
+					ID:              id,
+					OriginalRef:     originalRef, // Reconstructed from sanitized ID
+					PatchedRef:      patchedRef,
+					ValuesPath:      info.ValuesPath,
+					VulnSummary:     VulnSummary{SeverityCounts: make(map[string]int)},
+					Vulnerabilities: []SiteVuln{},
+					ChartName:       name,
+				})
+			}
+		}
+
+		// Ensure deterministic ordering of stub images for stable catalog output.
+		sort.Slice(images, func(i, j int) bool {
+			if images[i].OriginalRef == images[j].OriginalRef {
+				return images[i].ID < images[j].ID
+			}
+			return images[i].OriginalRef < images[j].OriginalRef
+		})
 	}
 
 	chart.Images = images

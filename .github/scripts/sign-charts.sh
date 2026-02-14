@@ -34,8 +34,14 @@ for chart_yaml in "${CHARTS_DIR}"/charts/*/Chart.yaml; do
   echo "Signing ${chart_name}:${version}..."
 
   # Resolve the OCI artifact digest
-  if ! digest=$(crane digest "${oci_ref}:${version}"); then
-    echo "  ERROR: Could not resolve digest for ${oci_ref}:${version}"
+  if ! digest=$(crane digest "${oci_ref}:${version}" 2>&1); then
+    # If chart doesn't exist in OCI yet (scan workflow hasn't run), skip signing.
+    # This is expected for new chart versions before the first scan completes.
+    if echo "$digest" | grep -qE "NAME_UNKNOWN|NOT_FOUND|MANIFEST_UNKNOWN"; then
+      echo "  ⏭️  Chart not yet in OCI (scan workflow hasn't run), skipping"
+      continue
+    fi
+    echo "  ERROR: Could not resolve digest for ${oci_ref}:${version}: $digest"
     exit 1
   fi
   if [ -z "$digest" ]; then
