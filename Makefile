@@ -1,16 +1,17 @@
-.PHONY: help build test lint fmt vet sec clean install-tools
+.PHONY: help build test test-coverage lint lint-fmt lint-vuln lint-workflows lint-yaml lint-shell lint-markdown lint-frontend fmt fmt-strict fmt-frontend check-frontend vet sec clean install-tools quality
 
 # Default target
 help:
 	@echo "Available targets:"
 	@echo "  make build         - Build the verity binary"
 	@echo "  make test          - Run tests"
-	@echo "  make lint          - Run all linters"
+	@echo "  make lint          - Run Go linter (golangci-lint)"
+	@echo "  make quality       - Run ALL linters and tests"
 	@echo "  make fmt           - Format code"
 	@echo "  make vet           - Run go vet"
 	@echo "  make sec           - Run security scanner (gosec)"
 	@echo "  make clean         - Clean build artifacts"
-	@echo "  make install-tools - Install development tools"
+	@echo "  make install-tools - Install development tools via mise"
 
 # Build binary
 build:
@@ -72,7 +73,7 @@ lint-workflows:
 # Lint YAML files
 lint-yaml:
 	@which yamllint > /dev/null || (echo "yamllint not found. Run: make install-tools" && exit 1)
-	yamllint .
+	yamllint -c .yamllint.yml .
 
 # Lint shell scripts
 lint-shell:

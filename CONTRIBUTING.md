@@ -20,10 +20,11 @@ cd verity
 
 # Install ALL tools via mise (recommended)
 mise install
-# Installs: go, node, golangci-lint, actionlint, yamllint,
-#           shellcheck, helm, crane, claude-code
+# Installs: go, node, golangci-lint, gofumpt, govulncheck,
+#           gosec, goimports, actionlint, shellcheck, yamllint,
+#           markdownlint, helm, crane, claude-code
 
-# Or install manually (if mise not available)
+# Or use Makefile shortcut (also requires mise)
 make install-tools
 
 # Build the project

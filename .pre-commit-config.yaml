@@ -8,7 +8,7 @@ repos:
       - id: go-vet
       - id: go-unit-tests
 
-  # golangci-lint
+  # golangci-lint (use system binary from mise for version consistency)
   - repo: local
     hooks:
       - id: golangci-lint
@@ -17,6 +17,7 @@ repos:
         language: system
         types: [go]
         args: [run, --timeout=5m]
+        pass_filenames: false
 
   # YAML linting
   - repo: https://github.com/adrienverge/yamllint
