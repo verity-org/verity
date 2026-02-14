@@ -173,10 +173,13 @@ func GenerateNamespacedValuesOverride(chartName string, results []*PatchResult, 
 		root = map[string]interface{}{}
 	}
 
-	data, err := yaml.Marshal(root)
-	if err != nil {
+	var buf bytes.Buffer
+	enc := yaml.NewEncoder(&buf)
+	enc.SetIndent(2) // Use 2-space indentation (yamllint standard)
+	if err := enc.Encode(root); err != nil {
 		return fmt.Errorf("marshaling values override: %w", err)
 	}
+	data := buf.Bytes()
 
 	// Build comment header noting any image overrides applied.
 	var header string
