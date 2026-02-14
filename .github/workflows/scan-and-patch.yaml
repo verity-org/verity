@@ -262,13 +262,13 @@ jobs:
         run: go build -o verity .
 
       - name: Download manifest
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: verity-manifest
           path: .verity
 
       - name: Download all patch results
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           pattern: "patch-result-*"
           path: .verity/artifacts
