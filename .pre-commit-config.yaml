@@ -9,11 +9,14 @@ repos:
       - id: go-unit-tests
 
   # golangci-lint
-  - repo: https://github.com/golangci/golangci-lint
-    rev: v1.62.2
+  - repo: local
     hooks:
       - id: golangci-lint
-        args: [--timeout=5m]
+        name: golangci-lint
+        entry: golangci-lint
+        language: system
+        types: [go]
+        args: [run, --timeout=5m]
 
   # YAML linting
   - repo: https://github.com/adrienverge/yamllint
