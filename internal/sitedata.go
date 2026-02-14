@@ -1,8 +1,11 @@
 package internal
 
 import (
+	"archive/tar"
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -11,6 +14,9 @@ import (
 	"time"
 
 	"github.com/google/go-containerregistry/pkg/crane"
+	"github.com/google/go-containerregistry/pkg/v1/empty"
+	"github.com/google/go-containerregistry/pkg/v1/mutate"
+	"github.com/google/go-containerregistry/pkg/v1/tarball"
 	"gopkg.in/yaml.v3"
 )
 
@@ -165,23 +171,24 @@ func loadOverrides(dir string) map[string]string {
 
 // GenerateSiteData walks the charts directory and standalone images file
 // to produce a catalog.json for the Astro static site.
-// reportsDir is the directory containing standalone image Trivy reports.
-func GenerateSiteData(chartsDir, imagesFile, reportsDir, registry, outputPath string) error {
+// Reports are pulled from the OCI registry (embedded in chart packages
+// and standalone-reports artifact), not from local files.
+func GenerateSiteData(chartsDir, imagesFile, registry, outputPath string) error {
 	data := SiteData{
 		GeneratedAt: time.Now().UTC().Format(time.RFC3339),
 		Registry:    registry,
 	}
 
-	// Discover wrapper charts
+	// Discover wrapper charts (all data pulled from OCI).
 	charts, err := discoverCharts(chartsDir, registry)
 	if err != nil {
 		return fmt.Errorf("discovering charts: %w", err)
 	}
 	data.Charts = charts
 
-	// Discover standalone images
+	// Discover standalone images (reports pulled from OCI).
 	if imagesFile != "" {
-		standalone, err := discoverStandaloneImages(imagesFile, reportsDir, registry)
+		standalone, err := discoverStandaloneImages(imagesFile, registry)
 		if err != nil {
 			return fmt.Errorf("discovering standalone images: %w", err)
 		}
@@ -204,8 +211,8 @@ func GenerateSiteData(chartsDir, imagesFile, reportsDir, registry, outputPath st
 }
 
 // discoverCharts walks chartsDir/*/Chart.yaml to find wrapper charts.
-// When a registry is provided, it also discovers previously published
-// versions from the OCI registry so the site can show per-version pages.
+// All chart data (including reports) is pulled from the OCI registry;
+// the local chart directories only provide the chart name.
 func discoverCharts(chartsDir, registry string) ([]SiteChart, error) {
 	entries, err := os.ReadDir(chartsDir)
 	if err != nil {
@@ -226,20 +233,20 @@ func discoverCharts(chartsDir, registry string) ([]SiteChart, error) {
 			continue
 		}
 
-		// Parse the local (current) chart version.
-		chart, err := parseWrapperChart(chartsDir, entry.Name(), registry)
-		if err != nil {
-			return nil, fmt.Errorf("parsing chart %s: %w", entry.Name(), err)
-		}
-		charts = append(charts, chart)
-
-		// Discover previously published versions from the OCI registry.
 		if registry != "" {
-			historical, err := discoverRegistryVersions(entry.Name(), chart.Version, chart.Repository, registry)
+			// Pull ALL versions from OCI (reports are embedded in the chart packages).
+			versions, err := discoverRegistryVersions(entry.Name(), "", "", registry)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Warning: could not discover registry versions for %s: %v\n", entry.Name(), err)
 			}
-			charts = append(charts, historical...)
+			charts = append(charts, versions...)
+		} else {
+			// No registry — fall back to local chart parsing (no reports).
+			chart, err := parseWrapperChart(chartsDir, entry.Name(), registry)
+			if err != nil {
+				return nil, fmt.Errorf("parsing chart %s: %w", entry.Name(), err)
+			}
+			charts = append(charts, chart)
 		}
 	}
 
@@ -253,9 +260,10 @@ func discoverCharts(chartsDir, registry string) ([]SiteChart, error) {
 }
 
 // discoverRegistryVersions queries the GitHub Packages API for all published
-// versions of a chart, pulls each one (except the local version which
-// is already parsed), and returns SiteChart entries with full data.
-func discoverRegistryVersions(chartName, localVersion, repository, registry string) ([]SiteChart, error) {
+// versions of a chart, pulls each one, and returns SiteChart entries with
+// full data (including embedded Trivy reports).
+// If skipVersion is non-empty, that version is excluded from the results.
+func discoverRegistryVersions(chartName, skipVersion, repository, registry string) ([]SiteChart, error) {
 	tags, err := listChartTags(registry, chartName)
 	if err != nil {
 		return nil, err
@@ -263,8 +271,8 @@ func discoverRegistryVersions(chartName, localVersion, repository, registry stri
 
 	var charts []SiteChart
 	for _, tag := range tags {
-		if tag == localVersion {
-			continue // already parsed from local directory
+		if skipVersion != "" && tag == skipVersion {
+			continue
 		}
 
 		tmpDir, err := os.MkdirTemp("", "verity-version-")
@@ -272,9 +280,6 @@ func discoverRegistryVersions(chartName, localVersion, repository, registry stri
 			continue
 		}
 
-		// Always pull historical versions from our registry, not the
-		// upstream repository — the versioned chart packages live in
-		// our OCI registry (e.g. oci://ghcr.io/descope/charts).
 		dep := Dependency{
 			Name:       chartName,
 			Version:    tag,
@@ -723,8 +728,7 @@ func dirExists(path string) bool {
 }
 
 // SaveStandaloneReports copies Trivy reports from PatchResults into a
-// persistent directory so they survive across runs and are available
-// for site data generation.
+// local directory. This is used during assembly before pushing to OCI.
 func SaveStandaloneReports(results []*PatchResult, reportsDir string) error {
 	if err := os.MkdirAll(reportsDir, 0o755); err != nil {
 		return fmt.Errorf("creating standalone reports dir: %w", err)
@@ -755,30 +759,159 @@ func SaveStandaloneReports(results []*PatchResult, reportsDir string) error {
 	return nil
 }
 
+// PushStandaloneReports pushes all standalone reports in reportsDir to
+// the OCI registry as a single image artifact at:
+//
+//	{registry}/standalone-reports:latest
+//
+// Each JSON report file becomes a layer in the OCI image.
+func PushStandaloneReports(reportsDir, registry string) error {
+	ref := registry + "/standalone-reports:latest"
+
+	entries, err := os.ReadDir(reportsDir)
+	if err != nil {
+		return fmt.Errorf("reading reports dir: %w", err)
+	}
+
+	// Build a tar archive of the reports directory content.
+	var buf bytes.Buffer
+	tw := tar.NewWriter(&buf)
+	for _, e := range entries {
+		if e.IsDir() || !strings.HasSuffix(e.Name(), ".json") {
+			continue
+		}
+		data, err := os.ReadFile(filepath.Join(reportsDir, e.Name()))
+		if err != nil {
+			return fmt.Errorf("reading %s: %w", e.Name(), err)
+		}
+		hdr := &tar.Header{
+			Name: e.Name(),
+			Mode: 0o644,
+			Size: int64(len(data)),
+		}
+		if err := tw.WriteHeader(hdr); err != nil {
+			return err
+		}
+		if _, err := tw.Write(data); err != nil {
+			return err
+		}
+	}
+	if err := tw.Close(); err != nil {
+		return err
+	}
+
+	layer, err := tarball.LayerFromReader(&buf)
+	if err != nil {
+		return fmt.Errorf("creating OCI layer: %w", err)
+	}
+
+	img, err := mutate.AppendLayers(empty.Image, layer)
+	if err != nil {
+		return fmt.Errorf("building OCI image: %w", err)
+	}
+
+	if err := crane.Push(img, ref); err != nil {
+		return fmt.Errorf("pushing %s: %w", ref, err)
+	}
+	fmt.Printf("Pushed standalone reports → %s\n", ref)
+	return nil
+}
+
+// pullStandaloneReports pulls the standalone-reports artifact from OCI
+// and extracts the reports into a temporary directory.
+func pullStandaloneReports(registry string) (string, error) {
+	ref := registry + "/standalone-reports:latest"
+
+	img, err := crane.Pull(ref)
+	if err != nil {
+		return "", fmt.Errorf("pulling %s: %w", ref, err)
+	}
+
+	tmpDir, err := os.MkdirTemp("", "verity-standalone-reports-")
+	if err != nil {
+		return "", err
+	}
+
+	layers, err := img.Layers()
+	if err != nil {
+		os.RemoveAll(tmpDir)
+		return "", fmt.Errorf("reading layers: %w", err)
+	}
+
+	for _, layer := range layers {
+		rc, err := layer.Uncompressed()
+		if err != nil {
+			os.RemoveAll(tmpDir)
+			return "", fmt.Errorf("decompressing layer: %w", err)
+		}
+		tr := tar.NewReader(rc)
+		for {
+			hdr, err := tr.Next()
+			if err != nil {
+				break
+			}
+			if hdr.Typeflag != tar.TypeReg {
+				continue
+			}
+			data, err := io.ReadAll(tr)
+			if err != nil {
+				rc.Close()
+				os.RemoveAll(tmpDir)
+				return "", fmt.Errorf("reading %s from tar: %w", hdr.Name, err)
+			}
+			if err := os.WriteFile(filepath.Join(tmpDir, hdr.Name), data, 0o644); err != nil {
+				rc.Close()
+				os.RemoveAll(tmpDir)
+				return "", err
+			}
+		}
+		rc.Close()
+	}
+
+	return tmpDir, nil
+}
+
 // discoverStandaloneImages reads the standalone images values file and
-// finds reports for each image in the reports directory.
-func discoverStandaloneImages(imagesFile, reportsDir, registry string) ([]SiteImage, error) {
+// pulls reports from the OCI registry standalone-reports artifact.
+func discoverStandaloneImages(imagesFile, registry string) ([]SiteImage, error) {
 	images, err := ParseImagesFile(imagesFile)
 	if err != nil {
 		return nil, err
 	}
 
-	overrides := loadOverrides(reportsDir)
+	// Pull reports from OCI.
+	var reportsDir string
+	if registry != "" {
+		dir, err := pullStandaloneReports(registry)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Warning: could not pull standalone reports from OCI: %v\n", err)
+		} else {
+			reportsDir = dir
+			defer os.RemoveAll(dir)
+		}
+	}
+
+	var overrides map[string]string
+	if reportsDir != "" {
+		overrides = loadOverrides(reportsDir)
+	}
 
 	var siteImages []SiteImage
 	for _, img := range images {
 		ref := img.Reference()
 		sanitizedRef := sanitize(ref)
 
-		reportPath := filepath.Join(reportsDir, sanitizedRef+".json")
-		report, err := parseTrivyReportFull(reportPath)
-
 		patchedRef := buildPatchedRef(ref, registry)
 
 		var si SiteImage
-		if err == nil {
-			si = buildSiteImage(sanitizedRef, ref, patchedRef, img.Path, "", report)
-		} else {
+		if reportsDir != "" {
+			reportPath := filepath.Join(reportsDir, sanitizedRef+".json")
+			report, err := parseTrivyReportFull(reportPath)
+			if err == nil {
+				si = buildSiteImage(sanitizedRef, ref, patchedRef, img.Path, "", report)
+			}
+		}
+		if si.ID == "" {
 			si = SiteImage{
 				ID:              sanitizedRef,
 				OriginalRef:     ref,

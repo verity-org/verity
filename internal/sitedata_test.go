@@ -94,9 +94,9 @@ dependencies:
 		t.Fatal(err)
 	}
 
-	// Run GenerateSiteData
+	// Run GenerateSiteData (no registry — falls back to local parsing)
 	outputPath := filepath.Join(tmpDir, "output", "catalog.json")
-	err := GenerateSiteData(chartsDir, imagesFile, filepath.Join(tmpDir, "reports"), "ghcr.io/testorg", outputPath)
+	err := GenerateSiteData(chartsDir, imagesFile, "", outputPath)
 	if err != nil {
 		t.Fatalf("GenerateSiteData failed: %v", err)
 	}
@@ -112,9 +112,9 @@ dependencies:
 		t.Fatalf("Failed to parse output JSON: %v", err)
 	}
 
-	// Verify structure
-	if siteData.Registry != "ghcr.io/testorg" {
-		t.Errorf("expected registry ghcr.io/testorg, got %s", siteData.Registry)
+	// Verify structure (no registry in local-only mode)
+	if siteData.Registry != "" {
+		t.Errorf("expected empty registry, got %s", siteData.Registry)
 	}
 	if siteData.GeneratedAt == "" {
 		t.Error("expected generatedAt to be set")
@@ -159,7 +159,7 @@ dependencies:
 		t.Errorf("expected 1 MEDIUM vuln, got %d", img.VulnSummary.SeverityCounts["MEDIUM"])
 	}
 
-	// Verify standalone images
+	// Verify standalone images (no registry → no OCI pull, but image entry still created)
 	if len(siteData.StandaloneImages) != 1 {
 		t.Fatalf("expected 1 standalone image, got %d", len(siteData.StandaloneImages))
 	}
@@ -178,11 +178,21 @@ dependencies:
 }
 
 func TestParseTrivyReportFull(t *testing.T) {
-	reportPath := filepath.Join("..", "charts", "prometheus", "reports", "quay.io_brancz_kube-rbac-proxy_v0.14.0.json")
-
-	// Skip if real report doesn't exist (CI without charts dir)
-	if _, err := os.Stat(reportPath); os.IsNotExist(err) {
-		t.Skip("skipping: real trivy report not found")
+	tmpDir := t.TempDir()
+	reportJSON := `{
+		"Metadata": {"OS": {"Family": "debian", "Name": "11.5"}},
+		"Results": [
+			{
+				"Vulnerabilities": [
+					{"VulnerabilityID":"CVE-2024-0001","PkgName":"openssl","InstalledVersion":"1.1.1","FixedVersion":"1.1.2","Severity":"HIGH","Title":"test vuln"},
+					{"VulnerabilityID":"CVE-2024-0002","PkgName":"zlib","InstalledVersion":"1.2.11","FixedVersion":"","Severity":"","Title":"unknown sev"}
+				]
+			}
+		]
+	}`
+	reportPath := filepath.Join(tmpDir, "report.json")
+	if err := os.WriteFile(reportPath, []byte(reportJSON), 0o644); err != nil {
+		t.Fatal(err)
 	}
 
 	report, err := parseTrivyReportFull(reportPath)
@@ -190,42 +200,21 @@ func TestParseTrivyReportFull(t *testing.T) {
 		t.Fatalf("parseTrivyReportFull failed: %v", err)
 	}
 
-	// Verify OS metadata
 	if report.Metadata.OS.Family != "debian" {
 		t.Errorf("expected OS family debian, got %s", report.Metadata.OS.Family)
 	}
 	if report.Metadata.OS.Name != "11.5" {
 		t.Errorf("expected OS name 11.5, got %s", report.Metadata.OS.Name)
 	}
-
-	// Verify vulnerabilities exist
-	if len(report.Results) == 0 {
-		t.Fatal("expected at least one result")
+	if len(report.Results) != 1 {
+		t.Fatalf("expected 1 result, got %d", len(report.Results))
 	}
-
-	totalVulns := 0
-	severityCounts := make(map[string]int)
-	for _, r := range report.Results {
-		for _, v := range r.Vulnerabilities {
-			totalVulns++
-			sev := v.Severity
-			if sev == "" {
-				sev = "UNKNOWN"
-			}
-			severityCounts[sev]++
-		}
+	if len(report.Results[0].Vulnerabilities) != 2 {
+		t.Fatalf("expected 2 vulns, got %d", len(report.Results[0].Vulnerabilities))
 	}
-
-	if totalVulns == 0 {
-		t.Error("expected at least one vulnerability")
+	if report.Results[0].Vulnerabilities[0].Severity != "HIGH" {
+		t.Errorf("expected HIGH, got %s", report.Results[0].Vulnerabilities[0].Severity)
 	}
-
-	// The kube-rbac-proxy v0.14.0 report should have UNKNOWN severity vulns
-	if severityCounts["UNKNOWN"] == 0 {
-		t.Error("expected UNKNOWN severity vulnerabilities")
-	}
-
-	t.Logf("Report: %d total vulns, severity counts: %v", totalVulns, severityCounts)
 }
 
 func TestUnsanitize(t *testing.T) {
@@ -336,20 +325,8 @@ func TestSaveStandaloneReports(t *testing.T) {
 	}
 }
 
-func TestGenerateSiteDataWithStandaloneReports(t *testing.T) {
+func TestDiscoverStandaloneImagesNoRegistry(t *testing.T) {
 	tmpDir := t.TempDir()
-	chartsDir := filepath.Join(tmpDir, "charts")
-	reportsDir := filepath.Join(tmpDir, "reports")
-
-	if err := os.MkdirAll(reportsDir, 0o755); err != nil {
-		t.Fatal(err)
-	}
-
-	// Write a standalone report
-	report := `{"Metadata":{"OS":{"Family":"alpine","Name":"3.19"}},"Results":[{"Vulnerabilities":[{"VulnerabilityID":"CVE-2024-1111","PkgName":"busybox","InstalledVersion":"1.36.0","FixedVersion":"1.36.1","Severity":"MEDIUM","Title":"busybox overflow"}]}]}`
-	if err := os.WriteFile(filepath.Join(reportsDir, "docker.io_library_redis_7.0.0.json"), []byte(report), 0o644); err != nil {
-		t.Fatal(err)
-	}
 
 	// Write standalone images file
 	imagesFile := filepath.Join(tmpDir, "images.yaml")
@@ -363,33 +340,22 @@ func TestGenerateSiteDataWithStandaloneReports(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	outputPath := filepath.Join(tmpDir, "catalog.json")
-	if err := GenerateSiteData(chartsDir, imagesFile, reportsDir, "ghcr.io/testorg", outputPath); err != nil {
-		t.Fatalf("GenerateSiteData failed: %v", err)
-	}
-
-	data, err := os.ReadFile(outputPath)
+	// No registry → no OCI pull, but should return image entries with empty vulns.
+	images, err := discoverStandaloneImages(imagesFile, "")
 	if err != nil {
-		t.Fatal(err)
-	}
-	var siteData SiteData
-	if err := json.Unmarshal(data, &siteData); err != nil {
-		t.Fatal(err)
+		t.Fatalf("discoverStandaloneImages failed: %v", err)
 	}
 
-	if len(siteData.StandaloneImages) != 1 {
-		t.Fatalf("expected 1 standalone image, got %d", len(siteData.StandaloneImages))
+	if len(images) != 1 {
+		t.Fatalf("expected 1 standalone image, got %d", len(images))
 	}
 
-	si := siteData.StandaloneImages[0]
-	if si.VulnSummary.Total != 1 {
-		t.Errorf("expected 1 vuln, got %d", si.VulnSummary.Total)
+	si := images[0]
+	if si.OriginalRef != "docker.io/library/redis:7.0.0" {
+		t.Errorf("expected original ref docker.io/library/redis:7.0.0, got %s", si.OriginalRef)
 	}
-	if si.OS != "alpine 3.19" {
-		t.Errorf("expected OS alpine 3.19, got %s", si.OS)
-	}
-	if si.VulnSummary.SeverityCounts["MEDIUM"] != 1 {
-		t.Errorf("expected 1 MEDIUM, got %d", si.VulnSummary.SeverityCounts["MEDIUM"])
+	if si.VulnSummary.Total != 0 {
+		t.Errorf("expected 0 vulns (no registry), got %d", si.VulnSummary.Total)
 	}
 }
 
