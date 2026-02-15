@@ -55,14 +55,15 @@ Chart.yaml + values.yaml
 
 ### Unified Image Source
 
-`values.yaml` is the **single source of truth** for all images. It contains:
+`values.yaml` is the **single source of truth** for all images — a single flat
+list with no separate sections. You can add images manually or let the discover
+step append them automatically.
 
-- **Manually maintained images** (standalone, e.g. redis, nginx)
-- **Chart-discovered images** (auto-generated `chart-images:` section)
-
-The discover step scans Chart.yaml dependencies and merges found images into
-`values.yaml`. This means every image — whether from a chart or standalone — is
-patched through the same pipeline.
+The discover step scans Chart.yaml dependencies and appends any newly found
+images to `values.yaml`, deduplicating by image reference. This means every
+image — whether from a chart or added manually — is patched through the same
+pipeline. Common images like config-reloader only appear once, regardless of
+how many charts use them.
 
 ### What Gets Created
 
