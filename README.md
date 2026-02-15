@@ -37,19 +37,32 @@ helm install my-prometheus \
 
 ## How It Works
 
+The primary product is a **registry of patched images**. Wrapper charts are a secondary convenience.
+
 ```text
-Chart.yaml Dependencies
+Chart.yaml + values.yaml
         ↓
-  Scan for Images (verity)
+  Discover (extract all images → values.yaml)
         ↓
-  Vulnerability Scan (Trivy)
+  Patch (scan + Copa-patch each image)
         ↓
-  Patch Images (Copa)
+  Push to Registry (patched images + attestations)
         ↓
-  Wrapper Charts Created
+  Assemble Wrapper Charts (optional)
         ↓
   Published to Quay.io
 ```
+
+### Unified Image Source
+
+`values.yaml` is the **single source of truth** for all images. It contains:
+
+- **Manually maintained images** (standalone, e.g. redis, nginx)
+- **Chart-discovered images** (auto-generated `chart-images:` section)
+
+The discover step scans Chart.yaml dependencies and merges found images into
+`values.yaml`. This means every image — whether from a chart or standalone — is
+patched through the same pipeline.
 
 ### What Gets Created
 
@@ -61,8 +74,10 @@ charts/
     Chart.yaml    # Depends on original prometheus chart
     values.yaml   # Patched images (namespaced)
     .helmignore
-    reports/      # Trivy vulnerability reports (JSON)
 ```
+
+Vulnerability reports are attached as **in-toto attestations** on each patched
+image in the registry (not bundled in chart packages).
 
 **Example values.yaml:**
 
@@ -319,7 +334,9 @@ docker stop buildkitd && docker rm buildkitd
 
 Every patch run includes:
 
-- Trivy JSON reports (attached to workflow runs)
+- Trivy vulnerability reports attached as **in-toto attestations** on each patched image
+- SBOM (CycloneDX) attestations on each patched image
+- Build provenance attestations via GitHub Actions
 - CVE details and CVSS scores
 - Fixable vs unfixable vulnerabilities
 
@@ -331,19 +348,29 @@ Patched images are:
 2. Scanned with Trivy (open source)
 3. Patched with Copa (Microsoft, open source)
 4. Pushed to your registry with `-patched` suffix
-5. Never modify upstream images
+5. Signed with cosign (keyless, Sigstore)
+6. Attested with build provenance, SBOM, and vulnerability reports
+7. Never modify upstream images
 
 ### Supply Chain
 
 Verify patches yourself:
 
 ```bash
-# Pull patched image
-docker pull quay.io/verity/prometheus:v2.48.0-patched
+# Verify image signature
+cosign verify quay.io/verity/prometheus/prometheus:v2.48.0-patched
+
+# Verify vulnerability report attestation
+cosign verify-attestation --type vuln \
+  quay.io/verity/prometheus/prometheus:v2.48.0-patched
+
+# Verify SBOM attestation
+cosign verify-attestation --type spdxjson \
+  quay.io/verity/prometheus/prometheus:v2.48.0-patched
 
 # Compare to original
 docker pull quay.io/prometheus/prometheus:v2.48.0
-docker diff <original-id> <patched-id>
+docker pull quay.io/verity/prometheus/prometheus:v2.48.0-patched
 ```
 
 ## FAQ
