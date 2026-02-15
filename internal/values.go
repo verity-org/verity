@@ -79,28 +79,8 @@ func CreateWrapperChart(dep Dependency, results []*PatchResult, outputDir, regis
 		return "", fmt.Errorf("writing .helmignore: %w", err)
 	}
 
-	// Create reports/ directory and copy Trivy JSON reports
-	reportsDir := filepath.Join(chartDir, "reports")
-	if err := os.MkdirAll(reportsDir, 0o755); err != nil {
-		return "", fmt.Errorf("creating reports directory: %w", err)
-	}
-
-	for _, r := range results {
-		// Prefer the upstream (pre-patch) report for "before" data.
-		src := r.UpstreamReportPath
-		if src == "" {
-			src = r.ReportPath
-		}
-		if src == "" {
-			continue
-		}
-		// Always name by the original image ref so site data can match it.
-		reportName := sanitize(r.Original.Reference()) + ".json"
-		destPath := filepath.Join(reportsDir, reportName)
-		if err := copyFile(src, destPath); err != nil {
-			return "", fmt.Errorf("copying report %s: %w", reportName, err)
-		}
-	}
+	// Vulnerability reports are attached as in-toto attestations on each
+	// patched image in the registry, so they are not bundled in the chart.
 
 	// Save override metadata for site data generation.
 	if err := SaveOverrides(results, chartDir); err != nil {
