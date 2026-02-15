@@ -281,12 +281,12 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: verity-manifest
-          path: .verity
+          path: .
 
       - name: Use updated values.yaml from discover
         run: |
-          if [ -f .verity/values.yaml ]; then
-            cp .verity/values.yaml values.yaml
+          # values.yaml is already extracted to the correct location from artifact
+          if [ -f values.yaml ]; then
             echo "Using updated values.yaml from discover step"
           fi
 
