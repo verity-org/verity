@@ -1,4 +1,4 @@
-.PHONY: help build test test-coverage lint lint-fmt lint-vuln lint-workflows lint-yaml lint-shell lint-markdown lint-frontend fmt fmt-strict fmt-frontend check-frontend vet sec clean install-tools quality test-local test-local-patch up down
+.PHONY: help build test test-coverage lint lint-fmt lint-vuln lint-workflows lint-yaml lint-shell lint-markdown lint-frontend fmt fmt-strict fmt-frontend check-frontend vet sec clean install-tools quality test-local test-local-patch up down scan update-images
 
 # Default target
 help:
@@ -9,6 +9,7 @@ help:
 	@echo "  make test-local-patch - Test patching with local registry"
 	@echo "  make up               - Start local registry + BuildKit"
 	@echo "  make down             - Stop local test environment"
+	@echo "  make scan             - Scan charts and update values.yaml"
 	@echo "  make lint             - Run Go linter (golangci-lint)"
 	@echo "  make quality          - Run ALL linters and tests"
 	@echo "  make fmt              - Format code"
@@ -127,6 +128,24 @@ install-tools:
 	@echo "  - shellcheck (Shell script linter)"
 	@echo ""
 	@echo "Run 'mise list' to see all installed tools"
+
+# ── Chart Scanning ───────────────────────────────────────────────────
+
+# Scan charts and update values.yaml
+scan: build
+	@echo "Downloading chart dependencies..."
+	helm dependency update .
+	@echo ""
+	@echo "Scanning charts for images..."
+	./verity scan --chart . --output values.yaml
+	@echo ""
+	@echo "✓ Updated values.yaml with images from charts"
+	@echo ""
+	@echo "Images found:"
+	@grep -c "^[a-z]" values.yaml || echo "0"
+
+# Alias for scan
+update-images: scan
 
 # ── Local Testing with Docker ────────────────────────────────────────
 
