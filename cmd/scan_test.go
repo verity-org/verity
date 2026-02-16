@@ -283,7 +283,8 @@ grafana-grafana:
 overrides:
   timberio/vector:
     from: "distroless-libc"
-    to: "debian"`,
+    to: "debian"
+`,
 		},
 		{
 			name: "with multiple overrides",
@@ -310,7 +311,8 @@ overrides:
     to: "debian"
   nginx:
     from: "alpine"
-    to: "debian"`,
+    to: "debian"
+`,
 		},
 		{
 			name:    "nonexistent file",
