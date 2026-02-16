@@ -25,8 +25,17 @@ User creates issue → Script adds to Chart.yaml → PR created → Merge → Re
 
 **Flow:**
 ```
-User creates issue → Script adds to values.yaml → PR created → Merge → Image gets patched
+User creates issue → Script adds to charts/standalone/values.yaml → PR created → Merge → Image gets scanned & patched
 ```
+
+**What happens after merge:**
+1. Image is added to the standalone chart (`charts/standalone/`)
+2. `update-images` workflow scans all charts including standalone
+3. Updates root `values.yaml` with standalone images
+4. `scan-and-patch` workflow patches and publishes the image
+5. Renovate auto-updates the image tag in `charts/standalone/values.yaml`
+
+**Architecture:** Standalone images are managed through a local Helm chart to ensure they survive `scan` regeneration.
 
 ## Workflow Scripts
 
