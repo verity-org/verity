@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"sort"
@@ -12,7 +13,9 @@ import (
 	"github.com/verity-org/verity/internal"
 )
 
-// ScanCommand scans a Helm chart for container images and exports them to values.yaml
+var errNoImagesFound = errors.New("no images found in chart")
+
+// ScanCommand scans a Helm chart for container images and exports them to values.yaml.
 var ScanCommand = &cli.Command{
 	Name:  "scan",
 	Usage: "Scan a Helm chart for container images and export to values.yaml",
@@ -44,7 +47,7 @@ func runScan(c *cli.Context) error {
 	}
 
 	if len(images) == 0 {
-		return fmt.Errorf("no images found in chart")
+		return errNoImagesFound
 	}
 
 	// Sort for deterministic output
@@ -98,14 +101,14 @@ func writeImagesToValues(images []internal.Image, path string) error {
 		usedKeys[key] = true
 
 		// Write the image entry
-		sb.WriteString(fmt.Sprintf("%s:\n", key))
+		sb.WriteString(key + ":\n")
 		sb.WriteString("  image:\n")
 		if img.Registry != "" {
 			sb.WriteString(fmt.Sprintf("    registry: %s\n", img.Registry))
 		}
 		sb.WriteString(fmt.Sprintf("    repository: %s\n", img.Repository))
 		if img.Tag != "" {
-			sb.WriteString(fmt.Sprintf("    tag: \"%s\"\n", img.Tag))
+			sb.WriteString(fmt.Sprintf("    tag: %q\n", img.Tag))
 		}
 		if img.Path != "" {
 			sb.WriteString(fmt.Sprintf("    # from: %s\n", img.Path))
@@ -116,13 +119,13 @@ func writeImagesToValues(images []internal.Image, path string) error {
 }
 
 // imageKey generates a YAML key from an image repository
-// e.g. "prometheus/prometheus" → "prometheus-prometheus"
+// e.g. "prometheus/prometheus" → "prometheus-prometheus".
 func imageKey(img internal.Image) string {
 	return strings.ReplaceAll(img.Repository, "/", "-")
 }
 
 // extractOverrides reads the existing values.yaml and extracts the overrides section
-// Returns the overrides section as a string, or empty string if not found
+// Returns the overrides section as a string, or empty string if not found.
 func extractOverrides(path string) string {
 	file, err := os.Open(path)
 	if err != nil {
@@ -148,7 +151,7 @@ func extractOverrides(path string) string {
 		// If we're in overrides section
 		if inOverrides {
 			// End of overrides: non-indented line that's not a comment
-			if len(line) > 0 && !strings.HasPrefix(line, " ") && !strings.HasPrefix(line, "#") {
+			if line != "" && !strings.HasPrefix(line, " ") && !strings.HasPrefix(line, "#") {
 				break
 			}
 			overridesLines = append(overridesLines, line)

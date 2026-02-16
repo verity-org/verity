@@ -40,7 +40,7 @@ func ParseImagesFile(path string) ([]Image, error) {
 	if err != nil {
 		return nil, fmt.Errorf("reading %s: %w", path, err)
 	}
-	var values map[string]interface{}
+	var values map[string]any
 	if err := yaml.Unmarshal(data, &values); err != nil {
 		return nil, fmt.Errorf("parsing %s: %w", path, err)
 	}
@@ -78,7 +78,7 @@ func scanChart(ch *chart.Chart, prefix string, cache map[string]string) []Image 
 // Replaceable in tests for deterministic behavior.
 var tagChecker func(ctx context.Context, ref string) bool = imageExists
 
-func findImages(values map[string]interface{}, prefix, appVersion string, cache map[string]string) []Image {
+func findImages(values map[string]any, prefix, appVersion string, cache map[string]string) []Image {
 	if cache == nil {
 		cache = map[string]string{}
 	}
@@ -130,9 +130,9 @@ func resolveTag(img Image, appVersion string) string {
 	return appVersion
 }
 
-func walk(node interface{}, path, parentKey string, fn func(string, Image)) {
+func walk(node any, path, parentKey string, fn func(string, Image)) {
 	switch v := node.(type) {
-	case map[string]interface{}:
+	case map[string]any:
 		// Check if this map itself is an image definition.
 		if img, ok := extractImage(v, parentKey); ok {
 			fn(path, img)
@@ -149,7 +149,7 @@ func walk(node interface{}, path, parentKey string, fn func(string, Image)) {
 			walk(val, joinPath(path, k), k, fn)
 		}
 
-	case []interface{}:
+	case []any:
 		for i, item := range v {
 			walk(item, fmt.Sprintf("%s[%d]", path, i), "", fn)
 		}
@@ -157,7 +157,7 @@ func walk(node interface{}, path, parentKey string, fn func(string, Image)) {
 }
 
 // extractImage checks whether a map looks like {repository: ..., tag: ...}.
-func extractImage(m map[string]interface{}, parentKey string) (Image, bool) {
+func extractImage(m map[string]any, parentKey string) (Image, bool) {
 	repo, ok := stringVal(m, "repository")
 	if !ok || !looksLikeImage(repo) {
 		return Image{}, false
@@ -181,7 +181,7 @@ func extractImage(m map[string]interface{}, parentKey string) (Image, bool) {
 	return img, true
 }
 
-func stringVal(m map[string]interface{}, key string) (string, bool) {
+func stringVal(m map[string]any, key string) (string, bool) {
 	v, ok := m[key]
 	if !ok {
 		return "", false
@@ -269,7 +269,7 @@ func ParseOverrides(path string) ([]ImageOverride, error) {
 	if err != nil {
 		return nil, fmt.Errorf("reading %s: %w", path, err)
 	}
-	var raw map[string]interface{}
+	var raw map[string]any
 	if err := yaml.Unmarshal(data, &raw); err != nil {
 		return nil, fmt.Errorf("parsing %s: %w", path, err)
 	}
@@ -278,22 +278,22 @@ func ParseOverrides(path string) ([]ImageOverride, error) {
 	if !ok {
 		return nil, nil
 	}
-	ovrMap, ok := ovr.(map[string]interface{})
+	ovrMap, ok := ovr.(map[string]any)
 	if !ok {
 		return nil, nil
 	}
 
 	var overrides []ImageOverride
 	for repo, v := range ovrMap {
-		m, ok := v.(map[string]interface{})
+		m, ok := v.(map[string]any)
 		if !ok {
 			continue
 		}
-		from, _ := m["from"].(string)
-		to, _ := m["to"].(string)
-		if from == "" {
+		from, ok := m["from"].(string)
+		if !ok || from == "" {
 			continue
 		}
+		to, _ := m["to"].(string) //nolint:errcheck // optional field
 		overrides = append(overrides, ImageOverride{
 			Repository: repo,
 			From:       from,
@@ -312,7 +312,7 @@ func ParseOverrides(path string) ([]ImageOverride, error) {
 // because the patch matrix deduplicates by reference, so stale entries only
 // cause a harmless extra patch job. Removing entries would risk deleting
 // images that were added manually or used by other charts.
-func MergeChartImages(valuesPath string, images []Image) error {
+func MergeChartImages(valuesPath string, images []Image) error { //nolint:gocognit,gocyclo,cyclop,funlen // complex workflow
 	if len(images) == 0 {
 		return nil
 	}
@@ -325,7 +325,7 @@ func MergeChartImages(valuesPath string, images []Image) error {
 	// Parse existing images to know which references are already present.
 	existingRefs := make(map[string]bool)
 	if len(existing) > 0 {
-		var values map[string]interface{}
+		var values map[string]any
 		if err := yaml.Unmarshal(existing, &values); err != nil {
 			return fmt.Errorf("parsing %s: %w", valuesPath, err)
 		}
@@ -352,11 +352,11 @@ func MergeChartImages(valuesPath string, images []Image) error {
 
 	// Discover existing top-level YAML keys to avoid collisions.
 	content := string(existing)
-	if len(content) > 0 && !strings.HasSuffix(content, "\n") {
+	if content != "" && !strings.HasSuffix(content, "\n") {
 		content += "\n"
 	}
 	usedKeys := make(map[string]bool)
-	var topLevel map[string]interface{}
+	var topLevel map[string]any
 	if err := yaml.Unmarshal(existing, &topLevel); err == nil && topLevel != nil {
 		for k := range topLevel {
 			usedKeys[k] = true
@@ -384,14 +384,14 @@ func MergeChartImages(valuesPath string, images []Image) error {
 		}
 		usedKeys[key] = true
 
-		sb.WriteString(fmt.Sprintf("%s:\n", key))
+		sb.WriteString(key + ":\n")
 		sb.WriteString("  image:\n")
 		if img.Registry != "" {
 			sb.WriteString(fmt.Sprintf("    registry: %s\n", img.Registry))
 		}
 		sb.WriteString(fmt.Sprintf("    repository: %s\n", img.Repository))
 		if img.Tag != "" {
-			sb.WriteString(fmt.Sprintf("    tag: \"%s\"\n", img.Tag))
+			sb.WriteString(fmt.Sprintf("    tag: %q\n", img.Tag))
 		}
 	}
 

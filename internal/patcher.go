@@ -51,7 +51,7 @@ type PatchResult struct {
 // image already exists there. If so, it scans the patched image
 // instead of the upstream — skipping entirely when no new fixable
 // vulns are found, or re-patching from upstream when they are.
-func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult {
+func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult { //nolint:gocognit,gocyclo,cyclop,funlen // complex workflow
 	result := &PatchResult{Original: img}
 
 	tag := img.Tag
@@ -61,7 +61,7 @@ func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult 
 	patchedTag := tag + "-patched"
 
 	// Check if a patched image already exists in the target registry.
-	if opts.TargetRegistry != "" {
+	if opts.TargetRegistry != "" { //nolint:nestif // patching workflow
 		patchedRef := Image{
 			Registry:   opts.TargetRegistry,
 			Repository: img.Repository,
@@ -137,7 +137,7 @@ func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult 
 	}
 	result.VulnCount = vulns
 
-	if vulns == 0 {
+	if vulns == 0 { //nolint:nestif // early exit logic
 		result.Skipped = true
 		result.SkipReason = "no fixable vulnerabilities"
 

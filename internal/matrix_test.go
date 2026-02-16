@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"slices"
 	"testing"
 )
 
@@ -112,11 +113,8 @@ func TestWriteDiscoveryOutput(t *testing.T) {
 		t.Fatal("matrix.json is empty")
 	}
 	// Compact JSON should not contain newlines.
-	for _, b := range matData {
-		if b == '\n' {
-			t.Error("matrix.json should be compact (no newlines)")
-			break
-		}
+	if slices.Contains(matData, '\n') {
+		t.Error("matrix.json should be compact (no newlines)")
 	}
 
 	var gotMatrix MatrixOutput
@@ -214,7 +212,10 @@ func TestLoadResults(t *testing.T) {
 	}
 
 	for _, r := range []SinglePatchResult{r1, r2} {
-		data, _ := json.Marshal(r)
+		data, err := json.Marshal(r)
+		if err != nil {
+			t.Fatal(err)
+		}
 		path := filepath.Join(dir, sanitize(r.ImageRef)+".json")
 		if err := os.WriteFile(path, data, 0o644); err != nil {
 			t.Fatal(err)
@@ -285,7 +286,10 @@ func TestAssembleResults(t *testing.T) {
 			},
 		},
 	}
-	manifestData, _ := json.Marshal(manifest)
+	manifestData, err := json.Marshal(manifest)
+	if err != nil {
+		t.Fatal(err)
+	}
 	manifestPath := filepath.Join(dir, "manifest.json")
 	if err := os.WriteFile(manifestPath, manifestData, 0o644); err != nil {
 		t.Fatal(err)
@@ -304,7 +308,10 @@ func TestAssembleResults(t *testing.T) {
 		VulnCount:         2,
 		Changed:           true, // Image was patched (changed)
 	}
-	rData, _ := json.Marshal(result)
+	rData, err := json.Marshal(result)
+	if err != nil {
+		t.Fatal(err)
+	}
 	if err := os.WriteFile(filepath.Join(resultsDir, sanitize("docker.io/library/nginx:1.25")+".json"), rData, 0o644); err != nil {
 		t.Fatal(err)
 	}
@@ -476,7 +483,10 @@ func TestAssembleResultsSkipsUnchangedCharts(t *testing.T) {
 			},
 		},
 	}
-	manifestData, _ := json.Marshal(manifest)
+	manifestData, err := json.Marshal(manifest)
+	if err != nil {
+		t.Fatal(err)
+	}
 	manifestPath := filepath.Join(dir, "manifest.json")
 	if err := os.WriteFile(manifestPath, manifestData, 0o644); err != nil {
 		t.Fatal(err)
@@ -493,7 +503,10 @@ func TestAssembleResultsSkipsUnchangedCharts(t *testing.T) {
 		SkipReason: "patched image up to date",
 		Changed:    false,
 	}
-	rData, _ := json.Marshal(result)
+	rData, err := json.Marshal(result)
+	if err != nil {
+		t.Fatal(err)
+	}
 	if err := os.WriteFile(filepath.Join(resultsDir, sanitize("docker.io/library/nginx:1.25")+".json"), rData, 0o644); err != nil {
 		t.Fatal(err)
 	}
@@ -549,7 +562,10 @@ func TestAssembleResultsProcessesChangedCharts(t *testing.T) {
 			},
 		},
 	}
-	manifestData, _ := json.Marshal(manifest)
+	manifestData, err := json.Marshal(manifest)
+	if err != nil {
+		t.Fatal(err)
+	}
 	manifestPath := filepath.Join(dir, "manifest.json")
 	if err := os.WriteFile(manifestPath, manifestData, 0o644); err != nil {
 		t.Fatal(err)
@@ -567,7 +583,10 @@ func TestAssembleResultsProcessesChangedCharts(t *testing.T) {
 		SkipReason: "patched image up to date",
 		Changed:    false,
 	}
-	rData1, _ := json.Marshal(result1)
+	rData1, err := json.Marshal(result1)
+	if err != nil {
+		t.Fatal(err)
+	}
 	if err := os.WriteFile(filepath.Join(resultsDir, sanitize("docker.io/library/nginx:1.25")+".json"), rData1, 0o644); err != nil {
 		t.Fatal(err)
 	}
@@ -580,7 +599,10 @@ func TestAssembleResultsProcessesChangedCharts(t *testing.T) {
 		VulnCount:         3,
 		Changed:           true,
 	}
-	rData2, _ := json.Marshal(result2)
+	rData2, err := json.Marshal(result2)
+	if err != nil {
+		t.Fatal(err)
+	}
 	if err := os.WriteFile(filepath.Join(resultsDir, sanitize("docker.io/library/redis:7.0")+".json"), rData2, 0o644); err != nil {
 		t.Fatal(err)
 	}

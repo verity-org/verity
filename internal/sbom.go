@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// CycloneDX SBOM structures (simplified for chart use)
+// CycloneDX SBOM structures (simplified for chart use).
 type cycloneDXSBOM struct {
 	BOMFormat   string               `json:"bomFormat"`
 	SpecVersion string               `json:"specVersion"`
@@ -94,7 +94,7 @@ func GenerateChartSBOM(chart ChartDiscovery, patchedImages []*PatchResult, regis
 }
 
 // chartToPURL converts a chart reference to a Package URL.
-// Format: pkg:helm/[repo]/[name]@[version]
+// Format: pkg:helm/[repo]/[name]@[version].
 func chartToPURL(chart ChartDiscovery) string {
 	// Simplify repository to just the hostname/org
 	repo := strings.TrimPrefix(chart.Repository, "oci://")
@@ -105,7 +105,7 @@ func chartToPURL(chart ChartDiscovery) string {
 }
 
 // imageToPURL converts an image to a Package URL.
-// Format: pkg:oci/[repository]@[tag]?registry=[registry]
+// Format: pkg:oci/[repository]@[tag]?registry=[registry].
 func imageToPURL(img Image) string {
 	repo := strings.ReplaceAll(img.Repository, "/", "%2F")
 	purl := fmt.Sprintf("pkg:oci/%s@%s", repo, img.Tag)

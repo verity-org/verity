@@ -11,7 +11,7 @@ import (
 	"github.com/verity-org/verity/internal"
 )
 
-// PatchCommand patches a single image and writes the result
+// PatchCommand patches a single image and writes the result.
 var PatchCommand = &cli.Command{
 	Name:  "patch",
 	Usage: "Patch a single container image",

@@ -9,7 +9,7 @@ import (
 	"github.com/verity-org/verity/internal"
 )
 
-// DiscoverCommand scans images from values.yaml and outputs a GitHub Actions matrix
+// DiscoverCommand scans images from values.yaml and outputs a GitHub Actions matrix.
 var DiscoverCommand = &cli.Command{
 	Name:  "discover",
 	Usage: "Scan images and output a GitHub Actions matrix",

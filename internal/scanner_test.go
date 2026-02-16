@@ -9,31 +9,31 @@ import (
 )
 
 func TestFindImages(t *testing.T) {
-	values := map[string]interface{}{
-		"server": map[string]interface{}{
-			"image": map[string]interface{}{
+	values := map[string]any{
+		"server": map[string]any{
+			"image": map[string]any{
 				"repository": "quay.io/prometheus/prometheus",
 				"tag":        "v2.48.0",
 			},
 			"replicas": 1,
 		},
-		"alertmanager": map[string]interface{}{
-			"image": map[string]interface{}{
+		"alertmanager": map[string]any{
+			"image": map[string]any{
 				"registry":   "docker.io",
 				"repository": "prom/alertmanager",
 				"tag":        "v0.26.0",
 			},
 		},
-		"nodeExporter": map[string]interface{}{
-			"image": map[string]interface{}{
+		"nodeExporter": map[string]any{
+			"image": map[string]any{
 				"repository": "quay.io/prometheus/node-exporter",
 				"tag":        "v1.7.0",
 			},
 		},
-		"configmapReload": map[string]interface{}{
+		"configmapReload": map[string]any{
 			"image": "jimmidyson/configmap-reload:v0.12.0",
 		},
-		"notAnImage": map[string]interface{}{
+		"notAnImage": map[string]any{
 			"repository": "https://example.com/charts",
 		},
 	}
@@ -114,9 +114,9 @@ func TestLooksLikeImage(t *testing.T) {
 
 func TestFindImagesWithEmptyTag(t *testing.T) {
 	// Test with appVersion that has "v" prefix — used as-is, no registry check needed
-	values := map[string]interface{}{
-		"server": map[string]interface{}{
-			"image": map[string]interface{}{
+	values := map[string]any{
+		"server": map[string]any{
+			"image": map[string]any{
 				"repository": "quay.io/prometheus/prometheus",
 				"tag":        "",
 			},
@@ -139,9 +139,9 @@ func TestFindImagesWithEmptyTag(t *testing.T) {
 		return strings.HasSuffix(ref, ":v2.10.1")
 	}
 
-	values = map[string]interface{}{
-		"kube-state-metrics": map[string]interface{}{
-			"image": map[string]interface{}{
+	values = map[string]any{
+		"kube-state-metrics": map[string]any{
+			"image": map[string]any{
 				"registry":   "registry.k8s.io",
 				"repository": "kube-state-metrics/kube-state-metrics",
 				"tag":        "",
@@ -163,9 +163,9 @@ func TestFindImagesWithEmptyTag(t *testing.T) {
 		return strings.HasSuffix(ref, ":0.50.0-distroless-libc")
 	}
 
-	values = map[string]interface{}{
-		"vector": map[string]interface{}{
-			"image": map[string]interface{}{
+	values = map[string]any{
+		"vector": map[string]any{
+			"image": map[string]any{
 				"repository": "timberio/vector",
 				"tag":        "",
 			},

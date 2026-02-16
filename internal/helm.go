@@ -3,6 +3,7 @@ package internal
 import (
 	"archive/tar"
 	"compress/gzip"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -16,6 +17,11 @@ import (
 	"helm.sh/helm/v3/pkg/action"
 	"helm.sh/helm/v3/pkg/cli"
 	"helm.sh/helm/v3/pkg/registry"
+)
+
+var (
+	errNoTgzFound = errors.New("no .tgz file found")
+	errHTTPFetch  = errors.New("HTTP request failed")
 )
 
 type Dependency struct {
@@ -111,7 +117,7 @@ func helmPull(dep Dependency, destDir string) (string, error) {
 		}
 	}
 	if tgzPath == "" {
-		return "", fmt.Errorf("no .tgz file found in %s (output was: %q)", tmpDir, output)
+		return "", fmt.Errorf("%w in %s (output was: %q)", errNoTgzFound, tmpDir, output)
 	}
 
 	// Extract the downloaded .tgz
@@ -132,7 +138,7 @@ func helmPull(dep Dependency, destDir string) (string, error) {
 // downloadTarball fetches a .tgz URL and extracts it into destDir.
 func downloadTarball(url, chartName, destDir string) (string, error) {
 	client := &http.Client{Timeout: 5 * time.Minute}
-	resp, err := client.Get(url)
+	resp, err := client.Get(url) //nolint:noctx // TODO: add context support
 	if err != nil {
 		return "", fmt.Errorf("fetching %s: %w", url, err)
 	}
@@ -143,7 +149,7 @@ func downloadTarball(url, chartName, destDir string) (string, error) {
 	}()
 
 	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("fetching %s: HTTP %d", url, resp.StatusCode)
+		return "", fmt.Errorf("%w: fetching %s: HTTP %d", errHTTPFetch, url, resp.StatusCode)
 	}
 
 	return extractTarGz(resp.Body, chartName, destDir)
@@ -206,7 +212,7 @@ func extractTarGz(r io.Reader, chartName, destDir string) (string, error) {
 
 // PublishChart packages a chart directory and pushes it to an OCI registry.
 // Returns the path to the packaged .tgz file.
-func PublishChart(chartDir, registry string) (string, error) {
+func PublishChart(chartDir, targetRegistry string) (string, error) {
 	// Create a temp directory for the package output
 	tmpDir, err := os.MkdirTemp("", "helm-package-*")
 	if err != nil {
@@ -214,7 +220,7 @@ func PublishChart(chartDir, registry string) (string, error) {
 	}
 
 	// Package the chart
-	cmd := exec.Command("helm", "package", chartDir, "-d", tmpDir)
+	cmd := exec.Command("helm", "package", chartDir, "-d", tmpDir) //nolint:noctx // TODO: add context support
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		return "", fmt.Errorf("helm package failed: %w\nOutput: %s", err, output)
@@ -233,12 +239,12 @@ func PublishChart(chartDir, registry string) (string, error) {
 		}
 	}
 	if tgzPath == "" {
-		return "", fmt.Errorf("no .tgz file found after packaging")
+		return "", fmt.Errorf("%w after packaging", errNoTgzFound)
 	}
 
 	// Push to OCI registry
-	ociURL := fmt.Sprintf("oci://%s/charts", registry)
-	cmd = exec.Command("helm", "push", tgzPath, ociURL)
+	ociURL := fmt.Sprintf("oci://%s/charts", targetRegistry)
+	cmd = exec.Command("helm", "push", tgzPath, ociURL) //nolint:noctx // TODO: add context support
 	output, err = cmd.CombinedOutput()
 	if err != nil {
 		return "", fmt.Errorf("helm push failed: %w\nOutput: %s", err, output)

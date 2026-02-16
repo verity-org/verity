@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/urfave/cli/v2"
@@ -8,7 +9,9 @@ import (
 	"github.com/verity-org/verity/internal"
 )
 
-// AssembleCommand creates wrapper charts from patch results
+var errRegistryRequired = errors.New("--registry is required when --publish is set")
+
+// AssembleCommand creates wrapper charts from patch results.
 var AssembleCommand = &cli.Command{
 	Name:  "assemble",
 	Usage: "Create and publish wrapper charts from patch results",
@@ -53,7 +56,7 @@ func runAssemble(c *cli.Context) error {
 	publish := c.Bool("publish")
 
 	if publish && registry == "" {
-		return fmt.Errorf("--registry is required when --publish is set")
+		return errRegistryRequired
 	}
 
 	fmt.Printf("Assembling wrapper charts from %s\n", manifestPath)

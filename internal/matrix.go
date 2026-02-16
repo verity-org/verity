@@ -3,6 +3,7 @@ package internal
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -321,7 +322,7 @@ type PublishedImage struct {
 // jobs, then creates wrapper charts. When publish is true and registry is set,
 // publishes charts to OCI and generates SBOMs and vulnerability attestations.
 // Only publishes charts where at least one underlying image changed.
-func AssembleResults(manifestPath, resultsDir, reportsDir, outputDir, registry string, publish bool) error {
+func AssembleResults(manifestPath, resultsDir, reportsDir, outputDir, registry string, publish bool) error { //nolint:gocognit,gocyclo,cyclop,funlen // complex workflow
 	manifestData, err := os.ReadFile(manifestPath)
 	if err != nil {
 		return fmt.Errorf("reading manifest: %w", err)
@@ -488,8 +489,8 @@ func buildPatchResults(images []ImageDiscovery, resultMap map[string]*SinglePatc
 			continue
 		}
 
-		if r.Error != "" {
-			pr.Error = fmt.Errorf("%s", r.Error)
+		if r.Error != "" { //nolint:gocritic // prefer if-else for readability
+			pr.Error = errors.New(r.Error) //nolint:err113 // wrapping error from JSON string
 		} else if r.Skipped {
 			pr.Skipped = true
 			pr.SkipReason = r.SkipReason

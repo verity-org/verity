@@ -8,7 +8,7 @@ import (
 	"github.com/verity-org/verity/internal"
 )
 
-// ListCommand lists all images from values.yaml without patching
+// ListCommand lists all images from values.yaml without patching.
 var ListCommand = &cli.Command{
 	Name:  "list",
 	Usage: "List images from values.yaml (dry run)",

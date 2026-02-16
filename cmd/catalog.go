@@ -8,7 +8,7 @@ import (
 	"github.com/verity-org/verity/internal"
 )
 
-// CatalogCommand generates the site catalog JSON from patch reports
+// CatalogCommand generates the site catalog JSON from patch reports.
 var CatalogCommand = &cli.Command{
 	Name:  "catalog",
 	Usage: "Generate site catalog JSON from patch reports",

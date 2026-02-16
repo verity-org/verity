@@ -130,7 +130,7 @@ func GenerateSiteData(imagesFile, reportsDir, registry, outputPath string) error
 	var allImages []SiteImage
 
 	// Build image list from values.yaml.
-	if imagesFile != "" {
+	if imagesFile != "" { //nolint:nestif // data loading logic
 		images, err := ParseImagesFile(imagesFile)
 		if err != nil {
 			return fmt.Errorf("parsing images file %s: %w", imagesFile, err)
@@ -262,7 +262,8 @@ func computeSummary(allImages []SiteImage) SiteSummary {
 	summary := SiteSummary{
 		TotalImages: len(allImages),
 	}
-	for _, img := range allImages {
+	for i := range allImages { // Use index to avoid copying 144 bytes
+		img := &allImages[i]
 		summary.TotalVulns += img.VulnSummary.Total
 		summary.FixableVulns += img.VulnSummary.Fixable
 	}
