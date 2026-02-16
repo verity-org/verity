@@ -274,16 +274,68 @@ func joinPath(base, key string) string {
 }
 
 func dedup(images []Image) []Image {
-	seen := make(map[string]bool)
+	seen := make(map[string]*Image)
 	var result []Image
+
 	for _, img := range images {
-		key := img.Reference()
-		if !seen[key] {
-			seen[key] = true
-			result = append(result, img)
+		// Normalize the key by handling tag variations (v1.2.3 vs 1.2.3)
+		normalizedKey := normalizeReference(img)
+
+		if existing, found := seen[normalizedKey]; found {
+			// If we already have this image, prefer the one with more specific tag
+			// (prefer "v1.2.3" over "1.2.3" as it's more explicit)
+			if shouldPrefer(img, *existing) {
+				// Update the seen map and replace in result
+				seen[normalizedKey] = &img
+				// Find and replace the existing entry
+				for i, r := range result {
+					if normalizeReference(r) == normalizedKey {
+						result[i] = img
+						break
+					}
+				}
+			}
+			// Skip this image as we already have a version of it
+			continue
 		}
+
+		seen[normalizedKey] = &img
+		result = append(result, img)
 	}
 	return result
+}
+
+// normalizeReference returns a normalized reference string for deduplication.
+// Strips "v" prefix from tags to treat "v1.2.3" and "1.2.3" as the same image.
+func normalizeReference(img Image) string {
+	ref := img.Repository
+	if img.Registry != "" {
+		ref = img.Registry + "/" + ref
+	}
+	if img.Tag != "" {
+		// Normalize tag by removing "v" prefix for comparison
+		tag := strings.TrimPrefix(img.Tag, "v")
+		ref = ref + ":" + tag
+	}
+	return ref
+}
+
+// shouldPrefer returns true if img1 should be preferred over img2.
+// Prefers tags with "v" prefix as they're more explicit.
+func shouldPrefer(img1, img2 Image) bool {
+	// If one has "v" prefix and the other doesn't, prefer the one with "v"
+	hasV1 := strings.HasPrefix(img1.Tag, "v")
+	hasV2 := strings.HasPrefix(img2.Tag, "v")
+
+	if hasV1 && !hasV2 {
+		return true
+	}
+	if !hasV1 && hasV2 {
+		return false
+	}
+
+	// Otherwise prefer the first one we saw
+	return false
 }
 
 // ImageOverride specifies a tag replacement for images matching a repository.
