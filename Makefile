@@ -1,13 +1,14 @@
-.PHONY: help build test test-coverage lint lint-fmt lint-vuln lint-workflows lint-yaml lint-shell lint-markdown lint-frontend fmt fmt-strict fmt-frontend check-frontend vet sec clean install-tools quality test-local test-local-patch test-local-workflow up down scan update-images
+.PHONY: help build test test-coverage lint lint-fmt lint-vuln lint-workflows lint-yaml lint-shell lint-markdown lint-frontend fmt fmt-strict fmt-frontend check-frontend vet sec clean install-tools quality test-local test-local-patch test-update-images test-scan-and-patch up down scan update-images
 
 # Default target
 help:
 	@echo "Available targets:"
 	@echo "  make build            - Build the verity binary"
 	@echo "  make test             - Run unit tests"
-	@echo "  make test-local          - Run integration tests with local registry"
-	@echo "  make test-local-patch    - Test patching single image locally"
-	@echo "  make test-local-workflow - Test complete workflow (discover + patch 3 images)"
+	@echo "  make test-local          - Run integration tests"
+	@echo "  make test-local-patch    - Quick manual patch test"
+	@echo "  make test-update-images  - Test update-images workflow with act"
+	@echo "  make test-scan-and-patch - Test scan-and-patch workflow with act"
 	@echo "  make up                  - Start local registry + BuildKit"
 	@echo "  make down             - Stop local test environment"
 	@echo "  make scan             - Scan charts and update values.yaml"
@@ -178,9 +179,19 @@ test-local: build
 	@echo ""
 	@echo "✓ Integration tests complete"
 
-# Test patching with local registry (requires: make up)
+# Test workflows locally with act
+test-update-images:
+	@which act > /dev/null || (echo "act not found. Install: brew install act" && exit 1)
+	act pull_request -W .github/workflows/update-images.yaml --container-architecture linux/amd64
+
+test-scan-and-patch:
+	@which act > /dev/null || (echo "act not found. Install: brew install act" && exit 1)
+	@echo "Note: This requires local registry running (make up)"
+	act push -W .github/workflows/scan-and-patch.yaml --container-architecture linux/amd64
+
+# Quick manual test of single image patching
 test-local-patch: build
-	@echo "Testing patch with local registry..."
+	@echo "Testing single image patch with local registry..."
 	@echo "Note: Make sure local registry is running (make up)"
 	@echo ""
 	./verity patch \
@@ -192,31 +203,3 @@ test-local-patch: build
 	@echo ""
 	@echo "✓ Patch test complete"
 	@echo "Check .verity/results/ for patch results"
-
-# Test complete workflow locally (discover + patch first 3 images)
-test-local-workflow: build
-	@echo "Testing complete workflow with local registry..."
-	@echo "Note: Make sure local registry is running (make up)"
-	@echo ""
-	@echo "→ Step 1: Discover images from values.yaml"
-	./verity discover --images values.yaml --discover-dir .verity
-	@echo ""
-	@echo "→ Step 2: Patch first 3 images to local registry"
-	@count=0; \
-	for img in $$(jq -r '.include[].image_ref' .verity/matrix.json | head -3); do \
-		count=$$((count + 1)); \
-		echo ""; \
-		echo "[$${count}/3] Patching $${img}..."; \
-		./verity patch \
-			--image "$${img}" \
-			--registry "localhost:5555/verity" \
-			--buildkit-addr "tcp://localhost:1234" \
-			--result-dir .verity/results \
-			--report-dir .verity/reports || echo "⚠️  Failed to patch $${img}"; \
-	done
-	@echo ""
-	@echo "✓ Workflow test complete"
-	@echo "Check .verity/results/ for patch results"
-	@echo ""
-	@echo "View patched images:"
-	@echo "  curl http://localhost:5555/v2/_catalog"

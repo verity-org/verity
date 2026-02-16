@@ -1,200 +1,164 @@
 # Local Testing Guide
 
-This guide explains how to test the complete verity workflow locally without using GitHub Actions.
+Test the complete GitHub Actions workflows locally using [act](https://github.com/nektos/act).
 
 ## Prerequisites
 
-- Docker and Docker Compose
-- Helm CLI
-- Go 1.25+
-- [Copa](https://github.com/project-copacetic/copacetic) (for patching)
-- [Trivy](https://github.com/aquasecurity/trivy) (for vulnerability scanning)
+```bash
+# Install act (macOS)
+brew install act
+
+# Or see: https://github.com/nektos/act#installation
+```
 
 ## Quick Start
 
 ```bash
-# 1. Start local registry and BuildKit
-make up
+# Test the update-images workflow
+act pull_request -W .github/workflows/update-images.yaml
 
-# 2. Test the complete workflow (discover + patch 3 images)
-make test-local-workflow
+# Test the scan-and-patch workflow
+act push -W .github/workflows/scan-and-patch.yaml
 ```
 
-## Testing Workflow
+## Testing Workflows
 
-### 1. Start Local Infrastructure
+### 1. Test Chart Scanning (update-images workflow)
 
 ```bash
+# Simulates: Renovate updates Chart.yaml
+act pull_request \
+  -W .github/workflows/update-images.yaml \
+  --container-architecture linux/amd64
+```
+
+This runs the workflow that:
+1. Downloads chart dependencies
+2. Scans for images
+3. Updates values.yaml
+
+### 2. Test Image Patching (scan-and-patch workflow)
+
+```bash
+# Simulates: values.yaml change triggers patching
+act push \
+  -W .github/workflows/scan-and-patch.yaml \
+  --container-architecture linux/amd64
+```
+
+This runs the complete workflow:
+1. Discovers images
+2. Patches images (in matrix)
+3. Signs and attests
+
+**Note:** The full workflow requires:
+- Docker access for BuildKit
+- Registry access for pushing
+
+### 3. Test Specific Job
+
+```bash
+# Test just the discover job
+act push \
+  -W .github/workflows/scan-and-patch.yaml \
+  -j discover
+
+# Test just one patch job
+act push \
+  -W .github/workflows/scan-and-patch.yaml \
+  -j patch
+```
+
+## Configuration
+
+Create `.actrc` in the repo root for common settings:
+
+```bash
+# .actrc
+--container-architecture linux/amd64
+--action-offline-mode
+--use-gitignore=false
+```
+
+## Secrets
+
+For workflows requiring secrets:
+
+```bash
+# Create .secrets file
+echo "GITHUB_TOKEN=ghp_your_token_here" > .secrets
+
+# Run with secrets
+act push -W .github/workflows/scan-and-patch.yaml --secret-file .secrets
+```
+
+## Quick Testing Commands
+
+```bash
+# Test chart scanning workflow
+make test-update-images
+
+# Test patching workflow (requires local registry)
+make test-scan-and-patch
+
+# Start local registry for testing
 make up
 ```
 
-This starts:
-- **Local OCI Registry** at `localhost:5555`
-- **BuildKit** at `tcp://localhost:1234`
+## Limitations
 
-### 2. Scan Charts for Images
+`act` runs workflows locally but some features may differ:
+- GitHub OIDC signing (cosign) won't work locally
+- Attestations API requires GitHub
+- Some actions may not work in local containers
 
+For full integration testing, use:
 ```bash
-# Download chart dependencies and scan for images
-make scan
+# Start local infrastructure
+make up
 
-# Or manually:
-helm dependency update .
+# Manual workflow test
 ./verity scan --chart . -o values.yaml
-```
-
-This updates `values.yaml` with all images found in the charts.
-
-### 3. Discover Images
-
-```bash
-make build
 ./verity discover --images values.yaml --discover-dir .verity
-```
-
-This generates:
-- `.verity/manifest.json` - Full image list with metadata
-- `.verity/matrix.json` - GitHub Actions matrix format
-
-### 4. Test Patching
-
-#### Single Image Test
-```bash
-make test-local-patch
-```
-
-Patches nginx as a quick test.
-
-#### Complete Workflow Test
-```bash
-make test-local-workflow
-```
-
-Discovers all images and patches the first 3 to your local registry.
-
-#### Patch Specific Image
-```bash
-./verity patch \
-  --image "docker.io/grafana/grafana:12.3.3" \
-  --registry "localhost:5555/verity" \
-  --buildkit-addr "tcp://localhost:1234" \
-  --result-dir .verity/results \
-  --report-dir .verity/reports
-```
-
-### 5. View Results
-
-```bash
-# List patched images in local registry
-curl http://localhost:5555/v2/_catalog | jq
-
-# Check patch results
-ls -la .verity/results/
-cat .verity/results/*.json | jq
-
-# Check vulnerability reports
-ls -la .verity/reports/
-cat .verity/reports/*.json | jq
-```
-
-## Testing Matrix Parallelization (Locally)
-
-To simulate the GitHub Actions matrix parallelization locally:
-
-```bash
-# Build verity
-make build
-
-# Discover images
-./verity discover --images values.yaml --discover-dir .verity
-
-# Patch all images in parallel (requires GNU parallel or similar)
-cat .verity/matrix.json | jq -r '.include[].image_ref' | \
-  parallel -j4 './verity patch \
-    --image {} \
-    --registry localhost:5555/verity \
-    --buildkit-addr tcp://localhost:1234 \
-    --result-dir .verity/results \
-    --report-dir .verity/reports'
-```
-
-Or using a simple bash loop:
-```bash
-for img in $(jq -r '.include[].image_ref' .verity/matrix.json); do
-  echo "Patching $img..."
-  ./verity patch \
-    --image "$img" \
-    --registry "localhost:5555/verity" \
-    --buildkit-addr "tcp://localhost:1234" \
-    --result-dir .verity/results \
-    --report-dir .verity/reports &
-done
-wait
-```
-
-## Cleanup
-
-```bash
-# Stop local services
-make down
-
-# Clean artifacts
-make clean
+./verity patch --image "docker.io/nginx:1.29.5" --registry localhost:5555/verity --buildkit-addr tcp://localhost:1234
 ```
 
 ## Troubleshooting
 
-### BuildKit Connection Issues
+### act not found
 ```bash
-# Check if BuildKit is running
-docker ps | grep buildkit
-
-# Restart services
-make down && make up
+brew install act
 ```
 
-### Registry Push Failures
+### Docker issues
 ```bash
-# Check registry is accessible
-curl http://localhost:5555/v2/
+# act requires Docker Desktop or Docker Engine
+docker ps
 
-# View registry logs
-docker compose logs registry
+# Ensure Docker socket is accessible
+ls -la /var/run/docker.sock
 ```
 
-### Copa Installation
+### Workflow fails on secrets
 ```bash
-# Install Copa (macOS)
-brew install copa
-
-# Or download from releases
-# https://github.com/project-copacetic/copacetic/releases
+# Use dummy secrets for local testing
+act -W .github/workflows/scan-and-patch.yaml \
+  -s GITHUB_TOKEN=dummy
 ```
 
-### Trivy Installation
-```bash
-# Install Trivy (macOS)
-brew install aquasecurity/trivy/trivy
+## CI vs Local with act
 
-# Or see: https://aquasecurity.github.io/trivy/latest/getting-started/installation/
-```
-
-## CI vs Local Differences
-
-| Aspect | GitHub Actions | Local Testing |
-|--------|---------------|---------------|
-| Registry | `ghcr.io/verity-org` | `localhost:5555/verity` |
-| BuildKit | docker-container | `tcp://localhost:1234` |
-| Parallelization | Matrix strategy | Manual (parallel/loop) |
-| Secrets | GitHub secrets | Local credentials |
-| Signing | Cosign + GitHub OIDC | Manual cosign |
-| Attestations | GitHub Attestations API | Manual |
+| Aspect | GitHub Actions | Local with act |
+|--------|---------------|----------------|
+| Workflow execution | ✅ Exact same | ✅ Exact same |
+| Secrets | GitHub Secrets | Local .secrets file |
+| OIDC signing | ✅ Works | ❌ Not supported |
+| Attestations | ✅ Works | ❌ Not supported |
+| Matrix parallelization | ✅ Parallel | ⚠️ Sequential by default |
 
 ## Next Steps
 
-Once local testing works:
-1. Push to GitHub
-2. Renovate updates Chart.yaml
-3. `update-images` workflow updates values.yaml
-4. `scan-and-patch` workflow patches images to GHCR
-5. Images are signed and attested automatically
+1. Test workflows locally with `act`
+2. Push to GitHub for full CI testing
+3. Renovate updates Chart.yaml automatically
+4. Workflows run and patch images to GHCR
