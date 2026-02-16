@@ -23,7 +23,7 @@ set -euo pipefail
 
 REGISTRY_ORG="${1:-}"
 ARTIFACT="${2:-}"
-OWNER="${GITHUB_REPOSITORY_OWNER:-descope}"
+OWNER="${GITHUB_REPOSITORY_OWNER:-verity-org}"
 
 if [ -z "$REGISTRY_ORG" ]; then
   echo "Usage: $0 <registry/org> [artifact-ref]"

@@ -124,7 +124,7 @@ const base = import.meta.env.BASE_URL;
           <div>
             Issuer: <span class="text-gray-900">https://token.actions.githubusercontent.com</span>
           </div>
-          <div>Identity: <span class="text-gray-900">https://github.com/descope/verity/</span></div>
+          <div>Identity: <span class="text-gray-900">https://github.com/verity-org/verity/</span></div>
         </div>
       </div>
     </div>
@@ -712,11 +712,11 @@ const base = import.meta.env.BASE_URL;
         >
           <pre
             class="whitespace-pre-wrap break-all">cosign verify \
-  --certificate-identity-regexp "https://github.com/descope/verity/" \
+  --certificate-identity-regexp "https://github.com/verity-org/verity/" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   quay.io/verity/grafana/grafana:11.6.0-patched</pre>
           <CopyButton
-            text='cosign verify --certificate-identity-regexp "https://github.com/descope/verity/" --certificate-oidc-issuer "https://token.actions.githubusercontent.com" quay.io/verity/grafana/grafana:11.6.0-patched'
+            text='cosign verify --certificate-identity-regexp "https://github.com/verity-org/verity/" --certificate-oidc-issuer "https://token.actions.githubusercontent.com" quay.io/verity/grafana/grafana:11.6.0-patched'
           />
         </div>
       </div>
@@ -728,9 +728,9 @@ const base = import.meta.env.BASE_URL;
           <pre
             class="whitespace-pre-wrap break-all">gh attestation verify \
   oci://quay.io/verity/grafana/grafana:11.6.0-patched \
-  --owner descope</pre>
+  --owner verity-org</pre>
           <CopyButton
-            text="gh attestation verify oci://quay.io/verity/grafana/grafana:11.6.0-patched --owner descope"
+            text="gh attestation verify oci://quay.io/verity/grafana/grafana:11.6.0-patched --owner verity-org"
           />
         </div>
       </div>
@@ -741,11 +741,11 @@ const base = import.meta.env.BASE_URL;
         >
           <pre
             class="whitespace-pre-wrap break-all">cosign verify \
-  --certificate-identity-regexp "https://github.com/descope/verity/" \
+  --certificate-identity-regexp "https://github.com/verity-org/verity/" \
   --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
   quay.io/verity/charts/prometheus:28.9.1-4</pre>
           <CopyButton
-            text='cosign verify --certificate-identity-regexp "https://github.com/descope/verity/" --certificate-oidc-issuer "https://token.actions.githubusercontent.com" quay.io/verity/charts/prometheus:28.9.1-4'
+            text='cosign verify --certificate-identity-regexp "https://github.com/verity-org/verity/" --certificate-oidc-issuer "https://token.actions.githubusercontent.com" quay.io/verity/charts/prometheus:28.9.1-4'
           />
         </div>
       </div>

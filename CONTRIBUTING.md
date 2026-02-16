@@ -15,7 +15,7 @@ our quality standards.
 
 ```bash
 # Clone the repository
-git clone https://github.com/descope/verity.git
+git clone https://github.com/verity-org/verity.git
 cd verity
 
 # Install ALL tools via mise (recommended)
@@ -199,6 +199,6 @@ Ensure `QUAY_USERNAME` and `QUAY_PASSWORD` secrets are set.
 
 ## Getting Help
 
-- **Issues**: https://github.com/descope/verity/issues
-- **Discussions**: https://github.com/descope/verity/discussions
-- **Security**: Report security issues privately to security@descope.com
+- **Issues**: https://github.com/verity-org/verity/issues
+- **Discussions**: https://github.com/verity-org/verity/discussions
+- **Security**: Report security issues privately through GitHub Security Advisories

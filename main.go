@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/descope/verity/internal"
+	"github.com/verity-org/verity/internal"
 )
 
 func main() {

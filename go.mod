@@ -1,4 +1,4 @@
-module github.com/descope/verity
+module github.com/verity-org/verity
 
 go 1.25.1
 

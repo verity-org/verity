@@ -7,7 +7,7 @@ set -euo pipefail
 #   2. Chart version doesn't exist in OCI yet (needs initial publish with reports)
 # Sets GITHUB_OUTPUT variable 'changes' to 'true' or 'false'.
 
-REGISTRY="${REGISTRY:-ghcr.io/descope}"
+REGISTRY="${REGISTRY:-ghcr.io/verity-org}"
 has_local_changes=false
 has_new_versions=false
 
