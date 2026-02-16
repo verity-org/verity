@@ -24,9 +24,21 @@ export interface SiteImage {
   overriddenFrom?: string;
   vulnSummary: VulnSummary;
   vulnerabilities: SiteVuln[];
+  chartName?: string;
+}
+
+export interface SiteChart {
+  name: string;
+  version: string;
+  upstreamVersion: string;
+  description: string;
+  repository: string;
+  helmInstall: string;
+  images: SiteImage[];
 }
 
 export interface SiteSummary {
+  totalCharts: number;
   totalImages: number;
   totalVulns: number;
   fixableVulns: number;
@@ -36,13 +48,40 @@ export interface SiteData {
   generatedAt: string;
   registry: string;
   summary: SiteSummary;
+  charts: SiteChart[];
   images: SiteImage[];
+  /** @deprecated Use `images` instead. Kept for backward compatibility. */
+  standaloneImages: SiteImage[];
 }
 
 export const catalog: SiteData = rawData as SiteData;
 
+export function getChartByName(name: string): SiteChart | undefined {
+  return catalog.charts.find((c) => c.name === name);
+}
+
+/** Returns unique chart names across all versions. */
+export function getChartNames(): string[] {
+  return [...new Set(catalog.charts.map((c) => c.name))];
+}
+
+/** Returns all chart versions for a given chart name, newest first. */
+export function getChartVersions(name: string): SiteChart[] {
+  return catalog.charts.filter((c) => c.name === name);
+}
+
+/** Returns a specific chart by name and version. */
+export function getChartVersion(name: string, version: string): SiteChart | undefined {
+  return catalog.charts.find((c) => c.name === name && c.version === version);
+}
+
 export function getAllImages(): SiteImage[] {
-  return catalog.images;
+  const chartImages = catalog.charts.flatMap((c) =>
+    c.images.map((img) => ({ ...img, chartName: c.name }))
+  );
+  // Support both the new `images` field and the deprecated `standaloneImages`.
+  const extra = catalog.images ?? catalog.standaloneImages ?? [];
+  return [...chartImages, ...extra];
 }
 
 export function getImageById(id: string): SiteImage | undefined {
