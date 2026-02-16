@@ -72,11 +72,17 @@ func helmPull(dep Dependency, destDir string) (string, error) {
 		cfg.RegistryClient = regClient
 	}
 
+	// Create temp dir for .tgz download
+	tmpDir, err := os.MkdirTemp("", "verity-helm-*")
+	if err != nil {
+		return "", fmt.Errorf("creating temp dir: %w", err)
+	}
+	defer func() { _ = os.RemoveAll(tmpDir) }()
+
 	pull := action.NewPullWithOpts(action.WithConfig(cfg))
 	pull.Settings = settings
-	pull.Untar = true
-	pull.UntarDir = destDir
-	pull.DestDir = destDir
+	pull.Untar = false // We'll extract it ourselves
+	pull.DestDir = tmpDir
 	pull.Version = dep.Version
 
 	var chartRef string
@@ -87,12 +93,40 @@ func helmPull(dep Dependency, destDir string) (string, error) {
 		chartRef = dep.Name
 	}
 
-	_, err := pull.Run(chartRef)
+	output, err := pull.Run(chartRef)
 	if err != nil {
 		return "", fmt.Errorf("pulling %s@%s: %w", dep.Name, dep.Version, err)
 	}
 
-	return filepath.Join(destDir, dep.Name), nil
+	// Find the .tgz file in tmpDir
+	entries, err := os.ReadDir(tmpDir)
+	if err != nil {
+		return "", fmt.Errorf("reading temp dir: %w", err)
+	}
+	var tgzPath string
+	for _, entry := range entries {
+		if strings.HasSuffix(entry.Name(), ".tgz") {
+			tgzPath = filepath.Join(tmpDir, entry.Name())
+			break
+		}
+	}
+	if tgzPath == "" {
+		return "", fmt.Errorf("no .tgz file found in %s (output was: %q)", tmpDir, output)
+	}
+
+	// Extract the downloaded .tgz
+	file, err := os.Open(tgzPath)
+	if err != nil {
+		return "", fmt.Errorf("opening chart archive: %w", err)
+	}
+	defer func() { _ = file.Close() }()
+
+	chartPath, err := extractTarGz(file, dep.Name, destDir)
+	if err != nil {
+		return "", fmt.Errorf("extracting chart: %w", err)
+	}
+
+	return chartPath, nil
 }
 
 // downloadTarball fetches a .tgz URL and extracts it into destDir.
