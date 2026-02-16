@@ -328,10 +328,18 @@ func countFixable(reportPath string) (int, error) {
 
 type trivyReport struct {
 	Results []struct {
-		Vulnerabilities []struct {
-			FixedVersion string `json:"FixedVersion"`
-		} `json:"Vulnerabilities"`
+		Vulnerabilities []trivyVulnerability `json:"Vulnerabilities"`
 	} `json:"Results"`
+}
+
+type trivyVulnerability struct {
+	VulnerabilityID  string `json:"VulnerabilityID"`
+	PkgName          string `json:"PkgName"`
+	Severity         string `json:"Severity"`
+	InstalledVersion string `json:"InstalledVersion"`
+	FixedVersion     string `json:"FixedVersion"`
+	Title            string `json:"Title"`
+	Description      string `json:"Description"`
 }
 
 func sanitize(ref string) string {

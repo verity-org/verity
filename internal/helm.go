@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"time"
@@ -166,4 +167,48 @@ func extractTarGz(r io.Reader, chartName, destDir string) (string, error) {
 	}
 
 	return filepath.Join(destDir, chartName), nil
+}
+
+// PublishChart packages a chart directory and pushes it to an OCI registry.
+// Returns the path to the packaged .tgz file.
+func PublishChart(chartDir, registry string) (string, error) {
+	// Create a temp directory for the package output
+	tmpDir, err := os.MkdirTemp("", "helm-package-*")
+	if err != nil {
+		return "", fmt.Errorf("creating temp dir: %w", err)
+	}
+
+	// Package the chart
+	cmd := exec.Command("helm", "package", chartDir, "-d", tmpDir)
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return "", fmt.Errorf("helm package failed: %w\nOutput: %s", err, output)
+	}
+
+	// Find the packaged .tgz file
+	entries, err := os.ReadDir(tmpDir)
+	if err != nil {
+		return "", fmt.Errorf("reading package dir: %w", err)
+	}
+	var tgzPath string
+	for _, e := range entries {
+		if strings.HasSuffix(e.Name(), ".tgz") {
+			tgzPath = filepath.Join(tmpDir, e.Name())
+			break
+		}
+	}
+	if tgzPath == "" {
+		return "", fmt.Errorf("no .tgz file found after packaging")
+	}
+
+	// Push to OCI registry
+	ociURL := fmt.Sprintf("oci://%s/charts", registry)
+	cmd = exec.Command("helm", "push", tgzPath, ociURL)
+	output, err = cmd.CombinedOutput()
+	if err != nil {
+		return "", fmt.Errorf("helm push failed: %w\nOutput: %s", err, output)
+	}
+
+	fmt.Printf("Published chart to %s\n", ociURL)
+	return tgzPath, nil
 }

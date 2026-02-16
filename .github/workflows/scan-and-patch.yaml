@@ -58,6 +58,7 @@ jobs:
         run: |
           ./verity discover \
             --images values.yaml \
+            --chart-file Chart.yaml \
             --discover-dir .verity
 
           matrix=$(cat .verity/matrix.json)
@@ -223,6 +224,151 @@ jobs:
             .verity/results/*.json
             .verity/reports/*.json
           retention-days: 1
+
+  # ── Job 2.5: Assemble & Publish Charts ──────────────────────────────
+  assemble:
+    name: Assemble & Publish Charts
+    needs: [discover, patch]
+    if: >-
+      github.event_name != 'pull_request' &&
+      needs.discover.outputs.has_images == 'true' &&
+      needs.patch.result == 'success'
+    runs-on: ubuntu-latest
+    outputs:
+      chart_matrix: ${{ steps.assemble.outputs.chart_matrix }}
+      has_charts: ${{ steps.assemble.outputs.has_charts }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - name: Build verity
+        run: go build -o verity .
+
+      - name: Login to GHCR (Helm OCI)
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Download manifest
+        uses: actions/download-artifact@v7
+        with:
+          name: verity-manifest
+          path: .verity
+
+      - name: Download all patch results
+        uses: actions/download-artifact@v7
+        with:
+          pattern: "patch-result-*"
+          path: .verity/artifacts
+          merge-multiple: false
+
+      - name: Collect results and reports
+        run: |
+          mkdir -p .verity/results .verity/reports
+          for d in .verity/artifacts/patch-result-*; do
+            [ -d "$d" ] || continue
+            find "$d" -name '*.json' -path '*/results/*' -exec cp -n {} .verity/results/ \; 2>/dev/null || true
+            find "$d" -name '*.json' -path '*/reports/*' -exec cp -n {} .verity/reports/ \; 2>/dev/null || true
+          done
+
+      - name: Assemble and publish charts
+        id: assemble
+        run: |
+          ./verity assemble \
+            --manifest .verity/manifest.json \
+            --results-dir .verity/results \
+            --reports-dir .verity/reports \
+            --output-dir .verity/charts \
+            --registry "$REGISTRY" \
+            --publish
+
+          # Build a matrix from published-charts.json for the attestation job
+          published=".verity/charts/published-charts.json"
+          if [ -f "$published" ] && [ "$(jq length "$published")" -gt 0 ]; then
+            # Matrix format: {"include": [{"name": "prometheus", "oci_ref": "...", ...}]}
+            matrix=$(jq -c '{include: .}' "$published")
+            echo "chart_matrix=$matrix" >> "$GITHUB_OUTPUT"
+            echo "has_charts=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_charts=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload chart artifacts (SBOMs + vuln predicates)
+        if: steps.assemble.outputs.has_charts == 'true'
+        uses: actions/upload-artifact@v6
+        with:
+          name: chart-attestation-data
+          path: |
+            .verity/charts/published-charts.json
+            .verity/charts/*/sbom.cdx.json
+            .verity/charts/*/vuln-predicate.json
+          retention-days: 90
+
+  # ── Job 2.6: Sign & Attest Charts (per-chart matrix) ───────────────
+  attest-charts:
+    name: "Attest ${{ matrix.name }}"
+    needs: assemble
+    if: needs.assemble.outputs.has_charts == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.assemble.outputs.chart_matrix) }}
+    steps:
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3
+
+      - name: Install crane
+        run: |
+          VERSION=$(curl -sL https://api.github.com/repos/google/go-containerregistry/releases/latest | jq -r .tag_name)
+          curl -sL "https://github.com/google/go-containerregistry/releases/download/${VERSION}/go-containerregistry_Linux_x86_64.tar.gz" | sudo tar -xzf - -C /usr/local/bin crane
+
+      - name: Download chart attestation data
+        uses: actions/download-artifact@v7
+        with:
+          name: chart-attestation-data
+          path: .verity/charts
+
+      - name: Get chart digest
+        id: digest
+        run: |
+          oci_ref="${{ matrix.oci_ref }}"
+          digest=$(crane digest "$oci_ref")
+          oci_name="${oci_ref%%:*}"
+          {
+            echo "oci_name=${oci_name}"
+            echo "digest=${digest}"
+          } >> "$GITHUB_OUTPUT"
+          echo "Resolved $oci_ref → $digest"
+
+      - name: Sign chart with cosign
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | cosign login ghcr.io -u ${{ github.actor }} --password-stdin
+          cosign sign --yes "${{ steps.digest.outputs.oci_name }}@${{ steps.digest.outputs.digest }}"
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-name: ${{ steps.digest.outputs.oci_name }}
+          subject-digest: ${{ steps.digest.outputs.digest }}
+          push-to-registry: true
+
+      - name: Attest SBOM
+        if: hashFiles(format('.verity/charts/{0}/sbom.cdx.json', matrix.name)) != ''
+        uses: actions/attest-sbom@v3
+        with:
+          subject-name: ${{ steps.digest.outputs.oci_name }}
+          subject-digest: ${{ steps.digest.outputs.digest }}
+          sbom-path: .verity/charts/${{ matrix.name }}/sbom.cdx.json
+          push-to-registry: true
+
+      - name: Attest vulnerability report
+        run: |
+          vuln_predicate=".verity/charts/${{ matrix.name }}/vuln-predicate.json"
+          if [ -f "$vuln_predicate" ]; then
+            echo "${{ secrets.GITHUB_TOKEN }}" | cosign login ghcr.io -u ${{ github.actor }} --password-stdin
+            cosign attest --yes --type vuln \
+              --predicate "$vuln_predicate" \
+              "${{ steps.digest.outputs.oci_name }}@${{ steps.digest.outputs.digest }}"
+          fi
 
   # ── Job 3: Generate site catalog (optional) ────────────────────────
   generate-catalog:

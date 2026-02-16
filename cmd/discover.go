@@ -20,6 +20,10 @@ var DiscoverCommand = &cli.Command{
 			Usage:   "path to images values.yaml",
 		},
 		&cli.StringFlag{
+			Name:  "chart-file",
+			Usage: "path to Chart.yaml (enables chart-based discovery)",
+		},
+		&cli.StringFlag{
 			Name:    "discover-dir",
 			Aliases: []string{"d"},
 			Value:   ".verity",
@@ -31,27 +35,40 @@ var DiscoverCommand = &cli.Command{
 
 func runDiscover(c *cli.Context) error {
 	imagesFile := c.String("images")
+	chartFile := c.String("chart-file")
 	discoverDir := c.String("discover-dir")
 
 	overrides := parseOverridesFromFile(imagesFile)
 
-	images, err := internal.ParseImagesFile(imagesFile)
-	if err != nil {
-		return fmt.Errorf("discovery failed: %w", err)
+	var manifest *internal.DiscoveryManifest
+	var err error
+
+	if chartFile != "" {
+		// Chart-based discovery: scan Chart.yaml dependencies + merge into images file.
+		manifest, err = internal.DiscoverImages(chartFile, imagesFile, discoverDir)
+		if err != nil {
+			return fmt.Errorf("discovery failed: %w", err)
+		}
+	} else {
+		// Flat discovery: just parse the images file.
+		images, err := internal.ParseImagesFile(imagesFile)
+		if err != nil {
+			return fmt.Errorf("discovery failed: %w", err)
+		}
+
+		// Convert to discovery format
+		manifest = &internal.DiscoveryManifest{
+			Images: make([]internal.ImageDiscovery, len(images)),
+		}
+		for i, img := range images {
+			manifest.Images[i] = internal.ImageDiscovery(img)
+		}
 	}
 
 	// Apply image tag overrides (e.g. distroless → debian) so the matrix
-	// contains Copa-compatible refs.
+	// contains Copa-compatible refs. Apply to both flat Images and Charts[*].Images.
 	if len(overrides) > 0 {
-		images = internal.ApplyOverrides(images, overrides)
-	}
-
-	// Convert to discovery format
-	manifest := &internal.DiscoveryManifest{
-		Images: make([]internal.ImageDiscovery, len(images)),
-	}
-	for i, img := range images {
-		manifest.Images[i] = internal.ImageDiscovery(img)
+		internal.ApplyOverridesToManifest(manifest, overrides)
 	}
 
 	matrix := internal.GenerateMatrix(manifest)

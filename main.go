@@ -16,6 +16,7 @@ func main() {
 			cmd.ScanCommand,
 			cmd.DiscoverCommand,
 			cmd.PatchCommand,
+			cmd.AssembleCommand,
 			cmd.ListCommand,
 			cmd.CatalogCommand,
 		},
