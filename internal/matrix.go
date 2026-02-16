@@ -35,7 +35,7 @@ type ImageDiscovery struct {
 	Path       string `json:"path"`
 }
 
-func (d ImageDiscovery) reference() string {
+func (d ImageDiscovery) Reference() string {
 	img := Image{Registry: d.Registry, Repository: d.Repository, Tag: d.Tag}
 	return img.Reference()
 }
@@ -197,7 +197,7 @@ func GenerateMatrix(manifest *DiscoveryManifest) *MatrixOutput {
 	matrix := &MatrixOutput{}
 
 	for _, img := range manifest.Images {
-		ref := img.reference()
+		ref := img.Reference()
 		if seen[ref] {
 			continue
 		}

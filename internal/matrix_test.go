@@ -396,12 +396,12 @@ func TestBuildPatchResultsMissingResult(t *testing.T) {
 
 func TestImageDiscoveryReference(t *testing.T) {
 	d := ImageDiscovery{Registry: "quay.io", Repository: "prom/prom", Tag: "v1"}
-	if got := d.reference(); got != "quay.io/prom/prom:v1" {
+	if got := d.Reference(); got != "quay.io/prom/prom:v1" {
 		t.Errorf("reference() = %q, want %q", got, "quay.io/prom/prom:v1")
 	}
 
 	d2 := ImageDiscovery{Repository: "nginx", Tag: "latest"}
-	if got := d2.reference(); got != "nginx:latest" {
+	if got := d2.Reference(); got != "nginx:latest" {
 		t.Errorf("reference() = %q, want %q", got, "nginx:latest")
 	}
 }

@@ -59,7 +59,9 @@ jobs:
         run: go build -o verity .
 
       - name: Generate catalog
-        run: ./verity catalog --output site/src/data/catalog.json --images values.yaml --registry "ghcr.io/verity-org"
+        run: |
+          mkdir -p .verity/reports
+          ./verity catalog --output site/src/data/catalog.json --images values.yaml --registry "ghcr.io/verity-org" --reports-dir .verity/reports
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
