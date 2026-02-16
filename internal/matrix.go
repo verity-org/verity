@@ -81,6 +81,30 @@ func DiscoverImages(chartFile, imagesFile, tmpDir string) (*DiscoveryManifest, e
 
 	var chartImages []Image
 
+	// Handle standalone chart (local directory, not a Helm dependency)
+	standalonePath := filepath.Join(filepath.Dir(chartFile), "charts", "standalone")
+	if _, err := os.Stat(standalonePath); err == nil {
+		fmt.Println("Discovering standalone@0.0.0")
+		images, err := ScanForImages(standalonePath)
+		if err != nil {
+			return nil, fmt.Errorf("scanning standalone: %w", err)
+		}
+
+		if len(images) > 0 {
+			cd := ChartDiscovery{
+				Name:       "standalone",
+				Version:    "0.0.0",
+				Repository: "file://./charts/standalone",
+			}
+			for _, img := range images {
+				cd.Images = append(cd.Images, ImageDiscovery(img))
+			}
+			fmt.Printf("  Found %d images\n", len(images))
+			manifest.Charts = append(manifest.Charts, cd)
+			chartImages = append(chartImages, images...)
+		}
+	}
+
 	for _, dep := range chart.Dependencies {
 		fmt.Printf("Discovering %s@%s\n", dep.Name, dep.Version)
 
