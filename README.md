@@ -43,20 +43,25 @@ services:
 ## How It Works
 
 ```text
-values.yaml (image list)
+Chart.yaml (chart dependencies)
         ↓
-  Discover (parse images → matrix.json)
+  Scan charts (verity scan)
         ↓
-  Patch (parallel: scan + copa-patch)
+values.yaml (discovered images)
+        ↓
+  Discover (parse + apply overrides → matrix.json)
+        ↓
+  Patch (parallel: trivy + copa)
         ↓
   Sign & Attest (cosign + SLSA + SBOM)
         ↓
   Published to ghcr.io/verity-org
 ```
 
-### Image Source
+### Image Sources
 
-`values.yaml` is the **single source of truth** - a flat list of container images to patch.
+**Chart.yaml** - Defines Helm charts to track (Renovate updates these)
+**values.yaml** - Auto-generated list of all images from charts (single source of truth for patching)
 
 **Example values.yaml:**
 
@@ -98,14 +103,20 @@ Verity is **fully automated** with GitHub Actions:
 - Creates PR if patches available
 - Runs daily at 2 AM UTC
 
-### 2️⃣ Auto-Patch on Updates (Renovate)
+### 2️⃣ Auto-Scan Charts (Renovate + Workflow)
 
-- Renovate updates image tags in values.yaml
-- Workflow auto-patches new versions
+- Renovate updates Chart.yaml (chart versions)
+- Workflow scans charts and updates values.yaml
 - Commits to PR
 - Ready to merge!
 
-### 3️⃣ Publish to GHCR (On Merge)
+### 3️⃣ Auto-Patch Images (On values.yaml Change)
+
+- values.yaml changes trigger patching workflow
+- All images patched in parallel
+- Results committed to PR
+
+### 4️⃣ Publish to GHCR (On Merge)
 
 - Patched images pushed to GitHub Container Registry
 - Images signed with cosign (keyless)
@@ -160,19 +171,23 @@ Plus daily scheduled scans for continuous monitoring.
 
 ## Usage
 
-### Add Images to Monitor
+### Add Charts to Monitor
 
-Edit `values.yaml`:
+Edit `Chart.yaml` to add dependencies:
 
 ```yaml
-my-app:
-  image:
-    registry: docker.io
-    repository: myorg/myapp
-    tag: "v1.2.3"
+dependencies:
+  - name: my-chart
+    version: "1.2.3"
+    repository: https://charts.example.com
 ```
 
-Renovate and workflows handle the rest.
+Then run:
+```bash
+make scan  # Updates values.yaml with discovered images
+```
+
+Workflows handle this automatically on merge.
 
 ### Updating Image Versions
 
