@@ -43,8 +43,7 @@ func runCatalog(c *cli.Context) error {
 	registry := c.String("registry")
 	reportsDir := c.String("reports-dir")
 
-	// Pass empty string for chartsDir since we're images-only now
-	if err := internal.GenerateSiteData("", imagesFile, reportsDir, registry, output); err != nil {
+	if err := internal.GenerateSiteData(imagesFile, reportsDir, registry, output); err != nil {
 		return fmt.Errorf("failed to generate site data: %w", err)
 	}
 	fmt.Printf("Site catalog → %s\n", output)
