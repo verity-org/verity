@@ -1,174 +1,75 @@
-# Wrapper Charts
+# Wrapper Charts (Deprecated)
 
-When running verity in patch mode (`-patch`), it creates wrapper charts that make it easy for users to consume
-your patched images while maintaining full customization capabilities.
+> **⚠️ This approach is no longer used.**
+> Verity now uses a single `Chart.yaml` with dependencies and a centralized `values.yaml` instead of individual wrapper charts.
 
-## How It Works
+## Migration
 
-For each dependency in your Chart.yaml, verity creates a wrapper chart named after the dependency
-(e.g. `prometheus`). This wrapper chart:
-
-1. **Subcharts the original chart** - The wrapper declares the original chart as a dependency
-2. **Provides patched images** - Values are pre-configured to use Copa-patched images
-3. **Allows full customization** - Users can override any value, just like the original chart
-
-## Example
-
-Given this Chart.yaml dependency:
-
-```yaml
-dependencies:
-  - name: prometheus
-    version: "25.8.0"
-    repository: oci://ghcr.io/prometheus-community/charts
-```
-
-Running verity with patching:
-
-```bash
-./verity -chart Chart.yaml -output charts -patch \
-  -registry ghcr.io/verity-org \
-  -buildkit-addr docker-container://buildkitd
-```
-
-Creates this structure:
-
+**Old approach:**
 ```text
 charts/
   prometheus/
-    Chart.yaml          # Wrapper chart that depends on prometheus
-    values.yaml         # Patched image references
-    .helmignore         # Standard Helm ignore patterns
+    Chart.yaml    # Wrapper chart
+    values.yaml   # Patched images
+  postgres-operator/
+    Chart.yaml
+    values.yaml
 ```
 
-Vulnerability reports are not bundled in the chart. Instead, they are attached as
-**in-toto attestations** on each patched image in the registry. You can verify
-them with `cosign verify-attestation --type vuln <image>`.
-
-### Generated Chart.yaml
-
-```yaml
-apiVersion: v2
-name: prometheus
-description: prometheus with Copa-patched container images
-type: application
-version: 1.0.0
-dependencies:
-  - name: prometheus
-    version: "25.8.0"
-    repository: oci://ghcr.io/prometheus-community/charts
+**New approach:**
+```text
+Chart.yaml        # Single meta-chart with all dependencies
+values.yaml       # Centralized image list (auto-generated)
+Chart.lock        # Locked dependency versions
+charts/*.tgz      # Downloaded dependencies (gitignored)
 ```
 
-### Generated values.yaml
+## Benefits of New Approach
 
-```yaml
+✅ **Simpler** - One Chart.yaml vs many
+✅ **Automated** - Renovate updates Chart.yaml → scan updates values.yaml
+✅ **Centralized** - All images in one file
+✅ **No publishing** - Users pull from ghcr.io/verity-org directly
+
+## How It Works Now
+
+1. **Chart.yaml** defines chart dependencies (Renovate updates these)
+2. **verity scan** extracts images from all charts
+3. **values.yaml** contains all discovered images
+4. **verity discover** parses values.yaml and applies overrides
+5. **Workflow** patches images in parallel to GHCR
+
+See [WORKFLOWS.md](WORKFLOWS.md) for current architecture.
+
+## Using Patched Images
+
+Instead of installing wrapper charts, users pull patched images directly:
+
+```bash
+# Old (wrapper charts)
+helm install prometheus oci://ghcr.io/verity-org/charts/prometheus
+
+# New (patched images)
+docker pull ghcr.io/verity-org/prometheus/prometheus:v2.45.0-patched
+
+# Or in Helm values
 prometheus:
   server:
     image:
       registry: ghcr.io/verity-org
-      repository: prometheus
-      tag: v2.48.0-patched
-  alertmanager:
-    image:
-      registry: ghcr.io/verity-org
-      repository: alertmanager
-      tag: v0.26.0-patched
-  # ... other patched images
+      repository: prometheus/prometheus
+      tag: v2.45.0-patched
 ```
 
-## Using Wrapper Charts
+## Why the Change?
 
-### Install with default patched images
+**Wrapper charts were complex:**
+- Required publishing charts to OCI registry
+- Needed version management (upstream-version + patch-level)
+- Users had to use special wrapper charts
 
-```bash
-helm dependency build charts/prometheus/
-helm install my-prometheus charts/prometheus/
-```
-
-### Install with custom values
-
-Create your custom values file:
-
-```yaml
-# my-values.yaml
-prometheus:
-  server:
-    replicaCount: 3  # Your customization
-    resources:
-      requests:
-        cpu: 500m
-        memory: 2Gi
-```
-
-The patched images from the wrapper chart's values.yaml will be merged with your custom values:
-
-```bash
-helm dependency build charts/prometheus/
-helm install my-prometheus charts/prometheus/ -f my-values.yaml
-```
-
-### How Value Merging Works
-
-Helm merges values in this order (later overrides earlier):
-
-1. Default values from prometheus chart
-2. **Patched image values from prometheus/values.yaml**
-3. Your custom values from `-f my-values.yaml`
-
-This means:
-
-- ✅ You get patched images automatically
-- ✅ You can customize any prometheus setting
-- ✅ You can even override patched images if needed
-
-## Benefits
-
-### For Chart Maintainers
-
-- Provide security-patched images without forking upstream charts
-- Update to new chart versions independently of patching
-- Publish wrapper charts to your own registry
-
-### For Chart Consumers
-
-- Drop-in replacement for original charts
-- Same customization options as original
-- Transparent security patching
-- Easy to switch back to original if needed
-
-## Advanced Usage
-
-### Publishing Wrapper Charts
-
-You can package and publish wrapper charts to your OCI registry:
-
-```bash
-# Build dependencies
-helm dependency build charts/prometheus/
-
-# Package the chart
-helm package charts/prometheus/
-
-# Push to your registry
-helm push prometheus-1.0.0.tgz oci://ghcr.io/verity-org/charts
-```
-
-Then users can install directly from your registry:
-
-```bash
-helm install my-prometheus oci://ghcr.io/verity-org/charts/prometheus --version 1.0.0
-```
-
-### Overriding Patched Images
-
-If you need to use a specific image:
-
-```yaml
-# my-values.yaml
-prometheus:
-  server:
-    image:
-      registry: my-registry.com
-      repository: custom/prometheus
-      tag: my-version
-```
+**New approach is simpler:**
+- Images are the primary artifact
+- No chart publishing needed
+- Users can use upstream charts with our images
+- Renovate integration is cleaner
