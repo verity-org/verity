@@ -51,12 +51,7 @@ func runDiscover(c *cli.Context) error {
 		Images: make([]internal.ImageDiscovery, len(images)),
 	}
 	for i, img := range images {
-		manifest.Images[i] = internal.ImageDiscovery{
-			Registry:   img.Registry,
-			Repository: img.Repository,
-			Tag:        img.Tag,
-			Path:       img.Path,
-		}
+		manifest.Images[i] = internal.ImageDiscovery(img)
 	}
 
 	matrix := internal.GenerateMatrix(manifest)
