@@ -19,7 +19,7 @@ func TestGenerateValuesOverride(t *testing.T) {
 				Path:       "alertmanager.image",
 			},
 			Patched: Image{
-				Registry:   "ghcr.io/verity-org",
+				Registry:   testRegistry,
 				Repository: "prom/alertmanager",
 				Tag:        "v0.26.0-patched",
 			},
@@ -99,7 +99,7 @@ func TestGenerateValuesOverride(t *testing.T) {
 	if !ok {
 		t.Fatal("missing alertmanager.image key")
 	}
-	if amImg["registry"] != "ghcr.io/verity-org" { //nolint:goconst // test value
+	if amImg["registry"] != testRegistry {
 		t.Errorf("alertmanager.image.registry = %v, want ghcr.io/verity-org", amImg["registry"])
 	}
 	if amImg["repository"] != "prom/alertmanager" {
@@ -146,7 +146,7 @@ func TestGenerateValuesOverride(t *testing.T) {
 	if !ok {
 		t.Fatal("missing pushgateway.image key")
 	}
-	if pgImg["registry"] != "ghcr.io/verity-org" {
+	if pgImg["registry"] != testRegistry {
 		t.Errorf("pushgateway.image.registry = %v, want ghcr.io/verity-org", pgImg["registry"])
 	}
 	if pgImg["repository"] != "prometheus/pushgateway" {
@@ -467,7 +467,7 @@ func TestCreateWrapperChart(t *testing.T) {
 	if serverImage["tag"] != "v2.48.0-patched" {
 		t.Errorf("Expected tag 'v2.48.0-patched', got %v", serverImage["tag"])
 	}
-	if serverImage["registry"] != "ghcr.io/verity-org" {
+	if serverImage["registry"] != testRegistry {
 		t.Errorf("Expected registry 'ghcr.io/verity-org', got %v", serverImage["registry"])
 	}
 

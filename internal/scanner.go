@@ -47,7 +47,12 @@ func ParseImagesFile(path string) ([]Image, error) {
 	if len(values) == 0 {
 		return nil, nil
 	}
-	return dedup(findImages(values, "", "", nil)), nil
+	images := dedup(findImages(values, "", "", nil))
+	// Sort for deterministic output (Go map iteration is randomized)
+	sort.Slice(images, func(i, j int) bool {
+		return images[i].Reference() < images[j].Reference()
+	})
+	return images, nil
 }
 
 // ScanForImages loads a chart directory and finds all container image references.
