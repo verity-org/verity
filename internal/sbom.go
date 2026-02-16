@@ -33,9 +33,8 @@ type cycloneDXComponent struct {
 // GenerateChartSBOM creates a CycloneDX JSON SBOM for a chart.
 // Lists the wrapper chart as the top component, the upstream chart as a
 // dependency, and all patched images as components with pkg:oci PURLs.
-func GenerateChartSBOM(chart ChartDiscovery, patchedImages []*PatchResult, registry, outputPath string) error {
+func GenerateChartSBOM(chart ChartDiscovery, patchedImages []*PatchResult, wrapperVersion, outputPath string) error {
 	// Top-level component: the wrapper chart itself
-	wrapperVersion := chart.Version + "-0"
 	topComponent := cycloneDXComponent{
 		Type:    "application",
 		Name:    chart.Name,
@@ -53,9 +52,10 @@ func GenerateChartSBOM(chart ChartDiscovery, patchedImages []*PatchResult, regis
 		PURL:    chartToPURL(chart),
 	})
 
-	// Add patched images
+	// Add patched images (including mirrored images that were skipped with no fixable vulnerabilities)
 	for _, pr := range patchedImages {
-		if pr.Error != nil || pr.Skipped {
+		// Only skip images that had errors or have no patched reference
+		if pr.Error != nil || pr.Patched.Reference() == "" {
 			continue
 		}
 		components = append(components, cycloneDXComponent{

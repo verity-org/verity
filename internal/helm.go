@@ -218,10 +218,18 @@ func PublishChart(chartDir, targetRegistry string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("creating temp dir: %w", err)
 	}
+	defer os.RemoveAll(tmpDir)
+
+	// Build dependencies so the published chart is self-contained
+	cmd := exec.Command("helm", "dependency", "build", chartDir) //nolint:noctx // TODO: add context support
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return "", fmt.Errorf("helm dependency build failed: %w\nOutput: %s", err, output)
+	}
 
 	// Package the chart
-	cmd := exec.Command("helm", "package", chartDir, "-d", tmpDir) //nolint:noctx // TODO: add context support
-	output, err := cmd.CombinedOutput()
+	cmd = exec.Command("helm", "package", chartDir, "-d", tmpDir) //nolint:noctx // TODO: add context support
+	output, err = cmd.CombinedOutput()
 	if err != nil {
 		return "", fmt.Errorf("helm package failed: %w\nOutput: %s", err, output)
 	}

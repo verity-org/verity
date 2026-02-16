@@ -162,14 +162,14 @@ func GenerateNamespacedValuesOverride(chartName string, results []*PatchResult, 
 
 	// Build comment header noting any image overrides applied.
 	var header string
-	var headerSb165 strings.Builder
+	var headerBuilder strings.Builder
 	for _, r := range results {
 		if r.OverriddenFrom != "" && r.Error == nil && !r.Skipped {
-			headerSb165.WriteString(fmt.Sprintf("# NOTE: %s was overridden from %q to %q for Copa compatibility\n",
+			headerBuilder.WriteString(fmt.Sprintf("# NOTE: %s was overridden from %q to %q for Copa compatibility\n",
 				r.Original.Repository, r.OverriddenFrom, r.Original.Tag))
 		}
 	}
-	header += headerSb165.String()
+	header += headerBuilder.String()
 
 	var out []byte
 	if header != "" {

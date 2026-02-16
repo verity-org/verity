@@ -286,7 +286,7 @@ func PatchSingleImage(ctx context.Context, imageRef string, opts PatchOptions, r
 
 	// Mark as changed if image was successfully patched or mirrored (first time).
 	// Not changed if: already up to date, or patch failed.
-	entry.Changed = result.Error == nil && (!result.Skipped || result.SkipReason != "patched image up to date")
+	entry.Changed = result.Error == nil && (!result.Skipped || result.SkipReason != SkipReasonUpToDate)
 
 	data, err := json.MarshalIndent(entry, "", "  ")
 	if err != nil {
@@ -392,7 +392,7 @@ func AssembleResults(manifestPath, resultsDir, reportsDir, outputDir, registry s
 
 		// Generate SBOM
 		sbomPath := filepath.Join(chartDir, "sbom.cdx.json")
-		if err := GenerateChartSBOM(ch, results, registry, sbomPath); err != nil {
+		if err := GenerateChartSBOM(ch, results, version, sbomPath); err != nil {
 			return fmt.Errorf("generating SBOM for %s: %w", ch.Name, err)
 		}
 
@@ -412,7 +412,8 @@ func AssembleResults(manifestPath, resultsDir, reportsDir, outputDir, registry s
 			VulnPredicatePath: vulnPredicatePath,
 		}
 		for _, pr := range results {
-			if pr.Error == nil && !pr.Skipped {
+			// Include all successfully processed images (including mirrored ones that were skipped)
+			if pr.Error == nil && pr.Patched.Reference() != "" {
 				pc.Images = append(pc.Images, PublishedImage{
 					Original: pr.Original.Reference(),
 					Patched:  pr.Patched.Reference(),
@@ -491,7 +492,7 @@ func buildPatchResults(images []ImageDiscovery, resultMap map[string]*SinglePatc
 		if !ok || r == nil {
 			// No patch result produced (matrix job may have failed).
 			pr.Skipped = true
-			pr.SkipReason = "no patch result for image"
+			pr.SkipReason = SkipReasonNoPatchResult
 			results = append(results, pr)
 			continue
 		}

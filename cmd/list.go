@@ -26,7 +26,10 @@ var ListCommand = &cli.Command{
 func runList(c *cli.Context) error {
 	imagesFile := c.String("images")
 
-	overrides := parseOverridesFromFile(imagesFile)
+	overrides, err := parseOverridesFromFile(imagesFile)
+	if err != nil {
+		return err
+	}
 
 	images, err := internal.ParseImagesFile(imagesFile)
 	if err != nil {

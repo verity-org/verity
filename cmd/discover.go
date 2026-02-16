@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"log"
+	"os"
 
 	"github.com/urfave/cli/v2"
 
@@ -39,14 +39,23 @@ func runDiscover(c *cli.Context) error {
 	chartFile := c.String("chart-file")
 	discoverDir := c.String("discover-dir")
 
-	overrides := parseOverridesFromFile(imagesFile)
+	overrides, err := parseOverridesFromFile(imagesFile)
+	if err != nil {
+		return err
+	}
 
 	var manifest *internal.DiscoveryManifest
-	var err error
 
 	if chartFile != "" {
 		// Chart-based discovery: scan Chart.yaml dependencies + merge into images file.
-		manifest, err = internal.DiscoverImages(chartFile, imagesFile, discoverDir)
+		// Create a separate temp directory for chart downloads to avoid polluting output dir
+		tmpDir, err := os.MkdirTemp("", "verity-discover-*")
+		if err != nil {
+			return fmt.Errorf("creating temp dir: %w", err)
+		}
+		defer os.RemoveAll(tmpDir)
+
+		manifest, err = internal.DiscoverImages(chartFile, imagesFile, tmpDir)
 		if err != nil {
 			return fmt.Errorf("discovery failed: %w", err)
 		}
@@ -85,13 +94,13 @@ func runDiscover(c *cli.Context) error {
 }
 
 // parseOverridesFromFile loads image tag overrides from the images file, if present.
-func parseOverridesFromFile(imagesFile string) []internal.ImageOverride {
+func parseOverridesFromFile(imagesFile string) ([]internal.ImageOverride, error) {
 	if imagesFile == "" {
-		return nil
+		return nil, nil
 	}
 	overrides, err := internal.ParseOverrides(imagesFile)
 	if err != nil {
-		log.Fatalf("Failed to parse overrides from %s: %v", imagesFile, err)
+		return nil, fmt.Errorf("parsing overrides from %s: %w", imagesFile, err)
 	}
 	if len(overrides) > 0 {
 		fmt.Printf("Loaded %d image override(s)\n", len(overrides))
@@ -99,5 +108,5 @@ func parseOverridesFromFile(imagesFile string) []internal.ImageOverride {
 			fmt.Printf("  %s: %q → %q\n", o.Repository, o.From, o.To)
 		}
 	}
-	return overrides
+	return overrides, nil
 }

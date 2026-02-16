@@ -14,6 +14,13 @@ import (
 	v1 "github.com/google/go-containerregistry/pkg/v1"
 )
 
+// Skip reason constants for consistent change detection.
+const (
+	SkipReasonUpToDate          = "patched image up to date"
+	SkipReasonNoVulnerabilities = "no fixable vulnerabilities"
+	SkipReasonNoPatchResult     = "no patch result for image"
+)
+
 // PatchOptions configures the patching pipeline.
 type PatchOptions struct {
 	// TargetRegistry is the registry to push patched images to (e.g. "ghcr.io/verity-org").
@@ -104,7 +111,7 @@ func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult 
 
 			if vulns == 0 {
 				result.Skipped = true
-				result.SkipReason = "patched image up to date"
+				result.SkipReason = SkipReasonUpToDate
 				result.Patched = patchedRef
 				return result
 			}
@@ -139,7 +146,7 @@ func PatchImage(ctx context.Context, img Image, opts PatchOptions) *PatchResult 
 
 	if vulns == 0 { //nolint:nestif // early exit logic
 		result.Skipped = true
-		result.SkipReason = "no fixable vulnerabilities"
+		result.SkipReason = SkipReasonNoVulnerabilities
 
 		// Mirror the image to the target registry even when no patching is
 		// needed, so consumers always see the latest version available and
