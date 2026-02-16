@@ -69,6 +69,85 @@ func TestFindImages(t *testing.T) {
 	}
 }
 
+func TestResolveImageTag(t *testing.T) {
+	ctx := context.Background()
+
+	tests := []struct {
+		name         string
+		img          Image
+		tagExists    map[string]bool
+		want         Image
+		wantResolved bool
+	}{
+		{
+			name: "tag exists as-is",
+			img:  Image{Registry: "docker.io", Repository: "library/nginx", Tag: "1.25"},
+			tagExists: map[string]bool{
+				"docker.io/library/nginx:1.25": true,
+			},
+			want:         Image{Registry: "docker.io", Repository: "library/nginx", Tag: "1.25"},
+			wantResolved: false,
+		},
+		{
+			name: "tag needs v prefix",
+			img:  Image{Registry: "quay.io", Repository: "prometheus/node-exporter", Tag: "1.10.2"},
+			tagExists: map[string]bool{
+				"quay.io/prometheus/node-exporter:v1.10.2": true,
+			},
+			want:         Image{Registry: "quay.io", Repository: "prometheus/node-exporter", Tag: "v1.10.2"},
+			wantResolved: true,
+		},
+		{
+			name: "tag has v prefix and exists",
+			img:  Image{Registry: "quay.io", Repository: "prometheus/node-exporter", Tag: "v1.10.2"},
+			tagExists: map[string]bool{
+				"quay.io/prometheus/node-exporter:v1.10.2": true,
+			},
+			want:         Image{Registry: "quay.io", Repository: "prometheus/node-exporter", Tag: "v1.10.2"},
+			wantResolved: false,
+		},
+		{
+			name: "tag has v prefix but exists without v",
+			img:  Image{Registry: "docker.io", Repository: "library/nginx", Tag: "v1.25"},
+			tagExists: map[string]bool{
+				"docker.io/library/nginx:1.25": true,
+			},
+			want:         Image{Registry: "docker.io", Repository: "library/nginx", Tag: "1.25"},
+			wantResolved: true,
+		},
+		{
+			name:         "tag doesn't exist in either form",
+			img:          Image{Registry: "docker.io", Repository: "library/nginx", Tag: "nonexistent"},
+			tagExists:    map[string]bool{},
+			want:         Image{Registry: "docker.io", Repository: "library/nginx", Tag: "nonexistent"},
+			wantResolved: false,
+		},
+		{
+			name:         "empty tag returns as-is",
+			img:          Image{Registry: "docker.io", Repository: "library/nginx", Tag: ""},
+			tagExists:    map[string]bool{},
+			want:         Image{Registry: "docker.io", Repository: "library/nginx", Tag: ""},
+			wantResolved: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			// Mock the tagChecker
+			oldChecker := tagChecker
+			tagChecker = func(_ context.Context, ref string) bool {
+				return tt.tagExists[ref]
+			}
+			defer func() { tagChecker = oldChecker }()
+
+			got := ResolveImageTag(ctx, tt.img)
+			if got != tt.want {
+				t.Errorf("ResolveImageTag() = %+v, want %+v", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestParseRef(t *testing.T) {
 	tests := []struct {
 		input string

@@ -243,6 +243,13 @@ func WriteDiscoveryOutput(manifest *DiscoveryManifest, matrix *MatrixOutput, out
 // Trivy report to the given directories. Designed to run in a matrix job.
 func PatchSingleImage(ctx context.Context, imageRef string, opts PatchOptions, resultDir string) error {
 	img := parseRef(imageRef)
+	originalTag := img.Tag
+
+	// Resolve the tag - try both with and without "v" prefix to find what actually exists
+	img = ResolveImageTag(ctx, img)
+	if img.Tag != originalTag {
+		fmt.Printf("    Resolved tag: %s -> %s\n", originalTag, img.Tag)
+	}
 
 	if err := os.MkdirAll(resultDir, 0o755); err != nil {
 		return fmt.Errorf("creating result dir: %w", err)

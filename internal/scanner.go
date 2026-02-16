@@ -102,9 +102,51 @@ func findImages(values map[string]any, prefix, appVersion string, cache map[stri
 	return images
 }
 
-// resolveTag determines the correct image tag when falling back to appVersion.
+// ResolveImageTag determines the correct image tag when falling back to appVersion.
 // It checks the registry to see if appVersion or "v"+appVersion exists as a tag,
 // since chart templates vary in whether they prepend "v" to Chart.AppVersion.
+// ResolveImageTag attempts to find the correct tag for an image by trying
+// multiple variations. It tries the tag as-is first, then with a "v" prefix
+// if the tag doesn't already have one. Returns an Image with the resolved tag,
+// or the original image if no variation exists in the registry.
+func ResolveImageTag(ctx context.Context, img Image) Image {
+	// If no tag specified, return as-is (will default to "latest" elsewhere)
+	if img.Tag == "" {
+		return img
+	}
+
+	// If tag already starts with "v", try as-is first, then without "v"
+	if strings.HasPrefix(img.Tag, "v") {
+		// Try with "v" prefix first
+		if tagChecker(ctx, img.Reference()) {
+			return img
+		}
+		// Try without "v" prefix
+		candidate := img
+		candidate.Tag = strings.TrimPrefix(img.Tag, "v")
+		if tagChecker(ctx, candidate.Reference()) {
+			return candidate
+		}
+		// Fall back to original
+		return img
+	}
+
+	// Tag doesn't start with "v", try without prefix first
+	if tagChecker(ctx, img.Reference()) {
+		return img
+	}
+
+	// Try with "v" prefix
+	candidate := img
+	candidate.Tag = "v" + img.Tag
+	if tagChecker(ctx, candidate.Reference()) {
+		return candidate
+	}
+
+	// Fall back to original tag if neither exists
+	return img
+}
+
 func resolveTag(img Image, appVersion string) string {
 	if strings.HasPrefix(appVersion, "v") {
 		return appVersion
@@ -113,21 +155,11 @@ func resolveTag(img Image, appVersion string) string {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	// Try appVersion as-is first
+	// Use the new ResolveImageTag function
 	candidate := img
 	candidate.Tag = appVersion
-	if tagChecker(ctx, candidate.Reference()) {
-		return appVersion
-	}
-
-	// Try with "v" prefix
-	candidate.Tag = "v" + appVersion
-	if tagChecker(ctx, candidate.Reference()) {
-		return "v" + appVersion
-	}
-
-	// Default to as-is if neither resolves (will fail at pull time with a clear error)
-	return appVersion
+	resolved := ResolveImageTag(ctx, candidate)
+	return resolved.Tag
 }
 
 func walk(node any, path, parentKey string, fn func(string, Image)) {
