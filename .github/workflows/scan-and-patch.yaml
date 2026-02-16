@@ -55,23 +55,7 @@ jobs:
 
       - name: Discover images
         id: discover
-        run: |
-          ./verity discover \
-            --images values.yaml \
-            --chart-file Chart.yaml \
-            --discover-dir .verity
-
-          matrix=$(cat .verity/matrix.json)
-          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
-
-          count=$(echo "$matrix" | jq '.include | length')
-          if [ "$count" -gt 0 ]; then
-            echo "has_images=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_images=false" >> "$GITHUB_OUTPUT"
-          fi
-
-          echo "Found $count unique images to patch"
+        run: ./.github/scripts/discover-images.sh values.yaml Chart.yaml .verity
 
       - name: Upload manifest
         uses: actions/upload-artifact@v6
@@ -143,43 +127,11 @@ jobs:
 
       - name: Get patched image digest
         id: digest
-        run: |
-          result_file=$(find .verity/results -name '*.json' -print -quit 2>/dev/null)
-          if [ -z "$result_file" ]; then
-            echo "has_image=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          registry=$(jq -r '.patched_registry // empty' "$result_file")
-          repo=$(jq -r '.patched_repository // empty' "$result_file")
-          tag=$(jq -r '.patched_tag // empty' "$result_file")
-          err=$(jq -r '.error // empty' "$result_file")
-
-          if [ -z "$registry" ] || [ -z "$repo" ] || [ -z "$tag" ]; then
-            echo "has_image=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          if [ -n "$err" ]; then
-            echo "has_image=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          image="${registry}/${repo}"
-          image_with_tag="${image}:${tag}"
-          digest=$(crane digest "$image_with_tag")
-          {
-            echo "image=${image}"
-            echo "image_with_tag=${image_with_tag}"
-            echo "digest=${digest}"
-            echo "has_image=true"
-          } >> "$GITHUB_OUTPUT"
-          echo "Resolved ${image_with_tag} → ${digest}"
+        run: ./.github/scripts/get-image-digest.sh .verity/results
 
       - name: Sign image with cosign
         if: steps.digest.outputs.has_image == 'true'
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | cosign login ghcr.io -u ${{ github.actor }} --password-stdin
-          cosign sign --yes "${{ steps.digest.outputs.image }}@${{ steps.digest.outputs.digest }}"
+        run: ./.github/scripts/sign-image.sh "${{ steps.digest.outputs.image }}" "${{ steps.digest.outputs.digest }}" "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Attest build provenance
         if: steps.digest.outputs.has_image == 'true'
@@ -191,9 +143,7 @@ jobs:
 
       - name: Generate SBOM
         if: steps.digest.outputs.has_image == 'true'
-        run: |
-          trivy image --format cyclonedx --output .verity/sbom.cdx.json \
-            "${{ steps.digest.outputs.image }}@${{ steps.digest.outputs.digest }}"
+        run: ./.github/scripts/generate-image-sbom.sh "${{ steps.digest.outputs.image }}" "${{ steps.digest.outputs.digest }}" .verity/sbom.cdx.json
 
       - name: Attest SBOM
         if: steps.digest.outputs.has_image == 'true'
@@ -206,14 +156,7 @@ jobs:
 
       - name: Attest vulnerability report
         if: steps.digest.outputs.has_image == 'true'
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | cosign login ghcr.io -u ${{ github.actor }} --password-stdin
-          report=$(find .verity/reports -name '*.json' -print -quit 2>/dev/null)
-          if [ -n "$report" ]; then
-            cosign attest --yes --type vuln \
-              --predicate "$report" \
-              "${{ steps.digest.outputs.image }}@${{ steps.digest.outputs.digest }}"
-          fi
+        run: ./.github/scripts/attest-image-vulnerability.sh "${{ steps.digest.outputs.image }}" "${{ steps.digest.outputs.digest }}" .verity/reports "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Upload patch result
         if: always()
@@ -262,36 +205,9 @@ jobs:
           path: .verity/artifacts
           merge-multiple: false
 
-      - name: Collect results and reports
-        run: |
-          mkdir -p .verity/results .verity/reports
-          for d in .verity/artifacts/patch-result-*; do
-            [ -d "$d" ] || continue
-            find "$d" -name '*.json' -path '*/results/*' -exec cp -n {} .verity/results/ \; 2>/dev/null || true
-            find "$d" -name '*.json' -path '*/reports/*' -exec cp -n {} .verity/reports/ \; 2>/dev/null || true
-          done
-
       - name: Assemble and publish charts
         id: assemble
-        run: |
-          ./verity assemble \
-            --manifest .verity/manifest.json \
-            --results-dir .verity/results \
-            --reports-dir .verity/reports \
-            --output-dir .verity/charts \
-            --registry "$REGISTRY" \
-            --publish
-
-          # Build a matrix from published-charts.json for the attestation job
-          published=".verity/charts/published-charts.json"
-          if [ -f "$published" ] && [ "$(jq length "$published")" -gt 0 ]; then
-            # Matrix format: {"include": [{"name": "prometheus", "oci_ref": "...", ...}]}
-            matrix=$(jq -c '{include: .}' "$published")
-            echo "chart_matrix=$matrix" >> "$GITHUB_OUTPUT"
-            echo "has_charts=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_charts=false" >> "$GITHUB_OUTPUT"
-          fi
+        run: ./.github/scripts/assemble-charts.sh .verity/manifest.json .verity/results .verity/reports .verity/charts "$REGISTRY" true
 
       - name: Upload chart artifacts (SBOMs + vuln predicates)
         if: steps.assemble.outputs.has_charts == 'true'
@@ -329,20 +245,10 @@ jobs:
 
       - name: Get chart digest
         id: digest
-        run: |
-          oci_ref="${{ matrix.oci_ref }}"
-          digest=$(crane digest "$oci_ref")
-          oci_name="${oci_ref%%:*}"
-          {
-            echo "oci_name=${oci_name}"
-            echo "digest=${digest}"
-          } >> "$GITHUB_OUTPUT"
-          echo "Resolved $oci_ref → $digest"
+        run: ./.github/scripts/get-chart-digest.sh "${{ matrix.oci_ref }}"
 
       - name: Sign chart with cosign
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | cosign login ghcr.io -u ${{ github.actor }} --password-stdin
-          cosign sign --yes "${{ steps.digest.outputs.oci_name }}@${{ steps.digest.outputs.digest }}"
+        run: ./.github/scripts/sign-chart.sh "${{ steps.digest.outputs.oci_name }}" "${{ steps.digest.outputs.digest }}" "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Attest build provenance
         uses: actions/attest-build-provenance@v3
@@ -361,14 +267,7 @@ jobs:
           push-to-registry: true
 
       - name: Attest vulnerability report
-        run: |
-          vuln_predicate=".verity/charts/${{ matrix.name }}/vuln-predicate.json"
-          if [ -f "$vuln_predicate" ]; then
-            echo "${{ secrets.GITHUB_TOKEN }}" | cosign login ghcr.io -u ${{ github.actor }} --password-stdin
-            cosign attest --yes --type vuln \
-              --predicate "$vuln_predicate" \
-              "${{ steps.digest.outputs.oci_name }}@${{ steps.digest.outputs.digest }}"
-          fi
+        run: ./.github/scripts/attest-chart-vulnerability.sh "${{ steps.digest.outputs.oci_name }}" "${{ steps.digest.outputs.digest }}" "${{ matrix.name }}" .verity/charts "${{ secrets.GITHUB_TOKEN }}"
 
   # ── Job 3: Generate site catalog (optional) ────────────────────────
   generate-catalog:

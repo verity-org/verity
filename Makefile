@@ -203,3 +203,9 @@ test-local-patch: build
 	@echo ""
 	@echo "✓ Patch test complete"
 	@echo "Check .verity/results/ for patch results"
+
+# Lint shell scripts
+lint-scripts:
+	@echo "Linting shell scripts..."
+	@shellcheck .github/scripts/*.sh || (echo "Install shellcheck: brew install shellcheck" && exit 1)
+
