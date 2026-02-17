@@ -19,7 +19,7 @@ library-busybox:
   image:
     registry: docker.io
     repository: library/busybox
-    tag: "1.36"
+    tag: "1.37"
     # from: library-busybox.image
 library-nginx:
   image:
@@ -54,7 +54,7 @@ zalando-postgres-operator:
 haproxytech-haproxy-alpine:
   image:
     repository: haproxytech/haproxy-alpine
-    tag: "2.6.12"
+    tag: "2.9.15"
     # from: haproxytech-haproxy-alpine.image
 brancz-kube-rbac-proxy:
   image:
@@ -89,7 +89,7 @@ prometheus-operator-prometheus-config-reloader:
 quay.io-prometheus-alertmanager:
   image:
     repository: quay.io/prometheus/alertmanager
-    tag: "v0.31.0"
+    tag: "v0.31.1"
     # from: quay.io-prometheus-alertmanager.image
 prometheus-node-exporter:
   image:
@@ -117,7 +117,7 @@ kube-state-metrics-kube-state-metrics:
 timberio-vector:
   image:
     repository: timberio/vector
-    tag: "0.50.0-distroless-libc"
+    tag: "0.53.0-distroless-libc"
     # from: timberio-vector.image
 victoriametrics-victoria-logs:
   image:
