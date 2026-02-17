@@ -50,37 +50,34 @@ export interface SiteData {
   summary: SiteSummary;
   charts: SiteChart[];
   images: SiteImage[];
-  /** @deprecated Use `images` instead. Kept for backward compatibility. */
-  standaloneImages: SiteImage[];
 }
 
 export const catalog: SiteData = rawData as SiteData;
 
+const charts = catalog.charts ?? [];
+
 export function getChartByName(name: string): SiteChart | undefined {
-  return catalog.charts.find((c) => c.name === name);
+  return charts.find((c) => c.name === name);
 }
 
 /** Returns unique chart names across all versions. */
 export function getChartNames(): string[] {
-  return [...new Set(catalog.charts.map((c) => c.name))];
+  return [...new Set(charts.map((c) => c.name))];
 }
 
 /** Returns all chart versions for a given chart name, newest first. */
 export function getChartVersions(name: string): SiteChart[] {
-  return catalog.charts.filter((c) => c.name === name);
+  return charts.filter((c) => c.name === name);
 }
 
 /** Returns a specific chart by name and version. */
 export function getChartVersion(name: string, version: string): SiteChart | undefined {
-  return catalog.charts.find((c) => c.name === name && c.version === version);
+  return charts.find((c) => c.name === name && c.version === version);
 }
 
 export function getAllImages(): SiteImage[] {
-  const chartImages = catalog.charts.flatMap((c) =>
-    c.images.map((img) => ({ ...img, chartName: c.name }))
-  );
-  // Support both the new `images` field and the deprecated `standaloneImages`.
-  const extra = catalog.images ?? catalog.standaloneImages ?? [];
+  const chartImages = charts.flatMap((c) => c.images.map((img) => ({ ...img, chartName: c.name })));
+  const extra = catalog.images ?? [];
   return [...chartImages, ...extra];
 }
 
