@@ -7,6 +7,7 @@ require (
 	github.com/urfave/cli/v2 v2.27.5
 	gopkg.in/yaml.v3 v3.0.1
 	helm.sh/helm/v3 v3.20.0
+	helm.sh/helm/v4 v4.1.1
 )
 
 require (
