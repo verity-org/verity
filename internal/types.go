@@ -22,8 +22,11 @@ func (img Image) Reference() string {
 	return ref
 }
 
-// sanitize converts an image reference to a safe filename/artifact name.
-// Replaces special characters (/, :) with underscores.
+// sanitize converts an image reference to a safe filename by replacing path and tag separators.
+// This is used for report filenames and map keys where "." and "@" need to be preserved
+// (e.g., "docker.io/library/nginx:1.25" → "docker.io_library_nginx_1.25").
+// Note: Different from postprocess.sanitizeImageName which also replaces "@" and "."
+// for artifact naming where full sanitization is needed.
 func sanitize(ref string) string {
 	r := strings.NewReplacer("/", "_", ":", "_")
 	return r.Replace(ref)

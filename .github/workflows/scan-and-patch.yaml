@@ -68,14 +68,20 @@ jobs:
           timeout 30 bash -c 'until curl -f http://localhost:5000/v2/; do sleep 1; done'
           echo "✓ Local registry ready at localhost:5000"
 
-      - name: Get Copa fork commit hash
-        id: copa-commit
+      - name: Get Copa fork branch and commit
+        id: copa-info
         run: |
           # Try verity branch first, fallback to feat/bulk-skip-detection
-          COMMIT=$(gh api repos/verity-org/copacetic/commits/verity --jq .sha 2>/dev/null || \
-                   gh api repos/verity-org/copacetic/commits/feat/bulk-skip-detection --jq .sha)
+          if gh api repos/verity-org/copacetic/commits/verity --jq .sha >/dev/null 2>&1; then
+            BRANCH="verity"
+            COMMIT=$(gh api repos/verity-org/copacetic/commits/verity --jq .sha)
+          else
+            BRANCH="feat/bulk-skip-detection"
+            COMMIT=$(gh api repos/verity-org/copacetic/commits/feat/bulk-skip-detection --jq .sha)
+          fi
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
           echo "hash=$COMMIT" >> "$GITHUB_OUTPUT"
-          echo "Copa fork commit: $COMMIT"
+          echo "Using Copa fork branch: $BRANCH (commit: $COMMIT)"
         env:
           GH_TOKEN: ${{ github.token }}
 
@@ -84,14 +90,13 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/go/bin/copa
-          key: copa-${{ runner.os }}-${{ steps.copa-commit.outputs.hash }}
+          key: copa-${{ runner.os }}-${{ steps.copa-info.outputs.hash }}
 
       - name: Build Copa from fork
         if: steps.cache-copa.outputs.cache-hit != 'true'
         run: |
-          BRANCH=$(gh api repos/verity-org/copacetic/commits/verity --jq .sha >/dev/null 2>&1 && echo "verity" || echo "feat/bulk-skip-detection")
-          echo "Building Copa from branch: $BRANCH"
-          git clone --branch "$BRANCH" --depth 1 \
+          echo "Building Copa from branch: ${{ steps.copa-info.outputs.branch }}"
+          git clone --branch "${{ steps.copa-info.outputs.branch }}" --depth 1 \
             https://github.com/verity-org/copacetic.git /tmp/copa
           cd /tmp/copa && go build -o "$(go env GOPATH)/bin/copa" .
         env:

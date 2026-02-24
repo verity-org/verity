@@ -10,6 +10,8 @@ import (
 )
 
 // Trivy report structures (for aggregating vulnerability predicates).
+// Note: Uses simplified structure focused on vulnerabilities.
+// See trivyReportFull in sitedata.go for more complete structure with OS metadata.
 type trivyReport struct {
 	Results []struct {
 		Vulnerabilities []trivyVulnerability `json:"Vulnerabilities"`

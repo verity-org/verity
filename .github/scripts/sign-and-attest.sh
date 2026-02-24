@@ -62,8 +62,15 @@ for source_image in $(yq -r '.images[].image' "$COPA_CONFIG"); do
     fi
 
     # 5. Derive original ref from patched tag (strip -patched suffix)
-    original_tag="${tag%-patched}"  # v3.9.1-patched → v3.9.1
-    original_tag="${original_tag%-patched-[0-9]*}"  # handle v3.9.1-patched-2
+    # Handle tags like:
+    #   v3.9.1-patched        → v3.9.1
+    #   v3.9.1-patched-2      → v3.9.1
+    #   v3.9.1-patched-12     → v3.9.1
+    if [[ "$tag" =~ ^(.+)-patched-[0-9]+$ ]]; then
+      original_tag="${BASH_REMATCH[1]}"
+    else
+      original_tag="${tag%-patched}"
+    fi
     original_ref="${source_image}:${original_tag}"
 
     # Accumulate for catalog

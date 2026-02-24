@@ -1,15 +1,12 @@
 package cmd
 
 import (
-	"errors"
 	"fmt"
 
 	"github.com/urfave/cli/v2"
 
 	"github.com/verity-org/verity/internal"
 )
-
-var ErrMissingFlag = errors.New("required flag missing")
 
 // CatalogCommand generates the site catalog JSON from patch reports.
 var CatalogCommand = &cli.Command{
@@ -47,9 +44,8 @@ func runCatalog(c *cli.Context) error {
 	registry := c.String("registry")
 	reportsDir := c.String("reports-dir")
 
-	if imagesJSON == "" {
-		return fmt.Errorf("%w: --images-json is required", ErrMissingFlag)
-	}
+	// Note: --images-json is marked as Required in the flag definition,
+	// so the framework already validates it. No manual check needed.
 
 	if err := internal.GenerateSiteDataFromJSON(imagesJSON, reportsDir, registry, output); err != nil {
 		return fmt.Errorf("failed to generate site data from JSON: %w", err)
