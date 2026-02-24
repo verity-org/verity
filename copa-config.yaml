@@ -1,21 +1,30 @@
 apiVersion: copa.sh/v1alpha1
 kind: PatchConfig
 
-# Strategy: Explicitly list the last 3 stable versions of each image
-# This limits the scope and prevents patching hundreds of old versions
+# Strategy: Pattern-based with maxTags to automatically patch the latest 3 versions
+# This auto-updates as new versions are released without manual version updates
 target:
   registry: "ghcr.io/verity-org"
 
 images:
-  # Start with just a few critical images - expand as needed
+  # Start with core images - expand list as needed
   - name: "grafana"
     image: "docker.io/grafana/grafana"
-    tags: {strategy: "list", list: ["12.3.3", "12.3.2", "12.3.1"]}
+    tags:
+      strategy: "pattern"
+      pattern: '^\d+\.\d+\.\d+$'
+      maxTags: 3
 
   - name: "nginx"
     image: "docker.io/library/nginx"
-    tags: {strategy: "list", list: ["1.29.5", "1.29.4", "1.29.3"]}
+    tags:
+      strategy: "pattern"
+      pattern: '^\d+\.\d+\.\d+$'
+      maxTags: 3
 
   - name: "prometheus"
     image: "quay.io/prometheus/prometheus"
-    tags: {strategy: "list", list: ["v3.9.1", "v3.9.0", "v3.8.1"]}
+    tags:
+      strategy: "pattern"
+      pattern: '^v\d+\.\d+\.\d+$'
+      maxTags: 3
