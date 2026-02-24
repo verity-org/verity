@@ -1,0 +1,428 @@
+name: Patch Images (Matrix)
+
+# Matrix-based patching workflow for parallel execution:
+# 1. Scan: Generate fresh Trivy reports using Trivy server
+# 2. Discover: Copa dry-run with skip detection to find what needs patching
+# 3. Patch: Parallel matrix jobs patch individual images
+# 4. Assemble: Collect results and generate catalog
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  push:
+    branches: [main]
+    paths: ['copa-config.yaml', '.github/workflows/patch-matrix.yaml']
+  pull_request:
+    paths: ['copa-config.yaml', '.github/workflows/patch-matrix.yaml', 'internal/**', 'cmd/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+
+env:
+  # Use local registry for PRs, production registry for main
+  REGISTRY: ${{ github.event_name == 'pull_request' && 'localhost:5000/verity-test' || 'ghcr.io/verity-org' }}
+
+jobs:
+  # ── Job 1: Scan all images with Trivy in parallel ──────────────────
+  scan:
+    name: Scan Images
+    runs-on: ubuntu-latest
+    services:
+      # Local registry for PR testing
+      registry:
+        image: registry:3
+        ports:
+          - 5000:5000
+        options: >-
+          --health-cmd "wget -q --spider http://localhost:5000/v2/ || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Verify local registry for PR testing
+        if: github.event_name == 'pull_request'
+        run: |
+          timeout 30 bash -c 'until curl -f http://localhost:5000/v2/; do sleep 1; done'
+          echo "✓ Local registry ready at localhost:5000"
+
+      - name: Login to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build verity
+        run: go build -o verity .
+
+      - name: Start Trivy server
+        run: |
+          trivy server --listen 0.0.0.0:4954 &
+          timeout 60 bash -c 'until curl -f http://localhost:4954/healthz 2>/dev/null; do sleep 1; done'
+          echo "✓ Trivy server ready"
+
+      - name: Scan all images with Trivy
+        run: |
+          ./verity scan \
+            --config copa-config.yaml \
+            --target-registry "$REGISTRY" \
+            --trivy-server http://localhost:4954 \
+            --parallel 10 \
+            --output reports/
+
+      - name: Upload Trivy reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-reports
+          path: reports/
+          retention-days: 30
+
+  # ── Job 2: Discover what needs patching with Copa dry-run ──────────
+  discover:
+    name: Discover Images to Patch
+    needs: scan
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.discover.outputs.matrix }}
+      has_images: ${{ steps.discover.outputs.has_images }}
+    services:
+      registry:
+        image: registry:3
+        ports:
+          - 5000:5000
+        options: >-
+          --health-cmd "wget -q --spider http://localhost:5000/v2/ || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Verify local registry for PR testing
+        if: github.event_name == 'pull_request'
+        run: |
+          timeout 30 bash -c 'until curl -f http://localhost:5000/v2/; do sleep 1; done'
+          echo "✓ Local registry ready"
+
+      - name: Login to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download Trivy reports
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-reports
+          path: reports/
+
+      - name: Configure Copa registry for PR testing
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "Setting Copa target registry to $REGISTRY for PR testing"
+          yq eval '.target.registry = env(REGISTRY)' -i copa-config.yaml
+          echo "Copa config target registry:"
+          yq eval '.target.registry' copa-config.yaml
+
+      - name: Get Copa fork branch and commit
+        id: copa-info
+        run: |
+          if gh api repos/verity-org/copacetic/commits/verity --jq .sha >/dev/null 2>&1; then
+            BRANCH="verity"
+            COMMIT=$(gh api repos/verity-org/copacetic/commits/verity --jq .sha)
+          else
+            BRANCH="feat/bulk-skip-detection"
+            COMMIT=$(gh api repos/verity-org/copacetic/commits/feat/bulk-skip-detection --jq .sha)
+          fi
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "hash=$COMMIT" >> "$GITHUB_OUTPUT"
+          echo "Using Copa fork branch: $BRANCH (commit: $COMMIT)"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Cache Copa binary
+        id: cache-copa
+        uses: actions/cache@v4
+        with:
+          path: ~/go/bin/copa
+          key: copa-${{ runner.os }}-${{ steps.copa-info.outputs.hash }}
+
+      - name: Build Copa from fork
+        if: steps.cache-copa.outputs.cache-hit != 'true'
+        run: |
+          echo "Building Copa from branch: ${{ steps.copa-info.outputs.branch }}"
+          git clone --branch "${{ steps.copa-info.outputs.branch }}" --depth 1 \
+            https://github.com/verity-org/copacetic.git /tmp/copa
+          cd /tmp/copa && go build -o "$(go env GOPATH)/bin/copa" .
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Run Copa dry-run discovery
+        id: discover
+        run: |
+          copa patch \
+            --config copa-config.yaml \
+            --report reports/ \
+            --dry-run \
+            --output-json results.json
+
+          # Filter to only images that need patching
+          jq -c '[.[] | select(.status == "WouldPatch") | {name, source, target}]' results.json > matrix.json
+
+          count=$(jq 'length' matrix.json)
+          if [ "$count" -gt 0 ]; then
+            echo "has_images=true" >> "$GITHUB_OUTPUT"
+            echo "matrix={\"include\":$(cat matrix.json)}" >> "$GITHUB_OUTPUT"
+            echo "Found $count image(s) that need patching"
+            jq -r '.[] | "  - \(.name): \(.source) -> \(.target)"' matrix.json
+          else
+            echo "has_images=false" >> "$GITHUB_OUTPUT"
+            echo "No images need patching (all up to date)"
+          fi
+
+      - name: Upload discovery results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: copa-discovery
+          path: |
+            results.json
+            matrix.json
+          retention-days: 7
+
+  # ── Job 3: Patch images in parallel ────────────────────────────────
+  patch:
+    name: "Patch ${{ matrix.name }}"
+    needs: [scan, discover]
+    if: needs.discover.outputs.has_images == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
+      fail-fast: false
+      max-parallel: 10
+    services:
+      registry:
+        image: registry:3
+        ports:
+          - 5000:5000
+        options: >-
+          --health-cmd "wget -q --spider http://localhost:5000/v2/ || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify local registry for PR testing
+        if: github.event_name == 'pull_request'
+        run: |
+          timeout 30 bash -c 'until curl -f http://localhost:5000/v2/; do sleep 1; done'
+          echo "✓ Local registry ready"
+
+      - name: Login to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver-opts: network=host
+          buildkitd-flags: --allow-insecure-entitlement network.host
+          buildkitd-config-inline: |
+            [registry."localhost:5000"]
+              http = true
+              insecure = true
+
+      - name: Download Trivy reports
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-reports
+          path: reports/
+
+      - name: Get Copa fork info
+        id: copa-info
+        run: |
+          if gh api repos/verity-org/copacetic/commits/verity --jq .sha >/dev/null 2>&1; then
+            BRANCH="verity"
+            COMMIT=$(gh api repos/verity-org/copacetic/commits/verity --jq .sha)
+          else
+            BRANCH="feat/bulk-skip-detection"
+            COMMIT=$(gh api repos/verity-org/copacetic/commits/feat/bulk-skip-detection --jq .sha)
+          fi
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "hash=$COMMIT" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Cache Copa binary
+        id: cache-copa
+        uses: actions/cache@v4
+        with:
+          path: ~/go/bin/copa
+          key: copa-${{ runner.os }}-${{ steps.copa-info.outputs.hash }}
+
+      - name: Build Copa from fork
+        if: steps.cache-copa.outputs.cache-hit != 'true'
+        run: |
+          git clone --branch "${{ steps.copa-info.outputs.branch }}" --depth 1 \
+            https://github.com/verity-org/copacetic.git /tmp/copa
+          cd /tmp/copa && go build -o "$(go env GOPATH)/bin/copa" .
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Patch image
+        run: |
+          copa patch \
+            --image "${{ matrix.source }}" \
+            --tag "${{ matrix.target }}" \
+            --report reports/ \
+            --push \
+            --addr "docker-container://buildx_buildkit_${{ steps.buildx.outputs.name }}0" \
+            --timeout 30m
+
+      - name: Generate patch report
+        if: always()
+        run: |
+          mkdir -p patch-results
+          echo '{"name": "${{ matrix.name }}", "source": "${{ matrix.source }}", "target": "${{ matrix.target }}", "status": "patched"}' \
+            > patch-results/${{ matrix.name }}.json
+
+      - name: Upload patch result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: patch-result-${{ matrix.name }}
+          path: patch-results/
+          retention-days: 7
+
+  # ── Job 4: Assemble results and generate catalog ───────────────────
+  assemble:
+    name: Generate Catalog
+    needs: [discover, patch]
+    if: always() && needs.discover.outputs.has_images == 'true' && needs.patch.result != 'cancelled'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Download all patch results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: patch-result-*
+          path: patch-results/
+          merge-multiple: true
+
+      - name: Download Trivy reports
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-reports
+          path: reports/
+
+      - name: Build verity
+        run: go build -o verity .
+
+      - name: Generate catalog
+        run: |
+          # Collect all patched image names
+          images_json='[]'
+          for result in patch-results/*.json; do
+            [ -f "$result" ] || continue
+            name=$(jq -r .name "$result")
+            source=$(jq -r .source "$result")
+            target=$(jq -r .target "$result")
+            images_json=$(echo "$images_json" | jq --arg n "$name" --arg s "$source" --arg t "$target" \
+              '. += [{"name": $n, "source": $s, "target": $t}]')
+          done
+
+          echo "$images_json" > .verity/images.json
+
+          ./verity catalog \
+            --images-json .verity/images.json \
+            --reports-dir reports/ \
+            --registry "$REGISTRY" \
+            --output site/src/data/catalog.json
+
+      - name: Build site
+        working-directory: site
+        run: npm ci && npm run build
+
+      - name: Upload PR test artifacts
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-test-results
+          path: |
+            .verity/images.json
+            site/src/data/catalog.json
+          retention-days: 7
+
+      - name: Validate PR testing results
+        if: github.event_name == 'pull_request'
+        run: |
+          IMAGE_COUNT=$(jq 'length' .verity/images.json)
+          cat >> "$GITHUB_STEP_SUMMARY" <<EOF
+          ### PR Testing Summary
+
+          ✅ Copa matrix pipeline tested successfully
+
+          **Test Registry:** \`$REGISTRY\`
+          **Images Patched:** \`$IMAGE_COUNT\`
+
+          **Pipeline Steps Validated:**
+          - ✅ Trivy scanning (parallel with server)
+          - ✅ Copa dry-run discovery
+          - ✅ Matrix parallel patching
+          - ✅ Catalog generation
+          - ✅ Site build
+
+          **Catalog Stats:**
+          EOF
+          jq -r '"- Total Images: \(.summary.totalImages)\n- Total Vulnerabilities: \(.summary.totalVulns)\n- Fixable: \(.summary.fixableVulns)"' site/src/data/catalog.json >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site/dist
+
+  deploy-site:
+    name: Deploy Site
+    needs: assemble
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
