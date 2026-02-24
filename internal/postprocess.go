@@ -152,7 +152,9 @@ func generateMatrix(ctx context.Context, results []CopaOutputResult, registryPre
 		if !skipDigest {
 			digest, err := getImageDigest(ctx, patchedRef)
 			if err != nil {
-				return nil, fmt.Errorf("getting digest for %s: %w", patchedRef, err)
+				// Be resilient: skip images whose digest cannot be retrieved, but continue processing others
+				fmt.Fprintf(os.Stderr, "Warning: skipping image %s because digest lookup failed: %v\n", patchedRef, err)
+				continue
 			}
 			// Use digest for signing/attestation
 			registry, repository, _ := ParseImageRef(patchedRef)

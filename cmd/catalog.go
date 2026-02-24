@@ -30,9 +30,8 @@ var CatalogCommand = &cli.Command{
 			Usage: "target registry for patched images (e.g. ghcr.io/verity-org)",
 		},
 		&cli.StringFlag{
-			Name:     "reports-dir",
-			Required: true,
-			Usage:    "directory containing Trivy vulnerability reports",
+			Name:  "reports-dir",
+			Usage: "directory containing Trivy vulnerability reports (optional, images without reports show zero vulns)",
 		},
 	},
 	Action: runCatalog,

@@ -170,6 +170,8 @@ func GenerateSiteDataFromJSON(imagesJSON, reportsDir, registry, outputPath strin
 		if entry.Report != "" && fileExists(entry.Report) {
 			if report, err := parseTrivyReportFull(entry.Report); err == nil {
 				si = buildSiteImage(sanitizedRef, originalRef, patchedRef, "", report)
+			} else {
+				fmt.Fprintf(os.Stderr, "Warning: failed to parse Trivy report %s: %v\n", entry.Report, err)
 			}
 		}
 
