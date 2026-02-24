@@ -7,14 +7,7 @@ target:
   registry: "ghcr.io/verity-org"
 
 images:
-  # Start with core images - expand list as needed
-  - name: "grafana"
-    image: "docker.io/grafana/grafana"
-    tags:
-      strategy: "pattern"
-      pattern: '^\d+\.\d+\.\d+$'
-      maxTags: 3
-
+  # Copa-compatible images (Debian/Ubuntu-based)
   - name: "nginx"
     image: "docker.io/library/nginx"
     tags:
@@ -22,9 +15,45 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "prometheus"
-    image: "quay.io/prometheus/prometheus"
+  - name: "rabbitmq"
+    image: "docker.io/library/rabbitmq"
+    tags:
+      strategy: "pattern"
+      pattern: '^\d+\.\d+\.\d+$'
+      maxTags: 3
+
+  - name: "vector-debian"
+    image: "docker.io/timberio/vector"
+    tags:
+      strategy: "pattern"
+      pattern: '^\d+\.\d+\.\d+-debian$'
+      maxTags: 3
+
+  - name: "redis"
+    image: "quay.io/opstree/redis"
     tags:
       strategy: "pattern"
       pattern: '^v\d+\.\d+\.\d+$'
+      maxTags: 3
+
+  - name: "redis-sentinel"
+    image: "quay.io/opstree/redis-sentinel"
+    tags:
+      strategy: "pattern"
+      pattern: '^v\d+\.\d+\.\d+$'
+      maxTags: 3
+
+  # Ubuntu-based variants (Copa-compatible)
+  - name: "grafana-ubuntu"
+    image: "docker.io/grafana/grafana"
+    tags:
+      strategy: "pattern"
+      pattern: '^\d+\.\d+\.\d+-ubuntu$'
+      maxTags: 3
+
+  - name: "prometheus-ubuntu"
+    image: "docker.io/ubuntu/prometheus"
+    tags:
+      strategy: "pattern"
+      pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3

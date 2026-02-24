@@ -121,6 +121,14 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # v3
 
+      - name: Configure Copa registry for PR testing
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "Setting Copa target registry to $REGISTRY for PR testing"
+          yq eval '.target.registry = env(REGISTRY)' -i copa-config.yaml
+          echo "Copa config target registry:"
+          yq eval '.target.registry' copa-config.yaml
+
       - name: Copa bulk patch
         run: |
           copa patch \
