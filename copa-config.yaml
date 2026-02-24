@@ -23,10 +23,17 @@ images:
       maxTags: 3
 
   - name: "vector-debian"
-    image: "docker.io/timberio/vector"
+    image: "docker.io/vectordotdev/vector"
     tags:
       strategy: "pattern"
       pattern: '^\d+\.\d+\.\d+-debian$'
+      maxTags: 3
+
+  - name: "vector-alpine"
+    image: "docker.io/vectordotdev/vector"
+    tags:
+      strategy: "pattern"
+      pattern: '^\d+\.\d+\.\d+-alpine$'
       maxTags: 3
 
   - name: "redis"
@@ -43,7 +50,6 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  # Ubuntu-based variants (Copa-compatible)
   - name: "grafana-ubuntu"
     image: "docker.io/grafana/grafana"
     tags:
@@ -51,9 +57,9 @@ images:
       pattern: '^\d+\.\d+\.\d+-ubuntu$'
       maxTags: 3
 
-  - name: "prometheus-ubuntu"
-    image: "docker.io/ubuntu/prometheus"
+  - name: "prometheus-distroless"
+    image: "quay.io/prometheus/prometheus"
     tags:
       strategy: "pattern"
-      pattern: '^\d+\.\d+\.\d+$'
+      pattern: '^\d+\.\d+\.\d+-distroless$'
       maxTags: 3
