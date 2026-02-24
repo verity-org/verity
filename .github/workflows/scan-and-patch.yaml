@@ -98,7 +98,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Verify Copa installation
-        run: copa version
+        run: copa --version
 
       - name: Install tools
         run: |
