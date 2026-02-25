@@ -156,19 +156,13 @@ jobs:
           echo "Copa config target registry:"
           yq eval '.target.registry' copa-config.yaml
 
-      - name: Get Copa fork branch and commit
-        id: copa-info
+      - name: Get Copa commit hash
+        id: copa-hash
         run: |
-          if gh api repos/verity-org/copacetic/commits/verity --jq .sha >/dev/null 2>&1; then
-            BRANCH="verity"
-            COMMIT=$(gh api repos/verity-org/copacetic/commits/verity --jq .sha)
-          else
-            BRANCH="feat/bulk-skip-detection"
-            COMMIT=$(gh api repos/verity-org/copacetic/commits/feat/bulk-skip-detection --jq .sha)
-          fi
-          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          COMMIT=$(gh api repos/verity-org/copacetic/commits/verity --jq .sha 2>/dev/null || \
+                   gh api repos/verity-org/copacetic/commits/feat/bulk-skip-detection --jq .sha)
           echo "hash=$COMMIT" >> "$GITHUB_OUTPUT"
-          echo "Using Copa fork branch: $BRANCH (commit: $COMMIT)"
+          echo "Copa commit: $COMMIT"
         env:
           GH_TOKEN: ${{ github.token }}
 
@@ -177,15 +171,17 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/go/bin/copa
-          key: copa-${{ runner.os }}-${{ steps.copa-info.outputs.hash }}
+          key: copa-${{ runner.os }}-${{ steps.copa-hash.outputs.hash }}
 
       - name: Build Copa from fork
         if: steps.cache-copa.outputs.cache-hit != 'true'
         run: |
-          echo "Building Copa from branch: ${{ steps.copa-info.outputs.branch }}"
-          git clone --branch "${{ steps.copa-info.outputs.branch }}" --depth 1 \
-            https://github.com/verity-org/copacetic.git /tmp/copa
-          cd /tmp/copa && go build -o "$(go env GOPATH)/bin/copa" .
+          echo "Building Copa from commit: ${{ steps.copa-hash.outputs.hash }}"
+          git clone --depth 1 https://github.com/verity-org/copacetic.git /tmp/copa
+          cd /tmp/copa
+          git fetch --depth 1 origin ${{ steps.copa-hash.outputs.hash }}
+          git checkout ${{ steps.copa-hash.outputs.hash }}
+          go build -o "$(go env GOPATH)/bin/copa" .
         env:
           GH_TOKEN: ${{ github.token }}
 
