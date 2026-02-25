@@ -7,7 +7,7 @@ target:
   registry: "ghcr.io/verity-org"
 
 images:
-  # Copa-compatible images (Debian/Ubuntu-based)
+  # Copa-compatible images (8 total across Debian/Ubuntu/Alpine/distroless bases)
   # Using mirror.gcr.io to avoid Docker Hub rate limits
   # Only patch amd64 and arm64; other platforms preserved but not patched
   - name: "nginx"
