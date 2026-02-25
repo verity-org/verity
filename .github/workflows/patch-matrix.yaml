@@ -165,6 +165,18 @@ jobs:
         with:
           go-version-file: go.mod
 
+      - name: Login to ECR ephemeral registry
+        run: |
+          # Extract ECR registry from RUNS_ON_ECR_CACHE
+          REGISTRY=$(echo "$RUNS_ON_ECR_CACHE" | cut -d/ -f1)
+          REGION=$(echo "$REGISTRY" | cut -d. -f4)
+
+          # Login to ECR using instance profile credentials
+          aws ecr get-login-password --region "$REGION" | \
+            docker login --username AWS --password-stdin "$REGISTRY"
+
+          echo "✓ Logged in to ECR: $REGISTRY"
+
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v3
@@ -227,6 +239,18 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: runs-on/action@v2
+
+      - name: Login to ECR ephemeral registry
+        run: |
+          # Extract ECR registry from RUNS_ON_ECR_CACHE
+          REGISTRY=$(echo "$RUNS_ON_ECR_CACHE" | cut -d/ -f1)
+          REGION=$(echo "$REGISTRY" | cut -d. -f4)
+
+          # Login to ECR using instance profile credentials
+          aws ecr get-login-password --region "$REGION" | \
+            docker login --username AWS --password-stdin "$REGISTRY"
+
+          echo "✓ Logged in to ECR: $REGISTRY"
 
       - name: Login to GHCR
         if: github.event_name != 'pull_request'
