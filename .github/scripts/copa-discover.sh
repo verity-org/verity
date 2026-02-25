@@ -15,15 +15,30 @@ copa patch \
   --dry-run \
   --output-json results.json
 
-# Filter to only images that need patching
-jq -c '[.[] | select(.status == "WouldPatch") | {name, source, target}]' results.json > matrix.json
+# Filter to only images that need patching and expand with platforms
+PLATFORMS="${PLATFORMS:-linux/amd64,linux/arm64}"
+
+# Create platform-expanded matrix
+jq -c --arg platforms "$PLATFORMS" '[
+  .[] | select(.status == "WouldPatch") |
+  . as $img |
+  ($platforms | split(",")) | .[] |
+  {
+    name: ($img.name + "-" + (. | split("/")[1])),
+    image: $img.name,
+    source: $img.source,
+    target: $img.target,
+    platform: .,
+    runner: (if . == "linux/arm64" then "2cpu-linux-arm64" else "2cpu-linux-x64" end)
+  }
+]' results.json > matrix.json
 
 count=$(jq 'length' matrix.json)
 if [ "$count" -gt 0 ]; then
   echo "has_images=true" >> "$OUTPUT_FILE"
   echo "matrix={\"include\":$(cat matrix.json)}" >> "$OUTPUT_FILE"
-  echo "✓ Found $count image(s) that need patching:"
-  jq -r '.[] | "  - \(.name): \(.source) -> \(.target)"' matrix.json
+  echo "✓ Found $count platform/image combination(s) that need patching:"
+  jq -r '.[] | "  - \(.name): \(.source) (\(.platform))"' matrix.json
 else
   echo "has_images=false" >> "$OUTPUT_FILE"
   echo "✓ No images need patching (all up to date)"

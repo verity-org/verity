@@ -3,8 +3,9 @@ name: Patch Images (Matrix)
 # Matrix-based patching workflow for parallel execution:
 # 1. Scan: Generate fresh Trivy reports using Trivy server
 # 2. Discover: Copa dry-run with skip detection to find what needs patching
-# 3. Patch: Parallel matrix jobs patch individual images
-# 4. Assemble: Collect results and generate catalog
+# 3. Patch: Parallel matrix jobs patch individual images per platform (native builds)
+# 4. Combine: Create multi-platform manifest lists
+# 5. Assemble: Collect results and generate catalog
 
 on:
   schedule:
@@ -22,38 +23,25 @@ permissions:
   id-token: write
 
 env:
-  # Use local registry for PRs, production registry for main
-  REGISTRY: ${{ github.event_name == 'pull_request' && 'localhost:5000/verity-test' || 'ghcr.io/verity-org' }}
+  # Target registry for final patched images
+  TARGET_REGISTRY: ghcr.io/verity-org
+  # Platforms to build: amd64 + arm64 for production, amd64 only for PRs
+  PLATFORMS: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
 
 jobs:
   # ── Job 1: Scan all images with Trivy in parallel ──────────────────
   scan:
     name: Scan Images
-    runs-on: ubuntu-latest
-    services:
-      # Local registry for PR testing
-      registry:
-        image: registry:3
-        ports:
-          - 5000:5000
-        options: >-
-          --health-cmd "wget -q --spider http://localhost:5000/v2/ || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    runs-on: runs-on,runner=2cpu-linux-x64,run-id=${{ github.run_id }},extras=s3-cache
 
     steps:
       - uses: actions/checkout@v4
 
+      - uses: runs-on/action@v2
+
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
-
-      - name: Verify local registry for PR testing
-        if: github.event_name == 'pull_request'
-        run: |
-          timeout 30 bash -c 'until curl -f http://localhost:5000/v2/; do sleep 1; done'
-          echo "✓ Local registry ready at localhost:5000"
 
       - name: Login to GHCR
         if: github.event_name != 'pull_request'
@@ -101,7 +89,7 @@ jobs:
           else
             ./verity scan \
               --config copa-config.yaml \
-              --target-registry "$REGISTRY" \
+              --target-registry "$TARGET_REGISTRY" \
               --trivy-server http://localhost:4954 \
               --parallel 10 \
               --output reports/
@@ -118,55 +106,25 @@ jobs:
   discover:
     name: Discover Images to Patch
     needs: scan
-    runs-on: ubuntu-latest
+    runs-on: runs-on,runner=2cpu-linux-x64,run-id=${{ github.run_id }},extras=s3-cache
     outputs:
       matrix: ${{ steps.discover.outputs.matrix }}
       has_images: ${{ steps.discover.outputs.has_images }}
-    services:
-      registry:
-        image: registry:3
-        ports:
-          - 5000:5000
-        options: >-
-          --health-cmd "wget -q --spider http://localhost:5000/v2/ || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - uses: actions/checkout@v4
 
+      - uses: runs-on/action@v2
+
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
-
-      - name: Verify local registry for PR testing
-        if: github.event_name == 'pull_request'
-        run: |
-          timeout 30 bash -c 'until curl -f http://localhost:5000/v2/; do sleep 1; done'
-          echo "✓ Local registry ready"
-
-      - name: Login to GHCR
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Download Trivy reports
         uses: actions/download-artifact@v4
         with:
           name: trivy-reports
           path: reports/
-
-      - name: Configure Copa registry for PR testing
-        if: github.event_name == 'pull_request'
-        run: |
-          echo "Setting Copa target registry to $REGISTRY for PR testing"
-          yq eval '.target.registry = env(REGISTRY)' -i copa-config.yaml
-          echo "Copa config target registry:"
-          yq eval '.target.registry' copa-config.yaml
 
       - name: Setup binaries
         uses: ./.github/actions/setup-binaries
@@ -187,50 +145,25 @@ jobs:
             matrix.json
           retention-days: 7
 
-  # ── Job 3: Patch images in parallel ────────────────────────────────
+  # ── Job 3: Patch images in parallel per platform ───────────────────
   patch:
-    name: "Patch ${{ matrix.source }}"
+    name: "Patch ${{ matrix.name }}"
     needs: [scan, discover]
     if: needs.discover.outputs.has_images == 'true'
-    runs-on: ubuntu-latest
+    runs-on: runs-on,runner=${{ matrix.runner }},run-id=${{ github.run_id }},extras=ecr-cache+s3-cache
     strategy:
       matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
       fail-fast: false
       max-parallel: 10
-    services:
-      registry:
-        image: registry:3
-        ports:
-          - 5000:5000
-        options: >-
-          --health-cmd "wget -q --spider http://localhost:5000/v2/ || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - uses: actions/checkout@v4
 
+      - uses: runs-on/action@v2
+
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
-
-      - name: Verify local registry for PR testing
-        if: github.event_name == 'pull_request'
-        run: |
-          timeout 30 bash -c 'until curl -f http://localhost:5000/v2/; do sleep 1; done'
-          echo "✓ Local registry ready"
-
-      - name: Login to GHCR
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         id: buildx
@@ -238,10 +171,6 @@ jobs:
         with:
           driver-opts: network=host
           buildkitd-flags: --allow-insecure-entitlement network.host
-          buildkitd-config-inline: |
-            [registry."localhost:5000"]
-              http = true
-              insecure = true
 
       - name: Download Trivy reports
         uses: actions/download-artifact@v4
@@ -256,19 +185,28 @@ jobs:
 
       - name: Patch image
         run: |
+          # Extract platform arch for tag suffix (linux/amd64 -> amd64)
+          PLATFORM_ARCH=$(echo "${{ matrix.platform }}" | cut -d/ -f2)
+
+          # Push platform-specific image to ephemeral registry for combining
+          PLATFORM_TAG="${RUNS_ON_ECR_CACHE}/${{ matrix.image }}:patched-${PLATFORM_ARCH}"
+
+          # Copa will patch the native platform of this runner (amd64 or arm64)
           copa patch \
             --image "${{ matrix.source }}" \
-            --tag "${{ matrix.target }}" \
+            --tag "$PLATFORM_TAG" \
             --report reports/ \
             --push \
             --addr "docker-container://buildx_buildkit_${{ steps.buildx.outputs.name }}0" \
             --timeout 30m
 
+          echo "Patched platform-specific image: $PLATFORM_TAG"
+
       - name: Generate patch report
         if: always()
         run: |
           mkdir -p patch-results
-          echo '{"name": "${{ matrix.name }}", "source": "${{ matrix.source }}", "target": "${{ matrix.target }}", "status": "patched"}' \
+          echo '{"name": "${{ matrix.name }}", "image": "${{ matrix.image }}", "source": "${{ matrix.source }}", "target": "${{ matrix.target }}", "platform": "${{ matrix.platform }}", "status": "patched"}' \
             > patch-results/${{ matrix.name }}.json
 
       - name: Upload patch result
@@ -279,14 +217,92 @@ jobs:
           path: patch-results/
           retention-days: 7
 
-  # ── Job 4: Assemble results and generate catalog ───────────────────
-  assemble:
-    name: Generate Catalog
+  # ── Job 4: Combine platform images into manifest lists ─────────────
+  combine:
+    name: Create Manifest Lists
     needs: [discover, patch]
-    if: always() && needs.discover.outputs.has_images == 'true' && needs.patch.result != 'cancelled'
-    runs-on: ubuntu-latest
+    if: needs.discover.outputs.has_images == 'true' && needs.patch.result == 'success'
+    runs-on: runs-on,runner=2cpu-linux-x64,run-id=${{ github.run_id }},extras=ecr-cache
     steps:
       - uses: actions/checkout@v4
+
+      - uses: runs-on/action@v2
+
+      - name: Login to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download patch results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: patch-result-*
+          path: patch-results/
+          merge-multiple: true
+
+      - name: Create manifest lists
+        run: |
+          # Collect all patched images
+          cat patch-results/*.json | jq -s '.' > all-patches.json
+
+          # Get unique images (without platform suffix)
+          IMAGES=$(jq -r '.[].image' all-patches.json | sort -u)
+
+          for IMAGE in $IMAGES; do
+            echo "Creating manifest list for $IMAGE..."
+
+            # Build list of platform-specific source tags
+            SOURCE_TAGS=$(jq -r --arg img "$IMAGE" \
+              'map(select(.image == $img)) |
+               .[] |
+               (.platform | split("/")[1]) as $arch |
+               "'"${RUNS_ON_ECR_CACHE}"'/" + $img + ":patched-" + $arch' \
+              all-patches.json)
+
+            # Create manifest list
+            TARGET_TAG="${TARGET_REGISTRY}/${IMAGE}:patched"
+            # shellcheck disable=SC2086
+            docker manifest create "$TARGET_TAG" $SOURCE_TAGS
+
+            # Push to GHCR in production, skip in PRs (just validate creation works)
+            if [ "${{ github.event_name }}" != "pull_request" ]; then
+              docker manifest push "$TARGET_TAG"
+              echo "✓ Pushed manifest list: $TARGET_TAG"
+            else
+              docker manifest inspect "$TARGET_TAG"
+              echo "✓ Created manifest list (PR test, not pushed): $TARGET_TAG"
+            fi
+          done
+
+      - name: Generate manifest report
+        run: |
+          mkdir -p manifest-results
+          # Record which images had manifest lists created
+          jq -r '.[].image' patch-results/*.json | sort -u | while read -r IMAGE; do
+            echo "{\"image\": \"$IMAGE\", \"manifest\": \"${TARGET_REGISTRY}/${IMAGE}:patched\"}" \
+              > "manifest-results/${IMAGE}.json"
+          done
+
+      - name: Upload manifest results
+        uses: actions/upload-artifact@v4
+        with:
+          name: manifest-results
+          path: manifest-results/
+          retention-days: 7
+
+  # ── Job 5: Assemble results and generate catalog ───────────────────
+  assemble:
+    name: Generate Catalog
+    needs: [discover, patch, combine]
+    if: always() && needs.discover.outputs.has_images == 'true' && needs.patch.result != 'cancelled'
+    runs-on: runs-on,runner=2cpu-linux-x64,run-id=${{ github.run_id }},extras=s3-cache
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: runs-on/action@v2
 
       - name: Setup binaries
         uses: ./.github/actions/setup-binaries
@@ -307,7 +323,7 @@ jobs:
           path: reports/
 
       - name: Generate catalog
-        run: .github/scripts/generate-catalog.sh patch-results/ reports/ "$REGISTRY" site/src/data/catalog.json
+        run: .github/scripts/generate-catalog.sh patch-results/ reports/ "$TARGET_REGISTRY" site/src/data/catalog.json
 
       - name: Build site
         working-directory: site
@@ -325,7 +341,7 @@ jobs:
 
       - name: Validate PR testing results
         if: github.event_name == 'pull_request'
-        run: .github/scripts/pr-summary.sh "$REGISTRY" .verity/images.json site/src/data/catalog.json
+        run: .github/scripts/pr-summary.sh "$TARGET_REGISTRY" .verity/images.json site/src/data/catalog.json
 
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
