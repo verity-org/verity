@@ -40,7 +40,7 @@ runs:
       uses: actions/cache/restore@v4
       with:
         path: ~/go/bin/copa
-        key: copa-${{ runner.os }}-${{ steps.copa-hash.outputs.hash }}
+        key: copa-${{ runner.os }}-${{ runner.arch }}-${{ steps.copa-hash.outputs.hash }}
 
     - name: Download Copa artifact
       if: steps.copa-cache.outputs.cache-hit != 'true'
@@ -48,7 +48,7 @@ runs:
       uses: actions/download-artifact@v4
       continue-on-error: true
       with:
-        name: copa-binary
+        name: copa-binary-${{ runner.arch }}-${{ steps.copa-hash.outputs.hash }}
         path: ~/go/bin/
 
     - name: Build Copa from source
@@ -71,9 +71,10 @@ runs:
 
     - name: Upload Copa artifact
       if: steps.copa-cache.outputs.cache-hit != 'true' && steps.copa-artifact.outcome == 'failure'
+      continue-on-error: true
       uses: actions/upload-artifact@v4
       with:
-        name: copa-binary
+        name: copa-binary-${{ runner.arch }}-${{ steps.copa-hash.outputs.hash }}
         path: ~/go/bin/copa
         retention-days: 1
 
@@ -82,7 +83,7 @@ runs:
       uses: actions/cache/save@v4
       with:
         path: ~/go/bin/copa
-        key: copa-${{ runner.os }}-${{ steps.copa-hash.outputs.hash }}
+        key: copa-${{ runner.os }}-${{ runner.arch }}-${{ steps.copa-hash.outputs.hash }}
 
     # ── Verity Setup ──────────────────────────────────────────────────────
     - name: Get Verity version
@@ -98,7 +99,7 @@ runs:
       uses: actions/cache/restore@v4
       with:
         path: ./verity
-        key: verity-${{ runner.os }}-${{ steps.verity-version.outputs.version }}
+        key: verity-${{ runner.os }}-${{ runner.arch }}-${{ steps.verity-version.outputs.version }}
 
     - name: Download Verity artifact
       if: steps.verity-cache.outputs.cache-hit != 'true'
@@ -106,7 +107,7 @@ runs:
       uses: actions/download-artifact@v4
       continue-on-error: true
       with:
-        name: verity-binary
+        name: verity-binary-${{ runner.arch }}-${{ steps.verity-version.outputs.version }}
         path: .
 
     - name: Build Verity from source
@@ -121,9 +122,10 @@ runs:
 
     - name: Upload Verity artifact
       if: steps.verity-cache.outputs.cache-hit != 'true' && steps.verity-artifact.outcome == 'failure'
+      continue-on-error: true
       uses: actions/upload-artifact@v4
       with:
-        name: verity-binary
+        name: verity-binary-${{ runner.arch }}-${{ steps.verity-version.outputs.version }}
         path: verity
         retention-days: 1
 
@@ -132,4 +134,4 @@ runs:
       uses: actions/cache/save@v4
       with:
         path: ./verity
-        key: verity-${{ runner.os }}-${{ steps.verity-version.outputs.version }}
+        key: verity-${{ runner.os }}-${{ runner.arch }}-${{ steps.verity-version.outputs.version }}

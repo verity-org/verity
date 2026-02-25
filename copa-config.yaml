@@ -27,7 +27,7 @@ images:
       maxTags: 3
 
   - name: "vector-debian"
-    image: "docker.io/vectordotdev/vector"
+    image: "ghcr.io/vectordotdev/vector"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
       strategy: "pattern"
@@ -35,7 +35,7 @@ images:
       maxTags: 3
 
   - name: "vector-alpine"
-    image: "docker.io/vectordotdev/vector"
+    image: "ghcr.io/vectordotdev/vector"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
       strategy: "pattern"
@@ -72,4 +72,12 @@ images:
     tags:
       strategy: "pattern"
       pattern: '^\d+\.\d+\.\d+-distroless$'
+      maxTags: 3
+
+  - name: "k8s-sidecar"
+    image: "ghcr.io/kiwigrid/k8s-sidecar"
+    platforms: ["linux/amd64", "linux/arm64"]
+    tags:
+      strategy: "pattern"
+      pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
