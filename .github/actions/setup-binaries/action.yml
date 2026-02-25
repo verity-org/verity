@@ -71,6 +71,7 @@ runs:
 
     - name: Upload Copa artifact
       if: steps.copa-cache.outputs.cache-hit != 'true' && steps.copa-artifact.outcome == 'failure'
+      continue-on-error: true
       uses: actions/upload-artifact@v4
       with:
         name: copa-binary-${{ runner.arch }}-${{ steps.copa-hash.outputs.hash }}
@@ -121,6 +122,7 @@ runs:
 
     - name: Upload Verity artifact
       if: steps.verity-cache.outputs.cache-hit != 'true' && steps.verity-artifact.outcome == 'failure'
+      continue-on-error: true
       uses: actions/upload-artifact@v4
       with:
         name: verity-binary-${{ runner.arch }}-${{ steps.verity-version.outputs.version }}
