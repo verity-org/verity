@@ -271,7 +271,8 @@ func findTagsByLatest(repo name.Repository, spec *ImageSpec) ([]string, error) {
 	filteredTags := excludeTags(allTags, spec.Tags.Exclude)
 	versions := []*semver.Version{}
 	for _, t := range filteredTags {
-		if v, err := semver.NewVersion(t); err == nil && v.Prerelease() == "" {
+		// Allow prerelease versions (e.g., "1.2.3-ubuntu") since pattern matching already filters
+		if v, err := semver.NewVersion(t); err == nil {
 			versions = append(versions, v)
 		}
 	}
@@ -305,7 +306,8 @@ func findTagsByPattern(repo name.Repository, spec *ImageSpec) ([]string, error) 
 	matchingTags = excludeTags(matchingTags, spec.Tags.Exclude)
 	versions := []*semver.Version{}
 	for _, t := range matchingTags {
-		if v, err := semver.NewVersion(t); err == nil && v.Prerelease() == "" {
+		// Allow prerelease versions (e.g., "1.2.3-ubuntu") since pattern matching already filters
+		if v, err := semver.NewVersion(t); err == nil {
 			versions = append(versions, v)
 		}
 	}
