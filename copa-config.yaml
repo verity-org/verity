@@ -8,29 +8,30 @@ target:
 
 images:
   # Copa-compatible images (Debian/Ubuntu-based)
+  # Using mirror.gcr.io to avoid Docker Hub rate limits
   - name: "nginx"
-    image: "docker.io/library/nginx"
+    image: "mirror.gcr.io/library/nginx"
     tags:
       strategy: "pattern"
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
   - name: "rabbitmq"
-    image: "docker.io/library/rabbitmq"
+    image: "mirror.gcr.io/library/rabbitmq"
     tags:
       strategy: "pattern"
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
   - name: "vector-debian"
-    image: "docker.io/vectordotdev/vector"
+    image: "mirror.gcr.io/vectordotdev/vector"
     tags:
       strategy: "pattern"
       pattern: '^\d+\.\d+\.\d+-debian$'
       maxTags: 3
 
   - name: "vector-alpine"
-    image: "docker.io/vectordotdev/vector"
+    image: "mirror.gcr.io/vectordotdev/vector"
     tags:
       strategy: "pattern"
       pattern: '^\d+\.\d+\.\d+-alpine$'
@@ -51,7 +52,7 @@ images:
       maxTags: 3
 
   - name: "grafana-ubuntu"
-    image: "docker.io/grafana/grafana"
+    image: "mirror.gcr.io/grafana/grafana"
     tags:
       strategy: "pattern"
       pattern: '^\d+\.\d+\.\d+-ubuntu$'
