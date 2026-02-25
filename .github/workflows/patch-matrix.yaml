@@ -25,26 +25,28 @@ permissions:
 env:
   # Target registry for final patched images
   TARGET_REGISTRY: ghcr.io/verity-org
+  # GHCR staging registry for intermediate platform-specific images
+  STAGING_REGISTRY: ghcr.io/verity-org/cache
   # Platforms to build: always test both amd64 + arm64 (even in PRs) to catch platform-specific issues early
   PLATFORMS: linux/amd64,linux/arm64
 
 jobs:
-  # ── Job 1: Scan all images with Trivy in parallel ──────────────────
+  # ── Job 1: Scan images and discover what needs patching ────────────
   scan:
-    name: Scan Images
-    runs-on: runs-on,runner=4cpu-linux-x64,run-id=${{ github.run_id }},extras=s3-cache
+    name: Scan & Discover
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.discover.outputs.matrix }}
+      has_images: ${{ steps.discover.outputs.has_images }}
 
     steps:
       - uses: actions/checkout@v4
-
-      - uses: runs-on/action@v2
 
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
 
       - name: Login to GHCR
-        if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -78,132 +80,73 @@ jobs:
 
       - name: Scan all images with Trivy
         run: |
-          # In PRs, only scan source images (patched images don't exist yet)
-          # In production, scan both source and patched images
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            ./verity scan \
-              --config copa-config.yaml \
-              --trivy-server http://localhost:4954 \
-              --parallel 10 \
-              --output reports/
-          else
-            ./verity scan \
-              --config copa-config.yaml \
-              --target-registry "$TARGET_REGISTRY" \
-              --trivy-server http://localhost:4954 \
-              --parallel 10 \
-              --output reports/
-          fi
-
-      - name: Upload Trivy reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: trivy-reports
-          path: reports/
-          retention-days: 30
-
-  # ── Job 2: Discover what needs patching with Copa dry-run ──────────
-  discover:
-    name: Discover Images to Patch
-    needs: scan
-    runs-on: runs-on,runner=4cpu-linux-x64,run-id=${{ github.run_id }},extras=s3-cache
-    outputs:
-      matrix: ${{ steps.discover.outputs.matrix }}
-      has_images: ${{ steps.discover.outputs.has_images }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: runs-on/action@v2
-
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: go.mod
-
-      - name: Download Trivy reports
-        uses: actions/download-artifact@v4
-        with:
-          name: trivy-reports
-          path: reports/
-
-      - name: Setup binaries
-        uses: ./.github/actions/setup-binaries
-        with:
-          github-token: ${{ github.token }}
+          # Scan both source and patched images to detect if re-patching is needed
+          # Copa's skip detection checks existing patched images for new vulnerabilities
+          ./verity scan \
+            --config copa-config.yaml \
+            --target-registry "$TARGET_REGISTRY" \
+            --trivy-server http://localhost:4954 \
+            --parallel 10 \
+            --output reports/
 
       - name: Run Copa dry-run discovery
         id: discover
         run: .github/scripts/copa-discover.sh copa-config.yaml reports/
 
-      - name: Upload discovery results
+      - name: Upload scan and discovery results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: copa-discovery
+          name: scan-results
           path: |
+            reports/
             results.json
             matrix.json
-          retention-days: 7
+          retention-days: 30
 
-  # ── Job 3: Patch images in parallel per platform ───────────────────
+  # ── Job 2: Patch images in parallel per platform ───────────────────
   patch:
     name: "Patch ${{ matrix.name }}"
-    needs: [scan, discover]
-    if: needs.discover.outputs.has_images == 'true'
-    runs-on: runs-on,runner=${{ matrix.runner }},run-id=${{ github.run_id }},extras=ecr-cache+s3-cache
+    needs: scan
+    if: needs.scan.outputs.has_images == 'true'
+    runs-on: ${{ matrix.runner }}
     strategy:
-      matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.scan.outputs.matrix) }}
       fail-fast: false
       max-parallel: 10
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: runs-on/action@v2
-
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
 
-      - name: Setup BuildKit with ECR credentials
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup BuildKit
         id: buildx-setup
         run: |
-          # Host uses IAM role to get ECR token
-          REGISTRY=$(echo "$RUNS_ON_ECR_CACHE" | cut -d/ -f1)
-          REGION=$(echo "$REGISTRY" | cut -d. -f4)
-
-          # Get ECR auth token
-          ECR_TOKEN=$(aws ecr get-login-password --region "$REGION")
-
-          # Create BuildKit config with ECR credentials
-          mkdir -p /tmp/buildkit-config
-          cat > /tmp/buildkit-config/buildkitd.toml <<EOF
-          [registry."${REGISTRY}"]
-            [registry."${REGISTRY}".auth]
-              username = "AWS"
-              secret = "${ECR_TOKEN}"
-          EOF
-
-          # Create buildx builder with config
+          # Create buildx builder (will inherit credentials from docker login)
           docker buildx create \
             --name copa-builder \
             --driver docker-container \
             --driver-opt network=host \
-            --config /tmp/buildkit-config/buildkitd.toml \
             --buildkitd-flags '--allow-insecure-entitlement network.host' \
             --use
 
           docker buildx inspect --bootstrap
 
-      - name: Get buildx name
-        id: buildx
-        run: echo "name=copa-builder" >> "$GITHUB_OUTPUT"
-
-      - name: Download Trivy reports
+      - name: Download scan results
         uses: actions/download-artifact@v4
         with:
-          name: trivy-reports
-          path: reports/
+          name: scan-results
+          path: .
 
       - name: Setup binaries
         uses: ./.github/actions/setup-binaries
@@ -218,9 +161,9 @@ jobs:
           # Extract source tag (e.g., nginx:1.29.4 -> 1.29.4)
           SOURCE_TAG=$(echo "${{ matrix.source }}" | cut -d: -f2)
 
-          # Ephemeral registry is a single repo with mutable tags
+          # GHCR staging is a single repo with mutable tags
           # Tag format: <image-name>-<version>-patched-<arch>
-          PLATFORM_TAG="${RUNS_ON_ECR_CACHE}:${{ matrix.image }}-${SOURCE_TAG}-patched-${PLATFORM_ARCH}"
+          PLATFORM_TAG="${STAGING_REGISTRY}:${{ matrix.image }}-${SOURCE_TAG}-patched-${PLATFORM_ARCH}"
 
           # Construct report filename (match how scan.go creates them)
           REPORT_FILE="reports/$(echo '${{ matrix.source }}' | sed 's/[\/:]/_/g').json"
@@ -228,13 +171,13 @@ jobs:
           echo "Using report file: $REPORT_FILE"
 
           # Copa will patch the native platform of this runner (amd64 or arm64)
-          # BuildKit restarted after ECR login to pick up credentials
+          # BuildKit configured with GHCR credentials to push
           copa patch \
             --image "${{ matrix.source }}" \
             --tag "$PLATFORM_TAG" \
             --report "$REPORT_FILE" \
             --push \
-            --addr "docker-container://buildx_buildkit_${{ steps.buildx.outputs.name }}0" \
+            --addr buildx://copa-builder \
             --timeout 30m
 
           echo "Patched platform-specific image: $PLATFORM_TAG"
@@ -254,31 +197,16 @@ jobs:
           path: patch-results/
           retention-days: 7
 
-  # ── Job 4: Combine platform images into manifest lists ─────────────
+  # ── Job 3: Combine platform images into manifest lists ─────────────
   combine:
     name: Create Manifest Lists
-    needs: [discover, patch]
-    if: needs.discover.outputs.has_images == 'true' && needs.patch.result == 'success'
-    runs-on: runs-on,runner=4cpu-linux-x64,run-id=${{ github.run_id }},extras=ecr-cache
+    needs: [scan, patch]
+    if: needs.scan.outputs.has_images == 'true' && needs.patch.result == 'success'
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
-      - uses: runs-on/action@v2
-
-      - name: Login to ECR ephemeral registry
-        run: |
-          # Extract ECR registry from RUNS_ON_ECR_CACHE
-          REGISTRY=$(echo "$RUNS_ON_ECR_CACHE" | cut -d/ -f1)
-          REGION=$(echo "$REGISTRY" | cut -d. -f4)
-
-          # Login to ECR using instance profile credentials
-          aws ecr get-login-password --region "$REGION" | \
-            docker login --username AWS --password-stdin "$REGISTRY"
-
-          echo "✓ Logged in to ECR: $REGISTRY"
-
       - name: Login to GHCR
-        if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -310,13 +238,13 @@ jobs:
 
             echo "Creating manifest list for $IMAGE:$TAG..."
 
-            # Build list of platform-specific source tags from ephemeral registry
-            # Ephemeral registry uses tags, not separate repos
+            # Build list of platform-specific source tags from GHCR staging
+            # Staging registry uses a single repo with mutable tags
             SOURCE_TAGS=$(jq -r --arg img "$IMAGE" --arg tag "$TAG" \
               'map(select(.image == $img and (.source | split(":")[1]) == $tag)) |
                .[] |
                (.platform | split("/")[1]) as $arch |
-               "'"${RUNS_ON_ECR_CACHE}"':" + $img + "-" + $tag + "-patched-" + $arch' \
+               "'"${STAGING_REGISTRY}"':" + $img + "-" + $tag + "-patched-" + $arch' \
               all-patches.json)
 
             # Verify all platform images exist before creating manifest
@@ -333,21 +261,23 @@ jobs:
               continue
             fi
 
-            # Create manifest list on ephemeral registry (same registry as sources)
-            EPHEMERAL_MANIFEST="${RUNS_ON_ECR_CACHE}:${IMAGE}-${TAG}-patched"
-            # shellcheck disable=SC2086
-            docker manifest create "$EPHEMERAL_MANIFEST" $SOURCE_TAGS
-            docker manifest push "$EPHEMERAL_MANIFEST"
-            echo "✓ Created manifest on ephemeral registry: $EPHEMERAL_MANIFEST"
-
-            # In production: copy manifest to GHCR
+            # In production: copy images from staging to target and create manifest
+            # In PRs: create manifest on STAGING_REGISTRY to validate
             if [ "${{ github.event_name }}" != "pull_request" ]; then
-              GHCR_TAG="${TARGET_REGISTRY}/${IMAGE}:${TAG}-patched"
-              docker buildx imagetools create --tag "$GHCR_TAG" "$EPHEMERAL_MANIFEST"
-              echo "✓ Copied to GHCR: $GHCR_TAG"
+              MANIFEST_TAG="${TARGET_REGISTRY}/${IMAGE}:${TAG}-patched"
+              # imagetools copies platform images and creates manifest in one step
+              # shellcheck disable=SC2086
+              docker buildx imagetools create --tag "$MANIFEST_TAG" $SOURCE_TAGS
+              echo "✓ Copied images and created manifest: $MANIFEST_TAG"
 
               # Store for signing/attestation
-              echo "$GHCR_TAG" >> ghcr-manifests.txt
+              echo "$MANIFEST_TAG" >> ghcr-manifests.txt
+            else
+              MANIFEST_TAG="${STAGING_REGISTRY}:${IMAGE}-${TAG}-patched"
+              # shellcheck disable=SC2086
+              docker manifest create "$MANIFEST_TAG" $SOURCE_TAGS
+              docker manifest push "$MANIFEST_TAG"
+              echo "✓ Created manifest on GHCR staging (PR): $MANIFEST_TAG"
             fi
           done
 
@@ -388,16 +318,14 @@ jobs:
           path: manifest-results/
           retention-days: 7
 
-  # ── Job 5: Assemble results and generate catalog ───────────────────
+  # ── Job 4: Assemble results and generate catalog ───────────────────
   assemble:
     name: Generate Catalog
-    needs: [discover, patch, combine]
-    if: always() && needs.discover.outputs.has_images == 'true' && needs.patch.result != 'cancelled'
-    runs-on: runs-on,runner=4cpu-linux-x64,run-id=${{ github.run_id }},extras=s3-cache
+    needs: [scan, patch, combine]
+    if: always() && needs.scan.outputs.has_images == 'true' && needs.patch.result != 'cancelled'
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-
-      - uses: runs-on/action@v2
 
       - uses: actions/setup-node@v4
         with:
@@ -417,11 +345,11 @@ jobs:
           path: patch-results/
           merge-multiple: true
 
-      - name: Download Trivy reports
+      - name: Download scan results
         uses: actions/download-artifact@v4
         with:
-          name: trivy-reports
-          path: reports/
+          name: scan-results
+          path: .
 
       - name: Generate catalog
         run: .github/scripts/generate-catalog.sh patch-results/ reports/ "$TARGET_REGISTRY" site/src/data/catalog.json
@@ -450,11 +378,12 @@ jobs:
         with:
           path: site/dist
 
+  # ── Job 5: Deploy catalog site to GitHub Pages ─────────────────────
   deploy-site:
     name: Deploy Site
     needs: assemble
     if: github.event_name == 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
