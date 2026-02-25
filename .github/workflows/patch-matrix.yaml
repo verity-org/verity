@@ -168,24 +168,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup BuildKit with GHCR credentials
+      - name: Setup BuildKit
         id: buildx-setup
         run: |
-          # Create BuildKit config with GHCR credentials
-          mkdir -p /tmp/buildkit-config
-          cat > /tmp/buildkit-config/buildkitd.toml <<TOML
-          [registry."ghcr.io"]
-            [registry."ghcr.io".auth]
-              username = "${{ github.actor }}"
-              secret = "${{ secrets.GITHUB_TOKEN }}"
-          TOML
-
-          # Create buildx builder with config
+          # Create buildx builder (will inherit credentials from docker login)
           docker buildx create \
             --name copa-builder \
             --driver docker-container \
             --driver-opt network=host \
-            --config /tmp/buildkit-config/buildkitd.toml \
             --buildkitd-flags '--allow-insecure-entitlement network.host' \
             --use
 
