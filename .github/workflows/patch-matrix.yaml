@@ -1,0 +1,466 @@
+name: Patch Images (Matrix)
+
+# Matrix-based patching workflow for parallel execution:
+# 1. Scan: Generate fresh Trivy reports using Trivy server
+# 2. Discover: Copa dry-run with skip detection to find what needs patching
+# 3. Patch: Parallel matrix jobs patch individual images per platform (native builds)
+# 4. Combine: Create multi-platform manifest lists
+# 5. Assemble: Collect results and generate catalog
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  push:
+    branches: [main]
+    paths: ['copa-config.yaml', '.github/workflows/patch-matrix.yaml']
+  pull_request:
+    paths: ['copa-config.yaml', '.github/workflows/patch-matrix.yaml', 'internal/**', 'cmd/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+
+env:
+  # Target registry for final patched images
+  TARGET_REGISTRY: ghcr.io/verity-org
+  # Platforms to build: amd64 + arm64 for production, amd64 only for PRs
+  PLATFORMS: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
+
+jobs:
+  # ── Job 1: Scan all images with Trivy in parallel ──────────────────
+  scan:
+    name: Scan Images
+    runs-on: runs-on,runner=4cpu-linux-x64,run-id=${{ github.run_id }},extras=s3-cache
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: runs-on/action@v2
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Login to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup binaries
+        uses: ./.github/actions/setup-binaries
+        with:
+          github-token: ${{ github.token }}
+
+      - name: Setup Trivy
+        uses: aquasecurity/setup-trivy@3fb12ec12f41e471780db15c232d5dd185dcb514 # v0.2.5
+        with:
+          version: v0.68.2
+          cache: true
+
+      - name: Cache Trivy database
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/trivy
+          key: trivy-db-${{ github.run_id }}
+          restore-keys: |
+            trivy-db-
+
+      - name: Start Trivy server
+        run: |
+          trivy server --listen 0.0.0.0:4954 &
+          timeout 60 bash -c 'until curl -f http://localhost:4954/healthz 2>/dev/null; do sleep 1; done'
+          echo "✓ Trivy server ready"
+
+      - name: Scan all images with Trivy
+        run: |
+          # In PRs, only scan source images (patched images don't exist yet)
+          # In production, scan both source and patched images
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            ./verity scan \
+              --config copa-config.yaml \
+              --trivy-server http://localhost:4954 \
+              --parallel 10 \
+              --output reports/
+          else
+            ./verity scan \
+              --config copa-config.yaml \
+              --target-registry "$TARGET_REGISTRY" \
+              --trivy-server http://localhost:4954 \
+              --parallel 10 \
+              --output reports/
+          fi
+
+      - name: Upload Trivy reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-reports
+          path: reports/
+          retention-days: 30
+
+  # ── Job 2: Discover what needs patching with Copa dry-run ──────────
+  discover:
+    name: Discover Images to Patch
+    needs: scan
+    runs-on: runs-on,runner=4cpu-linux-x64,run-id=${{ github.run_id }},extras=s3-cache
+    outputs:
+      matrix: ${{ steps.discover.outputs.matrix }}
+      has_images: ${{ steps.discover.outputs.has_images }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: runs-on/action@v2
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Download Trivy reports
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-reports
+          path: reports/
+
+      - name: Setup binaries
+        uses: ./.github/actions/setup-binaries
+        with:
+          github-token: ${{ github.token }}
+
+      - name: Run Copa dry-run discovery
+        id: discover
+        run: .github/scripts/copa-discover.sh copa-config.yaml reports/
+
+      - name: Upload discovery results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: copa-discovery
+          path: |
+            results.json
+            matrix.json
+          retention-days: 7
+
+  # ── Job 3: Patch images in parallel per platform ───────────────────
+  patch:
+    name: "Patch ${{ matrix.name }}"
+    needs: [scan, discover]
+    if: needs.discover.outputs.has_images == 'true'
+    runs-on: runs-on,runner=${{ matrix.runner }},run-id=${{ github.run_id }},extras=ecr-cache+s3-cache
+    strategy:
+      matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
+      fail-fast: false
+      max-parallel: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: runs-on/action@v2
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Setup BuildKit with ECR credentials
+        id: buildx-setup
+        run: |
+          # Host uses IAM role to get ECR token
+          REGISTRY=$(echo "$RUNS_ON_ECR_CACHE" | cut -d/ -f1)
+          REGION=$(echo "$REGISTRY" | cut -d. -f4)
+
+          # Get ECR auth token
+          ECR_TOKEN=$(aws ecr get-login-password --region "$REGION")
+
+          # Create BuildKit config with ECR credentials
+          mkdir -p /tmp/buildkit-config
+          cat > /tmp/buildkit-config/buildkitd.toml <<EOF
+          [registry."${REGISTRY}"]
+            [registry."${REGISTRY}".auth]
+              username = "AWS"
+              secret = "${ECR_TOKEN}"
+          EOF
+
+          # Create buildx builder with config
+          docker buildx create \
+            --name copa-builder \
+            --driver docker-container \
+            --driver-opt network=host \
+            --config /tmp/buildkit-config/buildkitd.toml \
+            --buildkitd-flags '--allow-insecure-entitlement network.host' \
+            --use
+
+          docker buildx inspect --bootstrap
+
+      - name: Get buildx name
+        id: buildx
+        run: echo "name=copa-builder" >> "$GITHUB_OUTPUT"
+
+      - name: Download Trivy reports
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-reports
+          path: reports/
+
+      - name: Setup binaries
+        uses: ./.github/actions/setup-binaries
+        with:
+          github-token: ${{ github.token }}
+
+      - name: Patch image
+        run: |
+          # Extract platform arch for tag suffix (linux/amd64 -> amd64)
+          PLATFORM_ARCH=$(echo "${{ matrix.platform }}" | cut -d/ -f2)
+
+          # Extract source tag (e.g., nginx:1.29.4 -> 1.29.4)
+          SOURCE_TAG=$(echo "${{ matrix.source }}" | cut -d: -f2)
+
+          # Ephemeral registry is a single repo with mutable tags
+          # Tag format: <image-name>-<version>-patched-<arch>
+          PLATFORM_TAG="${RUNS_ON_ECR_CACHE}:${{ matrix.image }}-${SOURCE_TAG}-patched-${PLATFORM_ARCH}"
+
+          # Construct report filename (match how scan.go creates them)
+          REPORT_FILE="reports/$(echo '${{ matrix.source }}' | sed 's/[\/:]/_/g').json"
+
+          echo "Using report file: $REPORT_FILE"
+
+          # Copa will patch the native platform of this runner (amd64 or arm64)
+          # BuildKit restarted after ECR login to pick up credentials
+          copa patch \
+            --image "${{ matrix.source }}" \
+            --tag "$PLATFORM_TAG" \
+            --report "$REPORT_FILE" \
+            --push \
+            --addr "docker-container://buildx_buildkit_${{ steps.buildx.outputs.name }}0" \
+            --timeout 30m
+
+          echo "Patched platform-specific image: $PLATFORM_TAG"
+
+      - name: Generate patch report
+        if: always()
+        run: |
+          mkdir -p patch-results
+          echo '{"name": "${{ matrix.name }}", "image": "${{ matrix.image }}", "source": "${{ matrix.source }}", "target": "${{ matrix.target }}", "platform": "${{ matrix.platform }}", "status": "patched"}' \
+            > patch-results/${{ matrix.name }}.json
+
+      - name: Upload patch result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: patch-result-${{ matrix.name }}
+          path: patch-results/
+          retention-days: 7
+
+  # ── Job 4: Combine platform images into manifest lists ─────────────
+  combine:
+    name: Create Manifest Lists
+    needs: [discover, patch]
+    if: needs.discover.outputs.has_images == 'true' && needs.patch.result == 'success'
+    runs-on: runs-on,runner=4cpu-linux-x64,run-id=${{ github.run_id }},extras=ecr-cache
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: runs-on/action@v2
+
+      - name: Login to ECR ephemeral registry
+        run: |
+          # Extract ECR registry from RUNS_ON_ECR_CACHE
+          REGISTRY=$(echo "$RUNS_ON_ECR_CACHE" | cut -d/ -f1)
+          REGION=$(echo "$REGISTRY" | cut -d. -f4)
+
+          # Login to ECR using instance profile credentials
+          aws ecr get-login-password --region "$REGION" | \
+            docker login --username AWS --password-stdin "$REGISTRY"
+
+          echo "✓ Logged in to ECR: $REGISTRY"
+
+      - name: Login to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install cosign
+        if: github.event_name != 'pull_request'
+        uses: sigstore/cosign-installer@v3
+
+      - name: Download patch results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: patch-result-*
+          path: patch-results/
+          merge-multiple: true
+
+      - name: Create manifest lists
+        run: |
+          # Collect all patched images
+          cat patch-results/*.json | jq -s '.' > all-patches.json
+
+          # Get unique image:tag combinations (group by image name and source tag)
+          IMAGES=$(jq -r '.[] | .image + ":" + (.source | split(":")[1])' all-patches.json | sort -u)
+
+          for IMAGE_TAG in $IMAGES; do
+            IMAGE=$(echo "$IMAGE_TAG" | cut -d: -f1)
+            TAG=$(echo "$IMAGE_TAG" | cut -d: -f2-)
+
+            echo "Creating manifest list for $IMAGE:$TAG..."
+
+            # Build list of platform-specific source tags from ephemeral registry
+            # Ephemeral registry uses tags, not separate repos
+            SOURCE_TAGS=$(jq -r --arg img "$IMAGE" --arg tag "$TAG" \
+              'map(select(.image == $img and (.source | split(":")[1]) == $tag)) |
+               .[] |
+               (.platform | split("/")[1]) as $arch |
+               "'"${RUNS_ON_ECR_CACHE}"':" + $img + "-" + $tag + "-patched-" + $arch' \
+              all-patches.json)
+
+            # Verify all platform images exist before creating manifest
+            ALL_EXIST=true
+            for source_tag in $SOURCE_TAGS; do
+              if ! docker manifest inspect "$source_tag" >/dev/null 2>&1; then
+                echo "⚠️  Skipping $IMAGE:$TAG - missing platform image: $source_tag"
+                ALL_EXIST=false
+                break
+              fi
+            done
+
+            if [ "$ALL_EXIST" = "false" ]; then
+              continue
+            fi
+
+            # Create manifest list on ephemeral registry (same registry as sources)
+            EPHEMERAL_MANIFEST="${RUNS_ON_ECR_CACHE}:${IMAGE}-${TAG}-patched"
+            # shellcheck disable=SC2086
+            docker manifest create "$EPHEMERAL_MANIFEST" $SOURCE_TAGS
+            docker manifest push "$EPHEMERAL_MANIFEST"
+            echo "✓ Created manifest on ephemeral registry: $EPHEMERAL_MANIFEST"
+
+            # In production: copy manifest to GHCR
+            if [ "${{ github.event_name }}" != "pull_request" ]; then
+              GHCR_TAG="${TARGET_REGISTRY}/${IMAGE}:${TAG}-patched"
+              docker buildx imagetools create --tag "$GHCR_TAG" "$EPHEMERAL_MANIFEST"
+              echo "✓ Copied to GHCR: $GHCR_TAG"
+
+              # Store for signing/attestation
+              echo "$GHCR_TAG" >> ghcr-manifests.txt
+            fi
+          done
+
+      - name: Sign and attest GHCR images
+        if: github.event_name != 'pull_request'
+        run: |
+          if [ ! -f ghcr-manifests.txt ]; then
+            echo "No manifests to sign"
+            exit 0
+          fi
+
+          echo "Signing and attesting GHCR manifests..."
+          while IFS= read -r manifest; do
+            echo "Processing: $manifest"
+
+            # Sign with cosign
+            cosign sign --yes "$manifest"
+
+            # TODO: Add SBOM attestation when available
+            # cosign attest --yes --type sbom --predicate sbom.json "$manifest"
+
+            echo "✓ Signed: $manifest"
+          done < ghcr-manifests.txt
+
+      - name: Generate manifest report
+        run: |
+          mkdir -p manifest-results
+          # Record which images had manifest lists created
+          jq -r '.[].image' patch-results/*.json | sort -u | while read -r IMAGE; do
+            echo "{\"image\": \"$IMAGE\", \"manifest\": \"${TARGET_REGISTRY}/${IMAGE}:patched\"}" \
+              > "manifest-results/${IMAGE}.json"
+          done
+
+      - name: Upload manifest results
+        uses: actions/upload-artifact@v4
+        with:
+          name: manifest-results
+          path: manifest-results/
+          retention-days: 7
+
+  # ── Job 5: Assemble results and generate catalog ───────────────────
+  assemble:
+    name: Generate Catalog
+    needs: [discover, patch, combine]
+    if: always() && needs.discover.outputs.has_images == 'true' && needs.patch.result != 'cancelled'
+    runs-on: runs-on,runner=4cpu-linux-x64,run-id=${{ github.run_id }},extras=s3-cache
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: runs-on/action@v2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Setup binaries
+        uses: ./.github/actions/setup-binaries
+        with:
+          github-token: ${{ github.token }}
+
+      - name: Download all patch results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: patch-result-*
+          path: patch-results/
+          merge-multiple: true
+
+      - name: Download Trivy reports
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-reports
+          path: reports/
+
+      - name: Generate catalog
+        run: .github/scripts/generate-catalog.sh patch-results/ reports/ "$TARGET_REGISTRY" site/src/data/catalog.json
+
+      - name: Build site
+        working-directory: site
+        run: npm ci && npm run build
+
+      - name: Upload PR test artifacts
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-test-results
+          path: |
+            .verity/images.json
+            site/src/data/catalog.json
+          retention-days: 7
+
+      - name: Validate PR testing results
+        if: github.event_name == 'pull_request'
+        run: .github/scripts/pr-summary.sh "$TARGET_REGISTRY" .verity/images.json site/src/data/catalog.json
+
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site/dist
+
+  deploy-site:
+    name: Deploy Site
+    needs: assemble
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
