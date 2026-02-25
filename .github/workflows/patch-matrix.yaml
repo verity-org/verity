@@ -189,6 +189,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
+      - name: Upload Copa binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: copa-binary
+          path: ~/go/bin/copa
+          retention-days: 1
+
       - name: Run Copa dry-run discovery
         id: discover
         run: |
@@ -281,36 +288,14 @@ jobs:
           name: trivy-reports
           path: reports/
 
-      - name: Get Copa fork info
-        id: copa-info
-        run: |
-          if gh api repos/verity-org/copacetic/commits/verity --jq .sha >/dev/null 2>&1; then
-            BRANCH="verity"
-            COMMIT=$(gh api repos/verity-org/copacetic/commits/verity --jq .sha)
-          else
-            BRANCH="feat/bulk-skip-detection"
-            COMMIT=$(gh api repos/verity-org/copacetic/commits/feat/bulk-skip-detection --jq .sha)
-          fi
-          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
-          echo "hash=$COMMIT" >> "$GITHUB_OUTPUT"
-        env:
-          GH_TOKEN: ${{ github.token }}
-
-      - name: Cache Copa binary
-        id: cache-copa
-        uses: actions/cache@v4
+      - name: Download Copa binary
+        uses: actions/download-artifact@v4
         with:
-          path: ~/go/bin/copa
-          key: copa-${{ runner.os }}-${{ steps.copa-info.outputs.hash }}
+          name: copa-binary
+          path: ~/go/bin/
 
-      - name: Build Copa from fork
-        if: steps.cache-copa.outputs.cache-hit != 'true'
-        run: |
-          git clone --branch "${{ steps.copa-info.outputs.branch }}" --depth 1 \
-            https://github.com/verity-org/copacetic.git /tmp/copa
-          cd /tmp/copa && go build -o "$(go env GOPATH)/bin/copa" .
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Make Copa executable
+        run: chmod +x ~/go/bin/copa
 
       - name: Patch image
         run: |
