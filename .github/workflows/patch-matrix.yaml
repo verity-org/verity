@@ -55,6 +55,13 @@ jobs:
           timeout 30 bash -c 'until curl -f http://localhost:5000/v2/; do sleep 1; done'
           echo "✓ Local registry ready at localhost:5000"
 
+      - name: Login to Docker Hub
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Login to GHCR
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
@@ -146,6 +153,13 @@ jobs:
           timeout 30 bash -c 'until curl -f http://localhost:5000/v2/; do sleep 1; done'
           echo "✓ Local registry ready"
 
+      - name: Login to Docker Hub
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Login to GHCR
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
@@ -220,6 +234,13 @@ jobs:
         run: |
           timeout 30 bash -c 'until curl -f http://localhost:5000/v2/; do sleep 1; done'
           echo "✓ Local registry ready"
+
+      - name: Login to Docker Hub
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to GHCR
         if: github.event_name != 'pull_request'
