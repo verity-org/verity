@@ -285,6 +285,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install cosign
+        if: github.event_name != 'pull_request'
+        uses: sigstore/cosign-installer@v3
+
       - name: Download patch results
         uses: actions/download-artifact@v4
         with:
@@ -315,20 +319,44 @@ jobs:
                "'"${RUNS_ON_ECR_CACHE}"':" + $img + "-" + $tag + "-patched-" + $arch' \
               all-patches.json)
 
-            # Create manifest list
-            TARGET_TAG="${TARGET_REGISTRY}/${IMAGE}:${TAG}-patched"
+            # Create manifest list on ephemeral registry (same registry as sources)
+            EPHEMERAL_MANIFEST="${RUNS_ON_ECR_CACHE}:${IMAGE}-${TAG}-patched"
             # shellcheck disable=SC2086
-            docker manifest create "$TARGET_TAG" $SOURCE_TAGS
+            docker manifest create "$EPHEMERAL_MANIFEST" $SOURCE_TAGS
+            docker manifest push "$EPHEMERAL_MANIFEST"
+            echo "✓ Created manifest on ephemeral registry: $EPHEMERAL_MANIFEST"
 
-            # Push to GHCR in production, skip in PRs (just validate creation works)
+            # In production: copy manifest to GHCR
             if [ "${{ github.event_name }}" != "pull_request" ]; then
-              docker manifest push "$TARGET_TAG"
-              echo "✓ Pushed manifest list: $TARGET_TAG"
-            else
-              docker manifest inspect "$TARGET_TAG"
-              echo "✓ Created manifest list (PR test, not pushed): $TARGET_TAG"
+              GHCR_TAG="${TARGET_REGISTRY}/${IMAGE}:${TAG}-patched"
+              docker buildx imagetools create --tag "$GHCR_TAG" "$EPHEMERAL_MANIFEST"
+              echo "✓ Copied to GHCR: $GHCR_TAG"
+
+              # Store for signing/attestation
+              echo "$GHCR_TAG" >> ghcr-manifests.txt
             fi
           done
+
+      - name: Sign and attest GHCR images
+        if: github.event_name != 'pull_request'
+        run: |
+          if [ ! -f ghcr-manifests.txt ]; then
+            echo "No manifests to sign"
+            exit 0
+          fi
+
+          echo "Signing and attesting GHCR manifests..."
+          while IFS= read -r manifest; do
+            echo "Processing: $manifest"
+
+            # Sign with cosign
+            cosign sign --yes "$manifest"
+
+            # TODO: Add SBOM attestation when available
+            # cosign attest --yes --type sbom --predicate sbom.json "$manifest"
+
+            echo "✓ Signed: $manifest"
+          done < ghcr-manifests.txt
 
       - name: Generate manifest report
         run: |
