@@ -16,15 +16,17 @@ fi
 
 echo "Collecting patch results from $PATCH_RESULTS_DIR..."
 
-# Collect all patched image names
+# Collect all patched image names in the schema expected by `verity catalog`
+# Schema: {original, patched, report}
 images_json='[]'
 for result in "$PATCH_RESULTS_DIR"/*.json; do
   [ -f "$result" ] || continue
-  name=$(jq -r .name "$result")
   source=$(jq -r .source "$result")
   target=$(jq -r .target "$result")
-  images_json=$(echo "$images_json" | jq --arg n "$name" --arg s "$source" --arg t "$target" \
-    '. += [{"name": $n, "source": $s, "target": $t}]')
+  # Derive report filename from source (match scan.go sanitization)
+  report="$(echo "$source" | sed 's/[\/:]/_/g').json"
+  images_json=$(echo "$images_json" | jq --arg o "$source" --arg p "$target" --arg r "$report" \
+    '. += [{"original": $o, "patched": $p, "report": $r}]')
 done
 
 mkdir -p .verity

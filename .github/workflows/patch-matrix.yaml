@@ -339,6 +339,12 @@ jobs:
 
       - uses: runs-on/action@v2
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
       - name: Setup binaries
         uses: ./.github/actions/setup-binaries
         with:
