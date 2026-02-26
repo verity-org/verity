@@ -130,6 +130,22 @@ var ScanCommand = &cli.Command{
 				continue
 			}
 
+			// List patched tags once per image spec to avoid redundant registry calls.
+			var existingPatchedTags []string
+			if targetRegistry != "" {
+				repo, repoErr := name.NewRepository(fmt.Sprintf("%s/%s", targetRegistry, imageSpec.Name))
+				if repoErr != nil {
+					fmt.Fprintf(os.Stderr, "Warning: failed to parse target repo for %q: %v; falling back to <tag>-patched\n", imageSpec.Name, repoErr)
+				} else {
+					listed, listErr := remote.List(repo, remote.WithAuthFromKeychain(authn.DefaultKeychain))
+					if listErr != nil {
+						fmt.Fprintf(os.Stderr, "Warning: failed to list patched tags for %q: %v; falling back to <tag>-patched\n", imageSpec.Name, listErr)
+					} else {
+						existingPatchedTags = listed
+					}
+				}
+			}
+
 			for _, tag := range tags {
 				// Source image scan (skipped in patched-only mode)
 				if !patchedOnly {
@@ -145,7 +161,10 @@ var ScanCommand = &cli.Command{
 
 				// Patched image scan (when target registry is specified)
 				if targetRegistry != "" {
-					patchedTag := findLatestPatchedTag(targetRegistry, imageSpec.Name, tag)
+					patchedTag := latestPatchedTagFromList(existingPatchedTags, tag)
+					if patchedTag == "" {
+						patchedTag = tag + "-patched"
+					}
 					patchedRef := fmt.Sprintf("%s/%s:%s", targetRegistry, imageSpec.Name, patchedTag)
 					patchedFile := filepath.Join(outputDir, sanitizeFilename(patchedRef)+".json")
 					jobs = append(jobs, scanJob{
@@ -245,26 +264,6 @@ func scanImage(imageRef, outputFile string, isPatched bool, trivyServer string) 
 	}
 
 	return os.WriteFile(outputFile, output, 0o644)
-}
-
-// findLatestPatchedTag returns the highest-versioned patched tag for a given
-// source tag in the target registry (e.g. "1.29.3-patched-3" beats "1.29.3-patched-2").
-// Falls back to "<sourceTag>-patched" if the registry is unreachable or no tag exists yet,
-// so that the scan job still runs and produces an empty report for Copa's skip detection.
-func findLatestPatchedTag(registry, imageName, sourceTag string) string {
-	repo, err := name.NewRepository(fmt.Sprintf("%s/%s", registry, imageName))
-	if err != nil {
-		return sourceTag + "-patched"
-	}
-	tags, err := remote.List(repo, remote.WithAuthFromKeychain(authn.DefaultKeychain))
-	if err != nil {
-		return sourceTag + "-patched"
-	}
-	latest := latestPatchedTagFromList(tags, sourceTag)
-	if latest == "" {
-		return sourceTag + "-patched"
-	}
-	return latest
 }
 
 // latestPatchedTagFromList finds the highest-versioned patched tag matching
