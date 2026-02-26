@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 
@@ -144,7 +145,8 @@ var ScanCommand = &cli.Command{
 
 				// Patched image scan (when target registry is specified)
 				if targetRegistry != "" {
-					patchedRef := fmt.Sprintf("%s/%s:%s-patched", targetRegistry, imageSpec.Name, tag)
+					patchedTag := findLatestPatchedTag(targetRegistry, imageSpec.Name, tag)
+					patchedRef := fmt.Sprintf("%s/%s:%s", targetRegistry, imageSpec.Name, patchedTag)
 					patchedFile := filepath.Join(outputDir, sanitizeFilename(patchedRef)+".json")
 					jobs = append(jobs, scanJob{
 						name:       imageSpec.Name,
@@ -243,6 +245,54 @@ func scanImage(imageRef, outputFile string, isPatched bool, trivyServer string) 
 	}
 
 	return os.WriteFile(outputFile, output, 0o644)
+}
+
+// findLatestPatchedTag returns the highest-versioned patched tag for a given
+// source tag in the target registry (e.g. "1.29.3-patched-3" beats "1.29.3-patched-2").
+// Falls back to "<sourceTag>-patched" if the registry is unreachable or no tag exists yet,
+// so that the scan job still runs and produces an empty report for Copa's skip detection.
+func findLatestPatchedTag(registry, imageName, sourceTag string) string {
+	repo, err := name.NewRepository(fmt.Sprintf("%s/%s", registry, imageName))
+	if err != nil {
+		return sourceTag + "-patched"
+	}
+	tags, err := remote.List(repo, remote.WithAuthFromKeychain(authn.DefaultKeychain))
+	if err != nil {
+		return sourceTag + "-patched"
+	}
+	latest := latestPatchedTagFromList(tags, sourceTag)
+	if latest == "" {
+		return sourceTag + "-patched"
+	}
+	return latest
+}
+
+// latestPatchedTagFromList finds the highest-versioned patched tag matching
+// "<sourceTag>-patched" or "<sourceTag>-patched-N" from a list of tags.
+// The bare "-patched" suffix counts as version 1.
+func latestPatchedTagFromList(tags []string, sourceTag string) string {
+	base := regexp.QuoteMeta(sourceTag) + `-patched`
+	pattern := regexp.MustCompile(`^` + base + `(-(\d+))?$`)
+
+	bestN := 0
+	bestTag := ""
+	for _, t := range tags {
+		m := pattern.FindStringSubmatch(t)
+		if m == nil {
+			continue
+		}
+		n := 1
+		if m[2] != "" {
+			if parsed, err := strconv.Atoi(m[2]); err == nil {
+				n = parsed
+			}
+		}
+		if n > bestN {
+			bestN = n
+			bestTag = t
+		}
+	}
+	return bestTag
 }
 
 func sanitizeFilename(filename string) string {
