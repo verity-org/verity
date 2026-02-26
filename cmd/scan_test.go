@@ -51,6 +51,18 @@ func TestLatestPatchedTagFromList(t *testing.T) {
 			sourceTag: "1.29.3",
 			want:      "1.29.3-patched-2",
 		},
+		{
+			name:      "explicit -patched-1 treated same as bare -patched",
+			tags:      []string{"1.29.3-patched-1", "1.29.3-patched-2"},
+			sourceTag: "1.29.3",
+			want:      "1.29.3-patched-2",
+		},
+		{
+			name:      "unparseable patch number skipped",
+			tags:      []string{"1.29.3-patched", "1.29.3-patched-99999999999999999999"},
+			sourceTag: "1.29.3",
+			want:      "1.29.3-patched",
+		},
 	}
 
 	for _, tc := range tests {

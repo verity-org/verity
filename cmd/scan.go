@@ -269,6 +269,10 @@ func scanImage(imageRef, outputFile string, isPatched bool, trivyServer string) 
 // latestPatchedTagFromList finds the highest-versioned patched tag matching
 // "<sourceTag>-patched" or "<sourceTag>-patched-N" from a list of tags.
 // The bare "-patched" suffix counts as version 1.
+//
+// Copa's verity fork automatically increments the patch counter on each run:
+// first patch → <tag>-patched, second → <tag>-patched-2, third → <tag>-patched-3, etc.
+// This ensures Copa's skip detection always compares against the current patched image.
 func latestPatchedTagFromList(tags []string, sourceTag string) string {
 	base := regexp.QuoteMeta(sourceTag) + `-patched`
 	pattern := regexp.MustCompile(`^` + base + `(-(\d+))?$`)
@@ -282,9 +286,12 @@ func latestPatchedTagFromList(tags []string, sourceTag string) string {
 		}
 		n := 1
 		if m[2] != "" {
-			if parsed, err := strconv.Atoi(m[2]); err == nil {
-				n = parsed
+			parsed, err := strconv.Atoi(m[2])
+			if err != nil {
+				// Skip tags with unparseable patch numbers (e.g. integer overflow).
+				continue
 			}
+			n = parsed
 		}
 		if n > bestN {
 			bestN = n
