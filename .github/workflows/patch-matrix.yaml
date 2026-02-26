@@ -272,10 +272,14 @@ jobs:
               continue
             fi
 
+            # Use Copa's computed target tag (may include a version suffix, e.g. 2.5.0-patched-1)
+            MANIFEST_TAG=$(jq -r --arg img "$IMAGE" --arg tag "$TAG" \
+              'map(select(.image == $img and (.source | split(":")[1]) == $tag)) | first | .target' \
+              all-patches.json)
+
             # In production: copy images from staging to target and create manifest
             # In PRs: create manifest on STAGING_REGISTRY to validate
             if [ "${{ github.event_name }}" != "pull_request" ]; then
-              MANIFEST_TAG="${TARGET_REGISTRY}/${IMAGE}:${TAG}-patched"
               # imagetools copies platform images and creates manifest in one step
               # shellcheck disable=SC2086
               docker buildx imagetools create --tag "$MANIFEST_TAG" $SOURCE_TAGS
