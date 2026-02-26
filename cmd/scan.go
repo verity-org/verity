@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 
@@ -129,6 +130,23 @@ var ScanCommand = &cli.Command{
 				continue
 			}
 
+			// List all tags for the target repo once per image spec so we can
+			// identify the latest patched tag for each source tag without redundant registry calls.
+			var existingPatchedTags []string
+			if targetRegistry != "" && len(tags) > 0 {
+				repo, repoErr := name.NewRepository(fmt.Sprintf("%s/%s", targetRegistry, imageSpec.Name))
+				if repoErr != nil {
+					fmt.Fprintf(os.Stderr, "Warning: failed to parse target repo for %q: %v; falling back to <tag>-patched\n", imageSpec.Name, repoErr)
+				} else {
+					listed, listErr := remote.List(repo, remote.WithAuthFromKeychain(authn.DefaultKeychain))
+					if listErr != nil {
+						fmt.Fprintf(os.Stderr, "Warning: failed to list patched tags for %q: %v; falling back to <tag>-patched\n", imageSpec.Name, listErr)
+					} else {
+						existingPatchedTags = listed
+					}
+				}
+			}
+
 			for _, tag := range tags {
 				// Source image scan (skipped in patched-only mode)
 				if !patchedOnly {
@@ -144,7 +162,11 @@ var ScanCommand = &cli.Command{
 
 				// Patched image scan (when target registry is specified)
 				if targetRegistry != "" {
-					patchedRef := fmt.Sprintf("%s/%s:%s-patched", targetRegistry, imageSpec.Name, tag)
+					patchedTag := latestPatchedTagFromList(existingPatchedTags, tag)
+					if patchedTag == "" {
+						patchedTag = tag + "-patched"
+					}
+					patchedRef := fmt.Sprintf("%s/%s:%s", targetRegistry, imageSpec.Name, patchedTag)
 					patchedFile := filepath.Join(outputDir, sanitizeFilename(patchedRef)+".json")
 					jobs = append(jobs, scanJob{
 						name:       imageSpec.Name,
@@ -243,6 +265,41 @@ func scanImage(imageRef, outputFile string, isPatched bool, trivyServer string) 
 	}
 
 	return os.WriteFile(outputFile, output, 0o644)
+}
+
+// latestPatchedTagFromList finds the highest-versioned patched tag matching
+// "<sourceTag>-patched" or "<sourceTag>-patched-N" from a list of tags.
+// The bare "-patched" suffix counts as version 1.
+//
+// Copa's verity fork automatically increments the patch counter on each run:
+// first patch → <tag>-patched, second → <tag>-patched-2, third → <tag>-patched-3, etc.
+// This ensures Copa's skip detection always compares against the current patched image.
+func latestPatchedTagFromList(tags []string, sourceTag string) string {
+	base := regexp.QuoteMeta(sourceTag) + `-patched`
+	pattern := regexp.MustCompile(`^` + base + `(-(\d+))?$`)
+
+	bestN := 0
+	bestTag := ""
+	for _, t := range tags {
+		m := pattern.FindStringSubmatch(t)
+		if m == nil {
+			continue
+		}
+		n := 1
+		if m[2] != "" {
+			parsed, err := strconv.Atoi(m[2])
+			if err != nil {
+				// Skip tags with unparseable patch numbers (e.g. integer overflow).
+				continue
+			}
+			n = parsed
+		}
+		if n > bestN {
+			bestN = n
+			bestTag = t
+		}
+	}
+	return bestTag
 }
 
 func sanitizeFilename(filename string) string {
