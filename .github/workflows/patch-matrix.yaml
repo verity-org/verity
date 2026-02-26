@@ -182,6 +182,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: imjasonh/setup-crane@v0.4
+
       - name: Setup BuildKit
         id: buildx-setup
         run: |
@@ -245,13 +247,8 @@ jobs:
           # When Copa finds no OS package updates it exits 0 but does not push.
           # Copy the source image to the staging tag so the combine step can build
           # the multi-platform manifest regardless of whether patches were applied.
-          if ! docker manifest inspect "$PLATFORM_TAG" >/dev/null 2>&1; then
-            echo "No patch applied; copying source to staging for ${{ matrix.platform }}..."
-            docker buildx imagetools create \
-              --tag "$PLATFORM_TAG" \
-              --platform "${{ matrix.platform }}" \
-              "${{ matrix.source }}"
-          fi
+          crane digest "$PLATFORM_TAG" > /dev/null 2>&1 \
+            || crane copy --platform "${{ matrix.platform }}" "${{ matrix.source }}" "$PLATFORM_TAG"
 
           echo "Patched platform-specific image: $PLATFORM_TAG"
 
@@ -288,6 +285,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: imjasonh/setup-crane@v0.4
 
       - name: Install cosign
         if: github.event_name != 'pull_request'
@@ -328,7 +327,7 @@ jobs:
             # Verify all platform images exist before creating manifest
             ALL_EXIST=true
             for source_tag in $SOURCE_TAGS; do
-              if ! docker manifest inspect "$source_tag" >/dev/null 2>&1; then
+              if ! crane digest "$source_tag" > /dev/null 2>&1; then
                 echo "⚠️  Skipping $IMAGE:$TAG - missing platform image: $source_tag"
                 ALL_EXIST=false
                 break
@@ -350,27 +349,20 @@ jobs:
             fi
 
             # In production: push to target registry using Copa's computed tag
-            # In PRs: push to staging registry using Copa's computed tag (for validation)
+            # In PRs: rewrite to staging registry so we don't pollute production
             if [ "${{ github.event_name }}" != "pull_request" ]; then
               MANIFEST_TAG="$COPA_TARGET"
-              # imagetools copies platform images and creates manifest in one step
-              # shellcheck disable=SC2086
-              docker buildx imagetools create --tag "$MANIFEST_TAG" $SOURCE_TAGS
-              echo "✓ Copied images and created manifest: $MANIFEST_TAG"
-
-              # Store for signing/attestation
-              echo "$MANIFEST_TAG" >> ghcr-manifests.txt
             else
-              # Rewrite target registry → staging registry so we don't pollute production
-              # Replace ':' with '-' so the tag is valid (e.g. k8s-sidecar:2.3.0-patched-1 → k8s-sidecar-2.3.0-patched-1)
+              # Replace ':' in tag so it's OCI-valid (e.g. k8s-sidecar:2.3.0-patched-1 → k8s-sidecar-2.3.0-patched-1)
               STAGING_TAG="${COPA_TARGET##*/}"
               MANIFEST_TAG="${STAGING_REGISTRY}:${STAGING_TAG//:/-}"
-              # shellcheck disable=SC2086
-              docker manifest create "$MANIFEST_TAG" $SOURCE_TAGS
-              docker manifest push "$MANIFEST_TAG"
-              echo "$MANIFEST_TAG" >> ghcr-manifests.txt
-              echo "✓ Created manifest on GHCR staging (PR): $MANIFEST_TAG"
             fi
+
+            # imagetools copies platform images and creates the manifest list in one step
+            # shellcheck disable=SC2086
+            docker buildx imagetools create --tag "$MANIFEST_TAG" $SOURCE_TAGS
+            echo "✓ Created manifest: $MANIFEST_TAG"
+            echo "$MANIFEST_TAG" >> ghcr-manifests.txt
           done
 
       - name: Sign GHCR images
@@ -392,7 +384,7 @@ jobs:
           MATRIX_ITEMS="[]"
           if [ -f ghcr-manifests.txt ]; then
             while IFS= read -r manifest; do
-              DIGEST=$(docker buildx imagetools inspect "$manifest" --format '{{.Manifest.Digest}}')
+              DIGEST=$(crane digest "$manifest")
               IMAGE="${manifest%:*}"
               MATRIX_ITEMS=$(echo "$MATRIX_ITEMS" | jq \
                 --arg image "$IMAGE" --arg digest "$DIGEST" \
