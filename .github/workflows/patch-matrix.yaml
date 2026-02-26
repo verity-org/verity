@@ -295,7 +295,9 @@ jobs:
               echo "$MANIFEST_TAG" >> ghcr-manifests.txt
             else
               # Rewrite target registry → staging registry so we don't pollute production
-              MANIFEST_TAG="${STAGING_REGISTRY}:${COPA_TARGET##*/}"
+              # Replace ':' with '-' so the tag is valid (e.g. k8s-sidecar:2.3.0-patched-1 → k8s-sidecar-2.3.0-patched-1)
+              STAGING_TAG="${COPA_TARGET##*/}"
+              MANIFEST_TAG="${STAGING_REGISTRY}:${STAGING_TAG//:/-}"
               # shellcheck disable=SC2086
               docker manifest create "$MANIFEST_TAG" $SOURCE_TAGS
               docker manifest push "$MANIFEST_TAG"
