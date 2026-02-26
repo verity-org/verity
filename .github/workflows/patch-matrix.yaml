@@ -386,7 +386,7 @@ jobs:
             while IFS= read -r manifest; do
               DIGEST=$(crane digest "$manifest")
               IMAGE="${manifest%:*}"
-              MATRIX_ITEMS=$(echo "$MATRIX_ITEMS" | jq \
+              MATRIX_ITEMS=$(echo "$MATRIX_ITEMS" | jq -c \
                 --arg image "$IMAGE" --arg digest "$DIGEST" \
                 '. += [{"image": $image, "digest": $digest}]')
             done < ghcr-manifests.txt
