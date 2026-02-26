@@ -216,6 +216,17 @@ jobs:
             --addr buildx://copa-builder \
             --timeout 30m
 
+          # When Copa finds no OS package updates it exits 0 but does not push.
+          # Copy the source image to the staging tag so the combine step can build
+          # the multi-platform manifest regardless of whether patches were applied.
+          if ! docker manifest inspect "$PLATFORM_TAG" >/dev/null 2>&1; then
+            echo "No patch applied; copying source to staging for ${{ matrix.platform }}..."
+            docker buildx imagetools create \
+              --tag "$PLATFORM_TAG" \
+              --platform "${{ matrix.platform }}" \
+              "${{ matrix.source }}"
+          fi
+
           echo "Patched platform-specific image: $PLATFORM_TAG"
 
       - name: Generate patch report
