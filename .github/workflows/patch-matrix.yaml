@@ -97,6 +97,29 @@ jobs:
         id: discover
         run: .github/scripts/copa-discover.sh copa-config.yaml reports/
 
+      - name: Scan chart-discovered images
+        run: |
+          # verity scan only processes the images: section; chart-discovered images need separate scanning.
+          # For each WouldPatch image in Copa's results, scan it if a report file is missing.
+          jq -r '.[] | select(.status == "WouldPatch") | .source' results.json | \
+          while IFS= read -r source; do
+            report="reports/$(echo "$source" | sed 's/[\/:]/_/g').json"
+            if [ ! -f "$report" ]; then
+              echo "Scanning chart image: $source"
+              if trivy image \
+                --server http://localhost:4954 \
+                --vuln-type os,library \
+                --format json \
+                --quiet \
+                "$source" > "$report"; then
+                echo "✓ Scanned: $source"
+              else
+                echo "⚠️  Failed to scan $source, creating empty report"
+                echo "{\"ArtifactName\": \"$source\", \"Results\": []}" > "$report"
+              fi
+            fi
+          done
+
       - name: Upload scan and discovery results
         if: always()
         uses: actions/upload-artifact@v4
@@ -170,7 +193,9 @@ jobs:
 
           # GHCR staging is a single repo with mutable tags
           # Tag format: <image-name>-<version>-patched-<arch>
-          PLATFORM_TAG="${STAGING_REGISTRY}:${{ matrix.image }}-${SOURCE_TAG}-patched-${PLATFORM_ARCH}"
+          # Sanitize image name: chart images contain registry paths with slashes (invalid in OCI tags)
+          SAFE_IMAGE=$(echo "${{ matrix.image }}" | tr '/: ' '---')
+          PLATFORM_TAG="${STAGING_REGISTRY}:${SAFE_IMAGE}-${SOURCE_TAG}-patched-${PLATFORM_ARCH}"
 
           # Construct report filename (match how scan.go creates them)
           REPORT_FILE="reports/$(echo '${{ matrix.source }}' | sed 's/[\/:]/_/g').json"
@@ -251,11 +276,13 @@ jobs:
 
             # Build list of platform-specific source tags from GHCR staging
             # Staging registry uses a single repo with mutable tags
+            # Sanitize image name to match how PLATFORM_TAG was constructed (slashes → dashes)
             SOURCE_TAGS=$(jq -r --arg img "$IMAGE" --arg tag "$TAG" \
               'map(select(.image == $img and (.source | split(":")[1]) == $tag)) |
                .[] |
                (.platform | split("/")[1]) as $arch |
-               "'"${STAGING_REGISTRY}"':" + $img + "-" + $tag + "-patched-" + $arch' \
+               ($img | gsub("[/: ]"; "-")) as $safe_img |
+               "'"${STAGING_REGISTRY}"':" + $safe_img + "-" + $tag + "-patched-" + $arch' \
               all-patches.json)
 
             # Verify all platform images exist before creating manifest
@@ -341,8 +368,9 @@ jobs:
               STAGING_TAG="${COPA_TARGET##*/}"
               MANIFEST="${STAGING_REGISTRY}:${STAGING_TAG//:/-}"
             fi
+            SAFE_IMAGE_FILE=$(echo "$IMAGE" | tr '/: ' '___')
             echo "{\"image\": \"$IMAGE\", \"manifest\": \"$MANIFEST\"}" \
-              > "manifest-results/${IMAGE}.json"
+              > "manifest-results/${SAFE_IMAGE_FILE}.json"
           done
 
       - name: Upload manifest results
