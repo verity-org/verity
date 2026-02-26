@@ -141,6 +141,7 @@ jobs:
             --name copa-builder \
             --driver docker-container \
             --driver-opt network=host \
+            --driver-opt image=mirror.gcr.io/moby/buildkit:buildx-stable-1 \
             --buildkitd-flags '--allow-insecure-entitlement network.host' \
             --use
 
