@@ -329,9 +329,19 @@ jobs:
       - name: Generate manifest report
         run: |
           mkdir -p manifest-results
-          # Record which images had manifest lists created
-          jq -r '.image' patch-results/*.json | sort -u | while read -r IMAGE; do
-            echo "{\"image\": \"$IMAGE\", \"manifest\": \"${TARGET_REGISTRY}/${IMAGE}:patched\"}" \
+          # Record Copa's computed target tag for each image that was successfully manifested
+          jq -r '[.[] | {image, target}] | unique_by(.image) | .[] | @base64' all-patches.json | \
+          while IFS= read -r row; do
+            entry=$(echo "$row" | base64 -d)
+            IMAGE=$(echo "$entry" | jq -r '.image')
+            COPA_TARGET=$(echo "$entry" | jq -r '.target')
+            if [ "${{ github.event_name }}" != "pull_request" ]; then
+              MANIFEST="${COPA_TARGET}"
+            else
+              STAGING_TAG="${COPA_TARGET##*/}"
+              MANIFEST="${STAGING_REGISTRY}:${STAGING_TAG//:/-}"
+            fi
+            echo "{\"image\": \"$IMAGE\", \"manifest\": \"$MANIFEST\"}" \
               > "manifest-results/${IMAGE}.json"
           done
 
