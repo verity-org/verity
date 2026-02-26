@@ -264,6 +264,10 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: sigstore/cosign-installer@v3
 
+      - name: Install syft
+        if: github.event_name != 'pull_request'
+        uses: anchore/sbom-action/download-syft@v0.18.0
+
       - name: Download patch results
         uses: actions/download-artifact@v4
         with:
@@ -358,10 +362,11 @@ jobs:
             # Sign with cosign
             cosign sign --yes "$manifest"
 
-            # TODO: Add SBOM attestation when available
-            # cosign attest --yes --type sbom --predicate sbom.json "$manifest"
+            # Generate CycloneDX SBOM and attest
+            syft "$manifest" -o cyclonedx-json=sbom.json
+            cosign attest --yes --type cyclonedx --predicate sbom.json "$manifest"
 
-            echo "✓ Signed: $manifest"
+            echo "✓ Signed and attested: $manifest"
           done < ghcr-manifests.txt
 
       - name: Generate manifest report
