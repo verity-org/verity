@@ -25,7 +25,7 @@ All scripts follow best practices: `set -euo pipefail`, shellcheck validated, cl
 
 ### Discovery & Matrix
 
-- `discover-images.sh` - Image discovery and matrix generation
+- `copa-discover.sh` - Copa dry-run, matrix generation, skip detection
 
 ### Image Operations
 
@@ -36,7 +36,6 @@ All scripts follow best practices: `set -euo pipefail`, shellcheck validated, cl
 
 ### Utilities
 
-- `install-copa.sh` - Install Copa
 - `parse-*.sh` - Issue form parsers
 - `verify-*.sh` - Verification scripts
 
