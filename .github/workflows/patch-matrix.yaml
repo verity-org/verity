@@ -342,6 +342,7 @@ jobs:
               # shellcheck disable=SC2086
               docker manifest create "$MANIFEST_TAG" $SOURCE_TAGS
               docker manifest push "$MANIFEST_TAG"
+              echo "$MANIFEST_TAG" >> ghcr-manifests.txt
               echo "✓ Created manifest on GHCR staging (PR): $MANIFEST_TAG"
             fi
           done
@@ -361,7 +362,6 @@ jobs:
 
       - name: Build attestation matrix
         id: attestation-matrix
-        if: github.event_name != 'pull_request'
         run: |
           MATRIX_ITEMS="[]"
           if [ -f ghcr-manifests.txt ]; then
@@ -412,7 +412,7 @@ jobs:
   attest:
     name: "Attest ${{ matrix.image }}"
     needs: combine
-    if: github.event_name != 'pull_request' && needs.combine.outputs.has_manifests == 'true'
+    if: needs.combine.outputs.has_manifests == 'true'
     runs-on: ubuntu-24.04
     strategy:
       matrix: ${{ fromJson(needs.combine.outputs.attestation_matrix) }}
