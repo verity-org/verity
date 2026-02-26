@@ -248,13 +248,13 @@ jobs:
           # Copa will patch the native platform of this runner (amd64 or arm64)
           # BuildKit configured with GHCR credentials to push
           # --pkg-types os,library patches both OS packages and app-level deps (pip, npm)
-          # --library-patch-level minor allows minor version bumps for library fixes
+          # --library-patch-level major allows major version bumps for library fixes (patch everything)
           copa patch \
             --image "${{ matrix.source }}" \
             --tag "$PLATFORM_TAG" \
             --report "$REPORT_FILE" \
             --pkg-types os,library \
-            --library-patch-level minor \
+            --library-patch-level major \
             --push \
             --addr buildx://copa-builder \
             --timeout 30m
