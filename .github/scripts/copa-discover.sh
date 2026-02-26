@@ -9,7 +9,7 @@ REPORTS_DIR="${2:-reports}"
 OUTPUT_FILE="${3:-$GITHUB_OUTPUT}"
 
 echo "Running Copa discovery..."
-copa patch \
+COPA_EXPERIMENTAL=1 copa patch \
   --config "$CONFIG_FILE" \
   --report "$REPORTS_DIR" \
   --dry-run \
