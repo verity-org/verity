@@ -41,7 +41,7 @@ jobs:
   # ── Job 1: Mirror BuildKit image to GHCR ───────────────────────────
   mirror-buildkit:
     name: Mirror BuildKit
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Harden the runner (Audit all outbound calls)
         uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
@@ -120,7 +120,7 @@ jobs:
 
       - name: Get date for Trivy DB cache key
         id: trivy-date
-        run: echo "date=$(date -u '+%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+        run: echo "date=$(date -u '+%Y-%m-%d-%H')" >> "$GITHUB_OUTPUT"
 
       - name: Cache Trivy database
         uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
@@ -564,7 +564,7 @@ jobs:
 
       - name: Get date for Trivy DB cache key
         id: trivy-date
-        run: echo "date=$(date -u '+%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+        run: echo "date=$(date -u '+%Y-%m-%d-%H')" >> "$GITHUB_OUTPUT"
 
       - name: Cache Trivy database
         uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
