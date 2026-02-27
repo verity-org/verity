@@ -68,7 +68,7 @@ runs:
         tar \
           --dereference --hard-dereference \
           --directory "$INPUT_PATH" \
-          -cvf "$RUNNER_TEMP\artifact.tar" \
+          -cvf "$RUNNER_TEMP/artifact.tar" \
           --exclude=.git \
           --exclude=.github \
           --exclude=".[^/]*" \
