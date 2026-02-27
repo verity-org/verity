@@ -9,7 +9,7 @@ design, component responsibilities, and pipeline mechanics.
 | Component | Role |
 | --- | --- |
 | **Verity CLI** (Go) | Orchestrates scanning and catalog generation |
-| **Copa** | Patches OS-level packages in container images without rebuilding |
+| **Copa** | Patches OS and application packages in container images without rebuilding |
 | **Trivy** | Vulnerability scanner (CVE detection, SBOM generation) |
 | **BuildKit** | Builds patched container images |
 | **cosign** | Keyless image signing via Sigstore OIDC |
@@ -168,7 +168,7 @@ On subsequent re-patches, the suffix increments: `-patched-2`, `-patched-3`, etc
 ## Pipeline: `patch-matrix.yaml`
 
 The main GitHub Actions workflow runs daily and on `copa-config.yaml` changes.
-It has seven stages:
+It has eight stages:
 
 ```text
 ┌────────────────┐
@@ -182,7 +182,7 @@ It has seven stages:
         ▼
 ┌────────────────┐
 │     patch      │  Matrix job: one per image × platform (amd64, arm64)
-│                │  Copa patches OS packages via BuildKit
+│                │  Copa patches packages via BuildKit
 └───────┬────────┘
         ▼
 ┌────────────────┐
@@ -270,5 +270,5 @@ The signing identity is scoped to the Verity repository workflow:
 `https://github.com/verity-org/verity/.github/workflows/` issued by
 `https://token.actions.githubusercontent.com`.
 
-Patched images never modify the upstream application layer. Copa only updates
-OS-level packages, preserving the original image's behavior.
+Patched images never modify the upstream application layer beyond updating
+vulnerable packages (OS-level and pip), preserving the original image's behavior.
