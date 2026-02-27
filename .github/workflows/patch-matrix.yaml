@@ -6,7 +6,7 @@ name: Patch Images (Matrix)
 # 3. Patch: Parallel matrix jobs patch individual images per platform (native builds)
 #           Includes app-level patching (--pkg-types os,library, COPA_EXPERIMENTAL=1)
 # 4. Combine: Create multi-platform manifest lists, sign with cosign
-# 5. Attest: Attach CycloneDX SBOM attestations via actions/attest-sbom (parallel matrix)
+# 5. Attest: Attach CycloneDX SBOM attestations via actions/attest (parallel matrix)
 # 6. Assemble: Post-patch scan, generate before/after catalog, build and upload site
 # 7. Deploy: Publish site to GitHub Pages
 
@@ -369,11 +369,12 @@ jobs:
         run: syft "${{ matrix.image }}@${{ matrix.digest }}" -o cyclonedx-json=sbom.json
 
       - name: Attest SBOM
-        uses: actions/attest-sbom@07e74fc4e78d1aad915e867f9a094073a9f71527 # v4.0.0
+        uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
         with:
           subject-name: ${{ matrix.image }}
           subject-digest: ${{ matrix.digest }}
-          sbom-path: sbom.json
+          predicate-type: https://cyclonedx.org/bom
+          predicate-path: sbom.json
           push-to-registry: true
 
   # ── Job 6: Generate catalog (includes post-patch scan) ────────────
