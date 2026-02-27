@@ -13,27 +13,26 @@ const exampleRef = exampleImage?.patchedRef ?? "ghcr.io/verity-org/prometheus/pr
 ---
 
 <div class="mb-12">
-  <!-- Title + tagline -->
-  <div class="mb-6">
-    <h1 class="text-4xl font-bold mb-3 tracking-[0.3em]">VERITY</h1>
-    <p class="text-verity-text-muted text-lg mb-2">
-      Security-patched container images, automatically maintained with
-      <a
-        href="https://github.com/project-copacetic/copacetic"
-        class="text-verity-nucleus hover:text-verity-teal-light transition-colors underline decoration-verity-orbit"
-        >Copa</a
-      >.
-    </p>
-    <div class="h-px w-32 bg-gradient-to-r from-verity-nucleus to-transparent"></div>
-  </div>
+  <!-- Title -->
+  <h1 class="text-4xl font-bold mb-6 tracking-[0.3em]">VERITY</h1>
 
-  <!-- Problem statement -->
-  <p class="text-verity-text-secondary text-sm leading-relaxed mb-8 max-w-3xl">
-    Container images ship with OS packages that accumulate CVEs daily.
-    Upstream maintainers patch on their own schedule — if at all.
-    Verity scans images for vulnerabilities, patches them in-place with Copa
-    (no Dockerfile rebuild), and publishes signed, attested, drop-in replacements.
-  </p>
+  <!-- Problem + value prop — the lead -->
+  <div class="bg-verity-surface border-l-4 border-verity-nucleus rounded-r-lg p-6 mb-8">
+    <p class="text-verity-text-primary text-base leading-relaxed mb-3">
+      Container images ship with OS packages that accumulate CVEs daily.
+      Upstream maintainers patch on their own schedule — if at all.
+      That leaves you choosing between manually rebuilding every image or running
+      known-vulnerable containers in production.
+    </p>
+    <p class="text-verity-nucleus text-base leading-relaxed font-medium">
+      Verity eliminates that trade-off. It continuously scans images, patches them
+      in-place with <a
+        href="https://github.com/project-copacetic/copacetic"
+        class="underline decoration-verity-orbit hover:text-verity-teal-light transition-colors"
+        >Copa</a
+      > (no Dockerfile rebuild), and publishes signed, attested, drop-in replacements.
+    </p>
+  </div>
 
   <!-- Stats -->
   <div class="grid grid-cols-3 gap-4 mb-10">
