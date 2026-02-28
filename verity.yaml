@@ -5,7 +5,7 @@
 
 # Tag variant overrides for chart-sourced images.
 # Key: partial image path to match. If an image ref contains this string
-# and its tag ends with "from", the suffix is replaced with "to".
+# and its tag ends with "-<from>", the tag suffix is replaced with "-<to>".
 overrides:
   "timberio/vector":
     from: "distroless-libc"

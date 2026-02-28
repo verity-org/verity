@@ -56,19 +56,10 @@ func findTagsByLatest(spec *config.ImageSpec) ([]string, error) {
 		return nil, err
 	}
 
-	filteredTags := ExcludeTags(allTags, spec.Tags.Exclude)
-	var versions []*semver.Version
-	for _, t := range filteredTags {
-		if v, err := semver.NewVersion(t); err == nil {
-			versions = append(versions, v)
-		}
-	}
-
+	versions := tagsToSortedVersions(ExcludeTags(allTags, spec.Tags.Exclude))
 	if len(versions) == 0 {
 		return []string{}, nil
 	}
-
-	sort.Sort(semver.Collection(versions))
 	return []string{versions[len(versions)-1].Original()}, nil
 }
 
@@ -90,19 +81,10 @@ func findTagsByPattern(spec *config.ImageSpec) ([]string, error) {
 		}
 	}
 
-	matchingTags = ExcludeTags(matchingTags, spec.Tags.Exclude)
-	var versions []*semver.Version
-	for _, t := range matchingTags {
-		if v, err := semver.NewVersion(t); err == nil {
-			versions = append(versions, v)
-		}
-	}
-
+	versions := tagsToSortedVersions(ExcludeTags(matchingTags, spec.Tags.Exclude))
 	if len(versions) == 0 {
 		return []string{}, nil
 	}
-
-	sort.Sort(semver.Collection(versions))
 
 	if spec.Tags.MaxTags > 0 && len(versions) > spec.Tags.MaxTags {
 		versions = versions[len(versions)-spec.Tags.MaxTags:]
@@ -113,6 +95,19 @@ func findTagsByPattern(spec *config.ImageSpec) ([]string, error) {
 		result[i] = v.Original()
 	}
 	return result, nil
+}
+
+// tagsToSortedVersions parses tags as semver and returns them sorted ascending.
+// Tags that cannot be parsed as semver are silently skipped.
+func tagsToSortedVersions(tags []string) []*semver.Version {
+	var versions []*semver.Version
+	for _, t := range tags {
+		if v, err := semver.NewVersion(t); err == nil {
+			versions = append(versions, v)
+		}
+	}
+	sort.Sort(semver.Collection(versions))
+	return versions
 }
 
 // ExcludeTags returns a new slice with excluded entries removed.

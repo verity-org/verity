@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"os/exec"
+	"sort"
 	"strings"
 	"time"
 
@@ -135,17 +136,36 @@ func walkNode(node any, seen map[string]struct{}, result *[]string) {
 }
 
 // applyOverride substitutes a tag variant in an image reference using the overrides map.
-// The map key is a partial image path; if the image contains it and its tag contains
-// the "from" suffix, the suffix is replaced with "to".
+// The map key is a partial image path; if the image contains it and its tag ends with
+// "-<from>", that suffix is replaced with "-<to>". Only the tag portion is rewritten.
+// Keys are evaluated in sorted order for deterministic behavior when multiple match.
 func applyOverride(image string, overrides map[string]config.Override) string {
-	for key, override := range overrides {
+	keys := make([]string, 0, len(overrides))
+	for k := range overrides {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	name, tag := splitRef(image)
+	for _, key := range keys {
+		override := overrides[key]
 		if strings.Contains(image, key) {
-			old := "-" + override.From
-			replacement := "-" + override.To
-			if strings.Contains(image, old) {
-				return strings.Replace(image, old, replacement, 1)
+			suffix := "-" + override.From
+			if strings.HasSuffix(tag, suffix) {
+				return name + ":" + tag[:len(tag)-len(suffix)] + "-" + override.To
 			}
 		}
 	}
 	return image
+}
+
+// splitRef splits an image reference into its name and tag components.
+// e.g., "docker.io/foo/bar:1.0-alpine" → ("docker.io/foo/bar", "1.0-alpine").
+// Returns (image, "") if no tag separator follows the last slash.
+func splitRef(ref string) (name, tag string) {
+	lastSlash := strings.LastIndex(ref, "/")
+	if lastColon := strings.LastIndex(ref, ":"); lastColon > lastSlash {
+		return ref[:lastColon], ref[lastColon+1:]
+	}
+	return ref, ""
 }

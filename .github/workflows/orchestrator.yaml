@@ -142,6 +142,7 @@ jobs:
 
             echo "Dispatching patch for ${NAME}: ${SOURCE}..."
             gh workflow run patch-image.yaml \
+              --repo "${{ github.repository }}" \
               --ref "${{ github.ref_name }}" \
               --field "image-name=${NAME}" \
               --field "source-ref=${SOURCE}" \
