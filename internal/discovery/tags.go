@@ -3,13 +3,13 @@ package discovery
 import (
 	"errors"
 	"fmt"
+	"net"
 	"regexp"
 	"sort"
+	"strings"
 
 	"github.com/Masterminds/semver/v3"
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
+	"github.com/google/go-containerregistry/pkg/crane"
 
 	"github.com/verity-org/verity/internal/config"
 )
@@ -17,29 +17,41 @@ import (
 // ErrUnknownStrategy is returned when an image spec has an unrecognized tag strategy.
 var ErrUnknownStrategy = errors.New("unknown tag strategy")
 
+// craneOptions returns crane options for the given image ref.
+// Localhost registries (127.0.0.1, localhost) use plain HTTP.
+func craneOptions(image string) []crane.Option {
+	host := image
+	if idx := strings.Index(host, "/"); idx != -1 {
+		host = host[:idx]
+	}
+	// Strip port for host matching
+	if h, _, err := net.SplitHostPort(host); err == nil {
+		host = h
+	}
+	if host == "localhost" || host == "127.0.0.1" || host == "::1" {
+		return []crane.Option{crane.Insecure}
+	}
+	return nil
+}
+
 // FindTagsToPatch discovers the set of tags to patch for a given image spec.
 func FindTagsToPatch(spec *config.ImageSpec) ([]string, error) {
-	repo, err := name.NewRepository(spec.Image)
-	if err != nil {
-		return nil, fmt.Errorf("failed to parse repository: %w", err)
-	}
-
 	switch spec.Tags.Strategy {
 	case "list":
 		result := make([]string, len(spec.Tags.List))
 		copy(result, spec.Tags.List)
 		return result, nil
 	case "pattern":
-		return findTagsByPattern(repo, spec)
+		return findTagsByPattern(spec)
 	case "latest":
-		return findTagsByLatest(repo, spec)
+		return findTagsByLatest(spec)
 	default:
 		return nil, fmt.Errorf("%w: %s", ErrUnknownStrategy, spec.Tags.Strategy)
 	}
 }
 
-func findTagsByLatest(repo name.Repository, spec *config.ImageSpec) ([]string, error) {
-	allTags, err := remote.List(repo, remote.WithAuthFromKeychain(authn.DefaultKeychain))
+func findTagsByLatest(spec *config.ImageSpec) ([]string, error) {
+	allTags, err := crane.ListTags(spec.Image, craneOptions(spec.Image)...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,8 +72,8 @@ func findTagsByLatest(repo name.Repository, spec *config.ImageSpec) ([]string, e
 	return []string{versions[len(versions)-1].Original()}, nil
 }
 
-func findTagsByPattern(repo name.Repository, spec *config.ImageSpec) ([]string, error) {
-	allTags, err := remote.List(repo, remote.WithAuthFromKeychain(authn.DefaultKeychain))
+func findTagsByPattern(spec *config.ImageSpec) ([]string, error) {
+	allTags, err := crane.ListTags(spec.Image, craneOptions(spec.Image)...)
 	if err != nil {
 		return nil, err
 	}

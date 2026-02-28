@@ -160,19 +160,33 @@ jobs:
 
           jq '[.[] | {
             original: .source,
-            patched: (."target-registry" + "/" + .name + ":" + (.source | split(":")[1]) + "-patched"),
+            patched: (."target-registry" + "/" + .name + ":" + (.source | split(":") | .[-1]) + "-patched"),
             report: ((.source | gsub("[/:]"; "_")) + ".json")
           }]' discovered.json > .verity/images.json
 
-          # Copy per-image artifacts into flat report dirs
-          find ./pr-artifacts -name "pre.json" | while read -r f; do
-            DIR=$(dirname "$f" | xargs basename)
-            # artifact name format: pr-patch-<image>-<tag>
-            cp "$f" "reports/${DIR}.json" 2>/dev/null || true
+          # Copy pre-reports: filename must match sanitize(source) to align with images.json "report" field
+          find ./pr-artifacts -name "pre.json" | while IFS= read -r f; do
+            artifact_dir=$(basename "$(dirname "$f")")
+            # Match artifact dir to images.json entry by name+tag
+            source_ref=$(jq -r --arg d "$artifact_dir" \
+              '.[] | select((.name + "-" + (.source | split(":") | .[-1])) == ($d | ltrimstr("pr-patch-"))) | .source' \
+              discovered.json 2>/dev/null | head -1)
+            if [ -n "$source_ref" ] && [ "$source_ref" != "null" ]; then
+              safe=$(echo "$source_ref" | sed 's/[\/:]/_/g')
+              cp "$f" "reports/${safe}.json" 2>/dev/null || true
+            fi
           done
-          find ./pr-artifacts -name "post.json" | while read -r f; do
-            DIR=$(dirname "$f" | xargs basename)
-            cp "$f" "post-reports/${DIR}.json" 2>/dev/null || true
+
+          # Copy post-reports: filename must be sanitize(patchedRef).json
+          find ./pr-artifacts -name "post.json" | while IFS= read -r f; do
+            artifact_dir=$(basename "$(dirname "$f")")
+            patched_ref=$(jq -r --arg d "$artifact_dir" \
+              '.[] | select((.name + "-" + (.source | split(":") | .[-1])) == ($d | ltrimstr("pr-patch-"))) | .patched' \
+              .verity/images.json 2>/dev/null | head -1)
+            if [ -n "$patched_ref" ] && [ "$patched_ref" != "null" ]; then
+              safe=$(echo "$patched_ref" | sed 's/[\/:]/_/g')
+              cp "$f" "post-reports/${safe}.json" 2>/dev/null || true
+            fi
           done
 
       - name: Generate catalog

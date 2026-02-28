@@ -3,6 +3,7 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"maps"
 	"os"
 
 	"github.com/urfave/cli/v2"
@@ -16,7 +17,7 @@ import (
 //   - verity.yaml       — tag variant overrides (verity-specific)
 var DiscoverCommand = &cli.Command{
 	Name:  "discover",
-	Usage: "Enumerate all image+tag combos from copa-config.yaml and Chart.yaml",
+	Usage: "Enumerate all image+tag combos from copa-config.yaml, Chart.yaml, and verity.yaml overrides",
 	Flags: []cli.Flag{
 		&cli.StringFlag{
 			Name:     "config",
@@ -56,7 +57,14 @@ var DiscoverCommand = &cli.Command{
 			return fmt.Errorf("failed to load verity config: %w", err)
 		}
 
-		images, err := discovery.Discover(cfg, c.String("target-registry"), vc.Overrides)
+		// Merge overrides: verity.yaml takes precedence over copa-config.yaml.
+		overrides := maps.Clone(cfg.Overrides)
+		if overrides == nil {
+			overrides = maps.Clone(vc.Overrides)
+		} else {
+			maps.Copy(overrides, vc.Overrides)
+		}
+		images, err := discovery.Discover(cfg, c.String("target-registry"), overrides)
 		if err != nil {
 			return fmt.Errorf("failed to discover images: %w", err)
 		}

@@ -69,6 +69,7 @@ jobs:
       needs-patch: ${{ steps.check.outputs.needs-patch }}
       source-tag: ${{ steps.parse.outputs.source-tag }}
       staging-registry: ${{ steps.parse.outputs.staging-registry }}
+      prev-report-exists: ${{ steps.prev-report.outputs.exists }}
 
     steps:
       - name: Harden the runner (Audit all outbound calls)
@@ -138,7 +139,13 @@ jobs:
           REPO="${TARGET_REGISTRY}/${IMAGE_NAME}"
           PATCHED_TAG=$(crane ls "${REPO}" 2>/dev/null \
             | grep -E "^${SOURCE_TAG}-patched(-[0-9]+)?$" \
-            | sort -t- -k3 -V \
+            | awk -v src="${SOURCE_TAG}-patched" '{
+                suffix = substr($0, length(src)+1)
+                n = (suffix ~ /^-[0-9]+$/) ? substr(suffix,2)+0 : 0
+                print n, $0
+              }' \
+            | sort -k1 -n \
+            | awk '{print $2}' \
             | tail -1 || true)
 
           if [ -z "$PATCHED_TAG" ]; then
@@ -150,11 +157,15 @@ jobs:
           echo "Found existing patched image: ${REPO}:${PATCHED_TAG}"
 
           # Scan existing patched image
-          trivy image \
+          if ! trivy image \
             --vuln-type os,library \
             --format json \
             --quiet \
-            "${REPO}:${PATCHED_TAG}" > patched-existing.json 2>/dev/null || true
+            "${REPO}:${PATCHED_TAG}" > patched-existing.json 2>/dev/null; then
+            echo "Trivy scan failed — treating as needs-patch to be safe"
+            echo "needs-patch=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
           VULN_COUNT=$(jq '[.Results[]?.Vulnerabilities // [] | .[]] | length' patched-existing.json 2>/dev/null || echo 0)
           echo "Existing patched image vulnerabilities: ${VULN_COUNT}"
@@ -168,18 +179,24 @@ jobs:
           fi
 
       - name: Download previous post-patch report from reports branch
+        id: prev-report
         if: steps.check.outputs.needs-patch == 'true'
         env:
           IMAGE_NAME: ${{ inputs.image-name }}
           SOURCE_TAG: ${{ steps.parse.outputs.source-tag }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh api \
+          if gh api \
             "repos/${{ github.repository }}/contents/reports/${IMAGE_NAME}/${SOURCE_TAG}/post.json?ref=reports" \
             --jq '.content' 2>/dev/null \
-            | base64 -d > prev-post.json \
-            || echo '{"Results":[]}' > prev-post.json
-          echo "✓ Previous post report downloaded ($(wc -c < prev-post.json) bytes)"
+            | base64 -d > prev-post.json; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "✓ Previous post report downloaded ($(wc -c < prev-post.json) bytes)"
+          else
+            echo '{"Results":[]}' > prev-post.json
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "No previous post report found — treating as first-time patch"
+          fi
 
       - name: Upload scan artifacts
         if: steps.check.outputs.needs-patch == 'true'
@@ -395,7 +412,9 @@ jobs:
           NEW_IDS=$(jq -r '[.Results[]?.Vulnerabilities // [] | .[] | .VulnerabilityID] | sort | .[]' post.json | sha256sum)
           PREV_IDS=$(jq -r '[.Results[]?.Vulnerabilities // [] | .[] | .VulnerabilityID] | sort | .[]' prev-post.json 2>/dev/null | sha256sum || echo "")
 
-          if [ "$NEW_IDS" = "$PREV_IDS" ] && [ "$PREV_IDS" != "$(echo "" | sha256sum)" ]; then
+          PREV_EXISTED="${{ needs.scan.outputs.prev-report-exists }}"
+
+          if [ "$PREV_EXISTED" = "true" ] && [ "$NEW_IDS" = "$PREV_IDS" ]; then
             echo "Vuln set unchanged — discarding new image (no-op)"
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else

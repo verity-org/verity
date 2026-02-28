@@ -112,7 +112,7 @@ jobs:
 
           COUNT=$(jq 'length' images.json)
           echo "count=${COUNT}" >> "$GITHUB_OUTPUT"
-          echo "images=$(cat images.json)" >> "$GITHUB_OUTPUT"
+          echo "images=$(jq -c . images.json)" >> "$GITHUB_OUTPUT"
           echo "✓ Discovered ${COUNT} image+tag combos"
           jq -r '.[] | "  - \(.name): \(.source)"' images.json
 

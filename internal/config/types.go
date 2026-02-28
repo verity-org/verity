@@ -2,11 +2,12 @@ package config
 
 // CopaConfig represents the copa-config.yaml structure.
 type CopaConfig struct {
-	APIVersion string      `yaml:"apiVersion"`
-	Kind       string      `yaml:"kind"`
-	Target     TargetSpec  `yaml:"target,omitempty"`
-	Charts     []ChartSpec `yaml:"charts,omitempty"`
-	Images     []ImageSpec `yaml:"images"`
+	APIVersion string              `yaml:"apiVersion"`
+	Kind       string              `yaml:"kind"`
+	Target     TargetSpec          `yaml:"target,omitempty"`
+	Charts     []ChartSpec         `yaml:"charts,omitempty"`
+	Images     []ImageSpec         `yaml:"images"`
+	Overrides  map[string]Override `yaml:"overrides,omitempty"` // deprecated: use verity.yaml
 }
 
 // VerityConfig represents verity.yaml — verity-specific settings that belong

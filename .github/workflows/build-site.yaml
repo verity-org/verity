@@ -105,7 +105,13 @@ jobs:
             REPO="${REGISTRY}/${NAME}"
             PATCHED_TAG=$(crane ls "${REPO}" 2>/dev/null \
               | grep -E "^${TAG}-patched(-[0-9]+)?$" \
-              | sort -t- -k3 -V \
+              | awk -v src="${TAG}-patched" '{
+                  suffix = substr($0, length(src)+1)
+                  n = (suffix ~ /^-[0-9]+$/) ? substr(suffix,2)+0 : 0
+                  print n, $0
+                }' \
+              | sort -k1 -n \
+              | awk '{print $2}' \
               | tail -1 || true)
 
             if [ -n "$PATCHED_TAG" ]; then
@@ -114,27 +120,36 @@ jobs:
               PATCHED_REF=""
             fi
 
-            # Map to report paths from reports branch
-            pre_report="reports/${NAME}/${TAG}/pre.json"
-            post_report="reports/${NAME}/${TAG}/post.json"
-
             jq -n \
               --arg original "$SOURCE" \
               --arg patched "$PATCHED_REF" \
-              --arg pre_report "$pre_report" \
-              --arg post_report "$post_report" \
-              '{original: $original, patched: $patched, "pre-report": $pre_report, "post-report": $post_report}'
+              --arg report "${NAME}/${TAG}/pre.json" \
+              --arg post_report "reports/${NAME}/${TAG}/post.json" \
+              '{original: $original, patched: $patched, report: $report, "post-report": $post_report}'
 
           done | jq -s '.' > .verity/images.json
 
           echo "✓ Built images.json with $(jq 'length' .verity/images.json) entries"
+
+      - name: Flatten post-reports for catalog
+        run: |
+          mkdir -p .verity/post-reports
+          jq -c '.[]' .verity/images.json | while IFS= read -r entry; do
+            patched=$(echo "$entry" | jq -r '.patched')
+            post_report=$(echo "$entry" | jq -r '."post-report"')
+            if [ -n "$patched" ] && [ "$patched" != "null" ] && [ -f "./reports-branch/${post_report}" ]; then
+              safe=$(echo "$patched" | sed 's/[\/:]/_/g')
+              cp "./reports-branch/${post_report}" ".verity/post-reports/${safe}.json"
+            fi
+          done
+          echo "✓ Flattened $(find .verity/post-reports/ -name '*.json' 2>/dev/null | wc -l | tr -d ' ') post-reports"
 
       - name: Generate catalog
         run: |
           ./verity catalog \
             --images-json .verity/images.json \
             --reports-dir ./reports-branch/reports \
-            --post-reports-dir ./reports-branch/reports \
+            --post-reports-dir .verity/post-reports \
             --registry "${TARGET_REGISTRY}" \
             --output site/src/data/catalog.json
           echo "✓ Catalog generated"
