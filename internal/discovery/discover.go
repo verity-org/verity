@@ -156,8 +156,18 @@ func discoverChartImages(chart config.ChartSpec, overrides map[string]config.Ove
 	return result, nil
 }
 
-// nameFromRef derives a safe image name from a full image reference (last path component, no tag/digest).
-// e.g., "quay.io/prometheus/prometheus:v3.2.1" → "prometheus".
+// nameFromRef derives a safe, unique image name from a full image reference.
+// For images with a registry and org (3+ path components), joins the org and
+// name with "-" to prevent collisions between images with the same basename
+// from different registries/orgs. When org and name are identical (e.g.,
+// prometheus/prometheus), the duplicate is dropped. Single-component and
+// two-component refs return the last component directly.
+// e.g.:
+//
+//	"quay.io/prometheus/prometheus:v3.2.1" → "prometheus"
+//	"quay.io/some-org/nginx:1.29"          → "some-org-nginx"
+//	"ghcr.io/kiwigrid/k8s-sidecar:1.28.0" → "kiwigrid-k8s-sidecar"
+//	"nginx:1.25"                           → "nginx"
 func nameFromRef(ref string) string {
 	// Strip digest
 	if idx := strings.Index(ref, "@"); idx != -1 {
@@ -168,11 +178,19 @@ func nameFromRef(ref string) string {
 	if lastColon := strings.LastIndex(ref, ":"); lastColon > lastSlash {
 		ref = ref[:lastColon]
 	}
-	// Return last path component
-	if idx := strings.LastIndex(ref, "/"); idx != -1 {
-		return ref[idx+1:]
+	// Split into path components (hostname/org/name)
+	parts := strings.Split(ref, "/")
+	// 3+ parts: hostname/org/name — include org to prevent collisions
+	if len(parts) >= 3 {
+		org := parts[len(parts)-2]
+		name := parts[len(parts)-1]
+		if org == name {
+			return name
+		}
+		return org + "-" + name
 	}
-	return ref
+	// 1-2 parts: no org or no hostname — use last component
+	return parts[len(parts)-1]
 }
 
 // joinPlatforms returns a comma-joined platform string, defaulting to DefaultPlatforms.

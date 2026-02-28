@@ -17,24 +17,34 @@ func TestNameFromRef(t *testing.T) {
 		want string
 	}{
 		{
-			name: "full ref with registry and tag",
+			name: "org equals name: deduplicated",
 			ref:  "quay.io/prometheus/prometheus:v3.2.1",
 			want: "prometheus",
 		},
 		{
-			name: "ref with digest",
+			name: "org equals name with digest: deduplicated",
 			ref:  "quay.io/prometheus/prometheus@sha256:abc123",
 			want: "prometheus",
 		},
 		{
-			name: "simple image with tag",
+			name: "simple image with no org",
 			ref:  "nginx:1.25",
 			want: testNginxName,
 		},
 		{
-			name: "ghcr image",
+			name: "org differs from name: org-name joined",
 			ref:  "ghcr.io/kiwigrid/k8s-sidecar:1.28.0",
-			want: "k8s-sidecar",
+			want: "kiwigrid-k8s-sidecar",
+		},
+		{
+			name: "collision safety: different registry same basename",
+			ref:  "quay.io/some-org/nginx:1.29",
+			want: "some-org-nginx",
+		},
+		{
+			name: "registry.k8s.io with repeated component",
+			ref:  "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.10.0",
+			want: "kube-state-metrics",
 		},
 	}
 
