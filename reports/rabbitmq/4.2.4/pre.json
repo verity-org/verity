@@ -1,0 +1,4096 @@
+{
+  "SchemaVersion": 2,
+  "ReportID": "019ca60c-7c69-7a31-a770-982636b34e2a",
+  "CreatedAt": "2026-02-28T20:59:22.08966918Z",
+  "ArtifactID": "sha256:cc1c7fadda422021be73fd5cba4cbb7115595e37ea7dce8ea71112ef1794d558",
+  "ArtifactName": "mirror.gcr.io/library/rabbitmq:4.2.4",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 243750400,
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "24.04"
+    },
+    "ImageID": "sha256:6f2086f039c4bb909033050f4bf08ae4fb16b04e201d0a01970b3cd1e82b33d5",
+    "DiffIDs": [
+      "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791",
+      "sha256:706353d3d98dc6d0dc0aaef9beab7196c8b757a6b19630aae7045ed3953f584e",
+      "sha256:d2153aab55a54b97f836ef144b32398c456820c01a7804675f99d8c51779499d",
+      "sha256:7d187525d469cf842a543b32da271a77ab30253338d256c0a7465004f6780dd0",
+      "sha256:165309bc9a8e8626bee3f7750385adcd8faa21a138c24d4b793129131a457918",
+      "sha256:576b06a9088c2e3b0be212471f574355f2f4cd21bcb09751dcecfaf6e12611f2",
+      "sha256:8084ab9db66a845da3c01b6e89d01cfeacd3f78335221b243c98f8b2244ee230",
+      "sha256:3fc373da536d225cc19b8ffa26507b36c62ff8c28055fde8c21589f106b97e7d",
+      "sha256:6ffa2e85ba8460c623f0b39419a715056f17dbc9520189230a9d8a1e7c9c9424"
+    ],
+    "RepoTags": [
+      "mirror.gcr.io/library/rabbitmq:4.2.4"
+    ],
+    "RepoDigests": [
+      "mirror.gcr.io/library/rabbitmq@sha256:8a76a8d5c418faf260abba10580f983890ad1df069fe27e5f1cfeab8e327453d"
+    ],
+    "Reference": "mirror.gcr.io/library/rabbitmq:4.2.4",
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2026-02-20T19:13:29.028584934Z",
+      "history": [
+        {
+          "created": "2026-02-10T16:49:54.555271506Z",
+          "created_by": "/bin/sh -c #(nop)  ARG RELEASE",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-10T16:49:54.597347Z",
+          "created_by": "/bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-10T16:49:54.629922453Z",
+          "created_by": "/bin/sh -c #(nop)  LABEL org.opencontainers.image.ref.name=ubuntu",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-10T16:49:54.658571922Z",
+          "created_by": "/bin/sh -c #(nop)  LABEL org.opencontainers.image.version=24.04",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-10T16:49:56.804776604Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:1ae27d2ef4369361104b699712f3897141e394785df5d193d67b44626f57eb87 in / "
+        },
+        {
+          "created": "2026-02-10T16:49:57.226767398Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/bash\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:07.590404638Z",
+          "created_by": "ENV ERLANG_INSTALL_PATH_PREFIX=/opt/erlang",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:07.590404638Z",
+          "created_by": "ENV OPENSSL_INSTALL_PATH_PREFIX=/opt/openssl",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:07.590404638Z",
+          "created_by": "COPY /opt/erlang /opt/erlang # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-02-20T19:13:07.680124408Z",
+          "created_by": "COPY /opt/openssl /opt/openssl # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-02-20T19:13:07.680124408Z",
+          "created_by": "ENV PATH=/opt/erlang/bin:/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:07.680124408Z",
+          "created_by": "ENV RABBITMQ_DATA_DIR=/var/lib/rabbitmq",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:08.997041494Z",
+          "created_by": "RUN /bin/sh -c set -eux; \tln -vsf /etc/ssl/certs /etc/ssl/private \"$OPENSSL_INSTALL_PATH_PREFIX/etc/ssl\"; \t\tldconfig; \tsed -i.ORIG -e \"/\\.include.*fips/ s!.*!.include $OPENSSL_INSTALL_PATH_PREFIX/etc/ssl/fipsmodule.cnf!\" \t\t-e '/# fips =/s/.*/fips = fips_sect/' \"$OPENSSL_INSTALL_PATH_PREFIX/etc/ssl/openssl.cnf\"; \tsed -i.ORIG -e '/^activate/s/^/#/' \"$OPENSSL_INSTALL_PATH_PREFIX/etc/ssl/fipsmodule.cnf\"; \t[ \"$(command -v openssl)\" = \"$OPENSSL_INSTALL_PATH_PREFIX/bin/openssl\" ]; \topenssl version; \topenssl version -d; \t\terl -noshell -eval 'ok = crypto:start(), ok = io:format(\"~p~n~n~p~n~n\", [crypto:supports(), ssl:versions()]), init:stop().'; \t\tgroupadd --gid 999 --system rabbitmq; \tuseradd --uid 999 --system --home-dir \"$RABBITMQ_DATA_DIR\" --gid rabbitmq rabbitmq; \tmkdir -p \"$RABBITMQ_DATA_DIR\" /etc/rabbitmq /etc/rabbitmq/conf.d /tmp/rabbitmq-ssl /var/log/rabbitmq; \tchown -fR rabbitmq:rabbitmq \"$RABBITMQ_DATA_DIR\" /etc/rabbitmq /etc/rabbitmq/conf.d /tmp/rabbitmq-ssl /var/log/rabbitmq; \tchmod 1777 \"$RABBITMQ_DATA_DIR\" /etc/rabbitmq /etc/rabbitmq/conf.d /tmp/rabbitmq-ssl /var/log/rabbitmq; \tln -sf \"$RABBITMQ_DATA_DIR/.erlang.cookie\" /root/.erlang.cookie # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-02-20T19:13:08.997041494Z",
+          "created_by": "ENV RABBITMQ_VERSION=4.2.4",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:08.997041494Z",
+          "created_by": "ENV RABBITMQ_PGP_KEY_ID=0x0A9AF2115F4687BD29803A206B73A36E6026DFCA",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:08.997041494Z",
+          "created_by": "ENV RABBITMQ_HOME=/opt/rabbitmq",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:08.997041494Z",
+          "created_by": "ENV PATH=/opt/rabbitmq/sbin:/opt/erlang/bin:/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:27.88945965Z",
+          "created_by": "RUN /bin/sh -c set -eux; \texport DEBIAN_FRONTEND=noninteractive; \tapt-get update; \tapt-get install --yes --no-install-recommends \t\tca-certificates \t\tgosu \t\ttzdata \t; \tgosu nobody true; \t\tsavedAptMark=\"$(apt-mark showmanual)\"; \tapt-get install --yes --no-install-recommends \t\tgnupg \t\twget \t\txz-utils \t; \trm -rf /var/lib/apt/lists/*; \t\tRABBITMQ_SOURCE_URL=\"https://github.com/rabbitmq/rabbitmq-server/releases/download/v$RABBITMQ_VERSION/rabbitmq-server-generic-unix-latest-toolchain-$RABBITMQ_VERSION.tar.xz\"; \tRABBITMQ_PATH=\"/usr/local/src/rabbitmq-$RABBITMQ_VERSION\"; \t\twget --progress dot:giga --output-document \"$RABBITMQ_PATH.tar.xz.asc\" \"$RABBITMQ_SOURCE_URL.asc\"; \twget --progress dot:giga --output-document \"$RABBITMQ_PATH.tar.xz\" \"$RABBITMQ_SOURCE_URL\"; \t\texport GNUPGHOME=\"$(mktemp -d)\"; \tgpg --batch --keyserver hkps://keys.openpgp.org --recv-keys \"$RABBITMQ_PGP_KEY_ID\"; \tgpg --batch --verify \"$RABBITMQ_PATH.tar.xz.asc\" \"$RABBITMQ_PATH.tar.xz\"; \tgpgconf --kill all; \trm -rf \"$GNUPGHOME\"; \t\tmkdir -p \"$RABBITMQ_HOME\"; \ttar --extract --file \"$RABBITMQ_PATH.tar.xz\" --directory \"$RABBITMQ_HOME\" --strip-components 1; \trm -rf \"$RABBITMQ_PATH\"*; \tgrep -qE '^SYS_PREFIX=\\$\\{RABBITMQ_HOME\\}$' \"$RABBITMQ_HOME/sbin/rabbitmq-defaults\"; \tsed -i 's/^SYS_PREFIX=.*$/SYS_PREFIX=/' \"$RABBITMQ_HOME/sbin/rabbitmq-defaults\"; \tgrep -qE '^SYS_PREFIX=$' \"$RABBITMQ_HOME/sbin/rabbitmq-defaults\"; \tchown -R rabbitmq:rabbitmq \"$RABBITMQ_HOME\"; \t\tapt-mark auto '.*' \u003e /dev/null; \tapt-mark manual $savedAptMark; \tapt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \t\t[ ! -e \"$RABBITMQ_DATA_DIR/.erlang.cookie\" ]; \tgosu rabbitmq rabbitmqctl help; \tgosu rabbitmq rabbitmqctl list_ciphers; \tgosu rabbitmq rabbitmq-plugins list; \trm \"$RABBITMQ_DATA_DIR/.erlang.cookie\" # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-02-20T19:13:28.773605434Z",
+          "created_by": "RUN /bin/sh -c gosu rabbitmq rabbitmq-plugins enable --offline rabbitmq_prometheus # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-02-20T19:13:28.880245806Z",
+          "created_by": "RUN /bin/sh -c ln -sf /opt/rabbitmq/plugins /plugins # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-02-20T19:13:28.880245806Z",
+          "created_by": "ENV HOME=/var/lib/rabbitmq",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:28.880245806Z",
+          "created_by": "VOLUME [/var/lib/rabbitmq]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:28.880245806Z",
+          "created_by": "ENV LANG=C.UTF-8 LANGUAGE=C.UTF-8 LC_ALL=C.UTF-8",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:28.880245806Z",
+          "created_by": "ENV RUNNING_UNDER_SYSTEMD=true",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:28.968539389Z",
+          "created_by": "COPY --chown=rabbitmq:rabbitmq 10-defaults.conf 20-management_agent.disable_metrics_collector.conf /etc/rabbitmq/conf.d/ # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-02-20T19:13:29.028584934Z",
+          "created_by": "COPY docker-entrypoint.sh /usr/local/bin/ # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-02-20T19:13:29.028584934Z",
+          "created_by": "ENTRYPOINT [\"docker-entrypoint.sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:29.028584934Z",
+          "created_by": "EXPOSE map[15691/tcp:{} 15692/tcp:{} 25672/tcp:{} 4369/tcp:{} 5671/tcp:{} 5672/tcp:{}]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-02-20T19:13:29.028584934Z",
+          "created_by": "CMD [\"rabbitmq-server\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791",
+          "sha256:706353d3d98dc6d0dc0aaef9beab7196c8b757a6b19630aae7045ed3953f584e",
+          "sha256:d2153aab55a54b97f836ef144b32398c456820c01a7804675f99d8c51779499d",
+          "sha256:7d187525d469cf842a543b32da271a77ab30253338d256c0a7465004f6780dd0",
+          "sha256:165309bc9a8e8626bee3f7750385adcd8faa21a138c24d4b793129131a457918",
+          "sha256:576b06a9088c2e3b0be212471f574355f2f4cd21bcb09751dcecfaf6e12611f2",
+          "sha256:8084ab9db66a845da3c01b6e89d01cfeacd3f78335221b243c98f8b2244ee230",
+          "sha256:3fc373da536d225cc19b8ffa26507b36c62ff8c28055fde8c21589f106b97e7d",
+          "sha256:6ffa2e85ba8460c623f0b39419a715056f17dbc9520189230a9d8a1e7c9c9424"
+        ]
+      },
+      "config": {
+        "Cmd": [
+          "rabbitmq-server"
+        ],
+        "Entrypoint": [
+          "docker-entrypoint.sh"
+        ],
+        "Env": [
+          "PATH=/opt/rabbitmq/sbin:/opt/erlang/bin:/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "ERLANG_INSTALL_PATH_PREFIX=/opt/erlang",
+          "OPENSSL_INSTALL_PATH_PREFIX=/opt/openssl",
+          "RABBITMQ_DATA_DIR=/var/lib/rabbitmq",
+          "RABBITMQ_VERSION=4.2.4",
+          "RABBITMQ_PGP_KEY_ID=0x0A9AF2115F4687BD29803A206B73A36E6026DFCA",
+          "RABBITMQ_HOME=/opt/rabbitmq",
+          "HOME=/var/lib/rabbitmq",
+          "LANG=C.UTF-8",
+          "LANGUAGE=C.UTF-8",
+          "LC_ALL=C.UTF-8",
+          "RUNNING_UNDER_SYSTEMD=true"
+        ],
+        "Labels": {
+          "org.opencontainers.image.ref.name": "ubuntu",
+          "org.opencontainers.image.version": "24.04"
+        },
+        "Volumes": {
+          "/var/lib/rabbitmq": {}
+        },
+        "ExposedPorts": {
+          "15691/tcp": {},
+          "15692/tcp": {},
+          "25672/tcp": {},
+          "4369/tcp": {},
+          "5671/tcp": {},
+          "5672/tcp": {}
+        }
+      }
+    },
+    "Layers": [
+      {
+        "Size": 80642048,
+        "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+        "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+      },
+      {
+        "Size": 91402240,
+        "Digest": "sha256:6737b809c13c293a6a0f4095ef499bd1b306e3077a20b750e96da93689da0fc8",
+        "DiffID": "sha256:706353d3d98dc6d0dc0aaef9beab7196c8b757a6b19630aae7045ed3953f584e"
+      },
+      {
+        "Size": 29902336,
+        "Digest": "sha256:db5fc766253d41e6f7612eb33b058a6cc1c0204d0200ac663c4f1535f48a6c54",
+        "DiffID": "sha256:d2153aab55a54b97f836ef144b32398c456820c01a7804675f99d8c51779499d"
+      },
+      {
+        "Size": 62464,
+        "Digest": "sha256:968a6189d29ce9d72ab06f87d5c1ab68470e2ce8586437636987804e83d4025b",
+        "DiffID": "sha256:7d187525d469cf842a543b32da271a77ab30253338d256c0a7465004f6780dd0"
+      },
+      {
+        "Size": 41727488,
+        "Digest": "sha256:766dfd181eececccf12ef38210bf56f5431666e24fc0e708ae02567f80c72498",
+        "DiffID": "sha256:165309bc9a8e8626bee3f7750385adcd8faa21a138c24d4b793129131a457918"
+      },
+      {
+        "Size": 3072,
+        "Digest": "sha256:9eef02324233a0f3bc96e7bab4cbadb6e8c82888f2e0d0dd8cedd1697f53ad77",
+        "DiffID": "sha256:576b06a9088c2e3b0be212471f574355f2f4cd21bcb09751dcecfaf6e12611f2"
+      },
+      {
+        "Size": 1536,
+        "Digest": "sha256:dbfa4b1dd3e3bcf696a093e335e67997c2da38cd06691efbed5eb1d4ff0107d2",
+        "DiffID": "sha256:8084ab9db66a845da3c01b6e89d01cfeacd3f78335221b243c98f8b2244ee230"
+      },
+      {
+        "Size": 4608,
+        "Digest": "sha256:4e45bf90ea563b568cf92d25f16175d2ad06c1b90deb97409997719e8bce6443",
+        "DiffID": "sha256:3fc373da536d225cc19b8ffa26507b36c62ff8c28055fde8c21589f106b97e7d"
+      },
+      {
+        "Size": 4608,
+        "Digest": "sha256:ff0a1ce0c420d497245f93346d0d18dd6d2e13832040eec67ed3ce08adfa678d",
+        "DiffID": "sha256:6ffa2e85ba8460c623f0b39419a715056f17dbc9520189230a9d8a1e7c9c9424"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "mirror.gcr.io/library/rabbitmq:4.2.4 (ubuntu 24.04)",
+      "Class": "os-pkgs",
+      "Type": "ubuntu",
+      "Packages": [
+        {
+          "ID": "adduser@3.137ubuntu1",
+          "Name": "adduser",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/adduser@3.137ubuntu1?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "5d73eaaf1a992ad4"
+          },
+          "Version": "3.137ubuntu1",
+          "Arch": "all",
+          "SrcName": "adduser",
+          "SrcVersion": "3.137ubuntu1",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "passwd@1:4.13+dfsg1-4ubuntu3.2"
+          ],
+          "Layer": {
+            "Digest": "sha256:766dfd181eececccf12ef38210bf56f5431666e24fc0e708ae02567f80c72498",
+            "DiffID": "sha256:165309bc9a8e8626bee3f7750385adcd8faa21a138c24d4b793129131a457918"
+          }
+        },
+        {
+          "ID": "apt@2.8.3",
+          "Name": "apt",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/apt@2.8.3?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "9573a336004cd38d"
+          },
+          "Version": "2.8.3",
+          "Arch": "amd64",
+          "SrcName": "apt",
+          "SrcVersion": "2.8.3",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "BSD-3-Clause",
+            "MIT"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "adduser@3.137ubuntu1",
+            "base-passwd@3.6.3build1",
+            "gpgv@2.4.4-2ubuntu17.4",
+            "libapt-pkg6.0t64@2.8.3",
+            "libc6@2.39-0ubuntu8.7",
+            "libgcc-s1@14.2.0-4ubuntu2~24.04",
+            "libgnutls30t64@3.8.3-1.1ubuntu3.4",
+            "libseccomp2@2.5.5-1ubuntu3.1",
+            "libstdc++6@14.2.0-4ubuntu2~24.04",
+            "libsystemd0@255.4-1ubuntu8.12",
+            "ubuntu-keyring@2023.11.28.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "base-files@13ubuntu10.4",
+          "Name": "base-files",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/base-files@13ubuntu10.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "f821f97d90c10bd3"
+          },
+          "Version": "13ubuntu10.4",
+          "Arch": "amd64",
+          "SrcName": "base-files",
+          "SrcVersion": "13ubuntu10.4",
+          "Licenses": [
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libcrypt1@1:4.4.36-4build1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "base-passwd@3.6.3build1",
+          "Name": "base-passwd",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/base-passwd@3.6.3build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "bdb6c48ce9d6d504"
+          },
+          "Version": "3.6.3build1",
+          "Arch": "amd64",
+          "SrcName": "base-passwd",
+          "SrcVersion": "3.6.3build1",
+          "Licenses": [
+            "GPL-2.0-only",
+            "public-domain"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libdebconfclient0@0.271ubuntu3",
+            "libselinux1@3.5-2ubuntu2.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "bash@5.2.21-2ubuntu4",
+          "Name": "bash",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/bash@5.2.21-2ubuntu4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "e156b1ba7f83f751"
+          },
+          "Version": "5.2.21",
+          "Release": "2ubuntu4",
+          "Arch": "amd64",
+          "SrcName": "bash",
+          "SrcVersion": "5.2.21",
+          "SrcRelease": "2ubuntu4",
+          "Licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "GPL-3+ with Bison exception",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GFDL-1.3-no-invariants-only",
+            "GFDL-1.3-only",
+            "Latex2e",
+            "BSD-4-Clause-UC",
+            "MIT",
+            "permissive"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "base-files@13ubuntu10.4",
+            "debianutils@5.17build1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "bsdutils@1:2.39.3-9ubuntu6.4",
+          "Name": "bsdutils",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/bsdutils@2.39.3-9ubuntu6.4?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "6ec66a3976235cf8"
+          },
+          "Version": "2.39.3",
+          "Release": "9ubuntu6.4",
+          "Epoch": 1,
+          "Arch": "amd64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.39.3",
+          "SrcRelease": "9ubuntu6.4",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "ca-certificates@20240203",
+          "Name": "ca-certificates",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/ca-certificates@20240203?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "f3f099584c507fb6"
+          },
+          "Version": "20240203",
+          "Arch": "all",
+          "SrcName": "ca-certificates",
+          "SrcVersion": "20240203",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "MPL-2.0"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "debconf@1.5.86ubuntu1",
+            "openssl@3.0.13-0ubuntu3.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:766dfd181eececccf12ef38210bf56f5431666e24fc0e708ae02567f80c72498",
+            "DiffID": "sha256:165309bc9a8e8626bee3f7750385adcd8faa21a138c24d4b793129131a457918"
+          }
+        },
+        {
+          "ID": "coreutils@9.4-3ubuntu6.1",
+          "Name": "coreutils",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/coreutils@9.4-3ubuntu6.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7d12d112faeb223b"
+          },
+          "Version": "9.4",
+          "Release": "3ubuntu6.1",
+          "Arch": "amd64",
+          "SrcName": "coreutils",
+          "SrcVersion": "9.4",
+          "SrcRelease": "3ubuntu6.1",
+          "Licenses": [
+            "GPL-3.0-or-later",
+            "BSD-4-Clause-UC",
+            "GPL-3.0-only",
+            "ISC",
+            "FSFULLR",
+            "GFDL-1.3-no-invariants-only",
+            "GFDL-1.3-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "dash@0.5.12-6ubuntu5",
+          "Name": "dash",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/dash@0.5.12-6ubuntu5?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "8e3a85f0e4451377"
+          },
+          "Version": "0.5.12",
+          "Release": "6ubuntu5",
+          "Arch": "amd64",
+          "SrcName": "dash",
+          "SrcVersion": "0.5.12",
+          "SrcRelease": "6ubuntu5",
+          "Licenses": [
+            "BSD-3-Clause",
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "debianutils@5.17build1",
+            "dpkg@1.22.6ubuntu6.5"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "debconf@1.5.86ubuntu1",
+          "Name": "debconf",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/debconf@1.5.86ubuntu1?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "a607ddbcb88aa636"
+          },
+          "Version": "1.5.86ubuntu1",
+          "Arch": "all",
+          "SrcName": "debconf",
+          "SrcVersion": "1.5.86ubuntu1",
+          "Licenses": [
+            "BSD-2-Clause"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "debianutils@5.17build1",
+          "Name": "debianutils",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/debianutils@5.17build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "f46ac510e425544"
+          },
+          "Version": "5.17build1",
+          "Arch": "amd64",
+          "SrcName": "debianutils",
+          "SrcVersion": "5.17build1",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "public-domain",
+            "SMAIL-GPL"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "diffutils@1:3.10-1build1",
+          "Name": "diffutils",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/diffutils@3.10-1build1?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "1d324568ae91901d"
+          },
+          "Version": "3.10",
+          "Release": "1build1",
+          "Epoch": 1,
+          "Arch": "amd64",
+          "SrcName": "diffutils",
+          "SrcVersion": "3.10",
+          "SrcRelease": "1build1",
+          "SrcEpoch": 1,
+          "Licenses": [
+            "GPL-3.0-or-later",
+            "FSFULLR",
+            "LGPL-2.1-or-later",
+            "GPL-3.0-with-autoconf-exception+",
+            "GPL-3.0-only",
+            "GPL-3+ with texinfo exception",
+            "LGPL-2.0-or-later",
+            "GPL-2.0-or-later",
+            "X11",
+            "FSFAP",
+            "GFDL-1.3-no-invariants-only",
+            "LGPL-3.0-or-later",
+            "LGPL-3.0-only",
+            "public-domain",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only",
+            "GFDL-1.3-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "dpkg@1.22.6ubuntu6.5",
+          "Name": "dpkg",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/dpkg@1.22.6ubuntu6.5?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "3c3875fbf4deebad"
+          },
+          "Version": "1.22.6ubuntu6.5",
+          "Arch": "amd64",
+          "SrcName": "dpkg",
+          "SrcVersion": "1.22.6ubuntu6.5",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "public-domain-s-s-d",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "tar@1.35+dfsg-3build1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "e2fsprogs@1.47.0-2.4~exp1ubuntu4.1",
+          "Name": "e2fsprogs",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/e2fsprogs@1.47.0-2.4~exp1ubuntu4.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "9990639f16072281"
+          },
+          "Version": "1.47.0",
+          "Release": "2.4~exp1ubuntu4.1",
+          "Arch": "amd64",
+          "SrcName": "e2fsprogs",
+          "SrcVersion": "1.47.0",
+          "SrcRelease": "2.4~exp1ubuntu4.1",
+          "Licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "BSD-3-Clause",
+            "Apache-2.0",
+            "ISC",
+            "GPL-2.0-or-later",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2+ with Texinfo exception"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "logsave@1.47.0-2.4~exp1ubuntu4.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "findutils@4.9.0-5build1",
+          "Name": "findutils",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/findutils@4.9.0-5build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7e163bd7aece292"
+          },
+          "Version": "4.9.0",
+          "Release": "5build1",
+          "Arch": "amd64",
+          "SrcName": "findutils",
+          "SrcVersion": "4.9.0",
+          "SrcRelease": "5build1",
+          "Licenses": [
+            "GFDL-1.3-no-invariants-or-later",
+            "GPL-3.0-or-later",
+            "FSFAP",
+            "GPL-3+ with Autoconf-data exception",
+            "FSFULLR",
+            "GPL-2+ with Autoconf-data exception",
+            "GPL-2.0-or-later",
+            "X11",
+            "public-domain",
+            "GPL with automake exception",
+            "LGPL-2.1-or-later",
+            "LGPL-2.0-or-later",
+            "LGPL-3.0-or-later",
+            "BSD-3-clause and/or GPL-3+",
+            "GPL-3+ with Bison-2.2 exception",
+            "LGPL-3.0-only",
+            "ISC and/or LGPL-2.1+",
+            "BSD-3-Clause",
+            "GFDL-1.3-only",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "ISC",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "gcc-14-base@14.2.0-4ubuntu2~24.04",
+          "Name": "gcc-14-base",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/gcc-14-base@14.2.0-4ubuntu2~24.04?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "4297dc9a07a70f4a"
+          },
+          "Version": "14.2.0",
+          "Release": "4ubuntu2~24.04",
+          "Arch": "amd64",
+          "SrcName": "gcc-14",
+          "SrcVersion": "14.2.0",
+          "SrcRelease": "4ubuntu2~24.04",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "GFDL-1.2-only",
+            "Artistic-2.0",
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Ubuntu Core developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "gosu@1.17-1ubuntu0.24.04.3",
+          "Name": "gosu",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/gosu@1.17-1ubuntu0.24.04.3?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "e38a75e32f3f8df9"
+          },
+          "Version": "1.17",
+          "Release": "1ubuntu0.24.04.3",
+          "Arch": "amd64",
+          "SrcName": "gosu",
+          "SrcVersion": "1.17",
+          "SrcRelease": "1ubuntu0.24.04.3",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:766dfd181eececccf12ef38210bf56f5431666e24fc0e708ae02567f80c72498",
+            "DiffID": "sha256:165309bc9a8e8626bee3f7750385adcd8faa21a138c24d4b793129131a457918"
+          }
+        },
+        {
+          "ID": "gpgv@2.4.4-2ubuntu17.4",
+          "Name": "gpgv",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/gpgv@2.4.4-2ubuntu17.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "3ed4b28d44ef0d14"
+          },
+          "Version": "2.4.4",
+          "Release": "2ubuntu17.4",
+          "Arch": "amd64",
+          "SrcName": "gnupg2",
+          "SrcVersion": "2.4.4",
+          "SrcRelease": "2ubuntu17.4",
+          "Licenses": [
+            "GPL-3.0-or-later",
+            "permissive",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "BSD-3-Clause",
+            "RFC-Reference",
+            "TinySCHEME",
+            "CC0-1.0",
+            "GPL-3.0-only",
+            "LGPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libassuan0@2.5.6-1build1",
+            "libbz2-1.0@1.0.8-5.1build0.1",
+            "libc6@2.39-0ubuntu8.7",
+            "libgcrypt20@1.10.3-2build1",
+            "libgpg-error0@1.47-3build2.1",
+            "libnpth0t64@1.6-3.1build1",
+            "zlib1g@1:1.3.dfsg-3.1ubuntu2.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "grep@3.11-4build1",
+          "Name": "grep",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/grep@3.11-4build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "56bbc5fe95944df4"
+          },
+          "Version": "3.11",
+          "Release": "4build1",
+          "Arch": "amd64",
+          "SrcName": "grep",
+          "SrcVersion": "3.11",
+          "SrcRelease": "4build1",
+          "Licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "gzip@1.12-1ubuntu3.1",
+          "Name": "gzip",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/gzip@1.12-1ubuntu3.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "257c7885dd97fb4a"
+          },
+          "Version": "1.12",
+          "Release": "1ubuntu3.1",
+          "Arch": "amd64",
+          "SrcName": "gzip",
+          "SrcVersion": "1.12",
+          "SrcRelease": "1ubuntu3.1",
+          "Licenses": [
+            "GPL-3.0-or-later",
+            "GFDL-1.3+-no-invariant",
+            "FSF-manpages",
+            "GPL-3.0-only",
+            "GFDL-3"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "dpkg@1.22.6ubuntu6.5"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "hostname@3.23+nmu2ubuntu2",
+          "Name": "hostname",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/hostname@3.23%2Bnmu2ubuntu2?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "c14d294b275561a4"
+          },
+          "Version": "3.23+nmu2ubuntu2",
+          "Arch": "amd64",
+          "SrcName": "hostname",
+          "SrcVersion": "3.23+nmu2ubuntu2",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "init-system-helpers@1.66ubuntu1",
+          "Name": "init-system-helpers",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/init-system-helpers@1.66ubuntu1?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "954ef45beb9fd7d5"
+          },
+          "Version": "1.66ubuntu1",
+          "Arch": "all",
+          "SrcName": "init-system-helpers",
+          "SrcVersion": "1.66ubuntu1",
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libacl1@2.3.2-1build1.1",
+          "Name": "libacl1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libacl1@2.3.2-1build1.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "24a9bd3a6aded7a7"
+          },
+          "Version": "2.3.2",
+          "Release": "1build1.1",
+          "Arch": "amd64",
+          "SrcName": "acl",
+          "SrcVersion": "2.3.2",
+          "SrcRelease": "1build1.1",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libapt-pkg6.0t64@2.8.3",
+          "Name": "libapt-pkg6.0t64",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libapt-pkg6.0t64@2.8.3?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7cee40f6f3a2eebd"
+          },
+          "Version": "2.8.3",
+          "Arch": "amd64",
+          "SrcName": "apt",
+          "SrcVersion": "2.8.3",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "BSD-3-Clause",
+            "MIT"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libbz2-1.0@1.0.8-5.1build0.1",
+            "libc6@2.39-0ubuntu8.7",
+            "libgcc-s1@14.2.0-4ubuntu2~24.04",
+            "libgcrypt20@1.10.3-2build1",
+            "liblz4-1@1.9.4-1build1.1",
+            "liblzma5@5.6.1+really5.4.5-1ubuntu0.2",
+            "libstdc++6@14.2.0-4ubuntu2~24.04",
+            "libsystemd0@255.4-1ubuntu8.12",
+            "libudev1@255.4-1ubuntu8.12",
+            "libxxhash0@0.8.2-2build1",
+            "libzstd1@1.5.5+dfsg2-2build1.1",
+            "zlib1g@1:1.3.dfsg-3.1ubuntu2.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libassuan0@2.5.6-1build1",
+          "Name": "libassuan0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libassuan0@2.5.6-1build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "f9263f0022fcd750"
+          },
+          "Version": "2.5.6",
+          "Release": "1build1",
+          "Arch": "amd64",
+          "SrcName": "libassuan",
+          "SrcVersion": "2.5.6",
+          "SrcRelease": "1build1",
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "GAP~FSF",
+            "LGPL-3.0-or-later",
+            "LGPL-3.0-only",
+            "GPL-2+ with libtool exception",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "GAP",
+            "GPL-2.0-or-later",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libgpg-error0@1.47-3build2.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libattr1@1:2.5.2-1build1.1",
+          "Name": "libattr1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libattr1@2.5.2-1build1.1?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "f1b02980cbc55f2f"
+          },
+          "Version": "2.5.2",
+          "Release": "1build1.1",
+          "Epoch": 1,
+          "Arch": "amd64",
+          "SrcName": "attr",
+          "SrcVersion": "2.5.2",
+          "SrcRelease": "1build1.1",
+          "SrcEpoch": 1,
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libaudit-common@1:3.1.2-2.1build1.1",
+          "Name": "libaudit-common",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libaudit-common@3.1.2-2.1build1.1?arch=all\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "876b9d2c920e936a"
+          },
+          "Version": "3.1.2",
+          "Release": "2.1build1.1",
+          "Epoch": 1,
+          "Arch": "all",
+          "SrcName": "audit",
+          "SrcVersion": "3.1.2",
+          "SrcRelease": "2.1build1.1",
+          "SrcEpoch": 1,
+          "Licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.1-only",
+            "GPL-1.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libaudit1@1:3.1.2-2.1build1.1",
+          "Name": "libaudit1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libaudit1@3.1.2-2.1build1.1?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "5f2d375067415759"
+          },
+          "Version": "3.1.2",
+          "Release": "2.1build1.1",
+          "Epoch": 1,
+          "Arch": "amd64",
+          "SrcName": "audit",
+          "SrcVersion": "3.1.2",
+          "SrcRelease": "2.1build1.1",
+          "SrcEpoch": 1,
+          "Licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.1-only",
+            "GPL-1.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libaudit-common@1:3.1.2-2.1build1.1",
+            "libc6@2.39-0ubuntu8.7",
+            "libcap-ng0@0.8.4-2build2"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libblkid1@2.39.3-9ubuntu6.4",
+          "Name": "libblkid1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libblkid1@2.39.3-9ubuntu6.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "f1e18c1135329b94"
+          },
+          "Version": "2.39.3",
+          "Release": "9ubuntu6.4",
+          "Arch": "amd64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.39.3",
+          "SrcRelease": "9ubuntu6.4",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libbz2-1.0@1.0.8-5.1build0.1",
+          "Name": "libbz2-1.0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libbz2-1.0@1.0.8-5.1build0.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "a3b8606288ff6241"
+          },
+          "Version": "1.0.8",
+          "Release": "5.1build0.1",
+          "Arch": "amd64",
+          "SrcName": "bzip2",
+          "SrcVersion": "1.0.8",
+          "SrcRelease": "5.1build0.1",
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libc-bin@2.39-0ubuntu8.7",
+          "Name": "libc-bin",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libc-bin@2.39-0ubuntu8.7?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "5c5485f64f951466"
+          },
+          "Version": "2.39",
+          "Release": "0ubuntu8.7",
+          "Arch": "amd64",
+          "SrcName": "glibc",
+          "SrcVersion": "2.39",
+          "SrcRelease": "0ubuntu8.7",
+          "Licenses": [
+            "LGPL-2.1-only",
+            "GPL-2.0-only",
+            "GFDL-1.3-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libc6@2.39-0ubuntu8.7",
+          "Name": "libc6",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.7?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "a09160769b2b6d28"
+          },
+          "Version": "2.39",
+          "Release": "0ubuntu8.7",
+          "Arch": "amd64",
+          "SrcName": "glibc",
+          "SrcVersion": "2.39",
+          "SrcRelease": "0ubuntu8.7",
+          "Licenses": [
+            "LGPL-2.1-only",
+            "GPL-2.0-only",
+            "GFDL-1.3-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libgcc-s1@14.2.0-4ubuntu2~24.04"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libcap-ng0@0.8.4-2build2",
+          "Name": "libcap-ng0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libcap-ng0@0.8.4-2build2?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "79e76d35c2660d7"
+          },
+          "Version": "0.8.4",
+          "Release": "2build2",
+          "Arch": "amd64",
+          "SrcName": "libcap-ng",
+          "SrcVersion": "0.8.4",
+          "SrcRelease": "2build2",
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libcap2@1:2.66-5ubuntu2.2",
+          "Name": "libcap2",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libcap2@2.66-5ubuntu2.2?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "9985dc782a17e465"
+          },
+          "Version": "2.66",
+          "Release": "5ubuntu2.2",
+          "Epoch": 1,
+          "Arch": "amd64",
+          "SrcName": "libcap2",
+          "SrcVersion": "2.66",
+          "SrcRelease": "5ubuntu2.2",
+          "SrcEpoch": 1,
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-only",
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libcom-err2@1.47.0-2.4~exp1ubuntu4.1",
+          "Name": "libcom-err2",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libcom-err2@1.47.0-2.4~exp1ubuntu4.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "aec17c431e17c045"
+          },
+          "Version": "1.47.0",
+          "Release": "2.4~exp1ubuntu4.1",
+          "Arch": "amd64",
+          "SrcName": "e2fsprogs",
+          "SrcVersion": "1.47.0",
+          "SrcRelease": "2.4~exp1ubuntu4.1",
+          "Licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "BSD-3-Clause",
+            "Apache-2.0",
+            "ISC",
+            "GPL-2.0-or-later",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2+ with Texinfo exception"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libcrypt1@1:4.4.36-4build1",
+          "Name": "libcrypt1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libcrypt1@4.4.36-4build1?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "37b5dae6ffee2826"
+          },
+          "Version": "4.4.36",
+          "Release": "4build1",
+          "Epoch": 1,
+          "Arch": "amd64",
+          "SrcName": "libxcrypt",
+          "SrcVersion": "4.4.36",
+          "SrcRelease": "4build1",
+          "SrcEpoch": 1,
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libdb5.3t64@5.3.28+dfsg2-7",
+          "Name": "libdb5.3t64",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libdb5.3t64@5.3.28%2Bdfsg2-7?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "406272815e83d5c5"
+          },
+          "Version": "5.3.28+dfsg2",
+          "Release": "7",
+          "Arch": "amd64",
+          "SrcName": "db5.3",
+          "SrcVersion": "5.3.28+dfsg2",
+          "SrcRelease": "7",
+          "Licenses": [
+            "Sleepycat",
+            "BSD-3-Clause",
+            "MS-PL",
+            "GPL-2.0-or-later",
+            "Artistic-2.0",
+            "X11",
+            "MIT-old",
+            "TCL-like",
+            "BSD-3-clause-fjord",
+            "GPL-3.0-only",
+            "Zlib"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libdebconfclient0@0.271ubuntu3",
+          "Name": "libdebconfclient0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libdebconfclient0@0.271ubuntu3?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "28588d2cbf2c2fa6"
+          },
+          "Version": "0.271ubuntu3",
+          "Arch": "amd64",
+          "SrcName": "cdebconf",
+          "SrcVersion": "0.271ubuntu3",
+          "Licenses": [
+            "BSD-2-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libext2fs2t64@1.47.0-2.4~exp1ubuntu4.1",
+          "Name": "libext2fs2t64",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libext2fs2t64@1.47.0-2.4~exp1ubuntu4.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "cf3e20c135a5be86"
+          },
+          "Version": "1.47.0",
+          "Release": "2.4~exp1ubuntu4.1",
+          "Arch": "amd64",
+          "SrcName": "e2fsprogs",
+          "SrcVersion": "1.47.0",
+          "SrcRelease": "2.4~exp1ubuntu4.1",
+          "Licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "BSD-3-Clause",
+            "Apache-2.0",
+            "ISC",
+            "GPL-2.0-or-later",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2+ with Texinfo exception"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libffi8@3.4.6-1build1",
+          "Name": "libffi8",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libffi8@3.4.6-1build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "b7975723f66dd7e8"
+          },
+          "Version": "3.4.6",
+          "Release": "1build1",
+          "Arch": "amd64",
+          "SrcName": "libffi",
+          "SrcVersion": "3.4.6",
+          "SrcRelease": "1build1",
+          "Licenses": [
+            "MIT",
+            "X11",
+            "GPL-2.0-or-later",
+            "GPL-3.0-or-later",
+            "MPL-1.1",
+            "LGPL-2.1-or-later",
+            "public-domain"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libgcc-s1@14.2.0-4ubuntu2~24.04",
+          "Name": "libgcc-s1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libgcc-s1@14.2.0-4ubuntu2~24.04?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "f293438e46080085"
+          },
+          "Version": "14.2.0",
+          "Release": "4ubuntu2~24.04",
+          "Arch": "amd64",
+          "SrcName": "gcc-14",
+          "SrcVersion": "14.2.0",
+          "SrcRelease": "4ubuntu2~24.04",
+          "Maintainer": "Ubuntu Core developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "gcc-14-base@14.2.0-4ubuntu2~24.04",
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libgcrypt20@1.10.3-2build1",
+          "Name": "libgcrypt20",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libgcrypt20@1.10.3-2build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "abe71d985f15ccd8"
+          },
+          "Version": "1.10.3",
+          "Release": "2build1",
+          "Arch": "amd64",
+          "SrcName": "libgcrypt20",
+          "SrcVersion": "1.10.3",
+          "SrcRelease": "2build1",
+          "Licenses": [
+            "LGPL-2.0-or-later",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libgpg-error0@1.47-3build2.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libgmp10@2:6.3.0+dfsg-2ubuntu6.1",
+          "Name": "libgmp10",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libgmp10@6.3.0%2Bdfsg-2ubuntu6.1?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=2",
+            "UID": "a5f78f69e4304bbb"
+          },
+          "Version": "6.3.0+dfsg",
+          "Release": "2ubuntu6.1",
+          "Epoch": 2,
+          "Arch": "amd64",
+          "SrcName": "gmp",
+          "SrcVersion": "6.3.0+dfsg",
+          "SrcRelease": "2ubuntu6.1",
+          "SrcEpoch": 2,
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-or-later",
+            "GPL-3+ with Bison exception",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libgnutls30t64@3.8.3-1.1ubuntu3.4",
+          "Name": "libgnutls30t64",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libgnutls30t64@3.8.3-1.1ubuntu3.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "ecc349a20b4f2c78"
+          },
+          "Version": "3.8.3",
+          "Release": "1.1ubuntu3.4",
+          "Arch": "amd64",
+          "SrcName": "gnutls28",
+          "SrcVersion": "3.8.3",
+          "SrcRelease": "1.1ubuntu3.4",
+          "Licenses": [
+            "LGPL-2.1-only",
+            "LGPL-2.0-or-later",
+            "LGPL-3.0-only",
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "GFDL-1.3-only",
+            "CC0-1.0",
+            "MIT",
+            "Apache-2.0",
+            "LGPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "GPL-3.0-or-later",
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libgmp10@2:6.3.0+dfsg-2ubuntu6.1",
+            "libhogweed6t64@3.9.1-2.2build1.1",
+            "libidn2-0@2.3.7-2build1.1",
+            "libnettle8t64@3.9.1-2.2build1.1",
+            "libp11-kit0@0.25.3-4ubuntu2.1",
+            "libtasn1-6@4.19.0-3ubuntu0.24.04.2",
+            "libunistring5@1.1-2build1.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libgpg-error0@1.47-3build2.1",
+          "Name": "libgpg-error0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libgpg-error0@1.47-3build2.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7066d9a430446244"
+          },
+          "Version": "1.47",
+          "Release": "3build2.1",
+          "Arch": "amd64",
+          "SrcName": "libgpg-error",
+          "SrcVersion": "1.47",
+          "SrcRelease": "3build2.1",
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "BSD-3-Clause",
+            "g10-permissive",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-only",
+            "GPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libhogweed6t64@3.9.1-2.2build1.1",
+          "Name": "libhogweed6t64",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libhogweed6t64@3.9.1-2.2build1.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "e649e071719600e6"
+          },
+          "Version": "3.9.1",
+          "Release": "2.2build1.1",
+          "Arch": "amd64",
+          "SrcName": "nettle",
+          "SrcVersion": "3.9.1",
+          "SrcRelease": "2.2build1.1",
+          "Licenses": [
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "MIT",
+            "GPL-3.0-with-autoconf-exception+",
+            "public-domain",
+            "GPL-2.0-only",
+            "GAP"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libgmp10@2:6.3.0+dfsg-2ubuntu6.1",
+            "libnettle8t64@3.9.1-2.2build1.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libidn2-0@2.3.7-2build1.1",
+          "Name": "libidn2-0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libidn2-0@2.3.7-2build1.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "5eeb395c1ea9d7ec"
+          },
+          "Version": "2.3.7",
+          "Release": "2build1.1",
+          "Arch": "amd64",
+          "SrcName": "libidn2",
+          "SrcVersion": "2.3.7",
+          "SrcRelease": "2build1.1",
+          "Licenses": [
+            "GPL-3.0-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "Unicode",
+            "GPL-3.0-only",
+            "GPL-2.0-only",
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libunistring5@1.1-2build1.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "liblz4-1@1.9.4-1build1.1",
+          "Name": "liblz4-1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/liblz4-1@1.9.4-1build1.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "e1ed0b6e94f5842d"
+          },
+          "Version": "1.9.4",
+          "Release": "1build1.1",
+          "Arch": "amd64",
+          "SrcName": "lz4",
+          "SrcVersion": "1.9.4",
+          "SrcRelease": "1build1.1",
+          "Licenses": [
+            "BSD-2-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "liblzma5@5.6.1+really5.4.5-1ubuntu0.2",
+          "Name": "liblzma5",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/liblzma5@5.6.1%2Breally5.4.5-1ubuntu0.2?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "bf3b226db7899256"
+          },
+          "Version": "5.6.1+really5.4.5",
+          "Release": "1ubuntu0.2",
+          "Arch": "amd64",
+          "SrcName": "xz-utils",
+          "SrcVersion": "5.6.1+really5.4.5",
+          "SrcRelease": "1ubuntu0.2",
+          "Licenses": [
+            "PD",
+            "probably-PD",
+            "GPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "permissive-fsf",
+            "Autoconf",
+            "permissive-nowarranty",
+            "GPL-2.0-only",
+            "none",
+            "config-h",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "noderivs",
+            "PD-debian",
+            "GPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libmd0@1.1.0-2build1.1",
+          "Name": "libmd0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libmd0@1.1.0-2build1.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "38595f1083a6ba7a"
+          },
+          "Version": "1.1.0",
+          "Release": "2build1.1",
+          "Arch": "amd64",
+          "SrcName": "libmd",
+          "SrcVersion": "1.1.0",
+          "SrcRelease": "2build1.1",
+          "Licenses": [
+            "BSD-3-Clause",
+            "BSD-3-clause-Aaron-D-Gifford",
+            "BSD-2-Clause",
+            "BSD-2-Clause-NetBSD",
+            "ISC",
+            "Beerware",
+            "public-domain-md4",
+            "public-domain-md5",
+            "public-domain-sha1"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libmount1@2.39.3-9ubuntu6.4",
+          "Name": "libmount1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libmount1@2.39.3-9ubuntu6.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "f66b801fbb29d94"
+          },
+          "Version": "2.39.3",
+          "Release": "9ubuntu6.4",
+          "Arch": "amd64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.39.3",
+          "SrcRelease": "9ubuntu6.4",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libblkid1@2.39.3-9ubuntu6.4",
+            "libc6@2.39-0ubuntu8.7",
+            "libselinux1@3.5-2ubuntu2.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libncursesw6@6.4+20240113-1ubuntu2",
+          "Name": "libncursesw6",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libncursesw6@6.4%2B20240113-1ubuntu2?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "102f9f04006f28a1"
+          },
+          "Version": "6.4+20240113",
+          "Release": "1ubuntu2",
+          "Arch": "amd64",
+          "SrcName": "ncurses",
+          "SrcVersion": "6.4+20240113",
+          "SrcRelease": "1ubuntu2",
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libtinfo6@6.4+20240113-1ubuntu2"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libnettle8t64@3.9.1-2.2build1.1",
+          "Name": "libnettle8t64",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libnettle8t64@3.9.1-2.2build1.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "86aa8809c665f31b"
+          },
+          "Version": "3.9.1",
+          "Release": "2.2build1.1",
+          "Arch": "amd64",
+          "SrcName": "nettle",
+          "SrcVersion": "3.9.1",
+          "SrcRelease": "2.2build1.1",
+          "Licenses": [
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "MIT",
+            "GPL-3.0-with-autoconf-exception+",
+            "public-domain",
+            "GPL-2.0-only",
+            "GAP"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libnpth0t64@1.6-3.1build1",
+          "Name": "libnpth0t64",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libnpth0t64@1.6-3.1build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "51d818ceebe813fb"
+          },
+          "Version": "1.6",
+          "Release": "3.1build1",
+          "Arch": "amd64",
+          "SrcName": "npth",
+          "SrcVersion": "1.6",
+          "SrcRelease": "3.1build1",
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libp11-kit0@0.25.3-4ubuntu2.1",
+          "Name": "libp11-kit0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libp11-kit0@0.25.3-4ubuntu2.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "bd7335becca01755"
+          },
+          "Version": "0.25.3",
+          "Release": "4ubuntu2.1",
+          "Arch": "amd64",
+          "SrcName": "p11-kit",
+          "SrcVersion": "0.25.3",
+          "SrcRelease": "4ubuntu2.1",
+          "Licenses": [
+            "BSD-3-Clause",
+            "FSFULLR",
+            "GPL-2+ with Autoconf-data exception",
+            "GPL-3+ with Autoconf-data exception",
+            "X11",
+            "ISC",
+            "customFSFULLRWD",
+            "Apache-2.0",
+            "LGPL-2.1-or-later",
+            "customFSFUL",
+            "FSFAP",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libffi8@3.4.6-1build1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libpam-modules@1.5.3-5ubuntu5.5",
+          "Name": "libpam-modules",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libpam-modules@1.5.3-5ubuntu5.5?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "a0c2c3cde0600a83"
+          },
+          "Version": "1.5.3",
+          "Release": "5ubuntu5.5",
+          "Arch": "amd64",
+          "SrcName": "pam",
+          "SrcVersion": "1.5.3",
+          "SrcRelease": "5ubuntu5.5",
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3+ with Bison exception",
+            "BSD-tcp_wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libpam-modules-bin@1.5.3-5ubuntu5.5",
+          "Name": "libpam-modules-bin",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libpam-modules-bin@1.5.3-5ubuntu5.5?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "ab6c8325252a5169"
+          },
+          "Version": "1.5.3",
+          "Release": "5ubuntu5.5",
+          "Arch": "amd64",
+          "SrcName": "pam",
+          "SrcVersion": "1.5.3",
+          "SrcRelease": "5ubuntu5.5",
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3+ with Bison exception",
+            "BSD-tcp_wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libaudit1@1:3.1.2-2.1build1.1",
+            "libc6@2.39-0ubuntu8.7",
+            "libcrypt1@1:4.4.36-4build1",
+            "libpam0g@1.5.3-5ubuntu5.5",
+            "libselinux1@3.5-2ubuntu2.1",
+            "libsystemd0@255.4-1ubuntu8.12"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libpam-runtime@1.5.3-5ubuntu5.5",
+          "Name": "libpam-runtime",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libpam-runtime@1.5.3-5ubuntu5.5?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "a8932e74051637e"
+          },
+          "Version": "1.5.3",
+          "Release": "5ubuntu5.5",
+          "Arch": "all",
+          "SrcName": "pam",
+          "SrcVersion": "1.5.3",
+          "SrcRelease": "5ubuntu5.5",
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3+ with Bison exception",
+            "BSD-tcp_wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "debconf@1.5.86ubuntu1",
+            "libpam-modules@1.5.3-5ubuntu5.5"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libpam0g@1.5.3-5ubuntu5.5",
+          "Name": "libpam0g",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libpam0g@1.5.3-5ubuntu5.5?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "ce436748d1c6d81b"
+          },
+          "Version": "1.5.3",
+          "Release": "5ubuntu5.5",
+          "Arch": "amd64",
+          "SrcName": "pam",
+          "SrcVersion": "1.5.3",
+          "SrcRelease": "5ubuntu5.5",
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3+ with Bison exception",
+            "BSD-tcp_wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "debconf@1.5.86ubuntu1",
+            "libaudit1@1:3.1.2-2.1build1.1",
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libpcre2-8-0@10.42-4ubuntu2.1",
+          "Name": "libpcre2-8-0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libpcre2-8-0@10.42-4ubuntu2.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "962ec822f00639c"
+          },
+          "Version": "10.42",
+          "Release": "4ubuntu2.1",
+          "Arch": "amd64",
+          "SrcName": "pcre2",
+          "SrcVersion": "10.42",
+          "SrcRelease": "4ubuntu2.1",
+          "Licenses": [
+            "BSD-3-clause-Cambridge with BINARY LIBRARY-LIKE PACKAGES exception",
+            "BSD-3-Clause",
+            "X11",
+            "BSD-2-Clause",
+            "public-domain"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libproc2-0@2:4.0.4-4ubuntu3.2",
+          "Name": "libproc2-0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libproc2-0@4.0.4-4ubuntu3.2?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=2",
+            "UID": "f2c3bb5e948a9903"
+          },
+          "Version": "4.0.4",
+          "Release": "4ubuntu3.2",
+          "Epoch": 2,
+          "Arch": "amd64",
+          "SrcName": "procps",
+          "SrcVersion": "4.0.4",
+          "SrcRelease": "4ubuntu3.2",
+          "SrcEpoch": 2,
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.0-or-later",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libsystemd0@255.4-1ubuntu8.12"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libseccomp2@2.5.5-1ubuntu3.1",
+          "Name": "libseccomp2",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libseccomp2@2.5.5-1ubuntu3.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "9347bf4ba91b2436"
+          },
+          "Version": "2.5.5",
+          "Release": "1ubuntu3.1",
+          "Arch": "amd64",
+          "SrcName": "libseccomp",
+          "SrcVersion": "2.5.5",
+          "SrcRelease": "1ubuntu3.1",
+          "Licenses": [
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libselinux1@3.5-2ubuntu2.1",
+          "Name": "libselinux1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libselinux1@3.5-2ubuntu2.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "201acf2a2f1a092a"
+          },
+          "Version": "3.5",
+          "Release": "2ubuntu2.1",
+          "Arch": "amd64",
+          "SrcName": "libselinux",
+          "SrcVersion": "3.5",
+          "SrcRelease": "2ubuntu2.1",
+          "Licenses": [
+            "public-domain",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libpcre2-8-0@10.42-4ubuntu2.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libsemanage-common@3.5-1build5",
+          "Name": "libsemanage-common",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libsemanage-common@3.5-1build5?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "f0c6662a424ebe9f"
+          },
+          "Version": "3.5",
+          "Release": "1build5",
+          "Arch": "all",
+          "SrcName": "libsemanage",
+          "SrcVersion": "3.5",
+          "SrcRelease": "1build5",
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libsemanage2@3.5-1build5",
+          "Name": "libsemanage2",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libsemanage2@3.5-1build5?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "112139d9959f463b"
+          },
+          "Version": "3.5",
+          "Release": "1build5",
+          "Arch": "amd64",
+          "SrcName": "libsemanage",
+          "SrcVersion": "3.5",
+          "SrcRelease": "1build5",
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libaudit1@1:3.1.2-2.1build1.1",
+            "libbz2-1.0@1.0.8-5.1build0.1",
+            "libc6@2.39-0ubuntu8.7",
+            "libselinux1@3.5-2ubuntu2.1",
+            "libsemanage-common@3.5-1build5",
+            "libsepol2@3.5-2build1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libsepol2@3.5-2build1",
+          "Name": "libsepol2",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libsepol2@3.5-2build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "62fecbbbf0bab9cd"
+          },
+          "Version": "3.5",
+          "Release": "2build1",
+          "Arch": "amd64",
+          "SrcName": "libsepol",
+          "SrcVersion": "3.5",
+          "SrcRelease": "2build1",
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "Zlib",
+            "GPL-2.0-only",
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libsmartcols1@2.39.3-9ubuntu6.4",
+          "Name": "libsmartcols1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libsmartcols1@2.39.3-9ubuntu6.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "3d6791a074583cdf"
+          },
+          "Version": "2.39.3",
+          "Release": "9ubuntu6.4",
+          "Arch": "amd64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.39.3",
+          "SrcRelease": "9ubuntu6.4",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libss2@1.47.0-2.4~exp1ubuntu4.1",
+          "Name": "libss2",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libss2@1.47.0-2.4~exp1ubuntu4.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7acd8b0c91d676bb"
+          },
+          "Version": "1.47.0",
+          "Release": "2.4~exp1ubuntu4.1",
+          "Arch": "amd64",
+          "SrcName": "e2fsprogs",
+          "SrcVersion": "1.47.0",
+          "SrcRelease": "2.4~exp1ubuntu4.1",
+          "Licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "BSD-3-Clause",
+            "Apache-2.0",
+            "ISC",
+            "GPL-2.0-or-later",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2+ with Texinfo exception"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libcom-err2@1.47.0-2.4~exp1ubuntu4.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libssl3t64@3.0.13-0ubuntu3.7",
+          "Name": "libssl3t64",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libssl3t64@3.0.13-0ubuntu3.7?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "b8e9ccd6bd5fb66e"
+          },
+          "Version": "3.0.13",
+          "Release": "0ubuntu3.7",
+          "Arch": "amd64",
+          "SrcName": "openssl",
+          "SrcVersion": "3.0.13",
+          "SrcRelease": "0ubuntu3.7",
+          "Licenses": [
+            "Apache-2.0",
+            "Artistic-2.0",
+            "GPL-1.0-or-later",
+            "GPL-1.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libstdc++6@14.2.0-4ubuntu2~24.04",
+          "Name": "libstdc++6",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libstdc%2B%2B6@14.2.0-4ubuntu2~24.04?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "9877f3c8df143f6"
+          },
+          "Version": "14.2.0",
+          "Release": "4ubuntu2~24.04",
+          "Arch": "amd64",
+          "SrcName": "gcc-14",
+          "SrcVersion": "14.2.0",
+          "SrcRelease": "4ubuntu2~24.04",
+          "Maintainer": "Ubuntu Core developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "gcc-14-base@14.2.0-4ubuntu2~24.04",
+            "libc6@2.39-0ubuntu8.7",
+            "libgcc-s1@14.2.0-4ubuntu2~24.04"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libsystemd0@255.4-1ubuntu8.12",
+          "Name": "libsystemd0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libsystemd0@255.4-1ubuntu8.12?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "8b81126bb8630ac8"
+          },
+          "Version": "255.4",
+          "Release": "1ubuntu8.12",
+          "Arch": "amd64",
+          "SrcName": "systemd",
+          "SrcVersion": "255.4",
+          "SrcRelease": "1ubuntu8.12",
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "CC0-1.0",
+            "GPL-2 with Linux-syscall-note exception",
+            "MIT",
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libcap2@1:2.66-5ubuntu2.2",
+            "libgcrypt20@1.10.3-2build1",
+            "liblz4-1@1.9.4-1build1.1",
+            "liblzma5@5.6.1+really5.4.5-1ubuntu0.2",
+            "libzstd1@1.5.5+dfsg2-2build1.1"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libtasn1-6@4.19.0-3ubuntu0.24.04.2",
+          "Name": "libtasn1-6",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libtasn1-6@4.19.0-3ubuntu0.24.04.2?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "741ff17fd9f07400"
+          },
+          "Version": "4.19.0",
+          "Release": "3ubuntu0.24.04.2",
+          "Arch": "amd64",
+          "SrcName": "libtasn1-6",
+          "SrcVersion": "4.19.0",
+          "SrcRelease": "3ubuntu0.24.04.2",
+          "Licenses": [
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only",
+            "GPL-3.0-only",
+            "GFDL-1.3-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libtinfo6@6.4+20240113-1ubuntu2",
+          "Name": "libtinfo6",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libtinfo6@6.4%2B20240113-1ubuntu2?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "931c45fba3dcb2e8"
+          },
+          "Version": "6.4+20240113",
+          "Release": "1ubuntu2",
+          "Arch": "amd64",
+          "SrcName": "ncurses",
+          "SrcVersion": "6.4+20240113",
+          "SrcRelease": "1ubuntu2",
+          "Licenses": [
+            "MIT/X11",
+            "X11",
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libudev1@255.4-1ubuntu8.12",
+          "Name": "libudev1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libudev1@255.4-1ubuntu8.12?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "4f91f11158e8f152"
+          },
+          "Version": "255.4",
+          "Release": "1ubuntu8.12",
+          "Arch": "amd64",
+          "SrcName": "systemd",
+          "SrcVersion": "255.4",
+          "SrcRelease": "1ubuntu8.12",
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "CC0-1.0",
+            "GPL-2 with Linux-syscall-note exception",
+            "MIT",
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libcap2@1:2.66-5ubuntu2.2"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libunistring5@1.1-2build1.1",
+          "Name": "libunistring5",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libunistring5@1.1-2build1.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "85203345c0e5df44"
+          },
+          "Version": "1.1",
+          "Release": "2build1.1",
+          "Arch": "amd64",
+          "SrcName": "libunistring",
+          "SrcVersion": "1.1",
+          "SrcRelease": "2build1.1",
+          "Licenses": [
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "FreeSoftware",
+            "GPL-3.0-or-later",
+            "GFDL-1.2-no-invariants-or-later",
+            "GPL-2+ with distribution exception",
+            "MIT",
+            "X11",
+            "LGPL-3.0-only",
+            "GPL-3.0-only",
+            "GPL-2.0-only",
+            "GFDL-1.2-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libuuid1@2.39.3-9ubuntu6.4",
+          "Name": "libuuid1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libuuid1@2.39.3-9ubuntu6.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "8a83ade0eb8a9b3"
+          },
+          "Version": "2.39.3",
+          "Release": "9ubuntu6.4",
+          "Arch": "amd64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.39.3",
+          "SrcRelease": "9ubuntu6.4",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libxxhash0@0.8.2-2build1",
+          "Name": "libxxhash0",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libxxhash0@0.8.2-2build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "a74791738ff2988c"
+          },
+          "Version": "0.8.2",
+          "Release": "2build1",
+          "Arch": "amd64",
+          "SrcName": "xxhash",
+          "SrcVersion": "0.8.2",
+          "SrcRelease": "2build1",
+          "Licenses": [
+            "BSD-2-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "libzstd1@1.5.5+dfsg2-2build1.1",
+          "Name": "libzstd1",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/libzstd1@1.5.5%2Bdfsg2-2build1.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "b75ccb9242e3ffec"
+          },
+          "Version": "1.5.5+dfsg2",
+          "Release": "2build1.1",
+          "Arch": "amd64",
+          "SrcName": "libzstd",
+          "SrcVersion": "1.5.5+dfsg2",
+          "SrcRelease": "2build1.1",
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-only",
+            "Zlib",
+            "MIT"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "login@1:4.13+dfsg1-4ubuntu3.2",
+          "Name": "login",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/login@4.13%2Bdfsg1-4ubuntu3.2?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "e4c161856466d4dd"
+          },
+          "Version": "4.13+dfsg1",
+          "Release": "4ubuntu3.2",
+          "Epoch": 1,
+          "Arch": "amd64",
+          "SrcName": "shadow",
+          "SrcVersion": "4.13+dfsg1",
+          "SrcRelease": "4ubuntu3.2",
+          "SrcEpoch": 1,
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-1.0-only",
+            "GPL-2.0-or-later",
+            "public-domain",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "logsave@1.47.0-2.4~exp1ubuntu4.1",
+          "Name": "logsave",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/logsave@1.47.0-2.4~exp1ubuntu4.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "3b1141d234d08cfa"
+          },
+          "Version": "1.47.0",
+          "Release": "2.4~exp1ubuntu4.1",
+          "Arch": "amd64",
+          "SrcName": "e2fsprogs",
+          "SrcVersion": "1.47.0",
+          "SrcRelease": "2.4~exp1ubuntu4.1",
+          "Licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "BSD-3-Clause",
+            "Apache-2.0",
+            "ISC",
+            "GPL-2.0-or-later",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2+ with Texinfo exception"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "mawk@1.3.4.20240123-1build1",
+          "Name": "mawk",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/mawk@1.3.4.20240123-1build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "f0b2161724677c59"
+          },
+          "Version": "1.3.4.20240123",
+          "Release": "1build1",
+          "Arch": "amd64",
+          "SrcName": "mawk",
+          "SrcVersion": "1.3.4.20240123",
+          "SrcRelease": "1build1",
+          "Licenses": [
+            "GPL-2.0-only",
+            "X11",
+            "CC-BY-3.0"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "mount@2.39.3-9ubuntu6.4",
+          "Name": "mount",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/mount@2.39.3-9ubuntu6.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "ed1f5546a1f89710"
+          },
+          "Version": "2.39.3",
+          "Release": "9ubuntu6.4",
+          "Arch": "amd64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.39.3",
+          "SrcRelease": "9ubuntu6.4",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "ncurses-base@6.4+20240113-1ubuntu2",
+          "Name": "ncurses-base",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/ncurses-base@6.4%2B20240113-1ubuntu2?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "eadc357a0c86fd2b"
+          },
+          "Version": "6.4+20240113",
+          "Release": "1ubuntu2",
+          "Arch": "all",
+          "SrcName": "ncurses",
+          "SrcVersion": "6.4+20240113",
+          "SrcRelease": "1ubuntu2",
+          "Licenses": [
+            "MIT/X11",
+            "X11",
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "ncurses-bin@6.4+20240113-1ubuntu2",
+          "Name": "ncurses-bin",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/ncurses-bin@6.4%2B20240113-1ubuntu2?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "562ba2e959d6f719"
+          },
+          "Version": "6.4+20240113",
+          "Release": "1ubuntu2",
+          "Arch": "amd64",
+          "SrcName": "ncurses",
+          "SrcVersion": "6.4+20240113",
+          "SrcRelease": "1ubuntu2",
+          "Licenses": [
+            "MIT/X11",
+            "X11",
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "openssl@3.0.13-0ubuntu3.7",
+          "Name": "openssl",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.7?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "44d4a7ed0ee5e811"
+          },
+          "Version": "3.0.13",
+          "Release": "0ubuntu3.7",
+          "Arch": "amd64",
+          "SrcName": "openssl",
+          "SrcVersion": "3.0.13",
+          "SrcRelease": "0ubuntu3.7",
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7",
+            "libssl3t64@3.0.13-0ubuntu3.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:766dfd181eececccf12ef38210bf56f5431666e24fc0e708ae02567f80c72498",
+            "DiffID": "sha256:165309bc9a8e8626bee3f7750385adcd8faa21a138c24d4b793129131a457918"
+          }
+        },
+        {
+          "ID": "passwd@1:4.13+dfsg1-4ubuntu3.2",
+          "Name": "passwd",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/passwd@4.13%2Bdfsg1-4ubuntu3.2?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "42e5747d608a561b"
+          },
+          "Version": "4.13+dfsg1",
+          "Release": "4ubuntu3.2",
+          "Epoch": 1,
+          "Arch": "amd64",
+          "SrcName": "shadow",
+          "SrcVersion": "4.13+dfsg1",
+          "SrcRelease": "4ubuntu3.2",
+          "SrcEpoch": 1,
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-1.0-only",
+            "GPL-2.0-or-later",
+            "public-domain",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libaudit1@1:3.1.2-2.1build1.1",
+            "libc6@2.39-0ubuntu8.7",
+            "libcrypt1@1:4.4.36-4build1",
+            "libpam-modules@1.5.3-5ubuntu5.5",
+            "libpam0g@1.5.3-5ubuntu5.5",
+            "libselinux1@3.5-2ubuntu2.1",
+            "libsemanage2@3.5-1build5"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "perl-base@5.38.2-3.2ubuntu0.2",
+          "Name": "perl-base",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/perl-base@5.38.2-3.2ubuntu0.2?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "6d02e9ba93585c76"
+          },
+          "Version": "5.38.2",
+          "Release": "3.2ubuntu0.2",
+          "Arch": "amd64",
+          "SrcName": "perl",
+          "SrcVersion": "5.38.2",
+          "SrcRelease": "3.2ubuntu0.2",
+          "Licenses": [
+            "GPL-1.0-or-later",
+            "Artistic-2.0",
+            "MIT",
+            "REGCOMP",
+            "GPL-2.0-with-bison-exception+",
+            "Unicode",
+            "BZIP",
+            "Zlib",
+            "GPL-2.0-or-later",
+            "FSFAP",
+            "BSD-3-clause-with-weird-numbering",
+            "CC0-1.0",
+            "TEXT-TABS",
+            "BSD-4-clause-POWERDOG",
+            "BSD-3-clause-GENERIC",
+            "BSD-3-Clause",
+            "SDBM-PUBLIC-DOMAIN",
+            "DONT-CHANGE-THE-GPL",
+            "Artistic-dist",
+            "LGPL-2.1-only",
+            "GPL-1.0-only",
+            "GPL-2.0-only",
+            "Artistic-2"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "procps@2:4.0.4-4ubuntu3.2",
+          "Name": "procps",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/procps@4.0.4-4ubuntu3.2?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=2",
+            "UID": "75a99a1d35976f70"
+          },
+          "Version": "4.0.4",
+          "Release": "4ubuntu3.2",
+          "Epoch": 2,
+          "Arch": "amd64",
+          "SrcName": "procps",
+          "SrcVersion": "4.0.4",
+          "SrcRelease": "4ubuntu3.2",
+          "SrcEpoch": 2,
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.0-or-later",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "init-system-helpers@1.66ubuntu1",
+            "libc6@2.39-0ubuntu8.7",
+            "libncursesw6@6.4+20240113-1ubuntu2",
+            "libproc2-0@2:4.0.4-4ubuntu3.2",
+            "libsystemd0@255.4-1ubuntu8.12",
+            "libtinfo6@6.4+20240113-1ubuntu2"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "sed@4.9-2build1",
+          "Name": "sed",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/sed@4.9-2build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "9e97401f4dff94e1"
+          },
+          "Version": "4.9",
+          "Release": "2build1",
+          "Arch": "amd64",
+          "SrcName": "sed",
+          "SrcVersion": "4.9",
+          "SrcRelease": "2build1",
+          "Licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "X11",
+            "GFDL-1.3-no-invariants-or-later",
+            "GFDL-1.3-only",
+            "ISC",
+            "BSD-4-Clause-UC",
+            "BSL-1",
+            "pcre"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "sensible-utils@0.0.22",
+          "Name": "sensible-utils",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/sensible-utils@0.0.22?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "bc76c4b5a43f71fd"
+          },
+          "Version": "0.0.22",
+          "Arch": "all",
+          "SrcName": "sensible-utils",
+          "SrcVersion": "0.0.22",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "All-permissive",
+            "configure",
+            "installsh",
+            "BSD-2-Clause",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "sysvinit-utils@3.08-6ubuntu3",
+          "Name": "sysvinit-utils",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/sysvinit-utils@3.08-6ubuntu3?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "66dc9d3601ba6022"
+          },
+          "Version": "3.08",
+          "Release": "6ubuntu3",
+          "Arch": "amd64",
+          "SrcName": "sysvinit",
+          "SrcVersion": "3.08",
+          "SrcRelease": "6ubuntu3",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "GPL-3.0-only",
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "tar@1.35+dfsg-3build1",
+          "Name": "tar",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/tar@1.35%2Bdfsg-3build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "f5d7b0a3814ea711"
+          },
+          "Version": "1.35+dfsg",
+          "Release": "3build1",
+          "Arch": "amd64",
+          "SrcName": "tar",
+          "SrcVersion": "1.35+dfsg",
+          "SrcRelease": "3build1",
+          "Licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "GPL-3+ with Bison exception",
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "LGPL-3.0-or-later",
+            "LGPL-3.0-only",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "tzdata@2025b-0ubuntu0.24.04.1",
+          "Name": "tzdata",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/tzdata@2025b-0ubuntu0.24.04.1?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "c5bf9f5398119df"
+          },
+          "Version": "2025b",
+          "Release": "0ubuntu0.24.04.1",
+          "Arch": "all",
+          "SrcName": "tzdata",
+          "SrcVersion": "2025b",
+          "SrcRelease": "0ubuntu0.24.04.1",
+          "Licenses": [
+            "public-domain",
+            "ICU"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "debconf@1.5.86ubuntu1"
+          ],
+          "Layer": {
+            "Digest": "sha256:766dfd181eececccf12ef38210bf56f5431666e24fc0e708ae02567f80c72498",
+            "DiffID": "sha256:165309bc9a8e8626bee3f7750385adcd8faa21a138c24d4b793129131a457918"
+          }
+        },
+        {
+          "ID": "ubuntu-keyring@2023.11.28.1",
+          "Name": "ubuntu-keyring",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/ubuntu-keyring@2023.11.28.1?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "3d764bf58032fcbc"
+          },
+          "Version": "2023.11.28.1",
+          "Arch": "all",
+          "SrcName": "ubuntu-keyring",
+          "SrcVersion": "2023.11.28.1",
+          "Licenses": [
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Dimitri John Ledkov \u003cdimitri.ledkov@canonical.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "unminimize@0.2.1",
+          "Name": "unminimize",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/unminimize@0.2.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "e705d6b334c2f9c"
+          },
+          "Version": "0.2.1",
+          "Arch": "amd64",
+          "SrcName": "unminimize",
+          "SrcVersion": "0.2.1",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Utkarsh Gupta \u003cutkarsh@ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "util-linux@2.39.3-9ubuntu6.4",
+          "Name": "util-linux",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/util-linux@2.39.3-9ubuntu6.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "1bae9ecadffe1d04"
+          },
+          "Version": "2.39.3",
+          "Release": "9ubuntu6.4",
+          "Arch": "amd64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.39.3",
+          "SrcRelease": "9ubuntu6.4",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        },
+        {
+          "ID": "zlib1g@1:1.3.dfsg-3.1ubuntu2.1",
+          "Name": "zlib1g",
+          "Identifier": {
+            "PURL": "pkg:deb/ubuntu/zlib1g@1.3.dfsg-3.1ubuntu2.1?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "e9338ea8e35c2ce1"
+          },
+          "Version": "1.3.dfsg",
+          "Release": "3.1ubuntu2.1",
+          "Epoch": 1,
+          "Arch": "amd64",
+          "SrcName": "zlib",
+          "SrcVersion": "1.3.dfsg",
+          "SrcRelease": "3.1ubuntu2.1",
+          "SrcEpoch": 1,
+          "Licenses": [
+            "Zlib"
+          ],
+          "Maintainer": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+          "DependsOn": [
+            "libc6@2.39-0ubuntu8.7"
+          ],
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          }
+        }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2016-2781",
+          "PkgID": "coreutils@9.4-3ubuntu6.1",
+          "PkgName": "coreutils",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/coreutils@9.4-3ubuntu6.1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7d12d112faeb223b"
+          },
+          "InstalledVersion": "9.4-3ubuntu6.1",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2016-2781",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:eecb43d24c63ba00f4f7685fbb774af1c06172eb185a06ddf8234f78c9a4c9ec",
+          "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
+          "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "VendorSeverity": {
+            "azure": 2,
+            "cbl-mariner": 2,
+            "nvd": 2,
+            "redhat": 2,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:L/AC:L/Au:N/C:N/I:P/A:N",
+              "V3Vector": "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:N/I:H/A:N",
+              "V2Score": 2.1,
+              "V3Score": 6.5
+            },
+            "redhat": {
+              "V2Vector": "AV:L/AC:H/Au:N/C:C/I:C/A:C",
+              "V3Vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+              "V2Score": 6.2,
+              "V3Score": 8.6
+            }
+          },
+          "References": [
+            "http://seclists.org/oss-sec/2016/q1/452",
+            "http://www.openwall.com/lists/oss-security/2016/02/28/2",
+            "http://www.openwall.com/lists/oss-security/2016/02/28/3",
+            "https://access.redhat.com/security/cve/CVE-2016-2781",
+            "https://lists.apache.org/thread.html/rf9fa47ab66495c78bb4120b0754dd9531ca2ff0430f6685ac9b07772%40%3Cdev.mina.apache.org%3E",
+            "https://lore.kernel.org/patchwork/patch/793178/",
+            "https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.28/v2.28-ReleaseNotes",
+            "https://nvd.nist.gov/vuln/detail/CVE-2016-2781",
+            "https://www.cve.org/CVERecord?id=CVE-2016-2781"
+          ],
+          "PublishedDate": "2017-02-07T15:59:00.333Z",
+          "LastModifiedDate": "2025-06-09T16:15:25.013Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-68972",
+          "PkgID": "gpgv@2.4.4-2ubuntu17.4",
+          "PkgName": "gpgv",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/gpgv@2.4.4-2ubuntu17.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "3ed4b28d44ef0d14"
+          },
+          "InstalledVersion": "2.4.4-2ubuntu17.4",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:6e361d427cb7d75664538d1a1ce12e2ef9c4578332f45ba6b1ee56ca63ede8de",
+          "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+          "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "azure": 2,
+            "nvd": 2,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 4.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-68972",
+            "https://gpg.fail/formfeed",
+            "https://media.ccc.de/v/39c3-to-sign-or-not-to-sign-practical-vulnerabilities-i",
+            "https://news.ycombinator.com/item?id=46404339",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-68972",
+            "https://www.cve.org/CVERecord?id=CVE-2025-68972"
+          ],
+          "PublishedDate": "2025-12-27T23:15:40.9Z",
+          "LastModifiedDate": "2026-01-09T20:08:47.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-3219",
+          "PkgID": "gpgv@2.4.4-2ubuntu17.4",
+          "PkgName": "gpgv",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/gpgv@2.4.4-2ubuntu17.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "3ed4b28d44ef0d14"
+          },
+          "InstalledVersion": "2.4.4-2ubuntu17.4",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-3219",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:97ff30630f0b869439643a6d2fd2f9853bcf1fc34fa487f452b96dfd295bad85",
+          "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+          "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "VendorSeverity": {
+            "nvd": 1,
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 3.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 6.2
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2022-3219",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2127010",
+            "https://dev.gnupg.org/D556",
+            "https://dev.gnupg.org/T5993",
+            "https://marc.info/?l=oss-security\u0026m=165696590211434\u0026w=4",
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-3219",
+            "https://security.netapp.com/advisory/ntap-20230324-0001/",
+            "https://www.cve.org/CVERecord?id=CVE-2022-3219"
+          ],
+          "PublishedDate": "2023-02-23T20:15:12.393Z",
+          "LastModifiedDate": "2025-03-12T21:15:38.207Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-2236",
+          "PkgID": "libgcrypt20@1.10.3-2build1",
+          "PkgName": "libgcrypt20",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libgcrypt20@1.10.3-2build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "abe71d985f15ccd8"
+          },
+          "InstalledVersion": "1.10.3-2build1",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-2236",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:f1cb2c902438fb741afca9efa7f45ec929fd54405bf415d37bd82363ff274879",
+          "Title": "libgcrypt: vulnerable to Marvin Attack",
+          "Description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-385"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "amazon": 2,
+            "oracle-oval": 2,
+            "redhat": 2,
+            "rocky": 2,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2024:9404",
+            "https://access.redhat.com/errata/RHSA-2025:3530",
+            "https://access.redhat.com/errata/RHSA-2025:3534",
+            "https://access.redhat.com/security/cve/CVE-2024-2236",
+            "https://bugzilla.redhat.com/2245218",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2245218",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2268268",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-2236",
+            "https://dev.gnupg.org/T7136",
+            "https://errata.almalinux.org/9/ALSA-2024-9404.html",
+            "https://errata.rockylinux.org/RLSA-2024:9404",
+            "https://github.com/tomato42/marvin-toolkit/tree/master/example/libgcrypt",
+            "https://gitlab.com/redhat-crypto/libgcrypt/libgcrypt-mirror/-/merge_requests/17",
+            "https://linux.oracle.com/cve/CVE-2024-2236.html",
+            "https://linux.oracle.com/errata/ELSA-2024-9404.html",
+            "https://lists.gnupg.org/pipermail/gcrypt-devel/2024-March/005607.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-2236",
+            "https://www.cve.org/CVERecord?id=CVE-2024-2236"
+          ],
+          "PublishedDate": "2024-03-06T22:15:57.977Z",
+          "LastModifiedDate": "2026-02-25T20:17:20.547Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-14831",
+          "PkgID": "libgnutls30t64@3.8.3-1.1ubuntu3.4",
+          "PkgName": "libgnutls30t64",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libgnutls30t64@3.8.3-1.1ubuntu3.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "ecc349a20b4f2c78"
+          },
+          "InstalledVersion": "3.8.3-1.1ubuntu3.4",
+          "FixedVersion": "3.8.3-1.1ubuntu3.5",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14831",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:68b9df1ffd13f65873f69b09bdcbf41dd76fade6f9cca51fb72ac7e47249c1bc",
+          "Title": "gnutls: GnuTLS: Denial of Service via excessive resource consumption during certificate verification",
+          "Description": "A flaw was found in GnuTLS. This vulnerability allows a denial of service (DoS) by excessive CPU (Central Processing Unit) and memory consumption via specially crafted malicious certificates containing a large number of name constraints and subject alternative names (SANs).",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-407"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-14831",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2423177",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14831",
+            "https://ubuntu.com/security/notices/USN-8043-1",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14831"
+          ],
+          "PublishedDate": "2026-02-09T15:16:09.937Z",
+          "LastModifiedDate": "2026-02-09T16:08:35.29Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-9820",
+          "PkgID": "libgnutls30t64@3.8.3-1.1ubuntu3.4",
+          "PkgName": "libgnutls30t64",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libgnutls30t64@3.8.3-1.1ubuntu3.4?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "ecc349a20b4f2c78"
+          },
+          "InstalledVersion": "3.8.3-1.1ubuntu3.4",
+          "FixedVersion": "3.8.3-1.1ubuntu3.5",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-9820",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:568e57604af806635c17c7fa85e82b1786262700be68e8ba755b573b23a99acc",
+          "Title": "gnutls: Stack-based Buffer Overflow in gnutls_pkcs11_token_init() Function",
+          "Description": "A flaw was found in the GnuTLS library, specifically in the gnutls_pkcs11_token_init() function that handles PKCS#11 token initialization. When a token label longer than expected is processed, the function writes past the end of a fixed-size stack buffer. This programming error can cause the application using GnuTLS to crash or, in certain conditions, be exploited for code execution. As a result, systems or applications relying on GnuTLS may be vulnerable to a denial of service or local privilege escalation attacks.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-121"
+          ],
+          "VendorSeverity": {
+            "azure": 2,
+            "cbl-mariner": 2,
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 4
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/11/20/2",
+            "https://access.redhat.com/security/cve/CVE-2025-9820",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2392528",
+            "https://gitlab.com/gnutls/gnutls/-/commit/1d56f96f6ab5034d677136b9d50b5a75dff0faf5",
+            "https://gitlab.com/gnutls/gnutls/-/issues/1732",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-9820",
+            "https://ubuntu.com/security/notices/USN-8043-1",
+            "https://www.cve.org/CVERecord?id=CVE-2025-9820",
+            "https://www.gnutls.org/security-new.html#GNUTLS-SA-2025-11-18"
+          ],
+          "PublishedDate": "2026-01-26T20:16:09.37Z",
+          "LastModifiedDate": "2026-01-27T14:59:34.073Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-8941",
+          "PkgID": "libpam-modules@1.5.3-5ubuntu5.5",
+          "PkgName": "libpam-modules",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libpam-modules@1.5.3-5ubuntu5.5?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "a0c2c3cde0600a83"
+          },
+          "InstalledVersion": "1.5.3-5ubuntu5.5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-8941",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:82ea4785a4442f5be6cc26f1d9ed605da3593c07a09863dae3ca5fe543017d08",
+          "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
+          "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 2,
+            "oracle-oval": 3,
+            "redhat": 3,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2025:14557",
+            "https://access.redhat.com/errata/RHSA-2025:15099",
+            "https://access.redhat.com/errata/RHSA-2025:15100",
+            "https://access.redhat.com/errata/RHSA-2025:15101",
+            "https://access.redhat.com/errata/RHSA-2025:15102",
+            "https://access.redhat.com/errata/RHSA-2025:15103",
+            "https://access.redhat.com/errata/RHSA-2025:15104",
+            "https://access.redhat.com/errata/RHSA-2025:15105",
+            "https://access.redhat.com/errata/RHSA-2025:15106",
+            "https://access.redhat.com/errata/RHSA-2025:15107",
+            "https://access.redhat.com/errata/RHSA-2025:15709",
+            "https://access.redhat.com/errata/RHSA-2025:15827",
+            "https://access.redhat.com/errata/RHSA-2025:15828",
+            "https://access.redhat.com/errata/RHSA-2025:16524",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
+            "https://access.redhat.com/errata/RHSA-2025:18219",
+            "https://access.redhat.com/errata/RHSA-2025:21885",
+            "https://access.redhat.com/security/cve/CVE-2025-8941",
+            "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
+            "https://errata.rockylinux.org/RLSA-2025:14557",
+            "https://linux.oracle.com/cve/CVE-2025-8941.html",
+            "https://linux.oracle.com/errata/ELSA-2025-15099.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-8941",
+            "https://www.cve.org/CVERecord?id=CVE-2025-8941"
+          ],
+          "PublishedDate": "2025-08-13T15:15:41.873Z",
+          "LastModifiedDate": "2025-11-20T21:16:08.11Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-8941",
+          "PkgID": "libpam-modules-bin@1.5.3-5ubuntu5.5",
+          "PkgName": "libpam-modules-bin",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libpam-modules-bin@1.5.3-5ubuntu5.5?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "ab6c8325252a5169"
+          },
+          "InstalledVersion": "1.5.3-5ubuntu5.5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-8941",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:dfe8b310875346df020f760081faa452b3f4cc49503ca712bea402b74935eaa5",
+          "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
+          "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 2,
+            "oracle-oval": 3,
+            "redhat": 3,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2025:14557",
+            "https://access.redhat.com/errata/RHSA-2025:15099",
+            "https://access.redhat.com/errata/RHSA-2025:15100",
+            "https://access.redhat.com/errata/RHSA-2025:15101",
+            "https://access.redhat.com/errata/RHSA-2025:15102",
+            "https://access.redhat.com/errata/RHSA-2025:15103",
+            "https://access.redhat.com/errata/RHSA-2025:15104",
+            "https://access.redhat.com/errata/RHSA-2025:15105",
+            "https://access.redhat.com/errata/RHSA-2025:15106",
+            "https://access.redhat.com/errata/RHSA-2025:15107",
+            "https://access.redhat.com/errata/RHSA-2025:15709",
+            "https://access.redhat.com/errata/RHSA-2025:15827",
+            "https://access.redhat.com/errata/RHSA-2025:15828",
+            "https://access.redhat.com/errata/RHSA-2025:16524",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
+            "https://access.redhat.com/errata/RHSA-2025:18219",
+            "https://access.redhat.com/errata/RHSA-2025:21885",
+            "https://access.redhat.com/security/cve/CVE-2025-8941",
+            "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
+            "https://errata.rockylinux.org/RLSA-2025:14557",
+            "https://linux.oracle.com/cve/CVE-2025-8941.html",
+            "https://linux.oracle.com/errata/ELSA-2025-15099.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-8941",
+            "https://www.cve.org/CVERecord?id=CVE-2025-8941"
+          ],
+          "PublishedDate": "2025-08-13T15:15:41.873Z",
+          "LastModifiedDate": "2025-11-20T21:16:08.11Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-8941",
+          "PkgID": "libpam-runtime@1.5.3-5ubuntu5.5",
+          "PkgName": "libpam-runtime",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libpam-runtime@1.5.3-5ubuntu5.5?arch=all\u0026distro=ubuntu-24.04",
+            "UID": "a8932e74051637e"
+          },
+          "InstalledVersion": "1.5.3-5ubuntu5.5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-8941",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:72652f19ed3c9c62a4df62a6044dd5b30bb679408d5a1816463323172c67feb5",
+          "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
+          "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 2,
+            "oracle-oval": 3,
+            "redhat": 3,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2025:14557",
+            "https://access.redhat.com/errata/RHSA-2025:15099",
+            "https://access.redhat.com/errata/RHSA-2025:15100",
+            "https://access.redhat.com/errata/RHSA-2025:15101",
+            "https://access.redhat.com/errata/RHSA-2025:15102",
+            "https://access.redhat.com/errata/RHSA-2025:15103",
+            "https://access.redhat.com/errata/RHSA-2025:15104",
+            "https://access.redhat.com/errata/RHSA-2025:15105",
+            "https://access.redhat.com/errata/RHSA-2025:15106",
+            "https://access.redhat.com/errata/RHSA-2025:15107",
+            "https://access.redhat.com/errata/RHSA-2025:15709",
+            "https://access.redhat.com/errata/RHSA-2025:15827",
+            "https://access.redhat.com/errata/RHSA-2025:15828",
+            "https://access.redhat.com/errata/RHSA-2025:16524",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
+            "https://access.redhat.com/errata/RHSA-2025:18219",
+            "https://access.redhat.com/errata/RHSA-2025:21885",
+            "https://access.redhat.com/security/cve/CVE-2025-8941",
+            "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
+            "https://errata.rockylinux.org/RLSA-2025:14557",
+            "https://linux.oracle.com/cve/CVE-2025-8941.html",
+            "https://linux.oracle.com/errata/ELSA-2025-15099.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-8941",
+            "https://www.cve.org/CVERecord?id=CVE-2025-8941"
+          ],
+          "PublishedDate": "2025-08-13T15:15:41.873Z",
+          "LastModifiedDate": "2025-11-20T21:16:08.11Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-8941",
+          "PkgID": "libpam0g@1.5.3-5ubuntu5.5",
+          "PkgName": "libpam0g",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libpam0g@1.5.3-5ubuntu5.5?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "ce436748d1c6d81b"
+          },
+          "InstalledVersion": "1.5.3-5ubuntu5.5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-8941",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:03f39605de18da14abc1fc8e05a48df7db0d2cfeab061f7e31b05f9285c98eac",
+          "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
+          "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 2,
+            "oracle-oval": 3,
+            "redhat": 3,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2025:14557",
+            "https://access.redhat.com/errata/RHSA-2025:15099",
+            "https://access.redhat.com/errata/RHSA-2025:15100",
+            "https://access.redhat.com/errata/RHSA-2025:15101",
+            "https://access.redhat.com/errata/RHSA-2025:15102",
+            "https://access.redhat.com/errata/RHSA-2025:15103",
+            "https://access.redhat.com/errata/RHSA-2025:15104",
+            "https://access.redhat.com/errata/RHSA-2025:15105",
+            "https://access.redhat.com/errata/RHSA-2025:15106",
+            "https://access.redhat.com/errata/RHSA-2025:15107",
+            "https://access.redhat.com/errata/RHSA-2025:15709",
+            "https://access.redhat.com/errata/RHSA-2025:15827",
+            "https://access.redhat.com/errata/RHSA-2025:15828",
+            "https://access.redhat.com/errata/RHSA-2025:16524",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
+            "https://access.redhat.com/errata/RHSA-2025:18219",
+            "https://access.redhat.com/errata/RHSA-2025:21885",
+            "https://access.redhat.com/security/cve/CVE-2025-8941",
+            "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
+            "https://errata.rockylinux.org/RLSA-2025:14557",
+            "https://linux.oracle.com/cve/CVE-2025-8941.html",
+            "https://linux.oracle.com/errata/ELSA-2025-15099.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-8941",
+            "https://www.cve.org/CVERecord?id=CVE-2025-8941"
+          ],
+          "PublishedDate": "2025-08-13T15:15:41.873Z",
+          "LastModifiedDate": "2025-11-20T21:16:08.11Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-56433",
+          "PkgID": "login@1:4.13+dfsg1-4ubuntu3.2",
+          "PkgName": "login",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/login@4.13%2Bdfsg1-4ubuntu3.2?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "e4c161856466d4dd"
+          },
+          "InstalledVersion": "1:4.13+dfsg1-4ubuntu3.2",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-56433",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:63304c6890cdfc5f7b8906ab70b3ab4ec814d87deba69176ae385cbe674ddcb3",
+          "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
+          "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-1188"
+          ],
+          "VendorSeverity": {
+            "alma": 1,
+            "azure": 1,
+            "oracle-oval": 1,
+            "redhat": 1,
+            "rocky": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N",
+              "V3Score": 3.6
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2025:20559",
+            "https://access.redhat.com/security/cve/CVE-2024-56433",
+            "https://bugzilla.redhat.com/2334165",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2334165",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-56433",
+            "https://errata.almalinux.org/9/ALSA-2025-20559.html",
+            "https://errata.rockylinux.org/RLSA-2025:20145",
+            "https://github.com/shadow-maint/shadow/blob/e2512d5741d4a44bdd81a8c2d0029b6222728cf0/etc/login.defs#L238-L241",
+            "https://github.com/shadow-maint/shadow/issues/1157",
+            "https://github.com/shadow-maint/shadow/releases/tag/4.4",
+            "https://linux.oracle.com/cve/CVE-2024-56433.html",
+            "https://linux.oracle.com/errata/ELSA-2025-20559-0.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-56433",
+            "https://www.cve.org/CVERecord?id=CVE-2024-56433"
+          ],
+          "PublishedDate": "2024-12-26T09:15:07.267Z",
+          "LastModifiedDate": "2024-12-26T09:15:07.267Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-56433",
+          "PkgID": "passwd@1:4.13+dfsg1-4ubuntu3.2",
+          "PkgName": "passwd",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/passwd@4.13%2Bdfsg1-4ubuntu3.2?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
+            "UID": "42e5747d608a561b"
+          },
+          "InstalledVersion": "1:4.13+dfsg1-4ubuntu3.2",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-56433",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:b158cb64a55da37f67bfb3896f77ecdad0f5c1643b61a00999c665d714358417",
+          "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
+          "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-1188"
+          ],
+          "VendorSeverity": {
+            "alma": 1,
+            "azure": 1,
+            "oracle-oval": 1,
+            "redhat": 1,
+            "rocky": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N",
+              "V3Score": 3.6
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2025:20559",
+            "https://access.redhat.com/security/cve/CVE-2024-56433",
+            "https://bugzilla.redhat.com/2334165",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2334165",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-56433",
+            "https://errata.almalinux.org/9/ALSA-2025-20559.html",
+            "https://errata.rockylinux.org/RLSA-2025:20145",
+            "https://github.com/shadow-maint/shadow/blob/e2512d5741d4a44bdd81a8c2d0029b6222728cf0/etc/login.defs#L238-L241",
+            "https://github.com/shadow-maint/shadow/issues/1157",
+            "https://github.com/shadow-maint/shadow/releases/tag/4.4",
+            "https://linux.oracle.com/cve/CVE-2024-56433.html",
+            "https://linux.oracle.com/errata/ELSA-2025-20559-0.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-56433",
+            "https://www.cve.org/CVERecord?id=CVE-2024-56433"
+          ],
+          "PublishedDate": "2024-12-26T09:15:07.267Z",
+          "LastModifiedDate": "2024-12-26T09:15:07.267Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-45582",
+          "PkgID": "tar@1.35+dfsg-3build1",
+          "PkgName": "tar",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/tar@1.35%2Bdfsg-3build1?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "f5d7b0a3814ea711"
+          },
+          "InstalledVersion": "1.35+dfsg-3build1",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:01d7766a2e4a62b74e0bebf2cd12c47e675e9221174f6570854203e84ffe68b0",
+            "DiffID": "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-45582",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:3573d21d60a3978c9e54757b2796423ec4cf61b25f29d18500891675a9837d26",
+          "Title": "tar: Tar path traversal",
+          "Description": "GNU Tar through 1.35 allows file overwrite via directory traversal in crafted TAR archives, with a certain two-step process. First, the victim must extract an archive that contains a ../ symlink to a critical directory. Second, the victim must extract an archive that contains a critical file, specified via a relative pathname that begins with the symlink name and ends with that critical file's name. Here, the extraction follows the symlink and overwrites the critical file. This bypasses the protection mechanism of \"Member name contains '..'\" that would occur for a single TAR archive that attempted to specify the critical file via a ../ approach. For example, the first archive can contain \"x -\u003e ../../../../../home/victim/.ssh\" and the second archive can contain x/authorized_keys. This can affect server applications that automatically extract any number of user-supplied TAR archives, and were relying on the blocking of traversal. This can also affect software installation processes in which \"tar xf\" is run more than once (e.g., when installing a package can automatically install two dependencies that are set up as untrusted tarballs instead of official packages). NOTE: the official GNU Tar manual has an otherwise-empty directory for each \"tar xf\" in its Security Rules of Thumb; however, third-party advice leads users to run \"tar xf\" more than once into the same directory.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-24"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "oracle-oval": 2,
+            "redhat": 2,
+            "rocky": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "V3Score": 5.6
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/11/01/6",
+            "https://access.redhat.com/errata/RHSA-2026:0067",
+            "https://access.redhat.com/security/cve/CVE-2025-45582",
+            "https://bugzilla.redhat.com/2379592",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2379592",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-45582",
+            "https://errata.almalinux.org/9/ALSA-2026-0067.html",
+            "https://errata.rockylinux.org/RLSA-2026:0002",
+            "https://github.com/i900008/vulndb/blob/main/Gnu_tar_vuln.md",
+            "https://linux.oracle.com/cve/CVE-2025-45582.html",
+            "https://linux.oracle.com/errata/ELSA-2026-0067.html",
+            "https://lists.gnu.org/archive/html/bug-tar/2025-08/msg00012.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-45582",
+            "https://www.cve.org/CVERecord?id=CVE-2025-45582",
+            "https://www.gnu.org/software/tar/",
+            "https://www.gnu.org/software/tar/manual/html_node/Integrity.html",
+            "https://www.gnu.org/software/tar/manual/html_node/Integrity.html#Integrity",
+            "https://www.gnu.org/software/tar/manual/html_node/Security-rules-of-thumb.html"
+          ],
+          "PublishedDate": "2025-07-11T17:15:37.183Z",
+          "LastModifiedDate": "2025-11-02T01:15:32.307Z"
+        }
+      ]
+    }
+  ]
+}
