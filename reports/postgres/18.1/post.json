@@ -1,8 +1,8 @@
 {
   "SchemaVersion": 2,
-  "ReportID": "019ca83f-6c50-7eb2-87cf-c0b88c481257",
-  "CreatedAt": "2026-03-01T07:14:14.736964369Z",
-  "ArtifactID": "sha256:15c6eaabbeba4b5178afe0be514538bdd29662c39237b3b7674dfddbec695848",
+  "ReportID": "019ca90f-8c1d-7893-a770-c1a01ff5b072",
+  "CreatedAt": "2026-03-01T11:01:34.365563675Z",
+  "ArtifactID": "sha256:abe675f4b23364409644adbe27fe698aace04bf8a7f7189c57ad02f74f362a2e",
   "ArtifactName": "ghcr.io/verity-org/cache:postgres-18.1-patched",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -11,7 +11,7 @@
       "Family": "debian",
       "Name": "13.3"
     },
-    "ImageID": "sha256:ca12a4674b323bc105e270c538eb4197f89a1589641f9b3b4f46e8fe9ee29462",
+    "ImageID": "sha256:3e952dec3e4a8647c1b458aa9d16a88a328d5381bcbf7f92aa60456453420d45",
     "DiffIDs": [
       "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03",
       "sha256:85cf80c56814bb1ce7bcfffb5c5887b6b430cb105fab8d1d95e0c2d646dcc637",
@@ -26,13 +26,13 @@
       "sha256:a5da602db3a8377292d66264f68a4b0d9881e8d57c7bf591bd9680c63788c71b",
       "sha256:ec2fccb794232e99b75f8da66d3f926f0f1ddd622862056f4bda65733b280b4b",
       "sha256:bde23017d09da996a953cf54220f6f6a15251e53991fe8be82c1c4c1b9cd67f8",
-      "sha256:7ae61fcf66ed3ce260459f4d9eb462dcff9ec3f7fee709ba6a476b66599c4049"
+      "sha256:989976391b52c938560fb676ee6fc8448816cdb27355ded5708ba28cc96d5258"
     ],
     "RepoTags": [
       "ghcr.io/verity-org/cache:postgres-18.1-patched"
     ],
     "RepoDigests": [
-      "ghcr.io/verity-org/cache@sha256:8a29efd062bcc392828b8a5d4df43408ed418de2dfdc59d9ba72d3d27a662ec0"
+      "ghcr.io/verity-org/cache@sha256:db1f1e2f4e1fe6eb7ca7a913e9a778531ef6c15b75860d25a3f0f8510c3c0032"
     ],
     "Reference": "ghcr.io/verity-org/cache:postgres-18.1-patched",
     "ImageConfig": {
@@ -171,7 +171,7 @@
           "empty_layer": true
         },
         {
-          "created": "2026-03-01T06:54:35.401702533Z",
+          "created": "2026-03-01T10:44:04.867374717Z",
           "created_by": "mount / from exec sh -c apt-get -o Acquire::Retries=3 install --no-install-recommends -y libgnutls30t64 \u0026\u0026 apt-get clean -y",
           "comment": "buildkit.exporter.image.v0"
         }
@@ -193,7 +193,7 @@
           "sha256:a5da602db3a8377292d66264f68a4b0d9881e8d57c7bf591bd9680c63788c71b",
           "sha256:ec2fccb794232e99b75f8da66d3f926f0f1ddd622862056f4bda65733b280b4b",
           "sha256:bde23017d09da996a953cf54220f6f6a15251e53991fe8be82c1c4c1b9cd67f8",
-          "sha256:7ae61fcf66ed3ce260459f4d9eb462dcff9ec3f7fee709ba6a476b66599c4049"
+          "sha256:989976391b52c938560fb676ee6fc8448816cdb27355ded5708ba28cc96d5258"
         ]
       },
       "config": {
@@ -291,8 +291,8 @@
       },
       {
         "Size": 3457024,
-        "Digest": "sha256:a4a75dc4fb09b2290b40233e414ee8a0204eb314bfc8c758ec5fddbd65aea361",
-        "DiffID": "sha256:7ae61fcf66ed3ce260459f4d9eb462dcff9ec3f7fee709ba6a476b66599c4049"
+        "Digest": "sha256:3c1daa0f0d17e1cf045b54e6ff86ea8615f2e2ec935bc1a730cd24f6f3a25115",
+        "DiffID": "sha256:989976391b52c938560fb676ee6fc8448816cdb27355ded5708ba28cc96d5258"
       }
     ]
   },
@@ -4067,8 +4067,8 @@
             "libunistring5@1.3-2"
           ],
           "Layer": {
-            "Digest": "sha256:a4a75dc4fb09b2290b40233e414ee8a0204eb314bfc8c758ec5fddbd65aea361",
-            "DiffID": "sha256:7ae61fcf66ed3ce260459f4d9eb462dcff9ec3f7fee709ba6a476b66599c4049"
+            "Digest": "sha256:3c1daa0f0d17e1cf045b54e6ff86ea8615f2e2ec935bc1a730cd24f6f3a25115",
+            "DiffID": "sha256:989976391b52c938560fb676ee6fc8448816cdb27355ded5708ba28cc96d5258"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libgnutls.so.30.40.3",
@@ -14887,7 +14887,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:1f795be41e04f175b7be04c5848eeab41b72b4058df7c86d3e823f39534a6d67",
+          "Fingerprint": "sha256:a9cd546d94adee2e5c41f593e4f830db0c625fa6a7dc295c74fad37fb51098e5",
           "Title": "It was found that apt-key in apt, all versions, do not correctly valid ...",
           "Description": "It was found that apt-key in apt, all versions, do not correctly validate gpg keys with the master keyring, leading to a potential man-in-the-middle attack.",
           "Severity": "LOW",
@@ -14939,7 +14939,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:d4c677eba2b6a95d604bae681fa9d2210f3c68e17882e946af3ab5f03c34dce8",
+          "Fingerprint": "sha256:69db2856df120c01f5d8e189c142212c25166cfda6d27c62839e6ca95caed5fa",
           "Title": "[Privilege escalation possible to other user than root]",
           "Severity": "LOW",
           "VendorSeverity": {
@@ -14966,7 +14966,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:130f2519e0c6db7f4760438d64c01e995c99bcb4b2703f2aad3122c4b681c2be",
+          "Fingerprint": "sha256:3a10091d9c323a8715127968b9776ea0df52d3c3c0f25599f841add741f1347b",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -15032,7 +15032,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:f06ba8f4a6ba7bad72693f2ee0d1028cddd1937ac333d334c6f882e776c49966",
+          "Fingerprint": "sha256:4397c1c0baef0f8589b4a76b3a95e098c0c33f337be25cb45e86d4317edc87da",
           "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
           "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
           "Severity": "LOW",
@@ -15092,7 +15092,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:c26a74254ab8e009e4c7bac7e9f8b0afd27080cdd6c8818f513580a8f86397c7",
+          "Fingerprint": "sha256:619fcbb91ea85db055bc264d7311781303ccd2630772111ce1f44c2f547588cc",
           "Title": "util-linux: util-linux: Access control bypass due to improper hostname canonicalization",
           "Description": "No description is available for this CVE.",
           "Severity": "LOW",
@@ -15132,7 +15132,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:a8fc0b1265647c1523b2ace006b934b5949e11022aa438334334896a52618b92",
+          "Fingerprint": "sha256:2771c591f76f43232febb5903fe5a239ea34cacc38c3f33e9a28312110281764",
           "Title": "coreutils: race condition vulnerability in chown and chgrp",
           "Description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition.",
           "Severity": "LOW",
@@ -15186,7 +15186,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:1b9cc78016e4fa222ceced5b4883598c77124f05c0323d0017bf523986618297",
+          "Fingerprint": "sha256:3521d96453989c3636623c02215f46e42cb98540b3cb2a8b2e3413255cf940a5",
           "Title": "coreutils: Heap Buffer Under-Read in GNU Coreutils sort via Key Specification",
           "Description": "A flaw was found in GNU Coreutils. The sort utility's begfield() function is vulnerable to a heap buffer under-read. The program may access memory outside the allocated buffer if a user runs a crafted command using the traditional key format. A malicious input could lead to a crash or leak sensitive data.",
           "Severity": "LOW",
@@ -15241,7 +15241,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:a524244d04589258b3a5a28317e8d598bd438038476f5998d8f5bd0339c1cee6",
+          "Fingerprint": "sha256:32bf3853c03b38e7ad80c62a916521358fc0ac3c661bdfbe61e50828d7ad8301",
           "Title": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
           "Description": "In GnuPG before 2.5.17, a stack-based buffer overflow exists in tpm2daemon during handling of the PKDECRYPT command for TPM-backed RSA and ECC keys.",
           "Severity": "HIGH",
@@ -15307,7 +15307,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:40e6b1484c9f65791ec5755d33ddf36f96c6d094e6cf19c01166fb2ec9e36454",
+          "Fingerprint": "sha256:3d23a7ed51ea648f1f3e3ba06d0a35245b7d9b543e4210688ff6f4a1561da06b",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -15362,7 +15362,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:4808047b3b92e341b5a6281db834762a949ee7a38f5908121ef69d69ccb1a88d",
+          "Fingerprint": "sha256:863cccfa23133f89dc8fbb6d053766f14e0e1b5eb3492934bbaab41700f28545",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -15419,7 +15419,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:2843fdd7c1539ecfde8a3d7710d189141d1805c982890da91e042139067773a6",
+          "Fingerprint": "sha256:784f6fb1627f9f614db6b11cfcacf713b1588b4649df764ce4427ebf4b1348e9",
           "Title": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
           "Description": "In GnuPG before 2.5.17, a stack-based buffer overflow exists in tpm2daemon during handling of the PKDECRYPT command for TPM-backed RSA and ECC keys.",
           "Severity": "HIGH",
@@ -15485,7 +15485,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:7e331402498ec59b131f95a305c7f51a3558dff89db97d9a3a590bbbe271aed2",
+          "Fingerprint": "sha256:15dd348188cb1e59ea1d16028db23334ec4fc412da2caa0bbc0f1e7ce3d156a3",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -15540,7 +15540,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:c50c8ade3dc04c4b1db51bbd2ac23a29472ed5a3d4cff41a36a28f2813f38691",
+          "Fingerprint": "sha256:af448d34ed9d31d5fc2b603c63a05bbc717815002601c4634e2ec43bd58155ee",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -15597,7 +15597,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:2003918fa25f5bd9fac968f2430b760b6abbccf0c626940a1aa48ae7bef266cb",
+          "Fingerprint": "sha256:5cee002ad804db8da9d621634acb98a52f03b141687bf10e2f2fe4309dc45d38",
           "Title": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
           "Description": "In GnuPG before 2.5.17, a stack-based buffer overflow exists in tpm2daemon during handling of the PKDECRYPT command for TPM-backed RSA and ECC keys.",
           "Severity": "HIGH",
@@ -15663,7 +15663,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:542375ec62644968a5279a03c783a4f214cb3cee014cfa49a0ce88a67f2ce7e1",
+          "Fingerprint": "sha256:d5596bbcb7e952289ab488f7cdfc2df76d8d8705237fe1563ea0eeaf2386049d",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -15718,7 +15718,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:9f29a4e22c8f2bfafbb5179b5529550dbee5f6d5912c2568c65cd08ccf739efa",
+          "Fingerprint": "sha256:cc1ce9060761dad4dcb02920b9b944d31b24e9f8616f983ab5cee45c4baf2113",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -15775,7 +15775,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:b63702fee644e11705ffba758a1b3207cfc3599a943d6861987c816d3753cec3",
+          "Fingerprint": "sha256:7b616ffc478d6da767664d049633256e3f89f4d6a485065f0a7fc872f400d420",
           "Title": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
           "Description": "In GnuPG before 2.5.17, a stack-based buffer overflow exists in tpm2daemon during handling of the PKDECRYPT command for TPM-backed RSA and ECC keys.",
           "Severity": "HIGH",
@@ -15841,7 +15841,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:e528ee5564207f953291f3294a5e50948b865a7b6b0537735f0e6126f332e9e1",
+          "Fingerprint": "sha256:c4b76b1ef08134dfe4ec289080f7f5394e3b8e58334e98975cdb09b6e9195de7",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -15896,7 +15896,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:6df365da9c4d1b329ac847e6eb2da52d3e3d8f965cdee3a874c2465e308930cc",
+          "Fingerprint": "sha256:ff858b06b883c154e27f5c37192898c077fa062a24d630350849f79bd3afbcd9",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -15953,7 +15953,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:8ebc24780e8967a93596f930527ed7ed72bf1cb633602981b469b8bbe2d9e77b",
+          "Fingerprint": "sha256:0ebc2d552ef7d1b10d82e5e125550717edf579257961a0ddb7580782817b310c",
           "Title": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
           "Description": "In GnuPG before 2.5.17, a stack-based buffer overflow exists in tpm2daemon during handling of the PKDECRYPT command for TPM-backed RSA and ECC keys.",
           "Severity": "HIGH",
@@ -16019,7 +16019,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:5d0ab2dda2d6e64e62bb16cc1ab31500a26dd11447019bc67033d72b75249cc3",
+          "Fingerprint": "sha256:4c3e62886f7a92805ed97231c718ed15114d63a72c145ebcdbf11f3393cf5430",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -16074,7 +16074,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:4bac3e41e0ec04153ea18a7a265fd3032a07e6469ad8686e7d8f9d6faeeb7ed7",
+          "Fingerprint": "sha256:2a66f3d9aa819bf89f46856d59d1bae3984d4b8615027b88c4a562b2760a4794",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -16131,7 +16131,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:d1f956d7edbe164428704d4c48178b157c1628906b981c2a6361d450ba5606b7",
+          "Fingerprint": "sha256:1ddb71f2b50eb7a03e9f7761096a4a30d409e58be3c7db873425b1a70784508a",
           "Title": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
           "Description": "In GnuPG before 2.5.17, a stack-based buffer overflow exists in tpm2daemon during handling of the PKDECRYPT command for TPM-backed RSA and ECC keys.",
           "Severity": "HIGH",
@@ -16197,7 +16197,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:7543ed62fcb7f3e88e783f0f5af6c3df7f5f5938cba144fad995b340dc3a2811",
+          "Fingerprint": "sha256:953005105d68b57166c76f47a42fd064c0b28f5d0ff6405bf2fa1e85f9d9a8b5",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -16252,7 +16252,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:6c3d5b58e43ca0d91f6831ef0ecf3b9228664410e5fd2b97061e15b79913c493",
+          "Fingerprint": "sha256:68a0e16ab2b6e99d2fec49d48cfbe05e9f772025e32084b0d757dc9e61c6e626",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -16309,7 +16309,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:954d2a8d4d9cba0227998bf72c431435a671f809a08c4a729f0789c71a1e0cbc",
+          "Fingerprint": "sha256:998f87697365ec0d94d9c5320c92bd62ac1393bd6076bed429ef4baa54a922d5",
           "Title": "GnuPG: GnuPG: Stack-based buffer overflow in tpm2daemon allows arbitrary code execution",
           "Description": "In GnuPG before 2.5.17, a stack-based buffer overflow exists in tpm2daemon during handling of the PKDECRYPT command for TPM-backed RSA and ECC keys.",
           "Severity": "HIGH",
@@ -16375,7 +16375,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:a21c29b2d00c35aeb9791b2e1db35fb102f73b9f33e01b000df49460dca1d813",
+          "Fingerprint": "sha256:5ee5547e7ac87e463fc38f16a1f1593886ce504454e8770de7712dcfcc9c1f28",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -16430,7 +16430,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:9498178d62504dce031c4f653a15b665078f3aa93dc3167fcbe380f5d634a1d3",
+          "Fingerprint": "sha256:7e323cbb53cd3f7f584c57ad12814e4f720a5f6138abf19d5704e6b94b7ddfcc",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -16487,7 +16487,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:d45c22a98caa2010ad48f433b4c99b3cdb190501611d5ee9bc687eac9ed994f0",
+          "Fingerprint": "sha256:84c200d3215f89556875fa6185a7017a8054a04a884a89717e9d3dab19aba073",
           "Title": "It was found that apt-key in apt, all versions, do not correctly valid ...",
           "Description": "It was found that apt-key in apt, all versions, do not correctly validate gpg keys with the master keyring, leading to a potential man-in-the-middle attack.",
           "Severity": "LOW",
@@ -16538,7 +16538,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:3105589f120862d48d1ce589b7ee33c35b7ac16ee35cfe7ecfb289d4ef08c0d7",
+          "Fingerprint": "sha256:7b68314c3d1943e900304e7316a0ef1ec3ba56e89b18635de3453650431d7efd",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -16604,7 +16604,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:47ebff29c474f5c95da439f9b8f395680a82f1520e655941d484257e5550685b",
+          "Fingerprint": "sha256:7379b703af33e32105b43b48bd0e218901a9e8e95fbc144ed83775ac48aef338",
           "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
           "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
           "Severity": "LOW",
@@ -16664,7 +16664,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:c6a4600a0482d63e796e01d1e309dc4f795c53b1750625dcb3d915707137d6b6",
+          "Fingerprint": "sha256:d6f4d59f998167a0336895d4d95d6ac2ecfbf3ca6e98bc0342932bb281fe384b",
           "Title": "util-linux: util-linux: Access control bypass due to improper hostname canonicalization",
           "Description": "No description is available for this CVE.",
           "Severity": "LOW",
@@ -16703,7 +16703,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:0cc23bc40859090e60bc1e0143cff579c77c0f47a13307b894c72c036a036169",
+          "Fingerprint": "sha256:ee2afd317dbf21e2087f06b98e45e4ae7da0c902d77e9809afd38663324e578d",
           "Title": "glibc: Integer overflow in memalign leads to heap corruption",
           "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1\u003c\u003c62+ 1, 1\u003c\u003c63] and exactly 1\u003c\u003c63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments.",
           "Severity": "HIGH",
@@ -16772,7 +16772,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:0e886bb1ecb78e7d720357bbeb36d78975ffaf649962f7fd2069f9153e8daaa5",
+          "Fingerprint": "sha256:971fe827bf739aaa47c9f6b36e5959e7d0cbaa5230097093c502022f95833fb5",
           "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
           "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process.",
           "Severity": "MEDIUM",
@@ -16840,7 +16840,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:ae57bd146a888af250a1ac510140b30ed3bbad7ebe9d5345a14f2bbb35f4c5e9",
+          "Fingerprint": "sha256:2b3f65a23732df3fd113503786f3940dc9ad6433a52f8f96b940d06db8dcbac6",
           "Title": "glibc: glibc: Information disclosure via zero-valued network query",
           "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver.",
           "Severity": "MEDIUM",
@@ -16910,7 +16910,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:f2134e9ee24f5f8cc24d80a24873e71a16800b98a2852af5715757d353eb753c",
+          "Fingerprint": "sha256:dddac563c014f61807fe8ebcf095bc80fb33a02da57feb58115a2c979a643038",
           "Title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
           "Description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632.",
           "Severity": "LOW",
@@ -16967,7 +16967,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:8a53060f4820653ebda29a4f0ac461ceab0a4ee0579e824170db0013c8e40ec0",
+          "Fingerprint": "sha256:bdf23ab12afdf48d9d2d1d79dfe02e394c50fa679b332082a5932b6d76b5e465",
           "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
           "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep.",
           "Severity": "LOW",
@@ -17026,7 +17026,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:ae4525c5f4c96a23958ecfdbe21079a98db044e9122e1467aaa6094a0140afa9",
+          "Fingerprint": "sha256:1bc6d3356887adca502e4b280bd5d196edcb25b2974bab3197688b0027347f8c",
           "Title": "glibc: stack guard protection bypass",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -17078,7 +17078,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:69cb5d77195d74f81ea30b8c2c37c72e485473b863d0ae77f9aec817b28f7a7b",
+          "Fingerprint": "sha256:f3fb9463cbaf08ce490f9fb26aeb73853d301184b2d0a237626ba643330597bd",
           "Title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
           "Description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -17133,7 +17133,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:895d41f271be207d343638a23f03632049341298dde133785f33dac84c8692cf",
+          "Fingerprint": "sha256:f6123c9368d2cee11cf537e3e9c5b4094e9fc138510638be8f36101b2f95dd05",
           "Title": "glibc: ASLR bypass using cache of thread stack and heap",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -17192,7 +17192,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:bc642f67769f52e1567cfde24b06b75ae29836abe7d4f0ea6b9a6ec3a4ba5ffd",
+          "Fingerprint": "sha256:d32ff2c64c1f51df07dc8066b5be950a64d36c258c5021360bf11aad855c2594",
           "Title": "glibc: information disclosure of heap addresses of pthread_created thread",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability.",
           "Severity": "LOW",
@@ -17250,7 +17250,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:55d011a20c5909cba86b263dc3a981f9531d2c5bde4f1a822c518887543dca9d",
+          "Fingerprint": "sha256:6fd0f9b99ff183c69b5389ded8fd8ff2efa9f4160351a30f4c1471f53c40b47d",
           "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
           "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern",
           "Severity": "LOW",
@@ -17305,7 +17305,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:611332d01a58b0563ba767d43b0912f9e0a131db134b3146f9a6f980fcfc604a",
+          "Fingerprint": "sha256:b5d2f3a73697eb4dc5a4b5d4c6e366914abd21276ab95e9280f399ae47835b3e",
           "Title": "glibc: Integer overflow in memalign leads to heap corruption",
           "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1\u003c\u003c62+ 1, 1\u003c\u003c63] and exactly 1\u003c\u003c63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments.",
           "Severity": "HIGH",
@@ -17374,7 +17374,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:6250f34cb8846508d4adbd925769a74490fcfd5d3555a70a5f2aa2caa0d2a9e8",
+          "Fingerprint": "sha256:7cecafabce134d38db28b8f3e7273e9efa51da802f952e6e6b0e0668b44eab13",
           "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
           "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process.",
           "Severity": "MEDIUM",
@@ -17442,7 +17442,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:2430aca7939ebb235a9b72e5583bd86702d7c65deab3304112558ce361f88014",
+          "Fingerprint": "sha256:70f000bb0109ee37ba58a98e806b527e375be37c382d10351e283f11ad79053c",
           "Title": "glibc: glibc: Information disclosure via zero-valued network query",
           "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver.",
           "Severity": "MEDIUM",
@@ -17512,7 +17512,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:87fa127cfdbc927558f0db49df462c7d66615fa97ac9a8e1c0b93edcea9c2820",
+          "Fingerprint": "sha256:958a9ef8919fa067ca37ff2a7b2dfcb061dbf6876202475b893f764d92dd0697",
           "Title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
           "Description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632.",
           "Severity": "LOW",
@@ -17569,7 +17569,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:5bee6dc86b3bb4064b9a8064b8cd816f2ef5d6e7714371003b9ba1900c2f0a4f",
+          "Fingerprint": "sha256:82503dd0838929921bdc88e53456eefc1e5b420063e8156a6c0a2c9b0918ceec",
           "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
           "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep.",
           "Severity": "LOW",
@@ -17628,7 +17628,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:08217884ecd75f647dfd388f3a2b90ddb0bc096942f5796737512486feae3834",
+          "Fingerprint": "sha256:f1d0abd304c334350d6a7e981c006e1ea04e510105ff83642d87fc6b0068cd77",
           "Title": "glibc: stack guard protection bypass",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -17680,7 +17680,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:2cb5fe305eaa79f916f2c5b5a3e9c082f4acf9901a1151295c2f6cbaccee75b7",
+          "Fingerprint": "sha256:c349286f52a0d39a85fc10f13b062c290af364ad6358bfc7ebbdecd3acca38a0",
           "Title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
           "Description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -17735,7 +17735,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:c19fea4cf25a7ada0536ce48656b4f2d7474ddd15850fb5e6d1f9b2886cd020a",
+          "Fingerprint": "sha256:445d58964b020e1b631a30b23545185ed30c62361e48a00288312656f15985cc",
           "Title": "glibc: ASLR bypass using cache of thread stack and heap",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -17794,7 +17794,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:66023d6838182312a110b61a89319526118bc6def091011073ccdb0f4e839829",
+          "Fingerprint": "sha256:63f728ff8901027f3b91b30872c1d66fc8041e438c91640331e49f7d33c0453c",
           "Title": "glibc: information disclosure of heap addresses of pthread_created thread",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability.",
           "Severity": "LOW",
@@ -17852,7 +17852,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:f851c1cf9612a83ed478dfe29ab266afd39690e8b0760d4464af667f03f7667e",
+          "Fingerprint": "sha256:adfc94507f9ccab3139d5445657ba973ed76d24f069d67ce1515e3d2faa09c9b",
           "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
           "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern",
           "Severity": "LOW",
@@ -17907,7 +17907,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:e9af877eaa378b943e2b6cdb67e0f125a7232d22f18ccd7495c9c42558622ba4",
+          "Fingerprint": "sha256:5d1db7179136189acb392a7a6190b633603c765ab06c19ef552c4284b4dbf7de",
           "Title": "glibc: Integer overflow in memalign leads to heap corruption",
           "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1\u003c\u003c62+ 1, 1\u003c\u003c63] and exactly 1\u003c\u003c63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments.",
           "Severity": "HIGH",
@@ -17976,7 +17976,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:d001fa8a5dc96b5e25c06220e9a3d160c581d54bda120c742a58714ecd87c802",
+          "Fingerprint": "sha256:e73bd430b6bb821db6fde08ef8ac9d62842e4ae5edd9b1877dbe03cf76da766b",
           "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
           "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process.",
           "Severity": "MEDIUM",
@@ -18044,7 +18044,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:1440a24adc2ff6091fddbf7707a43b463f239cacf1e20acc82d575b51bac0a04",
+          "Fingerprint": "sha256:fee377e4dccc47c4aa75ca17e829edf1679f50f7bc4c89c2295411d207ca1901",
           "Title": "glibc: glibc: Information disclosure via zero-valued network query",
           "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver.",
           "Severity": "MEDIUM",
@@ -18114,7 +18114,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:5e80e772b85359ccf7c4437b6d886c8facc28929cfdd68170d0c692928526ee6",
+          "Fingerprint": "sha256:43442c271ec511568bbe183c0c7b1429b97ebf68c96f4d1dca4e275b85e1702d",
           "Title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
           "Description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632.",
           "Severity": "LOW",
@@ -18171,7 +18171,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:be1050273dc9b2fe0807ec38e30b35b51cf34b67a99781abfbf29357eaaafb4c",
+          "Fingerprint": "sha256:6829201c6c92f6eccb9d27688b7f676f8a6de5ba13b279398a47d02c30cd59de",
           "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
           "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep.",
           "Severity": "LOW",
@@ -18230,7 +18230,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:bdda773375c5bb9ecb685ef1a2c7de0d3501ac42829744f56184309daddaa83a",
+          "Fingerprint": "sha256:8a421a854ac6fc884bda0b1655d243d7dc67e6033230782fae07f1515c91a2bc",
           "Title": "glibc: stack guard protection bypass",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -18282,7 +18282,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:794a2449ee1431823305e841dfe9d1cb3e69a87baee22863c32ebccabe0b76ca",
+          "Fingerprint": "sha256:c514cd4262fddf33b71759012d6238ffc73a03337c458fdc27de5320b4fbbd32",
           "Title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
           "Description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -18337,7 +18337,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:bd601c52233e2d64e7b8920cb38e051434d4af2c0f7fc6ca9b2185e0c96c91a1",
+          "Fingerprint": "sha256:f0a4f2a34bd1cd453b47bac0b5c2cfdb478b5887912d877075e90695e017d580",
           "Title": "glibc: ASLR bypass using cache of thread stack and heap",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -18396,7 +18396,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:c63b1656be5f260b13096aadefc580af7b370e5d5cdcbef2aa37cbd855a08977",
+          "Fingerprint": "sha256:fce80864ecb9c4011ea5e1d760e334b690dcc7796804d28074f79984e1ab5d38",
           "Title": "glibc: information disclosure of heap addresses of pthread_created thread",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability.",
           "Severity": "LOW",
@@ -18454,7 +18454,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:ef729f4132055efbf30a01417c90d5cfdd9a1862970191cd7c892ed6c25e6def",
+          "Fingerprint": "sha256:b67ea04b933a6c62193c95c67c6b2816e6e16b7921751b235b00f062091431bf",
           "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
           "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern",
           "Severity": "LOW",
@@ -18510,7 +18510,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:db1c5f77c3e104bb1d918c53773333a747d2d81f6062b0e4367ab047a4046630",
+          "Fingerprint": "sha256:38956af654a67c05b593fe84b74531a3f2ee470e9762809eadf39312f4386269",
           "Title": "libgcrypt: ElGamal implementation doesn't have semantic security due to incorrectly encoded plaintexts possibly allowing to obtain sensitive information",
           "Description": "cipher/elgamal.c in Libgcrypt through 1.8.2, when used to encrypt messages directly, improperly encodes plaintexts, which allows attackers to obtain sensitive information by reading ciphertext data (i.e., it does not have semantic security in face of a ciphertext-only attack). The Decisional Diffie-Hellman (DDH) assumption does not hold for Libgcrypt's ElGamal implementation.",
           "Severity": "LOW",
@@ -18567,7 +18567,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:8eab1a4ba228536354200718f08cadeffca6c849f6f570cf7729847ed70ae9be",
+          "Fingerprint": "sha256:f366a7ab6b669adbf32e0950784cb3f3a4ce3e738e74c815a949b66d946eb3a0",
           "Title": "libgcrypt: vulnerable to Marvin Attack",
           "Description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
           "Severity": "LOW",
@@ -18623,8 +18623,8 @@
           "InstalledVersion": "3.8.9-3+deb13u2",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:a4a75dc4fb09b2290b40233e414ee8a0204eb314bfc8c758ec5fddbd65aea361",
-            "DiffID": "sha256:7ae61fcf66ed3ce260459f4d9eb462dcff9ec3f7fee709ba6a476b66599c4049"
+            "Digest": "sha256:3c1daa0f0d17e1cf045b54e6ff86ea8615f2e2ec935bc1a730cd24f6f3a25115",
+            "DiffID": "sha256:989976391b52c938560fb676ee6fc8448816cdb27355ded5708ba28cc96d5258"
           },
           "SeveritySource": "debian",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2011-3389",
@@ -18633,7 +18633,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:61498d6d8d2ff624f728d6c178c897c5b189c3cc7452f6ec8f8459b6f3bbc796",
+          "Fingerprint": "sha256:90c06466b0fff93d9230042370af17b44b545664f54509461280ec9eaad3662c",
           "Title": "HTTPS: block-wise chosen-plaintext attack against SSL/TLS (BEAST)",
           "Description": "The SSL protocol, as used in certain configurations in Microsoft Windows and Microsoft Internet Explorer, Mozilla Firefox, Google Chrome, Opera, and other products, encrypts data by using CBC mode with chained initialization vectors, which allows man-in-the-middle attackers to obtain plaintext HTTP headers via a blockwise chosen-boundary attack (BCBA) on an HTTPS session, in conjunction with JavaScript code that uses (1) the HTML5 WebSocket API, (2) the Java URLConnection API, or (3) the Silverlight WebClient API, aka a \"BEAST\" attack.",
           "Severity": "LOW",
@@ -18780,7 +18780,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:fe7ddd5acc65aa8f25a4c97ccc2545e66fa07b3cc4f0443f792bacb4189aaa99",
+          "Fingerprint": "sha256:fc8d0fa6b91abe447fff49905b5adf16d9b14b6122ad10061d16844881c04ae9",
           "Title": "krb5: integer overflow in dbentry-\u003en_key_data in kadmin/dbutil/dump.c",
           "Description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry-\u003en_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data.",
           "Severity": "LOW",
@@ -18835,7 +18835,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:d91a9d03c54bf24cff775394dc00646e90ed26ba5c92cf767bd67ab2a6765a0c",
+          "Fingerprint": "sha256:4b665c35070041da4724abb34488489b651ad54d40e34fd08966a6c7c94796ea",
           "Title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
           "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c.",
           "Severity": "LOW",
@@ -18905,7 +18905,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:6cdf366dc54f2c287af9c82d0003eb508f23e84a7df86e2588c0b251a1436c4c",
+          "Fingerprint": "sha256:0f1b6dc8c6e849589901dde6499cc27114fce79691d5add85678f24026d7e6c2",
           "Title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
           "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c.",
           "Severity": "LOW",
@@ -18975,7 +18975,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:8368b8d2bca59aeab0cbbe1f3998373cb017cd7a359caf96a00315eb8f0b17bd",
+          "Fingerprint": "sha256:13057c35147d942bdedcb4daa31a3965fe2d645242f588d9f73530bf52acb890",
           "Title": "krb5: integer overflow in dbentry-\u003en_key_data in kadmin/dbutil/dump.c",
           "Description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry-\u003en_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data.",
           "Severity": "LOW",
@@ -19030,7 +19030,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:10bcfbb71be5b87725685cda14d315081630b6e5f40430fac9fa45397006d459",
+          "Fingerprint": "sha256:01032793d8c88006216cac698412776c9f1bf448abe3673a78c613dcf66fc034",
           "Title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
           "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c.",
           "Severity": "LOW",
@@ -19100,7 +19100,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:2c989b396009036dcc59658b5409af994fa4ad8e717a59387f325d4cef31a875",
+          "Fingerprint": "sha256:1d671d6c444782215fcae22838d91960710df8743835ee1c5f2737839042e67d",
           "Title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
           "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c.",
           "Severity": "LOW",
@@ -19170,7 +19170,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:1cc281349f0a53df82142d241ee423f9342a60f702237970d3e02420e76d5193",
+          "Fingerprint": "sha256:89e877c5dee496138fd45b34809d0921679e346750039a7a04a26d465dee9fff",
           "Title": "krb5: integer overflow in dbentry-\u003en_key_data in kadmin/dbutil/dump.c",
           "Description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry-\u003en_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data.",
           "Severity": "LOW",
@@ -19225,7 +19225,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:13eb7e760a3d023c28874c9460acbde93e3d333993b06d2eb63cc8e8ced89354",
+          "Fingerprint": "sha256:2b0a5d7141c16d730ef0cea048ba5485974979876cf9bff2a170a50d68ce20d2",
           "Title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
           "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c.",
           "Severity": "LOW",
@@ -19295,7 +19295,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:fe9bf741519b7d5c2cc2053205475884bd125172f1d5019f810b18892562c4e4",
+          "Fingerprint": "sha256:17db11228d62e846c7e427efc979ade6ad50e3e506bedb929653b1d2c438db03",
           "Title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
           "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c.",
           "Severity": "LOW",
@@ -19365,7 +19365,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:be11030c27412bff985b6aa42688cddb484f5aedb0f15af861e0359db47367bf",
+          "Fingerprint": "sha256:b042e34d742d0387897cee1ea6f7283288ff913d542c9e3257248efb545659f7",
           "Title": "krb5: integer overflow in dbentry-\u003en_key_data in kadmin/dbutil/dump.c",
           "Description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry-\u003en_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data.",
           "Severity": "LOW",
@@ -19420,7 +19420,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:6b5029279b643c8df067f7b530518c7b43c4a333d03af81484d42d38100477f8",
+          "Fingerprint": "sha256:7df8441a73084505eb0ae8548813012234c9c29103637b297736443fd78a7035",
           "Title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
           "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c.",
           "Severity": "LOW",
@@ -19490,7 +19490,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:6a028a1b411070ee3d657d173c5aeceaac9e6da36b11524a2c84cdaf820c3c15",
+          "Fingerprint": "sha256:135466589a36acbc496ce424f7d0f76b9ee95d8e4b08b132d888c591b0f8966f",
           "Title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
           "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c.",
           "Severity": "LOW",
@@ -19559,7 +19559,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:5bc7ffe0bf0a9df5d1a0d365ad7b08b041f33adac8f8b79e7029e63f5a611e0a",
+          "Fingerprint": "sha256:b6be241bbffed31551aca9a8b574e030084278c656c89f0a13b76b6d30f86a51",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -19625,7 +19625,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:3794eb2d2b84d9a05be674e3c0b0ce0b205a63ef6985dec2af210840f2de3bf2",
+          "Fingerprint": "sha256:ab4d6f38d0773077646b1f486f88e89192d700ed4bbf95826bcab1353b492fb5",
           "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
           "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
           "Severity": "LOW",
@@ -19685,7 +19685,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:3e8bc09ccfe26f2165f68c72dbe1c2c531e2e890407ca7028d4a095689da5a6a",
+          "Fingerprint": "sha256:59a1de1d8facad9b59d45555c8de9a8dac6cd1b5b813bb97a7c623a0d4922184",
           "Title": "util-linux: util-linux: Access control bypass due to improper hostname canonicalization",
           "Description": "No description is available for this CVE.",
           "Severity": "LOW",
@@ -19725,7 +19725,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:46003bd4426c4272eae22e0a7ad65d98ae4f38e769d54bf73fd529d2a771686a",
+          "Fingerprint": "sha256:65856d51d1cb2409d852ae1cbca502f248e61e84feb4f0edf89d7a5d120916b6",
           "Title": "openldap: incorrect multi-keyword mode cipherstring parsing",
           "Description": "The nss_parse_ciphers function in libraries/libldap/tls_m.c in OpenLDAP does not properly parse OpenSSL-style multi-keyword mode cipher strings, which might cause a weaker than intended cipher to be used and allow remote attackers to have unspecified impact via unknown vectors.",
           "Severity": "LOW",
@@ -19784,7 +19784,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:2cad47d3bb2e9e57a3d0eaa6f795f8ed454f9d8ba1bdc100919a32adc4a9eb61",
+          "Fingerprint": "sha256:b71af0537e97b664e84b171160b95cab0807d91bfacd9f371362528a0c0cfc81",
           "Title": "openldap: Privilege escalation via PID file manipulation",
           "Description": "slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping privileges to a non-root account, which might allow local users to kill arbitrary processes by leveraging access to this non-root account for PID file modification before a root script executes a \"kill `cat /pathname`\" command, as demonstrated by openldap-initscript.",
           "Severity": "LOW",
@@ -19839,7 +19839,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:5dac37e5108f14c70b9e619ab0c0495fc02489e07dfbae7722ed321d4f9fe76d",
+          "Fingerprint": "sha256:ce58a996923ab8efdaf8f54044aa9933e3d10f67c8a259b50e587601194255ef",
           "Title": "openldap: contrib/slapd-modules/nops/nops.c attempts to free stack buffer allowing remote attackers to cause a denial of service",
           "Description": "contrib/slapd-modules/nops/nops.c in OpenLDAP through 2.4.45, when both the nops module and the memberof overlay are enabled, attempts to free a buffer that was allocated on the stack, which allows remote attackers to cause a denial of service (slapd crash) via a member MODDN operation.",
           "Severity": "LOW",
@@ -19897,7 +19897,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:2fde3a92201af981d771e98f24a574924e4ef9d36e3b1308196a333f4a4d7d4e",
+          "Fingerprint": "sha256:9505b31b0bc57b6f0701f2a7f7b7ccd59d79bb8da0430bfd5f38b551c18b6e81",
           "Title": "openldap: Certificate validation incorrectly matches name against CN-ID",
           "Description": "libldap in certain third-party OpenLDAP packages has a certificate-validation flaw when the third-party package is asserting RFC6125 support. It considers CN even when there is a non-matching subjectAltName (SAN). This is fixed in, for example, openldap-2.4.46-10.el8 in Red Hat Enterprise Linux.",
           "Severity": "LOW",
@@ -19962,7 +19962,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:b8f1e475f470da25bf03109629f8c282c5a1e7f44c4c0d4b132aa5a288900a3f",
+          "Fingerprint": "sha256:0236726f19d51014aecb0a8d6c288921348af5781d66a995225760486c72cdde",
           "Title": "OpenLDAP: OpenLDAP LMDB: Denial of Service and Information Disclosure via Heap Buffer Underflow",
           "Description": "OpenLDAP Lightning Memory-Mapped Database (LMDB) versions up to and including 0.9.14, prior to commit 8e1fda8, contain a heap buffer underflow in the readline() function of mdb_load. When processing malformed input containing an embedded NUL byte, an unsigned offset calculation can underflow and cause an out-of-bounds read of one byte before the allocated heap buffer. This can cause mdb_load to crash, leading to a limited denial-of-service condition.",
           "Severity": "LOW",
@@ -20014,7 +20014,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:80b563ba32653ac92288b68b02463446689a8424470b4b2a93a0e03cdcab5a97",
+          "Fingerprint": "sha256:0676f051d5fa0bfed08f28104cbe278505836e79f95a84c999a61c9b290440ff",
           "Title": "clang: CMSE secure state may leak from stack to floating-point registers",
           "Description": "When using Arm Cortex-M Security Extensions (CMSE), Secure stack \ncontents can be leaked to Non-secure state via floating-point registers \nwhen a Secure to Non-secure function call is made that returns a \nfloating-point value and when this is the first use of floating-point \nsince entering Secure state. This allows an attacker to read a limited \nquantity of Secure stack contents with an impact on confidentiality. \nThis issue is specific to code generated using LLVM-based compilers.",
           "Severity": "LOW",
@@ -20062,7 +20062,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:b6097ca495d97304ed9b56d280d907fd97917776a0919262e9866c1af22dff97",
+          "Fingerprint": "sha256:5bc5e35e02672238c379a631a1925bd9b979f7c7b17ee4c0552ca05fa9b6a00a",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -20128,7 +20128,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:1c19cf554c9e60e50c4694b6b67972bb3b71e5c4b99db22184a7f24076ba95d2",
+          "Fingerprint": "sha256:5a32e271655eba0f6b234111c51540778151837fa9193c325f776f4edbeb91bb",
           "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
           "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
           "Severity": "LOW",
@@ -20188,7 +20188,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:4c80e075b73f673bcbe6338eab0a43655849b429eec07aaf840066c85cb19870",
+          "Fingerprint": "sha256:9d2389064b0c98bf2a603dc75a6b6aa057c335b17aa920b50b56b39a8e1247cd",
           "Title": "util-linux: util-linux: Access control bypass due to improper hostname canonicalization",
           "Description": "No description is available for this CVE.",
           "Severity": "LOW",
@@ -20227,7 +20227,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:0b3075d1bb4e33deb33e5adf5bc2ad0af34d1da6f0810a799548d21a315a3732",
+          "Fingerprint": "sha256:1bc395b7805baeb731f6ae21add762386e5c3c45fa423806c3dc0c06a20ae864",
           "Title": "gnu-ncurses: ncurses Stack Buffer Overflow",
           "Description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This vulnerability affects the function postprocess_termcap of the file tinfo/parse_entry.c. The manipulation leads to stack-based buffer overflow. The attack needs to be approached locally. Upgrading to version 6.5-20250329 is able to address this issue. It is recommended to upgrade the affected component.",
           "Severity": "LOW",
@@ -20282,7 +20282,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:4e741e440c419bf4840110f33d2b9b92273f232ff1aae224f573173c4150f767",
+          "Fingerprint": "sha256:01d939e88f6840b0eb333275cc5f4ca87a24977e1b2822dc307dbefa40bd023d",
           "Title": "perl: File:: Temp insecure temporary file handling",
           "Description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
           "Severity": "LOW",
@@ -20339,7 +20339,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:dd99de0e733077db6187a18b474f8c185055148bbcc418a980f6effb4fe6ff60",
+          "Fingerprint": "sha256:b47832893b16a670137db7c81a38005f54f50c2199d5aaeb53e37d05c4b4aae2",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -20405,7 +20405,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:7742932b325eb6b1ae36fd2780c49c3a64eb034b36edd5015c1309144cde10f9",
+          "Fingerprint": "sha256:47f1303dcafbc7131fe389f4959a467fa22ac0ced4ad9056f67a34919371dc8e",
           "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
           "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
           "Severity": "LOW",
@@ -20465,7 +20465,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:147b17180cf5132a9c5d14281d691d514118cbb1f9247b68f80c3773a7808d31",
+          "Fingerprint": "sha256:6a0385eb676441321c81b875bee0fcfd9234e2926ab65e108c5053ad5c3ec538",
           "Title": "util-linux: util-linux: Access control bypass due to improper hostname canonicalization",
           "Description": "No description is available for this CVE.",
           "Severity": "LOW",
@@ -20504,7 +20504,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:6699cac1b82fb7d88b9d42bfe353df68b32fb5b9b55ab221e28afd08d247262b",
+          "Fingerprint": "sha256:b2e1c44462959f4c091519f46de9affead25bf6ddf40b31fb104da9ddd5c485b",
           "Title": "An integer overflow exists in the  FTS5 https://sqlite.org/fts5.html e ...",
           "Description": "An integer overflow exists in the  FTS5 https://sqlite.org/fts5.html  extension. It occurs when the size of an array of tombstone pointers is calculated and truncated into a 32-bit integer. A pointer to partially controlled data can then be written out of bounds.",
           "Severity": "MEDIUM",
@@ -20546,7 +20546,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:d0e0ba1e71774dab830d3b554b2277babe427a714d94fc2e0798b0081150d210",
+          "Fingerprint": "sha256:56d4b3c51efbdf1345db465e27303978ee29b59c5b27f8e6681ecf791c95423b",
           "Title": "sqlite: crafted SQL query allows a malicious user to obtain sensitive information",
           "Description": "A Memory Leak vulnerability exists in SQLite Project SQLite3 3.35.1 and 3.37.0 via maliciously crafted SQL Queries (made via editing the Database File), it is possible to query a record, and leak subsequent bytes of memory that extend beyond the record, which could let a malicious user obtain sensitive information. NOTE: The developer disputes this as a vulnerability stating that If you give SQLite a corrupted database file and submit a query against the database, it might read parts of the database that you did not intend or expect.",
           "Severity": "LOW",
@@ -20609,7 +20609,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:e185d8b86d6ceb9fc13b0e6a53829401111efab3ed40a87311b85b0c90ebf6db",
+          "Fingerprint": "sha256:0dc2774d5371785098bf38011221189d431b592a8954285050744844e13378a9",
           "Title": "systemd: TOCTOU race condition when updating file permissions and SELinux security contexts",
           "Description": "systemd, when updating file permissions, allows local users to change the permissions and SELinux security contexts for arbitrary files via a symlink attack on unspecified files.",
           "Severity": "LOW",
@@ -20663,7 +20663,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:9917d6ebce052a9f55046499391b939062857f7b452f39ced2d03ab03d871960",
+          "Fingerprint": "sha256:94b4acea5293433ea4ce1decbd686a16ffdf9f417e6a0601684894c11d9b50b9",
           "Title": "An issue was discovered in systemd 253. An attacker can modify a seale ...",
           "Description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
           "Severity": "LOW",
@@ -20709,7 +20709,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:f2c831203f2dba67b0276fbb674caa67b8e957dfbf8260212740cb3411a7d25e",
+          "Fingerprint": "sha256:431eac446b29e02e2fe4fb206647487204ac38261bc30dc24cbd6ca5d86274a1",
           "Title": "An issue was discovered in systemd 253. An attacker can truncate a sea ...",
           "Description": "An issue was discovered in systemd 253. An attacker can truncate a sealed log file and then resume log sealing such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
           "Severity": "LOW",
@@ -20756,7 +20756,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:53a7a84ba87a0312466a490c8d08d41cd6f3424eea38068816fd54df81cac174",
+          "Fingerprint": "sha256:fd5cd2c62829e73eda7ae27d31ac2b592fe9ff8c26bbf94e0615bd2be6d07075",
           "Title": "An issue was discovered in systemd 253. An attacker can modify the con ...",
           "Description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
           "Severity": "LOW",
@@ -20803,7 +20803,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:2e6861fbbb1260200e0a6699524fb95539c22bfed416d8335d81ee886b0651d0",
+          "Fingerprint": "sha256:7d3d47370bf3e7e4574399b13577e1268c5a68d19618ec6025df99a85c788598",
           "Title": "libtasn1: libtasn1: Denial of Service via stack-based buffer overflow in asn1_expend_octet_string",
           "Description": "Stack-based buffer overflow in libtasn1 version: v4.20.0. The function fails to validate the size of input data resulting in a buffer overflow in asn1_expend_octet_string.",
           "Severity": "MEDIUM",
@@ -20858,7 +20858,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:89fc4b457b0523689abb9262a9d138ab434f632a528c1eee61979854337d7a71",
+          "Fingerprint": "sha256:8b1e25ebe983f32dce0a029f8733264abdd2dc80639f69134ccde7a7e13dea34",
           "Title": "gnu-ncurses: ncurses Stack Buffer Overflow",
           "Description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This vulnerability affects the function postprocess_termcap of the file tinfo/parse_entry.c. The manipulation leads to stack-based buffer overflow. The attack needs to be approached locally. Upgrading to version 6.5-20250329 is able to address this issue. It is recommended to upgrade the affected component.",
           "Severity": "LOW",
@@ -20913,7 +20913,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:10938addf0ae84dca9703d1fb36e4d1329945b60e27954182053ea8780c3d19e",
+          "Fingerprint": "sha256:dbb34b4274fc5053d5a70438bfcdbc5616034e385d619f042368433c273c1b22",
           "Title": "systemd: TOCTOU race condition when updating file permissions and SELinux security contexts",
           "Description": "systemd, when updating file permissions, allows local users to change the permissions and SELinux security contexts for arbitrary files via a symlink attack on unspecified files.",
           "Severity": "LOW",
@@ -20967,7 +20967,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:5d78c24b0bf4e592a67ae31c729dae84a23226c3e353c5d77e29f989375d422a",
+          "Fingerprint": "sha256:406782abf025a3ecc0e2846aaff1fe94a48a6fe0dec3334bd4709bd34be77025",
           "Title": "An issue was discovered in systemd 253. An attacker can modify a seale ...",
           "Description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
           "Severity": "LOW",
@@ -21013,7 +21013,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:afcaa8cf47fe138c0d461ca97c804751b9a90e8003815eb95093a1249beb955e",
+          "Fingerprint": "sha256:ca756d49bec8e57eb8b5e6de45f577d57567bdc1c21e7e1195eeb926836a4e75",
           "Title": "An issue was discovered in systemd 253. An attacker can truncate a sea ...",
           "Description": "An issue was discovered in systemd 253. An attacker can truncate a sealed log file and then resume log sealing such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
           "Severity": "LOW",
@@ -21060,7 +21060,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:fc3692b872226e2a8e741acff9ccf144e9f99c61c98e19e2c08a95791e7089d3",
+          "Fingerprint": "sha256:642b50b7ec2d2653e7ebeeb0927ebe1c2b2659cdf56ab89cd63db8741081bd2b",
           "Title": "An issue was discovered in systemd 253. An attacker can modify the con ...",
           "Description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\"",
           "Severity": "LOW",
@@ -21107,7 +21107,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:4b015483eaa0032ac4bbb0e5bb4d9bed06f83a11bc8c866f7283560cd8b7975d",
+          "Fingerprint": "sha256:78b252c91592f75606717e8adcfd1eba65bf28ce2c9f6f9ffce1e5f6144e2db7",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -21173,7 +21173,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:a3d555d99684e629fd0b4e84bbf00560fc65fe2b21766435e102d5b56f14ba5b",
+          "Fingerprint": "sha256:cc6a821eca5be04e2334d3d6ffe5dc134e2fc2c43920f306bc879b8ac4339a38",
           "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
           "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
           "Severity": "LOW",
@@ -21233,7 +21233,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:ba58bc4d6d421c181088ccf58dd0c7861e2b7ee82c4faeceb7a0f4b2ed644c79",
+          "Fingerprint": "sha256:fd4dd8d581f688dffbeba5e1cd984f302169c074832516b2efb562420fe37cd7",
           "Title": "util-linux: util-linux: Access control bypass due to improper hostname canonicalization",
           "Description": "No description is available for this CVE.",
           "Severity": "LOW",
@@ -21272,7 +21272,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:55a24f09c146582485c1a959a92d87705575584fa7e0406dd91c67f05bfa8a54",
+          "Fingerprint": "sha256:59ec7eb48ed0c172f78f368ec3bb039e0d28f2ab82f90b627d161586a5606a71",
           "Title": "libxml2: libxml2: Denial of Service via uncontrolled recursion in XML catalog processing",
           "Description": "A flaw was found in libxml2, an XML parsing library. This uncontrolled recursion vulnerability occurs in the xmlCatalogXMLResolveURI function when an XML catalog contains a delegate URI entry that references itself. A remote attacker could exploit this configuration-dependent issue by providing a specially crafted XML catalog, leading to infinite recursion and call stack exhaustion. This ultimately results in a segmentation fault, causing a Denial of Service (DoS) by crashing affected applications.",
           "Severity": "MEDIUM",
@@ -21322,7 +21322,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:c2d3d0d3e0974b3f830aba0fde854d5a85e2a492c9dd317aebb0960a14dd9e72",
+          "Fingerprint": "sha256:8700b7049be29aad3b0dfee31fb0c15eda2092acaea4f48fcf749111ae2cf41e",
           "Title": "libxml2: libxml2: Uncontrolled Recursion Vulnerability",
           "Description": "A vulnerability was found in libxml2 up to 2.14.5. It has been declared as problematic. This vulnerability affects the function xmlParseSGMLCatalog of the component xmlcatalog. The manipulation leads to uncontrolled recursion. Attacking locally is a requirement. The exploit has been disclosed to the public and may be used. The real existence of this vulnerability is still doubted at the moment. The code maintainer explains, that \"[t]he issue can only be triggered with untrusted SGML catalogs and it makes absolutely no sense to use untrusted catalogs. I also doubt that anyone is still using SGML catalogs at all.\"",
           "Severity": "LOW",
@@ -21377,7 +21377,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:29f7daa24dbf92b156114b84a1323d352a76c5b34d803520cd41a7cd49ec122a",
+          "Fingerprint": "sha256:5568f79a20113962406a21e2e10c7765314d061efa54a36797d8494de9729889",
           "Title": "libxml2: Unbounded RelaxNG Include Recursion Leading to Stack Overflow",
           "Description": "A flaw was identified in the RelaxNG parser of libxml2 related to how external schema inclusions are handled. The parser does not enforce a limit on inclusion depth when resolving nested \u003cinclude\u003e directives. Specially crafted or overly complex schemas can cause excessive recursion during parsing. This may lead to stack exhaustion and application crashes, creating a denial-of-service risk.",
           "Severity": "LOW",
@@ -21426,7 +21426,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:1dae85f8df6d25ce0fd2ad398e4fac9b7bc7fe8bea6e160fd71bb21190fc8da3",
+          "Fingerprint": "sha256:28eae0fb0029f0389b4fd92a8bbda77516a7dfbef7787a128f1cab6dd20d8100",
           "Title": "libxml2: libxml2: Denial of Service via crafted XML catalogs",
           "Description": "A flaw was found in the libxml2 library. This uncontrolled resource consumption vulnerability occurs when processing XML catalogs that contain repeated \u003cnextCatalog\u003e elements pointing to the same downstream catalog. A remote attacker can exploit this by supplying crafted catalogs, causing the parser to redundantly traverse catalog chains. This leads to excessive CPU consumption and degrades application availability, resulting in a denial-of-service condition.",
           "Severity": "LOW",
@@ -21476,7 +21476,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:0cb209073242fd537f986ff545c87dcc65fa795b9bd788bce1ccbd346e0c0ba1",
+          "Fingerprint": "sha256:0d13f8c0fc5ebc61e33306c0c8c3f9096f0f55813b6d59b7f51d46511a3595e4",
           "Title": "libxml2: Memory Leak Leading to Local Denial of Service in xmllint Interactive Shell",
           "Description": "A flaw was identified in the interactive shell of the xmllint utility, part of the libxml2 project, where memory allocated for user input is not properly released under certain conditions. When a user submits input consisting only of whitespace, the program skips command execution but fails to free the allocated buffer. Repeating this action causes memory to continuously accumulate. Over time, this can exhaust system memory and terminate the xmllint process, creating a denial-of-service condition on the local system.",
           "Severity": "LOW",
@@ -21523,7 +21523,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:57f1ba7443a1439f226c44864c0b61e26bfe66b1ba2cfda270a04fb885720dd8",
+          "Fingerprint": "sha256:c173c2ba54c0470dd1544e1adaf9afe664f9e5936851432acb72e1bfc74b6f1a",
           "Title": "libxslt: use-after-free with key data stored cross-RVT",
           "Description": "A use-after-free vulnerability was found in libxslt while parsing xsl nodes that may lead to the dereference of expired pointers and application crash.",
           "Severity": "MEDIUM",
@@ -21573,7 +21573,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:9ed81d5488a61686650621eb76ea7ca64b2761d79254dc6e041d081c12705ff4",
+          "Fingerprint": "sha256:bda9da1dd4962779b00d88a86dcee7fb17554dca00d200b84750271aa90c8c8a",
           "Title": "libxslt: math.random() in xslt uses unseeded randomness",
           "Description": "In libxslt 1.1.29 and earlier, the EXSLT math.random function was not initialized with a random seed during startup, which could cause usage of this function to produce predictable outputs.",
           "Severity": "LOW",
@@ -21627,7 +21627,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:9f412783ccf0f1398dd4c5a86824f5038e16fefa8ad4759f6b4c519cd40aa5af",
+          "Fingerprint": "sha256:e92d0a328c6dde915e3a374ca3bdaaad4ac9603504f725b1417e49195e168cf1",
           "Title": "libxslt: Type Confusion in exsltFuncResultCompfunction of libxslt",
           "Description": "A flaw was found in the exsltFuncResultComp() function of libxslt, which handles EXSLT \u003cfunc:result\u003e elements during stylesheet parsing. Due to improper type handling, the function may treat an XML document node as a regular XML element node, resulting in a type confusion. This can cause unexpected memory reads and potential crashes. While difficult to exploit, the flaw could lead to application instability or denial of service.",
           "Severity": "LOW",
@@ -21675,7 +21675,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:af4adca70ed368f1f1028b85ee287a24ed3592577f127f595bbaec941ecfad0f",
+          "Fingerprint": "sha256:cc4bd8fac6b98acdc28adf335eabb10ac1c84b873cff4d1efdf31bdf9664037e",
           "Title": "glibc: Integer overflow in memalign leads to heap corruption",
           "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1\u003c\u003c62+ 1, 1\u003c\u003c63] and exactly 1\u003c\u003c63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments.",
           "Severity": "HIGH",
@@ -21744,7 +21744,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:ad8d44715a27f36f19402a0bd95a768aaa80e0a3b7576566e940df746f0f55e8",
+          "Fingerprint": "sha256:f94699052e77055342e7e2995f975ffcd8f9e4791e0bd9de5a3608f321f4c976",
           "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
           "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process.",
           "Severity": "MEDIUM",
@@ -21812,7 +21812,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:5009e42e8749f1371f586026b22dfe9ea0595ae9cf0a271d4bafb59b03531f50",
+          "Fingerprint": "sha256:4019e59c5d2f75651cb20656aff53c75c93aa9e71afb6193ec2fed00e3fc35c7",
           "Title": "glibc: glibc: Information disclosure via zero-valued network query",
           "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver.",
           "Severity": "MEDIUM",
@@ -21882,7 +21882,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:deb56f0e31858f271870f8fa72052f7c7d7dc0d6e700c30ecff0fbdfcaf982ee",
+          "Fingerprint": "sha256:8f75c0775383745e831e0a12f803b894300bc70d91e3250f1774c0b82da1a394",
           "Title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
           "Description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632.",
           "Severity": "LOW",
@@ -21939,7 +21939,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:f971713e7613187b1b122127fa705317b23fbe47159befa4ad707b285f9c19ec",
+          "Fingerprint": "sha256:4f421de304f307b26e2c23089b12aaf5c2761d19bba315f806c328a584732454",
           "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
           "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep.",
           "Severity": "LOW",
@@ -21998,7 +21998,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:5a068cfea8f736f4eddb1229a74aa7d532ee168e1fbe037a4c8faf45e20953e1",
+          "Fingerprint": "sha256:2e6b585a28d86fb3616034bc411f483d3af382b702483fc1691d5beba33edf71",
           "Title": "glibc: stack guard protection bypass",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -22050,7 +22050,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:83009af0767b406883225d29dcdc42034e44a62b7932067cd966e0d8b8ad2558",
+          "Fingerprint": "sha256:810b578462e805f59d7edc4f8bdabbed3a0b42b2334d09d0aa810ecdbece2c7b",
           "Title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
           "Description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -22105,7 +22105,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:460322240b28ffc3ea62bc2d0dae43cb0b2feb7148e413c328b2ed08fa3be923",
+          "Fingerprint": "sha256:4d1506db55247c741332788268c2020fb5bb796160641af39b5246c1a82348ea",
           "Title": "glibc: ASLR bypass using cache of thread stack and heap",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat.",
           "Severity": "LOW",
@@ -22164,7 +22164,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:1939c3760cbce0a343b4cc379c375e5b873a4ab82c33d9a8f9159f1f69e8514f",
+          "Fingerprint": "sha256:f3da97f40b0bff75732cb3476644d0d3fd241f722b009ade110a0cac2df12a70",
           "Title": "glibc: information disclosure of heap addresses of pthread_created thread",
           "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability.",
           "Severity": "LOW",
@@ -22222,7 +22222,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:3ded2ee56901f5f1b875326ff332b7a4adfd2a247ebe74f2e8bef5f1d546367a",
+          "Fingerprint": "sha256:0d0edb5e62bee4c0affa749019f3b317d66122c40a1b1256fd1de3c3c4847f2b",
           "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
           "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern",
           "Severity": "LOW",
@@ -22277,7 +22277,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:3b3b0fee41da79e8f8e4e187e90b300dbae820bfe6f50364034136dac5865fb5",
+          "Fingerprint": "sha256:21dde20616d4d8554bdd9a3d0d5810046cefd51929f87d3b21f80a7a2b3382d0",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -22343,7 +22343,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:7c37c67d6692d657e3f6214fc49efefcd9961fa8eab15947d308d4b5f2534e57",
+          "Fingerprint": "sha256:edc9f5d14ffed1b77fd880b10301afbeac7125e450a46d8b1e23b051220ea995",
           "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
           "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
           "Severity": "LOW",
@@ -22403,7 +22403,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:660f7ff3fe0272b0c7eacc3ba44317cd63387ce2c6ef006f6f70bf0ca4742583",
+          "Fingerprint": "sha256:df37b89b9157a0added61ae5f931bb6a261c92e9022b10d0c290a243f0990297",
           "Title": "util-linux: util-linux: Access control bypass due to improper hostname canonicalization",
           "Description": "No description is available for this CVE.",
           "Severity": "LOW",
@@ -22443,7 +22443,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:ec75eefa3b14532afd2f9464185ee4d0e2f6f33e2f6daf82e41cb2b16dd303bd",
+          "Fingerprint": "sha256:f4562aee581980cdf0606ef476054f61c64cf2a630f56cd7cf68a2bcf71208ad",
           "Title": "initscripts in rPath Linux 1 sets insecure permissions for the /var/lo ...",
           "Description": "initscripts in rPath Linux 1 sets insecure permissions for the /var/log/btmp file, which allows local users to obtain sensitive information regarding authentication attempts.  NOTE: because sshd detects the insecure permissions and does not log certain events, this also prevents sshd from logging failed authentication attempts by remote attackers.",
           "Severity": "LOW",
@@ -22491,7 +22491,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:1954efc8d4f948c26ff7995a6a985b79d067f7ab6aa0fad50c7bb95729e278e2",
+          "Fingerprint": "sha256:0615a9f3aa2151653b6e701abb71aac5b32e78976846b1b2e050e07128a0b3b9",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -22552,7 +22552,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:100fb7126bec08c304c5d7adb350ae078a5bf409d532172dd520f741bec9659b",
+          "Fingerprint": "sha256:1f7958c0d6888428a4a5da43a0788faf175d1085a6ee51c43b4d0f394b817676",
           "Title": "[more related to CVE-2005-4890]",
           "Severity": "LOW",
           "VendorSeverity": {
@@ -22579,7 +22579,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:a3a6300207037d668e518a378afdd716117b2f1304a4ebeab920e520567b4478",
+          "Fingerprint": "sha256:fd1374329f8f54118b76018c65d54a8a51bc839d25fe8cdb9c918baa5afd5e78",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -22645,7 +22645,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:400d48d609bf8a8e82e136206b230374452ff0e69036bc683aa68e9aae8a6352",
+          "Fingerprint": "sha256:3de010b3b9861257d7ec7b095bc7887ea8cf0d109237a017ca0e7ea718be292d",
           "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
           "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
           "Severity": "LOW",
@@ -22705,7 +22705,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:eb99555f0758cfb41c43fee41ac247f90d9f5e2d381d363f80ea919f5f617371",
+          "Fingerprint": "sha256:cabcc3042f76e59ce18e1362fdc93b63cb385bb0fd417df8fea2bc054cbdfb8e",
           "Title": "util-linux: util-linux: Access control bypass due to improper hostname canonicalization",
           "Description": "No description is available for this CVE.",
           "Severity": "LOW",
@@ -22744,7 +22744,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:9c99c7bee582f9b7e5a2d39d6537b68013a8870ff59b0bb92c73f250d84677a6",
+          "Fingerprint": "sha256:671259c7a80f19d57f3188c38fd079ce8cc76365a646103e27fb3b57acd9027a",
           "Title": "gnu-ncurses: ncurses Stack Buffer Overflow",
           "Description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This vulnerability affects the function postprocess_termcap of the file tinfo/parse_entry.c. The manipulation leads to stack-based buffer overflow. The attack needs to be approached locally. Upgrading to version 6.5-20250329 is able to address this issue. It is recommended to upgrade the affected component.",
           "Severity": "LOW",
@@ -22798,7 +22798,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:c9b8c1f303dcfa7cc5e4b0d60f27d2ff28391002d457c42f04f59e5b8e6aeed3",
+          "Fingerprint": "sha256:b0d0bb94a889ab5a05da48e8cfbaae1dc1856f61fba888357bc631c9b7f116f0",
           "Title": "gnu-ncurses: ncurses Stack Buffer Overflow",
           "Description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This vulnerability affects the function postprocess_termcap of the file tinfo/parse_entry.c. The manipulation leads to stack-based buffer overflow. The attack needs to be approached locally. Upgrading to version 6.5-20250329 is able to address this issue. It is recommended to upgrade the affected component.",
           "Severity": "LOW",
@@ -22853,7 +22853,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:d9f96f78e66737b6424ee98bea3ae1d56f19f7846eb2e8e6a62357e32bc01e37",
+          "Fingerprint": "sha256:b598dbdbcf9d0f697e25d00f149d59124fe9fdd875f3b1aefff451ec7eda3269",
           "Title": "initscripts in rPath Linux 1 sets insecure permissions for the /var/lo ...",
           "Description": "initscripts in rPath Linux 1 sets insecure permissions for the /var/log/btmp file, which allows local users to obtain sensitive information regarding authentication attempts.  NOTE: because sshd detects the insecure permissions and does not log certain events, this also prevents sshd from logging failed authentication attempts by remote attackers.",
           "Severity": "LOW",
@@ -22901,7 +22901,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:097c489db3c226d8cf44069fae34bc012c0692061aef55a1cecb7328f77a677e",
+          "Fingerprint": "sha256:5fd5e02926ef9bb350a328d75bd16304a7b8cbe011f68a5554d00c4c92ec438e",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -22962,7 +22962,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:0c1cd985cad0dacf2e9bbe554619bc40e436b4d17eba72c8f4f96baa9c47ae42",
+          "Fingerprint": "sha256:fb7822cb462f7291222be5cc3269618d30ca3dacd9c80d765be0218f6ab17c07",
           "Title": "[more related to CVE-2005-4890]",
           "Severity": "LOW",
           "VendorSeverity": {
@@ -22990,7 +22990,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:d4684736b75962e8b9d37a8d78a0de0123ce74ec49ede78e97b32cf6c65b3373",
+          "Fingerprint": "sha256:6a7295e388ef3acc262a970d93e5df5020ff587e67bc9e76a8a9d5df22aec566",
           "Title": "perl: File:: Temp insecure temporary file handling",
           "Description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
           "Severity": "LOW",
@@ -23048,7 +23048,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:75621a36a4c99a3b081378fa11930f62fba3d20d6e7e3c08998a6279a5f408b3",
+          "Fingerprint": "sha256:e50549d36314f8c87cb8236f61cbd8fdae659b96cac92facbfe2e213c773152e",
           "Title": "perl: File:: Temp insecure temporary file handling",
           "Description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
           "Severity": "LOW",
@@ -23106,7 +23106,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:f9eed167d1c73d8aa12a58ad8d19f7ddca48eac182887d17dc0e1bcc963d0885",
+          "Fingerprint": "sha256:40574c2d9957a0e2d1f5b1898eee3da1ca5d8b103873ff94eb0b7411ba7f9323",
           "Title": "perl: File:: Temp insecure temporary file handling",
           "Description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks.",
           "Severity": "LOW",
@@ -23164,7 +23164,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:797a7f10ec81cabfd289826c4fccd96e7e1e0dc14d3cb7f1e3b61c56a303487f",
+          "Fingerprint": "sha256:44fe379a7e8c99f16b3f7c668e7082178b4ef55f4c11b4c142bfa5ddc72340cd",
           "Title": "[sysvinit: no-root option in expert installer exposes locally exploitable security flaw]",
           "Severity": "LOW",
           "VendorSeverity": {
@@ -23192,7 +23192,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:d1ae6e9657f048a2ce3d0314cfb30719b75d0a1beede9deb9367b251d40860e4",
+          "Fingerprint": "sha256:b9f349ab11bfaa2a1d7bc48bfd12e3f630ddb0bf50e5ccb10fefa8331d8a2923",
           "Title": "tar: does not properly warn the user when extracting setuid or setgid files",
           "Description": "Tar 1.15.1 does not properly warn the user when extracting setuid or setgid files, which may allow local users or remote attackers to gain privileges.",
           "Severity": "LOW",
@@ -23242,7 +23242,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:76c8e66c9a9346fc0f2aedc08dc53f08cf557e70f27630973f0a816f8fe85ede",
+          "Fingerprint": "sha256:1d08c6b5d3c8793b876a4e008948ccb22569d88ec019d443aa23e7ff67656b53",
           "Title": "[tar's rmt command may have undesired side effects]",
           "Severity": "LOW",
           "VendorSeverity": {
@@ -23269,7 +23269,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:0d7f0f76c8055f893a8f3410a5df24e3d90b9d8f3ed59a9cd927355c907a788a",
+          "Fingerprint": "sha256:52db3e061c9ff37acb16477888817caeab636f2745a5ba3b3ff51b4de3cce0f2",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -23335,7 +23335,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:3912d6a874b1f097c476258251141e916653f08e7f1281cc2ad6416e598c04ac",
+          "Fingerprint": "sha256:6f4cf4a8f9091ec0dda4ba15e1e5aae32d19923a6579de94c1b857039009ad2b",
           "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
           "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4.",
           "Severity": "LOW",
@@ -23395,7 +23395,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:38c81ffd2bcaf24f3f0657f8d59f719cc97694ba69fd5964cfeb8b8c328bf07e",
+          "Fingerprint": "sha256:09b45c090608661273d3931df606a35ba655c876c5f8aa01a9e5f73e56241f4f",
           "Title": "util-linux: util-linux: Access control bypass due to improper hostname canonicalization",
           "Description": "No description is available for this CVE.",
           "Severity": "LOW",
@@ -23435,7 +23435,7 @@
             "Name": "Debian Security Tracker",
             "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
           },
-          "Fingerprint": "sha256:6040a4c98ffc142c07ca22448a4997f0bbd703f4aa9716e497274385dff6be00",
+          "Fingerprint": "sha256:8f35ca50c8e74a665ca048444c1dbb01006de0216bfb219dabc7fc322f380087",
           "Title": "zlib: zlib: Denial of Service via infinite loop in CRC32 combine functions",
           "Description": "zlib before 1.3.2 allows CPU consumption via crc32_combine64 and crc32_combine_gen64 because x2nmodp can do right shifts within a loop that has no termination condition.",
           "Severity": "MEDIUM",
@@ -23560,7 +23560,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:c3a82a9c2b00b58e3d871357896bdd639ffbbd43944017a2ff6508afe8d89fe0",
+          "Fingerprint": "sha256:8f717a401b5347c9d3797ed23632ddcb75dd1dad21a86b5c6ddacb2c52caebe9",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -23639,7 +23639,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:4e6513fe93b1b1ee60c3cb687e2d73a89e1e489f785818484399a2310d57defe",
+          "Fingerprint": "sha256:3553958efc5ee001b126ee13fae082d9afbe9afd043fa6c143a7f921287e1c73",
           "Title": "golang: archive/tar: Unbounded allocation when parsing GNU sparse map",
           "Description": "tar.Reader does not set a maximum size on the number of sparse region data blocks in GNU tar pax 1.0 sparse files. A maliciously-crafted archive containing a large number of sparse regions can cause a Reader to read an unbounded amount of data from the archive into memory. When reading from a compressed source, a small compressed input can result in large allocations.",
           "Severity": "HIGH",
@@ -23706,7 +23706,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:95a160c64af0075ba1d115ef048e3676f7c865b08cab5312399250c8fb3a4b73",
+          "Fingerprint": "sha256:59393330822888dd8240a7f656af875a773907a51a65e53019066e2b4c9e1caf",
           "Title": "golang: net/url: Memory exhaustion in query parameter parsing in net/url",
           "Description": "The net/url package does not set a limit on the number of query parameters in a query. While the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.",
           "Severity": "HIGH",
@@ -23782,7 +23782,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e1b32e86702b534aeb61eea332c266dba395c9c524f292147f7922400f59209f",
+          "Fingerprint": "sha256:7c50157b976851e84fa9e69f3fae202c583e7ede66633dee2755077bdf9d91b0",
           "Title": "golang: archive/zip: Excessive CPU consumption when building archive index in archive/zip",
           "Description": "archive/zip uses a super-linear file name indexing algorithm that is invoked the first time a file in an archive is opened. This can lead to a denial of service when consuming a maliciously constructed ZIP archive.",
           "Severity": "HIGH",
@@ -23860,7 +23860,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7691ba813bf515fb6385ad964fc6880e330900ae45d5c81ede4cd8277cde62d7",
+          "Fingerprint": "sha256:69cee5497588030072aaf9b95bef039b0daf1d592eed1017c8bac9696516cfd8",
           "Title": "crypto/x509: golang: Denial of Service due to excessive resource consumption via crafted certificate",
           "Description": "Within HostnameError.Error(), when constructing an error string, there is no limit to the number of hosts that will be printed out. Furthermore, the error string is constructed by repeated string concatenation, leading to quadratic runtime. Therefore, a certificate provided by a malicious actor can result in excessive resource consumption.",
           "Severity": "HIGH",
@@ -23934,7 +23934,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:68df0f244b760d879002a75608f12fd01527775bace87f16ae52ea9506a8890b",
+          "Fingerprint": "sha256:b25578facc4de676bfa19e0ff4353b9f7a81093e8a31ba35e4f5362333127764",
           "Title": "During the TLS 1.3 handshake if multiple messages are sent in records  ...",
           "Description": "During the TLS 1.3 handshake if multiple messages are sent in records that span encryption level boundaries (for instance the Client Hello and Encrypted Extensions messages), the subsequent messages may be processed before the encryption level changes. This can cause some minor information disclosure if a network-local attacker can inject messages during the handshake.",
           "Severity": "HIGH",
@@ -23980,7 +23980,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f20260673bde7616407d613daa14ed7b1c3fbf48fbad50288e9b76231d5ccec9",
+          "Fingerprint": "sha256:f517c06b9cc649eed02544cae17dade9ec63f9e8f821a7f72865021a7a685d55",
           "Title": "net/url: Insufficient validation of bracketed IPv6 hostnames in net/url",
           "Description": "The Parse function permits values other than IPv6 addresses to be included in square brackets within the host component of a URL. RFC 3986 permits IPv6 addresses to be included within the host component, enclosed within square brackets. For example: \"http://[::1]/\". IPv4 addresses and hostnames must not appear within square brackets. Parse did not enforce this requirement.",
           "Severity": "MEDIUM",
@@ -24034,7 +24034,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0b96121f5c1375328e256b34b32ef0b3db6b9a936dcbc00b068d943aaff8076a",
+          "Fingerprint": "sha256:7d9a1433e59ce3fd78c517869ce92125c136f1f5f99dfd5dfb1ba36b50ded012",
           "Title": "encoding/asn1: Parsing DER payload can cause memory exhaustion in encoding/asn1",
           "Description": "Parsing a maliciously crafted DER payload could allocate large amounts of memory, causing memory exhaustion.",
           "Severity": "MEDIUM",
@@ -24092,7 +24092,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:a28fadfa10d29ac98b4324bb1f27903b3010ecb60222581e8adc3656c10eae6c",
+          "Fingerprint": "sha256:744596bc64d588e08725c9876b0ba4f77173a1c895d88fab54e0d90178bf08cf",
           "Title": "golang.org/net/http: Lack of limit when parsing cookies can cause memory exhaustion in net/http",
           "Description": "Despite HTTP headers having a default limit of 1MB, the number of cookies that can be parsed does not have a limit. By sending a lot of very small cookies such as \"a=;\", an attacker can make an HTTP server allocate a large amount of structs, causing large memory consumption.",
           "Severity": "MEDIUM",
@@ -24146,7 +24146,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:43673a47bcf3c3d790beb404cc9f4ce6f0b829514f47e2ca9e1dd4d53e0bd798",
+          "Fingerprint": "sha256:71e4e5f946045d4e410d04af111895f516d68c65289edbddc4c8a7d5b16986cc",
           "Title": "crypto/x509: Quadratic complexity when checking name constraints in crypto/x509",
           "Description": "Due to the design of the name constraint checking algorithm, the processing time of some inputs scale non-linearly with respect to the size of the certificate. This affects programs which validate arbitrary certificate chains.",
           "Severity": "MEDIUM",
@@ -24204,7 +24204,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:33e6e061f57bdce3f8c7d7fa14a323a47f71ea6ca3c81dfded50e22d0d09c295",
+          "Fingerprint": "sha256:beee1bfb4b116791431a5c8e3425d5aecacb1afd3201094177f0611ef9dd3e7b",
           "Title": "crypto/x509: golang: Panic when validating certificates with DSA public keys in crypto/x509",
           "Description": "Validating certificate chains which contain DSA public keys can cause programs to panic, due to a interface cast that assumes they implement the Equal method. This affects programs which validate arbitrary certificate chains.",
           "Severity": "MEDIUM",
@@ -24262,7 +24262,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0b2d6950d74c3c9a23001704a80f9a049103d19e7aa6337ba6a7f8c106a46b49",
+          "Fingerprint": "sha256:fb0d14027f36ec42922e687f3cf38d0036b4ed52ef251c3a5def481a59ee686e",
           "Title": "crypto/tls: go crypto/tls ALPN negotiation error contains attacker controlled information",
           "Description": "When Conn.Handshake fails during ALPN negotiation the error contains attacker controlled information (the ALPN protocols sent by the client) which is not escaped.",
           "Severity": "MEDIUM",
@@ -24319,7 +24319,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:c7926f656e17fc2e81a5388d6724f407f60f0185b4ed26c9c0ba799f6d5e30df",
+          "Fingerprint": "sha256:9309e142e45e892802db37e045d51bd4f1284f8c1dba31331e589abd37b334f5",
           "Title": "encoding/pem: Quadratic complexity when parsing some invalid inputs in encoding/pem",
           "Description": "The processing time for parsing some invalid inputs scales non-linearly with respect to the size of the input. This affects programs which parse untrusted PEM inputs.",
           "Severity": "MEDIUM",
@@ -24377,7 +24377,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:2bae265295da97d4905fe081ef38888f5bbb6e97c422c2732a68c37c5344516f",
+          "Fingerprint": "sha256:d162f70e46a8614ec1c4a8db80ecc50901dc2b338ffec9b2e26313bb526d4965",
           "Title": "net/textproto: Excessive CPU consumption in Reader.ReadResponse in net/textproto",
           "Description": "The Reader.ReadResponse function constructs a response string through repeated string concatenation of lines. When the number of lines in a response is large, this can cause excessive CPU consumption.",
           "Severity": "MEDIUM",
@@ -24434,7 +24434,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:9e83718217c830816dacf9ac37aff3ef8eb97000b1e69d61877b74a2401eded4",
+          "Fingerprint": "sha256:478091039c9e8018bb985350e29b129c99998b6b4c1595ac5903a78d1f9f83ab",
           "Title": "net/mail: Excessive CPU consumption in ParseAddress in net/mail",
           "Description": "The ParseAddress function constructs domain-literal address components through repeated string concatenation. When parsing large domain-literal components, this can cause excessive CPU consumption.",
           "Severity": "MEDIUM",
@@ -24488,7 +24488,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:c6c752369b5a04ddf2868aefc800d9294abce5df6d05b603f5eebac53fae352c",
+          "Fingerprint": "sha256:ff7004fa0ef46aa1077f1f94020788118f436b45c02c1aebc5f14cdfc7c41b8e",
           "Title": "golang: crypto/x509: excluded subdomain constraint does not restrict wildcard SANs",
           "Description": "An excluded subdomain constraint in a certificate chain does not restrict the usage of wildcard SANs in the leaf certificate. For example a constraint that excludes the subdomain test.example.com does not prevent a leaf certificate from claiming the SAN *.example.com.",
           "Severity": "MEDIUM",
