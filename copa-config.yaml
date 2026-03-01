@@ -445,6 +445,14 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
+  - name: "strimzi-kafka"
+    image: "quay.io/strimzi/kafka"
+    platforms: ["linux/amd64", "linux/arm64"]
+    tags:
+      strategy: "pattern"
+      pattern: '^\d+\.\d+\.\d+-kafka-\d+\.\d+\.\d+$'
+      maxTags: 3
+
   - name: "nats"
     image: "mirror.gcr.io/library/nats"
     platforms: ["linux/amd64", "linux/arm64"]
