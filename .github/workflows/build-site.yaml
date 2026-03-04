@@ -146,14 +146,27 @@ jobs:
           done
           echo "✓ Flattened $(find .verity/post-reports/ -name '*.json' 2>/dev/null | wc -l | tr -d ' ') post-reports"
 
+      - name: Fetch integer catalog
+        run: |
+          # integer publishes catalog.json to its own reports branch nightly.
+          # A missing file (first run, outage) is a soft failure — section omitted.
+          curl -sf \
+            "https://raw.githubusercontent.com/verity-org/integer/reports/catalog.json" \
+            -o integer-catalog.json \
+            && echo "✓ Fetched integer catalog ($(jq '.images|length' integer-catalog.json) images)" \
+            || { echo "⚠ integer catalog unavailable — skipping integer section"; rm -f integer-catalog.json; }
+
       - name: Generate catalog
         run: |
-          ./verity catalog \
-            --images-json .verity/images.json \
-            --reports-dir ./reports-branch/reports \
-            --post-reports-dir .verity/post-reports \
-            --registry "${TARGET_REGISTRY}" \
+          args=(
+            --images-json .verity/images.json
+            --reports-dir ./reports-branch/reports
+            --post-reports-dir .verity/post-reports
+            --registry "${TARGET_REGISTRY}"
             --output site/src/data/catalog.json
+          )
+          [ -f integer-catalog.json ] && args+=(--integer-catalog integer-catalog.json)
+          ./verity catalog "${args[@]}"
           echo "✓ Catalog generated"
 
       - name: Build site

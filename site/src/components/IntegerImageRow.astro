@@ -1,0 +1,63 @@
+---
+import type { IntegerImage } from "../lib/catalog";
+
+interface Props {
+  image: IntegerImage;
+}
+
+const { image } = Astro.props;
+
+// Collect all unique types across versions for badge display
+const types = [...new Set(image.versions.flatMap((v) => v.variants.map((r) => r.type)))];
+
+// Latest version for the primary ref display
+const latestVersion = image.versions.find((v) => v.latest) ?? image.versions[image.versions.length - 1];
+const defaultVariant = latestVersion?.variants.find((r) => r.type === "default") ?? latestVersion?.variants[0];
+// Strip registry prefix (e.g. "ghcr.io/verity-org/") from the ref
+const primaryRef = defaultVariant?.ref?.replace(/^[^/]+\/[^/]+\//, "") ?? "";
+
+const allSuccess = image.versions.every((v) =>
+  v.variants.every((r) => r.status === "success")
+);
+---
+
+<div
+  class="flex items-center justify-between p-3 border border-verity-border rounded-lg bg-verity-void/50"
+  data-searchable={image.name.toLowerCase() + " " + image.description.toLowerCase()}
+>
+  <div class="min-w-0 flex-1">
+    <div class="font-mono text-sm truncate text-verity-text-primary">
+      {primaryRef}
+    </div>
+    <div class="text-xs text-verity-text-secondary truncate">{image.description}</div>
+  </div>
+  <div class="flex items-center gap-2 ml-4 shrink-0">
+    {
+      types.map((t) => (
+        <span class="text-xs px-1.5 py-0.5 rounded border border-verity-border text-verity-text-secondary font-mono">
+          {t}
+        </span>
+      ))
+    }
+    {
+      allSuccess && (
+        <span class="text-verity-nucleus text-sm font-medium flex items-center gap-1">
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          zero CVE
+        </span>
+      )
+    }
+  </div>
+</div>

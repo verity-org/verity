@@ -37,6 +37,10 @@ var CatalogCommand = &cli.Command{
 			Name:  "post-reports-dir",
 			Usage: "directory containing post-patch Trivy vulnerability reports (for before/after comparison)",
 		},
+		&cli.StringFlag{
+			Name:  "integer-catalog",
+			Usage: "path to catalog.json from integer repo (adds zero-CVE rebuilds section)",
+		},
 	},
 	Action: runCatalog,
 }
@@ -47,10 +51,22 @@ func runCatalog(c *cli.Context) error {
 	registry := c.String("registry")
 	reportsDir := c.String("reports-dir")
 	postReportsDir := c.String("post-reports-dir")
+	integerCatalog := c.String("integer-catalog")
 
-	if err := internal.GenerateSiteDataFromJSON(imagesJSON, reportsDir, postReportsDir, registry, output); err != nil {
-		return fmt.Errorf("failed to generate site data from JSON: %w", err)
+	siteData, err := internal.GenerateSiteData(imagesJSON, reportsDir, postReportsDir, registry)
+	if err != nil {
+		return fmt.Errorf("failed to generate site data: %w", err)
 	}
-	fmt.Printf("Site catalog → %s\n", output)
+
+	if err := internal.MergeIntegerCatalog(siteData, integerCatalog); err != nil {
+		return fmt.Errorf("failed to merge integer catalog: %w", err)
+	}
+
+	if err := internal.WriteSiteData(siteData, output); err != nil {
+		return fmt.Errorf("failed to write catalog: %w", err)
+	}
+
+	fmt.Printf("Site catalog → %s (%d patched, %d integer)\n",
+		output, len(siteData.Images), len(siteData.IntegerImages))
 	return nil
 }
