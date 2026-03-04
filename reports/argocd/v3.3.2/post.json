@@ -1,8 +1,8 @@
 {
   "SchemaVersion": 2,
-  "ReportID": "019cb754-7e75-7b2b-a173-8f2efeb67d4f",
-  "CreatedAt": "2026-03-04T05:31:33.877733411Z",
-  "ArtifactID": "sha256:df31c74d7b6d184f7874dc80dce6fa4970abce3050b20051efe93ea0320d0532",
+  "ReportID": "019cb847-2e82-767a-a082-d180d6e99784",
+  "CreatedAt": "2026-03-04T09:56:38.658426363Z",
+  "ArtifactID": "sha256:ae559dba84a26bb4c5aaf86ef607dad153340cf463db5ee485590669e9300225",
   "ArtifactName": "ghcr.io/verity-org/cache:argocd-v3.3.2-patched",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -11,7 +11,7 @@
       "Family": "ubuntu",
       "Name": "25.10"
     },
-    "ImageID": "sha256:43eb8cd465421b61a1bf07b3d3dafc66c0826404314651e4c539d5d088c5dea6",
+    "ImageID": "sha256:5a8c90a3ef4cbc4b366a728f26d76399dcae61e0726e81040422edd8d26a746d",
     "DiffIDs": [
       "sha256:d9dcfaea043d1b2dd3284d0775ac08266c891f80e42210c24f227677c359626e",
       "sha256:ff6ee18e405d3069192be35327fb09d193b97433505651c4cd94a41e6ce51e69",
@@ -26,13 +26,13 @@
       "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
       "sha256:9118645879793fdaa07ea0b3fb366d71e98ad8d63e6907eee9f193e578841142",
       "sha256:c7bff9c749e34d32ceee603e50a1a810ef31d5b2539424526443889084dda11b",
-      "sha256:10272b4e0b1f4f45738f7c01564140564b1454b83f3645dc17dc4dcf4e7736a3"
+      "sha256:c496a857023c59f4606719457c8be9faa68ee92ae311d149b0f7530ea637900a"
     ],
     "RepoTags": [
       "ghcr.io/verity-org/cache:argocd-v3.3.2-patched"
     ],
     "RepoDigests": [
-      "ghcr.io/verity-org/cache@sha256:7c7dd7514babd0469ca1d23215b7233dbe9d4e741af48a8570c644140f3485a1"
+      "ghcr.io/verity-org/cache@sha256:be5f6ba9aeab73b48f1dcc7af79a40d438c8e71af9e8e75ddabf583306676525"
     ],
     "Reference": "ghcr.io/verity-org/cache:argocd-v3.3.2-patched",
     "ImageConfig": {
@@ -177,7 +177,7 @@
           "empty_layer": true
         },
         {
-          "created": "2026-03-04T05:13:01.587019455Z",
+          "created": "2026-03-04T09:02:45.621399858Z",
           "created_by": "mount / from exec sh -c apt-get -o Acquire::Retries=3 install --no-install-recommends -y libcurl3t64-gnutls \u0026\u0026 apt-get clean -y",
           "comment": "buildkit.exporter.image.v0"
         }
@@ -199,7 +199,7 @@
           "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
           "sha256:9118645879793fdaa07ea0b3fb366d71e98ad8d63e6907eee9f193e578841142",
           "sha256:c7bff9c749e34d32ceee603e50a1a810ef31d5b2539424526443889084dda11b",
-          "sha256:10272b4e0b1f4f45738f7c01564140564b1454b83f3645dc17dc4dcf4e7736a3"
+          "sha256:c496a857023c59f4606719457c8be9faa68ee92ae311d149b0f7530ea637900a"
         ]
       },
       "config": {
@@ -291,8 +291,8 @@
       },
       {
         "Size": 1532416,
-        "Digest": "sha256:3c3f5c5ee32e6794572491bd8dbaffd62fee2a113bbee73b873a371864f5ee93",
-        "DiffID": "sha256:10272b4e0b1f4f45738f7c01564140564b1454b83f3645dc17dc4dcf4e7736a3"
+        "Digest": "sha256:9fb36b8b272823218c495a21306a61ab7d0f788651caee4812e462942897fbf1",
+        "DiffID": "sha256:c496a857023c59f4606719457c8be9faa68ee92ae311d149b0f7530ea637900a"
       }
     ]
   },
@@ -4748,8 +4748,8 @@
             "zlib1g@1:1.3.dfsg+really1.3.1-1ubuntu2"
           ],
           "Layer": {
-            "Digest": "sha256:3c3f5c5ee32e6794572491bd8dbaffd62fee2a113bbee73b873a371864f5ee93",
-            "DiffID": "sha256:10272b4e0b1f4f45738f7c01564140564b1454b83f3645dc17dc4dcf4e7736a3"
+            "Digest": "sha256:9fb36b8b272823218c495a21306a61ab7d0f788651caee4812e462942897fbf1",
+            "DiffID": "sha256:c496a857023c59f4606719457c8be9faa68ee92ae311d149b0f7530ea637900a"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libcurl-gnutls.so.4.8.0",
@@ -13730,7 +13730,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:8193c6082d49679242402cf682173d70636c1008394083343593b5aa87d303cb",
+          "Fingerprint": "sha256:78c87ec1a6bf0e3aecef090348bb58f0e448300dd7b429c3bd0f9dcb1aabae35",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -13785,7 +13785,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:2a8ebcff4a111fab30cb952e7a76b5e876aae6891aff7a24e56ee62c06097822",
+          "Fingerprint": "sha256:c7d4f16f9f7223c4b899af44232800d8c58587a1a368b081647452baad9d3bc7",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -13841,7 +13841,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:e48df920c459d7ed4c68d68acbbf092c883521231d8841b05d06951821463a0c",
+          "Fingerprint": "sha256:76d8ae66a675f4ebfd9ece2b1de5163c7e3d6f9ee936743513692d19cbfd54e1",
           "Title": "git: The sideband payload is passed unfiltered to the terminal in git",
           "Description": "Git is a source code management tool. When cloning from a server (or fetching, or pushing), informational or error messages are transported from the remote Git process to the client via the so-called \"sideband channel\". These messages will be prefixed with \"remote:\" and printed directly to the standard error output. Typically, this standard error output is connected to a terminal that understands ANSI escape sequences, which Git did not protect against. Most modern terminals support control sequences that can be used by a malicious actor to hide and misrepresent information, or to mislead the user into executing untrusted scripts. As requested on the git-security mailing list, the patches are under discussion on the public mailing list. Users are advised to update as soon as possible. Users unable to upgrade should avoid recursive clones unless they are from trusted sources.",
           "Severity": "MEDIUM",
@@ -13913,7 +13913,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:30afe51f8c79070ccf7d24f66966682d9af890cae069832fcc38fa459850f24e",
+          "Fingerprint": "sha256:e409ac58c8d98833c9f916ff712a803809646e9b6be7aec1b7cf16fa4596d5c3",
           "Title": "git: The sideband payload is passed unfiltered to the terminal in git",
           "Description": "Git is a source code management tool. When cloning from a server (or fetching, or pushing), informational or error messages are transported from the remote Git process to the client via the so-called \"sideband channel\". These messages will be prefixed with \"remote:\" and printed directly to the standard error output. Typically, this standard error output is connected to a terminal that understands ANSI escape sequences, which Git did not protect against. Most modern terminals support control sequences that can be used by a malicious actor to hide and misrepresent information, or to mislead the user into executing untrusted scripts. As requested on the git-security mailing list, the patches are under discussion on the public mailing list. Users are advised to update as soon as possible. Users unable to upgrade should avoid recursive clones unless they are from trusted sources.",
           "Severity": "MEDIUM",
@@ -13985,7 +13985,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:99c6dd6b2a9865def8aeb1e9e773590babbc32ff02b756723cce2cdebb04d7b6",
+          "Fingerprint": "sha256:23e496e3f26f120bde5da7500d560cb45ff613d05050b25854cdf9b55d902bc8",
           "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
           "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
           "Severity": "LOW",
@@ -14048,7 +14048,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:f8b3219df2f073e8c26d30dad6bd9751d74152b760b312b57bfb2e32d0b6b150",
+          "Fingerprint": "sha256:e9032c2e3d7f818413bab16be15b2f1a37ca447e08b9b46ab12e4e2138c088fd",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -14103,7 +14103,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:cb7a2837757a885f57f1971b91587ebf9cb06afaf6adb42be1a192cdd3b663f9",
+          "Fingerprint": "sha256:f01bcf06f382580a196326f521ae6340a1660f8151bf5e0013f64ea08cbc6c9d",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -14159,7 +14159,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:18105d93ffa2f108452c2bb5f97105a532c08590c0323bc91004bbfd263b681b",
+          "Fingerprint": "sha256:30e3428655fb171b1fb1e940ed91e7368d0a1cdedab59d977116f1e7745d77a2",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -14214,7 +14214,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:173227b660a2dbfa7e1bda554b84ff7d2c08df1abd8eff8bd82fd029ad618a5a",
+          "Fingerprint": "sha256:84365cc36290c3c043485f99adcf310b9d6911d9a4f1fdcda5acd0927169ddf1",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -14270,7 +14270,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:e8d060687b732700aaaef397044270b54e1378788583851fae6b3a97ec405a3a",
+          "Fingerprint": "sha256:d7797485041ca881ed31239fa2a7c0cef603e9e5878c0f7fd4fe98eb3bbe368b",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -14325,7 +14325,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:3c40bbe9a7e744fa6e4d871106df7794074a92a8ab4281f3eb24f01ba777d8a8",
+          "Fingerprint": "sha256:78478c0b0d5a11237d2c2b62a4210c1bfcb1732ee259406432695bc694747212",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -14381,7 +14381,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:9c2855e2005eeb624a764125ea4edc0628c009d0dcaa19a8f7227ab817e4748d",
+          "Fingerprint": "sha256:70aaf39538312431d67322d58afa14fd002136c74baafa6a96245eb75c281d7a",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -14436,7 +14436,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:a8b36dd9e3a4550ab4b18db01bd58985050f3257c6842532f98b77b7c080af0a",
+          "Fingerprint": "sha256:4446c2abbd6bdfe005380def5835148efeab92cd7bb4e12126aa9ca65e2c0028",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -14492,7 +14492,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:28746e971fca07d291c5e04873684ba1fa8d1ccb503159574a417803c839a879",
+          "Fingerprint": "sha256:21a353705425c4f802277c11869b5e2ffba311d1f0aa5458043efa648918c445",
           "Title": "libexpat: libexpat: Denial of service via crafted file processing",
           "Description": "In libexpat through 2.7.3, a crafted file with an approximate size of 2 MiB can lead to dozens of seconds of processing time.",
           "Severity": "MEDIUM",
@@ -14545,7 +14545,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:8cbe763d2e5034e68e7cc8a2c6c23b7d3f98f00de9c507d3b0dd72fdbb1717b5",
+          "Fingerprint": "sha256:7a857a7810dea40e2802e1989cebb72cb86b1470dc38c14fbd3cf9dfdee068b9",
           "Title": "libgcrypt: vulnerable to Marvin Attack",
           "Description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
           "Severity": "LOW",
@@ -14610,7 +14610,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:f4add599671927acf625e9f4d91c08674d2ac7736fa51a9f5a4a00ce326d1190",
+          "Fingerprint": "sha256:a65bfa05ba0a1f5399a0109e88a2570b26b35d7d3786c9fe5a1ccacc53c15dc6",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -14687,7 +14687,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:0553ecca033f75155f91c34275cb23309f8aae44ad6b2fe5fff740d906c3368e",
+          "Fingerprint": "sha256:a56a6055673ea2a6abe6b2ef665a961ae60bba85845dd039b924644d211cf66e",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -14764,7 +14764,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:a517378f92e97f8e1a73950c36cef6b89da2f08ce9104e96758097c9c52728e6",
+          "Fingerprint": "sha256:9c0c45bb62f1931c89e2ee71cf73e4018f10f1cba0de617786d0966316f1b7c0",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -14841,7 +14841,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:46177be671175937ec9d4957066676327b4de91deda78aefe8cedd88f9bc6d4f",
+          "Fingerprint": "sha256:709f351813d2e224ad4e3c15cddfcf4a7539ed171f7a8c08680bbc32ca6f3e62",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -14918,7 +14918,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:17fc554d98ad9b7c96859265705bc0f2c06504ebdf5ae6f0e3a61e5a48d6100d",
+          "Fingerprint": "sha256:fbc85ed942f233ee8f3793eac90f864209386c3cd4c0c205ce3e9e52e726d66c",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -14979,7 +14979,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:ecaf6792287f43e1ebfe484dc6fec0ecdd63539060fcd40a3da2e6e9ee19ae2d",
+          "Fingerprint": "sha256:5d02f8da0bd9a9b0fcd0093de8d4e96c9dfd63be3e7e64a917a70df2df92b4c6",
           "Title": "openssh: OpenSSH: Control characters in usernames can lead to code execution via ProxyCommand",
           "Description": "ssh in OpenSSH before 10.1 allows control characters in usernames that originate from certain possibly untrusted sources, potentially leading to code execution when a ProxyCommand is used. The untrusted sources are the command line and %-sequence expansion of a configuration file. (A configuration file that provides a complete literal username is not categorized as an untrusted source.)",
           "Severity": "LOW",
@@ -15050,7 +15050,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:ba5c2df646347a2f1076e17563fb62f4fbb5e4624acacbf898cf460452b10c2d",
+          "Fingerprint": "sha256:e3f07400a57684c9d4304cb89d8cb3d857406665b508bd3978fa17c3693b18ab",
           "Title": "openssh: OpenSSH: Null character in ssh:// URI can lead to code execution via ProxyCommand",
           "Description": "ssh in OpenSSH before 10.1 allows the '\\0' character in an ssh:// URI, potentially leading to code execution when a ProxyCommand is used.",
           "Severity": "LOW",
@@ -15117,7 +15117,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:91bfadc266d31a5c2b55fdaa67583f82adac9cffe682c226f7f79ec8199a4d57",
+          "Fingerprint": "sha256:7f6535f36c691ff56fc4a6eae816d1679aaa5ace0af1434b9295f50930a2e8fa",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -15178,7 +15178,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:b26c8d481c25375ffa5aa76478c8f8ade672ad70ccc5d77b3d14e65521907151",
+          "Fingerprint": "sha256:3e636cf0a207804a3249a2233d8a09a9932bc061d0fff457df5af1a4bb4a8ba1",
           "Title": "patch: Double free of memory in pch.c:another_hunk() causes a crash",
           "Description": "A double free exists in the another_hunk function in pch.c in GNU patch through 2.7.6.",
           "Severity": "LOW",
@@ -15242,7 +15242,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:6f69eb29434d4da84bf7b57f490e31bbf379b23cfac96d634c6fb8d655ce4f4d",
+          "Fingerprint": "sha256:5a9bee7fd66605ae382af641c9b17fe4059876242966b756a004e44c6d737eea",
           "Title": "patch: Invalid Pointer via another_hunk function",
           "Description": "An Invalid Pointer vulnerability exists in GNU patch 2.7 via the another_hunk function, which causes a Denial of Service.",
           "Severity": "LOW",
@@ -15296,7 +15296,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:7dd8a981d483622457dfbeadc3c39c4c5996ee6999156819aac617dc106f917b",
+          "Fingerprint": "sha256:333109be3599e7a806d8d2e18114aa7cc865036143711051bf5bf99cd0e41135",
           "Title": "tar: Tar path traversal",
           "Description": "GNU Tar through 1.35 allows file overwrite via directory traversal in crafted TAR archives, with a certain two-step process. First, the victim must extract an archive that contains a ../ symlink to a critical directory. Second, the victim must extract an archive that contains a critical file, specified via a relative pathname that begins with the symlink name and ends with that critical file's name. Here, the extraction follows the symlink and overwrites the critical file. This bypasses the protection mechanism of \"Member name contains '..'\" that would occur for a single TAR archive that attempted to specify the critical file via a ../ approach. For example, the first archive can contain \"x -\u003e ../../../../../home/victim/.ssh\" and the second archive can contain x/authorized_keys. This can affect server applications that automatically extract any number of user-supplied TAR archives, and were relying on the blocking of traversal. This can also affect software installation processes in which \"tar xf\" is run more than once (e.g., when installing a package can automatically install two dependencies that are set up as untrusted tarballs instead of official packages). NOTE: the official GNU Tar manual has an otherwise-empty directory for each \"tar xf\" in its Security Rules of Thumb; however, third-party advice leads users to run \"tar xf\" more than once into the same directory.",
           "Severity": "MEDIUM",
@@ -19235,7 +19235,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:6ad72cfed1f37e03650020b5de69390f9393bb13fa470d72d7d20fb459a49152",
+          "Fingerprint": "sha256:5c94b57db9dc4f0fc42bd0180f5987e5b803299d79e960ce11991d3cf92c6fcf",
           "Title": "CIRCL has an incorrect calculation in secp384r1 CombinedMult",
           "Description": "The CombinedMult function in the CIRCL ecc/p384 package (secp384r1 curve) produces an incorrect value for specific inputs. The issue is fixed by using complete addition formulas.\nECDH and ECDSA signing relying on this curve are not affected.\n\nThe bug was fixed in  v1.6.3 https://github.com/cloudflare/circl/releases/tag/v1.6.3 .",
           "Severity": "LOW",
@@ -19288,7 +19288,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:4bf70ecafe134f0a6b5085304d683c04f5f40c841d5904afe8eb77e649c905df",
+          "Fingerprint": "sha256:31bb3b18bddab43aa7daf47e04bdd0ee07111ddf7d4a7d7b101d74d320e5e56b",
           "Title": "go-git/go-git: go-git: Data integrity issue due to improper verification of pack and index files",
           "Description": "go-git is a highly extensible git implementation library written in pure Go. Prior to 5.16.5, a vulnerability was discovered in go-git whereby data integrity values for .pack and .idx files were not properly verified. This resulted in go-git potentially consuming corrupted files, which would likely result in unexpected errors such as object not found. For context, clients fetch packfiles from upstream Git servers. Those files contain a checksum of their contents, so that clients can perform integrity checks before consuming it. The pack indexes (.idx) are generated locally by go-git, or the git cli, when new .pack files are received and processed. The integrity checks for both files were not being verified correctly. This vulnerability is fixed in 5.16.5.",
           "Severity": "MEDIUM",
@@ -19347,7 +19347,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:79c97828338b91ec12ed0756f23b25a5d33639d1a0214930f6bac7f858da402e",
+          "Fingerprint": "sha256:f5e16fa21bb54a3bbf6b2f41f77877f43964a81750cf5bf6ccb4b287c078540d",
           "Title": "OpenTelemetry Go SDK Vulnerable to Arbitrary Code Execution via PATH Hijacking",
           "Description": "OpenTelemetry-Go is the Go implementation of OpenTelemetry. The OpenTelemetry Go SDK in version v1.20.0-1.39.0 is vulnerable to Path Hijacking (Untrusted Search Paths) on macOS/Darwin systems. The resource detection code in sdk/resource/host_id.go executes the ioreg system command using a search path. An attacker with the ability to locally modify the PATH environment variable can achieve Arbitrary Code Execution (ACE) within the context of the application. A fix was released with v1.40.0.",
           "Severity": "HIGH",
@@ -19395,7 +19395,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:380a1684673a1de5de0d1f499e4a102a1235f3c8b245feb33d06f51b7afbfe7f",
+          "Fingerprint": "sha256:ecad933da123860317854476fa17a513ccbc5ca48249ac4d5c90a9a95b9e59b6",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -19475,7 +19475,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:ac2c9700819a735129c828fa0458ca1faec8f91b0571ecfee752dfe86993e90b",
+          "Fingerprint": "sha256:f403dcafc798d12f66060a908b0fb6f3507927c0d059e21a02a9cbcc24c75bbc",
           "Title": "golang: net/url: Memory exhaustion in query parameter parsing in net/url",
           "Description": "The net/url package does not set a limit on the number of query parameters in a query. While the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.",
           "Severity": "HIGH",
@@ -19521,7 +19521,7 @@
             "https://go.dev/issue/77101",
             "https://groups.google.com/g/golang-announce/c/Vd2tYVM8eUc",
             "https://linux.oracle.com/cve/CVE-2025-61726.html",
-            "https://linux.oracle.com/errata/ELSA-2026-3343.html",
+            "https://linux.oracle.com/errata/ELSA-2026-3668.html",
             "https://nvd.nist.gov/vuln/detail/CVE-2025-61726",
             "https://pkg.go.dev/vuln/GO-2026-4341",
             "https://www.cve.org/CVERecord?id=CVE-2025-61726"
@@ -19550,7 +19550,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:128a8a39b98add99f0c65a32d4f07d9f0e1544cc29d4d9d6c41698831fce64fa",
+          "Fingerprint": "sha256:3dbbb4e85bfb68424713ca1d3886066d63ca5421dd814f0c1088a515bb01cf6e",
           "Title": "golang: archive/zip: Excessive CPU consumption when building archive index in archive/zip",
           "Description": "archive/zip uses a super-linear file name indexing algorithm that is invoked the first time a file in an archive is opened. This can lead to a denial of service when consuming a maliciously constructed ZIP archive.",
           "Severity": "HIGH",
@@ -19628,7 +19628,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0e1867160bc31b9229a2df9a5204b1464f6f31d108561aae580be349c6b5596b",
+          "Fingerprint": "sha256:2a0ffaa75082ddbd4a6d1e425a8b710871db9575d97b3692dc0aba4b4cc34d0e",
           "Title": "During the TLS 1.3 handshake if multiple messages are sent in records  ...",
           "Description": "During the TLS 1.3 handshake if multiple messages are sent in records that span encryption level boundaries (for instance the Client Hello and Encrypted Extensions messages), the subsequent messages may be processed before the encryption level changes. This can cause some minor information disclosure if a network-local attacker can inject messages during the handshake.",
           "Severity": "HIGH",
@@ -21284,7 +21284,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:20e20ca924496d181119624f0da33ab7baf5bd8772e6d31190c437a2d949f38a",
+          "Fingerprint": "sha256:c914e4690fc7a6ae82bcab31c599b91b39ebb9bc61f94e277733eb2b8499016e",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -21364,7 +21364,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:344016b80e099928381556e45f6d602b3b3cf5245d5d1a024b109221a92ef1a7",
+          "Fingerprint": "sha256:f17cfff8cb655fd32a337f27409c55f509ac8a5b17acfe271937e351651e9b1e",
           "Title": "golang: net/url: Memory exhaustion in query parameter parsing in net/url",
           "Description": "The net/url package does not set a limit on the number of query parameters in a query. While the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.",
           "Severity": "HIGH",
@@ -21410,7 +21410,7 @@
             "https://go.dev/issue/77101",
             "https://groups.google.com/g/golang-announce/c/Vd2tYVM8eUc",
             "https://linux.oracle.com/cve/CVE-2025-61726.html",
-            "https://linux.oracle.com/errata/ELSA-2026-3343.html",
+            "https://linux.oracle.com/errata/ELSA-2026-3668.html",
             "https://nvd.nist.gov/vuln/detail/CVE-2025-61726",
             "https://pkg.go.dev/vuln/GO-2026-4341",
             "https://www.cve.org/CVERecord?id=CVE-2025-61726"
@@ -21439,7 +21439,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:1aa6d385b357918f1dca8532f30759a8385a06f7e9cd74813d0def89478d315a",
+          "Fingerprint": "sha256:5ba43ad2c6b157ba3a375e4c7a4f9b9e77a671f1a39e8986d55ed98595a2250e",
           "Title": "golang: archive/zip: Excessive CPU consumption when building archive index in archive/zip",
           "Description": "archive/zip uses a super-linear file name indexing algorithm that is invoked the first time a file in an archive is opened. This can lead to a denial of service when consuming a maliciously constructed ZIP archive.",
           "Severity": "HIGH",
@@ -21517,7 +21517,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:ccdd636084941d6bec624a1167a64e3dc48168f3e5b4e1eb3c4d79094342abd9",
+          "Fingerprint": "sha256:f19bd15080b79ca43dacb389d5ae68e6f5404c2b70194e2b4196427070aeaedd",
           "Title": "During the TLS 1.3 handshake if multiple messages are sent in records  ...",
           "Description": "During the TLS 1.3 handshake if multiple messages are sent in records that span encryption level boundaries (for instance the Client Hello and Encrypted Extensions messages), the subsequent messages may be processed before the encryption level changes. This can cause some minor information disclosure if a network-local attacker can inject messages during the handshake.",
           "Severity": "HIGH",
@@ -21936,7 +21936,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f862332288079347389d80809f090affeb3527adc3e1604acdac4b1322fa9c01",
+          "Fingerprint": "sha256:434da7e9426164ae650ff45e329fa9f68f3943fde6cdc45fb263bfe3093e3760",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -22016,7 +22016,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:6e2ab95b226ae65b6bc5306a318c56003d29bcf95e4d7ec629295f88d207be52",
+          "Fingerprint": "sha256:c94966f89ddb1e037a916d87eab79ddd4d19dc510012a4c0224a73550e3c3a20",
           "Title": "crypto/x509: Usage of ExtKeyUsageAny disables policy validation in crypto/x509",
           "Description": "Calling Verify with a VerifyOptions.KeyUsages that contains ExtKeyUsageAny unintentionally disabledpolicy validation. This only affected certificate chains which contain policy graphs, which are rather uncommon.",
           "Severity": "HIGH",
@@ -22070,7 +22070,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:08ea5e2469c3ab6f11a104e1a9ca0e63095a2be742fac788e0deb54363f5938a",
+          "Fingerprint": "sha256:0f0e707124746ea8074ac8b2ca82a341f1ac38a87c67ae19cf278af98d9f0be9",
           "Title": "database/sql: Postgres Scan Race Condition",
           "Description": "Cancelling a query (e.g. by cancelling the context passed to one of the query methods) during a call to the Scan method of the returned Rows can result in unexpected results if other queries are being made in parallel. This can result in a race condition that may overwrite the expected results with those of another query, causing the call to Scan to return either unexpected results from the other query or an error.",
           "Severity": "HIGH",
@@ -22137,7 +22137,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:ce1ee7c0205b1c2a7076bf7ddf200c993ef2f536105bd075b1602825b870d5da",
+          "Fingerprint": "sha256:2174affa41b3b415b4a3194d769d456d572d512e42a5b5c26db85229461bc29d",
           "Title": "golang: archive/tar: Unbounded allocation when parsing GNU sparse map",
           "Description": "tar.Reader does not set a maximum size on the number of sparse region data blocks in GNU tar pax 1.0 sparse files. A maliciously-crafted archive containing a large number of sparse regions can cause a Reader to read an unbounded amount of data from the archive into memory. When reading from a compressed source, a small compressed input can result in large allocations.",
           "Severity": "HIGH",
@@ -22204,7 +22204,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:562622d9805e0ca2767a4dfd2130f066533cb7722e398e40364198bf06a20d2e",
+          "Fingerprint": "sha256:cf464076df64dd43704d675d82bf36d39434fbf9ea13cda4386e2a15ee4acafb",
           "Title": "golang: net/url: Memory exhaustion in query parameter parsing in net/url",
           "Description": "The net/url package does not set a limit on the number of query parameters in a query. While the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.",
           "Severity": "HIGH",
@@ -22250,7 +22250,7 @@
             "https://go.dev/issue/77101",
             "https://groups.google.com/g/golang-announce/c/Vd2tYVM8eUc",
             "https://linux.oracle.com/cve/CVE-2025-61726.html",
-            "https://linux.oracle.com/errata/ELSA-2026-3343.html",
+            "https://linux.oracle.com/errata/ELSA-2026-3668.html",
             "https://nvd.nist.gov/vuln/detail/CVE-2025-61726",
             "https://pkg.go.dev/vuln/GO-2026-4341",
             "https://www.cve.org/CVERecord?id=CVE-2025-61726"
@@ -22279,7 +22279,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:dca32f47efd5adb3270607077b032dc35d4a25a9d5202cfb00b92cee096f61fa",
+          "Fingerprint": "sha256:c83a52a0957fe1eb9e2528b434fdbb17f8f6c7a0a1f3d379e85f514944665532",
           "Title": "golang: archive/zip: Excessive CPU consumption when building archive index in archive/zip",
           "Description": "archive/zip uses a super-linear file name indexing algorithm that is invoked the first time a file in an archive is opened. This can lead to a denial of service when consuming a maliciously constructed ZIP archive.",
           "Severity": "HIGH",
@@ -22357,7 +22357,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:d6c14b5f077a5aa998cebb45e1e15e7f31e293fb2d2020a5cb7bf8da7780df6d",
+          "Fingerprint": "sha256:ab996858fe84be50c619d356923c467e9c9ce9a94c1d8a23cb91534837a0809f",
           "Title": "crypto/x509: golang: Denial of Service due to excessive resource consumption via crafted certificate",
           "Description": "Within HostnameError.Error(), when constructing an error string, there is no limit to the number of hosts that will be printed out. Furthermore, the error string is constructed by repeated string concatenation, leading to quadratic runtime. Therefore, a certificate provided by a malicious actor can result in excessive resource consumption.",
           "Severity": "HIGH",
@@ -22430,7 +22430,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:d518a6c8f41e42dda239f29e85d3fe79149700234233488488a95e3aa1d347da",
+          "Fingerprint": "sha256:c20611ab3d209acee7dfa4dd72eb704b0a25a0c2e7d64ede01e2aab7df98902d",
           "Title": "During the TLS 1.3 handshake if multiple messages are sent in records  ...",
           "Description": "During the TLS 1.3 handshake if multiple messages are sent in records that span encryption level boundaries (for instance the Client Hello and Encrypted Extensions messages), the subsequent messages may be processed before the encryption level changes. This can cause some minor information disclosure if a network-local attacker can inject messages during the handshake.",
           "Severity": "HIGH",
@@ -22478,7 +22478,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:6379c234cf62fed5ea0a3cedcc286aaa6861b68700dfa2f42e87a7fc9f0fbb74",
+          "Fingerprint": "sha256:8c58c15f5aabcc0eeb595baca438291c1c5ac1350bfc1063b881db983949863d",
           "Title": "Inconsistent handling of O_CREATE|O_EXCL on Unix and Windows in os in syscall",
           "Description": "os.OpenFile(path, os.O_CREATE|O_EXCL) behaved differently on Unix and Windows systems when the target path was a dangling symlink. On Unix systems, OpenFile with O_CREATE and O_EXCL flags never follows symlinks. On Windows, when the target path was a symlink to a nonexistent location, OpenFile would create a file in that location. OpenFile now always returns an error when the O_CREATE and O_EXCL flags are both set and the target path is a symlink.",
           "Severity": "MEDIUM",
@@ -22525,7 +22525,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:eb59ae4099f4c2cf19f127d08db66d13c1173f7513649b7c570bd54c531fd9d5",
+          "Fingerprint": "sha256:4179ea27fddeaadbaadef521fdf4690bef23c320ae4fad9a918a66408e05c993",
           "Title": "net/http: Request smuggling due to acceptance of invalid chunked data in net/http",
           "Description": "The net/http package improperly accepts a bare LF as a line terminator in chunked data chunk-size lines. This can permit request smuggling if a net/http server is used in conjunction with a server that incorrectly accepts a bare LF as part of a chunk-ext.",
           "Severity": "MEDIUM",
@@ -22600,7 +22600,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e6bba76e8559610848ab345b79910842b3a1377423bfb327e20c2084a7c845f6",
+          "Fingerprint": "sha256:e464f1194c82f241a719343c7221cf55cd8f0b78fc1f9e261eb0779b0821c3be",
           "Title": "os: os: Information disclosure via path traversal using specially crafted filenames",
           "Description": "It was possible to improperly access the parent directory of an os.Root by opening a filename ending in \"../\". For example, Root.Open(\"../\") would open the parent directory of the Root. This escape only permits opening the parent directory itself, not ancestors of the parent or files contained within the parent.",
           "Severity": "MEDIUM",
@@ -22656,7 +22656,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:1651be5156dfe898e905b6e6292bb10246ec2338a0e9b4f666a225289b7a9e36",
+          "Fingerprint": "sha256:4ac34a6d8e8fc5a28d9c538082fcd8e9d14c2c403c4908bf2692b3d61269d7be",
           "Title": "net/http: Sensitive headers not cleared on cross-origin redirect in net/http",
           "Description": "Proxy-Authorization and Proxy-Authenticate headers persisted on cross-origin redirects potentially leaking sensitive information.",
           "Severity": "MEDIUM",
@@ -22723,7 +22723,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:1e2560f02e0f4e79131fa046462fa2d98dd77f48610d5c0f9803269a3e62316a",
+          "Fingerprint": "sha256:6aa37b632fbfac5f2abd4c4532bd1bfef210bf09894675f124a023daf01ce372",
           "Title": "os/exec: Unexpected paths returned from LookPath in os/exec",
           "Description": "If the PATH environment variable contains paths which are executables (rather than just directories), passing certain strings to LookPath (\"\", \".\", and \"..\"), can result in the binaries listed in the PATH being unexpectedly returned.",
           "Severity": "MEDIUM",
@@ -22790,7 +22790,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:8bd230c28e1f35e7342dfe2c513e112a0f82bfb8a43fe1484c9c92e27b645237",
+          "Fingerprint": "sha256:0953c8e02b4aa5d179e700dc6398fbbb049ad83885b540b8e211a12ad4261dfa",
           "Title": "net/url: Insufficient validation of bracketed IPv6 hostnames in net/url",
           "Description": "The Parse function permits values other than IPv6 addresses to be included in square brackets within the host component of a URL. RFC 3986 permits IPv6 addresses to be included within the host component, enclosed within square brackets. For example: \"http://[::1]/\". IPv4 addresses and hostnames must not appear within square brackets. Parse did not enforce this requirement.",
           "Severity": "MEDIUM",
@@ -22844,7 +22844,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:b619076721bcf71d75fb367a56cee8b44da23f164697c081f15ccce46527aceb",
+          "Fingerprint": "sha256:4675604ff5ce887aeee5ee4f8213eeb59fbfcb152c1c9e07e382bfa828029adb",
           "Title": "encoding/asn1: Parsing DER payload can cause memory exhaustion in encoding/asn1",
           "Description": "Parsing a maliciously crafted DER payload could allocate large amounts of memory, causing memory exhaustion.",
           "Severity": "MEDIUM",
@@ -22902,7 +22902,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:746d954d2ea4b7e6fc004baf0d7ff6d96843cd9b84a4ad49104bf97b997e22ef",
+          "Fingerprint": "sha256:631c21b2e34a156c3175ae6439c70c422d195901b7b1dd689137866490a11ded",
           "Title": "golang.org/net/http: Lack of limit when parsing cookies can cause memory exhaustion in net/http",
           "Description": "Despite HTTP headers having a default limit of 1MB, the number of cookies that can be parsed does not have a limit. By sending a lot of very small cookies such as \"a=;\", an attacker can make an HTTP server allocate a large amount of structs, causing large memory consumption.",
           "Severity": "MEDIUM",
@@ -22956,7 +22956,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:15909c32a13d5f2f3ab48a4570760c5e85433bf6c2c73c23681d185f4fe5a88a",
+          "Fingerprint": "sha256:381f9a52b797694bb2c4472d90d8717f4f5d3abc04db87680f02ff636c379dc5",
           "Title": "crypto/x509: Quadratic complexity when checking name constraints in crypto/x509",
           "Description": "Due to the design of the name constraint checking algorithm, the processing time of some inputs scale non-linearly with respect to the size of the certificate. This affects programs which validate arbitrary certificate chains.",
           "Severity": "MEDIUM",
@@ -23014,7 +23014,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:45b2a2f48cbcebf265a20348bac69e5cc94d82bf5c90af4622a4d5e9bc0129af",
+          "Fingerprint": "sha256:73d2e0146e4e23ae8fc87ab2bb8e21b39617b99786a46cd8262bc0fe204c6fc9",
           "Title": "crypto/x509: golang: Panic when validating certificates with DSA public keys in crypto/x509",
           "Description": "Validating certificate chains which contain DSA public keys can cause programs to panic, due to a interface cast that assumes they implement the Equal method. This affects programs which validate arbitrary certificate chains.",
           "Severity": "MEDIUM",
@@ -23072,7 +23072,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:49dfacdfd77e8aca5ef597b37fde71d380d22bf3bfc7ec72af4a83b6f851711a",
+          "Fingerprint": "sha256:f7b2a05406ddbd650a2163b35fbe1a5fb68674243c964bc6c5f5d1c316d2a1ca",
           "Title": "crypto/tls: go crypto/tls ALPN negotiation error contains attacker controlled information",
           "Description": "When Conn.Handshake fails during ALPN negotiation the error contains attacker controlled information (the ALPN protocols sent by the client) which is not escaped.",
           "Severity": "MEDIUM",
@@ -23129,7 +23129,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7df374abe4a381d41e53f61a437129eb029fd63d4952f540d2b35843be01ff5c",
+          "Fingerprint": "sha256:0264fcbc55761df9687eee4165470b2b693980bfc56b7ed171e7de9fe337346a",
           "Title": "encoding/pem: Quadratic complexity when parsing some invalid inputs in encoding/pem",
           "Description": "The processing time for parsing some invalid inputs scales non-linearly with respect to the size of the input. This affects programs which parse untrusted PEM inputs.",
           "Severity": "MEDIUM",
@@ -23187,7 +23187,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:d9c0b1480be461b0a7bb9b60ac61d7c74214748dc2542f677c1a74dd9bc873d1",
+          "Fingerprint": "sha256:d1ca76780fa5ade46d946fca3888b4d167ebfed079725b4149c4a2dd22b86e1a",
           "Title": "net/textproto: Excessive CPU consumption in Reader.ReadResponse in net/textproto",
           "Description": "The Reader.ReadResponse function constructs a response string through repeated string concatenation of lines. When the number of lines in a response is large, this can cause excessive CPU consumption.",
           "Severity": "MEDIUM",
@@ -23244,7 +23244,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:1ad68c41d1e42de82f609277c2cacda8a389e4ae7bc1c50c6e02cc50fbbac0be",
+          "Fingerprint": "sha256:cfbf8f97a3186050d3c89c9e23d772faf92577528654a221fb35fd9645174dcd",
           "Title": "net/mail: Excessive CPU consumption in ParseAddress in net/mail",
           "Description": "The ParseAddress function constructs domain-literal address components through repeated string concatenation. When parsing large domain-literal components, this can cause excessive CPU consumption.",
           "Severity": "MEDIUM",
@@ -23298,7 +23298,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:76056a9694793de7171f8dd6b6cd162608487993fbe1f5f68e7a44fc61b367a5",
+          "Fingerprint": "sha256:d5f4f33d16daed05d408d8197606772a29814f5537bf699430eaebf51df06fe9",
           "Title": "golang: crypto/x509: excluded subdomain constraint does not restrict wildcard SANs",
           "Description": "An excluded subdomain constraint in a certificate chain does not restrict the usage of wildcard SANs in the leaf certificate. For example a constraint that excludes the subdomain test.example.com does not prevent a leaf certificate from claiming the SAN *.example.com.",
           "Severity": "MEDIUM",
