@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSection from "../components/HeroSection.astro";
 import ImageRow from "../components/ImageRow.astro";
+import IntegerImageRow from "../components/IntegerImageRow.astro";
 import SearchFilter from "../components/SearchFilter.astro";
 import { catalog } from "../lib/catalog";
 ---
@@ -19,6 +20,36 @@ import { catalog } from "../lib/catalog";
         <div id="images-list" class="space-y-2">
           {(catalog.images ?? []).map((image) => (
             <ImageRow image={image} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    (catalog.integerImages ?? []).length > 0 && (
+      <section class="mt-10">
+        <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+          <h2 class="text-xl font-semibold text-verity-text-primary tracking-wider">
+            Integer Images
+          </h2>
+          <SearchFilter targetId="integer-images-list" />
+        </div>
+        <p class="text-sm text-verity-text-secondary mb-4">
+          Zero-CVE container images built from Wolfi packages by
+          <a
+            href="https://github.com/verity-org/integer"
+            class="text-verity-nucleus hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            integer
+          </a>
+          .
+        </p>
+        <div id="integer-images-list" class="space-y-2">
+          {(catalog.integerImages ?? []).map((image) => (
+            <IntegerImageRow image={image} />
           ))}
         </div>
       </section>

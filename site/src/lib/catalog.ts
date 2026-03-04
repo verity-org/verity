@@ -31,11 +31,34 @@ export interface SiteSummary {
   fixedVulns: number;
 }
 
+export interface IntegerVariant {
+  type: string;
+  tags: string[];
+  ref: string;
+  digest: string;
+  builtAt: string;
+  status: "success" | "failure" | "unknown";
+}
+
+export interface IntegerVersion {
+  version: string;
+  latest?: boolean;
+  eol?: string;
+  variants: IntegerVariant[];
+}
+
+export interface IntegerImage {
+  name: string;
+  description: string;
+  versions: IntegerVersion[];
+}
+
 export interface SiteData {
   generatedAt: string;
   registry: string;
   summary: SiteSummary;
   images: SiteImage[];
+  integerImages?: IntegerImage[];
 }
 
 export const catalog: SiteData = rawData as SiteData;

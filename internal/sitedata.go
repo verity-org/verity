@@ -10,10 +10,36 @@ import (
 
 // SiteData is the top-level structure for the catalog JSON consumed by the Astro site.
 type SiteData struct {
-	GeneratedAt string      `json:"generatedAt"`
-	Registry    string      `json:"registry"`
-	Summary     SiteSummary `json:"summary"`
-	Images      []SiteImage `json:"images"`
+	GeneratedAt   string         `json:"generatedAt"`
+	Registry      string         `json:"registry"`
+	Summary       SiteSummary    `json:"summary"`
+	Images        []SiteImage    `json:"images"`
+	IntegerImages []IntegerImage `json:"integerImages"` // zero-CVE Wolfi rebuilds from integer
+}
+
+// IntegerImage describes a single image from github.com/verity-org/integer.
+type IntegerImage struct {
+	Name        string           `json:"name"`
+	Description string           `json:"description"`
+	Versions    []IntegerVersion `json:"versions"`
+}
+
+// IntegerVersion is one version stream of an integer image (e.g. "1.26" for Go).
+type IntegerVersion struct {
+	Version  string           `json:"version"`
+	Latest   bool             `json:"latest,omitempty"`
+	EOL      string           `json:"eol,omitempty"`
+	Variants []IntegerVariant `json:"variants"`
+}
+
+// IntegerVariant is one built type (default, dev, fips) within a version.
+type IntegerVariant struct {
+	Type    string   `json:"type"`
+	Tags    []string `json:"tags"`
+	Ref     string   `json:"ref"`
+	Digest  string   `json:"digest"`
+	BuiltAt string   `json:"builtAt"`
+	Status  string   `json:"status"` // "success" | "failure" | "unknown"
 }
 
 // SiteSummary aggregates stats across all images.
@@ -84,21 +110,20 @@ type ImageEntry struct {
 	Report   string `json:"report"`
 }
 
-// GenerateSiteDataFromJSON reads images.json (from sign-and-attest.sh) to produce a catalog.json.
-// reportsDir contains pre-patch Trivy reports; postReportsDir contains post-patch Trivy reports.
-// If postReportsDir is empty, AfterVulns falls back to empty (showing only before data).
-func GenerateSiteDataFromJSON(imagesJSON, reportsDir, postReportsDir, registry, outputPath string) error {
+// GenerateSiteData reads images.json and Trivy reports, returning a populated
+// SiteData. Call MergeIntegerCatalog and WriteSiteData to finish the pipeline.
+func GenerateSiteData(imagesJSON, reportsDir, postReportsDir, registry string) (*SiteData, error) {
 	data, err := os.ReadFile(imagesJSON)
 	if err != nil {
-		return fmt.Errorf("reading %s: %w", imagesJSON, err)
+		return nil, fmt.Errorf("reading %s: %w", imagesJSON, err)
 	}
 
 	var entries []ImageEntry
 	if err := json.Unmarshal(data, &entries); err != nil {
-		return fmt.Errorf("parsing %s: %w", imagesJSON, err)
+		return nil, fmt.Errorf("parsing %s: %w", imagesJSON, err)
 	}
 
-	siteData := SiteData{
+	siteData := &SiteData{
 		GeneratedAt: time.Now().UTC().Format(time.RFC3339),
 		Registry:    registry,
 	}
@@ -134,8 +159,6 @@ func GenerateSiteDataFromJSON(imagesJSON, reportsDir, postReportsDir, registry, 
 		}
 
 		// Post-patch report — sets AfterVulns + remaining Vulnerabilities.
-		// The post-scan job scans the patched image ref, so the report filename
-		// is derived from patchedRef, not the source report name.
 		if postReportsDir != "" && patchedRef != "" {
 			postReportName := sanitize(patchedRef) + ".json"
 			applyPostPatchReport(&si, filepath.Join(postReportsDir, postReportName))
@@ -147,15 +170,45 @@ func GenerateSiteDataFromJSON(imagesJSON, reportsDir, postReportsDir, registry, 
 	siteData.Images = allImages
 	siteData.Summary = computeSummary(allImages)
 
+	return siteData, nil
+}
+
+// WriteSiteData marshals siteData to JSON and writes it to outputPath.
+func WriteSiteData(siteData *SiteData, outputPath string) error {
 	if err := os.MkdirAll(filepath.Dir(outputPath), 0o755); err != nil {
 		return fmt.Errorf("creating output directory: %w", err)
 	}
-
 	out, err := json.MarshalIndent(siteData, "", "  ")
 	if err != nil {
 		return fmt.Errorf("marshaling site data: %w", err)
 	}
 	return os.WriteFile(outputPath, out, 0o644)
+}
+
+// integerCatalog mirrors the schema produced by `integer catalog`.
+type integerCatalog struct {
+	Images []IntegerImage `json:"images"`
+}
+
+// MergeIntegerCatalog reads the catalog.json produced by the integer repo and
+// populates siteData.IntegerImages. A missing or empty file is a no-op.
+func MergeIntegerCatalog(siteData *SiteData, path string) error {
+	if path == "" {
+		return nil
+	}
+	data, err := os.ReadFile(path)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return nil
+		}
+		return fmt.Errorf("reading integer catalog %s: %w", path, err)
+	}
+	var cat integerCatalog
+	if err := json.Unmarshal(data, &cat); err != nil {
+		return fmt.Errorf("parsing integer catalog %s: %w", path, err)
+	}
+	siteData.IntegerImages = cat.Images
+	return nil
 }
 
 // applyPostPatchReport populates AfterVulns and remaining Vulnerabilities on si
