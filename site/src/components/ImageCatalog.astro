@@ -148,14 +148,20 @@ function getVulnSummary(image: FullCatalogImage): VulnSummary | undefined {
   const filterContainer = document.getElementById("catalog-filter");
   const filterBtns = filterContainer?.querySelectorAll<HTMLButtonElement>(".filter-btn");
   
-  let currentFilter = "all";
+  type FilterValue = "all" | "integer" | "copa";
+  const VALID_FILTERS = new Set<FilterValue>(["all", "integer", "copa"]);
+  let currentFilter: FilterValue = "all";
+  
+  function normalizeFilter(value: string | null): FilterValue {
+    return VALID_FILTERS.has(value as FilterValue) ? (value as FilterValue) : "all";
+  }
   
   // Initialize from URL or localStorage
   const urlParams = new URLSearchParams(window.location.search);
-  const savedFilter = urlParams.get("filter") || localStorage.getItem("catalog-filter") || "all";
-  setFilter(savedFilter);
+  const rawFilter = urlParams.get("filter") || localStorage.getItem("catalog-filter");
+  setFilter(normalizeFilter(rawFilter));
   
-  function setFilter(filter: string) {
+  function setFilter(filter: FilterValue) {
     currentFilter = filter;
     localStorage.setItem("catalog-filter", filter);
     
@@ -208,7 +214,7 @@ function getVulnSummary(image: FullCatalogImage): VulnSummary | undefined {
   // Event listeners
   filterBtns?.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const filter = btn.getAttribute("data-filter") ?? "all";
+      const filter = normalizeFilter(btn.getAttribute("data-filter"));
       setFilter(filter);
     });
   });
