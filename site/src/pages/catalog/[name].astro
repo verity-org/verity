@@ -4,13 +4,11 @@ import CopyButton from "../../components/CopyButton.astro";
 import SupplyChainBadges from "../../components/SupplyChainBadges.astro";
 import SeverityBreakdown from "../../components/SeverityBreakdown.astro";
 import VulnTable from "../../components/VulnTable.astro";
-import { fullCatalog, upstreamPath } from "../../data/full-catalog";
+import { fullCatalog, upstreamPath, stripTag, REGISTRY } from "../../data/full-catalog";
 import type { FullCatalogImage, FullCatalogCategory } from "../../data/full-catalog";
 import SourceBadge from "../../components/SourceBadge.astro";
 import { catalog } from "../../lib/catalog";
 import type { SiteImage } from "../../lib/catalog";
-
-const REGISTRY = "ghcr.io/verity-org";
 
 interface CatalogPageProps {
   image: FullCatalogImage;
@@ -41,7 +39,9 @@ export function getStaticPaths() {
 
 const { image, category, scanData } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const pullRef = scanData?.patchedRef?.split(":")[0] ?? `${REGISTRY}/${upstreamPath(image)}`;
+const pullRef = scanData?.patchedRef
+  ? stripTag(scanData.patchedRef)
+  : `${REGISTRY}/${upstreamPath(image)}`;
 const dockerPull = `docker pull ${pullRef}`;
 
 const fixed = scanData ? scanData.beforeVulns.total - scanData.afterVulns.total : 0;

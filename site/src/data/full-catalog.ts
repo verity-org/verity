@@ -1,3 +1,5 @@
+export const REGISTRY = "ghcr.io/verity-org";
+
 export type ImageSource = "copa" | "integer";
 
 export interface FullCatalogImage {
@@ -14,6 +16,15 @@ export function upstreamPath(image: FullCatalogImage): string {
     return image.upstream.split("/").slice(1).join("/");
   }
   return image.name;
+}
+
+export function stripTag(ref: string): string {
+  const lastSlash = ref.lastIndexOf("/");
+  const lastColon = ref.lastIndexOf(":");
+  if (lastColon > lastSlash) {
+    return ref.slice(0, lastColon);
+  }
+  return ref;
 }
 
 export interface FullCatalogCategory {
