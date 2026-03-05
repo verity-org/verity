@@ -1,7 +1,7 @@
 {
   "SchemaVersion": 2,
-  "ReportID": "019ca842-47be-7191-8d81-be96da788181",
-  "CreatedAt": "2026-03-01T07:17:21.982104173Z",
+  "ReportID": "019cc003-4c59-7263-a1f3-652de1939d4f",
+  "CreatedAt": "2026-03-05T21:59:27.577158332Z",
   "ArtifactID": "sha256:af72bcba40843840b7afa62dd0942454551217f9d2effe6f324cad45cc496030",
   "ArtifactName": "ghcr.io/verity-org/cache:redis-8.6.0-patched",
   "ArtifactType": "container_image",
@@ -6753,71 +6753,6 @@
           }
         },
         {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "bsdutils@1:2.41-5",
-          "PkgName": "bsdutils",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/debian/bsdutils@2.41-5?arch=amd64\u0026distro=debian-13.3\u0026epoch=1",
-            "UID": "c9de60be80a96a27"
-          },
-          "InstalledVersion": "1:2.41-5",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
-            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "DataSource": {
-            "ID": "debian",
-            "Name": "Debian Security Tracker",
-            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
-          },
-          "Fingerprint": "sha256:8b4845a325d621d36f74c3cccf0337c001cc22ee3f032b314ab6dd3f9812cc48",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
-        },
-        {
           "VulnerabilityID": "CVE-2022-0563",
           "PkgID": "bsdutils@1:2.41-5",
           "PkgName": "bsdutils",
@@ -6877,6 +6812,73 @@
           ],
           "PublishedDate": "2022-02-21T19:15:08.393Z",
           "LastModifiedDate": "2025-06-09T16:15:33.237Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-14104",
+          "PkgID": "bsdutils@1:2.41-5",
+          "PkgName": "bsdutils",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/debian/bsdutils@2.41-5?arch=amd64\u0026distro=debian-13.3\u0026epoch=1",
+            "UID": "c9de60be80a96a27"
+          },
+          "InstalledVersion": "1:2.41-5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
+            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
+          },
+          "SeveritySource": "debian",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
+          "DataSource": {
+            "ID": "debian",
+            "Name": "Debian Security Tracker",
+            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
+          },
+          "Fingerprint": "sha256:8b4845a325d621d36f74c3cccf0337c001cc22ee3f032b314ab6dd3f9812cc48",
+          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "debian": 1,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:1696",
+            "https://access.redhat.com/errata/RHSA-2026:1852",
+            "https://access.redhat.com/errata/RHSA-2026:1913",
+            "https://access.redhat.com/errata/RHSA-2026:2485",
+            "https://access.redhat.com/errata/RHSA-2026:2563",
+            "https://access.redhat.com/errata/RHSA-2026:2737",
+            "https://access.redhat.com/errata/RHSA-2026:2800",
+            "https://access.redhat.com/errata/RHSA-2026:3406",
+            "https://access.redhat.com/security/cve/CVE-2025-14104",
+            "https://bugzilla.redhat.com/2419369",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
+            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
+            "https://errata.rockylinux.org/RLSA-2026:1913",
+            "https://linux.oracle.com/cve/CVE-2025-14104.html",
+            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
+          ],
+          "PublishedDate": "2025-12-05T17:16:03.117Z",
+          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
         },
         {
           "VulnerabilityID": "CVE-2026-3184",
@@ -7027,6 +7029,30 @@
           "LastModifiedDate": "2025-10-22T20:15:37.32Z"
         },
         {
+          "VulnerabilityID": "CVE-2026-2219",
+          "PkgID": "dpkg@1.22.21",
+          "PkgName": "dpkg",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/debian/dpkg@1.22.21?arch=amd64\u0026distro=debian-13.3",
+            "UID": "cc27f3afd091dba3"
+          },
+          "InstalledVersion": "1.22.21",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
+            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-2219",
+          "DataSource": {
+            "ID": "debian",
+            "Name": "Debian Security Tracker",
+            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
+          },
+          "Fingerprint": "sha256:7af3a49eaf5e9c653c4b64d685c10b72516be16f4596c7e2bebf5e46f1425a74",
+          "Title": "[dpkg-deb: Persistent hang on malformed .deb archives (DoS)]",
+          "Severity": "UNKNOWN"
+        },
+        {
           "VulnerabilityID": "CVE-2011-3374",
           "PkgID": "libapt-pkg7.0@3.0.3",
           "PkgName": "libapt-pkg7.0",
@@ -7077,71 +7103,6 @@
           ],
           "PublishedDate": "2019-11-26T00:15:11.03Z",
           "LastModifiedDate": "2024-11-21T01:30:22.61Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "libblkid1@2.41-5",
-          "PkgName": "libblkid1",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/debian/libblkid1@2.41-5?arch=amd64\u0026distro=debian-13.3",
-            "UID": "3537354242b80232"
-          },
-          "InstalledVersion": "2.41-5",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
-            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "DataSource": {
-            "ID": "debian",
-            "Name": "Debian Security Tracker",
-            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
-          },
-          "Fingerprint": "sha256:36ec8efafd972b145e28157a9ac153f55aa3e0807e01e5d8fb21f98f447e6347",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
         },
         {
           "VulnerabilityID": "CVE-2022-0563",
@@ -7203,6 +7164,73 @@
           ],
           "PublishedDate": "2022-02-21T19:15:08.393Z",
           "LastModifiedDate": "2025-06-09T16:15:33.237Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-14104",
+          "PkgID": "libblkid1@2.41-5",
+          "PkgName": "libblkid1",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/debian/libblkid1@2.41-5?arch=amd64\u0026distro=debian-13.3",
+            "UID": "3537354242b80232"
+          },
+          "InstalledVersion": "2.41-5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
+            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
+          },
+          "SeveritySource": "debian",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
+          "DataSource": {
+            "ID": "debian",
+            "Name": "Debian Security Tracker",
+            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
+          },
+          "Fingerprint": "sha256:36ec8efafd972b145e28157a9ac153f55aa3e0807e01e5d8fb21f98f447e6347",
+          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "debian": 1,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:1696",
+            "https://access.redhat.com/errata/RHSA-2026:1852",
+            "https://access.redhat.com/errata/RHSA-2026:1913",
+            "https://access.redhat.com/errata/RHSA-2026:2485",
+            "https://access.redhat.com/errata/RHSA-2026:2563",
+            "https://access.redhat.com/errata/RHSA-2026:2737",
+            "https://access.redhat.com/errata/RHSA-2026:2800",
+            "https://access.redhat.com/errata/RHSA-2026:3406",
+            "https://access.redhat.com/security/cve/CVE-2025-14104",
+            "https://bugzilla.redhat.com/2419369",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
+            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
+            "https://errata.rockylinux.org/RLSA-2026:1913",
+            "https://linux.oracle.com/cve/CVE-2025-14104.html",
+            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
+          ],
+          "PublishedDate": "2025-12-05T17:16:03.117Z",
+          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
         },
         {
           "VulnerabilityID": "CVE-2026-3184",
@@ -8448,71 +8476,6 @@
           "LastModifiedDate": "2024-11-21T04:51:10.53Z"
         },
         {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "liblastlog2-2@2.41-5",
-          "PkgName": "liblastlog2-2",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/debian/liblastlog2-2@2.41-5?arch=amd64\u0026distro=debian-13.3",
-            "UID": "870a761736951a7a"
-          },
-          "InstalledVersion": "2.41-5",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
-            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "DataSource": {
-            "ID": "debian",
-            "Name": "Debian Security Tracker",
-            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
-          },
-          "Fingerprint": "sha256:c063001cb6ddffdb2b9a6eba2c0ba49bc4703721ebac167074c10f0149c1ddcd",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
-        },
-        {
           "VulnerabilityID": "CVE-2022-0563",
           "PkgID": "liblastlog2-2@2.41-5",
           "PkgName": "liblastlog2-2",
@@ -8574,6 +8537,73 @@
           "LastModifiedDate": "2025-06-09T16:15:33.237Z"
         },
         {
+          "VulnerabilityID": "CVE-2025-14104",
+          "PkgID": "liblastlog2-2@2.41-5",
+          "PkgName": "liblastlog2-2",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/debian/liblastlog2-2@2.41-5?arch=amd64\u0026distro=debian-13.3",
+            "UID": "870a761736951a7a"
+          },
+          "InstalledVersion": "2.41-5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
+            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
+          },
+          "SeveritySource": "debian",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
+          "DataSource": {
+            "ID": "debian",
+            "Name": "Debian Security Tracker",
+            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
+          },
+          "Fingerprint": "sha256:c063001cb6ddffdb2b9a6eba2c0ba49bc4703721ebac167074c10f0149c1ddcd",
+          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "debian": 1,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:1696",
+            "https://access.redhat.com/errata/RHSA-2026:1852",
+            "https://access.redhat.com/errata/RHSA-2026:1913",
+            "https://access.redhat.com/errata/RHSA-2026:2485",
+            "https://access.redhat.com/errata/RHSA-2026:2563",
+            "https://access.redhat.com/errata/RHSA-2026:2737",
+            "https://access.redhat.com/errata/RHSA-2026:2800",
+            "https://access.redhat.com/errata/RHSA-2026:3406",
+            "https://access.redhat.com/security/cve/CVE-2025-14104",
+            "https://bugzilla.redhat.com/2419369",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
+            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
+            "https://errata.rockylinux.org/RLSA-2026:1913",
+            "https://linux.oracle.com/cve/CVE-2025-14104.html",
+            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
+          ],
+          "PublishedDate": "2025-12-05T17:16:03.117Z",
+          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
+        },
+        {
           "VulnerabilityID": "CVE-2026-3184",
           "PkgID": "liblastlog2-2@2.41-5",
           "PkgName": "liblastlog2-2",
@@ -8611,71 +8641,6 @@
             "https://nvd.nist.gov/vuln/detail/CVE-2026-3184",
             "https://www.cve.org/CVERecord?id=CVE-2026-3184"
           ]
-        },
-        {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "libmount1@2.41-5",
-          "PkgName": "libmount1",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/debian/libmount1@2.41-5?arch=amd64\u0026distro=debian-13.3",
-            "UID": "d221671730a103d6"
-          },
-          "InstalledVersion": "2.41-5",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
-            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "DataSource": {
-            "ID": "debian",
-            "Name": "Debian Security Tracker",
-            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
-          },
-          "Fingerprint": "sha256:622c2e976813ce9c2a4fb7973fe92963c97fe23630061f7160a27978829efc8c",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
         },
         {
           "VulnerabilityID": "CVE-2022-0563",
@@ -8739,6 +8704,73 @@
           "LastModifiedDate": "2025-06-09T16:15:33.237Z"
         },
         {
+          "VulnerabilityID": "CVE-2025-14104",
+          "PkgID": "libmount1@2.41-5",
+          "PkgName": "libmount1",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/debian/libmount1@2.41-5?arch=amd64\u0026distro=debian-13.3",
+            "UID": "d221671730a103d6"
+          },
+          "InstalledVersion": "2.41-5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
+            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
+          },
+          "SeveritySource": "debian",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
+          "DataSource": {
+            "ID": "debian",
+            "Name": "Debian Security Tracker",
+            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
+          },
+          "Fingerprint": "sha256:622c2e976813ce9c2a4fb7973fe92963c97fe23630061f7160a27978829efc8c",
+          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "debian": 1,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:1696",
+            "https://access.redhat.com/errata/RHSA-2026:1852",
+            "https://access.redhat.com/errata/RHSA-2026:1913",
+            "https://access.redhat.com/errata/RHSA-2026:2485",
+            "https://access.redhat.com/errata/RHSA-2026:2563",
+            "https://access.redhat.com/errata/RHSA-2026:2737",
+            "https://access.redhat.com/errata/RHSA-2026:2800",
+            "https://access.redhat.com/errata/RHSA-2026:3406",
+            "https://access.redhat.com/security/cve/CVE-2025-14104",
+            "https://bugzilla.redhat.com/2419369",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
+            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
+            "https://errata.rockylinux.org/RLSA-2026:1913",
+            "https://linux.oracle.com/cve/CVE-2025-14104.html",
+            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
+          ],
+          "PublishedDate": "2025-12-05T17:16:03.117Z",
+          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
+        },
+        {
           "VulnerabilityID": "CVE-2026-3184",
           "PkgID": "libmount1@2.41-5",
           "PkgName": "libmount1",
@@ -8776,71 +8808,6 @@
             "https://nvd.nist.gov/vuln/detail/CVE-2026-3184",
             "https://www.cve.org/CVERecord?id=CVE-2026-3184"
           ]
-        },
-        {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "libsmartcols1@2.41-5",
-          "PkgName": "libsmartcols1",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/debian/libsmartcols1@2.41-5?arch=amd64\u0026distro=debian-13.3",
-            "UID": "55096df77b1297e"
-          },
-          "InstalledVersion": "2.41-5",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
-            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "DataSource": {
-            "ID": "debian",
-            "Name": "Debian Security Tracker",
-            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
-          },
-          "Fingerprint": "sha256:0a142486ba4b9af4827e99699baff65cdd82d526c575ecc7521015015d2f8811",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
         },
         {
           "VulnerabilityID": "CVE-2022-0563",
@@ -8902,6 +8869,73 @@
           ],
           "PublishedDate": "2022-02-21T19:15:08.393Z",
           "LastModifiedDate": "2025-06-09T16:15:33.237Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-14104",
+          "PkgID": "libsmartcols1@2.41-5",
+          "PkgName": "libsmartcols1",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/debian/libsmartcols1@2.41-5?arch=amd64\u0026distro=debian-13.3",
+            "UID": "55096df77b1297e"
+          },
+          "InstalledVersion": "2.41-5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
+            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
+          },
+          "SeveritySource": "debian",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
+          "DataSource": {
+            "ID": "debian",
+            "Name": "Debian Security Tracker",
+            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
+          },
+          "Fingerprint": "sha256:0a142486ba4b9af4827e99699baff65cdd82d526c575ecc7521015015d2f8811",
+          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "debian": 1,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:1696",
+            "https://access.redhat.com/errata/RHSA-2026:1852",
+            "https://access.redhat.com/errata/RHSA-2026:1913",
+            "https://access.redhat.com/errata/RHSA-2026:2485",
+            "https://access.redhat.com/errata/RHSA-2026:2563",
+            "https://access.redhat.com/errata/RHSA-2026:2737",
+            "https://access.redhat.com/errata/RHSA-2026:2800",
+            "https://access.redhat.com/errata/RHSA-2026:3406",
+            "https://access.redhat.com/security/cve/CVE-2025-14104",
+            "https://bugzilla.redhat.com/2419369",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
+            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
+            "https://errata.rockylinux.org/RLSA-2026:1913",
+            "https://linux.oracle.com/cve/CVE-2025-14104.html",
+            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
+          ],
+          "PublishedDate": "2025-12-05T17:16:03.117Z",
+          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
         },
         {
           "VulnerabilityID": "CVE-2026-3184",
@@ -9491,71 +9525,6 @@
           "LastModifiedDate": "2024-11-21T08:01:52.097Z"
         },
         {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "libuuid1@2.41-5",
-          "PkgName": "libuuid1",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/debian/libuuid1@2.41-5?arch=amd64\u0026distro=debian-13.3",
-            "UID": "4cbf1ae7d7774880"
-          },
-          "InstalledVersion": "2.41-5",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
-            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "DataSource": {
-            "ID": "debian",
-            "Name": "Debian Security Tracker",
-            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
-          },
-          "Fingerprint": "sha256:13a4977f1191ef7c7f1bcc5f78e2f045fe0bab0a56f3b3f1aff3ce78b671bc1f",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
-        },
-        {
           "VulnerabilityID": "CVE-2022-0563",
           "PkgID": "libuuid1@2.41-5",
           "PkgName": "libuuid1",
@@ -9617,6 +9586,73 @@
           "LastModifiedDate": "2025-06-09T16:15:33.237Z"
         },
         {
+          "VulnerabilityID": "CVE-2025-14104",
+          "PkgID": "libuuid1@2.41-5",
+          "PkgName": "libuuid1",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/debian/libuuid1@2.41-5?arch=amd64\u0026distro=debian-13.3",
+            "UID": "4cbf1ae7d7774880"
+          },
+          "InstalledVersion": "2.41-5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
+            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
+          },
+          "SeveritySource": "debian",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
+          "DataSource": {
+            "ID": "debian",
+            "Name": "Debian Security Tracker",
+            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
+          },
+          "Fingerprint": "sha256:13a4977f1191ef7c7f1bcc5f78e2f045fe0bab0a56f3b3f1aff3ce78b671bc1f",
+          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "debian": 1,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:1696",
+            "https://access.redhat.com/errata/RHSA-2026:1852",
+            "https://access.redhat.com/errata/RHSA-2026:1913",
+            "https://access.redhat.com/errata/RHSA-2026:2485",
+            "https://access.redhat.com/errata/RHSA-2026:2563",
+            "https://access.redhat.com/errata/RHSA-2026:2737",
+            "https://access.redhat.com/errata/RHSA-2026:2800",
+            "https://access.redhat.com/errata/RHSA-2026:3406",
+            "https://access.redhat.com/security/cve/CVE-2025-14104",
+            "https://bugzilla.redhat.com/2419369",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
+            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
+            "https://errata.rockylinux.org/RLSA-2026:1913",
+            "https://linux.oracle.com/cve/CVE-2025-14104.html",
+            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
+          ],
+          "PublishedDate": "2025-12-05T17:16:03.117Z",
+          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
+        },
+        {
           "VulnerabilityID": "CVE-2026-3184",
           "PkgID": "libuuid1@2.41-5",
           "PkgName": "libuuid1",
@@ -9654,71 +9690,6 @@
             "https://nvd.nist.gov/vuln/detail/CVE-2026-3184",
             "https://www.cve.org/CVERecord?id=CVE-2026-3184"
           ]
-        },
-        {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "login@1:4.16.0-2+really2.41-5",
-          "PkgName": "login",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/debian/login@4.16.0-2%2Breally2.41-5?arch=amd64\u0026distro=debian-13.3\u0026epoch=1",
-            "UID": "ca152d53e85ce4cc"
-          },
-          "InstalledVersion": "1:4.16.0-2+really2.41-5",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
-            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "DataSource": {
-            "ID": "debian",
-            "Name": "Debian Security Tracker",
-            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
-          },
-          "Fingerprint": "sha256:6924fcda8bfe4dcac4ad0754c5a8734c133ae8f3c5bcd82fa12789917ea3f1ce",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
         },
         {
           "VulnerabilityID": "CVE-2022-0563",
@@ -9780,6 +9751,73 @@
           ],
           "PublishedDate": "2022-02-21T19:15:08.393Z",
           "LastModifiedDate": "2025-06-09T16:15:33.237Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-14104",
+          "PkgID": "login@1:4.16.0-2+really2.41-5",
+          "PkgName": "login",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/debian/login@4.16.0-2%2Breally2.41-5?arch=amd64\u0026distro=debian-13.3\u0026epoch=1",
+            "UID": "ca152d53e85ce4cc"
+          },
+          "InstalledVersion": "1:4.16.0-2+really2.41-5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
+            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
+          },
+          "SeveritySource": "debian",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
+          "DataSource": {
+            "ID": "debian",
+            "Name": "Debian Security Tracker",
+            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
+          },
+          "Fingerprint": "sha256:6924fcda8bfe4dcac4ad0754c5a8734c133ae8f3c5bcd82fa12789917ea3f1ce",
+          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "debian": 1,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:1696",
+            "https://access.redhat.com/errata/RHSA-2026:1852",
+            "https://access.redhat.com/errata/RHSA-2026:1913",
+            "https://access.redhat.com/errata/RHSA-2026:2485",
+            "https://access.redhat.com/errata/RHSA-2026:2563",
+            "https://access.redhat.com/errata/RHSA-2026:2737",
+            "https://access.redhat.com/errata/RHSA-2026:2800",
+            "https://access.redhat.com/errata/RHSA-2026:3406",
+            "https://access.redhat.com/security/cve/CVE-2025-14104",
+            "https://bugzilla.redhat.com/2419369",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
+            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
+            "https://errata.rockylinux.org/RLSA-2026:1913",
+            "https://linux.oracle.com/cve/CVE-2025-14104.html",
+            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
+          ],
+          "PublishedDate": "2025-12-05T17:16:03.117Z",
+          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
         },
         {
           "VulnerabilityID": "CVE-2026-3184",
@@ -9958,71 +9996,6 @@
           }
         },
         {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "mount@2.41-5",
-          "PkgName": "mount",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/debian/mount@2.41-5?arch=amd64\u0026distro=debian-13.3",
-            "UID": "c6fdc5cf989db569"
-          },
-          "InstalledVersion": "2.41-5",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
-            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "DataSource": {
-            "ID": "debian",
-            "Name": "Debian Security Tracker",
-            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
-          },
-          "Fingerprint": "sha256:52707ace8b83c7278e189091402b36cc39e909018c986183453ab29f0e7ae60a",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
-        },
-        {
           "VulnerabilityID": "CVE-2022-0563",
           "PkgID": "mount@2.41-5",
           "PkgName": "mount",
@@ -10082,6 +10055,73 @@
           ],
           "PublishedDate": "2022-02-21T19:15:08.393Z",
           "LastModifiedDate": "2025-06-09T16:15:33.237Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-14104",
+          "PkgID": "mount@2.41-5",
+          "PkgName": "mount",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/debian/mount@2.41-5?arch=amd64\u0026distro=debian-13.3",
+            "UID": "c6fdc5cf989db569"
+          },
+          "InstalledVersion": "2.41-5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
+            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
+          },
+          "SeveritySource": "debian",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
+          "DataSource": {
+            "ID": "debian",
+            "Name": "Debian Security Tracker",
+            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
+          },
+          "Fingerprint": "sha256:52707ace8b83c7278e189091402b36cc39e909018c986183453ab29f0e7ae60a",
+          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "debian": 1,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:1696",
+            "https://access.redhat.com/errata/RHSA-2026:1852",
+            "https://access.redhat.com/errata/RHSA-2026:1913",
+            "https://access.redhat.com/errata/RHSA-2026:2485",
+            "https://access.redhat.com/errata/RHSA-2026:2563",
+            "https://access.redhat.com/errata/RHSA-2026:2737",
+            "https://access.redhat.com/errata/RHSA-2026:2800",
+            "https://access.redhat.com/errata/RHSA-2026:3406",
+            "https://access.redhat.com/security/cve/CVE-2025-14104",
+            "https://bugzilla.redhat.com/2419369",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
+            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
+            "https://errata.rockylinux.org/RLSA-2026:1913",
+            "https://linux.oracle.com/cve/CVE-2025-14104.html",
+            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
+          ],
+          "PublishedDate": "2025-12-05T17:16:03.117Z",
+          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
         },
         {
           "VulnerabilityID": "CVE-2026-3184",
@@ -10532,71 +10572,6 @@
           }
         },
         {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "util-linux@2.41-5",
-          "PkgName": "util-linux",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/debian/util-linux@2.41-5?arch=amd64\u0026distro=debian-13.3",
-            "UID": "38be4846f19b7fa"
-          },
-          "InstalledVersion": "2.41-5",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
-            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "DataSource": {
-            "ID": "debian",
-            "Name": "Debian Security Tracker",
-            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
-          },
-          "Fingerprint": "sha256:8ba70e4f56addab29ad763997bbe429691de5ce604ad23981ffe94309383fbc4",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
-        },
-        {
           "VulnerabilityID": "CVE-2022-0563",
           "PkgID": "util-linux@2.41-5",
           "PkgName": "util-linux",
@@ -10656,6 +10631,73 @@
           ],
           "PublishedDate": "2022-02-21T19:15:08.393Z",
           "LastModifiedDate": "2025-06-09T16:15:33.237Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-14104",
+          "PkgID": "util-linux@2.41-5",
+          "PkgName": "util-linux",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/debian/util-linux@2.41-5?arch=amd64\u0026distro=debian-13.3",
+            "UID": "38be4846f19b7fa"
+          },
+          "InstalledVersion": "2.41-5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:0c8d55a45c0dc58de60579b9cc5b708de9e7957f4591fc7de941b67c7e245da0",
+            "DiffID": "sha256:a8ff6f8cbdfd6741c10dd183560df7212db666db046768b0f05bbc3904515f03"
+          },
+          "SeveritySource": "debian",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
+          "DataSource": {
+            "ID": "debian",
+            "Name": "Debian Security Tracker",
+            "URL": "https://salsa.debian.org/security-tracker-team/security-tracker"
+          },
+          "Fingerprint": "sha256:8ba70e4f56addab29ad763997bbe429691de5ce604ad23981ffe94309383fbc4",
+          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "debian": 1,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+              "V3Score": 6.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:1696",
+            "https://access.redhat.com/errata/RHSA-2026:1852",
+            "https://access.redhat.com/errata/RHSA-2026:1913",
+            "https://access.redhat.com/errata/RHSA-2026:2485",
+            "https://access.redhat.com/errata/RHSA-2026:2563",
+            "https://access.redhat.com/errata/RHSA-2026:2737",
+            "https://access.redhat.com/errata/RHSA-2026:2800",
+            "https://access.redhat.com/errata/RHSA-2026:3406",
+            "https://access.redhat.com/security/cve/CVE-2025-14104",
+            "https://bugzilla.redhat.com/2419369",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
+            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
+            "https://errata.rockylinux.org/RLSA-2026:1913",
+            "https://linux.oracle.com/cve/CVE-2025-14104.html",
+            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
+          ],
+          "PublishedDate": "2025-12-05T17:16:03.117Z",
+          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
         },
         {
           "VulnerabilityID": "CVE-2026-3184",
