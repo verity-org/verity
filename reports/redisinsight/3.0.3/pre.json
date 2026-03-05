@@ -1,7 +1,7 @@
 {
   "SchemaVersion": 2,
-  "ReportID": "019ca829-3c3a-72b7-98d5-5eb91d8743d9",
-  "CreatedAt": "2026-03-01T06:50:00.634179383Z",
+  "ReportID": "019cbc3e-9d7a-7293-864b-7321f8f3ad1e",
+  "CreatedAt": "2026-03-05T04:25:46.106170655Z",
   "ArtifactID": "sha256:46f6d8999fa21f7d5463132b8a3062a2b060e5238a44c705d9d28ff40bf72480",
   "ArtifactName": "mirror.gcr.io/redis/redisinsight:3.0.3",
   "ArtifactType": "container_image",
@@ -14730,6 +14730,64 @@
       ],
       "Vulnerabilities": [
         {
+          "VulnerabilityID": "CVE-2026-3449",
+          "PkgID": "@tootallnate/once@1.1.2",
+          "PkgName": "@tootallnate/once",
+          "PkgPath": "usr/src/app/redisinsight/api/node_modules/@tootallnate/once/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/%40tootallnate/once@1.1.2",
+            "UID": "2e234e6978de45d3"
+          },
+          "InstalledVersion": "1.1.2",
+          "FixedVersion": "3.0.1",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c14b582a565b2d36e4ed1a086f32ff32827f0c13b5f234aebe63efb11e57b02d",
+            "DiffID": "sha256:c14b582a565b2d36e4ed1a086f32ff32827f0c13b5f234aebe63efb11e57b02d"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3449",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:acf108a82fe0de0590eb7fe9cc822f6bbf6f17c389eefe98874a9729276c768a",
+          "Title": "@tootallnate/once: @tootallnate/once: Denial of Service due to incorrect control flow scoping with AbortSignal",
+          "Description": "Versions of the package @tootallnate/once before 3.0.1 are vulnerable to Incorrect Control Flow Scoping in promise resolving when AbortSignal option is used. The Promise remains in a permanently pending state after the signal is aborted, causing any await or .then() usage to hang indefinitely. This can cause a control-flow leak that can lead to stalled requests, blocked workers, or degraded application availability.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-705"
+          ],
+          "VendorSeverity": {
+            "ghsa": 1,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+              "V40Vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N/E:P",
+              "V3Score": 3.3,
+              "V40Score": 1.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-3449",
+            "https://github.com/TooTallNate/once",
+            "https://github.com/TooTallNate/once/commit/b9f43cc5259bee2952d91ad3cdbd201a82df448a",
+            "https://github.com/TooTallNate/once/issues/8",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3449",
+            "https://security.snyk.io/vuln/SNYK-JS-TOOTALLNATEONCE-15250612",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3449"
+          ],
+          "PublishedDate": "2026-03-03T05:17:25.017Z",
+          "LastModifiedDate": "2026-03-03T21:52:29.877Z"
+        },
+        {
           "VulnerabilityID": "CVE-2026-25639",
           "PkgID": "axios@1.12.2",
           "PkgName": "axios",
@@ -14780,7 +14838,6 @@
             "https://github.com/axios/axios/commit/d7ff1409c68168d3057fc3891f911b2b92616f9e",
             "https://github.com/axios/axios/pull/7369",
             "https://github.com/axios/axios/pull/7388",
-            "https://github.com/axios/axios/releases/tag/v0.30.0",
             "https://github.com/axios/axios/releases/tag/v0.30.3",
             "https://github.com/axios/axios/releases/tag/v1.13.5",
             "https://github.com/axios/axios/security/advisories/GHSA-43fc-jf86-j433",
@@ -14956,12 +15013,17 @@
           ],
           "VendorSeverity": {
             "ghsa": 1,
+            "nvd": 3,
             "redhat": 3
           },
           "CVSS": {
             "ghsa": {
               "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N/E:U",
               "V40Score": 2.7
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
             },
             "redhat": {
               "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
@@ -14979,7 +15041,7 @@
             "https://www.cve.org/CVERecord?id=CVE-2026-24001"
           ],
           "PublishedDate": "2026-01-22T03:15:47.627Z",
-          "LastModifiedDate": "2026-01-30T18:16:00.123Z"
+          "LastModifiedDate": "2026-03-04T15:23:41.347Z"
         },
         {
           "VulnerabilityID": "CVE-2026-24001",
@@ -15014,12 +15076,17 @@
           ],
           "VendorSeverity": {
             "ghsa": 1,
+            "nvd": 3,
             "redhat": 3
           },
           "CVSS": {
             "ghsa": {
               "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N/E:U",
               "V40Score": 2.7
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
             },
             "redhat": {
               "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
@@ -15037,7 +15104,7 @@
             "https://www.cve.org/CVERecord?id=CVE-2026-24001"
           ],
           "PublishedDate": "2026-01-22T03:15:47.627Z",
-          "LastModifiedDate": "2026-01-30T18:16:00.123Z"
+          "LastModifiedDate": "2026-03-04T15:23:41.347Z"
         },
         {
           "VulnerabilityID": "CVE-2025-64756",
@@ -15197,7 +15264,7 @@
           "VendorSeverity": {
             "ghsa": 3,
             "nvd": 3,
-            "redhat": 3
+            "redhat": 2
           },
           "CVSS": {
             "ghsa": {
@@ -15209,8 +15276,8 @@
               "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V3Score": 7.5
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 6.5
             }
           },
           "References": [
@@ -15311,7 +15378,7 @@
           ],
           "VendorSeverity": {
             "ghsa": 3,
-            "redhat": 3
+            "redhat": 2
           },
           "CVSS": {
             "ghsa": {
@@ -15319,8 +15386,8 @@
               "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V3Score": 7.5
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 6.5
             }
           },
           "References": [
@@ -15367,7 +15434,7 @@
           "VendorSeverity": {
             "ghsa": 3,
             "nvd": 3,
-            "redhat": 3
+            "redhat": 2
           },
           "CVSS": {
             "ghsa": {
@@ -15379,8 +15446,8 @@
               "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V3Score": 7.5
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 6.5
             }
           },
           "References": [
@@ -15481,7 +15548,7 @@
           ],
           "VendorSeverity": {
             "ghsa": 3,
-            "redhat": 3
+            "redhat": 2
           },
           "CVSS": {
             "ghsa": {
@@ -15489,8 +15556,8 @@
               "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V3Score": 7.5
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 6.5
             }
           },
           "References": [
@@ -15537,7 +15604,7 @@
           "VendorSeverity": {
             "ghsa": 3,
             "nvd": 3,
-            "redhat": 3
+            "redhat": 2
           },
           "CVSS": {
             "ghsa": {
@@ -15549,8 +15616,8 @@
               "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V3Score": 7.5
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 6.5
             }
           },
           "References": [
@@ -15651,7 +15718,7 @@
           ],
           "VendorSeverity": {
             "ghsa": 3,
-            "redhat": 3
+            "redhat": 2
           },
           "CVSS": {
             "ghsa": {
@@ -15659,8 +15726,8 @@
               "V3Score": 7.5
             },
             "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V3Score": 7.5
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 6.5
             }
           },
           "References": [
@@ -15673,6 +15740,118 @@
           ],
           "PublishedDate": "2026-02-26T02:16:21.76Z",
           "LastModifiedDate": "2026-02-27T17:16:23.773Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-2359",
+          "PkgID": "multer@2.0.2",
+          "PkgName": "multer",
+          "PkgPath": "usr/src/app/redisinsight/api/node_modules/multer/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/multer@2.0.2",
+            "UID": "39f9cfce88708a34"
+          },
+          "InstalledVersion": "2.0.2",
+          "FixedVersion": "2.1.0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c14b582a565b2d36e4ed1a086f32ff32827f0c13b5f234aebe63efb11e57b02d",
+            "DiffID": "sha256:c14b582a565b2d36e4ed1a086f32ff32827f0c13b5f234aebe63efb11e57b02d"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-2359",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:5d4187f972f52805f4e336da09b2b4de96fad516a80da94371ae186ff8138c49",
+          "Title": "multer: Multer: Denial of Service via dropped file upload connections",
+          "Description": "Multer is a node.js middleware for handling `multipart/form-data`. A vulnerability in Multer prior to version 2.1.0 allows an attacker to trigger a Denial of Service (DoS) by dropping connection during file upload, potentially causing resource exhaustion. Users should upgrade to version 2.1.0 to receive a patch. No known workarounds are available.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-772"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+              "V40Score": 8.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-2359",
+            "https://cna.openjsf.org/security-advisories.html",
+            "https://github.com/expressjs/multer",
+            "https://github.com/expressjs/multer/commit/cccf0fe0e64150c4f42ccf6654165c0d66b9adab",
+            "https://github.com/expressjs/multer/security/advisories/GHSA-v52c-386h-88mc",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-2359",
+            "https://www.cve.org/CVERecord?id=CVE-2026-2359"
+          ],
+          "PublishedDate": "2026-02-27T16:16:25.467Z",
+          "LastModifiedDate": "2026-03-02T20:30:10.923Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3304",
+          "PkgID": "multer@2.0.2",
+          "PkgName": "multer",
+          "PkgPath": "usr/src/app/redisinsight/api/node_modules/multer/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/multer@2.0.2",
+            "UID": "39f9cfce88708a34"
+          },
+          "InstalledVersion": "2.0.2",
+          "FixedVersion": "2.1.0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:c14b582a565b2d36e4ed1a086f32ff32827f0c13b5f234aebe63efb11e57b02d",
+            "DiffID": "sha256:c14b582a565b2d36e4ed1a086f32ff32827f0c13b5f234aebe63efb11e57b02d"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3304",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Fingerprint": "sha256:fffcfa6b36bddd6ead88c19983a5eb256a2a7dc83d0e4253b9d4c6231c45bfe5",
+          "Title": "multer: Multer: Denial of Service via malformed requests",
+          "Description": "Multer is a node.js middleware for handling `multipart/form-data`. A vulnerability in Multer prior to version 2.1.0 allows an attacker to trigger a Denial of Service (DoS) by sending malformed requests, potentially causing resource exhaustion. Users should upgrade to version 2.1.0 to receive a patch. No known workarounds are available.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-459"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+              "V40Score": 8.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-3304",
+            "https://cna.openjsf.org/security-advisories.html",
+            "https://github.com/expressjs/multer",
+            "https://github.com/expressjs/multer/commit/739919097dde3921ec31b930e4b9025036fa74ee",
+            "https://github.com/expressjs/multer/security/advisories/GHSA-xf7r-hgr6-v32p",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3304",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3304"
+          ],
+          "PublishedDate": "2026-02-27T16:16:26.38Z",
+          "LastModifiedDate": "2026-03-02T20:30:10.923Z"
         },
         {
           "VulnerabilityID": "CVE-2025-15284",
@@ -15700,20 +15879,20 @@
           "Fingerprint": "sha256:2ec43197090eb80763fcdc86e2eb7d05d2305c036ecd2273aaf1754a344064e1",
           "Title": "qs: qs: Denial of Service via improper input validation in array parsing",
           "Description": "Improper Input Validation vulnerability in qs (parse modules) allows HTTP DoS.This issue affects qs: \u003c 6.14.1.\n\n\nSummary\n\nThe arrayLimit option in qs did not enforce limits for bracket notation (a[]=1\u0026a[]=2), only for indexed notation (a[0]=1). This is a consistency bug; arrayLimit should apply uniformly across all array notations.\n\nNote: The default parameterLimit of 1000 effectively mitigates the DoS scenario originally described. With default options, bracket notation cannot produce arrays larger than parameterLimit regardless of arrayLimit, because each a[]=valueconsumes one parameter slot. The severity has been reduced accordingly.\n\nDetails\n\nThe arrayLimit option only checked limits for indexed notation (a[0]=1\u0026a[1]=2) but did not enforce it for bracket notation (a[]=1\u0026a[]=2).\n\nVulnerable code (lib/parse.js:159-162):\n\nif (root === '[]' \u0026\u0026 options.parseArrays) {\n    obj = utils.combine([], leaf);  // No arrayLimit check\n}\n\n\n\n\n\nWorking code (lib/parse.js:175):\n\nelse if (index \u003c= options.arrayLimit) {  // Limit checked here\n    obj = [];\n    obj[index] = leaf;\n}\n\n\n\n\n\nThe bracket notation handler at line 159 uses utils.combine([], leaf) without validating against options.arrayLimit, while indexed notation at line 175 checks index \u003c= options.arrayLimit before creating arrays.\n\n\n\nPoC\n\nconst qs = require('qs');\nconst result = qs.parse('a[]=1\u0026a[]=2\u0026a[]=3\u0026a[]=4\u0026a[]=5\u0026a[]=6', { arrayLimit: 5 });\nconsole.log(result.a.length);  // Output: 6 (should be max 5)\n\n\n\n\n\nNote on parameterLimit interaction: The original advisory's \"DoS demonstration\" claimed a length of 10,000, but parameterLimit (default: 1000) caps parsing to 1,000 parameters. With default options, the actual output is 1,000, not 10,000.\n\nImpact\n\nConsistency bug in arrayLimit enforcement. With default parameterLimit, the practical DoS risk is negligible since parameterLimit already caps the total number of parsed parameters (and thus array elements from bracket notation). The risk increases only when parameterLimit is explicitly set to a very high value.",
-          "Severity": "HIGH",
+          "Severity": "MEDIUM",
           "CweIDs": [
             "CWE-20"
           ],
           "VendorSeverity": {
-            "ghsa": 3,
+            "ghsa": 2,
             "redhat": 3
           },
           "CVSS": {
             "ghsa": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
-              "V3Score": 7.5,
-              "V40Score": 8.7
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:L",
+              "V3Score": 3.7,
+              "V40Score": 6.3
             },
             "redhat": {
               "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
@@ -15817,20 +15996,20 @@
           "Fingerprint": "sha256:6a71b4bb79c7be12167607846530b09f355e8f6d34aaa36bdcd72279b9d9e448",
           "Title": "qs: qs: Denial of Service via improper input validation in array parsing",
           "Description": "Improper Input Validation vulnerability in qs (parse modules) allows HTTP DoS.This issue affects qs: \u003c 6.14.1.\n\n\nSummary\n\nThe arrayLimit option in qs did not enforce limits for bracket notation (a[]=1\u0026a[]=2), only for indexed notation (a[0]=1). This is a consistency bug; arrayLimit should apply uniformly across all array notations.\n\nNote: The default parameterLimit of 1000 effectively mitigates the DoS scenario originally described. With default options, bracket notation cannot produce arrays larger than parameterLimit regardless of arrayLimit, because each a[]=valueconsumes one parameter slot. The severity has been reduced accordingly.\n\nDetails\n\nThe arrayLimit option only checked limits for indexed notation (a[0]=1\u0026a[1]=2) but did not enforce it for bracket notation (a[]=1\u0026a[]=2).\n\nVulnerable code (lib/parse.js:159-162):\n\nif (root === '[]' \u0026\u0026 options.parseArrays) {\n    obj = utils.combine([], leaf);  // No arrayLimit check\n}\n\n\n\n\n\nWorking code (lib/parse.js:175):\n\nelse if (index \u003c= options.arrayLimit) {  // Limit checked here\n    obj = [];\n    obj[index] = leaf;\n}\n\n\n\n\n\nThe bracket notation handler at line 159 uses utils.combine([], leaf) without validating against options.arrayLimit, while indexed notation at line 175 checks index \u003c= options.arrayLimit before creating arrays.\n\n\n\nPoC\n\nconst qs = require('qs');\nconst result = qs.parse('a[]=1\u0026a[]=2\u0026a[]=3\u0026a[]=4\u0026a[]=5\u0026a[]=6', { arrayLimit: 5 });\nconsole.log(result.a.length);  // Output: 6 (should be max 5)\n\n\n\n\n\nNote on parameterLimit interaction: The original advisory's \"DoS demonstration\" claimed a length of 10,000, but parameterLimit (default: 1000) caps parsing to 1,000 parameters. With default options, the actual output is 1,000, not 10,000.\n\nImpact\n\nConsistency bug in arrayLimit enforcement. With default parameterLimit, the practical DoS risk is negligible since parameterLimit already caps the total number of parsed parameters (and thus array elements from bracket notation). The risk increases only when parameterLimit is explicitly set to a very high value.",
-          "Severity": "HIGH",
+          "Severity": "MEDIUM",
           "CweIDs": [
             "CWE-20"
           ],
           "VendorSeverity": {
-            "ghsa": 3,
+            "ghsa": 2,
             "redhat": 3
           },
           "CVSS": {
             "ghsa": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
-              "V3Score": 7.5,
-              "V40Score": 8.7
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:L",
+              "V3Score": 3.7,
+              "V40Score": 6.3
             },
             "redhat": {
               "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
