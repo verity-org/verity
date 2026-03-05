@@ -1,11 +1,10 @@
 ---
 import { catalog } from "../lib/catalog";
+import { totalImages, totalCategories, copaCount, integerCount } from "../data/full-catalog";
 import CopyButton from "./CopyButton.astro";
 
-const { summary } = catalog;
 const base = import.meta.env.BASE_URL;
 
-// Pick the first image with vulns fixed for the example, otherwise just the first image
 const exampleImage =
   catalog.images?.find((img) => img.beforeVulns.total - img.afterVulns.total > 0) ??
   catalog.images?.[0];
@@ -14,10 +13,8 @@ const exampleRef =
 ---
 
 <div class="mb-12">
-  <!-- Title -->
   <h1 class="text-4xl font-bold mb-6 tracking-[0.3em]">VERITY</h1>
 
-  <!-- Problem + value prop — the lead -->
   <div class="bg-verity-surface border-l-4 border-verity-nucleus rounded-r-lg p-6 mb-8">
     <p class="text-verity-text-primary text-base leading-relaxed mb-3">
       Container images ship with packages — OS and application-level — that accumulate CVEs daily.
@@ -33,31 +30,34 @@ const exampleRef =
     </p>
   </div>
 
-  <!-- Stats -->
-  <div class="grid grid-cols-3 gap-4 mb-10">
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
     <div
       class="bg-verity-surface border border-verity-border rounded-lg p-4 text-center hover:border-verity-orbit transition-colors"
     >
-      <div class="text-2xl font-bold text-verity-text-primary">{summary.totalImages}</div>
+      <div class="text-2xl font-bold text-verity-text-primary">{totalImages}</div>
       <div class="text-sm text-verity-text-secondary tracking-wider uppercase">Images</div>
     </div>
     <div
       class="bg-verity-surface border border-verity-border rounded-lg p-4 text-center hover:border-verity-orbit transition-colors"
     >
-      <div class="text-2xl font-bold text-verity-text-primary">{summary.totalVulnsBefore}</div>
-      <div class="text-sm text-verity-text-secondary tracking-wider uppercase">Vulns Found</div>
+      <div class="text-2xl font-bold text-verity-text-primary">{totalCategories}</div>
+      <div class="text-sm text-verity-text-secondary tracking-wider uppercase">Categories</div>
+    </div>
+    <div
+      class="bg-verity-surface border border-verity-border rounded-lg p-4 text-center hover:border-verity-orbit transition-colors"
+    >
+      <div class="text-lg font-bold text-verity-text-primary">amd64 + arm64</div>
+      <div class="text-sm text-verity-text-secondary tracking-wider uppercase">Platforms</div>
     </div>
     <div
       class="bg-verity-surface border border-verity-nucleus rounded-lg p-4 text-center hover:border-verity-teal-light transition-colors"
     >
-      <div class="text-2xl font-bold text-verity-nucleus">{summary.fixedVulns}</div>
-      <div class="text-sm text-verity-nucleus tracking-wider uppercase opacity-80">Fixed</div>
+      <div class="text-2xl font-bold text-verity-nucleus">FIPS</div>
+      <div class="text-sm text-verity-nucleus tracking-wider uppercase opacity-80">Available</div>
     </div>
   </div>
 
-  <!-- How it works + Quick start side by side -->
   <div class="grid md:grid-cols-2 gap-6 mb-4">
-    <!-- Pipeline -->
     <div class="bg-verity-surface border border-verity-border rounded-lg p-5">
       <h2 class="text-sm font-semibold text-verity-text-primary tracking-wider uppercase mb-4">
         How it works
@@ -113,7 +113,6 @@ const exampleRef =
       </div>
     </div>
 
-    <!-- Quick start -->
     <div class="bg-verity-surface border border-verity-border rounded-lg p-5">
       <h2 class="text-sm font-semibold text-verity-text-primary tracking-wider uppercase mb-4">
         Use a patched image
@@ -138,5 +137,15 @@ const exampleRef =
         </a>
       </div>
     </div>
+  </div>
+
+  <div
+    class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-6 text-xs text-verity-text-muted"
+  >
+    <span>{copaCount} Copa-patched upstream images</span>
+    <span class="text-verity-border">|</span>
+    <span>{integerCount} zero-CVE Wolfi-built images</span>
+    <span class="text-verity-border">|</span>
+    <span>cosign signed + SLSA L3 + CycloneDX SBOM</span>
   </div>
 </div>
