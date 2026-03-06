@@ -196,3 +196,35 @@ func TestNewClientWithHTTP(t *testing.T) {
 		t.Errorf("baseURL = %q, want %q", client.baseURL, "https://custom.api")
 	}
 }
+
+func TestNewClient(t *testing.T) {
+	client := NewClient()
+	if client == nil {
+		t.Fatal("NewClient() returned nil")
+	}
+	if client.baseURL != BaseURL {
+		t.Errorf("baseURL = %q, want %q", client.baseURL, BaseURL)
+	}
+}
+
+func TestCycle_IsEOL(t *testing.T) {
+	tests := []struct {
+		name string
+		eol  any
+		want bool
+	}{
+		{"past date is EOL", "2020-01-01", true},
+		{"future date is not EOL", "2099-12-31", false},
+		{"false bool is not EOL", false, false},
+		{"nil is not EOL", nil, false},
+		{"invalid date is not EOL", "not-a-date", false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			c := Cycle{EOL: tt.eol}
+			if got := c.IsEOL(); got != tt.want {
+				t.Errorf("IsEOL() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

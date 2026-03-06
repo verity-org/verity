@@ -259,3 +259,77 @@ func TestGenerateSiteData_FallbackWithoutReportsDir(t *testing.T) {
 		t.Errorf("wrong patched ref: %s", img.PatchedRef)
 	}
 }
+
+func TestMergeIntegerCatalog_EmptyPath(t *testing.T) {
+	sd := &SiteData{}
+	if err := MergeIntegerCatalog(sd, ""); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if sd.IntegerImages != nil {
+		t.Error("expected nil IntegerImages for empty path")
+	}
+}
+
+func TestMergeIntegerCatalog_MissingFile(t *testing.T) {
+	sd := &SiteData{}
+	if err := MergeIntegerCatalog(sd, "/nonexistent/catalog.json"); err != nil {
+		t.Fatalf("unexpected error for missing file: %v", err)
+	}
+	if sd.IntegerImages != nil {
+		t.Error("expected nil IntegerImages for missing file")
+	}
+}
+
+func TestMergeIntegerCatalog_ValidFile(t *testing.T) {
+	dir := t.TempDir()
+	catPath := filepath.Join(dir, "catalog.json")
+	data := `{"images":[{"name":"node","description":"Node.js"}]}`
+	if err := os.WriteFile(catPath, []byte(data), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+
+	sd := &SiteData{}
+	if err := MergeIntegerCatalog(sd, catPath); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if len(sd.IntegerImages) != 1 {
+		t.Fatalf("expected 1 image, got %d", len(sd.IntegerImages))
+	}
+	if sd.IntegerImages[0].Name != "node" {
+		t.Errorf("expected name 'node', got %q", sd.IntegerImages[0].Name)
+	}
+}
+
+func TestMergeIntegerCatalog_MalformedJSON(t *testing.T) {
+	dir := t.TempDir()
+	catPath := filepath.Join(dir, "catalog.json")
+	if err := os.WriteFile(catPath, []byte("{bad json"), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+
+	sd := &SiteData{}
+	err := MergeIntegerCatalog(sd, catPath)
+	if err == nil {
+		t.Fatal("expected error for malformed JSON")
+	}
+}
+
+func TestImageReference(t *testing.T) {
+	tests := []struct {
+		name string
+		img  Image
+		want string
+	}{
+		{"repo only", Image{Repository: "nginx"}, "nginx"},
+		{"registry and repo", Image{Registry: "docker.io", Repository: "library/nginx"}, "docker.io/library/nginx"},
+		{"repo and tag", Image{Repository: "nginx", Tag: "1.27"}, "nginx:1.27"},
+		{"full ref", Image{Registry: "ghcr.io", Repository: "verity-org/nginx", Tag: "latest"}, "ghcr.io/verity-org/nginx:latest"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.img.Reference(); got != tt.want {
+				t.Errorf("Reference() = %q, want %q", got, tt.want)
+			}
+		})
+	}
+}

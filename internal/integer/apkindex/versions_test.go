@@ -94,3 +94,23 @@ func TestDiscoverVersions_EmptyPackages(t *testing.T) {
 	got := apkindex.DiscoverVersions(nil, "nodejs-{{version}}")
 	assert.Empty(t, got)
 }
+
+func TestVersionLess(t *testing.T) {
+	tests := []struct {
+		a, b string
+		want bool
+	}{
+		{"1.9", "1.10", true},
+		{"1.10", "1.9", false},
+		{"20", "22", true},
+		{"22", "20", false},
+		{"1.0", "1.0", false},
+		{"3.12", "3.13", true},
+		{"3.13", "3.12", false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.a+"_vs_"+tt.b, func(t *testing.T) {
+			assert.Equal(t, tt.want, apkindex.VersionLess(tt.a, tt.b))
+		})
+	}
+}
