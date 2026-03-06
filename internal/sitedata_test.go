@@ -259,3 +259,164 @@ func TestGenerateSiteData_FallbackWithoutReportsDir(t *testing.T) {
 		t.Errorf("wrong patched ref: %s", img.PatchedRef)
 	}
 }
+
+func TestMergeIntegerCatalog_EmptyPath(t *testing.T) {
+	sd := &SiteData{}
+	if err := MergeIntegerCatalog(sd, ""); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if sd.IntegerImages != nil {
+		t.Error("expected nil IntegerImages for empty path")
+	}
+}
+
+func TestMergeIntegerCatalog_MissingFile(t *testing.T) {
+	sd := &SiteData{}
+	if err := MergeIntegerCatalog(sd, "/nonexistent/catalog.json"); err != nil {
+		t.Fatalf("unexpected error for missing file: %v", err)
+	}
+	if sd.IntegerImages != nil {
+		t.Error("expected nil IntegerImages for missing file")
+	}
+}
+
+func TestMergeIntegerCatalog_ValidFile(t *testing.T) {
+	dir := t.TempDir()
+	catPath := filepath.Join(dir, "catalog.json")
+	data := `{"images":[{"name":"node","description":"Node.js"}]}`
+	if err := os.WriteFile(catPath, []byte(data), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+
+	sd := &SiteData{}
+	if err := MergeIntegerCatalog(sd, catPath); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if len(sd.IntegerImages) != 1 {
+		t.Fatalf("expected 1 image, got %d", len(sd.IntegerImages))
+	}
+	if sd.IntegerImages[0].Name != "node" {
+		t.Errorf("expected name 'node', got %q", sd.IntegerImages[0].Name)
+	}
+}
+
+func TestMergeIntegerCatalog_MalformedJSON(t *testing.T) {
+	dir := t.TempDir()
+	catPath := filepath.Join(dir, "catalog.json")
+	if err := os.WriteFile(catPath, []byte("{bad json"), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+
+	sd := &SiteData{}
+	err := MergeIntegerCatalog(sd, catPath)
+	if err == nil {
+		t.Fatal("expected error for malformed JSON")
+	}
+}
+
+func TestApplyPostPatchReport_MissingFile(t *testing.T) {
+	si := &SiteImage{OriginalRef: "nginx:1.27"}
+	applyPostPatchReport(si, "/nonexistent/report.json")
+	if si.AfterVulns.Total != 0 {
+		t.Errorf("expected zero after vulns for missing file, got %d", si.AfterVulns.Total)
+	}
+}
+
+func TestApplyPostPatchReport_MalformedJSON(t *testing.T) {
+	dir := t.TempDir()
+	reportPath := filepath.Join(dir, "report.json")
+	if err := os.WriteFile(reportPath, []byte("{bad"), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+	si := &SiteImage{OriginalRef: "nginx:1.27"}
+	applyPostPatchReport(si, reportPath)
+	if si.AfterVulns.Total != 0 {
+		t.Errorf("expected zero after vulns for malformed JSON, got %d", si.AfterVulns.Total)
+	}
+}
+
+func TestApplyPostPatchReport_ValidReport(t *testing.T) {
+	dir := t.TempDir()
+	reportPath := filepath.Join(dir, "report.json")
+	report := `{
+		"Metadata": {"OS": {"Family": "wolfi", "Name": "20230201"}},
+		"Results": [{
+			"Vulnerabilities": [
+				{"VulnerabilityID": "CVE-2024-0001", "PkgName": "openssl", "Severity": "HIGH", "InstalledVersion": "3.2.0", "FixedVersion": "3.2.1", "Title": "test vuln"}
+			]
+		}]
+	}`
+	if err := os.WriteFile(reportPath, []byte(report), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+	si := &SiteImage{OriginalRef: "nginx:1.27"}
+	applyPostPatchReport(si, reportPath)
+	if si.AfterVulns.Total != 1 {
+		t.Errorf("expected 1 after vuln, got %d", si.AfterVulns.Total)
+	}
+	if si.AfterVulns.SeverityCounts["HIGH"] != 1 {
+		t.Errorf("expected 1 HIGH severity, got %d", si.AfterVulns.SeverityCounts["HIGH"])
+	}
+	if len(si.Vulnerabilities) != 1 {
+		t.Fatalf("expected 1 vulnerability, got %d", len(si.Vulnerabilities))
+	}
+	if si.Vulnerabilities[0].ID != "CVE-2024-0001" {
+		t.Errorf("expected CVE-2024-0001, got %s", si.Vulnerabilities[0].ID)
+	}
+}
+
+func TestOsInfo(t *testing.T) {
+	tests := []struct {
+		name   string
+		report trivyReportFull
+		want   string
+	}{
+		{"empty", trivyReportFull{}, ""},
+		{"family only", func() trivyReportFull {
+			r := trivyReportFull{}
+			r.Metadata.OS.Family = "wolfi"
+			return r
+		}(), "wolfi"},
+		{"family and name", func() trivyReportFull {
+			r := trivyReportFull{}
+			r.Metadata.OS.Family = "debian"
+			r.Metadata.OS.Name = "12"
+			return r
+		}(), "debian 12"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := osInfo(&tt.report); got != tt.want {
+				t.Errorf("osInfo() = %q, want %q", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestExtractVulns_Empty(t *testing.T) {
+	report := &trivyReportFull{}
+	vulns := extractVulns(report)
+	if len(vulns) != 0 {
+		t.Errorf("expected 0 vulns, got %d", len(vulns))
+	}
+}
+
+func TestImageReference(t *testing.T) {
+	tests := []struct {
+		name string
+		img  Image
+		want string
+	}{
+		{"repo only", Image{Repository: "nginx"}, "nginx"},
+		{"registry and repo", Image{Registry: "docker.io", Repository: "library/nginx"}, "docker.io/library/nginx"},
+		{"repo and tag", Image{Repository: "nginx", Tag: "1.27"}, "nginx:1.27"},
+		{"full ref", Image{Registry: "ghcr.io", Repository: "verity-org/nginx", Tag: "latest"}, "ghcr.io/verity-org/nginx:latest"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.img.Reference(); got != tt.want {
+				t.Errorf("Reference() = %q, want %q", got, tt.want)
+			}
+		})
+	}
+}

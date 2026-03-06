@@ -1,11 +1,31 @@
-# Go binary
+# Go binaries
 verity
+/integer
 
 # Temp
 tmp/
 
 # Verity discover/patch artifacts
 .verity/
+
+# Generated apko configs (produced by `integer discover --gen-dir`)
+/gen/
+
+# Built image tarballs (produced by `make build-all`)
+/out/
+
+# Test coverage
+coverage.out
+coverage.html
+
+# apko lock files — not committed; integer builds always use latest Wolfi packages
+*.lock.yaml
+
+# melange signing keys (generated per-build, never commit private keys)
+packages/**/melange.rsa
+
+# apko-generated SBOM files (produced at build time)
+sbom-*.spdx.json
 
 # Trivy vulnerability reports (stored in OCI, not git)
 reports/*.json
@@ -14,7 +34,11 @@ reports/*.json
 site/node_modules/
 site/dist/
 site/.astro/
+site/src/data/integer-catalog.json
 
 # act (local GitHub Actions testing)
 .secrets
 .claude
+
+# macOS
+.DS_Store

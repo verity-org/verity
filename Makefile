@@ -1,4 +1,4 @@
-.PHONY: help build test test-coverage lint lint-vuln lint-workflows lint-yaml lint-shell lint-markdown lint-frontend fmt-frontend check-frontend clean install-tools quality up down
+.PHONY: help build test test-coverage lint lint-vuln lint-workflows lint-yaml lint-shell lint-markdown lint-frontend fmt-frontend check-frontend integer-validate integer-gen integer-build-all clean install-tools quality up down
 
 # Default target
 help:
@@ -72,8 +72,36 @@ fmt-frontend:
 check-frontend:
 	cd site && npx prettier --check "src/**/*.{js,ts,astro,css,json,md}"
 
+# ── Integer (Image Configuration) Targets ────────────────────────────────
+
+# Validate all image configs (schema + file existence)
+integer-validate: build
+	./verity integer validate
+
+# Generate all apko configs into ./gen/ (fast — no apko required)
+integer-gen: build
+	./verity integer discover --gen-dir ./gen
+	@echo "✓ Generated apko configs → gen/"
+
+# Build all image variants locally with apko (amd64 only, no push)
+# Runs apko for each of the 173+ variants — takes a long time.
+# Narrow scope with: IMAGE=node make integer-build-all
+integer-build-all: build
+	@which apko > /dev/null || (echo "apko not found. Run: make install-tools" && exit 1)
+	./verity integer discover --gen-dir ./gen | \
+	  jq -r '.[] | [.name, .version, .type] | @tsv' | \
+	  $(if $(IMAGE),grep "^$(IMAGE)	",cat) | \
+	  while IFS=$$'\t' read -r name version type; do \
+	    echo "Building $$name:$$version-$$type..."; \
+	    apko build --arch amd64 \
+	      "gen/$$name/$$version/$$type.apko.yaml" \
+	      "$$name:$$version-$$type" \
+	      /dev/null || exit 1; \
+	  done
+	@echo "✓ All images built"
+
 # Run all quality checks (golangci-lint handles gofumpt, goimports, vet, gosec)
-quality: lint lint-vuln lint-workflows lint-yaml lint-shell lint-markdown check-frontend test
+quality: lint lint-vuln lint-workflows lint-yaml lint-shell lint-markdown check-frontend integer-validate test
 	@echo "✓ All quality checks passed!"
 
 # Clean build artifacts

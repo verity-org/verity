@@ -56,6 +56,34 @@ func TestParseImageRef(t *testing.T) {
 			wantRepository: "myimage",
 			wantTag:        "latest",
 		},
+		{
+			name:           "digest reference",
+			ref:            "ghcr.io/verity-org/nginx@sha256:abc123def",
+			wantRegistry:   "ghcr.io",
+			wantRepository: "verity-org/nginx",
+			wantTag:        "sha256:abc123def",
+		},
+		{
+			name:           "digest with tag — digest takes precedence",
+			ref:            "docker.io/library/nginx:1.27@sha256:abc123",
+			wantRegistry:   "docker.io",
+			wantRepository: "library/nginx:1.27",
+			wantTag:        "sha256:abc123",
+		},
+		{
+			name:           "bare image without registry or tag",
+			ref:            "nginx",
+			wantRegistry:   "",
+			wantRepository: "nginx",
+			wantTag:        "",
+		},
+		{
+			name:           "registry with custom port",
+			ref:            "myregistry.io:8443/myapp:v2",
+			wantRegistry:   "myregistry.io:8443",
+			wantRepository: "myapp",
+			wantTag:        "v2",
+		},
 	}
 
 	for _, tt := range tests {
@@ -166,5 +194,39 @@ func TestParseCopaOutput(t *testing.T) {
 
 	if output.Results[1].Status != "Skipped" {
 		t.Errorf("ParseCopaOutput() result[1].Status = %v, want Skipped", output.Results[1].Status)
+	}
+}
+
+func TestParseCopaOutput_MissingFile(t *testing.T) {
+	_, err := ParseCopaOutput("/nonexistent/copa-output.json")
+	if err == nil {
+		t.Fatal("expected error for missing file, got nil")
+	}
+}
+
+func TestParseCopaOutput_MalformedJSON(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, "copa.json")
+	if err := os.WriteFile(path, []byte("{bad json"), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+	_, err := ParseCopaOutput(path)
+	if err == nil {
+		t.Fatal("expected error for malformed JSON, got nil")
+	}
+}
+
+func TestParseCopaOutput_EmptyResults(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, "copa.json")
+	if err := os.WriteFile(path, []byte(`{"results":[]}`), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+	output, err := ParseCopaOutput(path)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if len(output.Results) != 0 {
+		t.Errorf("expected 0 results, got %d", len(output.Results))
 	}
 }
