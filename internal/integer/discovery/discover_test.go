@@ -156,7 +156,17 @@ func TestDiscoverFromFiles_AutoDiscoverNewVersion(t *testing.T) {
 	require.Len(t, v26, 2)
 	for _, img := range v26 {
 		if img.Type == typeDefault {
-			assert.Equal(t, []string{"26"}, img.Tags)
+			assert.Equal(t, []string{"26", "latest"}, img.Tags)
+		}
+		if img.Type == typeDev {
+			assert.Equal(t, []string{"26-dev", "latest-dev"}, img.Tags)
+		}
+	}
+
+	// Version 24 no longer carries "latest" since 26 is higher.
+	for _, img := range imgs {
+		if img.Version == "24" && img.Type == typeDefault {
+			assert.Equal(t, []string{"24"}, img.Tags)
 		}
 	}
 }

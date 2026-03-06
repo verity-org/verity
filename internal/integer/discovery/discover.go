@@ -91,16 +91,13 @@ func expandImage(def *config.ImageDef, imagesDir, registry string, pkgs []apkind
 		return nil, nil
 	}
 
-	// Determine the base path from the generated file location back to _base/.
-	// Generated files go in genDir/<name>/<version>/<type>.apko.yaml
-	// _base/ is at imagesDir/_base/
-	// We use absolute paths so the include: uses an absolute path.
 	basePath := filepath.Join(imagesDir, "_base")
+	latestVersion := FindLatestVersion(versions)
 
 	var results []DiscoveredImage
 
 	for _, v := range versions {
-		tags := DeriveTags(v, def)
+		tags := DeriveTags(v, latestVersion)
 		for typeName := range def.Types {
 			tmpl := def.Types[typeName]
 
@@ -165,25 +162,33 @@ func ResolveVersions(def *config.ImageDef, pkgs []apkindex.Package) []string {
 	return versions
 }
 
-// DeriveTags returns the base tags for a version. If the version is declared
-// in the versions map, its metadata drives the latest flag; otherwise the
-// version string itself is the only base tag.
-func DeriveTags(version string, def *config.ImageDef) []string {
-	// Check if declared in versions map.
-	if meta, ok := def.Versions[version]; ok {
-		var tags []string
-		tags = append(tags, version)
-		if version == "latest" {
-			// Unversioned image — just "latest".
-			return []string{"latest"}
-		}
-		if meta.Latest {
-			tags = append(tags, "latest")
-		}
-		return tags
+// DeriveTags returns the base tags for a version. The latestVersion parameter
+// specifies which version should carry the "latest" tag (computed dynamically
+// as the highest version by the caller).
+func DeriveTags(version, latestVersion string) []string {
+	if version == "latest" {
+		return []string{"latest"}
 	}
-	// Auto-discovered version without metadata.
-	return []string{version}
+	tags := []string{version}
+	if version == latestVersion {
+		tags = append(tags, "latest")
+	}
+	return tags
+}
+
+// FindLatestVersion returns the highest numeric version from a sorted slice.
+// The literal "latest" sentinel (used by unversioned packages) is skipped when
+// numeric versions are present. Returns empty string if the slice is empty.
+func FindLatestVersion(versions []string) string {
+	if len(versions) == 0 {
+		return ""
+	}
+	for i := len(versions) - 1; i >= 0; i-- {
+		if versions[i] != "latest" {
+			return versions[i]
+		}
+	}
+	return versions[len(versions)-1]
 }
 
 // ApplyTypeSuffix appends "-<type>" to each tag for non-default types.

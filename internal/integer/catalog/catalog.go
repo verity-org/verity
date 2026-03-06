@@ -126,7 +126,6 @@ func buildImage(def *config.ImageDef, registry, reportsDir string, pkgs []apkind
 	versions := discovery.ResolveVersions(def, pkgs)
 
 	for _, v := range versions {
-		tags := discovery.DeriveTags(v, def)
 		meta := def.Versions[v]
 
 		// Determine EOL: prefer API data, fall back to YAML.
@@ -137,13 +136,13 @@ func buildImage(def *config.ImageDef, registry, reportsDir string, pkgs []apkind
 
 		ver := Version{
 			Version: v,
-			Latest:  meta.Latest,
 			EOL:     eolDate,
 		}
 
 		// Build one variant per type, sorted for determinism.
 		typeNames := sortedKeys(def.Types)
 		for _, typeName := range typeNames {
+			tags := []string{v}
 			typeTags := discovery.ApplyTypeSuffix(tags, typeName)
 			if len(typeTags) == 0 {
 				continue
@@ -169,6 +168,21 @@ func buildImage(def *config.ImageDef, registry, reportsDir string, pkgs []apkind
 		img.Versions = append(img.Versions, ver)
 	}
 
+	latestIdx := findLatestVersion(img.Versions)
+	if latestIdx >= 0 {
+		img.Versions[latestIdx].Latest = true
+		if img.Versions[latestIdx].Version != "latest" {
+			for i := range img.Versions[latestIdx].Variants {
+				v := &img.Versions[latestIdx].Variants[i]
+				latestTag := "latest"
+				if v.Type != "default" {
+					latestTag = "latest-" + v.Type
+				}
+				v.Tags = append(v.Tags, latestTag)
+			}
+		}
+	}
+
 	return img, nil
 }
 
@@ -191,4 +205,40 @@ func sortedKeys(m map[string]config.TypeTemplate) []string {
 	}
 	sort.Strings(keys)
 	return keys
+}
+
+// findLatestVersion returns the index of the highest non-EOL version.
+// If all versions are EOL, the highest version wins.
+// Returns -1 if versions is empty.
+func findLatestVersion(versions []Version) int {
+	if len(versions) == 0 {
+		return -1
+	}
+
+	bestNonEOL := -1
+	bestOverall := 0
+	for i, v := range versions {
+		if i > 0 && apkindex.VersionLess(versions[bestOverall].Version, v.Version) {
+			bestOverall = i
+		}
+		if !isEOL(v.EOL) && (bestNonEOL < 0 || apkindex.VersionLess(versions[bestNonEOL].Version, v.Version)) {
+			bestNonEOL = i
+		}
+	}
+
+	if bestNonEOL >= 0 {
+		return bestNonEOL
+	}
+	return bestOverall
+}
+
+func isEOL(eolDate string) bool {
+	if eolDate == "" {
+		return false
+	}
+	t, err := time.Parse("2006-01-02", eolDate)
+	if err != nil {
+		return false
+	}
+	return time.Now().After(t)
 }
