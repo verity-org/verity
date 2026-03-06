@@ -1,6 +1,7 @@
 package discovery
 
 import (
+	"errors"
 	"testing"
 
 	"github.com/verity-org/verity/internal/config"
@@ -87,6 +88,110 @@ func TestHelmTemplateArgs(t *testing.T) {
 				if g != tc.want[i] {
 					t.Errorf("helmTemplateArgs()[%d] = %q, want %q", i, g, tc.want[i])
 				}
+			}
+		})
+	}
+}
+
+func TestValidateChartSpec(t *testing.T) {
+	tests := []struct {
+		name    string
+		chart   config.ChartSpec
+		wantErr error
+	}{
+		{
+			name:    "valid OCI chart",
+			chart:   config.ChartSpec{Name: "prometheus", Version: "28.9.1", Repository: "oci://ghcr.io/charts"},
+			wantErr: nil,
+		},
+		{
+			name:    "valid HTTPS chart",
+			chart:   config.ChartSpec{Name: "grafana", Version: "8.0.0", Repository: "https://grafana.github.io/helm-charts"},
+			wantErr: nil,
+		},
+		{
+			name:    "valid HTTP chart",
+			chart:   config.ChartSpec{Name: "myapp", Version: "1.0.0", Repository: "http://charts.example.com"},
+			wantErr: nil,
+		},
+		{
+			name:    "injection via name with dash-dash",
+			chart:   config.ChartSpec{Name: "--set-file", Version: "1.0", Repository: "oci://ghcr.io/charts"},
+			wantErr: ErrInvalidChartName,
+		},
+		{
+			name:    "injection via name with single dash",
+			chart:   config.ChartSpec{Name: "-n", Version: "1.0", Repository: "oci://ghcr.io/charts"},
+			wantErr: ErrInvalidChartName,
+		},
+		{
+			name:    "injection via version with dash-dash",
+			chart:   config.ChartSpec{Name: "app", Version: "--post-renderer", Repository: "oci://ghcr.io/charts"},
+			wantErr: ErrInvalidChartVersion,
+		},
+		{
+			name:    "injection via version with single dash",
+			chart:   config.ChartSpec{Name: "app", Version: "-x", Repository: "oci://ghcr.io/charts"},
+			wantErr: ErrInvalidChartVersion,
+		},
+		{
+			name:    "invalid repo scheme file://",
+			chart:   config.ChartSpec{Name: "app", Version: "1.0", Repository: "file:///etc/passwd"},
+			wantErr: ErrInvalidChartRepo,
+		},
+		{
+			name:    "invalid repo empty",
+			chart:   config.ChartSpec{Name: "app", Version: "1.0", Repository: ""},
+			wantErr: ErrInvalidChartRepo,
+		},
+		{
+			name:    "invalid repo bare path",
+			chart:   config.ChartSpec{Name: "app", Version: "1.0", Repository: "/tmp/evil"},
+			wantErr: ErrInvalidChartRepo,
+		},
+		{
+			name:    "invalid repo ftp",
+			chart:   config.ChartSpec{Name: "app", Version: "1.0", Repository: "ftp://evil.com"},
+			wantErr: ErrInvalidChartRepo,
+		},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			err := validateChartSpec(tc.chart)
+			if tc.wantErr == nil {
+				if err != nil {
+					t.Fatalf("validateChartSpec() unexpected error: %v", err)
+				}
+				return
+			}
+			if err == nil {
+				t.Fatalf("validateChartSpec() expected error wrapping %v, got nil", tc.wantErr)
+			}
+			if !errors.Is(err, tc.wantErr) {
+				t.Errorf("validateChartSpec() error = %v, want %v", err, tc.wantErr)
+			}
+		})
+	}
+}
+
+func TestSplitRef(t *testing.T) {
+	tests := []struct {
+		ref      string
+		wantName string
+		wantTag  string
+	}{
+		{"docker.io/foo/bar:1.0-alpine", "docker.io/foo/bar", "1.0-alpine"},
+		{"nginx:latest", "nginx", "latest"},
+		{"ghcr.io/verity-org/nginx", "ghcr.io/verity-org/nginx", ""},
+		{"localhost:5000/myimage:v1", "localhost:5000/myimage", "v1"},
+		{"registry.example.com:8080/repo:tag", "registry.example.com:8080/repo", "tag"},
+		{"simple", "simple", ""},
+	}
+	for _, tc := range tests {
+		t.Run(tc.ref, func(t *testing.T) {
+			name, tag := splitRef(tc.ref)
+			if name != tc.wantName || tag != tc.wantTag {
+				t.Errorf("splitRef(%q) = (%q, %q), want (%q, %q)", tc.ref, name, tag, tc.wantName, tc.wantTag)
 			}
 		})
 	}

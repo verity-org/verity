@@ -314,6 +314,93 @@ func TestMergeIntegerCatalog_MalformedJSON(t *testing.T) {
 	}
 }
 
+func TestApplyPostPatchReport_MissingFile(t *testing.T) {
+	si := &SiteImage{OriginalRef: "nginx:1.27"}
+	applyPostPatchReport(si, "/nonexistent/report.json")
+	if si.AfterVulns.Total != 0 {
+		t.Errorf("expected zero after vulns for missing file, got %d", si.AfterVulns.Total)
+	}
+}
+
+func TestApplyPostPatchReport_MalformedJSON(t *testing.T) {
+	dir := t.TempDir()
+	reportPath := filepath.Join(dir, "report.json")
+	if err := os.WriteFile(reportPath, []byte("{bad"), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+	si := &SiteImage{OriginalRef: "nginx:1.27"}
+	applyPostPatchReport(si, reportPath)
+	if si.AfterVulns.Total != 0 {
+		t.Errorf("expected zero after vulns for malformed JSON, got %d", si.AfterVulns.Total)
+	}
+}
+
+func TestApplyPostPatchReport_ValidReport(t *testing.T) {
+	dir := t.TempDir()
+	reportPath := filepath.Join(dir, "report.json")
+	report := `{
+		"Metadata": {"OS": {"Family": "wolfi", "Name": "20230201"}},
+		"Results": [{
+			"Vulnerabilities": [
+				{"VulnerabilityID": "CVE-2024-0001", "PkgName": "openssl", "Severity": "HIGH", "InstalledVersion": "3.2.0", "FixedVersion": "3.2.1", "Title": "test vuln"}
+			]
+		}]
+	}`
+	if err := os.WriteFile(reportPath, []byte(report), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+	si := &SiteImage{OriginalRef: "nginx:1.27"}
+	applyPostPatchReport(si, reportPath)
+	if si.AfterVulns.Total != 1 {
+		t.Errorf("expected 1 after vuln, got %d", si.AfterVulns.Total)
+	}
+	if si.AfterVulns.SeverityCounts["HIGH"] != 1 {
+		t.Errorf("expected 1 HIGH severity, got %d", si.AfterVulns.SeverityCounts["HIGH"])
+	}
+	if len(si.Vulnerabilities) != 1 {
+		t.Fatalf("expected 1 vulnerability, got %d", len(si.Vulnerabilities))
+	}
+	if si.Vulnerabilities[0].ID != "CVE-2024-0001" {
+		t.Errorf("expected CVE-2024-0001, got %s", si.Vulnerabilities[0].ID)
+	}
+}
+
+func TestOsInfo(t *testing.T) {
+	tests := []struct {
+		name   string
+		report trivyReportFull
+		want   string
+	}{
+		{"empty", trivyReportFull{}, ""},
+		{"family only", func() trivyReportFull {
+			r := trivyReportFull{}
+			r.Metadata.OS.Family = "wolfi"
+			return r
+		}(), "wolfi"},
+		{"family and name", func() trivyReportFull {
+			r := trivyReportFull{}
+			r.Metadata.OS.Family = "debian"
+			r.Metadata.OS.Name = "12"
+			return r
+		}(), "debian 12"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := osInfo(&tt.report); got != tt.want {
+				t.Errorf("osInfo() = %q, want %q", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestExtractVulns_Empty(t *testing.T) {
+	report := &trivyReportFull{}
+	vulns := extractVulns(report)
+	if len(vulns) != 0 {
+		t.Errorf("expected 0 vulns, got %d", len(vulns))
+	}
+}
+
 func TestImageReference(t *testing.T) {
 	tests := []struct {
 		name string

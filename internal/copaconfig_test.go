@@ -168,3 +168,89 @@ func TestParseCopaOutput(t *testing.T) {
 		t.Errorf("ParseCopaOutput() result[1].Status = %v, want Skipped", output.Results[1].Status)
 	}
 }
+
+func TestParseCopaOutput_MissingFile(t *testing.T) {
+	_, err := ParseCopaOutput("/nonexistent/copa-output.json")
+	if err == nil {
+		t.Fatal("expected error for missing file, got nil")
+	}
+}
+
+func TestParseCopaOutput_MalformedJSON(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, "copa.json")
+	if err := os.WriteFile(path, []byte("{bad json"), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+	_, err := ParseCopaOutput(path)
+	if err == nil {
+		t.Fatal("expected error for malformed JSON, got nil")
+	}
+}
+
+func TestParseCopaOutput_EmptyResults(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, "copa.json")
+	if err := os.WriteFile(path, []byte(`{"results":[]}`), 0o644); err != nil {
+		t.Fatalf("write: %v", err)
+	}
+	output, err := ParseCopaOutput(path)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if len(output.Results) != 0 {
+		t.Errorf("expected 0 results, got %d", len(output.Results))
+	}
+}
+
+func TestParseImageRef_Digest(t *testing.T) {
+	registry, repository, tag := ParseImageRef("ghcr.io/verity-org/nginx@sha256:abc123def")
+	if registry != "ghcr.io" {
+		t.Errorf("registry = %q, want ghcr.io", registry)
+	}
+	if repository != "verity-org/nginx" {
+		t.Errorf("repository = %q, want verity-org/nginx", repository)
+	}
+	if tag != "sha256:abc123def" {
+		t.Errorf("tag = %q, want sha256:abc123def", tag)
+	}
+}
+
+func TestParseImageRef_DigestWithTag(t *testing.T) {
+	registry, repository, tag := ParseImageRef("docker.io/library/nginx:1.27@sha256:abc123")
+	if registry != "docker.io" {
+		t.Errorf("registry = %q, want docker.io", registry)
+	}
+	if repository != "library/nginx:1.27" {
+		t.Errorf("repository = %q, want library/nginx:1.27", repository)
+	}
+	if tag != "sha256:abc123" {
+		t.Errorf("tag = %q, want sha256:abc123", tag)
+	}
+}
+
+func TestParseImageRef_BareImage(t *testing.T) {
+	registry, repository, tag := ParseImageRef("nginx")
+	if registry != "" {
+		t.Errorf("registry = %q, want empty", registry)
+	}
+	if repository != "nginx" {
+		t.Errorf("repository = %q, want nginx", repository)
+	}
+	if tag != "" {
+		t.Errorf("tag = %q, want empty", tag)
+	}
+}
+
+func TestParseImageRef_RegistryWithPort(t *testing.T) {
+	registry, repository, tag := ParseImageRef("myregistry.io:8443/myapp:v2")
+	if registry != "myregistry.io:8443" {
+		t.Errorf("registry = %q, want myregistry.io:8443", registry)
+	}
+	if repository != "myapp" {
+		t.Errorf("repository = %q, want myapp", repository)
+	}
+	if tag != "v2" {
+		t.Errorf("tag = %q, want v2", tag)
+	}
+}
