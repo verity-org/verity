@@ -235,7 +235,7 @@ const sortedVersions = integerData ? sortVersionsLatestFirst(integerData.version
               d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <span class="text-sm font-medium text-green-400">Zero-CVE Image</span>
+          <span class="text-sm font-medium text-green-400">Wolfi-Based Image</span>
         </div>
         <p class="text-sm text-verity-text-secondary">
           Built from scratch using
@@ -248,7 +248,7 @@ const sortedVersions = integerData ? sortVersionsLatestFirst(integerData.version
             Wolfi
           </a>
           packages. Contains only the minimum packages needed to run — no shell, no package manager,
-          no known CVEs at build time.
+          minimal attack surface by design.
         </p>
       </div>
     ) : (
@@ -304,10 +304,10 @@ const sortedVersions = integerData ? sortVersionsLatestFirst(integerData.version
             />
           </svg>
           <div>
-            <p class="text-sm font-medium text-green-400 mb-1">Zero-CVE Alternative Available</p>
+            <p class="text-sm font-medium text-green-400 mb-1">Wolfi-Based Alternative Available</p>
             <p class="text-sm text-verity-text-secondary">
-              A hardened version of this image built from scratch with Wolfi is available with zero
-              known CVEs.
+              A hardened version of this image built from scratch with Wolfi is available with
+              minimal attack surface.
             </p>
             <a
               href={`${base}catalog/${hardenedEquivalent}/?filter=integer`}
@@ -442,7 +442,7 @@ const sortedVersions = integerData ? sortVersionsLatestFirst(integerData.version
     <div>
       <div class="text-verity-text-muted mb-1">Source</div>
       <div class="text-verity-text-primary">
-        {image.source === "integer" ? "Wolfi (zero-CVE rebuild)" : "Copa (in-place patch)"}
+        {image.source === "integer" ? "Wolfi (from-source rebuild)" : "Copa (in-place patch)"}
       </div>
     </div>
     <div>
