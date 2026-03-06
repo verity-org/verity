@@ -1,63 +1,78 @@
+# All tools are managed by mise — use `language: system` everywhere to avoid
+# version conflicts. Run `mise install` before enabling these hooks.
+#
+# Setup:  pre-commit install
+# Manual: pre-commit run --all-files
+
 repos:
-  # Go formatting
-  - repo: https://github.com/dnephin/pre-commit-golang
-    rev: v0.5.1
-    hooks:
-      - id: go-fmt
-      - id: go-imports
-      - id: go-vet
-      - id: go-unit-tests
-
-  # golangci-lint (use system binary from mise for version consistency)
-  - repo: local
-    hooks:
-      - id: golangci-lint
-        name: golangci-lint
-        entry: golangci-lint
-        language: system
-        types: [go]
-        args: [run, --timeout=5m]
-        pass_filenames: false
-
-  # YAML linting
-  - repo: https://github.com/adrienverge/yamllint
-    rev: v1.35.1
-    hooks:
-      - id: yamllint
-        args: [-c, .yamllint.yml]
-
-  # Shell scripts
-  - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.10.0.1
-    hooks:
-      - id: shellcheck
-        files: \.sh$
-
-  # Trailing whitespace, file endings
+  # ── Basic file hygiene ────────────────────────────────────────────────────
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-merge-conflict
       - id: check-yaml
-        exclude: '^(charts/.*/templates/.*\.yaml|\.github/workflows/.*\.yaml)$'
+        # Exclude GitHub Actions workflows — yamllint covers those with
+        # context-aware rules; check-yaml can trip on ${{ }} expressions.
+        exclude: ^\.github/workflows/
       - id: check-json
       - id: check-added-large-files
         args: [--maxkb=500]
-      - id: check-merge-conflict
       - id: detect-private-key
-      - id: mixed-line-ending
 
-  # actionlint for GitHub Actions
-  - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.5
+  # ── Go ────────────────────────────────────────────────────────────────────
+  - repo: local
+    hooks:
+      - id: golangci-lint
+        name: golangci-lint
+        language: system
+        entry: golangci-lint run --fix --timeout=5m
+        types: [go]
+        pass_filenames: false
+
+  # ── YAML ─────────────────────────────────────────────────────────────────
+  - repo: local
+    hooks:
+      - id: yamllint
+        name: yamllint
+        language: system
+        entry: yamllint -c .yamllint.yml
+        types: [yaml]
+
+  # ── GitHub Actions ────────────────────────────────────────────────────────
+  - repo: local
     hooks:
       - id: actionlint
+        name: actionlint
+        language: system
+        entry: actionlint
+        files: ^\.github/workflows/.*\.ya?ml$
+        pass_filenames: false
+
+  # ── Shell ─────────────────────────────────────────────────────────────────
+  - repo: local
+    hooks:
+      - id: shellcheck
+        name: shellcheck
+        language: system
+        entry: shellcheck
+        files: ^\.github/scripts/.*\.sh$
+
+  # ── Image configs ─────────────────────────────────────────────────────────
+  - repo: local
+    hooks:
+      - id: integer-validate
+        name: integer validate
+        language: system
+        entry: make integer-validate
+        files: ^(images/.*\.ya?ml|integer.yaml)$
+        pass_filenames: false
+
+  # ── Security ──────────────────────────────────────────────────────────────
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.16.3
     hooks:
       - id: gitleaks
-  - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v8.38.0
-    hooks:
-      - id: eslint
