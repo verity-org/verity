@@ -1,7 +1,10 @@
 {
   "SchemaVersion": 2,
-  "ReportID": "019cc180-ebd2-7157-b766-ef5419f327fb",
-  "CreatedAt": "2026-03-06T04:56:17.618089553Z",
+  "Trivy": {
+    "Version": "0.69.2"
+  },
+  "ReportID": "019cc386-009b-7e55-97f6-23c6d8b90c00",
+  "CreatedAt": "2026-03-06T14:21:05.051942261Z",
   "ArtifactID": "sha256:4be2c1d9c710a74a0de76af283e2c315064801d54a73b1e8cee060731d3abaf1",
   "ArtifactName": "ghcr.io/verity-org/cache:calico-node-v3.31.4-patched",
   "ArtifactType": "container_image",
@@ -188,7 +191,7 @@
           "Name": "bash",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/bash@4.4.20-6.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "fa3d68e02bcf7399"
+            "UID": "7bf39e4e53281ed8"
           },
           "Version": "4.4.20",
           "Release": "6.el8_10",
@@ -219,6 +222,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "filesystem@3.8-6.el8.x86_64",
@@ -361,14 +367,15 @@
             "/usr/share/man/man1/unalias.1.gz",
             "/usr/share/man/man1/unset.1.gz",
             "/usr/share/man/man1/wait.1.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "bzip2-libs@1.0.6-28.el8_10.x86_64",
           "Name": "bzip2-libs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/bzip2-libs@1.0.6-28.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "88db589803d4091d"
+            "UID": "9bf78eeb7d3ba336"
           },
           "Version": "1.0.6",
           "Release": "28.el8_10",
@@ -400,6 +407,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
           ],
@@ -416,14 +426,15 @@
             "/usr/lib64/libbz2.so.1.0.6",
             "/usr/share/licenses/bzip2-libs",
             "/usr/share/licenses/bzip2-libs/LICENSE"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "ca-certificates@2025.2.80_v9.0.304-80.2.el8_10.noarch",
           "Name": "ca-certificates",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/ca-certificates@2025.2.80_v9.0.304-80.2.el8_10?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "244992be33d5a40f"
+            "UID": "d6b2199d4b332305"
           },
           "Version": "2025.2.80_v9.0.304",
           "Release": "80.2.el8_10",
@@ -454,6 +465,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -513,14 +527,15 @@
             "/usr/share/pki/ca-trust-source/anchors",
             "/usr/share/pki/ca-trust-source/blacklist",
             "/usr/share/pki/ca-trust-source/ca-bundle.trust.p11-kit"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "conntrack-tools@1.4.4-11.el8.x86_64",
           "Name": "conntrack-tools",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/conntrack-tools@1.4.4-11.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "928433c31ae371a6"
+            "UID": "58768d141946c259"
           },
           "Version": "1.4.4",
           "Release": "11.el8",
@@ -551,6 +566,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -640,14 +658,15 @@
             "/usr/share/man/man8/conntrack.8.gz",
             "/usr/share/man/man8/conntrackd.8.gz",
             "/usr/share/man/man8/nfct.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "coreutils-single@8.30-16.el8_10.x86_64",
           "Name": "coreutils-single",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/coreutils-single@8.30-16.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "aa1a5ad70ad6251a"
+            "UID": "d4ac4380c561b3fa"
           },
           "Version": "8.30",
           "Release": "16.el8_10",
@@ -678,6 +697,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
@@ -805,14 +827,15 @@
             "/usr/sbin/chroot",
             "/usr/share/licenses/coreutils-single",
             "/usr/share/licenses/coreutils-single/COPYING"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "crypto-policies@20230731-1.git3177e06.el8.noarch",
           "Name": "crypto-policies",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/crypto-policies@20230731-1.git3177e06.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "a8f5b683ca0d69fc"
+            "UID": "cf4ead8bc4fcecd3"
           },
           "Version": "20230731",
           "Release": "1.git3177e06.el8",
@@ -843,6 +866,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
@@ -997,14 +1023,15 @@
             "/usr/share/licenses/crypto-policies",
             "/usr/share/licenses/crypto-policies/COPYING.LESSER",
             "/usr/share/man/man7/crypto-policies.7.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "cryptsetup-libs@2.3.7-7.el8.x86_64",
           "Name": "cryptsetup-libs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/cryptsetup-libs@2.3.7-7.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "e74a08b8881521f5"
+            "UID": "431fb7b296eb836f"
           },
           "Version": "2.3.7",
           "Release": "7.el8",
@@ -1035,6 +1062,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
@@ -1074,14 +1104,15 @@
             "/usr/share/locale/uk/LC_MESSAGES/cryptsetup.mo",
             "/usr/share/locale/vi/LC_MESSAGES/cryptsetup.mo",
             "/usr/share/locale/zh_CN/LC_MESSAGES/cryptsetup.mo"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "elfutils-libelf@0.190-2.el8.x86_64",
           "Name": "elfutils-libelf",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/elfutils-libelf@0.190-2.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ce023bfc4d26e92c"
+            "UID": "2e930efd193a66ae"
           },
           "Version": "0.190",
           "Release": "2.el8",
@@ -1113,6 +1144,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "bzip2-libs@1.0.6-28.el8_10.x86_64",
             "glibc@2.28-251.el8_10.27.x86_64",
@@ -1141,14 +1175,15 @@
             "/usr/share/locale/ja/LC_MESSAGES/elfutils.mo",
             "/usr/share/locale/pl/LC_MESSAGES/elfutils.mo",
             "/usr/share/locale/uk/LC_MESSAGES/elfutils.mo"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "filesystem@3.8-6.el8.x86_64",
           "Name": "filesystem",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/filesystem@3.8-6.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "bd6fe7e9a676b518"
+            "UID": "c9a7a80e13f27549"
           },
           "Version": "3.8",
           "Release": "6.el8",
@@ -1179,6 +1214,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -18451,14 +18489,15 @@
             "/var/spool/mail",
             "/var/tmp",
             "/var/yp"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "findutils@4.6.0-24.el8_10.x86_64",
           "Name": "findutils",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/findutils@4.6.0-24.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "dfa03ea5b320b87"
+            "UID": "4e07811f528a5121"
           },
           "Version": "4.6.0",
           "Release": "24.el8_10",
@@ -18491,6 +18530,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -18564,14 +18606,15 @@
             "/usr/share/locale/zh_TW/LC_MESSAGES/findutils.mo",
             "/usr/share/man/man1/find.1.gz",
             "/usr/share/man/man1/xargs.1.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "glibc@2.28-251.el8_10.27.x86_64",
           "Name": "glibc",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/glibc@2.28-251.el8_10.27?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "f6baf917307fd52e"
+            "UID": "8afdd7deb8974d81"
           },
           "Version": "2.28",
           "Release": "251.el8_10.27",
@@ -18602,6 +18645,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "glibc-common@2.28-251.el8_10.27.x86_64",
@@ -18739,14 +18785,15 @@
             "/usr/share/licenses/glibc/LICENSES",
             "/var/cache/ldconfig",
             "/var/cache/ldconfig/aux-cache"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "glibc-common@2.28-251.el8_10.27.x86_64",
           "Name": "glibc-common",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/glibc-common@2.28-251.el8_10.27?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "25e6fbb968481365"
+            "UID": "3eebd47e1f7154ef"
           },
           "Version": "2.28",
           "Release": "251.el8_10.27",
@@ -18777,6 +18824,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -18844,14 +18894,15 @@
             "/usr/share/i18n/charmaps",
             "/usr/share/i18n/locales",
             "/usr/share/locale/locale.alias"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "glibc-minimal-langpack@2.28-251.el8_10.27.x86_64",
           "Name": "glibc-minimal-langpack",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-251.el8_10.27?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "402a1f95d94c0c69"
+            "UID": "e63246d071abe70c"
           },
           "Version": "2.28",
           "Release": "251.el8_10.27",
@@ -18883,6 +18934,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc-common@2.28-251.el8_10.27.x86_64",
             "glibc@2.28-251.el8_10.27.x86_64"
@@ -18891,14 +18945,15 @@
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
           },
-          "Digest": "md5:794fa4637dc96daef11219cf6b66db5a"
+          "Digest": "md5:794fa4637dc96daef11219cf6b66db5a",
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "gpg-pubkey@d4082792-5b32db75.",
           "Name": "gpg-pubkey",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/gpg-pubkey@d4082792-5b32db75?arch=None\u0026distro=redhat-8.10",
-            "UID": "c12a7727f766953a"
+            "UID": "4e75e49a105af4db"
           },
           "Version": "d4082792",
           "Release": "5b32db75",
@@ -18926,17 +18981,21 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "third-party"
+          },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "gpg-pubkey@fd431d51-4ae0493b.",
           "Name": "gpg-pubkey",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/gpg-pubkey@fd431d51-4ae0493b?arch=None\u0026distro=redhat-8.10",
-            "UID": "a7192f1e033e4cf3"
+            "UID": "4042de3b4b0669a1"
           },
           "Version": "fd431d51",
           "Release": "4ae0493b",
@@ -18964,17 +19023,21 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "third-party"
+          },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "grep@3.1-6.el8.x86_64",
           "Name": "grep",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/grep@3.1-6.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "f576bdf96b7faadb"
+            "UID": "f2ec4f529e71cd79"
           },
           "Version": "3.1",
           "Release": "6.el8",
@@ -19005,6 +19068,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -19082,14 +19148,15 @@
             "/usr/share/man/man1/egrep.1.gz",
             "/usr/share/man/man1/fgrep.1.gz",
             "/usr/share/man/man1/grep.1.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "gzip@1.9-13.el8_5.x86_64",
           "Name": "gzip",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/gzip@1.9-13.el8_5?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "cbf752e537aa27c"
+            "UID": "ce43735a71421846"
           },
           "Version": "1.9",
           "Release": "13.el8_5",
@@ -19120,6 +19187,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -19172,14 +19242,15 @@
             "/usr/share/man/man1/zless.1.gz",
             "/usr/share/man/man1/zmore.1.gz",
             "/usr/share/man/man1/znew.1.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "iproute@6.2.0-6.el8_10.x86_64",
           "Name": "iproute",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/iproute@6.2.0-6.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "d9c762cfe3e107ef"
+            "UID": "472a80ea1802ae62"
           },
           "Version": "6.2.0",
           "Release": "6.el8_10",
@@ -19210,6 +19281,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "elfutils-libelf@0.190-2.el8.x86_64",
@@ -19367,14 +19441,15 @@
             "/usr/share/man/man8/vdpa-dev.8.gz",
             "/usr/share/man/man8/vdpa-mgmtdev.8.gz",
             "/usr/share/man/man8/vdpa.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "iproute-tc@6.2.0-6.el8_10.x86_64",
           "Name": "iproute-tc",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/iproute-tc@6.2.0-6.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea012b52de150e2f"
+            "UID": "5ba1ee434e9668f9"
           },
           "Version": "6.2.0",
           "Release": "6.el8_10",
@@ -19405,6 +19480,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "elfutils-libelf@0.190-2.el8.x86_64",
@@ -19498,14 +19576,15 @@
             "/usr/share/man/man8/tc-vlan.8.gz",
             "/usr/share/man/man8/tc-xt.8.gz",
             "/usr/share/man/man8/tc.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "ipset@7.11-6.el8.x86_64",
           "Name": "ipset",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/ipset@7.11-6.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "217ab134492f8a22"
+            "UID": "e6aa5620e18f1a76"
           },
           "Version": "7.11",
           "Release": "6.el8",
@@ -19535,6 +19614,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "third-party"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -19546,14 +19628,15 @@
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
           },
-          "Digest": "md5:24f34f6ac99d4d8108ba188370f72ae2"
+          "Digest": "md5:24f34f6ac99d4d8108ba188370f72ae2",
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "ipset-libs@7.11-6.el8.x86_64",
           "Name": "ipset-libs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/ipset-libs@7.11-6.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "a5e6e546e75d9650"
+            "UID": "753cbeae5c1a8ed6"
           },
           "Version": "7.11",
           "Release": "6.el8",
@@ -19584,6 +19667,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "third-party"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "libmnl@1.0.4-6.el8.x86_64"
@@ -19592,14 +19678,15 @@
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
           },
-          "Digest": "md5:0470c5660c11eb01ea4295f7cdb005b7"
+          "Digest": "md5:0470c5660c11eb01ea4295f7cdb005b7",
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "iptables-legacy@1.8.8-6.el8.2.x86_64",
           "Name": "iptables-legacy",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/iptables-legacy@1.8.8-6.el8.2?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "cc09eed11c282577"
+            "UID": "1911ae2975d33ef7"
           },
           "Version": "1.8.8",
           "Release": "6.el8.2",
@@ -19629,6 +19716,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "third-party"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -19641,14 +19731,15 @@
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
           },
-          "Digest": "md5:7fa748dc2f1e331f199d486ba9dd4107"
+          "Digest": "md5:7fa748dc2f1e331f199d486ba9dd4107",
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "iptables-legacy-libs@1.8.8-6.el8.2.x86_64",
           "Name": "iptables-legacy-libs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/iptables-legacy-libs@1.8.8-6.el8.2?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "a6febccdc75b12e3"
+            "UID": "d547248b440e4d2"
           },
           "Version": "1.8.8",
           "Release": "6.el8.2",
@@ -19679,6 +19770,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "third-party"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "libpcap@1.9.1-5.el8.x86_64"
@@ -19687,14 +19781,15 @@
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
           },
-          "Digest": "md5:9db90b1170338ad5ae15c1214d1c7755"
+          "Digest": "md5:9db90b1170338ad5ae15c1214d1c7755",
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "iptables-libs@1.8.8-6.el8.x86_64",
           "Name": "iptables-libs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/iptables-libs@1.8.8-6.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "7fe4cc49f0661392"
+            "UID": "ef0e9e57275e4039"
           },
           "Version": "1.8.8",
           "Release": "6.el8",
@@ -19724,6 +19819,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "third-party"
           },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
@@ -19735,14 +19833,15 @@
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
           },
-          "Digest": "md5:3127d6f846a616e9439ff8c015f1d0c7"
+          "Digest": "md5:3127d6f846a616e9439ff8c015f1d0c7",
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "iptables-nft@1.8.8-6.el8.x86_64",
           "Name": "iptables-nft",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/iptables-nft@1.8.8-6.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "5d7be63fb45787b4"
+            "UID": "52fd1b6418e892a2"
           },
           "Version": "1.8.8",
           "Release": "6.el8",
@@ -19772,6 +19871,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "third-party"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -19787,14 +19889,15 @@
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
           },
-          "Digest": "md5:9e223b9d771ebfc6798ac65347184987"
+          "Digest": "md5:9e223b9d771ebfc6798ac65347184987",
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "kmod@25-20.el8.x86_64",
           "Name": "kmod",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/kmod@25-20.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "aa006a3acc8a696b"
+            "UID": "f2363b0a66a6479"
           },
           "Version": "25",
           "Release": "20.el8",
@@ -19825,6 +19928,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -19874,14 +19980,15 @@
             "/usr/share/man/man8/modinfo.8.gz",
             "/usr/share/man/man8/modprobe.8.gz",
             "/usr/share/man/man8/rmmod.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "kmod-libs@25-20.el8.x86_64",
           "Name": "kmod-libs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/kmod-libs@25-20.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ba17a3fc424e7a8f"
+            "UID": "579d631160296a88"
           },
           "Version": "25",
           "Release": "20.el8",
@@ -19913,6 +20020,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "libgcc@8.5.0-28.el8_10.x86_64",
@@ -19933,14 +20043,15 @@
             "/usr/lib64/libkmod.so.2.3.3",
             "/usr/share/licenses/kmod-libs",
             "/usr/share/licenses/kmod-libs/COPYING"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "langpacks-en@1.0-12.el8.noarch",
           "Name": "langpacks-en",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/langpacks-en@1.0-12.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "e8bb70c91baf416a"
+            "UID": "d533cc82438af32c"
           },
           "Version": "1.0",
           "Release": "12.el8",
@@ -19972,6 +20083,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
@@ -19979,14 +20093,15 @@
           "Digest": "md5:1130f256caf9531f47bf94dc9c89a697",
           "InstalledFiles": [
             "/usr/share/metainfo/org.fedoraproject.LangPack-en.metainfo.xml"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libacl@2.2.53-3.el8.x86_64",
           "Name": "libacl",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libacl@2.2.53-3.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "da88543a3915158"
+            "UID": "1c31bc99b5408413"
           },
           "Version": "2.2.53",
           "Release": "3.el8",
@@ -20018,6 +20133,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "libattr@2.4.48-3.el8.x86_64"
@@ -20033,14 +20151,15 @@
             "/usr/lib/.build-id/87/931ee8be3b6818ece2b84dbfceb4df339fba49",
             "/usr/lib64/libacl.so.1",
             "/usr/lib64/libacl.so.1.1.2253"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libattr@2.4.48-3.el8.x86_64",
           "Name": "libattr",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libattr@2.4.48-3.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "757f929d0a3fad4e"
+            "UID": "7e0f46a62d5236a"
           },
           "Version": "2.4.48",
           "Release": "3.el8",
@@ -20072,6 +20191,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
           ],
@@ -20087,14 +20209,15 @@
             "/usr/lib/.build-id/64/3a42e20d83ede2d2460cce5d747a799bc0076f",
             "/usr/lib64/libattr.so.1",
             "/usr/lib64/libattr.so.1.1.2448"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libbpf@0.5.0-1.el8.x86_64",
           "Name": "libbpf",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libbpf@0.5.0-1.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "7c7488fc0ff99042"
+            "UID": "35e67b183b28404d"
           },
           "Version": "0.5.0",
           "Release": "1.el8",
@@ -20126,6 +20249,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "elfutils-libelf@0.190-2.el8.x86_64",
             "glibc@2.28-251.el8_10.27.x86_64",
@@ -20142,14 +20268,15 @@
             "/usr/lib/.build-id/b1/7da19e9725f8d62af2ff3b344eb675b0384325",
             "/usr/lib64/libbpf.so.0",
             "/usr/lib64/libbpf.so.0.5.0"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libcap@2.48-6.el8_9.x86_64",
           "Name": "libcap",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libcap@2.48-6.el8_9?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "eb91d35f3c1fa3bc"
+            "UID": "ef0996fae3ff8ca9"
           },
           "Version": "2.48",
           "Release": "6.el8_9",
@@ -20180,6 +20307,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
@@ -20223,14 +20353,15 @@
             "/usr/share/man/man8/getcap.8.gz",
             "/usr/share/man/man8/getpcaps.8.gz",
             "/usr/share/man/man8/setcap.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libcap-ng@0.7.11-1.el8.x86_64",
           "Name": "libcap-ng",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libcap-ng@0.7.11-1.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "505a2e09a6e7cfa0"
+            "UID": "621f772928aa242e"
           },
           "Version": "0.7.11",
           "Release": "1.el8",
@@ -20262,6 +20393,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
           ],
@@ -20278,14 +20412,15 @@
             "/usr/lib/.build-id/5e/28badbda62398615d6c46cd722e0e689cdccd8",
             "/usr/share/licenses/libcap-ng",
             "/usr/share/licenses/libcap-ng/COPYING.LIB"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libgcc@8.5.0-28.el8_10.x86_64",
           "Name": "libgcc",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libgcc@8.5.0-28.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "2727a2315e56d67e"
+            "UID": "b4aecbd3e79690"
           },
           "Version": "8.5.0",
           "Release": "28.el8_10",
@@ -20317,6 +20452,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
@@ -20334,14 +20472,15 @@
             "/usr/share/licenses/libgcc/COPYING.RUNTIME",
             "/usr/share/licenses/libgcc/COPYING3",
             "/usr/share/licenses/libgcc/COPYING3.LIB"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libibverbs@48.0-1.el8.x86_64",
           "Name": "libibverbs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libibverbs@48.0-1.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "2fc5c44fde461927"
+            "UID": "cffcde4032fa6395"
           },
           "Version": "48.0",
           "Release": "1.el8",
@@ -20372,6 +20511,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
@@ -20451,14 +20593,15 @@
             "/usr/lib64/libmlx5.so.1",
             "/usr/lib64/libmlx5.so.1.24.48.0",
             "/usr/share/doc/rdma-core/libibverbs.md"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libmnl@1.0.4-6.el8.x86_64",
           "Name": "libmnl",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libmnl@1.0.4-6.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "431e72166a01ea7b"
+            "UID": "312fa78befaf90b5"
           },
           "Version": "1.0.4",
           "Release": "6.el8",
@@ -20490,6 +20633,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
           ],
@@ -20508,14 +20654,15 @@
             "/usr/share/doc/libmnl/README",
             "/usr/share/licenses/libmnl",
             "/usr/share/licenses/libmnl/COPYING"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libnetfilter_conntrack@1.0.6-5.el8.x86_64",
           "Name": "libnetfilter_conntrack",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libnetfilter_conntrack@1.0.6-5.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "4d75a7de214f1ef7"
+            "UID": "e6b63c29b4b03190"
           },
           "Version": "1.0.6",
           "Release": "5.el8",
@@ -20547,6 +20694,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "libmnl@1.0.4-6.el8.x86_64",
@@ -20565,14 +20715,15 @@
             "/usr/lib64/libnetfilter_conntrack.so.3.6.0",
             "/usr/share/licenses/libnetfilter_conntrack",
             "/usr/share/licenses/libnetfilter_conntrack/COPYING"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libnetfilter_cthelper@1.0.0-15.el8.x86_64",
           "Name": "libnetfilter_cthelper",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libnetfilter_cthelper@1.0.0-15.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "60613bb84448400e"
+            "UID": "8ba1c36ce262f7d9"
           },
           "Version": "1.0.0",
           "Release": "15.el8",
@@ -20604,6 +20755,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "libmnl@1.0.4-6.el8.x86_64"
@@ -20622,14 +20776,15 @@
             "/usr/share/doc/libnetfilter_cthelper",
             "/usr/share/doc/libnetfilter_cthelper/COPYING",
             "/usr/share/doc/libnetfilter_cthelper/README"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libnetfilter_cttimeout@1.0.0-11.el8.x86_64",
           "Name": "libnetfilter_cttimeout",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libnetfilter_cttimeout@1.0.0-11.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "7ce09f05b7fe4f18"
+            "UID": "3a2ed0b1eead13f6"
           },
           "Version": "1.0.0",
           "Release": "11.el8",
@@ -20661,6 +20816,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "libmnl@1.0.4-6.el8.x86_64"
@@ -20679,14 +20837,15 @@
             "/usr/share/doc/libnetfilter_cttimeout",
             "/usr/share/doc/libnetfilter_cttimeout/COPYING",
             "/usr/share/doc/libnetfilter_cttimeout/README"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libnetfilter_queue@1.0.4-3.el8.x86_64",
           "Name": "libnetfilter_queue",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libnetfilter_queue@1.0.4-3.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "2be5fe23b016771e"
+            "UID": "f211cce4d54b8877"
           },
           "Version": "1.0.4",
           "Release": "3.el8",
@@ -20718,6 +20877,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "libmnl@1.0.4-6.el8.x86_64",
@@ -20736,14 +20898,15 @@
             "/usr/lib64/libnetfilter_queue.so.1.5.0",
             "/usr/share/doc/libnetfilter_queue",
             "/usr/share/doc/libnetfilter_queue/COPYING"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libnfnetlink@1.0.1-13.el8.x86_64",
           "Name": "libnfnetlink",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libnfnetlink@1.0.1-13.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "43b8922d1bb38569"
+            "UID": "7a9bff9ee61e19b1"
           },
           "Version": "1.0.1",
           "Release": "13.el8",
@@ -20775,6 +20938,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
           ],
@@ -20793,14 +20959,15 @@
             "/usr/share/doc/libnfnetlink/README",
             "/usr/share/licenses/libnfnetlink",
             "/usr/share/licenses/libnfnetlink/COPYING"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libnftnl@1.2.2-3.el8.x86_64",
           "Name": "libnftnl",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libnftnl@1.2.2-3.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "f2a681ebda4dca1b"
+            "UID": "60b9ac7e721b1727"
           },
           "Version": "1.2.2",
           "Release": "3.el8",
@@ -20832,6 +20999,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "libmnl@1.0.4-6.el8.x86_64"
@@ -20849,14 +21019,15 @@
             "/usr/lib64/libnftnl.so.11.6.0",
             "/usr/share/doc/libnftnl",
             "/usr/share/doc/libnftnl/COPYING"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libnl3@3.7.0-1.el8.x86_64",
           "Name": "libnl3",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libnl3@3.7.0-1.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "b32eac32bd128ac9"
+            "UID": "3000ece1a75485fb"
           },
           "Version": "3.7.0",
           "Release": "1.el8",
@@ -20887,6 +21058,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
@@ -20930,14 +21104,15 @@
             "/usr/lib64/libnl-xfrm-3.so.200.26.0",
             "/usr/share/doc/libnl3",
             "/usr/share/doc/libnl3/COPYING"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libpcap@1.9.1-5.el8.x86_64",
           "Name": "libpcap",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libpcap@1.9.1-5.el8?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=14",
-            "UID": "8ad1829a9c697263"
+            "UID": "9d8420148e0223cb"
           },
           "Version": "1.9.1",
           "Release": "5.el8",
@@ -20971,6 +21146,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "libibverbs@48.0-1.el8.x86_64"
@@ -20995,14 +21173,15 @@
             "/usr/share/man/man7/pcap-filter.7.gz",
             "/usr/share/man/man7/pcap-linktype.7.gz",
             "/usr/share/man/man7/pcap-tstamp.7.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libpwquality@1.4.4-6.el8.x86_64",
           "Name": "libpwquality",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libpwquality@1.4.4-6.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "b4c3949fedb1c2b7"
+            "UID": "339719458626cf87"
           },
           "Version": "1.4.4",
           "Release": "6.el8",
@@ -21033,6 +21212,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
@@ -21120,14 +21302,15 @@
             "/usr/share/man/man1/pwscore.1.gz",
             "/usr/share/man/man5/pwquality.conf.5.gz",
             "/usr/share/man/man8/pam_pwquality.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libselinux@2.9-11.el8_10.x86_64",
           "Name": "libselinux",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libselinux@2.9-11.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "de182e7777cfed92"
+            "UID": "33b8649cde5a78e1"
           },
           "Version": "2.9",
           "Release": "11.el8_10",
@@ -21159,6 +21342,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
             "pcre2@10.32-3.el8_6.x86_64"
@@ -21177,14 +21363,15 @@
             "/usr/lib64/libselinux.so.1",
             "/usr/share/licenses/libselinux",
             "/usr/share/licenses/libselinux/LICENSE"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "libzstd@1.4.4-1.el8.x86_64",
           "Name": "libzstd",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/libzstd@1.4.4-1.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "8b120fab14b1dd"
+            "UID": "7945e8bbc2626d6f"
           },
           "Version": "1.4.4",
           "Release": "1.el8",
@@ -21216,6 +21403,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
           ],
@@ -21233,14 +21423,15 @@
             "/usr/share/licenses/libzstd",
             "/usr/share/licenses/libzstd/COPYING",
             "/usr/share/licenses/libzstd/LICENSE"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "ncurses-base@6.1-10.20180224.el8.noarch",
           "Name": "ncurses-base",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/ncurses-base@6.1-10.20180224.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "c1ba537a1863aae0"
+            "UID": "7dd7b2e34954c036"
           },
           "Version": "6.1",
           "Release": "10.20180224.el8",
@@ -21271,6 +21462,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
@@ -21444,14 +21638,15 @@
             "/usr/share/terminfo/x/xterm-xfree86",
             "/usr/share/terminfo/x/xterm-xi",
             "/usr/share/terminfo/x/xterms"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "ncurses-libs@6.1-10.20180224.el8.x86_64",
           "Name": "ncurses-libs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/ncurses-libs@6.1-10.20180224.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea345885667fc3aa"
+            "UID": "6b7bd86769ce8c81"
           },
           "Version": "6.1",
           "Release": "10.20180224.el8",
@@ -21482,6 +21677,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64",
@@ -21536,14 +21734,15 @@
             "/usr/lib64/libtic.so.6.1",
             "/usr/lib64/libtinfo.so.6",
             "/usr/lib64/libtinfo.so.6.1"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "net-tools@2.0-0.52.20160912git.el8.x86_64",
           "Name": "net-tools",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/net-tools@2.0-0.52.20160912git.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "c9b4ed03e89b8df6"
+            "UID": "16042eadecd3dfe1"
           },
           "Version": "2.0",
           "Release": "0.52.20160912git.el8",
@@ -21574,6 +21773,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -21662,14 +21864,15 @@
             "/usr/share/man/pt/man8/ifconfig.8.gz",
             "/usr/share/man/pt/man8/netstat.8.gz",
             "/usr/share/man/pt/man8/route.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "nftables@1.0.4-7.el8_10.x86_64",
           "Name": "nftables",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/nftables@1.0.4-7.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "29b6ddb10c196757"
+            "UID": "683c5804c1a14f85"
           },
           "Version": "1.0.4",
           "Release": "7.el8_10",
@@ -21702,6 +21905,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -21740,14 +21946,15 @@
             "/usr/share/licenses/nftables/COPYING",
             "/usr/share/man/man5/libnftables-json.5.gz",
             "/usr/share/man/man8/nft.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "openssl-libs@1.1.1k-14.el8_10.x86_64",
           "Name": "openssl-libs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "Version": "1.1.1k",
           "Release": "14.el8_10",
@@ -21780,6 +21987,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "ca-certificates@2025.2.80_v9.0.304-80.2.el8_10.noarch",
@@ -21824,14 +22034,15 @@
             "/usr/lib64/libssl.so.1.1.1k",
             "/usr/share/licenses/openssl-libs",
             "/usr/share/licenses/openssl-libs/LICENSE"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "p11-kit-trust@0.23.22-2.el8.x86_64",
           "Name": "p11-kit-trust",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/p11-kit-trust@0.23.22-2.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "f4671af144f08f31"
+            "UID": "840607b08d33da44"
           },
           "Version": "0.23.22",
           "Release": "2.el8",
@@ -21863,6 +22074,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
             "glibc@2.28-251.el8_10.27.x86_64"
@@ -21885,14 +22099,15 @@
             "/usr/libexec/p11-kit/trust-extract-compat",
             "/usr/share/bash-completion/completions/trust",
             "/usr/share/p11-kit/modules/p11-kit-trust.module"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "pcre@8.42-6.el8.x86_64",
           "Name": "pcre",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/pcre@8.42-6.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "b9a14d1b7c3a81ae"
+            "UID": "70b6154584a0b1ca"
           },
           "Version": "8.42",
           "Release": "6.el8",
@@ -21924,6 +22139,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
           ],
@@ -21948,14 +22166,15 @@
             "/usr/share/licenses/pcre",
             "/usr/share/licenses/pcre/COPYING",
             "/usr/share/licenses/pcre/LICENCE"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "pcre2@10.32-3.el8_6.x86_64",
           "Name": "pcre2",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/pcre2@10.32-3.el8_6?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "3702749aa69deb9f"
+            "UID": "5ef55f242e1cd174"
           },
           "Version": "10.32",
           "Release": "3.el8_6",
@@ -21987,6 +22206,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
           ],
@@ -22012,14 +22234,15 @@
             "/usr/share/licenses/pcre2",
             "/usr/share/licenses/pcre2/COPYING",
             "/usr/share/licenses/pcre2/LICENCE"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "redhat-release@8.10-0.3.el8.x86_64",
           "Name": "redhat-release",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/redhat-release@8.10-0.3.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "14db204ec288286b"
+            "UID": "3a28c221d5011da5"
           },
           "Version": "8.10",
           "Release": "0.3.el8",
@@ -22050,6 +22273,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
@@ -22085,14 +22311,15 @@
             "/usr/lib/systemd/system-preset/99-default-disable.preset",
             "/usr/share/doc/redhat-release/GPL",
             "/usr/share/doc/redhat-release/GPL-source-offer"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "rootfiles@8.1-22.el8.noarch",
           "Name": "rootfiles",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/rootfiles@8.1-22.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "368abfab1213368"
+            "UID": "3310cb238a8b57d7"
           },
           "Version": "8.1",
           "Release": "22.el8",
@@ -22124,6 +22351,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64"
           ],
@@ -22138,14 +22368,15 @@
             "/root/.bashrc",
             "/root/.cshrc",
             "/root/.tcshrc"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "sed@4.5-5.el8.x86_64",
           "Name": "sed",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/sed@4.5-5.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "e1c197ba348c89e3"
+            "UID": "dd20b1be3366cc55"
           },
           "Version": "4.5",
           "Release": "5.el8",
@@ -22176,6 +22407,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -22243,14 +22477,15 @@
             "/usr/share/locale/zh_CN/LC_MESSAGES/sed.mo",
             "/usr/share/locale/zh_TW/LC_MESSAGES/sed.mo",
             "/usr/share/man/man1/sed.1.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "setup@2.12.2-9.el8.noarch",
           "Name": "setup",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/setup@2.12.2-9.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "a883106235b2ee19"
+            "UID": "57576f5e4721e8ed"
           },
           "Version": "2.12.2",
           "Release": "9.el8",
@@ -22281,6 +22516,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "redhat-release@8.10-0.3.el8.x86_64"
@@ -22326,14 +22564,15 @@
             "/usr/share/doc/setup/uidgid",
             "/usr/share/licenses/setup",
             "/usr/share/licenses/setup/COPYING"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "shadow-utils@4.6-23.el8_10.x86_64",
           "Name": "shadow-utils",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/shadow-utils@4.6-23.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=2",
-            "UID": "642881722e9a4803"
+            "UID": "4b09db21d4ccdb99"
           },
           "Version": "4.6",
           "Release": "23.el8_10",
@@ -22366,6 +22605,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "coreutils-single@8.30-16.el8_10.x86_64",
@@ -22775,14 +23017,15 @@
             "/usr/share/man/zh_TW/man8/useradd.8.gz",
             "/usr/share/man/zh_TW/man8/userdel.8.gz",
             "/usr/share/man/zh_TW/man8/usermod.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "systemd-libs@239-82.el8_10.13.x86_64",
           "Name": "systemd-libs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/systemd-libs@239-82.el8_10.13?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "559a9b4629798548"
+            "UID": "d3fe9b188fae0462"
           },
           "Version": "239",
           "Release": "82.el8_10.13",
@@ -22813,6 +23056,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -22853,14 +23099,15 @@
             "/usr/share/man/man8/libnss_myhostname.so.2.8.gz",
             "/usr/share/man/man8/libnss_resolve.so.2.8.gz",
             "/usr/share/man/man8/libnss_systemd.so.2.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "tzdata@2025c-1.el8.noarch",
           "Name": "tzdata",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/tzdata@2025c-1.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "6d69cf37b39687bd"
+            "UID": "3a6652fe1c29b0ce"
           },
           "Version": "2025c",
           "Release": "1.el8",
@@ -22891,6 +23138,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
@@ -24767,14 +25017,15 @@
             "/usr/share/zoneinfo/tzdata.zi",
             "/usr/share/zoneinfo/zone.tab",
             "/usr/share/zoneinfo/zone1970.tab"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "util-linux@2.32.1-48.el8_10.x86_64",
           "Name": "util-linux",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/util-linux@2.32.1-48.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "fd12bbf31bab8e5c"
+            "UID": "91d7e8cf677ffa4a"
           },
           "Version": "2.32.1",
           "Release": "48.el8_10",
@@ -24805,6 +25056,9 @@
               "rhel-8-for-x86_64-baseos-rpms",
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
+          },
+          "Repository": {
+            "Class": "official"
           },
           "DependsOn": [
             "bash@4.4.20-6.el8_10.x86_64",
@@ -25383,14 +25637,15 @@
             "/usr/share/man/man8/wipefs.8.gz",
             "/usr/share/man/man8/x86_64.8.gz",
             "/usr/share/man/man8/zramctl.8.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "which@2.21-21.el8_10.x86_64",
           "Name": "which",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/which@2.21-21.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "4b08560eaa36b1da"
+            "UID": "26da62fe8be593e7"
           },
           "Version": "2.21",
           "Release": "21.el8_10",
@@ -25422,6 +25677,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "coreutils-single@8.30-16.el8_10.x86_64",
             "glibc@2.28-251.el8_10.27.x86_64"
@@ -25447,14 +25705,15 @@
             "/usr/share/licenses/which",
             "/usr/share/licenses/which/COPYING",
             "/usr/share/man/man1/which.1.gz"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "xz-libs@5.2.4-4.el8_6.x86_64",
           "Name": "xz-libs",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/xz-libs@5.2.4-4.el8_6?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "feb31935076d2d4"
+            "UID": "6f618bd9bd99ef5d"
           },
           "Version": "5.2.4",
           "Release": "4.el8_6",
@@ -25486,6 +25745,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
           ],
@@ -25501,14 +25763,15 @@
             "/usr/lib64/liblzma.so.5",
             "/usr/lib64/liblzma.so.5.2.4",
             "/usr/share/doc/xz/COPYING"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         },
         {
           "ID": "zlib@1.2.11-25.el8.x86_64",
           "Name": "zlib",
           "Identifier": {
             "PURL": "pkg:rpm/redhat/zlib@1.2.11-25.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "fdcf0cca8c247a82"
+            "UID": "e49ccbe297fd487f"
           },
           "Version": "1.2.11",
           "Release": "25.el8",
@@ -25540,6 +25803,9 @@
               "rhel-8-for-x86_64-baseos-source-rpms"
             ]
           },
+          "Repository": {
+            "Class": "official"
+          },
           "DependsOn": [
             "glibc@2.28-251.el8_10.27.x86_64"
           ],
@@ -25559,7 +25825,8 @@
             "/usr/share/doc/zlib/FAQ",
             "/usr/share/licenses/zlib",
             "/usr/share/licenses/zlib/README"
-          ]
+          ],
+          "AnalyzedBy": "rpm"
         }
       ],
       "Vulnerabilities": [
@@ -25569,7 +25836,7 @@
           "PkgName": "coreutils-single",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/coreutils-single@8.30-16.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "aa1a5ad70ad6251a"
+            "UID": "d4ac4380c561b3fa"
           },
           "InstalledVersion": "8.30-16.el8_10",
           "Status": "affected",
@@ -25618,7 +25885,7 @@
           "PkgName": "elfutils-libelf",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/elfutils-libelf@0.190-2.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ce023bfc4d26e92c"
+            "UID": "2e930efd193a66ae"
           },
           "InstalledVersion": "0.190-2.el8",
           "Status": "will_not_fix",
@@ -25664,7 +25931,7 @@
           "PkgName": "glibc",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/glibc@2.28-251.el8_10.27?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "f6baf917307fd52e"
+            "UID": "8afdd7deb8974d81"
           },
           "InstalledVersion": "2.28-251.el8_10.27",
           "Status": "affected",
@@ -25727,7 +25994,7 @@
           "PkgName": "glibc",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/glibc@2.28-251.el8_10.27?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "f6baf917307fd52e"
+            "UID": "8afdd7deb8974d81"
           },
           "InstalledVersion": "2.28-251.el8_10.27",
           "Status": "affected",
@@ -25791,7 +26058,7 @@
           "PkgName": "glibc-common",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/glibc-common@2.28-251.el8_10.27?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "25e6fbb968481365"
+            "UID": "3eebd47e1f7154ef"
           },
           "InstalledVersion": "2.28-251.el8_10.27",
           "Status": "affected",
@@ -25854,7 +26121,7 @@
           "PkgName": "glibc-common",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/glibc-common@2.28-251.el8_10.27?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "25e6fbb968481365"
+            "UID": "3eebd47e1f7154ef"
           },
           "InstalledVersion": "2.28-251.el8_10.27",
           "Status": "affected",
@@ -25918,7 +26185,7 @@
           "PkgName": "glibc-minimal-langpack",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-251.el8_10.27?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "402a1f95d94c0c69"
+            "UID": "e63246d071abe70c"
           },
           "InstalledVersion": "2.28-251.el8_10.27",
           "Status": "affected",
@@ -25981,7 +26248,7 @@
           "PkgName": "glibc-minimal-langpack",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/glibc-minimal-langpack@2.28-251.el8_10.27?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "402a1f95d94c0c69"
+            "UID": "e63246d071abe70c"
           },
           "InstalledVersion": "2.28-251.el8_10.27",
           "Status": "affected",
@@ -26045,7 +26312,7 @@
           "PkgName": "libbpf",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/libbpf@0.5.0-1.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "7c7488fc0ff99042"
+            "UID": "35e67b183b28404d"
           },
           "InstalledVersion": "0.5.0-1.el8",
           "Status": "will_not_fix",
@@ -26096,7 +26363,7 @@
           "PkgName": "libbpf",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/libbpf@0.5.0-1.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "7c7488fc0ff99042"
+            "UID": "35e67b183b28404d"
           },
           "InstalledVersion": "0.5.0-1.el8",
           "Status": "will_not_fix",
@@ -26147,7 +26414,7 @@
           "PkgName": "libbpf",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/libbpf@0.5.0-1.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "7c7488fc0ff99042"
+            "UID": "35e67b183b28404d"
           },
           "InstalledVersion": "0.5.0-1.el8",
           "Status": "will_not_fix",
@@ -26201,7 +26468,7 @@
           "PkgName": "libgcc",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/libgcc@8.5.0-28.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "2727a2315e56d67e"
+            "UID": "b4aecbd3e79690"
           },
           "InstalledVersion": "8.5.0-28.el8_10",
           "Status": "will_not_fix",
@@ -26257,7 +26524,7 @@
           "PkgName": "libgcc",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/libgcc@8.5.0-28.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "2727a2315e56d67e"
+            "UID": "b4aecbd3e79690"
           },
           "InstalledVersion": "8.5.0-28.el8_10",
           "Status": "affected",
@@ -26323,7 +26590,7 @@
           "PkgName": "libgcc",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/libgcc@8.5.0-28.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "2727a2315e56d67e"
+            "UID": "b4aecbd3e79690"
           },
           "InstalledVersion": "8.5.0-28.el8_10",
           "Status": "affected",
@@ -26379,7 +26646,7 @@
           "PkgName": "libpcap",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/libpcap@1.9.1-5.el8?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=14",
-            "UID": "8ad1829a9c697263"
+            "UID": "9d8420148e0223cb"
           },
           "InstalledVersion": "14:1.9.1-5.el8",
           "Status": "affected",
@@ -26423,7 +26690,7 @@
           "PkgName": "libzstd",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/libzstd@1.4.4-1.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "8b120fab14b1dd"
+            "UID": "7945e8bbc2626d6f"
           },
           "InstalledVersion": "1.4.4-1.el8",
           "Status": "will_not_fix",
@@ -26735,7 +27002,7 @@
           "PkgName": "libzstd",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/libzstd@1.4.4-1.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "8b120fab14b1dd"
+            "UID": "7945e8bbc2626d6f"
           },
           "InstalledVersion": "1.4.4-1.el8",
           "Status": "affected",
@@ -26792,7 +27059,7 @@
           "PkgName": "ncurses-base",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-base@6.1-10.20180224.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "c1ba537a1863aae0"
+            "UID": "7dd7b2e34954c036"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -26842,7 +27109,7 @@
           "PkgName": "ncurses-base",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-base@6.1-10.20180224.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "c1ba537a1863aae0"
+            "UID": "7dd7b2e34954c036"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -26896,7 +27163,7 @@
           "PkgName": "ncurses-base",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-base@6.1-10.20180224.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "c1ba537a1863aae0"
+            "UID": "7dd7b2e34954c036"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -26950,7 +27217,7 @@
           "PkgName": "ncurses-base",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-base@6.1-10.20180224.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "c1ba537a1863aae0"
+            "UID": "7dd7b2e34954c036"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -27004,7 +27271,7 @@
           "PkgName": "ncurses-base",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-base@6.1-10.20180224.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "c1ba537a1863aae0"
+            "UID": "7dd7b2e34954c036"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "affected",
@@ -27058,7 +27325,7 @@
           "PkgName": "ncurses-base",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-base@6.1-10.20180224.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "c1ba537a1863aae0"
+            "UID": "7dd7b2e34954c036"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -27115,7 +27382,7 @@
           "PkgName": "ncurses-base",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-base@6.1-10.20180224.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "c1ba537a1863aae0"
+            "UID": "7dd7b2e34954c036"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -27169,7 +27436,7 @@
           "PkgName": "ncurses-base",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-base@6.1-10.20180224.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "c1ba537a1863aae0"
+            "UID": "7dd7b2e34954c036"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "affected",
@@ -27234,7 +27501,7 @@
           "PkgName": "ncurses-base",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-base@6.1-10.20180224.el8?arch=noarch\u0026distro=redhat-8.10",
-            "UID": "c1ba537a1863aae0"
+            "UID": "7dd7b2e34954c036"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "affected",
@@ -27285,7 +27552,7 @@
           "PkgName": "ncurses-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-libs@6.1-10.20180224.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea345885667fc3aa"
+            "UID": "6b7bd86769ce8c81"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -27335,7 +27602,7 @@
           "PkgName": "ncurses-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-libs@6.1-10.20180224.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea345885667fc3aa"
+            "UID": "6b7bd86769ce8c81"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -27389,7 +27656,7 @@
           "PkgName": "ncurses-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-libs@6.1-10.20180224.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea345885667fc3aa"
+            "UID": "6b7bd86769ce8c81"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -27443,7 +27710,7 @@
           "PkgName": "ncurses-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-libs@6.1-10.20180224.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea345885667fc3aa"
+            "UID": "6b7bd86769ce8c81"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -27497,7 +27764,7 @@
           "PkgName": "ncurses-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-libs@6.1-10.20180224.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea345885667fc3aa"
+            "UID": "6b7bd86769ce8c81"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "affected",
@@ -27551,7 +27818,7 @@
           "PkgName": "ncurses-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-libs@6.1-10.20180224.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea345885667fc3aa"
+            "UID": "6b7bd86769ce8c81"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -27608,7 +27875,7 @@
           "PkgName": "ncurses-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-libs@6.1-10.20180224.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea345885667fc3aa"
+            "UID": "6b7bd86769ce8c81"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "will_not_fix",
@@ -27662,7 +27929,7 @@
           "PkgName": "ncurses-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-libs@6.1-10.20180224.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea345885667fc3aa"
+            "UID": "6b7bd86769ce8c81"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "affected",
@@ -27727,7 +27994,7 @@
           "PkgName": "ncurses-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/ncurses-libs@6.1-10.20180224.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "ea345885667fc3aa"
+            "UID": "6b7bd86769ce8c81"
           },
           "InstalledVersion": "6.1-10.20180224.el8",
           "Status": "affected",
@@ -27778,7 +28045,7 @@
           "PkgName": "net-tools",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/net-tools@2.0-0.52.20160912git.el8?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "c9b4ed03e89b8df6"
+            "UID": "16042eadecd3dfe1"
           },
           "InstalledVersion": "2.0-0.52.20160912git.el8",
           "Status": "affected",
@@ -27827,7 +28094,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "will_not_fix",
@@ -27899,7 +28166,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -27990,7 +28257,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -28087,7 +28354,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "will_not_fix",
@@ -28161,7 +28428,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "will_not_fix",
@@ -28233,7 +28500,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -28307,7 +28574,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "will_not_fix",
@@ -28402,7 +28669,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -28629,7 +28896,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -28706,7 +28973,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "will_not_fix",
@@ -28752,7 +29019,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "will_not_fix",
@@ -28828,7 +29095,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -28922,7 +29189,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -29012,7 +29279,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -29106,7 +29373,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -29203,7 +29470,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -29300,7 +29567,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -29397,7 +29664,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -29499,7 +29766,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -29596,7 +29863,7 @@
           "PkgName": "openssl-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/openssl-libs@1.1.1k-14.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=1",
-            "UID": "84cd3495fa67f629"
+            "UID": "af796648d3469eb9"
           },
           "InstalledVersion": "1:1.1.1k-14.el8_10",
           "Status": "affected",
@@ -29692,7 +29959,7 @@
           "PkgName": "pcre2",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/pcre2@10.32-3.el8_6?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "3702749aa69deb9f"
+            "UID": "5ef55f242e1cd174"
           },
           "InstalledVersion": "10.32-3.el8_6",
           "Status": "affected",
@@ -29744,7 +30011,7 @@
           "PkgName": "shadow-utils",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/shadow-utils@4.6-23.el8_10?arch=x86_64\u0026distro=redhat-8.10\u0026epoch=2",
-            "UID": "642881722e9a4803"
+            "UID": "4b09db21d4ccdb99"
           },
           "InstalledVersion": "2:4.6-23.el8_10",
           "Status": "affected",
@@ -29800,7 +30067,7 @@
           "PkgName": "systemd-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/systemd-libs@239-82.el8_10.13?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "559a9b4629798548"
+            "UID": "d3fe9b188fae0462"
           },
           "InstalledVersion": "239-82.el8_10.13",
           "Status": "will_not_fix",
@@ -29850,7 +30117,7 @@
           "PkgName": "systemd-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/systemd-libs@239-82.el8_10.13?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "559a9b4629798548"
+            "UID": "d3fe9b188fae0462"
           },
           "InstalledVersion": "239-82.el8_10.13",
           "Status": "affected",
@@ -29927,7 +30194,7 @@
           "PkgName": "systemd-libs",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/systemd-libs@239-82.el8_10.13?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "559a9b4629798548"
+            "UID": "d3fe9b188fae0462"
           },
           "InstalledVersion": "239-82.el8_10.13",
           "Status": "affected",
@@ -29981,7 +30248,7 @@
           "PkgName": "util-linux",
           "PkgIdentifier": {
             "PURL": "pkg:rpm/redhat/util-linux@2.32.1-48.el8_10?arch=x86_64\u0026distro=redhat-8.10",
-            "UID": "fd12bbf31bab8e5c"
+            "UID": "91d7e8cf677ffa4a"
           },
           "InstalledVersion": "2.32.1-48.el8_10",
           "Status": "affected",
@@ -30048,1881 +30315,2026 @@
           "Name": "stdlib",
           "Identifier": {
             "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "99849da88ad16d0c"
+            "UID": "c467618f94e4d553"
           },
           "Version": "v1.24.13",
           "Relationship": "direct",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "./api",
           "Name": "./api",
           "Identifier": {
-            "UID": "1f5dc7de248b72ce"
+            "UID": "942528b7b8b2567"
           },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "./lib/std",
           "Name": "./lib/std",
           "Identifier": {
-            "UID": "5374fc0d7cdb2ff5"
+            "UID": "389748bedb41e5cf"
           },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/BurntSushi/toml@v1.5.0",
           "Name": "github.com/BurntSushi/toml",
           "Identifier": {
             "PURL": "pkg:golang/github.com/burntsushi/toml@v1.5.0",
-            "UID": "7fb18ff79bc3e570"
+            "UID": "5c89a0866e128543"
           },
           "Version": "v1.5.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2@v1.38.0",
           "Name": "github.com/aws/aws-sdk-go-v2",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2@v1.38.0",
-            "UID": "db5d025de15adc79"
+            "UID": "2ec9d85e09fb9e7"
           },
           "Version": "v1.38.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/config@v1.31.0",
           "Name": "github.com/aws/aws-sdk-go-v2/config",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/config@v1.31.0",
-            "UID": "656fdc0559e27147"
+            "UID": "f7f461c716b9d19f"
           },
           "Version": "v1.31.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/credentials@v1.18.4",
           "Name": "github.com/aws/aws-sdk-go-v2/credentials",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/credentials@v1.18.4",
-            "UID": "f9c5c873713734be"
+            "UID": "ac2863de0d853eb3"
           },
           "Version": "v1.18.4",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/feature/ec2/imds@v1.18.3",
           "Name": "github.com/aws/aws-sdk-go-v2/feature/ec2/imds",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/feature/ec2/imds@v1.18.3",
-            "UID": "bc662553761ca1d4"
+            "UID": "3d5ff5faf2c22c55"
           },
           "Version": "v1.18.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/internal/configsources@v1.4.3",
           "Name": "github.com/aws/aws-sdk-go-v2/internal/configsources",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/internal/configsources@v1.4.3",
-            "UID": "905d0a8347a1700d"
+            "UID": "d6a5c1de42453f67"
           },
           "Version": "v1.4.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/internal/endpoints/v2@v2.7.3",
           "Name": "github.com/aws/aws-sdk-go-v2/internal/endpoints/v2",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/internal/endpoints/v2@v2.7.3",
-            "UID": "ad4d69555c099a0c"
+            "UID": "261faf83c8798942"
           },
           "Version": "v2.7.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/internal/ini@v1.8.3",
           "Name": "github.com/aws/aws-sdk-go-v2/internal/ini",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/internal/ini@v1.8.3",
-            "UID": "c4442acc0f38d6c1"
+            "UID": "2e42af85050d3145"
           },
           "Version": "v1.8.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/service/ec2@v1.242.0",
           "Name": "github.com/aws/aws-sdk-go-v2/service/ec2",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/ec2@v1.242.0",
-            "UID": "ca7f284f943831c3"
+            "UID": "cceebae30f9ab642"
           },
           "Version": "v1.242.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding@v1.13.0",
           "Name": "github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding@v1.13.0",
-            "UID": "93455eff032096ab"
+            "UID": "e490f3a1b976e7db"
           },
           "Version": "v1.13.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/service/internal/presigned-url@v1.13.3",
           "Name": "github.com/aws/aws-sdk-go-v2/service/internal/presigned-url",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/internal/presigned-url@v1.13.3",
-            "UID": "4e2b0f80819fc90"
+            "UID": "3f6342e44e97b3c7"
           },
           "Version": "v1.13.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/service/sso@v1.28.0",
           "Name": "github.com/aws/aws-sdk-go-v2/service/sso",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/sso@v1.28.0",
-            "UID": "9c77f47c0e2d932"
+            "UID": "cc67081eb34a4faf"
           },
           "Version": "v1.28.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/service/ssooidc@v1.33.0",
           "Name": "github.com/aws/aws-sdk-go-v2/service/ssooidc",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/ssooidc@v1.33.0",
-            "UID": "fd956451d5c767ab"
+            "UID": "9ff1222961916146"
           },
           "Version": "v1.33.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/aws-sdk-go-v2/service/sts@v1.37.0",
           "Name": "github.com/aws/aws-sdk-go-v2/service/sts",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/sts@v1.37.0",
-            "UID": "366bfd1f9e63ab29"
+            "UID": "30e9a579c3894fc5"
           },
           "Version": "v1.37.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/aws/smithy-go@v1.22.5",
           "Name": "github.com/aws/smithy-go",
           "Identifier": {
             "PURL": "pkg:golang/github.com/aws/smithy-go@v1.22.5",
-            "UID": "94ec6445e9b0d752"
+            "UID": "732a951353571216"
           },
           "Version": "v1.22.5",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/beorn7/perks@v1.0.1",
           "Name": "github.com/beorn7/perks",
           "Identifier": {
             "PURL": "pkg:golang/github.com/beorn7/perks@v1.0.1",
-            "UID": "3aa3a7e3e4bf1807"
+            "UID": "5ad69d283a4c18d8"
           },
           "Version": "v1.0.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/blang/semver/v4@v4.0.0",
           "Name": "github.com/blang/semver/v4",
           "Identifier": {
             "PURL": "pkg:golang/github.com/blang/semver/v4@v4.0.0",
-            "UID": "94d8e4f0fd469a17"
+            "UID": "1e57795cb5d87c91"
           },
           "Version": "v4.0.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/cespare/xxhash/v2@v2.3.0",
           "Name": "github.com/cespare/xxhash/v2",
           "Identifier": {
             "PURL": "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
-            "UID": "25377bb34af2bd43"
+            "UID": "5fe9d00373d8645d"
           },
           "Version": "v2.3.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/cncf/xds/go@v0.0.0-20250121191232-2f005788dc42",
           "Name": "github.com/cncf/xds/go",
           "Identifier": {
             "PURL": "pkg:golang/github.com/cncf/xds/go@v0.0.0-20250121191232-2f005788dc42",
-            "UID": "9101ddc428359fca"
+            "UID": "18156e4fe5e25867"
           },
           "Version": "v0.0.0-20250121191232-2f005788dc42",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/containernetworking/cni@v1.3.0",
           "Name": "github.com/containernetworking/cni",
           "Identifier": {
             "PURL": "pkg:golang/github.com/containernetworking/cni@v1.3.0",
-            "UID": "102f8a2731de5de"
+            "UID": "c7e8de8e79603cb4"
           },
           "Version": "v1.3.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/containernetworking/plugins@v1.9.0",
           "Name": "github.com/containernetworking/plugins",
           "Identifier": {
             "PURL": "pkg:golang/github.com/containernetworking/plugins@v1.9.0",
-            "UID": "dee0b7dd8d290613"
+            "UID": "19a01c4ec5e155e6"
           },
           "Version": "v1.9.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/coreos/go-iptables@v0.8.0",
           "Name": "github.com/coreos/go-iptables",
           "Identifier": {
             "PURL": "pkg:golang/github.com/coreos/go-iptables@v0.8.0",
-            "UID": "4f7b410ec5e4dc61"
+            "UID": "d028ec32270c59fc"
           },
           "Version": "v0.8.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/coreos/go-semver@v0.3.1",
           "Name": "github.com/coreos/go-semver",
           "Identifier": {
             "PURL": "pkg:golang/github.com/coreos/go-semver@v0.3.1",
-            "UID": "8b26c712d9b4354f"
+            "UID": "181f72f61eebd2b4"
           },
           "Version": "v0.3.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/coreos/go-systemd/v22@v22.6.0",
           "Name": "github.com/coreos/go-systemd/v22",
           "Identifier": {
             "PURL": "pkg:golang/github.com/coreos/go-systemd/v22@v22.6.0",
-            "UID": "34b4186c4c6a581"
+            "UID": "44d76084b7b1e40f"
           },
           "Version": "v22.6.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/davecgh/go-spew@v1.1.2-0.20180830191138-d8f796af33cc",
           "Name": "github.com/davecgh/go-spew",
           "Identifier": {
             "PURL": "pkg:golang/github.com/davecgh/go-spew@v1.1.2-0.20180830191138-d8f796af33cc",
-            "UID": "c448dbbe4494c5ad"
+            "UID": "ff9b9570a1d70d6c"
           },
           "Version": "v1.1.2-0.20180830191138-d8f796af33cc",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/distribution/reference@v0.6.0",
           "Name": "github.com/distribution/reference",
           "Identifier": {
             "PURL": "pkg:golang/github.com/distribution/reference@v0.6.0",
-            "UID": "f4ef04c33689d65c"
+            "UID": "69c8c9ac38498e8e"
           },
           "Version": "v0.6.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/docopt/docopt-go@v0.0.0-20180111231733-ee0de3bc6815",
           "Name": "github.com/docopt/docopt-go",
           "Identifier": {
             "PURL": "pkg:golang/github.com/docopt/docopt-go@v0.0.0-20180111231733-ee0de3bc6815",
-            "UID": "3bd254b2744eb740"
+            "UID": "8e84a1bbb5587d87"
           },
           "Version": "v0.0.0-20180111231733-ee0de3bc6815",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/emicklei/go-restful/v3@v3.11.0",
           "Name": "github.com/emicklei/go-restful/v3",
           "Identifier": {
             "PURL": "pkg:golang/github.com/emicklei/go-restful/v3@v3.11.0",
-            "UID": "5f22a1f32cad6c56"
+            "UID": "1f08f41d62c25ff4"
           },
           "Version": "v3.11.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/envoyproxy/go-control-plane/envoy@v1.32.4",
           "Name": "github.com/envoyproxy/go-control-plane/envoy",
           "Identifier": {
             "PURL": "pkg:golang/github.com/envoyproxy/go-control-plane/envoy@v1.32.4",
-            "UID": "8cd512e19f2a374d"
+            "UID": "35bca4e2fc0707e3"
           },
           "Version": "v1.32.4",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/envoyproxy/protoc-gen-validate@v1.2.1",
           "Name": "github.com/envoyproxy/protoc-gen-validate",
           "Identifier": {
             "PURL": "pkg:golang/github.com/envoyproxy/protoc-gen-validate@v1.2.1",
-            "UID": "84f1efd7ef686b0"
+            "UID": "cf5c610a0735c07d"
           },
           "Version": "v1.2.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/fsnotify/fsnotify@v1.9.0",
           "Name": "github.com/fsnotify/fsnotify",
           "Identifier": {
             "PURL": "pkg:golang/github.com/fsnotify/fsnotify@v1.9.0",
-            "UID": "dce3b81712d86c35"
+            "UID": "74180a473971669a"
           },
           "Version": "v1.9.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/fxamacker/cbor/v2@v2.7.0",
           "Name": "github.com/fxamacker/cbor/v2",
           "Identifier": {
             "PURL": "pkg:golang/github.com/fxamacker/cbor/v2@v2.7.0",
-            "UID": "9d2a9347f46191c1"
+            "UID": "d2630a49373ade0c"
           },
           "Version": "v2.7.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/gavv/monotime@v0.0.0-20190418164738-30dba4353424",
           "Name": "github.com/gavv/monotime",
           "Identifier": {
             "PURL": "pkg:golang/github.com/gavv/monotime@v0.0.0-20190418164738-30dba4353424",
-            "UID": "732d3d7139b95235"
+            "UID": "1585b9464a2417ad"
           },
           "Version": "v0.0.0-20190418164738-30dba4353424",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/go-ini/ini@v1.67.0",
           "Name": "github.com/go-ini/ini",
           "Identifier": {
             "PURL": "pkg:golang/github.com/go-ini/ini@v1.67.0",
-            "UID": "1ec2cae62e16d09a"
+            "UID": "2529db4076132078"
           },
           "Version": "v1.67.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/go-logr/logr@v1.4.3",
           "Name": "github.com/go-logr/logr",
           "Identifier": {
             "PURL": "pkg:golang/github.com/go-logr/logr@v1.4.3",
-            "UID": "999c5956beb3bb47"
+            "UID": "ce50f84145e994ef"
           },
           "Version": "v1.4.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/go-openapi/jsonpointer@v0.21.0",
           "Name": "github.com/go-openapi/jsonpointer",
           "Identifier": {
             "PURL": "pkg:golang/github.com/go-openapi/jsonpointer@v0.21.0",
-            "UID": "d467543fa65fb994"
+            "UID": "a2c04e910064223e"
           },
           "Version": "v0.21.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/go-openapi/jsonreference@v0.20.2",
           "Name": "github.com/go-openapi/jsonreference",
           "Identifier": {
             "PURL": "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2",
-            "UID": "e2901f3ad04638ff"
+            "UID": "b73343a640ffea84"
           },
           "Version": "v0.20.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/go-openapi/swag@v0.23.0",
           "Name": "github.com/go-openapi/swag",
           "Identifier": {
             "PURL": "pkg:golang/github.com/go-openapi/swag@v0.23.0",
-            "UID": "86a491df0433da45"
+            "UID": "77734a20024af7f"
           },
           "Version": "v0.23.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/go-playground/locales@v0.14.1",
           "Name": "github.com/go-playground/locales",
           "Identifier": {
             "PURL": "pkg:golang/github.com/go-playground/locales@v0.14.1",
-            "UID": "5c2d4a6b29af13d7"
+            "UID": "79bc2b7dbfb49b87"
           },
           "Version": "v0.14.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/go-playground/universal-translator@v0.18.1",
           "Name": "github.com/go-playground/universal-translator",
           "Identifier": {
             "PURL": "pkg:golang/github.com/go-playground/universal-translator@v0.18.1",
-            "UID": "e92f428ce902b0a3"
+            "UID": "cac240a571041071"
           },
           "Version": "v0.18.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/go-viper/mapstructure/v2@v2.4.0",
           "Name": "github.com/go-viper/mapstructure/v2",
           "Identifier": {
             "PURL": "pkg:golang/github.com/go-viper/mapstructure/v2@v2.4.0",
-            "UID": "dfc4aad1248a0d70"
+            "UID": "a417cbee4fd973a0"
           },
           "Version": "v2.4.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/gogo/protobuf@v1.3.2",
           "Name": "github.com/gogo/protobuf",
           "Identifier": {
             "PURL": "pkg:golang/github.com/gogo/protobuf@v1.3.2",
-            "UID": "b5b64b23678acb72"
+            "UID": "a1d42ad219155304"
           },
           "Version": "v1.3.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/golang/protobuf@v1.5.4",
           "Name": "github.com/golang/protobuf",
           "Identifier": {
             "PURL": "pkg:golang/github.com/golang/protobuf@v1.5.4",
-            "UID": "d2fd134732746bab"
+            "UID": "fe883d7f780be8be"
           },
           "Version": "v1.5.4",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/golang/snappy@v1.0.0",
           "Name": "github.com/golang/snappy",
           "Identifier": {
             "PURL": "pkg:golang/github.com/golang/snappy@v1.0.0",
-            "UID": "4931355e59b3f43d"
+            "UID": "ffd30c506dbf2473"
           },
           "Version": "v1.0.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/google/btree@v1.1.3",
           "Name": "github.com/google/btree",
           "Identifier": {
             "PURL": "pkg:golang/github.com/google/btree@v1.1.3",
-            "UID": "a4132f82b286513f"
+            "UID": "cdfd7e0d1ccb0dd0"
           },
           "Version": "v1.1.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/google/gnostic-models@v0.6.9",
           "Name": "github.com/google/gnostic-models",
           "Identifier": {
             "PURL": "pkg:golang/github.com/google/gnostic-models@v0.6.9",
-            "UID": "849b2f74a703fe25"
+            "UID": "9ec73749a2090e55"
           },
           "Version": "v0.6.9",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/google/go-cmp@v0.7.0",
           "Name": "github.com/google/go-cmp",
           "Identifier": {
             "PURL": "pkg:golang/github.com/google/go-cmp@v0.7.0",
-            "UID": "cf0671b0a29c9293"
+            "UID": "a6a72b35e182bfda"
           },
           "Version": "v0.7.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/google/gopacket@v1.1.19",
           "Name": "github.com/google/gopacket",
           "Identifier": {
             "PURL": "pkg:golang/github.com/google/gopacket@v1.1.19",
-            "UID": "3f14f4f0f68edd1b"
+            "UID": "6f832c78002fcdab"
           },
           "Version": "v1.1.19",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/google/uuid@v1.6.0",
           "Name": "github.com/google/uuid",
           "Identifier": {
             "PURL": "pkg:golang/github.com/google/uuid@v1.6.0",
-            "UID": "d1ee75edc669c840"
+            "UID": "21e52b5a13465526"
           },
           "Version": "v1.6.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/grpc-ecosystem/grpc-gateway/v2@v2.26.3",
           "Name": "github.com/grpc-ecosystem/grpc-gateway/v2",
           "Identifier": {
             "PURL": "pkg:golang/github.com/grpc-ecosystem/grpc-gateway/v2@v2.26.3",
-            "UID": "10e36d02fc3737a1"
+            "UID": "607c64836546fc76"
           },
           "Version": "v2.26.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/jinzhu/copier@v0.4.0",
           "Name": "github.com/jinzhu/copier",
           "Identifier": {
             "PURL": "pkg:golang/github.com/jinzhu/copier@v0.4.0",
-            "UID": "7a64ba7e2e38d457"
+            "UID": "229c9be23da9dbc7"
           },
           "Version": "v0.4.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/josharian/intern@v1.0.0",
           "Name": "github.com/josharian/intern",
           "Identifier": {
             "PURL": "pkg:golang/github.com/josharian/intern@v1.0.0",
-            "UID": "a7e08e96dd6c414e"
+            "UID": "39ed35c171e173a4"
           },
           "Version": "v1.0.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/josharian/native@v1.1.0",
           "Name": "github.com/josharian/native",
           "Identifier": {
             "PURL": "pkg:golang/github.com/josharian/native@v1.1.0",
-            "UID": "b05147f7c1b72721"
+            "UID": "4de2e985d7366398"
           },
           "Version": "v1.1.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/json-iterator/go@v1.1.12",
           "Name": "github.com/json-iterator/go",
           "Identifier": {
             "PURL": "pkg:golang/github.com/json-iterator/go@v1.1.12",
-            "UID": "fab32be17201e741"
+            "UID": "e1112c16af86b988"
           },
           "Version": "v1.1.12",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/kardianos/osext@v0.0.0-20190222173326-2bc1f35cddc0",
           "Name": "github.com/kardianos/osext",
           "Identifier": {
             "PURL": "pkg:golang/github.com/kardianos/osext@v0.0.0-20190222173326-2bc1f35cddc0",
-            "UID": "f539a0df7ec917eb"
+            "UID": "fc2cf995b42046c9"
           },
           "Version": "v0.0.0-20190222173326-2bc1f35cddc0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/kelseyhightower/envconfig@v1.4.0",
           "Name": "github.com/kelseyhightower/envconfig",
           "Identifier": {
             "PURL": "pkg:golang/github.com/kelseyhightower/envconfig@v1.4.0",
-            "UID": "3df207960da78e0a"
+            "UID": "580044cf6ebab7d8"
           },
           "Version": "v1.4.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/kelseyhightower/memkv@v0.1.1",
           "Name": "github.com/kelseyhightower/memkv",
           "Identifier": {
             "PURL": "pkg:golang/github.com/kelseyhightower/memkv@v0.1.1",
-            "UID": "fe864937420bf2b0"
+            "UID": "91b3149589d3cc6d"
           },
           "Version": "v0.1.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/leodido/go-urn@v1.4.0",
           "Name": "github.com/leodido/go-urn",
           "Identifier": {
             "PURL": "pkg:golang/github.com/leodido/go-urn@v1.4.0",
-            "UID": "c059f8c3e814735d"
+            "UID": "db7d0f77c7e59a91"
           },
           "Version": "v1.4.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/lithammer/dedent@v1.1.0",
           "Name": "github.com/lithammer/dedent",
           "Identifier": {
             "PURL": "pkg:golang/github.com/lithammer/dedent@v1.1.0",
-            "UID": "ab70daa08f7c526a"
+            "UID": "612ab91ec74152c"
           },
           "Version": "v1.1.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/mailru/easyjson@v0.7.7",
           "Name": "github.com/mailru/easyjson",
           "Identifier": {
             "PURL": "pkg:golang/github.com/mailru/easyjson@v0.7.7",
-            "UID": "760a36aa0fb0fbe4"
+            "UID": "e995ec7ddeac638"
           },
           "Version": "v0.7.7",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/mattn/go-runewidth@v0.0.16",
           "Name": "github.com/mattn/go-runewidth",
           "Identifier": {
             "PURL": "pkg:golang/github.com/mattn/go-runewidth@v0.0.16",
-            "UID": "c460d6404f5855c3"
+            "UID": "61561d424d743bac"
           },
           "Version": "v0.0.16",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/mdlayher/genetlink@v1.3.2",
           "Name": "github.com/mdlayher/genetlink",
           "Identifier": {
             "PURL": "pkg:golang/github.com/mdlayher/genetlink@v1.3.2",
-            "UID": "5946b8b9847a71cd"
+            "UID": "7b547a55dd78c6ab"
           },
           "Version": "v1.3.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/mdlayher/netlink@v1.7.2",
           "Name": "github.com/mdlayher/netlink",
           "Identifier": {
             "PURL": "pkg:golang/github.com/mdlayher/netlink@v1.7.2",
-            "UID": "d5dac56dd3edb636"
+            "UID": "ca85eb479629bda9"
           },
           "Version": "v1.7.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/mdlayher/socket@v0.5.1",
           "Name": "github.com/mdlayher/socket",
           "Identifier": {
             "PURL": "pkg:golang/github.com/mdlayher/socket@v0.5.1",
-            "UID": "fd4c36e8beef91b0"
+            "UID": "34ea7a7e0d55eadf"
           },
           "Version": "v0.5.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/mipearson/rfw@v0.0.0-20170619235010-6f0a6f3266ba",
           "Name": "github.com/mipearson/rfw",
           "Identifier": {
             "PURL": "pkg:golang/github.com/mipearson/rfw@v0.0.0-20170619235010-6f0a6f3266ba",
-            "UID": "2f47347cd67c25a"
+            "UID": "bb21a1d4c28cacbe"
           },
           "Version": "v0.0.0-20170619235010-6f0a6f3266ba",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
           "Name": "github.com/modern-go/concurrent",
           "Identifier": {
             "PURL": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
-            "UID": "d7dad1eb653d9acd"
+            "UID": "a309b305379f4b2a"
           },
           "Version": "v0.0.0-20180306012644-bacd9c7ef1dd",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/modern-go/reflect2@v1.0.2",
           "Name": "github.com/modern-go/reflect2",
           "Identifier": {
             "PURL": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
-            "UID": "c931abb6a244e739"
+            "UID": "db7baf3d90da3982"
           },
           "Version": "v1.0.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
           "Name": "github.com/munnerz/goautoneg",
           "Identifier": {
             "PURL": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
-            "UID": "dde25553809de28e"
+            "UID": "5893c2f82e4b205c"
           },
           "Version": "v0.0.0-20191010083416-a7dc8b61c822",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/olekukonko/tablewriter@v0.0.5",
           "Name": "github.com/olekukonko/tablewriter",
           "Identifier": {
             "PURL": "pkg:golang/github.com/olekukonko/tablewriter@v0.0.5",
-            "UID": "2471c6110b1cd763"
+            "UID": "c34d167a20ab4cd2"
           },
           "Version": "v0.0.5",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/onsi/gomega@v1.38.1",
           "Name": "github.com/onsi/gomega",
           "Identifier": {
             "PURL": "pkg:golang/github.com/onsi/gomega@v1.38.1",
-            "UID": "2ec053b1d50391bb"
+            "UID": "53356043f5975426"
           },
           "Version": "v1.38.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/opencontainers/go-digest@v1.0.0",
           "Name": "github.com/opencontainers/go-digest",
           "Identifier": {
             "PURL": "pkg:golang/github.com/opencontainers/go-digest@v1.0.0",
-            "UID": "d917ba39a00d09d0"
+            "UID": "ad48e76f7179fff0"
           },
           "Version": "v1.0.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/pelletier/go-toml/v2@v2.2.3",
           "Name": "github.com/pelletier/go-toml/v2",
           "Identifier": {
             "PURL": "pkg:golang/github.com/pelletier/go-toml/v2@v2.2.3",
-            "UID": "786a54ca638f39f9"
+            "UID": "7607d66392ea212d"
           },
           "Version": "v2.2.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/pkg/errors@v0.9.1",
           "Name": "github.com/pkg/errors",
           "Identifier": {
             "PURL": "pkg:golang/github.com/pkg/errors@v0.9.1",
-            "UID": "b02e3a3fa90eb434"
+            "UID": "64d48b63ebcc6806"
           },
           "Version": "v0.9.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/projectcalico/calico",
           "Name": "github.com/projectcalico/calico",
           "Identifier": {
             "PURL": "pkg:golang/github.com/projectcalico/calico",
-            "UID": "644141847c1013eb"
+            "UID": "ca2931616ace2522"
           },
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/projectcalico/go-json@v0.0.0-20161128004156-6219dc7339ba",
           "Name": "github.com/projectcalico/go-json",
           "Identifier": {
             "PURL": "pkg:golang/github.com/projectcalico/go-json@v0.0.0-20161128004156-6219dc7339ba",
-            "UID": "ba464458d828e27e"
+            "UID": "1d251d93b03153b8"
           },
           "Version": "v0.0.0-20161128004156-6219dc7339ba",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/projectcalico/go-yaml-wrapper@v0.0.0-20191112210931-090425220c54",
           "Name": "github.com/projectcalico/go-yaml-wrapper",
           "Identifier": {
             "PURL": "pkg:golang/github.com/projectcalico/go-yaml-wrapper@v0.0.0-20191112210931-090425220c54",
-            "UID": "1425cb2a7f85461a"
+            "UID": "d90253ccf90c9566"
           },
           "Version": "v0.0.0-20191112210931-090425220c54",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/prometheus/client_golang@v1.23.0",
           "Name": "github.com/prometheus/client_golang",
           "Identifier": {
             "PURL": "pkg:golang/github.com/prometheus/client_golang@v1.23.0",
-            "UID": "35841f04e5cbc0e2"
+            "UID": "58b1c5d2f9466be0"
           },
           "Version": "v1.23.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/prometheus/client_model@v0.6.2",
           "Name": "github.com/prometheus/client_model",
           "Identifier": {
             "PURL": "pkg:golang/github.com/prometheus/client_model@v0.6.2",
-            "UID": "fa0d9235a2bc0237"
+            "UID": "29f55702abbf661c"
           },
           "Version": "v0.6.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/prometheus/common@v0.65.0",
           "Name": "github.com/prometheus/common",
           "Identifier": {
             "PURL": "pkg:golang/github.com/prometheus/common@v0.65.0",
-            "UID": "84b04472499f0b87"
+            "UID": "ccd46782a9c52bdc"
           },
           "Version": "v0.65.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/prometheus/procfs@v0.17.0",
           "Name": "github.com/prometheus/procfs",
           "Identifier": {
             "PURL": "pkg:golang/github.com/prometheus/procfs@v0.17.0",
-            "UID": "e50838ba0ad0cb91"
+            "UID": "6b406824ad5e8cbe"
           },
           "Version": "v0.17.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/rivo/uniseg@v0.4.7",
           "Name": "github.com/rivo/uniseg",
           "Identifier": {
             "PURL": "pkg:golang/github.com/rivo/uniseg@v0.4.7",
-            "UID": "f62eb48347a47d76"
+            "UID": "5e602c3286afb7a"
           },
           "Version": "v0.4.7",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/safchain/ethtool@v0.6.2",
           "Name": "github.com/safchain/ethtool",
           "Identifier": {
             "PURL": "pkg:golang/github.com/safchain/ethtool@v0.6.2",
-            "UID": "905db0521bbd0605"
+            "UID": "97629dc62a3c560"
           },
           "Version": "v0.6.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/sagikazarmark/locafero@v0.7.0",
           "Name": "github.com/sagikazarmark/locafero",
           "Identifier": {
             "PURL": "pkg:golang/github.com/sagikazarmark/locafero@v0.7.0",
-            "UID": "c9d810fcacb43873"
+            "UID": "9851b3f6b233069f"
           },
           "Version": "v0.7.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/sirupsen/logrus@v1.9.3",
           "Name": "github.com/sirupsen/logrus",
           "Identifier": {
             "PURL": "pkg:golang/github.com/sirupsen/logrus@v1.9.3",
-            "UID": "c3e2204f139134a6"
+            "UID": "cd800cfe7d27584"
           },
           "Version": "v1.9.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/sourcegraph/conc@v0.3.0",
           "Name": "github.com/sourcegraph/conc",
           "Identifier": {
             "PURL": "pkg:golang/github.com/sourcegraph/conc@v0.3.0",
-            "UID": "ac45187e50bad939"
+            "UID": "f8f6de08b08ee2a8"
           },
           "Version": "v0.3.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/spf13/afero@v1.12.0",
           "Name": "github.com/spf13/afero",
           "Identifier": {
             "PURL": "pkg:golang/github.com/spf13/afero@v1.12.0",
-            "UID": "2f410a7cbfbcb986"
+            "UID": "aba32be2823488f2"
           },
           "Version": "v1.12.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/spf13/cast@v1.9.2",
           "Name": "github.com/spf13/cast",
           "Identifier": {
             "PURL": "pkg:golang/github.com/spf13/cast@v1.9.2",
-            "UID": "4fdc94fd0307877"
+            "UID": "92a1ac28d53f104f"
           },
           "Version": "v1.9.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/spf13/cobra@v1.9.1",
           "Name": "github.com/spf13/cobra",
           "Identifier": {
             "PURL": "pkg:golang/github.com/spf13/cobra@v1.9.1",
-            "UID": "c7204ec3554af394"
+            "UID": "f872aca8f0c1747c"
           },
           "Version": "v1.9.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/spf13/pflag@v1.0.7",
           "Name": "github.com/spf13/pflag",
           "Identifier": {
             "PURL": "pkg:golang/github.com/spf13/pflag@v1.0.7",
-            "UID": "43def6357c7681cf"
+            "UID": "46c10b0d98c9ba3f"
           },
           "Version": "v1.0.7",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/spf13/viper@v1.20.1",
           "Name": "github.com/spf13/viper",
           "Identifier": {
             "PURL": "pkg:golang/github.com/spf13/viper@v1.20.1",
-            "UID": "9b09e8ab84cca6ab"
+            "UID": "1525d05cef5f8fa0"
           },
           "Version": "v1.20.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/subosito/gotenv@v1.6.0",
           "Name": "github.com/subosito/gotenv",
           "Identifier": {
             "PURL": "pkg:golang/github.com/subosito/gotenv@v1.6.0",
-            "UID": "40aa0de0a9a9db34"
+            "UID": "faca7012784ba52a"
           },
           "Version": "v1.6.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/tchap/go-patricia/v2@v2.3.3",
           "Name": "github.com/tchap/go-patricia/v2",
           "Identifier": {
             "PURL": "pkg:golang/github.com/tchap/go-patricia/v2@v2.3.3",
-            "UID": "110097d7cc755e65"
+            "UID": "7babe28be0420819"
           },
           "Version": "v2.3.3",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/vishvananda/netlink@v1.3.1",
           "Name": "github.com/vishvananda/netlink",
           "Identifier": {
             "PURL": "pkg:golang/github.com/vishvananda/netlink@v1.3.1",
-            "UID": "5d636bcc97ef8715"
+            "UID": "9829808dfb29aba3"
           },
           "Version": "v1.3.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/vishvananda/netns@v0.0.5",
           "Name": "github.com/vishvananda/netns",
           "Identifier": {
             "PURL": "pkg:golang/github.com/vishvananda/netns@v0.0.5",
-            "UID": "2aa9af19f2d88874"
+            "UID": "c34a02fc57d2d45a"
           },
           "Version": "v0.0.5",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "github.com/x448/float16@v0.8.4",
           "Name": "github.com/x448/float16",
           "Identifier": {
             "PURL": "pkg:golang/github.com/x448/float16@v0.8.4",
-            "UID": "4fd22758eeb579db"
+            "UID": "f165b8e440c7474e"
           },
           "Version": "v0.8.4",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "go.etcd.io/etcd/api/v3@v3.6.4",
           "Name": "go.etcd.io/etcd/api/v3",
           "Identifier": {
             "PURL": "pkg:golang/go.etcd.io/etcd/api/v3@v3.6.4",
-            "UID": "73373f9630df4093"
+            "UID": "813dc990165a58dd"
           },
           "Version": "v3.6.4",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "go.etcd.io/etcd/client/pkg/v3@v3.6.4",
           "Name": "go.etcd.io/etcd/client/pkg/v3",
           "Identifier": {
             "PURL": "pkg:golang/go.etcd.io/etcd/client/pkg/v3@v3.6.4",
-            "UID": "c75697d06bcfd976"
+            "UID": "5eb61bf7e9157d9e"
           },
           "Version": "v3.6.4",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "go.etcd.io/etcd/client/v3@v3.6.4",
           "Name": "go.etcd.io/etcd/client/v3",
           "Identifier": {
             "PURL": "pkg:golang/go.etcd.io/etcd/client/v3@v3.6.4",
-            "UID": "93904caff4179b0"
+            "UID": "12eb14220d02e9f3"
           },
           "Version": "v3.6.4",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "go.opentelemetry.io/otel@v1.35.0",
           "Name": "go.opentelemetry.io/otel",
           "Identifier": {
             "PURL": "pkg:golang/go.opentelemetry.io/otel@v1.35.0",
-            "UID": "21893399bda2b85a"
+            "UID": "490a206dba7c4df2"
           },
           "Version": "v1.35.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "go.opentelemetry.io/otel/trace@v1.35.0",
           "Name": "go.opentelemetry.io/otel/trace",
           "Identifier": {
             "PURL": "pkg:golang/go.opentelemetry.io/otel/trace@v1.35.0",
-            "UID": "1ae024e629919c46"
+            "UID": "8863353dc962441c"
           },
           "Version": "v1.35.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "go.uber.org/multierr@v1.11.0",
           "Name": "go.uber.org/multierr",
           "Identifier": {
             "PURL": "pkg:golang/go.uber.org/multierr@v1.11.0",
-            "UID": "9cc2c1c2c8d9146d"
+            "UID": "c0815195316508a8"
           },
           "Version": "v1.11.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "go.uber.org/zap@v1.27.0",
           "Name": "go.uber.org/zap",
           "Identifier": {
             "PURL": "pkg:golang/go.uber.org/zap@v1.27.0",
-            "UID": "77f4a38a2136d61d"
+            "UID": "1873c7f155887282"
           },
           "Version": "v1.27.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "go.yaml.in/yaml/v2@v2.4.2",
           "Name": "go.yaml.in/yaml/v2",
           "Identifier": {
             "PURL": "pkg:golang/go.yaml.in/yaml/v2@v2.4.2",
-            "UID": "b347318a47a7acf4"
+            "UID": "c02b5dc4b77a056b"
           },
           "Version": "v2.4.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "go.yaml.in/yaml/v3@v3.0.4",
           "Name": "go.yaml.in/yaml/v3",
           "Identifier": {
             "PURL": "pkg:golang/go.yaml.in/yaml/v3@v3.0.4",
-            "UID": "9c5ac0d97c8a2ebd"
+            "UID": "6e55de1e589f1de5"
           },
           "Version": "v3.0.4",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "golang.org/x/crypto@v0.48.0",
           "Name": "golang.org/x/crypto",
           "Identifier": {
             "PURL": "pkg:golang/golang.org/x/crypto@v0.48.0",
-            "UID": "cc49f536c6bad8e3"
+            "UID": "940fd2a808ae1838"
           },
           "Version": "v0.48.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "golang.org/x/net@v0.49.0",
           "Name": "golang.org/x/net",
           "Identifier": {
             "PURL": "pkg:golang/golang.org/x/net@v0.49.0",
-            "UID": "2850d8cc446d364b"
+            "UID": "a31530dc6bd52ac"
           },
           "Version": "v0.49.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "golang.org/x/oauth2@v0.34.0",
           "Name": "golang.org/x/oauth2",
           "Identifier": {
             "PURL": "pkg:golang/golang.org/x/oauth2@v0.34.0",
-            "UID": "72a7a5149c2d180c"
+            "UID": "e6117e397d2edf59"
           },
           "Version": "v0.34.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "golang.org/x/sync@v0.19.0",
           "Name": "golang.org/x/sync",
           "Identifier": {
             "PURL": "pkg:golang/golang.org/x/sync@v0.19.0",
-            "UID": "62f9c674b1f924b1"
+            "UID": "6b8987ab81ee0672"
           },
           "Version": "v0.19.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "golang.org/x/sys@v0.41.0",
           "Name": "golang.org/x/sys",
           "Identifier": {
             "PURL": "pkg:golang/golang.org/x/sys@v0.41.0",
-            "UID": "767d1386ef29017c"
+            "UID": "c6826df723150a75"
           },
           "Version": "v0.41.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "golang.org/x/term@v0.40.0",
           "Name": "golang.org/x/term",
           "Identifier": {
             "PURL": "pkg:golang/golang.org/x/term@v0.40.0",
-            "UID": "717f4415206b62fe"
+            "UID": "4e93a53bb5b0947c"
           },
           "Version": "v0.40.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "golang.org/x/text@v0.34.0",
           "Name": "golang.org/x/text",
           "Identifier": {
             "PURL": "pkg:golang/golang.org/x/text@v0.34.0",
-            "UID": "40cd37dc71f30aca"
+            "UID": "8588af4939ba9f44"
           },
           "Version": "v0.34.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "golang.org/x/time@v0.14.0",
           "Name": "golang.org/x/time",
           "Identifier": {
             "PURL": "pkg:golang/golang.org/x/time@v0.14.0",
-            "UID": "560aa57c36ac07e5"
+            "UID": "91a69023787c8411"
           },
           "Version": "v0.14.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "golang.zx2c4.com/wireguard/wgctrl@v0.0.0-20241231184526-a9ab2273dd10",
           "Name": "golang.zx2c4.com/wireguard/wgctrl",
           "Identifier": {
             "PURL": "pkg:golang/golang.zx2c4.com/wireguard/wgctrl@v0.0.0-20241231184526-a9ab2273dd10",
-            "UID": "c7ff4b1061fe21b8"
+            "UID": "5ba37741ae4332b0"
           },
           "Version": "v0.0.0-20241231184526-a9ab2273dd10",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "google.golang.org/genproto/googleapis/api@v0.0.0-20250721164621-a45f3dfb1074",
           "Name": "google.golang.org/genproto/googleapis/api",
           "Identifier": {
             "PURL": "pkg:golang/google.golang.org/genproto/googleapis/api@v0.0.0-20250721164621-a45f3dfb1074",
-            "UID": "95252e0215fc96a0"
+            "UID": "b4b58c1d18b1c76"
           },
           "Version": "v0.0.0-20250721164621-a45f3dfb1074",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "google.golang.org/genproto/googleapis/rpc@v0.0.0-20250811230008-5f3141c8851a",
           "Name": "google.golang.org/genproto/googleapis/rpc",
           "Identifier": {
             "PURL": "pkg:golang/google.golang.org/genproto/googleapis/rpc@v0.0.0-20250811230008-5f3141c8851a",
-            "UID": "56f7de368da98376"
+            "UID": "75607aba741c770"
           },
           "Version": "v0.0.0-20250811230008-5f3141c8851a",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "google.golang.org/grpc@v1.72.2",
           "Name": "google.golang.org/grpc",
           "Identifier": {
             "PURL": "pkg:golang/google.golang.org/grpc@v1.72.2",
-            "UID": "acdeb6cab1c008fe"
+            "UID": "4da227886336671b"
           },
           "Version": "v1.72.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "google.golang.org/protobuf@v1.36.7",
           "Name": "google.golang.org/protobuf",
           "Identifier": {
             "PURL": "pkg:golang/google.golang.org/protobuf@v1.36.7",
-            "UID": "f29fe024e55f79ef"
+            "UID": "d2a67ef99ce3b720"
           },
           "Version": "v1.36.7",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "gopkg.in/evanphx/json-patch.v4@v4.12.0",
           "Name": "gopkg.in/evanphx/json-patch.v4",
           "Identifier": {
             "PURL": "pkg:golang/gopkg.in/evanphx/json-patch.v4@v4.12.0",
-            "UID": "7444352c2cf2a61f"
+            "UID": "3f62613639821478"
           },
           "Version": "v4.12.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "gopkg.in/go-playground/validator.v9@v9.30.2",
           "Name": "gopkg.in/go-playground/validator.v9",
           "Identifier": {
             "PURL": "pkg:golang/gopkg.in/go-playground/validator.v9@v9.30.2",
-            "UID": "ea4512826960118f"
+            "UID": "b301376409d23694"
           },
           "Version": "v9.30.2",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "gopkg.in/inf.v0@v0.9.1",
           "Name": "gopkg.in/inf.v0",
           "Identifier": {
             "PURL": "pkg:golang/gopkg.in/inf.v0@v0.9.1",
-            "UID": "1e8069d454ecd717"
+            "UID": "9202f0ae1b0c8b2"
           },
           "Version": "v0.9.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "gopkg.in/yaml.v2@v2.4.0",
           "Name": "gopkg.in/yaml.v2",
           "Identifier": {
             "PURL": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
-            "UID": "bef2c00baab3688a"
+            "UID": "7e572261dac6e8c8"
           },
           "Version": "v2.4.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "gopkg.in/yaml.v3@v3.0.1",
           "Name": "gopkg.in/yaml.v3",
           "Identifier": {
             "PURL": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
-            "UID": "fd6c5d50b99914b4"
+            "UID": "7acf3d8eea23a678"
           },
           "Version": "v3.0.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/api@v0.33.8",
           "Name": "k8s.io/api",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/api@v0.33.8",
-            "UID": "13f976acd0a0c3bd"
+            "UID": "28abd4310f50871e"
           },
           "Version": "v0.33.8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/apiextensions-apiserver@v0.33.8",
           "Name": "k8s.io/apiextensions-apiserver",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/apiextensions-apiserver@v0.33.8",
-            "UID": "2addaaef398bdb3c"
+            "UID": "7b4513f81d7332a7"
           },
           "Version": "v0.33.8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/apimachinery@v0.33.8",
           "Name": "k8s.io/apimachinery",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/apimachinery@v0.33.8",
-            "UID": "454e823151b8c931"
+            "UID": "c2f1c7e649833e62"
           },
           "Version": "v0.33.8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/apiserver@v0.33.8",
           "Name": "k8s.io/apiserver",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/apiserver@v0.33.8",
-            "UID": "1cdf1bd0df26677e"
+            "UID": "17e2694a8bc069df"
           },
           "Version": "v0.33.8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/client-go@v0.33.8",
           "Name": "k8s.io/client-go",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/client-go@v0.33.8",
-            "UID": "98f4c2b115d8acf8"
+            "UID": "87d6af131cc2ba9f"
           },
           "Version": "v0.33.8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/component-base@v0.33.8",
           "Name": "k8s.io/component-base",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/component-base@v0.33.8",
-            "UID": "760f8646daac4b0c"
+            "UID": "32940d7bced61ce8"
           },
           "Version": "v0.33.8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/component-helpers@v0.33.8",
           "Name": "k8s.io/component-helpers",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/component-helpers@v0.33.8",
-            "UID": "b91251cb420d4ff5"
+            "UID": "b7e0ee14f94be3ab"
           },
           "Version": "v0.33.8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/controller-manager@v0.33.8",
           "Name": "k8s.io/controller-manager",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/controller-manager@v0.33.8",
-            "UID": "a57f153f12cb617c"
+            "UID": "527b9e6126e0ed58"
           },
           "Version": "v0.33.8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/klog/v2@v2.130.1",
           "Name": "k8s.io/klog/v2",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/klog/v2@v2.130.1",
-            "UID": "d38f345d91de2835"
+            "UID": "e7dee2ae38552af0"
           },
           "Version": "v2.130.1",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/kube-openapi@v0.0.0-20250318190949-c8a335a9a2ff",
           "Name": "k8s.io/kube-openapi",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20250318190949-c8a335a9a2ff",
-            "UID": "9b9f5ec1f5630d94"
+            "UID": "3e162b2bce6a0dc1"
           },
           "Version": "v0.0.0-20250318190949-c8a335a9a2ff",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/kubelet@v0.33.8",
           "Name": "k8s.io/kubelet",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/kubelet@v0.33.8",
-            "UID": "23dbd7bd93bd70db"
+            "UID": "64ef309675ae2b58"
           },
           "Version": "v0.33.8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/kubernetes@v1.33.8",
           "Name": "k8s.io/kubernetes",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/kubernetes@v1.33.8",
-            "UID": "a64a66e35cfc160"
+            "UID": "64ce850931c058af"
           },
           "Version": "v1.33.8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "k8s.io/utils@v0.0.0-20241210054802-24370beab758",
           "Name": "k8s.io/utils",
           "Identifier": {
             "PURL": "pkg:golang/k8s.io/utils@v0.0.0-20241210054802-24370beab758",
-            "UID": "f63ffe65c1c7ef51"
+            "UID": "cc899ab94329480d"
           },
           "Version": "v0.0.0-20241210054802-24370beab758",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "modernc.org/memory@v1.10.0",
           "Name": "modernc.org/memory",
           "Identifier": {
             "PURL": "pkg:golang/modernc.org/memory@v1.10.0",
-            "UID": "688a6ba080414c82"
+            "UID": "b1c1b484327e8ad7"
           },
           "Version": "v1.10.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "sigs.k8s.io/json@v0.0.0-20241014173422-cfa47c3a1cc8",
           "Name": "sigs.k8s.io/json",
           "Identifier": {
             "PURL": "pkg:golang/sigs.k8s.io/json@v0.0.0-20241014173422-cfa47c3a1cc8",
-            "UID": "dfc169d0092cf516"
+            "UID": "fff9aa58a8a66867"
           },
           "Version": "v0.0.0-20241014173422-cfa47c3a1cc8",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "sigs.k8s.io/knftables@v0.0.18",
           "Name": "sigs.k8s.io/knftables",
           "Identifier": {
             "PURL": "pkg:golang/sigs.k8s.io/knftables@v0.0.18",
-            "UID": "ef8b4b79e6654b89"
+            "UID": "3907344d40664526"
           },
           "Version": "v0.0.18",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "sigs.k8s.io/network-policy-api@v0.1.5",
           "Name": "sigs.k8s.io/network-policy-api",
           "Identifier": {
             "PURL": "pkg:golang/sigs.k8s.io/network-policy-api@v0.1.5",
-            "UID": "b5a97f07714bdae0"
+            "UID": "6cf5fd9d1f68d531"
           },
           "Version": "v0.1.5",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "sigs.k8s.io/randfill@v1.0.0",
           "Name": "sigs.k8s.io/randfill",
           "Identifier": {
             "PURL": "pkg:golang/sigs.k8s.io/randfill@v1.0.0",
-            "UID": "5ea50bd1464db14e"
+            "UID": "5abebec27999b059"
           },
           "Version": "v1.0.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "sigs.k8s.io/structured-merge-diff/v4@v4.6.0",
           "Name": "sigs.k8s.io/structured-merge-diff/v4",
           "Identifier": {
             "PURL": "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.6.0",
-            "UID": "c9e2a24bbdc1e46f"
+            "UID": "ffb751595c16eb4f"
           },
           "Version": "v4.6.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "sigs.k8s.io/yaml@v1.6.0",
           "Name": "sigs.k8s.io/yaml",
           "Identifier": {
             "PURL": "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
-            "UID": "b951d487ce5196ac"
+            "UID": "7940054bde9c6e7e"
           },
           "Version": "v1.6.0",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         }
       ]
     },
@@ -31936,7 +32348,7 @@
           "Name": "github.com/projectcalico/calico",
           "Identifier": {
             "PURL": "pkg:golang/github.com/projectcalico/calico@v3.31.4",
-            "UID": "9b8bbf82252639d7"
+            "UID": "7623e8efc35dddd"
           },
           "Version": "v3.31.4",
           "Relationship": "root",
@@ -31946,21 +32358,23 @@
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         },
         {
           "ID": "stdlib@v1.24.13",
           "Name": "stdlib",
           "Identifier": {
             "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "2ae459f0399072dd"
+            "UID": "d7930b54c625be7e"
           },
           "Version": "v1.24.13",
           "Relationship": "direct",
           "Layer": {
             "Digest": "sha256:837f584992da0af19725a07f775191fa81fc35326774847e2f35d57fac56dd8f",
             "DiffID": "sha256:6cc958e4b1c01892641699cb94636655f6225577bc992fb7de3ed96a49032065"
-          }
+          },
+          "AnalyzedBy": "gobinary"
         }
       ]
     }
