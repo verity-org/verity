@@ -14,21 +14,7 @@ types:
     paths:
       - {path: /etc/caddy, type: directory, uid: 65532, gid: 65532, permissions: 0o755}
       - {path: /data/caddy, type: directory, uid: 65532, gid: 65532, permissions: 0o700}
-      - {path: /config/caddy, type: directory, uid: 65532, gid: 65532, permissions: 0o755}
-      - {path: /usr/share/caddy, type: directory, uid: 65532, gid: 65532, permissions: 0o755}
-
-  fips:
-    base: wolfi-fips
-    packages: ["caddy"]
-    entrypoint: "caddy"
-    environment:
-      XDG_DATA_HOME: /data
-      XDG_CONFIG_HOME: /config
-      OPENSSL_MODULES: /usr/lib/ossl-modules
-      OPENSSL_CONF: /etc/ssl/openssl-fips.cnf
-    paths:
-      - {path: /etc/caddy, type: directory, uid: 65532, gid: 65532, permissions: 0o755}
-      - {path: /data/caddy, type: directory, uid: 65532, gid: 65532, permissions: 0o700}
+      - {path: /data/caddy/locks, type: directory, uid: 65532, gid: 65532, permissions: 0o700}
       - {path: /config/caddy, type: directory, uid: 65532, gid: 65532, permissions: 0o755}
       - {path: /usr/share/caddy, type: directory, uid: 65532, gid: 65532, permissions: 0o755}
 
