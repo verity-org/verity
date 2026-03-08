@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019cc68f-d8ca-72e0-82b8-c20434ba343d",
-  "CreatedAt": "2026-03-07T04:30:41.866191131Z",
-  "ArtifactID": "sha256:1bb7274c29b5bafc57274b72212ded34eab23379fddf66df5556ca1649c72985",
+  "ReportID": "019ccbc4-83c4-712f-a10c-470e9ad2a1e4",
+  "CreatedAt": "2026-03-08T04:46:19.588079447Z",
+  "ArtifactID": "sha256:fe97806f75045bcfb15a99150b8ff1d2646daeccddf135c0b79e2758108a500a",
   "ArtifactName": "ghcr.io/verity-org/cache:cilium-agent-v1.18.7-patched",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -14,7 +14,7 @@
       "Family": "ubuntu",
       "Name": "24.04"
     },
-    "ImageID": "sha256:aac214f6a849dd30929a0128a48c6b6a5c864bd0fbe10e66d4a38525612848ad",
+    "ImageID": "sha256:f64b8ac04b3b6f2c80cd744183ef0c5999f4b72be183a72693181047be6970eb",
     "DiffIDs": [
       "sha256:9a5328174da82b5ea40a1aab03ad883a40cea239e6d81d99f62d6cd7b84b5031",
       "sha256:44edac07998000aa2053e37dff143bb0617db1c1f30e973e2914972375f9f1b2",
@@ -24,13 +24,13 @@
       "sha256:b7e885fc49b6b5532d2ff25345b480a6c2664e2a01a70db5d0259b65229e8398",
       "sha256:8fccc65680e7fda6c49185352c26458ad9090a000a318d666d283579d0c04853",
       "sha256:f80ed5cd06fa6a0f1a18568c3691d17b01681f90f7bb1bc4602da094fb8785e3",
-      "sha256:22c688ddf9aa049c2e60906c5fda3e2bb5bade8d9fa666ae7a9fff3fef988add"
+      "sha256:c8fe2db67df276e3df63d06a1989be0d5169acd6d183b32b414c843025d1d4ed"
     ],
     "RepoTags": [
       "ghcr.io/verity-org/cache:cilium-agent-v1.18.7-patched"
     ],
     "RepoDigests": [
-      "ghcr.io/verity-org/cache@sha256:360306431eae413479d185a5c1c73116abe63306eff6b191e98749f46f931479"
+      "ghcr.io/verity-org/cache@sha256:5f115e3f7639915fbceed2c97567d5d0505a4a219a301863b133829067f78028"
     ],
     "Reference": "ghcr.io/verity-org/cache:cilium-agent-v1.18.7-patched",
     "ImageConfig": {
@@ -120,7 +120,7 @@
           "empty_layer": true
         },
         {
-          "created": "2026-03-07T04:20:57.714737314Z",
+          "created": "2026-03-08T04:36:11.620237275Z",
           "created_by": "mount / from exec sh -c apt-get -o Acquire::Retries=3 install --no-install-recommends -y libgnutls30t64 \u0026\u0026 apt-get clean -y",
           "comment": "buildkit.exporter.image.v0"
         }
@@ -137,7 +137,7 @@
           "sha256:b7e885fc49b6b5532d2ff25345b480a6c2664e2a01a70db5d0259b65229e8398",
           "sha256:8fccc65680e7fda6c49185352c26458ad9090a000a318d666d283579d0c04853",
           "sha256:f80ed5cd06fa6a0f1a18568c3691d17b01681f90f7bb1bc4602da094fb8785e3",
-          "sha256:22c688ddf9aa049c2e60906c5fda3e2bb5bade8d9fa666ae7a9fff3fef988add"
+          "sha256:c8fe2db67df276e3df63d06a1989be0d5169acd6d183b32b414c843025d1d4ed"
         ]
       },
       "config": {
@@ -200,8 +200,8 @@
       },
       {
         "Size": 2647552,
-        "Digest": "sha256:09873ee484c82c9d2546ccb3cb2ef7b093bddc587704d8c539366bac2617e6ee",
-        "DiffID": "sha256:22c688ddf9aa049c2e60906c5fda3e2bb5bade8d9fa666ae7a9fff3fef988add"
+        "Digest": "sha256:2f0cf3fe1147caf014f6cbb9c0c51c38e2ee416cb1ad04b7b154091b62accbf0",
+        "DiffID": "sha256:c8fe2db67df276e3df63d06a1989be0d5169acd6d183b32b414c843025d1d4ed"
       }
     ]
   },
@@ -4537,8 +4537,8 @@
             "libunistring5@1.1-2build1.1"
           ],
           "Layer": {
-            "Digest": "sha256:09873ee484c82c9d2546ccb3cb2ef7b093bddc587704d8c539366bac2617e6ee",
-            "DiffID": "sha256:22c688ddf9aa049c2e60906c5fda3e2bb5bade8d9fa666ae7a9fff3fef988add"
+            "Digest": "sha256:2f0cf3fe1147caf014f6cbb9c0c51c38e2ee416cb1ad04b7b154091b62accbf0",
+            "DiffID": "sha256:c8fe2db67df276e3df63d06a1989be0d5169acd6d183b32b414c843025d1d4ed"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libgnutls.so.30.37.1",
@@ -9261,7 +9261,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:364e92f9cc032d9c16205e8cd588be362c6a41b5dc32e70957947fb6a3df81da",
+          "Fingerprint": "sha256:d4713d07bcc0c410637c540a3bc167660cbfd9448da7515a46b5ec50e51c2d09",
           "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
           "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
           "Severity": "LOW",
@@ -9324,7 +9324,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:d8743391db1ccada9f37430d84b9570bc4550a030f9ff982b25a2f374b281634",
+          "Fingerprint": "sha256:956f3471d4c4ccb8140d36c3760fd93909265e512ff2e8c7848a0aec44b369e6",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -9379,7 +9379,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:5bc1cae09be815812e81ca12a3640a055bb2287161dba64c08f6da9cf986f2ec",
+          "Fingerprint": "sha256:40054715cc257f2c1a5825fb78cbcea2cd49524fa840a9e564c2ad5995576745",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -9435,7 +9435,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:304c5e617c3ad55a33535c7826ac7184c5331a5b3ce62b690dc235a23eb4802a",
+          "Fingerprint": "sha256:05fd482c5b35db0409ffd0e772d6f3e9eb797944b08b2bc64cd74f20699c5a07",
           "Title": "libbpf: Heap Buffer Overflow in libbpf",
           "Description": "Buffer Overflow vulnerability in libbpf 1.5.0 allows a local attacker to execute arbitrary code via the bpf_object__init_prog` function of libbpf. This has been disputed by third parties who assert that \"no one in their sane mind should be passing untrusted ELF files into libbpf while running under root.\"",
           "Severity": "LOW",
@@ -9489,7 +9489,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:d407e8ab897b347086161f2e9ed3c06c5f55d007504294472c0fba3372ce178a",
+          "Fingerprint": "sha256:ba27e04942be52238ba420835c0e6038102fa761f3f3d0dda7c127a85e0818ce",
           "Title": "elfutils: GNU elfutils eu-readelf libdw_alloc.c __libdw_thread_tail memory corruption",
           "Description": "A vulnerability has been found in GNU elfutils 0.192 and classified as critical. This vulnerability affects the function __libdw_thread_tail in the library libdw_alloc.c of the component eu-readelf. The manipulation of the argument w leads to memory corruption. The attack can be initiated remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is 2636426a091bd6c6f7f02e49ab20d4cdc6bfc753. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -9550,7 +9550,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:25e2f0ea877a7281117e67879bb756e07f471235b218c4c3cb092572de4ecd79",
+          "Fingerprint": "sha256:3269f4febe6f3cd9e729ba1bdf180771c5421d342dd55f480c96cd862de7c83b",
           "Title": "elfutils: GNU elfutils eu-strip elf_strptr.c elf_strptr denial of service",
           "Description": "A vulnerability classified as problematic was found in GNU elfutils 0.192. This vulnerability affects the function elf_strptr in the library /libelf/elf_strptr.c of the component eu-strip. The manipulation leads to denial of service. It is possible to launch the attack on the local host. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is b16f441cca0a4841050e3215a9f120a6d8aea918. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -9610,7 +9610,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:d11d45a615e37798d9aa438da89dc3dd29f7ecb19346d95bdccef026a3a71194",
+          "Fingerprint": "sha256:308cbcbb3b699218809b89163f108d93ad0b0ef5992d0733cceeaa815f22c249",
           "Title": "libgcrypt: vulnerable to Marvin Attack",
           "Description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
           "Severity": "LOW",
@@ -9675,7 +9675,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:d12e6263e853798f5eab410b98884c16cbaf27548d44c54e71ac44185729bcda",
+          "Fingerprint": "sha256:241d18325722c7656d6fbf31a8a20a5d8eef5d4d2eda64f6780ee12c60f5f8bb",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9716,11 +9716,12 @@
             "https://access.redhat.com/errata/RHSA-2025:21885",
             "https://access.redhat.com/security/cve/CVE-2025-8941",
             "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
-            "https://errata.almalinux.org/8/ALSA-2025-14557.html",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
             "https://errata.rockylinux.org/RLSA-2025:15099",
             "https://linux.oracle.com/cve/CVE-2025-8941.html",
             "https://linux.oracle.com/errata/ELSA-2025-15099.html",
@@ -9751,7 +9752,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:59449e18ce343d4585c651ef5bd51fe56eef0082698bc3a1b624de3f03fd6ac5",
+          "Fingerprint": "sha256:c0b7e1ba1e9f841ec00839cd481b51b3926404d3a9ab18b3077041f7e9afa5fd",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9792,11 +9793,12 @@
             "https://access.redhat.com/errata/RHSA-2025:21885",
             "https://access.redhat.com/security/cve/CVE-2025-8941",
             "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
-            "https://errata.almalinux.org/8/ALSA-2025-14557.html",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
             "https://errata.rockylinux.org/RLSA-2025:15099",
             "https://linux.oracle.com/cve/CVE-2025-8941.html",
             "https://linux.oracle.com/errata/ELSA-2025-15099.html",
@@ -9827,7 +9829,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:b2cd7412ff3e35d331416915d96bac710603dcbf6558b7c0eafd40e24e50da84",
+          "Fingerprint": "sha256:11a75228f2f921dc6d7bd251d455cd48b73fd329641151941ccd4ac17c1c12d2",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9868,11 +9870,12 @@
             "https://access.redhat.com/errata/RHSA-2025:21885",
             "https://access.redhat.com/security/cve/CVE-2025-8941",
             "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
-            "https://errata.almalinux.org/8/ALSA-2025-14557.html",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
             "https://errata.rockylinux.org/RLSA-2025:15099",
             "https://linux.oracle.com/cve/CVE-2025-8941.html",
             "https://linux.oracle.com/errata/ELSA-2025-15099.html",
@@ -9903,7 +9906,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:112e3bce41ae4e0c32e4befdc1bfa2ea133f489d601211773a0475f3150920ba",
+          "Fingerprint": "sha256:837ff1ca5f9bfafa1def9574a6acf0627b6743672022fc9dc315753800fb01a1",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9944,11 +9947,12 @@
             "https://access.redhat.com/errata/RHSA-2025:21885",
             "https://access.redhat.com/security/cve/CVE-2025-8941",
             "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
-            "https://errata.almalinux.org/8/ALSA-2025-14557.html",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
             "https://errata.rockylinux.org/RLSA-2025:15099",
             "https://linux.oracle.com/cve/CVE-2025-8941.html",
             "https://linux.oracle.com/errata/ELSA-2025-15099.html",
@@ -9979,7 +9983,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:3e7cf6e82ba161462a696a47abf9a589bbca4a7f8bfda37a34e7ab13d48054ea",
+          "Fingerprint": "sha256:d897a8397db56a2d5aaae5989d324dda69b752dfe051670ab613872bb2a1192c",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -10001,12 +10005,12 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2025:20145",
+            "https://access.redhat.com/errata/RHSA-2025:20559",
             "https://access.redhat.com/security/cve/CVE-2024-56433",
             "https://bugzilla.redhat.com/2334165",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2334165",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-56433",
-            "https://errata.almalinux.org/10/ALSA-2025-20145.html",
+            "https://errata.almalinux.org/9/ALSA-2025-20559.html",
             "https://errata.rockylinux.org/RLSA-2025:20559",
             "https://github.com/shadow-maint/shadow/blob/e2512d5741d4a44bdd81a8c2d0029b6222728cf0/etc/login.defs#L238-L241",
             "https://github.com/shadow-maint/shadow/issues/1157",
@@ -10040,7 +10044,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:3bd766ccf973c6c630a16f76bfb60d5a37f58b8a3f9f1b7878323438bfb6dddc",
+          "Fingerprint": "sha256:21d013484c63f549f770d4f8288f2b8455a59c441006bf0d1af93f4d7f074eca",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -10062,12 +10066,12 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2025:20145",
+            "https://access.redhat.com/errata/RHSA-2025:20559",
             "https://access.redhat.com/security/cve/CVE-2024-56433",
             "https://bugzilla.redhat.com/2334165",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2334165",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-56433",
-            "https://errata.almalinux.org/10/ALSA-2025-20145.html",
+            "https://errata.almalinux.org/9/ALSA-2025-20559.html",
             "https://errata.rockylinux.org/RLSA-2025:20559",
             "https://github.com/shadow-maint/shadow/blob/e2512d5741d4a44bdd81a8c2d0029b6222728cf0/etc/login.defs#L238-L241",
             "https://github.com/shadow-maint/shadow/issues/1157",
@@ -10101,7 +10105,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:6e4c71b67dd4ed555b2ebc34221b5bd4b837f03c2f93cc7cbc2205c655f46c86",
+          "Fingerprint": "sha256:5a0722f23e5518dc6c5645974a3c9ee93db9c53a854fa2349bbfdb32b6328263",
           "Title": "tar: Tar path traversal",
           "Description": "GNU Tar through 1.35 allows file overwrite via directory traversal in crafted TAR archives, with a certain two-step process. First, the victim must extract an archive that contains a ../ symlink to a critical directory. Second, the victim must extract an archive that contains a critical file, specified via a relative pathname that begins with the symlink name and ends with that critical file's name. Here, the extraction follows the symlink and overwrites the critical file. This bypasses the protection mechanism of \"Member name contains '..'\" that would occur for a single TAR archive that attempted to specify the critical file via a ../ approach. For example, the first archive can contain \"x -\u003e ../../../../../home/victim/.ssh\" and the second archive can contain x/authorized_keys. This can affect server applications that automatically extract any number of user-supplied TAR archives, and were relying on the blocking of traversal. This can also affect software installation processes in which \"tar xf\" is run more than once (e.g., when installing a package can automatically install two dependencies that are set up as untrusted tarballs instead of official packages). NOTE: the official GNU Tar manual has an otherwise-empty directory for each \"tar xf\" in its Security Rules of Thumb; however, third-party advice leads users to run \"tar xf\" more than once into the same directory.",
           "Severity": "MEDIUM",
@@ -10123,12 +10127,12 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2025/11/01/6",
-            "https://access.redhat.com/errata/RHSA-2026:0002",
+            "https://access.redhat.com/errata/RHSA-2026:0067",
             "https://access.redhat.com/security/cve/CVE-2025-45582",
             "https://bugzilla.redhat.com/2379592",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2379592",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-45582",
-            "https://errata.almalinux.org/10/ALSA-2026-0002.html",
+            "https://errata.almalinux.org/9/ALSA-2026-0067.html",
             "https://errata.rockylinux.org/RLSA-2026:0067",
             "https://github.com/i900008/vulndb/blob/main/Gnu_tar_vuln.md",
             "https://linux.oracle.com/cve/CVE-2025-45582.html",
@@ -10286,7 +10290,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:faee08c7c53dc5c7d243f0d13baac5157ec3e6ec1567166cbd5cd8a36dbfe1b4",
+          "Fingerprint": "sha256:b51d5daaa6fa858e915d56f48b7a25fb2562009de32ae1b040bc5644f904fabb",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -10320,9 +10324,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-68121",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -10331,7 +10335,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
@@ -10369,7 +10373,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:41c9b1026df0b75ccf09d6ad31dce5f68f9c76fb724d9c2d56888b1b1e22251b",
+          "Fingerprint": "sha256:d5e7796117c0ad8e3d5fe92a6be3aafe814115beb8110396c1f8d7b709eebfb1",
           "Title": "golang: net/url: Memory exhaustion in query parameter parsing in net/url",
           "Description": "The net/url package does not set a limit on the number of query parameters in a query. While the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.",
           "Severity": "HIGH",
@@ -10398,9 +10402,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-61726",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -10409,7 +10413,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/736712",
             "https://go.dev/issue/77101",
@@ -10447,7 +10451,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:92b4479ac4a5e36b230756d9a77755ecf610cd0804cec2f6dc971e568b52ad64",
+          "Fingerprint": "sha256:8fac6806789ef031776b3cd3f10ff1ee4e7d55c4dd5c67d0d73c76edc0a3cee6",
           "Title": "golang: archive/zip: Excessive CPU consumption when building archive index in archive/zip",
           "Description": "archive/zip uses a super-linear file name indexing algorithm that is invoked the first time a file in an archive is opened. This can lead to a denial of service when consuming a maliciously constructed ZIP archive.",
           "Severity": "HIGH",
@@ -10476,8 +10480,9 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/01/15/4",
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3337",
             "https://access.redhat.com/security/cve/CVE-2025-61728",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434431",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
@@ -10489,7 +10494,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61728",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3337.html",
             "https://errata.rockylinux.org/RLSA-2026:3337",
             "https://go.dev/cl/736713",
             "https://go.dev/issue/77102",
@@ -10527,7 +10532,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:c072c083a1e586b2c978f825909d9cecca7af25369556d30c9c97ba1b331fcb8",
+          "Fingerprint": "sha256:d6d9dc105da182d267db90dcd93c8ab3013004418c8d5142e83aed49140b1a34",
           "Title": "crypto/x509: golang: Denial of Service due to excessive resource consumption via crafted certificate",
           "Description": "Within HostnameError.Error(), when constructing an error string, there is no limit to the number of hosts that will be printed out. Furthermore, the error string is constructed by repeated string concatenation, leading to quadratic runtime. Therefore, a certificate provided by a malicious actor can result in excessive resource consumption.",
           "Severity": "HIGH",
@@ -10555,18 +10560,18 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3428",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-61729",
-            "https://bugzilla.redhat.com/2268022",
             "https://bugzilla.redhat.com/2418462",
-            "https://bugzilla.redhat.com/2418900",
+            "https://bugzilla.redhat.com/2434432",
+            "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3428.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/725920",
             "https://go.dev/issue/76445",
@@ -10604,7 +10609,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:2b85764534bbc0d4bdd2b55ba8127c9e509dd2b41b7f3083cc5b0b4e46b7d4ef",
+          "Fingerprint": "sha256:6130f498c4913c918829a941d1a06dab1ccc86e02775104f76fde9190078ce7a",
           "Title": "golang: crypto/x509: excluded subdomain constraint does not restrict wildcard SANs",
           "Description": "An excluded subdomain constraint in a certificate chain does not restrict the usage of wildcard SANs in the leaf certificate. For example a constraint that excludes the subdomain test.example.com does not prevent a leaf certificate from claiming the SAN *.example.com.",
           "Severity": "MEDIUM",
@@ -10663,7 +10668,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:86e271ec4688fb481f1938f8de9224ce87e89116a5a90e93e157ecae8b494cd5",
+          "Fingerprint": "sha256:d5cdaba3be27cec9a4993223c8733c078a0927f46c13a061c7d680829521ebd4",
           "Title": "During the TLS 1.3 handshake if multiple messages are sent in records  ...",
           "Description": "During the TLS 1.3 handshake if multiple messages are sent in records that span encryption level boundaries (for instance the Client Hello and Encrypted Extensions messages), the subsequent messages may be processed before the encryption level changes. This can cause some minor information disclosure if a network-local attacker can inject messages during the handshake.",
           "Severity": "MEDIUM",
@@ -10714,8 +10719,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:435bee5c34bc5c99ee1d874f0cf018f74c2c716a1907269f99f3868341e4bebc",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:c7af56eb36276500153a1ca318bb346593dfbcddec042142775efa69260cb04d",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -10723,77 +10728,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.25.4",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.25.4",
-            "UID": "27cdb04cea626614"
-          },
-          "InstalledVersion": "v1.25.4",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ff939a8b3f0158d916ce87c202f8b7e908abd95694904a698b07b0b3ec927152",
-            "DiffID": "sha256:9a5328174da82b5ea40a1aab03ad883a40cea239e6d81d99f62d6cd7b84b5031"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:64145dbedaf34457cf802efea429ef31f9d3ad00f9bc456469eeb150f5286e72",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.25.4",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.25.4",
-            "UID": "27cdb04cea626614"
-          },
-          "InstalledVersion": "v1.25.4",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ff939a8b3f0158d916ce87c202f8b7e908abd95694904a698b07b0b3ec927152",
-            "DiffID": "sha256:9a5328174da82b5ea40a1aab03ad883a40cea239e6d81d99f62d6cd7b84b5031"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:f65222065b523a13c66e8a46a481f07d9ffec945a86a6b12b539301ec23464a3",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -10819,16 +10756,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:8ff971865ad85ca2999317a6728e31620eb0b03a16229239c1fb0f062bf6bd5f",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:8b2db790ab52cdb7b5bbf4fbe99ee0c6035248c86d1c3bf48e810b53593a5952",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -10854,16 +10793,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:6fd9ce2813a7a114ffce0c16f711b6bfb57715e077cc051f9fb1ba806b102875",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:d81e98a97ee8b6f8a749037dcaf43ef22f1c98c1efe271f5d9acabc6f4cd4994",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -12626,8 +12567,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:05581d9cca493fe592de0edbd6617749b5fc55950028823dce6460be3d81680e",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:b42ca6f392b268a7bacde668720971f6827b8c887f8dcde4271957e98ace3060",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -12635,77 +12576,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "93d86b998996c38f"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:53db50e1424ec39df0169e9d251a7075651e86e941e37f3333a99f8d5fc9de83",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "93d86b998996c38f"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:6eebccb9aebb98dcb63d60852f6f252876e798fd2e28450e238be7ac85f4ace8",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -12731,16 +12604,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:edc885f6a0d6a5c86d3a3fb0d94deb6f30dcbe8711ef3d8a91b66430df6a54b7",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:32b678221ea4ead0486eee60bb5a2fd5434fe3327d2c0d7a95aa8020ae89eab9",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -12766,16 +12641,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:8bd9d41853e550806d8679e90f1dabaef5c353f11063e6425ca65ee9f25d3f8f",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:3b5020f5e2a7f1c1e7d7b80a91c794bc7c4245b17b99d0449806c5c671f31428",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -15483,8 +15360,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:9b9d2c36add9a7dfecee144c9cd386a6e4ad94c8489574e7ff6403091ae0fc0a",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:5f657b1e1a09e1f180fb5a346a3894f88bd0777590ede01b573ae7265c479ad7",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -15492,77 +15369,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "75c35e847bcfcbfc"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:ffbce70b7676239257e5a11f52eb67c63105b199223702c2bdc198eed4f0e892",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "75c35e847bcfcbfc"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:548b6c50c13517429e81bc0b7ff6a26b8576e6fb186461c5ada47141414e63ea",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -15588,16 +15397,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f1607bf8fe071975e5743eefa9e209a87be4b51eb42b4f11d19b14e16c70f8c5",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:ce2d35c44a217aec2f842d2e87621ff7fc53933684b2bf629d77b7ac13010b20",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -15623,16 +15434,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:5662babb97fffcafb630d856778566db53beadc77e20294e859c9950171e5393",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:bd690a238dee689351ede271ce73a37915d0276209ed305e0be89bbf0b36339c",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -16720,8 +16533,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:662c6457374d64f66b2f7a9f23732f94449fed278c479f8d688086de99993f0c",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:d8a4527342dcfe02d2bd6685e40ceb34cb2a5bcf82a8a99dc1597c2a4d34085b",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -16729,77 +16542,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "15ae5473592a1e6a"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:9a3bead8bac6b0becba36ab98348139a173199a0a7cb65ce5bf59c38ecb09e0f",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "15ae5473592a1e6a"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:7a4f7f155eddc7afc5cd41a26b17977298c52ee52be572b988626bf81d01acdc",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -16825,16 +16570,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:2f27755708e5890576001af03a432c5cfcec8dafc0e9f1dc68b37d593cf96621",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:9036fed3e88594d493e104a3c1792b27a031719e82a870bfe5890b450e495fdf",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -16860,16 +16607,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:b8425020a895cfc062bda08812eaaf2037d0f840928e28353ded712b530ac9a1",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:5d0bdbcc265187e4befdf0f51550c35db68c89216677628686368f2bca7d48e0",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -19022,8 +18771,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:2604649732bc0ff778b6cabf8ad6cb406854bd948295174ed4e9eee8888d005b",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:b09f88a7c1df6e1127138259fc1d50ae52328ba8967258afa85bb852aa8e0ecc",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -19031,77 +18780,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "7729588dbd94118d"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:62eaaaea5a30bf8471a864c7a20a30d38d1224e96ed3bc5f4399c7513fd7a9da",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "7729588dbd94118d"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:5a80c52bda6e93dc1edec3059ebaf6d4c35183e83444f1c392b322231a5ba209",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -19127,16 +18808,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:1ffea5eacd664f15dc091320be09f52dd6f6567ae99d03c2e4ece64964c22176",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:024f24732afefdc36af986ef2aab3a9cfe51c803659208c23e9703e524c90ffc",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -19162,16 +18845,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f2ed09544250b737299c30c1daad0e2f7a2f522f876ae9b7e8474523246eaf8f",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:e092dcc86f2c12dae8fc6b8b2339f69ead30024142abdb46c1fe6df2fdb48712",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -20169,8 +19854,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:fca79f709b36b4498f8b4fd4a4b38bce655e8987e50fc2477503290249ce79cb",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:c6f1bedce90a92838155aa8edf1ca062ee2d314cffe23112551fcbd5d9d3f77f",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -20178,77 +19863,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "4c83f0181361cfe"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:890a7673db2a9715fb61f95d61a5d40c357af18d3e048d8ccb1568e646e7a7e7",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "4c83f0181361cfe"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:bbee2c39633f3172b6c269122dee4d02817cef8902fe76dc8e372670b40f01cc",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -20274,16 +19891,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:adaba9829cf5c82a03c7e6a948b59e272a2f64a1a300fc83b8b078af7f3beafe",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:05f843ebe59dfe3b80f9a3a49d15753ab6b435a4712fe70289ebeb59c737afb3",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -20309,16 +19928,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:b785838880d496f7778cf9a0102b8330ee65ab34e39be983b22b7f923b53d20b",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:997be7c3847110a49aeb54fa4e7b09862b8404e3655461e030430bae427c4f6c",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -20446,8 +20067,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:67efc58227c5e344587c6e82c1b3fc2c979a4a9ade6e87babe220ec0d15d122e",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:b928b89432501ea61c3efe53ce6b93f86a2f07953319f00f13076afa6e05ae3f",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -20455,77 +20076,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "2b073ced5026c34b"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:23c263d0c5b85b2a3e999863a06312dc2c1cd9bed97019b61274d99efabc1821",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "2b073ced5026c34b"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:cc2fee0d8e0f1e25d5c0e55feebbc2fb923557302ca25f856132712a1bd665d8",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -20551,16 +20104,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f79cf0a5da4a08f6202d388a106fa3abdbd7a0b2bce0649ad618cfac12f253e9",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:5ee74a14e0798a81a1030a1a1b6da28ea8ca221b53c7e06c4d450258b03ffe74",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -20586,16 +20141,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:6e2c91636ef8161f2353118babdafd587a7ffd85798a7ddffdfe68b7848ffdc0",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:f337420641875f2767d477b0fc125fdfdce2a5ec07a8c459fce2dc20b3e5550c",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -20798,8 +20355,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:01860212ab42c813c26eebc2d2af77307e0622cf5bb1287fe991109b6a9374b6",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:7764db3f3d7facceaac88b3fae490653ab8ad3aba6935993f190bfb41f1ec0a7",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -20807,77 +20364,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "4323546274dbb7c"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:c0fc3ffe0d2d5f7a279d6931399aba9c6c63d65baac1a3a1bf479886cceb4340",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "4323546274dbb7c"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:e0086db52cd6285f560aa29309069c7cff352d93ab8cbc5b94f5b6a2681c7b4d",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -20903,16 +20392,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:75c82c9329969c503ca53b809a07fcc85658e33443966d0ea2bf14d5ddaef614",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:334363bc37e77b4fa6fc86f05ffef2c18c5d729335347dc8609afa1a4c27c0cf",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -20938,16 +20429,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:8873144be8712f6c33da4aa0aff239e110b88cd0705619f11ac0942f1eaef234",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:7a5eaffd25dd807e22376b8fd917980e85be0f10820769f1d0837a81cdb562c9",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -21060,8 +20553,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:36cc6b3bdb57b3d811b1b95aa7de1aab4fdb693e20d667bba713a759e0892a08",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:121dc7ff6415532df8e9e981f579313edeb6ee6e14a024536d16cccfcdcae239",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -21069,77 +20562,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "c54873fdf46e3df8"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:b17fd9dfe675e95c416ae03c0b3afe07a5c67bc46ad9bb7e875fef47095736fc",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "c54873fdf46e3df8"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ef0dfca17b665278dfc870f59cbbc24a0dab44bcee2bbcb90dee6deb9e72b31c",
-            "DiffID": "sha256:32f8d18a62f47fecd04e42df51e93c2373452c98e05483e94dc2d8eb50a9c89f"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:eff0b0865a15d25d002ac4b8a30ae08e3cf09b7dd5988d3d0b26c4878bab8d9a",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -21165,16 +20590,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:8c0c642eabd1395e4b072f5fe0076af8c595faff08c3a6e8f8a2b571c042371f",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:34f530e32f3585c2f4a6fbd9f681cb82e3369be226808a078bdfc9986c5a277e",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -21200,16 +20627,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e87d71a85af39614303ddb09d8200aec274eacde0b9d5e5ed5fbf9b43c184ece",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:987f4bbff69004a08a82bdb1efd0fd48b395646dced334a8df1bf39e6b8f5d4a",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -21382,8 +20811,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:d4fe4fa3cf58d71aa06a53a1766bdf6876dc26a3835f2a3fac3d3341ad426b68",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:91f739dbafe3162e812cd7ec2d723f29f20bf938a9e15f42bae37cc723ac4a74",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -21391,77 +20820,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "178548e01ad38cb7"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ff939a8b3f0158d916ce87c202f8b7e908abd95694904a698b07b0b3ec927152",
-            "DiffID": "sha256:9a5328174da82b5ea40a1aab03ad883a40cea239e6d81d99f62d6cd7b84b5031"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:45ff79af3ca9eb4bf2ffa008e6ec8998d9d55a7354267ce0e51589bc5d245012",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "178548e01ad38cb7"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:ff939a8b3f0158d916ce87c202f8b7e908abd95694904a698b07b0b3ec927152",
-            "DiffID": "sha256:9a5328174da82b5ea40a1aab03ad883a40cea239e6d81d99f62d6cd7b84b5031"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:b7aec6767b2930d32832bd0fc7a1ac0b08178247d70f3cd86c33ca3c3a04036a",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -21487,16 +20848,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:2e07b42490bed562c2da2f6a821c260afdeebd2607439edd3fded5b347592e51",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:bbde26f5ae3f31beed829ac62a4caf4a989bff52d0ee7b62b638c8c7fd4a35b4",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -21522,16 +20885,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:55b2ff5230eee5d7039d19bdd277711675703d7324a0f6e78d1bdf1356d54b43",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:503ae60bff041985aae0ca052527bdca6aa7f0704b4e248b283a831beddef1cb",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -23144,8 +22509,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:cf82cd1fcb5dc7ac9533ee0ab9d6cb7c7b721a9270d5b1eca19cf78021d2c248",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:7912b4c25f8aae1ead817debf14be67c84914930a439c35559bdf49468394f24",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -23153,77 +22518,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "9806f89453835e02"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:1b5b23b53ceccfe2888f6a46b6e0cacd682975a3e194e76402db4b4b8a7a535e",
-            "DiffID": "sha256:b7e885fc49b6b5532d2ff25345b480a6c2664e2a01a70db5d0259b65229e8398"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:1e7073236ffbe1280f7dc0e924539fd9f76a7245a9476b1d2be875a4563a06ab",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.13",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.13",
-            "UID": "9806f89453835e02"
-          },
-          "InstalledVersion": "v1.24.13",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:1b5b23b53ceccfe2888f6a46b6e0cacd682975a3e194e76402db4b4b8a7a535e",
-            "DiffID": "sha256:b7e885fc49b6b5532d2ff25345b480a6c2664e2a01a70db5d0259b65229e8398"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:e5a7bb472947fa05722593af4d35d0c11322b0946266f0ed4204bfad8d5f8cfd",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -23249,16 +22546,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:1510823a098c8a7c23cce79cd970c37ce01bd82ee530974cfb3ddbdef50dfc76",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:81c4812abd4681ff882709894e3114ad87c35411400137734e0d6436ee81ffb9",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -23284,16 +22583,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:da20d838274328e5c4676d2986b8625be7c3aa8b9554e0753f22f1bebf823d54",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:46b21acc4fc695333cde68f7ca94a8c0f884774af6a9313087b9e89bff20ea0b",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     }
