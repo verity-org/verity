@@ -3,8 +3,8 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019cc683-8b26-7491-9eae-0a6602d12c4a",
-  "CreatedAt": "2026-03-07T04:17:15.55830058Z",
+  "ReportID": "019ccbb5-bab6-73cb-8f9f-e29ff40d4c10",
+  "CreatedAt": "2026-03-08T04:30:10.614250805Z",
   "ArtifactID": "sha256:e0cf984715bfc09d146829fe973baba7be5daa898f3543c19e4d08e8adf5e105",
   "ArtifactName": "quay.io/calico/kube-controllers:v3.31.3",
   "ArtifactType": "container_image",
@@ -342,9 +342,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-68121",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -353,7 +353,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
@@ -420,9 +420,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-61726",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -431,7 +431,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/736712",
             "https://go.dev/issue/77101",
@@ -498,8 +498,9 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/01/15/4",
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3337",
             "https://access.redhat.com/security/cve/CVE-2025-61728",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434431",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
@@ -511,7 +512,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61728",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3337.html",
             "https://errata.rockylinux.org/RLSA-2026:3337",
             "https://go.dev/cl/736713",
             "https://go.dev/issue/77102",
@@ -601,7 +602,7 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:590a256594b787b3c775f1d69133b550b45304e6245955dbd9c70d8d18bd0261",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -609,77 +610,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.11",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.11",
-            "UID": "d18e5254c27127f3"
-          },
-          "InstalledVersion": "v1.24.11",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:9ffe26b24bc9bbb657e300a82ca06e6f727095c7c7a9d09eddef48aa45f2e630",
-            "DiffID": "sha256:e0fc03dd3c83caa567a720fd8096f9444cdcbac687a3ba8d9c29496686f4c501"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:bb71d506cfd89eef264a48a3493a9bedbb2d075575cbf415c3ab75deea74622a",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.11",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.11",
-            "UID": "d18e5254c27127f3"
-          },
-          "InstalledVersion": "v1.24.11",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:9ffe26b24bc9bbb657e300a82ca06e6f727095c7c7a9d09eddef48aa45f2e630",
-            "DiffID": "sha256:e0fc03dd3c83caa567a720fd8096f9444cdcbac687a3ba8d9c29496686f4c501"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:ea66b7792876134e6a2b5a484affd3c8dfa955c9349d6e6ec3f2737bf3bdd33e",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -706,15 +639,17 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:720f0a15d8b106364016e9b967c57268f779dd4a131011b832eb4dbf5420588b",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -741,15 +676,17 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:2d2608ee3a51460ebf29924a05057f86322821f161322efc952a99928194e997",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -2339,9 +2276,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-68121",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -2350,7 +2287,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
@@ -2417,9 +2354,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-61726",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -2428,7 +2365,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/736712",
             "https://go.dev/issue/77101",
@@ -2495,8 +2432,9 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/01/15/4",
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3337",
             "https://access.redhat.com/security/cve/CVE-2025-61728",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434431",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
@@ -2508,7 +2446,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61728",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3337.html",
             "https://errata.rockylinux.org/RLSA-2026:3337",
             "https://go.dev/cl/736713",
             "https://go.dev/issue/77102",
@@ -2598,7 +2536,7 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:1f289107b0ef3754b27778e9aa25801ecf05a62b51bea7dabaf01c34282c25de",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -2606,77 +2544,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.11",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.11",
-            "UID": "893a689875e03d6c"
-          },
-          "InstalledVersion": "v1.24.11",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:9ffe26b24bc9bbb657e300a82ca06e6f727095c7c7a9d09eddef48aa45f2e630",
-            "DiffID": "sha256:e0fc03dd3c83caa567a720fd8096f9444cdcbac687a3ba8d9c29496686f4c501"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:73aad72f11e30df85db0ea9fd7d5ee4380fa57f93f9dca5b62ae33b606be16bd",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.11",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.11",
-            "UID": "893a689875e03d6c"
-          },
-          "InstalledVersion": "v1.24.11",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:9ffe26b24bc9bbb657e300a82ca06e6f727095c7c7a9d09eddef48aa45f2e630",
-            "DiffID": "sha256:e0fc03dd3c83caa567a720fd8096f9444cdcbac687a3ba8d9c29496686f4c501"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:9c5f944d8fb128c0562e65ee7f74e3e27c1992a92445a96765b344794ba0447f",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -2703,15 +2573,17 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:081494317ad4854d2399b9b28e66114786d9e17c34b56e72fb02cb98b78be48e",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -2738,15 +2610,17 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:e765d0b12f97d3b8ff5f165c2f26c43601c0628e36049d4d15b045c7959aa49c",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     },
@@ -3417,9 +3291,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-68121",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -3428,7 +3302,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
@@ -3495,9 +3369,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-61726",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -3506,7 +3380,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/736712",
             "https://go.dev/issue/77101",
@@ -3573,8 +3447,9 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/01/15/4",
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3337",
             "https://access.redhat.com/security/cve/CVE-2025-61728",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434431",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
@@ -3586,7 +3461,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61728",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3337.html",
             "https://errata.rockylinux.org/RLSA-2026:3337",
             "https://go.dev/cl/736713",
             "https://go.dev/issue/77102",
@@ -3676,7 +3551,7 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:991654c7af017ad76a8f444634e364a0c2a8140f5de00b0835591c192017a888",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -3684,77 +3559,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.24.11",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.11",
-            "UID": "2e9c24994ab8edf1"
-          },
-          "InstalledVersion": "v1.24.11",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:9ffe26b24bc9bbb657e300a82ca06e6f727095c7c7a9d09eddef48aa45f2e630",
-            "DiffID": "sha256:e0fc03dd3c83caa567a720fd8096f9444cdcbac687a3ba8d9c29496686f4c501"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:ca7c94925f65056fc4523fd7e9fd0b2bb2e18e141778868824d0d36a8d43b59c",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.24.11",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.24.11",
-            "UID": "2e9c24994ab8edf1"
-          },
-          "InstalledVersion": "v1.24.11",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:9ffe26b24bc9bbb657e300a82ca06e6f727095c7c7a9d09eddef48aa45f2e630",
-            "DiffID": "sha256:e0fc03dd3c83caa567a720fd8096f9444cdcbac687a3ba8d9c29496686f4c501"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:d4b2166d1c8f5c67d7513daa32c69523550549d59363bbd32c1b095c77ca1ab8",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -3781,15 +3588,17 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:ab799ea5d5ce2e58e8ed10d5b623e75c42507b9fd171cb44721fa434513d9238",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -3816,15 +3625,17 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:1e7dbc2bc56fbb2ee20c9e947115691ee88147c090d227ad5c80916da18d1b0e",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     }
