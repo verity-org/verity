@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019cc68e-116e-7ae7-884e-93fb1ed42c92",
-  "CreatedAt": "2026-03-07T04:28:45.294715701Z",
-  "ArtifactID": "sha256:73af3f2627c48c0a74b61d31f09623a3d610ebe13897687689a5172984e0d966",
+  "ReportID": "019ccbc1-0704-7ae1-a5a3-ecab201ee659",
+  "CreatedAt": "2026-03-08T04:42:31.044714488Z",
+  "ArtifactID": "sha256:c16406c88426a983384b9ff0e2217ee4d8881a9d24bed535e41b585a3a0ba373",
   "ArtifactName": "ghcr.io/verity-org/cache:istio-proxy-1.28.3-patched",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -14,7 +14,7 @@
       "Family": "ubuntu",
       "Name": "24.04"
     },
-    "ImageID": "sha256:3065f09f2b65ec0c4131a2e405c85084a518bc198f5bf253d5fe1cc471163048",
+    "ImageID": "sha256:534f0c8b8e7ff9022d2866b5db82ec4089c1bbd7f3ec1e15a70afce60a6591a2",
     "DiffIDs": [
       "sha256:e8bce0aabd687e9ee90e0bada33884f40b277196f72aac9934357472863a80ae",
       "sha256:384293663e135e4f78b0df2c72c09a8baef286d1ea937ab900f5343303fbc8dc",
@@ -22,13 +22,13 @@
       "sha256:8698e03790c04973d170f15a55c31f7c128a79c12729b49314a516dc13403145",
       "sha256:137e6ecf4a69ba3ce0405f6c260285c86280e3ddbdff101dad14c1ac00b78a1a",
       "sha256:aba25e2f4299fd65a0f188c8a420a52c9ec4c5451115fce3b9f57f6f80a4718c",
-      "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+      "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
     ],
     "RepoTags": [
       "ghcr.io/verity-org/cache:istio-proxy-1.28.3-patched"
     ],
     "RepoDigests": [
-      "ghcr.io/verity-org/cache@sha256:10efdc86741a55ba0cf0adf4e862184fdf97754b1a29af76059991700c56a625"
+      "ghcr.io/verity-org/cache@sha256:f24030493901beb68073d29db30e690af1e472411ab84e383fd5e4991184ce04"
     ],
     "Reference": "ghcr.io/verity-org/cache:istio-proxy-1.28.3-patched",
     "ImageConfig": {
@@ -138,7 +138,7 @@
           "empty_layer": true
         },
         {
-          "created": "2026-03-07T04:19:46.029837683Z",
+          "created": "2026-03-08T04:33:12.85658412Z",
           "created_by": "mount / from exec sh -c apt-get -o Acquire::Retries=3 install --no-install-recommends -y curl libc-bin libc6 libcurl4t64 libgnutls30t64 libssh-4 libssl3t64 openssl \u0026\u0026 apt-get clean -y",
           "comment": "buildkit.exporter.image.v0"
         }
@@ -153,7 +153,7 @@
           "sha256:8698e03790c04973d170f15a55c31f7c128a79c12729b49314a516dc13403145",
           "sha256:137e6ecf4a69ba3ce0405f6c260285c86280e3ddbdff101dad14c1ac00b78a1a",
           "sha256:aba25e2f4299fd65a0f188c8a420a52c9ec4c5451115fce3b9f57f6f80a4718c",
-          "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+          "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
         ]
       },
       "config": {
@@ -206,8 +206,8 @@
       },
       {
         "Size": 28503040,
-        "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-        "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+        "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+        "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
       }
     ]
   },
@@ -1386,8 +1386,8 @@
             "zlib1g@1:1.3.dfsg-3.1ubuntu2.1"
           ],
           "Layer": {
-            "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-            "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+            "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+            "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
           },
           "InstalledFiles": [
             "/usr/bin/curl",
@@ -3406,8 +3406,8 @@
             "libc6@2.39-0ubuntu8.7"
           ],
           "Layer": {
-            "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-            "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+            "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+            "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
           },
           "InstalledFiles": [
             "/usr/bin/getconf",
@@ -3469,8 +3469,8 @@
             "libgcc-s1@14.2.0-4ubuntu2~24.04"
           ],
           "Layer": {
-            "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-            "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+            "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+            "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so",
@@ -4006,8 +4006,8 @@
             "zlib1g@1:1.3.dfsg-3.1ubuntu2.1"
           ],
           "Layer": {
-            "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-            "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+            "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+            "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libcurl.so.4.8.0",
@@ -4553,8 +4553,8 @@
             "libunistring5@1.1-2build1.1"
           ],
           "Layer": {
-            "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-            "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+            "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+            "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libgnutls.so.30.37.1",
@@ -6779,8 +6779,8 @@
             "zlib1g@1:1.3.dfsg-3.1ubuntu2.1"
           ],
           "Layer": {
-            "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-            "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+            "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+            "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libssh.so.4.9.6",
@@ -6818,8 +6818,8 @@
             "libc6@2.39-0ubuntu8.7"
           ],
           "Layer": {
-            "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-            "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+            "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+            "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/engines-3/afalg.so",
@@ -8184,8 +8184,8 @@
             "libssl3t64@3.0.13-0ubuntu3.7"
           ],
           "Layer": {
-            "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-            "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+            "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+            "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
           },
           "InstalledFiles": [
             "/usr/bin/c_rehash",
@@ -10391,7 +10391,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:c8bcfed6d8e59b3812e2368063ff0ec0ef119f762e3f0d7834ffeea8e752de48",
+          "Fingerprint": "sha256:5d7e78f6b2d62e521ff878daf6fe31930f3b48f6f5617d9c2f04c7e927083c7a",
           "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
           "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
           "Severity": "LOW",
@@ -10444,8 +10444,8 @@
           "InstalledVersion": "8.5.0-2ubuntu10.7",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-            "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+            "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+            "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
           },
           "SeveritySource": "ubuntu",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-0167",
@@ -10454,7 +10454,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:89318a8d692c1da71a29b0d222151003d442336d22fede57f3efcf4e551507cf",
+          "Fingerprint": "sha256:912704d89dde5c1989c6487eed5ffceea7fb76b6495254158588a006e00e2b96",
           "Title": "When asked to use a `.netrc` file for credentials **and** to follow HT ...",
           "Description": "When asked to use a `.netrc` file for credentials **and** to follow HTTP\nredirects, curl could leak the password used for the first host to the\nfollowed-to host under certain circumstances.\n\nThis flaw only manifests itself if the netrc file has a `default` entry that\nomits both login and password. A rare circumstance.",
           "Severity": "LOW",
@@ -10497,7 +10497,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:396689ab23572da64646153ce45ffbb61c499dd9783da2ae5b62dfde1e7015b5",
+          "Fingerprint": "sha256:7cfdcf0aa1237665dcb6849b60dc1548ef84eb7adfae1b116e72412194b7929c",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -10552,7 +10552,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:9a4fe18d7aa738c126bb461b3980567aac7e4aae31bb377c7e3c1a132a8aa30e",
+          "Fingerprint": "sha256:7dd62971a95e2086b79c2e5aad5b8a7521ef774fc8f463f3e614521cc5a444da",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -10608,7 +10608,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:5805c4561c6f2b0d6a0ea799f2bdb89181d3a59d7aaf3463df76e6894db8f3e1",
+          "Fingerprint": "sha256:2cb753bbd42192f69d761edd73560ceae657aaded6a43a2a95c8b6cbb284dd20",
           "Title": "libbpf: Heap Buffer Overflow in libbpf",
           "Description": "Buffer Overflow vulnerability in libbpf 1.5.0 allows a local attacker to execute arbitrary code via the bpf_object__init_prog` function of libbpf. This has been disputed by third parties who assert that \"no one in their sane mind should be passing untrusted ELF files into libbpf while running under root.\"",
           "Severity": "LOW",
@@ -10652,8 +10652,8 @@
           "InstalledVersion": "8.5.0-2ubuntu10.7",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:bd034d26e3e7bce0b6db28a686910052163f3b9422f87a3847d3b9627b046875",
-            "DiffID": "sha256:798f81f0272b85dcc3b3e5f8523db4a6dcc8659a17a8f27b19b6cdd90db4a4ec"
+            "Digest": "sha256:4e1940033518ef02b726f7fed2ec27f3d26f2665aadf57e9cb68b58d21c2e0ce",
+            "DiffID": "sha256:f66394b15c93d3ae65e1337a9117551836228ad0bce111be83cfcf14ca6d2bc7"
           },
           "SeveritySource": "ubuntu",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-0167",
@@ -10662,7 +10662,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:b14fd33f3bc41632c6002e7a0da52ddb836a2fa8db5824042e644d9aded4afe4",
+          "Fingerprint": "sha256:777f09b33740dccd207434ceb4bccb0710cebade227fb5911f315f133146a243",
           "Title": "When asked to use a `.netrc` file for credentials **and** to follow HT ...",
           "Description": "When asked to use a `.netrc` file for credentials **and** to follow HTTP\nredirects, curl could leak the password used for the first host to the\nfollowed-to host under certain circumstances.\n\nThis flaw only manifests itself if the netrc file has a `default` entry that\nomits both login and password. A rare circumstance.",
           "Severity": "LOW",
@@ -10705,7 +10705,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:4ef25f3b1c54348e69de8dbfb62378246059413c66e251005024120b286168d3",
+          "Fingerprint": "sha256:d3a12d4d55718e7dd99ddbc4d80010073b75fb57f307ad8a959193883dfda627",
           "Title": "elfutils: GNU elfutils eu-readelf libdw_alloc.c __libdw_thread_tail memory corruption",
           "Description": "A vulnerability has been found in GNU elfutils 0.192 and classified as critical. This vulnerability affects the function __libdw_thread_tail in the library libdw_alloc.c of the component eu-readelf. The manipulation of the argument w leads to memory corruption. The attack can be initiated remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is 2636426a091bd6c6f7f02e49ab20d4cdc6bfc753. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -10766,7 +10766,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:4d85f103aba90c180b482688a480f57590e25b19cf1558c2c558369cd9d777fa",
+          "Fingerprint": "sha256:1d29cc3fe6499682d7801aa3ad85bf21939c86e7c58ab73281f9abdabeefed61",
           "Title": "elfutils: GNU elfutils eu-strip elf_strptr.c elf_strptr denial of service",
           "Description": "A vulnerability classified as problematic was found in GNU elfutils 0.192. This vulnerability affects the function elf_strptr in the library /libelf/elf_strptr.c of the component eu-strip. The manipulation leads to denial of service. It is possible to launch the attack on the local host. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is b16f441cca0a4841050e3215a9f120a6d8aea918. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -10826,7 +10826,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:47a587f16eec14f120d16d9502eac35652261f4e5b97f2435afbb55d933e5460",
+          "Fingerprint": "sha256:a3e8d2d9d0a02bb79ac2219876558cc40f235fe2e188cda91600178b5e647fb4",
           "Title": "libgcrypt: vulnerable to Marvin Attack",
           "Description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
           "Severity": "LOW",
@@ -10891,7 +10891,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:13a57c2eb4fdf33f78110213f7b5b96a3ee321cb9a93d3e092d38cd088ec79d4",
+          "Fingerprint": "sha256:c54889395f60107bb1b6ab336fde735187d0905a2c7b727c660b1aa9fd3c5124",
           "Title": "OpenLDAP: OpenLDAP LMDB: Denial of Service and Information Disclosure via Heap Buffer Underflow",
           "Description": "OpenLDAP Lightning Memory-Mapped Database (LMDB) versions up to and including 0.9.14, prior to commit 8e1fda8, contain a heap buffer underflow in the readline() function of mdb_load. When processing malformed input containing an embedded NUL byte, an unsigned offset calculation can underflow and cause an out-of-bounds read of one byte before the allocated heap buffer. This can cause mdb_load to crash, leading to a limited denial-of-service condition.",
           "Severity": "MEDIUM",
@@ -10943,7 +10943,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:47d0783da097bf5ba076b0120ae4864222342563125501e64e46962ac4888b42",
+          "Fingerprint": "sha256:7db7dcb29f1fa6dacacc895684c81e676fc1e719aef1c1c5f05305b9f5f241e2",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -10984,11 +10984,12 @@
             "https://access.redhat.com/errata/RHSA-2025:21885",
             "https://access.redhat.com/security/cve/CVE-2025-8941",
             "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
-            "https://errata.almalinux.org/8/ALSA-2025-14557.html",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
             "https://errata.rockylinux.org/RLSA-2025:15099",
             "https://linux.oracle.com/cve/CVE-2025-8941.html",
             "https://linux.oracle.com/errata/ELSA-2025-15099.html",
@@ -11019,7 +11020,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:9c431ebcf1b5d6eac34d4eb095784922e582db8a051f4b432117587a5f76058c",
+          "Fingerprint": "sha256:f9c9fdff8c0f55e5e1e3e95229fddbfbf44125c52d91613480972fb72d71cfdc",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -11060,11 +11061,12 @@
             "https://access.redhat.com/errata/RHSA-2025:21885",
             "https://access.redhat.com/security/cve/CVE-2025-8941",
             "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
-            "https://errata.almalinux.org/8/ALSA-2025-14557.html",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
             "https://errata.rockylinux.org/RLSA-2025:15099",
             "https://linux.oracle.com/cve/CVE-2025-8941.html",
             "https://linux.oracle.com/errata/ELSA-2025-15099.html",
@@ -11095,7 +11097,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:a3558880309ca2357eaeddb82656615d46e13e45081d1a47b02ace65297987f6",
+          "Fingerprint": "sha256:4b8e983bc7980852ead7b7ddd6d5c831dd1aefbe2f1a9c057031e21580b9f43f",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -11136,11 +11138,12 @@
             "https://access.redhat.com/errata/RHSA-2025:21885",
             "https://access.redhat.com/security/cve/CVE-2025-8941",
             "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
-            "https://errata.almalinux.org/8/ALSA-2025-14557.html",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
             "https://errata.rockylinux.org/RLSA-2025:15099",
             "https://linux.oracle.com/cve/CVE-2025-8941.html",
             "https://linux.oracle.com/errata/ELSA-2025-15099.html",
@@ -11171,7 +11174,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:dcf7663968ab902b5037d65edc327177c2a82bee13def4ab43d2b053f448ff9f",
+          "Fingerprint": "sha256:7fe604aaa66f2b66d001a461c0e670b5b5563dac53210c0189a43d48811b702b",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -11212,11 +11215,12 @@
             "https://access.redhat.com/errata/RHSA-2025:21885",
             "https://access.redhat.com/security/cve/CVE-2025-8941",
             "https://bugzilla.redhat.com/2372512",
+            "https://bugzilla.redhat.com/2388220",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2372512",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2388220",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-6020",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-8941",
-            "https://errata.almalinux.org/8/ALSA-2025-14557.html",
+            "https://errata.almalinux.org/9/ALSA-2025-15099.html",
             "https://errata.rockylinux.org/RLSA-2025:15099",
             "https://linux.oracle.com/cve/CVE-2025-8941.html",
             "https://linux.oracle.com/errata/ELSA-2025-15099.html",
@@ -11247,7 +11251,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:03751c9750d5e9228a80421094a56353f1d823212103b01c64d8d19380f8bd2e",
+          "Fingerprint": "sha256:e3dea978bb9af4cc363c548afdd2eab7aeaf74e80911e073264593fe1a676a20",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -11269,12 +11273,12 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2025:20145",
+            "https://access.redhat.com/errata/RHSA-2025:20559",
             "https://access.redhat.com/security/cve/CVE-2024-56433",
             "https://bugzilla.redhat.com/2334165",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2334165",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-56433",
-            "https://errata.almalinux.org/10/ALSA-2025-20145.html",
+            "https://errata.almalinux.org/9/ALSA-2025-20559.html",
             "https://errata.rockylinux.org/RLSA-2025:20559",
             "https://github.com/shadow-maint/shadow/blob/e2512d5741d4a44bdd81a8c2d0029b6222728cf0/etc/login.defs#L238-L241",
             "https://github.com/shadow-maint/shadow/issues/1157",
@@ -11308,7 +11312,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:0a30d1a3b489db3a0ae973029e615a155e6626da2b9bbc29a2b75ab841e37041",
+          "Fingerprint": "sha256:f1dedfced20b72341e812cf84a4b4d7fc1b4be7c54749771c521f65e2c5a79f3",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -11330,12 +11334,12 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2025:20145",
+            "https://access.redhat.com/errata/RHSA-2025:20559",
             "https://access.redhat.com/security/cve/CVE-2024-56433",
             "https://bugzilla.redhat.com/2334165",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2334165",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-56433",
-            "https://errata.almalinux.org/10/ALSA-2025-20145.html",
+            "https://errata.almalinux.org/9/ALSA-2025-20559.html",
             "https://errata.rockylinux.org/RLSA-2025:20559",
             "https://github.com/shadow-maint/shadow/blob/e2512d5741d4a44bdd81a8c2d0029b6222728cf0/etc/login.defs#L238-L241",
             "https://github.com/shadow-maint/shadow/issues/1157",
@@ -11369,7 +11373,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:45b9a03538d25ba4d076fe9d1303ce8aed7e5f0953e89df4e0ed77b0de4c6ad7",
+          "Fingerprint": "sha256:a9158e966d1afbbd625fd3076e1401b7d3407e53e93400b4aa95501ec9445d20",
           "Title": "tar: Tar path traversal",
           "Description": "GNU Tar through 1.35 allows file overwrite via directory traversal in crafted TAR archives, with a certain two-step process. First, the victim must extract an archive that contains a ../ symlink to a critical directory. Second, the victim must extract an archive that contains a critical file, specified via a relative pathname that begins with the symlink name and ends with that critical file's name. Here, the extraction follows the symlink and overwrites the critical file. This bypasses the protection mechanism of \"Member name contains '..'\" that would occur for a single TAR archive that attempted to specify the critical file via a ../ approach. For example, the first archive can contain \"x -\u003e ../../../../../home/victim/.ssh\" and the second archive can contain x/authorized_keys. This can affect server applications that automatically extract any number of user-supplied TAR archives, and were relying on the blocking of traversal. This can also affect software installation processes in which \"tar xf\" is run more than once (e.g., when installing a package can automatically install two dependencies that are set up as untrusted tarballs instead of official packages). NOTE: the official GNU Tar manual has an otherwise-empty directory for each \"tar xf\" in its Security Rules of Thumb; however, third-party advice leads users to run \"tar xf\" more than once into the same directory.",
           "Severity": "MEDIUM",
@@ -11391,12 +11395,12 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2025/11/01/6",
-            "https://access.redhat.com/errata/RHSA-2026:0002",
+            "https://access.redhat.com/errata/RHSA-2026:0067",
             "https://access.redhat.com/security/cve/CVE-2025-45582",
             "https://bugzilla.redhat.com/2379592",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2379592",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-45582",
-            "https://errata.almalinux.org/10/ALSA-2026-0002.html",
+            "https://errata.almalinux.org/9/ALSA-2026-0067.html",
             "https://errata.rockylinux.org/RLSA-2026:0067",
             "https://github.com/i900008/vulndb/blob/main/Gnu_tar_vuln.md",
             "https://linux.oracle.com/cve/CVE-2025-45582.html",
@@ -12694,7 +12698,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:dd334a6f7438c70c624c55aaabdc60ffe7354864d0e866c3d731b2d75fde69d5",
+          "Fingerprint": "sha256:d749d5dad1f7b721aa252bbe8ab2ae49773f3b4962d67c23ada5a0331a405fd4",
           "Title": "CNI portmap plugin: github.com/containernetworking/plugins/plugins/meta/portmap: CNI portmap plugin: HostPort forwarding vulnerability allows traffic interception",
           "Description": "The CNI portmap plugin allows containers to emulate opening a host port, forwarding that traffic to the container. Versions 1.6.0 through 1.8.0  inadvertently forward all traffic with the same destination port as the host port when the portmap plugin is configured with the nftables backend, thus ignoring the destination IP. This includes traffic not intended for the node itself, i.e. traffic to containers hosted on the node. Containers that request HostPort forwarding can intercept all traffic destined for that port. This requires that the portmap plugin be explicitly configured to use the nftables backend. This issue is fixed in version 1.9.0. To workaround, configure the portmap plugin to use the iptables backend. It does not have this vulnerability.",
           "Severity": "MEDIUM",
@@ -12753,7 +12757,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:dcb4ca10a28429c66b9e036ed821953227e963278574503266a7f197f7ff673e",
+          "Fingerprint": "sha256:b10553c12d6c63071b0e48b465aebcb3d36648ea7b041c6c0c65de1d9888d074",
           "Title": "docker/cli: Docker CLI for Windows: Privilege escalation via malicious plugin binaries",
           "Description": "Docker CLI for Windows searches for plugin binaries in C:\\ProgramData\\Docker\\cli-plugins, a directory that does not exist by default. A low-privileged attacker can create this directory and place malicious CLI plugin binaries (docker-compose.exe, docker-buildx.exe, etc.) that are executed when a victim user opens Docker Desktop or invokes Docker CLI plugin features, and allow privilege-escalation if the docker CLI is executed as a privileged user.\n\nThis issue affects Docker CLI: through 29.1.5 and Windows binaries acting as a CLI-plugin manager using the  github.com/docker/cli/cli-plugins/manager https://pkg.go.dev/github.com/docker/cli@v29.1.5+incompatible/cli-plugins/manager  package, such as Docker Compose.\n\nThis issue does not impact non-Windows binaries, and projects not using the plugin-manager code.",
           "Severity": "HIGH",
@@ -12816,7 +12820,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:b7fd0b467d1545c4a206c857072a2080d4f565ef27a55ab6bf894c7e123fe1b7",
+          "Fingerprint": "sha256:95fb7c69defe3772880ddd710a3c4edba39340b363c1d88b6bf9646e7c5d6d60",
           "Title": "OpenTelemetry Go SDK Vulnerable to Arbitrary Code Execution via PATH Hijacking",
           "Description": "OpenTelemetry-Go is the Go implementation of OpenTelemetry. The OpenTelemetry Go SDK in version v1.20.0-1.39.0 is vulnerable to Path Hijacking (Untrusted Search Paths) on macOS/Darwin systems. The resource detection code in sdk/resource/host_id.go executes the ioreg system command using a search path. An attacker with the ability to locally modify the PATH environment variable can achieve Arbitrary Code Execution (ACE) within the context of the application. A fix was released with v1.40.0.",
           "Severity": "HIGH",
@@ -12867,7 +12871,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:c176f4e633a37f23a9cffbba4098a57ed3f4b03dfca98e7efed697a62cd66db1",
+          "Fingerprint": "sha256:964cd5b5d9c763d065bc3b01567d7f5b61468ebe9d29cc0c6631c20302409cb3",
           "Title": "golang.org/x/crypto/ssh/agent: SSH Agent servers: Denial of Service due to malformed messages",
           "Description": "SSH Agent servers do not validate the size of messages when processing new identity requests, which may cause the program to panic if the message is malformed due to an out of bounds read.",
           "Severity": "MEDIUM",
@@ -12927,7 +12931,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:b73178ecce57223741961ef66ffc729290082d8ba766af09232d4777c6a512b4",
+          "Fingerprint": "sha256:6fe0d788b2c7f5b33fec8e68d010336a793fb866a9604f8c821a474d0bd5239b",
           "Title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Denial of Service via unbounded memory consumption in GSSAPI authentication",
           "Description": "SSH servers parsing GSSAPI authentication requests do not validate the number of mechanisms specified in the request, allowing an attacker to cause unbounded memory consumption.",
           "Severity": "MEDIUM",
@@ -12991,7 +12995,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:337084c79e5ad02197f1876b149a2dc6cc265f37caaae2ad8999700a2e096ac8",
+          "Fingerprint": "sha256:d4cf9d318965ddc12302a2c8857176101e1ba2eaddc7ac1cf2efcae1b4a38e94",
           "Title": "istio/envoy: mishandling regular expressions for long URIs leading to DoS",
           "Description": "Istio before 1.1.13 and 1.2.x before 1.2.4 mishandles regular expressions for long URIs, leading to a denial of service during use of the JWT, VirtualService, HTTPAPISpecBinding, or QuotaSpecBinding API.",
           "Severity": "HIGH",
@@ -13058,7 +13062,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:7aeced3a7b2178806ccfc326ec53a6ee0575efcbac8c947a1a7d480aa6907654",
+          "Fingerprint": "sha256:f4135104cc166ee403e9635297787c57c595feb8c543e8e3ed920f2b1eed0c87",
           "Title": "istio/istio: HTTP request can bypass authorization mechanisms due to case insensitive host comparison",
           "Description": "Istio is an open source platform for providing a uniform way to integrate microservices, manage traffic flow across microservices, enforce policies and aggregate telemetry data. According to [RFC 4343](https://datatracker.ietf.org/doc/html/rfc4343), Istio authorization policy should compare the hostname in the HTTP Host header in a case insensitive way, but currently the comparison is case sensitive. The proxy will route the request hostname in a case-insensitive way which means the authorization policy could be bypassed. As an example, the user may have an authorization policy that rejects request with hostname \"httpbin.foo\" for some source IPs, but the attacker can bypass this by sending the request with hostname \"Httpbin.Foo\". Patches are available in Istio 1.11.1, Istio 1.10.4 and Istio 1.9.8. As a work around a Lua filter may be written to normalize Host header before the authorization check. This is similar to the Path normalization presented in the [Security Best Practices](https://istio.io/latest/docs/ops/best-practices/security/#case-normalization) guide.",
           "Severity": "HIGH",
@@ -13127,7 +13131,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:e77f2123284ffd12d9044ad15d96a6bf270ebf3b9a13eceeab37a16d1ba45101",
+          "Fingerprint": "sha256:2355719c5d651c6a3ebccd0004cc356d2fe3d21429689e02a2397e5b68804895",
           "Title": "istio/istio: HTTP request with fragment in URI can bypass authorization mechanisms",
           "Description": "Istio is an open source platform for providing a uniform way to integrate microservices, manage traffic flow across microservices, enforce policies and aggregate telemetry data. Istio 1.11.0, 1.10.3 and below, and 1.9.7 and below contain a remotely exploitable vulnerability where an HTTP request with `#fragment` in the path may bypass Istio’s URI path based authorization policies. Patches are available in Istio 1.11.1, Istio 1.10.4 and Istio 1.9.8. As a work around a Lua filter may be written to normalize the path.",
           "Severity": "HIGH",
@@ -13193,7 +13197,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:895322902f10c293ff7720dcbc20e851b8c97945718c02ff7898d87a7cde6f2c",
+          "Fingerprint": "sha256:8fd1453ea9262c70f6938195473948fb33b746cc6319fbfdb7ad95164c812fbc",
           "Title": "istio: unauthenticated control plane denial of service attack",
           "Description": "Istio is an open platform to connect, manage, and secure microservices. In affected versions the Istio control plane, `istiod`, is vulnerable to a request processing error, allowing a malicious attacker that sends a specially crafted message which results in the control plane crashing. This endpoint is served over TLS port 15012, but does not require any authentication from the attacker. For simple installations, Istiod is typically only reachable from within the cluster, limiting the blast radius. However, for some deployments, especially [multicluster](https://istio.io/latest/docs/setup/install/multicluster/primary-remote/) topologies, this port is exposed over the public internet. There are no effective workarounds, beyond upgrading. Limiting network access to Istiod to the minimal set of clients can help lessen the scope of the vulnerability to some extent.",
           "Severity": "HIGH",
@@ -13259,7 +13263,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:aed9b90790bd239835b324be5b1904d82395ec53cc41fcd970ff77586ee8af3d",
+          "Fingerprint": "sha256:2cc46dc8366d907f41e50140ddddf6b5e7bd43358365ddc30b3507ac000f2ac6",
           "Title": "Istio: Unsafe memory access in metadata exchange.",
           "Description": "Istio is an open platform to connect, manage, and secure microservices. In affected versions ill-formed headers sent to Envoy in certain configurations can lead to unexpected memory access resulting in undefined behavior or crashing. Users are most likely at risk if they have an Istio ingress Gateway exposed to external traffic. This vulnerability has been resolved in versions 1.12.8, 1.13.5, and 1.14.1. Users are advised to upgrade. There are no known workarounds for this issue.",
           "Severity": "MEDIUM",
@@ -13327,7 +13331,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7718b9240c7a760a4fb8837df18111ac9f2021c9ce4f0e0843ca447f51f9afb4",
+          "Fingerprint": "sha256:df406bf073169555b2d7a29974440c93212830a37d52fc9b8b46f08629df8384",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -13361,9 +13365,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-68121",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -13372,7 +13376,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
@@ -13410,7 +13414,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:5ed99ca8ad9f8e0bc8e4a5091caa45cb2daefcb1913a736ae84b8b7632cdfc4c",
+          "Fingerprint": "sha256:c24f9f8843bef451802952f49fb8ead10d41456598e4fec752abc7f915a09a5f",
           "Title": "golang: net/url: Memory exhaustion in query parameter parsing in net/url",
           "Description": "The net/url package does not set a limit on the number of query parameters in a query. While the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.",
           "Severity": "HIGH",
@@ -13439,9 +13443,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-61726",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -13450,7 +13454,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/736712",
             "https://go.dev/issue/77101",
@@ -13488,7 +13492,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7fad7e9cc59714a4f218735247c7f65074b0fbaf91e30b2aa6e2bfe3e97d5422",
+          "Fingerprint": "sha256:478054621f347ac4a52d9387824764adb0133816fe6f5e554d79adbbe9ef497b",
           "Title": "golang: archive/zip: Excessive CPU consumption when building archive index in archive/zip",
           "Description": "archive/zip uses a super-linear file name indexing algorithm that is invoked the first time a file in an archive is opened. This can lead to a denial of service when consuming a maliciously constructed ZIP archive.",
           "Severity": "HIGH",
@@ -13517,8 +13521,9 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/01/15/4",
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3337",
             "https://access.redhat.com/security/cve/CVE-2025-61728",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434431",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
@@ -13530,7 +13535,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61728",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3337.html",
             "https://errata.rockylinux.org/RLSA-2026:3337",
             "https://go.dev/cl/736713",
             "https://go.dev/issue/77102",
@@ -13568,7 +13573,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:9d2b3ce4e652d2d46368578efb070204378aa9dae83ec23dd638f6e526b6b8b1",
+          "Fingerprint": "sha256:6289ea9262becddbe1adcdb202bc9a7deca6bfe8fd14bcbf04b3a3196d3ca512",
           "Title": "During the TLS 1.3 handshake if multiple messages are sent in records  ...",
           "Description": "During the TLS 1.3 handshake if multiple messages are sent in records that span encryption level boundaries (for instance the Client Hello and Encrypted Extensions messages), the subsequent messages may be processed before the encryption level changes. This can cause some minor information disclosure if a network-local attacker can inject messages during the handshake.",
           "Severity": "MEDIUM",
@@ -13619,8 +13624,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e1bcecef58282a97274ff9d78911dcc53c8131d7b240f4dde028c03ea92d53a0",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:fe16c486df92200ddf0a0ddddff97aeb84135116247f9fa2ee0eda4f5cff5611",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -13628,77 +13633,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.25.5",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.25.5",
-            "UID": "79a43df4c3eaf9e1"
-          },
-          "InstalledVersion": "v1.25.5",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:f64094f46b2063fe20fb555327744dbedac8fa5f9288a2140a4c51da51428dad",
-            "DiffID": "sha256:aba25e2f4299fd65a0f188c8a420a52c9ec4c5451115fce3b9f57f6f80a4718c"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:a4189e138d62d517960a0a89d7875fb7e1618c2004c130795dff699629dce602",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.25.5",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.25.5",
-            "UID": "79a43df4c3eaf9e1"
-          },
-          "InstalledVersion": "v1.25.5",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:f64094f46b2063fe20fb555327744dbedac8fa5f9288a2140a4c51da51428dad",
-            "DiffID": "sha256:aba25e2f4299fd65a0f188c8a420a52c9ec4c5451115fce3b9f57f6f80a4718c"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:ea0205fca4e000980c5251df51b111ee85a6c472d857d8d4d21152c452268533",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -13724,16 +13661,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:63b25f5ecab14bae10833b03715462e8967346ba298ec3e667007e4c18b653a0",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:93bd61e4e335f4f678192dc70d51f20896977ccce5172314d8e79780ab4ddc8d",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -13759,16 +13698,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f9553166750e2a0d5f448d4da9410370fea66b0e93541b3f15ef239b54ead338",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:aea396195e2e3a600da3f6f3e90d2c476dd394f6ef9697c446bc677a03ed372f",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     }
