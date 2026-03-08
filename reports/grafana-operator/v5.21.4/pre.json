@@ -3,8 +3,8 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019cc686-4dfe-7d47-abd4-6468eff7218d",
-  "CreatedAt": "2026-03-07T04:20:16.510871279Z",
+  "ReportID": "019ccbb7-a9cf-7bd4-9c32-69f70aeceb84",
+  "CreatedAt": "2026-03-08T04:32:17.359776339Z",
   "ArtifactID": "sha256:65a73d0ff89b9d3863c3828152088ece6dd228d9d03506f15cc2892646502f6d",
   "ArtifactName": "ghcr.io/grafana/grafana-operator:v5.21.4",
   "ArtifactType": "container_image",
@@ -113,26 +113,20 @@
           "ID": "ca-certificates-bundle@20251003-r0",
           "Name": "ca-certificates-bundle",
           "Identifier": {
-            "PURL": "pkg:apk/wolfi/ca-certificates-bundle@20251003-r0?arch=x86_64\u0026distro=20230201",
-            "UID": "3cec9478ec07f7d"
+            "PURL": "pkg:apk/wolfi/ca-certificates-bundle@20251003-r0?arch=x86_64\u0026distro=wolfi",
+            "UID": "b5b6f2403ff66be9"
           },
           "Version": "20251003-r0",
           "Arch": "x86_64",
-          "SrcName": "ca-certificates",
+          "SrcName": "ca-certificates-bundle",
           "SrcVersion": "20251003-r0",
           "Licenses": [
-            "MPL-2.0",
-            "MIT"
-          ],
-          "Maintainer": "wolfi",
-          "DependsOn": [
-            "wolfi-baselayout@20230201-r24"
+            "MPL-2.0 AND MIT"
           ],
           "Layer": {
             "Digest": "sha256:267f0d71ccc21e7c9004f469919a27dad4d8a1a82783881e04990fa079f1e781",
             "DiffID": "sha256:32008e06a554cf70c1b3c2da5f9ab14df9871dd4da0d8e314d4cf7d39d72c20f"
           },
-          "Digest": "sha1:3b1260a9f8d5113f60a3735ce7523719fb45bd17",
           "InstalledFiles": [
             "etc/pki/tls/certs/ca-bundle.crt",
             "etc/ssl/cert.pem",
@@ -140,14 +134,14 @@
             "etc/ssl/certs/ca-certificates.crt",
             "var/lib/db/sbom/ca-certificates-bundle-20251003-r0.spdx.json"
           ],
-          "AnalyzedBy": "apk"
+          "AnalyzedBy": "sbom"
         },
         {
           "ID": "tzdata@2025c-r0",
           "Name": "tzdata",
           "Identifier": {
-            "PURL": "pkg:apk/wolfi/tzdata@2025c-r0?arch=x86_64\u0026distro=20230201",
-            "UID": "ed94cdf677e2e3ed"
+            "PURL": "pkg:apk/wolfi/tzdata@2025c-r0?arch=x86_64\u0026distro=wolfi",
+            "UID": "429369a966419b9d"
           },
           "Version": "2025c-r0",
           "Arch": "x86_64",
@@ -156,12 +150,10 @@
           "Licenses": [
             "CC-PDDC"
           ],
-          "Maintainer": "wolfi",
           "Layer": {
             "Digest": "sha256:267f0d71ccc21e7c9004f469919a27dad4d8a1a82783881e04990fa079f1e781",
             "DiffID": "sha256:32008e06a554cf70c1b3c2da5f9ab14df9871dd4da0d8e314d4cf7d39d72c20f"
           },
-          "Digest": "sha1:2c137e3cd0482cb748f0d5ab1c1907bd2a03598a",
           "InstalledFiles": [
             "usr/share/zoneinfo/CET",
             "usr/share/zoneinfo/CST6CDT",
@@ -1366,14 +1358,14 @@
             "usr/share/zoneinfo/right/US/Samoa",
             "var/lib/db/sbom/tzdata-2025c-r0.spdx.json"
           ],
-          "AnalyzedBy": "apk"
+          "AnalyzedBy": "sbom"
         },
         {
           "ID": "wolfi-baselayout@20230201-r24",
           "Name": "wolfi-baselayout",
           "Identifier": {
-            "PURL": "pkg:apk/wolfi/wolfi-baselayout@20230201-r24?arch=x86_64\u0026distro=20230201",
-            "UID": "e354a2c318541c6c"
+            "PURL": "pkg:apk/wolfi/wolfi-baselayout@20230201-r24?arch=x86_64\u0026distro=wolfi",
+            "UID": "3f659eacb81035b8"
           },
           "Version": "20230201-r24",
           "Arch": "x86_64",
@@ -1382,15 +1374,10 @@
           "Licenses": [
             "MIT"
           ],
-          "Maintainer": "wolfi",
-          "DependsOn": [
-            "ca-certificates-bundle@20251003-r0"
-          ],
           "Layer": {
             "Digest": "sha256:267f0d71ccc21e7c9004f469919a27dad4d8a1a82783881e04990fa079f1e781",
             "DiffID": "sha256:32008e06a554cf70c1b3c2da5f9ab14df9871dd4da0d8e314d4cf7d39d72c20f"
           },
-          "Digest": "sha1:641f4c772368712dac05600ca3a283a9c001d31a",
           "InstalledFiles": [
             "bin",
             "lib",
@@ -1417,7 +1404,7 @@
             "var/spool/mail",
             "var/spool/cron/crontabs"
           ],
-          "AnalyzedBy": "apk"
+          "AnalyzedBy": "sbom"
         }
       ]
     },
@@ -3596,9 +3583,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-68121",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -3607,7 +3594,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
@@ -3674,9 +3661,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-61726",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -3685,7 +3672,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/736712",
             "https://go.dev/issue/77101",
@@ -3752,8 +3739,9 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/01/15/4",
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3337",
             "https://access.redhat.com/security/cve/CVE-2025-61728",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434431",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
@@ -3765,7 +3753,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61728",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3337.html",
             "https://errata.rockylinux.org/RLSA-2026:3337",
             "https://go.dev/cl/736713",
             "https://go.dev/issue/77102",
@@ -3855,7 +3843,7 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:d39f8cdd470df777c2c86479fe886bd8acf0e9156d80031799d401f289a31b51",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -3863,77 +3851,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.25.5",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.25.5",
-            "UID": "af270a0ea7cae480"
-          },
-          "InstalledVersion": "v1.25.5",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:56c06deac2e0b68975edd7e0482fe7df03b37a386bd58005e51afd5bfb015eee",
-            "DiffID": "sha256:ac6a4d97d99118d27ea88522112041feddbaaf382bbe954f6ca1e7569189b897"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:d32b4b252b276801bb0c2008e7fbce37b490b7d2620225f3676e0ca80d9fb11b",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.25.5",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.25.5",
-            "UID": "af270a0ea7cae480"
-          },
-          "InstalledVersion": "v1.25.5",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:56c06deac2e0b68975edd7e0482fe7df03b37a386bd58005e51afd5bfb015eee",
-            "DiffID": "sha256:ac6a4d97d99118d27ea88522112041feddbaaf382bbe954f6ca1e7569189b897"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:310b94b34540b392fcb02a6693a7716057b0420e7c5efe68420593c7e8a4b2af",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -3960,15 +3880,17 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:ec3990d2dfc260f069354113a4a3b1d609b4e0f30430d1b404947033c5f203ff",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -3995,15 +3917,17 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:eab12f0c7fb18ea0d7635db45769ebbeaf84f9d2741d8b9245684aff04402fb1",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     }
