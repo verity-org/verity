@@ -14,6 +14,11 @@ on:
       - '.github/workflows/orchestrator.yaml'
       - '.github/workflows/patch-image.yaml'
   workflow_dispatch:
+    inputs:
+      image:
+        description: "Image name to patch (empty = all)"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -67,10 +72,73 @@ jobs:
             || crane digest "${BUILDKIT_IMAGE}" > /dev/null \
             || { echo "Error: no BuildKit available (upstream down, no GHCR mirror)"; exit 1; }
 
-  # ── Job 2: Discover image+tag combos ───────────────────────────────
+  # ── Job 2: Detect changed images (push only) ────────────────────────
+  detect:
+    name: Detect Changes
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    outputs:
+      mode: ${{ steps.detect.outputs.mode }}
+      filter: ${{ steps.detect.outputs.filter }}
+
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Install mise
+        uses: step-security/mise-action@d65cf9dcb78b983ae2530c89fd28e72286713505 # v3.5.1
+        with:
+          install: true
+          cache: true
+
+      - name: Detect which images changed
+        id: detect
+        run: |
+          changed=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}")
+
+          if ! echo "$changed" | grep -q '^copa-config.yaml$'; then
+            echo "copa-config.yaml not changed — workflow files only, run all"
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          OLD_NAMES=$(git show "${{ github.event.before }}":copa-config.yaml 2>/dev/null | yq -r '.images[].name' 2>/dev/null | sort || true)
+          NEW_NAMES=$(yq -r '.images[].name' copa-config.yaml | sort)
+
+          ADDED=$(comm -13 <(echo "$OLD_NAMES") <(echo "$NEW_NAMES") | paste -sd,)
+
+          CHANGED_NAMES=""
+          while IFS= read -r name; do
+            [ -z "$name" ] && continue
+            old_block=$(git show "${{ github.event.before }}":copa-config.yaml 2>/dev/null | yq ".images[] | select(.name == \"$name\")" 2>/dev/null || true)
+            new_block=$(yq ".images[] | select(.name == \"$name\")" copa-config.yaml)
+            if [ "$old_block" != "$new_block" ]; then
+              CHANGED_NAMES="${CHANGED_NAMES:+$CHANGED_NAMES,}$name"
+            fi
+          done <<< "$NEW_NAMES"
+
+          FILTER="${ADDED}${ADDED:+${CHANGED_NAMES:+,}}${CHANGED_NAMES}"
+
+          if [ -z "$FILTER" ]; then
+            echo "No image changes detected in copa-config.yaml"
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+          else
+            echo "Changed images: $FILTER"
+            echo "mode=filter" >> "$GITHUB_OUTPUT"
+            echo "filter=$FILTER" >> "$GITHUB_OUTPUT"
+          fi
+
+  # ── Job 3: Discover image+tag combos ───────────────────────────────
   discover:
     name: Discover Images
-    needs: prepare
+    needs: [prepare, detect]
+    if: always() && needs.prepare.result == 'success'
     runs-on: ubuntu-24.04
     outputs:
       images: ${{ steps.discover.outputs.images }}
@@ -102,12 +170,36 @@ jobs:
       - name: Build verity
         run: go build -o verity .
 
+      - name: Login to GHCR
+        uses: step-security/docker-login-action@c3e677aae8393bc9c81cfdf9709648720ea4bd4d # v3.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Discover images
         id: discover
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DETECT_MODE: ${{ needs.detect.outputs.mode }}
+          DETECT_FILTER: ${{ needs.detect.outputs.filter }}
+          DISPATCH_IMAGE: ${{ github.event.inputs.image }}
         run: |
+          EXTRA_FLAGS=""
+
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            EXTRA_FLAGS="--preflight true --github-repo ${{ github.repository }}"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "$DISPATCH_IMAGE" ]; then
+            EXTRA_FLAGS="--only $DISPATCH_IMAGE"
+          elif [ "${{ github.event_name }}" = "push" ] && [ "$DETECT_MODE" = "filter" ] && [ -n "$DETECT_FILTER" ]; then
+            EXTRA_FLAGS="--only $DETECT_FILTER"
+          fi
+
+          # shellcheck disable=SC2086
           ./verity discover \
             --config copa-config.yaml \
             --target-registry "${TARGET_REGISTRY}" \
+            $EXTRA_FLAGS \
             > images.json
 
           COUNT=$(jq 'length' images.json)

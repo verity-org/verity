@@ -18,6 +18,7 @@ func main() {
 			cmd.CatalogCommand,
 			cmd.DiscoverCommand,
 			cmd.IntegerCommand,
+			cmd.PreflightCommand,
 		},
 		Version: "2.0.0",
 	}

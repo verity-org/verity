@@ -261,3 +261,58 @@ jobs:
           bash .github/scripts/push-reports.sh \
             "reports/${INPUT_IMAGE}/${INPUT_VERSION}/${INPUT_TYPE}/latest.json" \
             report.json
+
+      - name: Update preflight manifest
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_IMAGE: ${{ inputs.image }}
+          INPUT_VERSION: ${{ inputs.version }}
+          INPUT_TYPE: ${{ inputs.type }}
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          MANIFEST_FILE="reports/preflight-manifest.json"
+          BRANCH="reports"
+          REPO="${{ github.repository }}"
+          KEY="${INPUT_IMAGE}/${INPUT_VERSION}-${INPUT_TYPE}"
+          MAX_RETRIES=5
+
+          MANIFEST_UPDATED=false
+          for attempt in $(seq 1 "$MAX_RETRIES"); do
+            if gh api "repos/${REPO}/contents/${MANIFEST_FILE}?ref=${BRANCH}" > /tmp/manifest_resp.json 2>&1; then
+              SHA=$(jq -r '.sha' /tmp/manifest_resp.json)
+              CONTENT=$(jq -r '.content' /tmp/manifest_resp.json | base64 -d)
+            elif grep -q '"Not Found"' /tmp/manifest_resp.json 2>/dev/null; then
+              SHA=""
+              CONTENT="{}"
+            else
+              echo "Warning: unexpected API response fetching manifest (attempt ${attempt}/${MAX_RETRIES})"
+              cat /tmp/manifest_resp.json >&2
+              sleep 2
+              continue
+            fi
+
+            UPDATED=$(echo "$CONTENT" | jq \
+              --arg key "$KEY" \
+              --arg digest "$DIGEST" \
+              --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+              '.[$key] = {upstream_digest: $digest, patched_vulns: 0, last_patched: $ts}')
+
+            ENCODED=$(echo "$UPDATED" | base64 | tr -d '\n')
+            ARGS=(--method PUT "repos/${REPO}/contents/${MANIFEST_FILE}"
+              --field "message=chore: update preflight manifest for ${KEY}"
+              --field "content=${ENCODED}"
+              --field "branch=${BRANCH}")
+            [ -n "$SHA" ] && ARGS+=(--field "sha=${SHA}")
+
+            if gh api "${ARGS[@]}" --silent; then
+              MANIFEST_UPDATED=true
+              break
+            fi
+
+            echo "Warning: manifest update attempt ${attempt}/${MAX_RETRIES} failed (SHA conflict), retrying..."
+            sleep 2
+          done
+          if [ "$MANIFEST_UPDATED" != "true" ]; then
+            echo "::warning::Preflight manifest update failed after ${MAX_RETRIES} attempts"
+          fi

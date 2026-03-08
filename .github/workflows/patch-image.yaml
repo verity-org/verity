@@ -499,6 +499,63 @@ jobs:
             "reports/${IMAGE_NAME}/${SOURCE_TAG}/pre.json" pre.json \
             "reports/${IMAGE_NAME}/${SOURCE_TAG}/post.json" post.json
 
+      - name: Update preflight manifest
+        if: steps.compare.outputs.changed == 'true' && inputs.is-pr == false
+        env:
+          IMAGE_NAME: ${{ inputs.image-name }}
+          SOURCE_TAG: ${{ needs.scan.outputs.source-tag }}
+          SOURCE_REF: ${{ inputs.source-ref }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          UPSTREAM_DIGEST=$(crane digest "${SOURCE_REF}" 2>/dev/null || echo "")
+          VULN_COUNT=$(jq '[.Results[]?.Vulnerabilities // [] | .[]] | length' post.json 2>/dev/null || echo "0")
+          MANIFEST_FILE="reports/preflight-manifest.json"
+          BRANCH="reports"
+          REPO="${{ github.repository }}"
+          KEY="${IMAGE_NAME}/${SOURCE_TAG}"
+          MAX_RETRIES=5
+
+          MANIFEST_UPDATED=false
+          for attempt in $(seq 1 "$MAX_RETRIES"); do
+            if gh api "repos/${REPO}/contents/${MANIFEST_FILE}?ref=${BRANCH}" > /tmp/manifest_resp.json 2>&1; then
+              SHA=$(jq -r '.sha' /tmp/manifest_resp.json)
+              CONTENT=$(jq -r '.content' /tmp/manifest_resp.json | base64 -d)
+            elif grep -q '"Not Found"' /tmp/manifest_resp.json 2>/dev/null; then
+              SHA=""
+              CONTENT="{}"
+            else
+              echo "Warning: unexpected API response fetching manifest (attempt ${attempt}/${MAX_RETRIES})"
+              cat /tmp/manifest_resp.json >&2
+              sleep 2
+              continue
+            fi
+
+            UPDATED=$(echo "$CONTENT" | jq \
+              --arg key "$KEY" \
+              --arg digest "$UPSTREAM_DIGEST" \
+              --argjson vulns "$VULN_COUNT" \
+              --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+              '.[$key] = {upstream_digest: $digest, patched_vulns: $vulns, last_patched: $ts}')
+
+            ENCODED=$(echo "$UPDATED" | base64 | tr -d '\n')
+            ARGS=(--method PUT "repos/${REPO}/contents/${MANIFEST_FILE}"
+              --field "message=chore: update preflight manifest for ${KEY}"
+              --field "content=${ENCODED}"
+              --field "branch=${BRANCH}")
+            [ -n "$SHA" ] && ARGS+=(--field "sha=${SHA}")
+
+            if gh api "${ARGS[@]}" --silent; then
+              MANIFEST_UPDATED=true
+              break
+            fi
+
+            echo "Warning: manifest update attempt ${attempt}/${MAX_RETRIES} failed (SHA conflict), retrying..."
+            sleep 2
+          done
+          if [ "$MANIFEST_UPDATED" != "true" ]; then
+            echo "::warning::Preflight manifest update failed after ${MAX_RETRIES} attempts"
+          fi
+
       - name: Upload PR scan artifacts
         if: inputs.is-pr == true
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0

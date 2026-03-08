@@ -24,8 +24,55 @@ permissions:
   actions: write    # required to dispatch integer-build-image.yaml
 
 jobs:
+  # ── Job 1: Detect changed images (push only) ──────────────────────
+  detect:
+    name: Detect Changes
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.detect.outputs.mode }}
+      filter: ${{ steps.detect.outputs.filter }}
+
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Detect which images changed
+        id: detect
+        run: |
+          changed=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}")
+
+          if echo "$changed" | grep -qE '^(integer\.yaml|images/_base/)'; then
+            echo "Base config or base images changed — rebuild all"
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          names=$(echo "$changed" \
+            | grep '^images/' | grep -v '_base/' \
+            | sed 's|images/||;s|\.yaml||' \
+            | paste -sd, || true)
+
+          if [ -z "$names" ]; then
+            echo "No image YAML files changed — workflow files only, run all"
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+          else
+            echo "Changed images: $names"
+            echo "mode=filter" >> "$GITHUB_OUTPUT"
+            echo "filter=$names" >> "$GITHUB_OUTPUT"
+          fi
+
+  # ── Job 2: Discover image+version+type combos ─────────────────────
   discover:
     name: Discover images
+    needs: detect
+    if: always() && !failure() && !cancelled()
     runs-on: ubuntu-latest
     outputs:
       images: ${{ steps.discover.outputs.images }}
@@ -53,19 +100,36 @@ jobs:
           key: go-${{ runner.os }}-${{ hashFiles('go.sum') }}
           restore-keys: go-${{ runner.os }}-
 
+      - name: Login to GHCR
+        uses: step-security/docker-login-action@c3e677aae8393bc9c81cfdf9709648720ea4bd4d # v3.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build verity CLI
         run: go build -o verity .
 
       - name: Discover image×version×type combos
         id: discover
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DETECT_MODE: ${{ needs.detect.outputs.mode }}
+          DETECT_FILTER: ${{ needs.detect.outputs.filter }}
+          DISPATCH_IMAGE: ${{ github.event.inputs.image }}
         run: |
-          all=$(./verity integer discover)
+          EXTRA_FLAGS=""
 
-          # Filter to a single image if requested via workflow_dispatch
-          filter="${{ github.event.inputs.image }}"
-          if [ -n "$filter" ]; then
-            all=$(echo "$all" | jq --arg f "$filter" '[.[] | select(.name == $f)]')
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            EXTRA_FLAGS="--preflight true --github-repo ${{ github.repository }}"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "$DISPATCH_IMAGE" ]; then
+            EXTRA_FLAGS="--only $DISPATCH_IMAGE"
+          elif [ "${{ github.event_name }}" = "push" ] && [ "$DETECT_MODE" = "filter" ] && [ -n "$DETECT_FILTER" ]; then
+            EXTRA_FLAGS="--only $DETECT_FILTER"
           fi
+
+          # shellcheck disable=SC2086
+          all=$(./verity integer discover $EXTRA_FLAGS)
 
           count=$(echo "$all" | jq 'length')
           echo "count=${count}" >> "$GITHUB_OUTPUT"

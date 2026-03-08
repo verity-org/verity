@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/urfave/cli/v2"
 
@@ -42,6 +43,23 @@ var integerDiscoverCmd = &cli.Command{
 			Name:  "gen-dir",
 			Usage: "Directory for generated apko configs (default: system temp)",
 		},
+		&cli.StringFlag{
+			Name:  "only",
+			Usage: "Comma-separated list of image names to include (empty = all)",
+		},
+		&cli.BoolFlag{
+			Name:  "preflight",
+			Usage: "Enable preflight digest-based skip logic (compares upstream digests with manifest)",
+		},
+		&cli.StringFlag{
+			Name:  "github-repo",
+			Usage: "GitHub repository (owner/repo) for preflight manifest lookup",
+		},
+		&cli.StringFlag{
+			Name:  "reports-branch",
+			Usage: "Branch where preflight-manifest.json is stored",
+			Value: "reports",
+		},
 	},
 	Action: func(c *cli.Context) error {
 		cfg, err := intconfig.LoadConfig(c.String("config"))
@@ -73,6 +91,19 @@ var integerDiscoverCmd = &cli.Command{
 			return fmt.Errorf("discovering images: %w", err)
 		}
 
+		// --only: filter to specific image names
+		if only := c.String("only"); only != "" {
+			imgs = filterIntegerImagesByName(imgs, only)
+			fmt.Fprintf(os.Stderr, "Filtered to %d images matching --only=%s\n", len(imgs), only)
+		}
+
+		// --preflight: for Integer images, preflight is a no-op for now since
+		// Integer builds from source (no upstream digest to compare). The flag
+		// is accepted for workflow symmetry but currently just logs.
+		if c.Bool("preflight") {
+			fmt.Fprintf(os.Stderr, "Preflight: Integer images build from source — no digest filtering applied\n")
+		}
+
 		out, err := json.MarshalIndent(imgs, "", "  ")
 		if err != nil {
 			return fmt.Errorf("marshalling output: %w", err)
@@ -80,4 +111,24 @@ var integerDiscoverCmd = &cli.Command{
 		fmt.Fprintln(os.Stdout, string(out))
 		return nil
 	},
+}
+
+// filterIntegerImagesByName filters images to only those whose Name matches one
+// of the comma-separated names.
+func filterIntegerImagesByName(images []discovery.DiscoveredImage, names string) []discovery.DiscoveredImage {
+	allowed := make(map[string]struct{})
+	for n := range strings.SplitSeq(names, ",") {
+		n = strings.TrimSpace(n)
+		if n != "" {
+			allowed[n] = struct{}{}
+		}
+	}
+
+	var filtered []discovery.DiscoveredImage
+	for _, img := range images {
+		if _, ok := allowed[img.Name]; ok {
+			filtered = append(filtered, img)
+		}
+	}
+	return filtered
 }
