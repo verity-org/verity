@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019cc68d-e72c-7c39-ad96-d8ebaa1127ad",
-  "CreatedAt": "2026-03-07T04:28:34.476803899Z",
-  "ArtifactID": "sha256:d98014bf6fdc9f88d459f86518541d773595817cc6ab8b29a49afc3063d669f7",
+  "ReportID": "019ccbc0-62c4-7eee-acfc-f1460493c08d",
+  "CreatedAt": "2026-03-08T04:41:48.99697962Z",
+  "ArtifactID": "sha256:5705a8ed4302e9062b836166252baedfbb1efcd4537837149d7f4941006255d5",
   "ArtifactName": "ghcr.io/verity-org/cache:configmap-reload-v0.14.0-patched",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -14,7 +14,7 @@
       "Family": "debian",
       "Name": "11.10"
     },
-    "ImageID": "sha256:40cf9e2327781742f7f189d2b11c0c8ecef4fd54fd3441734cef7a0ee484e435",
+    "ImageID": "sha256:9ccee6ddce1d0c5a12500a82c85ed71f0268cb5b8194227ec905273f180c4aa6",
     "DiffIDs": [
       "sha256:5342a2647e8784b3afdeb9b148d5fe1e7e1089ed3650204077765c78b3b0f93c",
       "sha256:577c8ee06f39e2bc276615f1058fa40081255ce5e2f072df4875e27868de5660",
@@ -28,13 +28,13 @@
       "sha256:c048279a7d9f8e94b4c022b699ad8e8a0cb08b717b014ce4af15afaf375a6ac2",
       "sha256:2388d21e8e2b74e055216652e6af384768e97513ad568e10c27bacec389b7f0a",
       "sha256:bf5a4513aaf1852d8f638d88de8e435388c92ed412a8c8f60e3a42d868ae959b",
-      "sha256:968f454c13332eeb60f1d32a91b63717f0a28a086da1dfcbdfea53c34c5df046"
+      "sha256:abd24a1529b2c3ef03d24d76404ae542190c51bb5e59fff2de19ad096cc392d1"
     ],
     "RepoTags": [
       "ghcr.io/verity-org/cache:configmap-reload-v0.14.0-patched"
     ],
     "RepoDigests": [
-      "ghcr.io/verity-org/cache@sha256:1d6eedc61d8ed5fb8a5b434864c4cd773b1f2a33068eab30cd6734739e42a5af"
+      "ghcr.io/verity-org/cache@sha256:af2f81ce00b1a94f8fb45cf775bd2047dc7b5e439638c9e247b4b2ab900cff35"
     ],
     "Reference": "ghcr.io/verity-org/cache:configmap-reload-v0.14.0-patched",
     "ImageConfig": {
@@ -98,7 +98,7 @@
           "empty_layer": true
         },
         {
-          "created": "2026-03-07T04:19:06.974047027Z",
+          "created": "2026-03-08T04:32:20.395519052Z",
           "created_by": "diff (mkfile /download.sh) -\u003e (merge (diff (docker-image://ghcr.io/jimmidyson/configmap-reload:v0.14.0) -\u003e (rm /manifest), rm /manifest))",
           "comment": "buildkit.exporter.image.v0"
         }
@@ -119,7 +119,7 @@
           "sha256:c048279a7d9f8e94b4c022b699ad8e8a0cb08b717b014ce4af15afaf375a6ac2",
           "sha256:2388d21e8e2b74e055216652e6af384768e97513ad568e10c27bacec389b7f0a",
           "sha256:bf5a4513aaf1852d8f638d88de8e435388c92ed412a8c8f60e3a42d868ae959b",
-          "sha256:968f454c13332eeb60f1d32a91b63717f0a28a086da1dfcbdfea53c34c5df046"
+          "sha256:abd24a1529b2c3ef03d24d76404ae542190c51bb5e59fff2de19ad096cc392d1"
         ]
       },
       "config": {
@@ -201,8 +201,8 @@
       },
       {
         "Size": 9240576,
-        "Digest": "sha256:2e9ed5bedd90f7b90b65437e09915e12255523229f73f9d491bccb8005e3bfde",
-        "DiffID": "sha256:968f454c13332eeb60f1d32a91b63717f0a28a086da1dfcbdfea53c34c5df046"
+        "Digest": "sha256:508f8b823cd9d9aa3d23e338644bea1ba0b1f83152f1d316c79bd94d3f7ce871",
+        "DiffID": "sha256:abd24a1529b2c3ef03d24d76404ae542190c51bb5e59fff2de19ad096cc392d1"
       }
     ]
   },
@@ -312,8 +312,8 @@
             "Class": "official"
           },
           "Layer": {
-            "Digest": "sha256:2e9ed5bedd90f7b90b65437e09915e12255523229f73f9d491bccb8005e3bfde",
-            "DiffID": "sha256:968f454c13332eeb60f1d32a91b63717f0a28a086da1dfcbdfea53c34c5df046"
+            "Digest": "sha256:508f8b823cd9d9aa3d23e338644bea1ba0b1f83152f1d316c79bd94d3f7ce871",
+            "DiffID": "sha256:abd24a1529b2c3ef03d24d76404ae542190c51bb5e59fff2de19ad096cc392d1"
           },
           "AnalyzedBy": "dpkg"
         }
@@ -520,7 +520,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e2c94bbdfd1033b26205e28be1eede8cffdc366c15269d9a7d78a0aa6edd5bb5",
+          "Fingerprint": "sha256:6344f01faaa1ec2daac417ae9eb609d5edc44542d5e618c8161a722d5147d467",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -554,9 +554,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-68121",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -565,7 +565,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
@@ -603,7 +603,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:c9e194544b4312b2da531463bd337e6b69910cf26bbe998214330e61bfea122c",
+          "Fingerprint": "sha256:23cd3340da307a4f95522651eec622bebcfcf2fa98d946f9d04ecccc029b680c",
           "Title": "database/sql: Postgres Scan Race Condition",
           "Description": "Cancelling a query (e.g. by cancelling the context passed to one of the query methods) during a call to the Scan method of the returned Rows can result in unexpected results if other queries are being made in parallel. This can result in a race condition that may overwrite the expected results with those of another query, causing the call to Scan to return either unexpected results from the other query or an error.",
           "Severity": "HIGH",
@@ -632,11 +632,11 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2025/08/06/1",
-            "https://access.redhat.com/errata/RHSA-2025:20983",
+            "https://access.redhat.com/errata/RHSA-2025:20909",
             "https://access.redhat.com/security/cve/CVE-2025-47907",
             "https://bugzilla.redhat.com/2387083",
             "https://bugzilla.redhat.com/2393152",
-            "https://errata.almalinux.org/10/ALSA-2025-20983.html",
+            "https://errata.almalinux.org/9/ALSA-2025-20909.html",
             "https://go.dev/cl/693735",
             "https://go.dev/issue/74831",
             "https://groups.google.com/g/golang-announce/c/x5MKroML2yM",
@@ -673,7 +673,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:1147cebe835d19808690701f2ac473aae277498633102e2a8acaea5a2c30096d",
+          "Fingerprint": "sha256:ae144f713172d7db196409425f3af259ce6dfa1433596fcecb197f1cbcc4807c",
           "Title": "golang: archive/tar: Unbounded allocation when parsing GNU sparse map",
           "Description": "tar.Reader does not set a maximum size on the number of sparse region data blocks in GNU tar pax 1.0 sparse files. A maliciously-crafted archive containing a large number of sparse regions can cause a Reader to read an unbounded amount of data from the archive into memory. When reading from a compressed source, a small compressed input can result in large allocations.",
           "Severity": "HIGH",
@@ -700,12 +700,12 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2025/10/08/1",
-            "https://access.redhat.com/errata/RHSA-2026:1380",
+            "https://access.redhat.com/errata/RHSA-2026:1381",
             "https://access.redhat.com/security/cve/CVE-2025-58183",
             "https://bugzilla.redhat.com/2407258",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2407258",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-58183",
-            "https://errata.almalinux.org/8/ALSA-2026-1380.html",
+            "https://errata.almalinux.org/9/ALSA-2026-1381.html",
             "https://errata.rockylinux.org/RLSA-2025:23326",
             "https://go.dev/cl/709861",
             "https://go.dev/issue/75677",
@@ -743,7 +743,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:15588fc00b27a89db2c3147199814189d30fa63da035f64387ef7979dca72fea",
+          "Fingerprint": "sha256:370b53304840dc6f04756f6cfe1c22e74aa315542c18f44e08419254943fef21",
           "Title": "golang: net/url: Memory exhaustion in query parameter parsing in net/url",
           "Description": "The net/url package does not set a limit on the number of query parameters in a query. While the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.",
           "Severity": "HIGH",
@@ -772,9 +772,9 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-61726",
-            "https://bugzilla.redhat.com/2434431",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
@@ -783,7 +783,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/736712",
             "https://go.dev/issue/77101",
@@ -821,7 +821,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f855b0bfa5af6ec26593167a896ecc44aea1ef9a7dc6c275ce696cc5aa047774",
+          "Fingerprint": "sha256:3555905e3738b252e5cd004506e8fae9a1172add8e49755366cffd6526cf2b75",
           "Title": "golang: archive/zip: Excessive CPU consumption when building archive index in archive/zip",
           "Description": "archive/zip uses a super-linear file name indexing algorithm that is invoked the first time a file in an archive is opened. This can lead to a denial of service when consuming a maliciously constructed ZIP archive.",
           "Severity": "HIGH",
@@ -850,8 +850,9 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/01/15/4",
-            "https://access.redhat.com/errata/RHSA-2026:3188",
+            "https://access.redhat.com/errata/RHSA-2026:3337",
             "https://access.redhat.com/security/cve/CVE-2025-61728",
+            "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434431",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
@@ -863,7 +864,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61728",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3188.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3337.html",
             "https://errata.rockylinux.org/RLSA-2026:3337",
             "https://go.dev/cl/736713",
             "https://go.dev/issue/77102",
@@ -901,7 +902,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:86ae75cd5b69b799f28800782983f952a61a1513a14e0199c77c1a95cbe720aa",
+          "Fingerprint": "sha256:e01b09d5b66ff657aa67573324f36a3fba2a344ee27fbcfe519e19b89117e8b7",
           "Title": "crypto/x509: golang: Denial of Service due to excessive resource consumption via crafted certificate",
           "Description": "Within HostnameError.Error(), when constructing an error string, there is no limit to the number of hosts that will be printed out. Furthermore, the error string is constructed by repeated string concatenation, leading to quadratic runtime. Therefore, a certificate provided by a malicious actor can result in excessive resource consumption.",
           "Severity": "HIGH",
@@ -929,18 +930,18 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2026:3428",
+            "https://access.redhat.com/errata/RHSA-2026:3928",
             "https://access.redhat.com/security/cve/CVE-2025-61729",
-            "https://bugzilla.redhat.com/2268022",
             "https://bugzilla.redhat.com/2418462",
-            "https://bugzilla.redhat.com/2418900",
+            "https://bugzilla.redhat.com/2434432",
+            "https://bugzilla.redhat.com/2437111",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/8/ALSA-2026-3428.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3928.html",
             "https://errata.rockylinux.org/RLSA-2026:3341",
             "https://go.dev/cl/725920",
             "https://go.dev/issue/76445",
@@ -978,7 +979,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:2badd3d102ef181982c11e1229dd1e8172bb6df4ebee62287dfe34076f3f8992",
+          "Fingerprint": "sha256:2526ff696cace25bb2799cb8069ffdc40ef45f9f9f134c37ba7650d3ec642928",
           "Title": "golang: net/http: net/http: sensitive headers incorrectly sent after cross-domain redirect",
           "Description": "The HTTP client drops sensitive headers after following a cross-domain redirect. For example, a request to a.com/ containing an Authorization header which is redirected to b.com/ will not send that header to b.com. In the event that the client received a subsequent same-domain redirect, however, the sensitive headers would be restored. For example, a chain of redirects from a.com/, to b.com/1, and finally to b.com/2 would incorrectly send the Authorization header to b.com/2.",
           "Severity": "MEDIUM",
@@ -1058,7 +1059,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:4dd45fecf77d6b627999363ee17413e70683ce67d9cc448d35c6431ac3089bcf",
+          "Fingerprint": "sha256:4012f732d6b004bfb95c4b2b9b53824ac132097234e494ed0e6c161744c53a9e",
           "Title": "golang: crypto/x509: crypto/x509: usage of IPv6 zone IDs can bypass URI name constraints",
           "Description": "A certificate with a URI which has a IPv6 address with a zone ID may incorrectly satisfy a URI name constraint that applies to the certificate chain. Certificates containing URIs are not permitted in the web PKI, so this only affects users of private PKIs which make use of URIs.",
           "Severity": "MEDIUM",
@@ -1137,7 +1138,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f7605dc7be33b3a5d05f744a0014a9288b6394d92a838f5e04080aa7f9af0411",
+          "Fingerprint": "sha256:2fd55a667a6f54519115b0681e180db0aded42ee98e96cc88ace4ce29324e747",
           "Title": "Inconsistent handling of O_CREATE|O_EXCL on Unix and Windows in os in syscall",
           "Description": "os.OpenFile(path, os.O_CREATE|O_EXCL) behaved differently on Unix and Windows systems when the target path was a dangling symlink. On Unix systems, OpenFile with O_CREATE and O_EXCL flags never follows symlinks. On Windows, when the target path was a symlink to a nonexistent location, OpenFile would create a file in that location. OpenFile now always returns an error when the O_CREATE and O_EXCL flags are both set and the target path is a symlink.",
           "Severity": "MEDIUM",
@@ -1187,7 +1188,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:49a70773294de6f75d87e632c0f4423cb2c6989d0e035df8d03e8515352a1d21",
+          "Fingerprint": "sha256:5af83fd28e7a2b9c6e6757d5f7b6f2cf858c1853d23e848d480e7f7f78987589",
           "Title": "crypto/internal/nistec: golang: Timing sidechannel for P-256 on ppc64le in crypto/internal/nistec",
           "Description": "Due to the usage of a variable time instruction in the assembly implementation of an internal function, a small number of bits of secret scalars are leaked on the ppc64le architecture. Due to the way this function is used, we do not believe this leakage is enough to allow recovery of the private key when P-256 is used in any well known protocols.",
           "Severity": "MEDIUM",
@@ -1261,7 +1262,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7b987df721872e7d039b14d3c1f3fb79c0c07a3588796af0b2348797c5275b93",
+          "Fingerprint": "sha256:f1cafc9ca6303fd02ae7edb62d270c90eb0e34c67bf2ccc09d4489fb11848867",
           "Title": "net/http: Request smuggling due to acceptance of invalid chunked data in net/http",
           "Description": "The net/http package improperly accepts a bare LF as a line terminator in chunked data chunk-size lines. This can permit request smuggling if a net/http server is used in conjunction with a server that incorrectly accepts a bare LF as part of a chunk-ext.",
           "Severity": "MEDIUM",
@@ -1292,12 +1293,12 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2025/04/04/4",
-            "https://access.redhat.com/errata/RHSA-2025:9845",
+            "https://access.redhat.com/errata/RHSA-2025:9635",
             "https://access.redhat.com/security/cve/CVE-2025-22871",
             "https://bugzilla.redhat.com/2358493",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2358493",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-22871",
-            "https://errata.almalinux.org/8/ALSA-2025-9845.html",
+            "https://errata.almalinux.org/9/ALSA-2025-9635.html",
             "https://errata.rockylinux.org/RLSA-2025:9635",
             "https://github.com/roadrunner-server/roadrunner",
             "https://github.com/roadrunner-server/roadrunner/commit/f269279ee87d0b88127741cad1042389af7605fa",
@@ -1339,7 +1340,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:5a20dbf3822c2eb2da9624e168cc284ebe57d4a1f00eb2d304318af7ef629040",
+          "Fingerprint": "sha256:4cf65639f66be5a74ddc7e22811b0534ee4ca10197bfc7eef0c0ecb66a9435ab",
           "Title": "os: os: Information disclosure via path traversal using specially crafted filenames",
           "Description": "It was possible to improperly access the parent directory of an os.Root by opening a filename ending in \"../\". For example, Root.Open(\"../\") would open the parent directory of the Root. This escape only permits opening the parent directory itself, not ancestors of the parent or files contained within the parent.",
           "Severity": "MEDIUM",
@@ -1398,7 +1399,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0ce73eda5cbc6905eb1de6260d32ab03e98e31db1344a732fca02c36f1b8faeb",
+          "Fingerprint": "sha256:0ebd3b870e30191e22e6e5fb918969674027a3b19268f5febde726a300a28748",
           "Title": "net/http: Sensitive headers not cleared on cross-origin redirect in net/http",
           "Description": "Proxy-Authorization and Proxy-Authenticate headers persisted on cross-origin redirects potentially leaking sensitive information.",
           "Severity": "MEDIUM",
@@ -1424,12 +1425,12 @@
             }
           },
           "References": [
-            "https://access.redhat.com/errata/RHSA-2025:10672",
+            "https://access.redhat.com/errata/RHSA-2025:15887",
             "https://access.redhat.com/security/cve/CVE-2025-4673",
             "https://bugzilla.redhat.com/2373305",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2373305",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-4673",
-            "https://errata.almalinux.org/8/ALSA-2025-10672.html",
+            "https://errata.almalinux.org/9/ALSA-2025-15887.html",
             "https://errata.rockylinux.org/RLSA-2025:15887",
             "https://go.dev/cl/679257",
             "https://go.dev/issue/73816",
@@ -1468,7 +1469,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:50f51c0153d1b0adcebc20c939f879eb63fd1274cd73d6e3f49dd52cf815adb8",
+          "Fingerprint": "sha256:619f537230e3c66c275ab8a8ed1a213a19e3c58725e34969ac820063709ffc04",
           "Title": "os/exec: Unexpected paths returned from LookPath in os/exec",
           "Description": "If the PATH environment variable contains paths which are executables (rather than just directories), passing certain strings to LookPath (\"\", \".\", and \"..\"), can result in the binaries listed in the PATH being unexpectedly returned.",
           "Severity": "MEDIUM",
@@ -1495,13 +1496,12 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2025/08/06/1",
-            "https://access.redhat.com/errata/RHSA-2025:22668",
+            "https://access.redhat.com/errata/RHSA-2025:22005",
             "https://access.redhat.com/security/cve/CVE-2025-47906",
             "https://bugzilla.redhat.com/2396546",
-            "https://bugzilla.redhat.com/2407258",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2396546",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-47906",
-            "https://errata.almalinux.org/8/ALSA-2025-22668.html",
+            "https://errata.almalinux.org/9/ALSA-2025-22005.html",
             "https://errata.rockylinux.org/RLSA-2025:22005",
             "https://go.dev/cl/691775",
             "https://go.dev/issue/74466",
@@ -1539,7 +1539,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:1e18e4731ca2f51fea62e593299f4733de2bbf228e05dc515e6d58f467163e22",
+          "Fingerprint": "sha256:b3d44913cbaf9a7d60dc8397bd66946ca8f5fc56e069cf61caac5b56905513aa",
           "Title": "net/url: Insufficient validation of bracketed IPv6 hostnames in net/url",
           "Description": "The Parse function permits values other than IPv6 addresses to be included in square brackets within the host component of a URL. RFC 3986 permits IPv6 addresses to be included within the host component, enclosed within square brackets. For example: \"http://[::1]/\". IPv4 addresses and hostnames must not appear within square brackets. Parse did not enforce this requirement.",
           "Severity": "MEDIUM",
@@ -1596,7 +1596,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:8f7136a624f7ad7a78f12aab2f5b8c9acfbea7926d9e2e93611a81e5b42ea484",
+          "Fingerprint": "sha256:18e7e326f1f584e7e73f8e763de9452a2663631de1d4badd557c9121bd0f32ed",
           "Title": "encoding/asn1: Parsing DER payload can cause memory exhaustion in encoding/asn1",
           "Description": "Parsing a maliciously crafted DER payload could allocate large amounts of memory, causing memory exhaustion.",
           "Severity": "MEDIUM",
@@ -1657,7 +1657,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:b99b3b32c95a73960e6601464207a1a718849912856d9c8b1b342136fa576161",
+          "Fingerprint": "sha256:33d48038c850b55e6c930804d8e0131ead333d4214f5c10b308aabe2f776d60e",
           "Title": "golang.org/net/http: Lack of limit when parsing cookies can cause memory exhaustion in net/http",
           "Description": "Despite HTTP headers having a default limit of 1MB, the number of cookies that can be parsed does not have a limit. By sending a lot of very small cookies such as \"a=;\", an attacker can make an HTTP server allocate a large amount of structs, causing large memory consumption.",
           "Severity": "MEDIUM",
@@ -1714,7 +1714,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:6119d37629a556ba36b7706ceea68306e93eb7fbc927ec6634541b5aed39577e",
+          "Fingerprint": "sha256:cf5a021bf329cf1c9da4451220a216a35c815a6fd9647322fd293985b9690ef6",
           "Title": "crypto/x509: Quadratic complexity when checking name constraints in crypto/x509",
           "Description": "Due to the design of the name constraint checking algorithm, the processing time of some inputs scale non-linearly with respect to the size of the certificate. This affects programs which validate arbitrary certificate chains.",
           "Severity": "MEDIUM",
@@ -1775,7 +1775,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:28e95a1fab35ac20520a697c4d63bad7e34cc965fa60f090d8f74081467e4a30",
+          "Fingerprint": "sha256:0b2b757b90296b18c4594301faeba04470c2bf2159bc3dbca59a05d641e4d38c",
           "Title": "crypto/x509: golang: Panic when validating certificates with DSA public keys in crypto/x509",
           "Description": "Validating certificate chains which contain DSA public keys can cause programs to panic, due to a interface cast that assumes they implement the Equal method. This affects programs which validate arbitrary certificate chains.",
           "Severity": "MEDIUM",
@@ -1836,7 +1836,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:a290fb37fea6935077621e228f58a86cfc84f794b47a66e9cc17715706c70d4c",
+          "Fingerprint": "sha256:6b3f027d1e83d85b74dc19452766a11e8098716cd5b8a351abd1fddac2b2cbd8",
           "Title": "crypto/tls: go crypto/tls ALPN negotiation error contains attacker controlled information",
           "Description": "When Conn.Handshake fails during ALPN negotiation the error contains attacker controlled information (the ALPN protocols sent by the client) which is not escaped.",
           "Severity": "MEDIUM",
@@ -1896,7 +1896,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:48776bf60c22f9c0f25b1e79e5afc9ca0f4ed32eb18f1f34af63b281ff4e6537",
+          "Fingerprint": "sha256:915bdc1e7787d664a0625a8814855a8d785c1aac27b26e7efa957f429a16bbde",
           "Title": "encoding/pem: Quadratic complexity when parsing some invalid inputs in encoding/pem",
           "Description": "The processing time for parsing some invalid inputs scales non-linearly with respect to the size of the input. This affects programs which parse untrusted PEM inputs.",
           "Severity": "MEDIUM",
@@ -1957,7 +1957,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:9b0a0701fe5894787dd93e00a0d325dfcc98f09c496608661a75d399f675984e",
+          "Fingerprint": "sha256:0638207e382860e58ab74d8bc69356888f12f07f71dad2009e392a22942806bd",
           "Title": "net/textproto: Excessive CPU consumption in Reader.ReadResponse in net/textproto",
           "Description": "The Reader.ReadResponse function constructs a response string through repeated string concatenation of lines. When the number of lines in a response is large, this can cause excessive CPU consumption.",
           "Severity": "MEDIUM",
@@ -2017,7 +2017,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7468eea7ec396906fd335bb4100e7b5e376919fb82b2b5d399de045514aec492",
+          "Fingerprint": "sha256:c9ace813c05a806fc6b54fa56580149cfc7c632bcf58551716391cc7dc64529f",
           "Title": "net/mail: Excessive CPU consumption in ParseAddress in net/mail",
           "Description": "The ParseAddress function constructs domain-literal address components through repeated string concatenation. When parsing large domain-literal components, this can cause excessive CPU consumption.",
           "Severity": "MEDIUM",
@@ -2074,7 +2074,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:a5e23ba089191722967707332c2eb44d8fb1cd4347311f54b0d64ea968403c0b",
+          "Fingerprint": "sha256:8de588aeab2fbc15f1207b26c0f9d799c084da596a9a1b92c5fef7ee77f0a3fd",
           "Title": "golang: crypto/x509: excluded subdomain constraint does not restrict wildcard SANs",
           "Description": "An excluded subdomain constraint in a certificate chain does not restrict the usage of wildcard SANs in the leaf certificate. For example a constraint that excludes the subdomain test.example.com does not prevent a leaf certificate from claiming the SAN *.example.com.",
           "Severity": "MEDIUM",
@@ -2133,7 +2133,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:1d7fbf490d9ddceb35884ed8e001ef19a421715427f62b7d9b8b3ef903db0898",
+          "Fingerprint": "sha256:7f0d946721844f5085a29f63cb29f869d011f69e2434c3434881cf6ff1390484",
           "Title": "During the TLS 1.3 handshake if multiple messages are sent in records  ...",
           "Description": "During the TLS 1.3 handshake if multiple messages are sent in records that span encryption level boundaries (for instance the Client Hello and Encrypted Extensions messages), the subsequent messages may be processed before the encryption level changes. This can cause some minor information disclosure if a network-local attacker can inject messages during the handshake.",
           "Severity": "MEDIUM",
@@ -2184,8 +2184,8 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:1871da40f81f77f7ba4a92edf94063795a493d5bcc78d917cb0d2ac9515a2b6d",
-          "Title": "Incorrect parsing of IPv6 host literals in net/url",
+          "Fingerprint": "sha256:6cd47cf398daa89085a10a2226885065bb0df0abcc0e56589b4ddcff02793451",
+          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "UNKNOWN",
           "References": [
@@ -2193,77 +2193,9 @@
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4601"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27137",
-          "VendorIDs": [
-            "GO-2026-4599"
           ],
-          "PkgID": "stdlib@v1.23.1",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.23.1",
-            "UID": "e5467dcdd0673735"
-          },
-          "InstalledVersion": "v1.23.1",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:74ea7ec4e398c1a16024073dc7355df91f98c9e003a3369a7822d5850886901c",
-            "DiffID": "sha256:bf5a4513aaf1852d8f638d88de8e435388c92ed412a8c8f60e3a42d868ae959b"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27137",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:9844d531ab8191bb9b025c06b1e3fc10a08a446a5c2918744bb87913243aa1ee",
-          "Title": "Incorrect enforcement of email constraints in crypto/x509",
-          "Description": "When verifying a certificate chain which contains a certificate containing multiple email address constraints which share common local portions but different domain portions, these constraints will not be properly applied, and only the last constraint will be considered.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752182",
-            "https://go.dev/issue/77952",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4599"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27138",
-          "VendorIDs": [
-            "GO-2026-4600"
-          ],
-          "PkgID": "stdlib@v1.23.1",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.23.1",
-            "UID": "e5467dcdd0673735"
-          },
-          "InstalledVersion": "v1.23.1",
-          "FixedVersion": "1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:74ea7ec4e398c1a16024073dc7355df91f98c9e003a3369a7822d5850886901c",
-            "DiffID": "sha256:bf5a4513aaf1852d8f638d88de8e435388c92ed412a8c8f60e3a42d868ae959b"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27138",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:d70b6bc97b9470f7419b60248dfdd9c73596343a7f5ce769eec90f1859aedc11",
-          "Title": "Panic in name constraint checking for malformed certificates in crypto/x509",
-          "Description": "Certificate verification can panic when a certificate in the chain has an empty DNS name and another certificate in the chain has excluded name constraints. This can crash programs that are either directly verifying X.509 certificate chains, or those that use TLS.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/752183",
-            "https://go.dev/issue/77953",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4600"
-          ]
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27139",
@@ -2289,16 +2221,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7db52a42c5e607d981bb7922c6925311a26e38b2ea11f05521ef4e4899908d8c",
-          "Title": "FileInfo can escape from a Root in os",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened.\n\nThe impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Fingerprint": "sha256:4245b7a7fdff0f43c0be5e1715231cedf3ab2c0e574221471bc29503f02261ad",
+          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/749480",
             "https://go.dev/issue/77827",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4602"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -2324,16 +2258,18 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:78ddadac3a45198331d91ba6acf812e5e1a2ba44cc6ec2ff7ae91b07c225cbab",
-          "Title": "URLs in meta content attribute actions are not escaped in html/template",
-          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\".\n\nA new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Fingerprint": "sha256:6a899b3a03914931f59ce2788aa8ae95cff3b01b2ca774f39d9d018f63428b81",
+          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "UNKNOWN",
           "References": [
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
             "https://pkg.go.dev/vuln/GO-2026-4603"
-          ]
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
         }
       ]
     }
