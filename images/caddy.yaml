@@ -7,7 +7,7 @@ types:
   default:
     base: wolfi-base
     packages: ["caddy"]
-    entrypoint: "caddy run --config /etc/caddy/Caddyfile --adapter caddyfile"
+    entrypoint: "caddy"
     environment:
       XDG_DATA_HOME: /data
       XDG_CONFIG_HOME: /config
@@ -20,7 +20,7 @@ types:
   fips:
     base: wolfi-fips
     packages: ["caddy"]
-    entrypoint: "caddy run --config /etc/caddy/Caddyfile --adapter caddyfile"
+    entrypoint: "caddy"
     environment:
       XDG_DATA_HOME: /data
       XDG_CONFIG_HOME: /config
