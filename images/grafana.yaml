@@ -7,7 +7,7 @@ types:
   default:
     base: wolfi-base
     packages: ["grafana-{{version}}"]
-    entrypoint: "/usr/bin/grafana server --homepath=/usr/share/grafana"
+    entrypoint: /usr/bin/grafana server
     environment:
       GF_PATHS_CONFIG: /etc/grafana/grafana.ini
       GF_PATHS_DATA: /var/lib/grafana
@@ -21,6 +21,8 @@ types:
       - {path: /var/lib/grafana, type: directory, uid: 472, gid: 472, permissions: 0o755}
       - {path: /var/log/grafana, type: directory, uid: 472, gid: 472, permissions: 0o755}
       - {path: /etc/grafana/provisioning, type: directory, uid: 472, gid: 472, permissions: 0o755}
+      - {path: /usr/share/grafana, type: directory, uid: 472, gid: 472, permissions: 0o755}
+
 
 versions:
   "11.6": {}
