@@ -51,6 +51,32 @@ type TypeTemplate struct {
 	WorkDir     string            `yaml:"work-dir,omitempty"`
 	Environment map[string]string `yaml:"environment,omitempty"`
 	Paths       []PathDef         `yaml:"paths,omitempty"`
+	Melange     *MelangeSpec      `yaml:"melange,omitempty"`
+}
+
+// MelangeSpec describes a custom melange package build that runs before apko
+// publish. The built package is injected into the apko config as a local repo.
+//
+// Use Upstream to rebuild an existing Wolfi package with overrides (e.g. adding
+// GOFIPS140 via EnvFile). Use Bespoke for fully custom melange YAMLs that don't
+// exist upstream. Exactly one of Upstream or Bespoke must be set.
+type MelangeSpec struct {
+	// Upstream is the package key in packages/upstream.lock.json. The melange
+	// YAML is fetched from wolfi-dev/os at the pinned commit.
+	Upstream string `yaml:"upstream,omitempty"`
+
+	// Bespoke is a filename (without path) in packages/bespoke/. Used for
+	// packages that don't exist in Wolfi or need radical changes.
+	Bespoke string `yaml:"bespoke,omitempty"`
+
+	// EnvFile is a filename (without path) in packages/overrides/. Passed to
+	// melange build via --env-file to inject build-time environment variables
+	// (e.g. GOFIPS140=v1.0.0) without modifying the upstream YAML.
+	EnvFile string `yaml:"env-file,omitempty"`
+
+	// BuildOption is passed to melange build via --build-option. It selects a
+	// named variant defined in the melange YAML's options: block.
+	BuildOption string `yaml:"build-option,omitempty"`
 }
 
 // PathDef is one path entry in an apko config.
