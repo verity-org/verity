@@ -33,6 +33,20 @@ BESPOKE=$(yq -r ".types.${TYPE}.melange.bespoke // \"\"" "$image_yaml")
 ENV_FILE=$(yq -r ".types.${TYPE}.melange.env-file // \"\"" "$image_yaml")
 BUILD_OPTION=$(yq -r ".types.${TYPE}.melange.build-option // \"\"" "$image_yaml")
 
+# Validate a filename value: must be non-empty, contain only safe characters,
+# and must not contain path separators or traversal sequences.
+validate_filename() {
+  local label="$1" value="$2"
+  if [[ ! "$value" =~ ^[A-Za-z0-9._-]+$ ]]; then
+    echo "${label} contains invalid characters: '${value}'" >&2
+    echo "Only alphanumeric characters, dots, underscores, and hyphens are allowed." >&2
+    exit 1
+  fi
+}
+
+[ -n "$BESPOKE" ]  && validate_filename "bespoke"  "$BESPOKE"
+[ -n "$ENV_FILE" ] && validate_filename "env-file"  "$ENV_FILE"
+
 rm -rf melange-work
 mkdir -p melange-work
 
