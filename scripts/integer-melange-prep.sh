@@ -123,6 +123,8 @@ MELANGE_ARGS=(
   --signing-key melange-work/melange.rsa
   --out-dir packages/repo
   --pipeline-dirs melange-work/pipelines
+  --repository-append https://packages.wolfi.dev/os
+  --keyring-append https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
   --runner docker
 )
 
