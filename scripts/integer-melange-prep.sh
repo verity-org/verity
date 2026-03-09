@@ -16,6 +16,18 @@ usage() {
 IMAGE="$1"
 TYPE="$2"
 
+validate_ci_identifier() {
+  local label="$1" value="$2"
+  if [[ ! "$value" =~ ^[a-z][a-z0-9-]*$ ]]; then
+    echo "Invalid ${label}: '${value}'" >&2
+    echo "${label} must match ^[a-z][a-z0-9-]*$ (lowercase letters, digits, hyphens)" >&2
+    exit 1
+  fi
+}
+
+validate_ci_identifier "image" "$IMAGE"
+validate_ci_identifier "type"  "$TYPE"
+
 image_yaml="images/${IMAGE}.yaml"
 if [ ! -f "$image_yaml" ]; then
   echo "Image config not found: ${image_yaml}" >&2
@@ -122,11 +134,14 @@ MELANGE_ARGS=(
   --arch "$MELANGE_ARCH"
   --signing-key melange-work/melange.rsa
   --out-dir packages/repo
-  --pipeline-dirs melange-work/pipelines
   --repository-append https://packages.wolfi.dev/os
   --keyring-append https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
   --runner docker
 )
+
+if [ -d melange-work/pipelines ]; then
+  MELANGE_ARGS+=(--pipeline-dirs melange-work/pipelines)
+fi
 
 if [ -n "$ENV_FILE" ]; then
   MELANGE_ARGS+=(--env-file "packages/overrides/${ENV_FILE}")

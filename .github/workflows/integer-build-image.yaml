@@ -236,11 +236,14 @@ jobs:
             --arch "${{ matrix.arch }}"
             --signing-key melange-work/melange.rsa
             --out-dir packages/repo
-            --pipeline-dirs melange-work/pipelines
             --repository-append https://packages.wolfi.dev/os
             --keyring-append https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
             --runner docker
           )
+
+          if [ -d melange-work/pipelines ]; then
+            MELANGE_ARGS+=(--pipeline-dirs melange-work/pipelines)
+          fi
 
           if [ -n "$ENV_FILE" ]; then
             MELANGE_ARGS+=(--env-file "packages/overrides/${ENV_FILE}")
