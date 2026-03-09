@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 
 	"gopkg.in/yaml.v3"
 )
@@ -26,6 +27,9 @@ var (
 
 	// ErrMelangeNoSource is returned when neither upstream nor bespoke is set.
 	ErrMelangeNoSource = errors.New("melange: one of upstream or bespoke is required")
+
+	// ErrMelangePathTraversal is returned when a filename field contains a path separator or traversal sequence.
+	ErrMelangePathTraversal = errors.New("melange: filename fields must not contain path separators or traversal sequences")
 )
 
 // LoadConfig loads the global integer.yaml configuration file.
@@ -85,6 +89,22 @@ func validateMelange(image, typeName string, m *MelangeSpec) error {
 	}
 	if m.Upstream == "" && m.Bespoke == "" {
 		return fmt.Errorf("image %q type %q: %w", image, typeName, ErrMelangeNoSource)
+	}
+	if err := validateFilename(image, typeName, "bespoke", m.Bespoke); err != nil {
+		return err
+	}
+	if err := validateFilename(image, typeName, "env-file", m.EnvFile); err != nil {
+		return err
+	}
+	return nil
+}
+
+func validateFilename(image, typeName, field, value string) error {
+	if value == "" {
+		return nil
+	}
+	if strings.Contains(value, "/") || strings.Contains(value, "..") {
+		return fmt.Errorf("image %q type %q field %q: %w", image, typeName, field, ErrMelangePathTraversal)
 	}
 	return nil
 }

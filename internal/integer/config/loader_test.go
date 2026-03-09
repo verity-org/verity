@@ -225,4 +225,37 @@ func TestValidate(t *testing.T) {
 		err := config.Validate(def)
 		require.ErrorIs(t, err, config.ErrMelangeNoSource)
 	})
+
+	t.Run("melange bespoke with path separator", func(t *testing.T) {
+		def := &config.ImageDef{
+			Name:     "caddy",
+			Upstream: config.Upstream{Package: "caddy"},
+			Types: map[string]config.TypeTemplate{
+				"fips": {
+					Base:    "wolfi-base",
+					Melange: &config.MelangeSpec{Bespoke: "../evil/caddy.yaml"},
+				},
+			},
+		}
+		err := config.Validate(def)
+		require.ErrorIs(t, err, config.ErrMelangePathTraversal)
+	})
+
+	t.Run("melange env-file with path separator", func(t *testing.T) {
+		def := &config.ImageDef{
+			Name:     "caddy",
+			Upstream: config.Upstream{Package: "caddy"},
+			Types: map[string]config.TypeTemplate{
+				"fips": {
+					Base: "wolfi-base",
+					Melange: &config.MelangeSpec{
+						Upstream: "caddy",
+						EnvFile:  "subdir/fips.env",
+					},
+				},
+			},
+		}
+		err := config.Validate(def)
+		require.ErrorIs(t, err, config.ErrMelangePathTraversal)
+	})
 }

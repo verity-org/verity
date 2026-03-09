@@ -71,15 +71,17 @@ jobs:
             exit 0
           fi
 
-          echo "needed=true" >> "$GITHUB_OUTPUT"
-          upstream=$(yq ".types.${INPUT_TYPE}.melange.upstream // \"\"" "$image_yaml")
-          bespoke=$(yq ".types.${INPUT_TYPE}.melange.bespoke // \"\"" "$image_yaml")
-          env_file=$(yq ".types.${INPUT_TYPE}.melange.env-file // \"\"" "$image_yaml")
-          build_option=$(yq ".types.${INPUT_TYPE}.melange.build-option // \"\"" "$image_yaml")
-          echo "upstream=${upstream}" >> "$GITHUB_OUTPUT"
-          echo "bespoke=${bespoke}" >> "$GITHUB_OUTPUT"
-          echo "env_file=${env_file}" >> "$GITHUB_OUTPUT"
-          echo "build_option=${build_option}" >> "$GITHUB_OUTPUT"
+          upstream=$(yq -r ".types.${INPUT_TYPE}.melange.upstream // \"\"" "$image_yaml")
+          bespoke=$(yq -r ".types.${INPUT_TYPE}.melange.bespoke // \"\"" "$image_yaml")
+          env_file=$(yq -r ".types.${INPUT_TYPE}.melange.env-file // \"\"" "$image_yaml")
+          build_option=$(yq -r ".types.${INPUT_TYPE}.melange.build-option // \"\"" "$image_yaml")
+          {
+            echo "needed=true"
+            echo "upstream=${upstream}"
+            echo "bespoke=${bespoke}"
+            echo "env_file=${env_file}"
+            echo "build_option=${build_option}"
+          } >> "$GITHUB_OUTPUT"
           echo "Melange build needed: upstream=${upstream} bespoke=${bespoke}"
 
       - name: Resolve melange YAML source
@@ -379,7 +381,7 @@ jobs:
           # Build apko args — conditionally append local melange repo.
           APKO_ARGS=(
             publish
-            --arch amd64,arm64
+            --arch "amd64,arm64"
             --sbom-path "$GITHUB_WORKSPACE"
           )
 
