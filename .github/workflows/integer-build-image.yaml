@@ -156,7 +156,7 @@ jobs:
       - name: Generate ephemeral melange signing key
         if: steps.check.outputs.needed == 'true'
         run: |
-          melange keygen --keyname melange-work/melange
+          melange keygen melange-work/melange
 
       - name: Upload melange work artifacts
         if: steps.check.outputs.needed == 'true'
