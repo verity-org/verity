@@ -16,22 +16,34 @@ usage() {
 IMAGE="$1"
 TYPE="$2"
 
+validate_ci_identifier() {
+  local label="$1" value="$2"
+  if [[ ! "$value" =~ ^[a-z][a-z0-9-]*$ ]]; then
+    echo "Invalid ${label}: '${value}'" >&2
+    echo "${label} must match ^[a-z][a-z0-9-]*$ (lowercase letters, digits, hyphens)" >&2
+    exit 1
+  fi
+}
+
+validate_ci_identifier "image" "$IMAGE"
+validate_ci_identifier "type"  "$TYPE"
+
 image_yaml="images/${IMAGE}.yaml"
 if [ ! -f "$image_yaml" ]; then
   echo "Image config not found: ${image_yaml}" >&2
   exit 1
 fi
 
-melange_block=$(yq -e ".types.${TYPE}.melange" "$image_yaml" 2>/dev/null) || true
+melange_block=$(yq -e ".types.\"${TYPE}\".melange" "$image_yaml" 2>/dev/null) || true
 if [ -z "$melange_block" ] || [ "$melange_block" = "null" ]; then
   echo "No melange block for ${IMAGE}:${TYPE} — nothing to do"
   exit 0
 fi
 
-UPSTREAM=$(yq -r ".types.${TYPE}.melange.upstream // \"\"" "$image_yaml")
-BESPOKE=$(yq -r ".types.${TYPE}.melange.bespoke // \"\"" "$image_yaml")
-ENV_FILE=$(yq -r ".types.${TYPE}.melange.env-file // \"\"" "$image_yaml")
-BUILD_OPTION=$(yq -r ".types.${TYPE}.melange.build-option // \"\"" "$image_yaml")
+UPSTREAM=$(yq -r ".types.\"${TYPE}\".melange.upstream // \"\"" "$image_yaml")
+BESPOKE=$(yq -r ".types.\"${TYPE}\".melange.bespoke // \"\"" "$image_yaml")
+ENV_FILE=$(yq -r ".types.\"${TYPE}\".melange.env-file // \"\"" "$image_yaml")
+BUILD_OPTION=$(yq -r ".types.\"${TYPE}\".melange.build-option // \"\"" "$image_yaml")
 
 # Validate a filename value: must be non-empty, contain only safe characters,
 # and must not contain path separators or traversal sequences.
@@ -92,16 +104,26 @@ elif [ -n "$UPSTREAM" ]; then
   fi
   mv melange-work/build.yaml.tmp melange-work/build.yaml
 
-  echo "Fetching wolfi pipelines/ at commit ${commit}"
+  if [[ ! "$UPSTREAM" =~ ^[A-Za-z0-9._-]+$ ]]; then
+    echo "upstream value contains unsafe characters: '${UPSTREAM}'" >&2
+    exit 1
+  fi
+
+  echo "Fetching wolfi pipelines/ and ${UPSTREAM}/ companion dir at commit ${commit}"
   tmp_wolfi=$(mktemp -d)
   trap 'rm -rf "$tmp_wolfi"' EXIT
   git -C "$tmp_wolfi" init --quiet
   git -C "$tmp_wolfi" remote add origin "https://github.com/wolfi-dev/os.git"
-  git -C "$tmp_wolfi" sparse-checkout set --no-cone pipelines
+  git -C "$tmp_wolfi" sparse-checkout set --no-cone pipelines "${UPSTREAM}"
   git -C "$tmp_wolfi" fetch --quiet --depth 1 --filter=blob:none origin "$commit"
-  git -C "$tmp_wolfi" checkout --quiet FETCH_HEAD -- pipelines
+  git -C "$tmp_wolfi" checkout --quiet FETCH_HEAD -- pipelines "${UPSTREAM}" 2>/dev/null || \
+    git -C "$tmp_wolfi" checkout --quiet FETCH_HEAD -- pipelines
   rm -rf melange-work/pipelines
   cp -r "$tmp_wolfi/pipelines" melange-work/pipelines
+  if [ -d "$tmp_wolfi/${UPSTREAM}" ]; then
+    cp -r "$tmp_wolfi/${UPSTREAM}/." melange-work/
+    echo "Copied ${UPSTREAM}/ companion files into melange-work/"
+  fi
 else
   echo "melange block has neither upstream nor bespoke set" >&2
   exit 1
@@ -122,9 +144,14 @@ MELANGE_ARGS=(
   --arch "$MELANGE_ARCH"
   --signing-key melange-work/melange.rsa
   --out-dir packages/repo
-  --pipeline-dirs melange-work/pipelines
+  --repository-append https://packages.wolfi.dev/os
+  --keyring-append https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
   --runner docker
 )
+
+if [ -d melange-work/pipelines ]; then
+  MELANGE_ARGS+=(--pipeline-dirs melange-work/pipelines)
+fi
 
 if [ -n "$ENV_FILE" ]; then
   MELANGE_ARGS+=(--env-file "packages/overrides/${ENV_FILE}")
