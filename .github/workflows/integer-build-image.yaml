@@ -29,8 +29,180 @@ permissions:
   attestations: write      # actions/attest SBOM
 
 jobs:
+  # ── Melange prep (conditional) ──────────────────────────────────────────
+  # Lightweight job: checks if this image/type needs a melange build,
+  # resolves the melange YAML source, and generates an ephemeral signing
+  # key.  Artifacts are consumed by the melange-build matrix and the
+  # build job.  Skips all work when the image definition has no melange:
+  # block.
+
+  melange-prep:
+    name: "Melange prep"
+    runs-on: ubuntu-latest
+    outputs:
+      needed: ${{ steps.check.outputs.needed }}
+      env_file: ${{ steps.check.outputs.env_file }}
+      build_option: ${{ steps.check.outputs.build_option }}
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@58077d3c7e43986b6b15fba718e8ea69e387dfcc # v2.15.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install mise
+        uses: step-security/mise-action@d65cf9dcb78b983ae2530c89fd28e72286713505 # v3.5.1
+        with:
+          install: true
+          cache: true
+
+      - name: Check if melange build needed
+        id: check
+        env:
+          INPUT_IMAGE: ${{ inputs.image }}
+          INPUT_TYPE: ${{ inputs.type }}
+        run: |
+          image_yaml="images/${INPUT_IMAGE}.yaml"
+          melange_block=$(yq -e ".types.${INPUT_TYPE}.melange" "$image_yaml" 2>/dev/null) || true
+          if [ -z "$melange_block" ] || [ "$melange_block" = "null" ]; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+            echo "Melange build not needed for ${INPUT_IMAGE}:${INPUT_TYPE}"
+            exit 0
+          fi
+
+          echo "needed=true" >> "$GITHUB_OUTPUT"
+          upstream=$(yq ".types.${INPUT_TYPE}.melange.upstream // \"\"" "$image_yaml")
+          bespoke=$(yq ".types.${INPUT_TYPE}.melange.bespoke // \"\"" "$image_yaml")
+          env_file=$(yq ".types.${INPUT_TYPE}.melange.env-file // \"\"" "$image_yaml")
+          build_option=$(yq ".types.${INPUT_TYPE}.melange.build-option // \"\"" "$image_yaml")
+          echo "upstream=${upstream}" >> "$GITHUB_OUTPUT"
+          echo "bespoke=${bespoke}" >> "$GITHUB_OUTPUT"
+          echo "env_file=${env_file}" >> "$GITHUB_OUTPUT"
+          echo "build_option=${build_option}" >> "$GITHUB_OUTPUT"
+          echo "Melange build needed: upstream=${upstream} bespoke=${bespoke}"
+
+      - name: Resolve melange YAML source
+        if: steps.check.outputs.needed == 'true'
+        env:
+          UPSTREAM: ${{ steps.check.outputs.upstream }}
+          BESPOKE: ${{ steps.check.outputs.bespoke }}
+        run: |
+          mkdir -p melange-work
+
+          if [ -n "$BESPOKE" ]; then
+            # Tier 3: fully custom YAML from packages/bespoke/
+            cp "packages/bespoke/${BESPOKE}" melange-work/build.yaml
+          elif [ -n "$UPSTREAM" ]; then
+            # Tier 1/2: fetch from wolfi-dev/os at pinned commit
+            commit=$(jq -r '.wolfi_commit' packages/upstream.lock.json)
+            file=$(jq -r --arg pkg "$UPSTREAM" '.packages[$pkg].file' packages/upstream.lock.json)
+            if [ "$file" = "null" ] || [ -z "$file" ]; then
+              echo "Package '${UPSTREAM}' not found in upstream.lock.json" >&2
+              exit 1
+            fi
+            url="https://raw.githubusercontent.com/wolfi-dev/os/${commit}/${file}"
+            echo "Fetching upstream melange YAML: ${url}"
+            curl -fsSL "$url" -o melange-work/build.yaml
+          fi
+
+      - name: Generate ephemeral melange signing key
+        if: steps.check.outputs.needed == 'true'
+        run: |
+          melange keygen --keyname melange-work/melange
+
+      - name: Upload melange work artifacts
+        if: steps.check.outputs.needed == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: melange-work
+          path: |
+            melange-work/build.yaml
+            melange-work/melange.rsa
+            melange-work/melange.rsa.pub
+            packages/overrides/
+          retention-days: 1
+
+  # ── Melange build (native arch matrix) ──────────────────────────────────
+  # Builds single-arch APKs on native runners (no QEMU).  Each arch
+  # uploads its packages/ tree (which contains an arch-specific subdir
+  # like x86_64/ or aarch64/) as a separate artifact.
+
+  melange-build:
+    name: "Melange build (${{ matrix.arch }})"
+    needs: [melange-prep]
+    if: needs.melange-prep.outputs.needed == 'true'
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-latest
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@58077d3c7e43986b6b15fba718e8ea69e387dfcc # v2.15.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install mise
+        uses: step-security/mise-action@d65cf9dcb78b983ae2530c89fd28e72286713505 # v3.5.1
+        with:
+          install: true
+          cache: true
+
+      - name: Download melange work artifacts
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: melange-work
+          path: .
+
+      - name: Build melange package (${{ matrix.arch }})
+        env:
+          ENV_FILE: ${{ needs.melange-prep.outputs.env_file }}
+          BUILD_OPTION: ${{ needs.melange-prep.outputs.build_option }}
+        run: |
+          chmod 600 melange-work/melange.rsa
+
+          MELANGE_ARGS=(
+            build melange-work/build.yaml
+            --arch "${{ matrix.arch }}"
+            --signing-key melange-work/melange.rsa
+            --out-dir packages/repo
+          )
+
+          if [ -n "$ENV_FILE" ]; then
+            MELANGE_ARGS+=(--env-file "packages/overrides/${ENV_FILE}")
+          fi
+          if [ -n "$BUILD_OPTION" ]; then
+            MELANGE_ARGS+=(--build-option "$BUILD_OPTION")
+          fi
+
+          echo "Running: melange ${MELANGE_ARGS[*]}"
+          melange "${MELANGE_ARGS[@]}"
+
+          echo "Built packages:"
+          find packages/repo -type f -name '*.apk'
+
+      - name: Upload arch packages
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: melange-packages-${{ matrix.arch }}
+          path: packages/repo/
+          retention-days: 1
+
+  # ── Build & publish ─────────────────────────────────────────────────────
+
   build:
     name: "Build ${{ inputs.image }}:${{ inputs.version }}-${{ inputs.type }}"
+    needs: [melange-prep, melange-build]
+    # Always run: melange-build is skipped for non-melange images, which
+    # sets its result to 'skipped' — that's fine, not a failure.
+    if: always() && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
     runs-on: ubuntu-latest
     steps:
       - name: Harden the runner (Audit all outbound calls)
@@ -133,110 +305,43 @@ jobs:
           echo "title=${title}" >> "$GITHUB_OUTPUT"
           echo "description=${description}" >> "$GITHUB_OUTPUT"
 
-      # ── Melange (custom package build) ──────────────────────────────────
+      # ── Melange artifact merge ──────────────────────────────────────────
 
-      - name: Check if melange build needed
-        id: melange-check
-        env:
-          INPUT_IMAGE: ${{ inputs.image }}
-          INPUT_TYPE: ${{ inputs.type }}
-        run: |
-          image_yaml="images/${INPUT_IMAGE}.yaml"
-          melange_block=$(yq -e ".types.${INPUT_TYPE}.melange" "$image_yaml" 2>/dev/null) || true
-          if [ -z "$melange_block" ] || [ "$melange_block" = "null" ]; then
-            echo "needed=false" >> "$GITHUB_OUTPUT"
-            echo "Melange build not needed for ${INPUT_IMAGE}:${INPUT_TYPE}"
-          else
-            echo "needed=true" >> "$GITHUB_OUTPUT"
-            upstream=$(yq ".types.${INPUT_TYPE}.melange.upstream // \"\"" "$image_yaml")
-            bespoke=$(yq ".types.${INPUT_TYPE}.melange.bespoke // \"\"" "$image_yaml")
-            env_file=$(yq ".types.${INPUT_TYPE}.melange.env-file // \"\"" "$image_yaml")
-            build_option=$(yq ".types.${INPUT_TYPE}.melange.build-option // \"\"" "$image_yaml")
-            echo "upstream=${upstream}" >> "$GITHUB_OUTPUT"
-            echo "bespoke=${bespoke}" >> "$GITHUB_OUTPUT"
-            echo "env_file=${env_file}" >> "$GITHUB_OUTPUT"
-            echo "build_option=${build_option}" >> "$GITHUB_OUTPUT"
-            echo "Melange build needed: upstream=${upstream} bespoke=${bespoke}"
-          fi
-
-      - name: Setup QEMU for multi-arch melange build
-        if: steps.melange-check.outputs.needed == 'true'
-        uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3.6.0
+      - name: Download melange packages (x86_64)
+        if: needs.melange-prep.outputs.needed == 'true'
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
-          platforms: arm64
+          name: melange-packages-x86_64
+          path: packages/repo
 
-      - name: Resolve melange YAML source
-        if: steps.melange-check.outputs.needed == 'true'
-        id: melange-source
-        env:
-          UPSTREAM: ${{ steps.melange-check.outputs.upstream }}
-          BESPOKE: ${{ steps.melange-check.outputs.bespoke }}
+      - name: Download melange packages (aarch64)
+        if: needs.melange-prep.outputs.needed == 'true'
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: melange-packages-aarch64
+          path: packages/repo
+
+      - name: Download melange signing key
+        if: needs.melange-prep.outputs.needed == 'true'
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: melange-work
+          path: .
+
+      - name: Verify melange package merge
+        if: needs.melange-prep.outputs.needed == 'true'
         run: |
-          mkdir -p melange-work
-
-          if [ -n "$BESPOKE" ]; then
-            # Tier 3: fully custom YAML from packages/bespoke/
-            cp "packages/bespoke/${BESPOKE}" melange-work/build.yaml
-            echo "source=bespoke" >> "$GITHUB_OUTPUT"
-          elif [ -n "$UPSTREAM" ]; then
-            # Tier 1/2: fetch from wolfi-dev/os at pinned commit
-            commit=$(jq -r '.wolfi_commit' packages/upstream.lock.json)
-            file=$(jq -r --arg pkg "$UPSTREAM" '.packages[$pkg].file' packages/upstream.lock.json)
-            if [ "$file" = "null" ] || [ -z "$file" ]; then
-              echo "Package '${UPSTREAM}' not found in upstream.lock.json" >&2
-              exit 1
-            fi
-            url="https://raw.githubusercontent.com/wolfi-dev/os/${commit}/${file}"
-            echo "Fetching upstream melange YAML: ${url}"
-            curl -fsSL "$url" -o melange-work/build.yaml
-            echo "source=upstream" >> "$GITHUB_OUTPUT"
+          echo "Merged melange repository contents:"
+          find packages/repo -type f | sort
+          # Verify both arch subdirs are present
+          if [ ! -d packages/repo/x86_64 ]; then
+            echo "ERROR: x86_64 packages not found" >&2
+            exit 1
           fi
-          echo "yaml=melange-work/build.yaml" >> "$GITHUB_OUTPUT"
-
-      - name: Generate ephemeral melange signing key
-        if: steps.melange-check.outputs.needed == 'true'
-        run: |
-          melange keygen --keyname melange-work/melange
-
-      - name: Build melange package
-        if: steps.melange-check.outputs.needed == 'true'
-        env:
-          MELANGE_YAML: ${{ steps.melange-source.outputs.yaml }}
-          ENV_FILE: ${{ steps.melange-check.outputs.env_file }}
-          BUILD_OPTION: ${{ steps.melange-check.outputs.build_option }}
-        run: |
-          MELANGE_ARGS=(
-            build "$MELANGE_YAML"
-            --arch amd64,arm64
-            --signing-key melange-work/melange.rsa
-            --out-dir packages/repo
-          )
-
-          if [ -n "$ENV_FILE" ]; then
-            MELANGE_ARGS+=(--env-file "packages/overrides/${ENV_FILE}")
+          if [ ! -d packages/repo/aarch64 ]; then
+            echo "ERROR: aarch64 packages not found" >&2
+            exit 1
           fi
-          if [ -n "$BUILD_OPTION" ]; then
-            MELANGE_ARGS+=(--build-option "$BUILD_OPTION")
-          fi
-
-          echo "Running: melange ${MELANGE_ARGS[*]}"
-          melange "${MELANGE_ARGS[@]}"
-
-      - name: Inject melange repo into apko config
-        if: steps.melange-check.outputs.needed == 'true'
-        env:
-          CONFIG_PATH: ${{ steps.gen.outputs.path }}
-        run: |
-          REPO_PATH="@local ${GITHUB_WORKSPACE}/packages/repo"
-          KEY_PATH="${GITHUB_WORKSPACE}/melange-work/melange.rsa.pub"
-
-          yq -i "
-            .contents.repositories += [\"${REPO_PATH}\"] |
-            .contents.keyring += [\"${KEY_PATH}\"]
-          " "$CONFIG_PATH"
-
-          echo "Injected local melange repo into apko config:"
-          yq '.contents' "$CONFIG_PATH"
 
       # ── Build ──────────────────────────────────────────────────────────────
 
@@ -251,6 +356,7 @@ jobs:
           OCI_TITLE: ${{ steps.meta.outputs.title }}
           OCI_DESCRIPTION: ${{ steps.meta.outputs.description }}
           CONFIG_PATH: ${{ steps.gen.outputs.path }}
+          MELANGE_NEEDED: ${{ needs.melange-prep.outputs.needed }}
         run: |
           # Inject dynamic OCI annotations into a temp copy of the generated config.
           # The generated config uses absolute include: paths so apko can resolve
@@ -270,11 +376,24 @@ jobs:
           # Split refs into an array for safe expansion (one arg per ref).
           read -ra REFSARR <<< "$REFS"
 
-          apko publish \
-            --arch amd64,arm64 \
-            --sbom-path "$GITHUB_WORKSPACE" \
-            "$tmpconfig" \
-            "${REFSARR[@]}"
+          # Build apko args — conditionally append local melange repo.
+          APKO_ARGS=(
+            publish
+            --arch amd64,arm64
+            --sbom-path "$GITHUB_WORKSPACE"
+          )
+
+          if [ "$MELANGE_NEEDED" = "true" ]; then
+            APKO_ARGS+=(
+              --repository-append "@local ${GITHUB_WORKSPACE}/packages/repo"
+              --keyring-append "${GITHUB_WORKSPACE}/melange-work/melange.rsa.pub"
+            )
+            echo "Appending local melange repo to apko publish"
+          fi
+
+          APKO_ARGS+=("$tmpconfig" "${REFSARR[@]}")
+
+          apko "${APKO_ARGS[@]}"
 
           rm -f "$tmpconfig"
 
