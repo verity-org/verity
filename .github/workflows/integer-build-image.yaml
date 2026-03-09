@@ -151,6 +151,17 @@ jobs:
               exit 1
             fi
             mv melange-work/build.yaml.tmp melange-work/build.yaml
+
+            # Fetch wolfi pipelines/ so melange can resolve pipeline references
+            # (e.g. test/tw/srcpackage) used in the upstream build YAML.
+            echo "Fetching wolfi pipelines/ at commit ${commit}"
+            tmp_wolfi=$(mktemp -d)
+            git clone --quiet --filter=blob:none --no-checkout \
+              "https://github.com/wolfi-dev/os.git" "$tmp_wolfi"
+            git -C "$tmp_wolfi" sparse-checkout set --no-cone pipelines
+            git -C "$tmp_wolfi" checkout "$commit" -- pipelines
+            cp -r "$tmp_wolfi/pipelines" melange-work/pipelines
+            rm -rf "$tmp_wolfi"
           fi
 
       - name: Generate ephemeral melange signing key
@@ -167,6 +178,7 @@ jobs:
             melange-work/build.yaml
             melange-work/melange.rsa
             melange-work/melange.rsa.pub
+            melange-work/pipelines/
             packages/overrides/
           retention-days: 1
 
@@ -220,6 +232,7 @@ jobs:
             --arch "${{ matrix.arch }}"
             --signing-key melange-work/melange.rsa
             --out-dir packages/repo
+            --pipeline-dirs melange-work/pipelines
             --runner docker
           )
 
