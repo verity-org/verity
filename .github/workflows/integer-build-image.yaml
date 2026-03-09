@@ -220,6 +220,7 @@ jobs:
             --arch "${{ matrix.arch }}"
             --signing-key melange-work/melange.rsa
             --out-dir packages/repo
+            --runner docker
           )
 
           if [ -n "$ENV_FILE" ]; then
