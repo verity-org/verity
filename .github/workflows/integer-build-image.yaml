@@ -57,6 +57,21 @@ jobs:
           install: true
           cache: true
 
+      - name: Validate inputs
+        env:
+          INPUT_IMAGE: ${{ inputs.image }}
+          INPUT_TYPE: ${{ inputs.type }}
+        run: |
+          check() {
+            local label="$1" value="$2" pattern="$3"
+            if [[ ! "$value" =~ $pattern ]]; then
+              echo "Invalid ${label}: ${value}" >&2
+              exit 1
+            fi
+          }
+          check image "$INPUT_IMAGE" '^[a-z][a-z0-9-]*$'
+          check type  "$INPUT_TYPE"  '^[a-z][a-z0-9-]*$'
+
       - name: Check if melange build needed
         id: check
         env:
@@ -75,6 +90,26 @@ jobs:
           bespoke=$(yq -r ".types.${INPUT_TYPE}.melange.bespoke // \"\"" "$image_yaml")
           env_file=$(yq -r ".types.${INPUT_TYPE}.melange.env-file // \"\"" "$image_yaml")
           build_option=$(yq -r ".types.${INPUT_TYPE}.melange.build-option // \"\"" "$image_yaml")
+
+          # Require exactly one source
+          if [ -z "$upstream" ] && [ -z "$bespoke" ]; then
+            echo "melange block present but neither upstream nor bespoke is set" >&2
+            exit 1
+          fi
+          if [ -n "$upstream" ] && [ -n "$bespoke" ]; then
+            echo "melange block has both upstream and bespoke set — choose one" >&2
+            exit 1
+          fi
+
+          # Guard scalar fields: reject multi-line values (yq emits sequences/maps with newlines)
+          for field_name in env_file build_option; do
+            eval "field_val=\$$field_name"
+            if [[ "$field_val" == *$'\n'* ]]; then
+              echo "melange.${field_name//_/-} must be a scalar string, got multi-line value" >&2
+              exit 1
+            fi
+          done
+
           {
             echo "needed=true"
             echo "upstream=${upstream}"
@@ -93,19 +128,29 @@ jobs:
           mkdir -p melange-work
 
           if [ -n "$BESPOKE" ]; then
-            # Tier 3: fully custom YAML from packages/bespoke/
             cp "packages/bespoke/${BESPOKE}" melange-work/build.yaml
           elif [ -n "$UPSTREAM" ]; then
-            # Tier 1/2: fetch from wolfi-dev/os at pinned commit
             commit=$(jq -r '.wolfi_commit' packages/upstream.lock.json)
             file=$(jq -r --arg pkg "$UPSTREAM" '.packages[$pkg].file' packages/upstream.lock.json)
+            expected_sha=$(jq -r --arg pkg "$UPSTREAM" '.packages[$pkg].sha256' packages/upstream.lock.json)
             if [ "$file" = "null" ] || [ -z "$file" ]; then
               echo "Package '${UPSTREAM}' not found in upstream.lock.json" >&2
               exit 1
             fi
+            if [ "$expected_sha" = "null" ] || [ -z "$expected_sha" ]; then
+              echo "No sha256 for '${UPSTREAM}' in upstream.lock.json" >&2
+              exit 1
+            fi
             url="https://raw.githubusercontent.com/wolfi-dev/os/${commit}/${file}"
             echo "Fetching upstream melange YAML: ${url}"
-            curl -fsSL "$url" -o melange-work/build.yaml
+            curl -fsSL "$url" -o melange-work/build.yaml.tmp
+            actual_sha=$(sha256sum melange-work/build.yaml.tmp | awk '{print $1}')
+            if [ "$actual_sha" != "$expected_sha" ]; then
+              echo "sha256 mismatch for ${UPSTREAM}: expected ${expected_sha}, got ${actual_sha}" >&2
+              rm -f melange-work/build.yaml.tmp
+              exit 1
+            fi
+            mv melange-work/build.yaml.tmp melange-work/build.yaml
           fi
 
       - name: Generate ephemeral melange signing key

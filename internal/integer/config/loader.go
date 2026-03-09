@@ -103,7 +103,7 @@ func validateFilename(image, typeName, field, value string) error {
 	if value == "" {
 		return nil
 	}
-	if strings.Contains(value, "/") || strings.Contains(value, "..") {
+	if strings.Contains(value, "/") || strings.Contains(value, `\`) || strings.Contains(value, "..") {
 		return fmt.Errorf("image %q type %q field %q: %w", image, typeName, field, ErrMelangePathTraversal)
 	}
 	return nil

@@ -258,4 +258,19 @@ func TestValidate(t *testing.T) {
 		err := config.Validate(def)
 		require.ErrorIs(t, err, config.ErrMelangePathTraversal)
 	})
+
+	t.Run("melange bespoke with backslash", func(t *testing.T) {
+		def := &config.ImageDef{
+			Name:     "caddy",
+			Upstream: config.Upstream{Package: "caddy"},
+			Types: map[string]config.TypeTemplate{
+				"fips": {
+					Base:    "wolfi-base",
+					Melange: &config.MelangeSpec{Bespoke: `subdir\caddy.yaml`},
+				},
+			},
+		}
+		err := config.Validate(def)
+		require.ErrorIs(t, err, config.ErrMelangePathTraversal)
+	})
 }
