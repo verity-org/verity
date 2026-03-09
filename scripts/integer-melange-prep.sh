@@ -34,16 +34,16 @@ if [ ! -f "$image_yaml" ]; then
   exit 1
 fi
 
-melange_block=$(yq -e ".types.${TYPE}.melange" "$image_yaml" 2>/dev/null) || true
+melange_block=$(yq -e ".types.\"${TYPE}\".melange" "$image_yaml" 2>/dev/null) || true
 if [ -z "$melange_block" ] || [ "$melange_block" = "null" ]; then
   echo "No melange block for ${IMAGE}:${TYPE} — nothing to do"
   exit 0
 fi
 
-UPSTREAM=$(yq -r ".types.${TYPE}.melange.upstream // \"\"" "$image_yaml")
-BESPOKE=$(yq -r ".types.${TYPE}.melange.bespoke // \"\"" "$image_yaml")
-ENV_FILE=$(yq -r ".types.${TYPE}.melange.env-file // \"\"" "$image_yaml")
-BUILD_OPTION=$(yq -r ".types.${TYPE}.melange.build-option // \"\"" "$image_yaml")
+UPSTREAM=$(yq -r ".types.\"${TYPE}\".melange.upstream // \"\"" "$image_yaml")
+BESPOKE=$(yq -r ".types.\"${TYPE}\".melange.bespoke // \"\"" "$image_yaml")
+ENV_FILE=$(yq -r ".types.\"${TYPE}\".melange.env-file // \"\"" "$image_yaml")
+BUILD_OPTION=$(yq -r ".types.\"${TYPE}\".melange.build-option // \"\"" "$image_yaml")
 
 # Validate a filename value: must be non-empty, contain only safe characters,
 # and must not contain path separators or traversal sequences.
@@ -103,6 +103,11 @@ elif [ -n "$UPSTREAM" ]; then
     exit 1
   fi
   mv melange-work/build.yaml.tmp melange-work/build.yaml
+
+  if [[ ! "$UPSTREAM" =~ ^[A-Za-z0-9._-]+$ ]]; then
+    echo "upstream value contains unsafe characters: '${UPSTREAM}'" >&2
+    exit 1
+  fi
 
   echo "Fetching wolfi pipelines/ and ${UPSTREAM}/ companion dir at commit ${commit}"
   tmp_wolfi=$(mktemp -d)

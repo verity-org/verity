@@ -79,17 +79,17 @@ jobs:
           INPUT_TYPE: ${{ inputs.type }}
         run: |
           image_yaml="images/${INPUT_IMAGE}.yaml"
-          melange_block=$(yq -e ".types.${INPUT_TYPE}.melange" "$image_yaml" 2>/dev/null) || true
+          melange_block=$(yq -e ".types.\"${INPUT_TYPE}\".melange" "$image_yaml" 2>/dev/null) || true
           if [ -z "$melange_block" ] || [ "$melange_block" = "null" ]; then
             echo "needed=false" >> "$GITHUB_OUTPUT"
             echo "Melange build not needed for ${INPUT_IMAGE}:${INPUT_TYPE}"
             exit 0
           fi
 
-          upstream=$(yq -r ".types.${INPUT_TYPE}.melange.upstream // \"\"" "$image_yaml")
-          bespoke=$(yq -r ".types.${INPUT_TYPE}.melange.bespoke // \"\"" "$image_yaml")
-          env_file=$(yq -r ".types.${INPUT_TYPE}.melange.env-file // \"\"" "$image_yaml")
-          build_option=$(yq -r ".types.${INPUT_TYPE}.melange.build-option // \"\"" "$image_yaml")
+          upstream=$(yq -r ".types.\"${INPUT_TYPE}\".melange.upstream // \"\"" "$image_yaml")
+          bespoke=$(yq -r ".types.\"${INPUT_TYPE}\".melange.bespoke // \"\"" "$image_yaml")
+          env_file=$(yq -r ".types.\"${INPUT_TYPE}\".melange.env-file // \"\"" "$image_yaml")
+          build_option=$(yq -r ".types.\"${INPUT_TYPE}\".melange.build-option // \"\"" "$image_yaml")
 
           # Require exactly one source
           if [ -z "$upstream" ] && [ -z "$bespoke" ]; then
@@ -161,6 +161,12 @@ jobs:
             trap 'rm -rf "$tmp_wolfi"' EXIT
             git -C "$tmp_wolfi" init --quiet
             git -C "$tmp_wolfi" remote add origin "https://github.com/wolfi-dev/os.git"
+
+            if [[ ! "$UPSTREAM" =~ ^[A-Za-z0-9._-]+$ ]]; then
+              echo "upstream value contains unsafe characters: '${UPSTREAM}'" >&2
+              exit 1
+            fi
+
             git -C "$tmp_wolfi" sparse-checkout set --no-cone pipelines "${UPSTREAM}"
             git -C "$tmp_wolfi" fetch --quiet --depth 1 --filter=blob:none origin "$commit"
             git -C "$tmp_wolfi" checkout --quiet FETCH_HEAD -- pipelines "${UPSTREAM}" 2>/dev/null || \
