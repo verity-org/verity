@@ -104,16 +104,21 @@ elif [ -n "$UPSTREAM" ]; then
   fi
   mv melange-work/build.yaml.tmp melange-work/build.yaml
 
-  echo "Fetching wolfi pipelines/ at commit ${commit}"
+  echo "Fetching wolfi pipelines/ and ${UPSTREAM}/ companion dir at commit ${commit}"
   tmp_wolfi=$(mktemp -d)
   trap 'rm -rf "$tmp_wolfi"' EXIT
   git -C "$tmp_wolfi" init --quiet
   git -C "$tmp_wolfi" remote add origin "https://github.com/wolfi-dev/os.git"
-  git -C "$tmp_wolfi" sparse-checkout set --no-cone pipelines
+  git -C "$tmp_wolfi" sparse-checkout set --no-cone pipelines "${UPSTREAM}"
   git -C "$tmp_wolfi" fetch --quiet --depth 1 --filter=blob:none origin "$commit"
-  git -C "$tmp_wolfi" checkout --quiet FETCH_HEAD -- pipelines
+  git -C "$tmp_wolfi" checkout --quiet FETCH_HEAD -- pipelines "${UPSTREAM}" 2>/dev/null || \
+    git -C "$tmp_wolfi" checkout --quiet FETCH_HEAD -- pipelines
   rm -rf melange-work/pipelines
   cp -r "$tmp_wolfi/pipelines" melange-work/pipelines
+  if [ -d "$tmp_wolfi/${UPSTREAM}" ]; then
+    cp -r "$tmp_wolfi/${UPSTREAM}/." melange-work/
+    echo "Copied ${UPSTREAM}/ companion files into melange-work/"
+  fi
 else
   echo "melange block has neither upstream nor bespoke set" >&2
   exit 1
