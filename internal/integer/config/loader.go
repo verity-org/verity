@@ -20,6 +20,12 @@ var (
 
 	// ErrMissingBase is returned when a type template has no base image.
 	ErrMissingBase = errors.New("missing required field: base")
+
+	// ErrMelangeSourceConflict is returned when both upstream and bespoke are set.
+	ErrMelangeSourceConflict = errors.New("melange: set exactly one of upstream or bespoke, not both")
+
+	// ErrMelangeNoSource is returned when neither upstream nor bespoke is set.
+	ErrMelangeNoSource = errors.New("melange: one of upstream or bespoke is required")
 )
 
 // LoadConfig loads the global integer.yaml configuration file.
@@ -63,6 +69,22 @@ func Validate(def *ImageDef) error {
 		if tmpl.Base == "" {
 			return fmt.Errorf("image %q type %q: %w", def.Name, typeName, ErrMissingBase)
 		}
+		if err := validateMelange(def.Name, typeName, tmpl.Melange); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func validateMelange(image, typeName string, m *MelangeSpec) error {
+	if m == nil {
+		return nil
+	}
+	if m.Upstream != "" && m.Bespoke != "" {
+		return fmt.Errorf("image %q type %q: %w", image, typeName, ErrMelangeSourceConflict)
+	}
+	if m.Upstream == "" && m.Bespoke == "" {
+		return fmt.Errorf("image %q type %q: %w", image, typeName, ErrMelangeNoSource)
 	}
 	return nil
 }

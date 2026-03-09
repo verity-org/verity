@@ -159,4 +159,70 @@ func TestValidate(t *testing.T) {
 		}
 		require.Error(t, config.Validate(def))
 	})
+
+	t.Run("melange with upstream only", func(t *testing.T) {
+		def := &config.ImageDef{
+			Name:     "caddy",
+			Upstream: config.Upstream{Package: "caddy"},
+			Types: map[string]config.TypeTemplate{
+				"fips": {
+					Base: "wolfi-base",
+					Melange: &config.MelangeSpec{
+						Upstream: "caddy",
+						EnvFile:  "fips.env",
+					},
+				},
+			},
+		}
+		require.NoError(t, config.Validate(def))
+	})
+
+	t.Run("melange with bespoke only", func(t *testing.T) {
+		def := &config.ImageDef{
+			Name:     "custom",
+			Upstream: config.Upstream{Package: "custom"},
+			Types: map[string]config.TypeTemplate{
+				"default": {
+					Base: "wolfi-base",
+					Melange: &config.MelangeSpec{
+						Bespoke: "custom.melange.yaml",
+					},
+				},
+			},
+		}
+		require.NoError(t, config.Validate(def))
+	})
+
+	t.Run("melange both upstream and bespoke", func(t *testing.T) {
+		def := &config.ImageDef{
+			Name:     "caddy",
+			Upstream: config.Upstream{Package: "caddy"},
+			Types: map[string]config.TypeTemplate{
+				"fips": {
+					Base: "wolfi-base",
+					Melange: &config.MelangeSpec{
+						Upstream: "caddy",
+						Bespoke:  "caddy.melange.yaml",
+					},
+				},
+			},
+		}
+		err := config.Validate(def)
+		require.ErrorIs(t, err, config.ErrMelangeSourceConflict)
+	})
+
+	t.Run("melange empty spec", func(t *testing.T) {
+		def := &config.ImageDef{
+			Name:     "caddy",
+			Upstream: config.Upstream{Package: "caddy"},
+			Types: map[string]config.TypeTemplate{
+				"fips": {
+					Base:    "wolfi-base",
+					Melange: &config.MelangeSpec{},
+				},
+			},
+		}
+		err := config.Validate(def)
+		require.ErrorIs(t, err, config.ErrMelangeNoSource)
+	})
 }
