@@ -1,4 +1,4 @@
-.PHONY: help build test test-coverage lint lint-vuln lint-workflows lint-yaml lint-shell lint-markdown lint-frontend fmt-frontend check-frontend integer-validate integer-gen integer-build-all clean install-tools quality up down
+.PHONY: help build test test-coverage lint lint-vuln lint-workflows lint-yaml lint-shell lint-markdown lint-frontend fmt-frontend check-frontend integer-validate integer-gen integer-build-all integer-melange-prep clean install-tools quality up down
 
 # Default target
 help:
@@ -53,7 +53,7 @@ lint-yaml:
 # Lint shell scripts
 lint-shell:
 	@which shellcheck > /dev/null || (echo "shellcheck not found. Run: make install-tools" && exit 1)
-	shellcheck .github/scripts/*.sh
+	shellcheck .github/scripts/*.sh scripts/*.sh
 
 # Lint markdown files
 lint-markdown:
@@ -99,6 +99,14 @@ integer-build-all: build
 	      /dev/null || exit 1; \
 	  done
 	@echo "✓ All images built"
+
+# Run melange prep+build locally for a single image type (mirrors CI exactly).
+# Usage: IMAGE=caddy TYPE=fips make integer-melange-prep
+integer-melange-prep:
+	@[ -n "$(IMAGE)" ] || (echo "Usage: IMAGE=caddy TYPE=fips make integer-melange-prep" && exit 1)
+	@[ -n "$(TYPE)" ] || (echo "Usage: IMAGE=caddy TYPE=fips make integer-melange-prep" && exit 1)
+	@which melange > /dev/null || (echo "melange not found. Run: mise install" && exit 1)
+	bash scripts/integer-melange-prep.sh "$(IMAGE)" "$(TYPE)"
 
 # Run all quality checks (golangci-lint handles gofumpt, goimports, vet, gosec)
 quality: lint lint-vuln lint-workflows lint-yaml lint-shell lint-markdown check-frontend integer-validate test
