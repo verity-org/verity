@@ -53,7 +53,7 @@ lint-yaml:
 # Lint shell scripts
 lint-shell:
 	@which shellcheck > /dev/null || (echo "shellcheck not found. Run: make install-tools" && exit 1)
-	shellcheck .github/scripts/*.sh
+	shellcheck .github/scripts/*.sh scripts/*.sh
 
 # Lint markdown files
 lint-markdown:

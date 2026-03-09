@@ -7,7 +7,7 @@ usage() {
   echo "  type   image type, e.g. fips" >&2
   echo "" >&2
   echo "Runs the melange prep + build steps locally, mirroring CI." >&2
-  echo "Requires: jq, yq, curl, git, melange (install via: mise install)" >&2
+  echo "Requires: jq, yq, curl, git, sha256sum (or shasum), awk, melange (install via: mise install)" >&2
   exit 1
 }
 
@@ -42,6 +42,18 @@ validate_filename() {
     echo "Only alphanumeric characters, dots, underscores, and hyphens are allowed." >&2
     exit 1
   fi
+  if [[ "$value" == *".."* ]]; then
+    echo "${label} must not contain path traversal sequences ('..'): '${value}'" >&2
+    exit 1
+  fi
+}
+
+sha256_file() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum "$1" | awk '{print $1}'
+  else
+    shasum -a 256 "$1" | awk '{print $1}'
+  fi
 }
 
 [ -n "$BESPOKE" ]  && validate_filename "bespoke"  "$BESPOKE"
@@ -72,7 +84,7 @@ elif [ -n "$UPSTREAM" ]; then
   url="https://raw.githubusercontent.com/wolfi-dev/os/${commit}/${file}"
   echo "Fetching upstream melange YAML: ${url}"
   curl -fsSL "$url" -o melange-work/build.yaml.tmp
-  actual_sha=$(sha256sum melange-work/build.yaml.tmp | awk '{print $1}')
+  actual_sha=$(sha256_file melange-work/build.yaml.tmp)
   if [ "$actual_sha" != "$expected_sha" ]; then
     echo "sha256 mismatch for ${UPSTREAM}: expected ${expected_sha}, got ${actual_sha}" >&2
     rm -f melange-work/build.yaml.tmp
