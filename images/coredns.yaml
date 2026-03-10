@@ -24,4 +24,5 @@ types:
       env-file: "fips.env"
 
 versions:
-  "1": {}
+  "1":
+    skip-types: [fips]  # go/bump + GOFIPS140 fails: golang/go#73649
