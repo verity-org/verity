@@ -9,5 +9,15 @@ types:
     packages: ["docker-cli"]
     entrypoint: /usr/bin/docker
 
+  fips:
+    base: wolfi-base
+    packages: ["docker-cli"]
+    entrypoint: /usr/bin/docker
+    environment:
+      GODEBUG: "fips140=on"
+    melange:
+      upstream: "docker-cli"
+      env-file: "fips.env"
+
 versions:
   "27": {}
