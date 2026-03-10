@@ -61,6 +61,7 @@ export const fullCatalog: FullCatalogCategory[] = [
     id: "web",
     label: "Web Servers & Proxies",
     images: [
+      { name: "caddy", source: "integer", variants: ["default", "fips"] },
       { name: "nginx", source: "integer", variants: ["default", "fips"] },
       { name: "httpd", source: "integer" },
       { name: "haproxy", source: "integer" },
@@ -168,7 +169,7 @@ export const fullCatalog: FullCatalogCategory[] = [
     label: "Kubernetes & Orchestration",
     images: [
       { name: "kubectl", source: "integer" },
-      { name: "helm", source: "integer" },
+      { name: "helm", source: "integer", variants: ["default", "fips"] },
       { name: "etcd", source: "integer" },
       { name: "karpenter", source: "copa", upstream: "ghcr.io/aws/karpenter" },
       {
@@ -206,7 +207,7 @@ export const fullCatalog: FullCatalogCategory[] = [
       },
       { name: "k3s", source: "copa", upstream: "mirror.gcr.io/rancher/k3s" },
       { name: "crossplane", source: "copa", upstream: "mirror.gcr.io/crossplane/crossplane" },
-      { name: "terraform", source: "integer" },
+      { name: "terraform", source: "integer", variants: ["default", "fips"] },
       {
         name: "eks-distro-coredns",
         source: "copa",
@@ -354,7 +355,7 @@ export const fullCatalog: FullCatalogCategory[] = [
       { name: "spiffe-helper", source: "copa", upstream: "ghcr.io/spiffe/spiffe-helper" },
       { name: "teleport", source: "copa", upstream: "quay.io/gravitational/teleport" },
       { name: "openbao", source: "copa", upstream: "ghcr.io/openbao/openbao" },
-      { name: "cosign", source: "integer" },
+      { name: "cosign", source: "integer", variants: ["default", "fips"] },
     ],
   },
 
@@ -457,7 +458,7 @@ export const fullCatalog: FullCatalogCategory[] = [
       },
       { name: "ntpd-rs", source: "copa", upstream: "ghcr.io/pendulum-project/ntpd-rs" },
       { name: "dive", source: "copa", upstream: "ghcr.io/wagoodman/dive" },
-      { name: "crane", source: "integer" },
+      { name: "crane", source: "integer", variants: ["default", "fips"] },
       { name: "grype", source: "integer" },
       { name: "coredns", source: "integer" },
     ],
