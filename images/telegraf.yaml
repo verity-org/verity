@@ -24,4 +24,5 @@ types:
       env-file: "fips.env"
 
 versions:
-  "1.37": {}
+  "1.37":
+    skip-types: [fips]  # GOFIPS140 compilation exceeds GHA timeout; re-enable with larger runner
