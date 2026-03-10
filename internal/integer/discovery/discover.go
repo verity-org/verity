@@ -98,7 +98,18 @@ func expandImage(def *config.ImageDef, imagesDir, registry string, pkgs []apkind
 
 	for _, v := range versions {
 		tags := DeriveTags(v, latestVersion)
+
+		skipped := make(map[string]bool)
+		if meta, ok := def.Versions[v]; ok {
+			for _, t := range meta.SkipTypes {
+				skipped[t] = true
+			}
+		}
+
 		for typeName := range def.Types {
+			if skipped[typeName] {
+				continue
+			}
 			tmpl := def.Types[typeName]
 
 			out, err := render.Config(&tmpl, v, basePath)
