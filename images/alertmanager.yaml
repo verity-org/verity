@@ -26,4 +26,5 @@ types:
       env-file: "fips.env"
 
 versions:
-  "0": {}
+  "0":
+    skip-types: [fips]  # iamguarded-compat subpackage curls metadata.google.internal (see thanos)
