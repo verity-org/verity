@@ -143,11 +143,17 @@ func expandImage(def *config.ImageDef, imagesDir, registry string, pkgs []apkind
 }
 
 // ShouldSkipType reports whether a type should be omitted for a specific
-// version based on the image YAML's versions.<version>.skip-types metadata.
+// version. A type is skipped when:
+//   - The version's skip-types list includes the type name, OR
+//   - The version is auto-discovered (not in the versions map) and the type
+//     requires a melange build. Melange upstream YAMLs target a specific
+//     version, so auto-discovered versions cannot use them.
 func ShouldSkipType(def *config.ImageDef, version, typeName string) bool {
 	meta, ok := def.Versions[version]
 	if !ok {
-		return false
+		// Auto-discovered version: skip types that require a melange build.
+		tmpl, exists := def.Types[typeName]
+		return exists && tmpl.Melange != nil
 	}
 	return slices.Contains(meta.SkipTypes, typeName)
 }

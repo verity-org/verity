@@ -28,4 +28,5 @@ types:
 versions:
   "3.5":
     skip-types: [fips]
-  "3.6": {}
+  "3.6":
+    skip-types: [fips]  # GOFIPS140 compilation exceeds GHA timeout; re-enable with larger runner
