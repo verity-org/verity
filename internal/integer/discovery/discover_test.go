@@ -314,6 +314,83 @@ versions:
 	assert.Equal(t, 1, fipsCount)
 }
 
+func TestShouldSkipType_AutoDiscoveredMelange(t *testing.T) {
+	def := &config.ImageDef{
+		Types: map[string]config.TypeTemplate{
+			"default": {},
+			"fips": {
+				Melange: &config.MelangeSpec{Upstream: "prometheus-3.9", EnvFile: "fips.env"},
+			},
+		},
+		Versions: map[string]config.VersionMeta{
+			"3.9": {},
+		},
+	}
+
+	// Explicit version 3.9: fips is NOT skipped (no skip-types entry).
+	assert.False(t, discovery.ShouldSkipType(def, "3.9", "fips"))
+	assert.False(t, discovery.ShouldSkipType(def, "3.9", "default"))
+
+	// Auto-discovered version 3.8 (not in Versions map):
+	// fips IS skipped because it has a melange block.
+	assert.True(t, discovery.ShouldSkipType(def, "3.8", "fips"))
+	// default is NOT skipped (no melange block).
+	assert.False(t, discovery.ShouldSkipType(def, "3.8", "default"))
+}
+
+func TestDiscoverFromFiles_AutoDiscoveredMelangeSkipped(t *testing.T) {
+	const fipsImageYAML = `
+name: prometheus
+description: "Prometheus"
+upstream:
+  package: "prometheus-{{version}}"
+types:
+  default:
+    base: wolfi-base
+    packages: ["prometheus-{{version}}"]
+    entrypoint: /usr/bin/prometheus
+  fips:
+    base: wolfi-base
+    packages: ["prometheus-{{version}}"]
+    entrypoint: /usr/bin/prometheus
+    melange:
+      upstream: "prometheus-3.9"
+      env-file: "fips.env"
+versions:
+  "3.9": {}
+`
+	imagesDir := setupImages(t, map[string]string{"prometheus.yaml": fipsImageYAML})
+	genDir := t.TempDir()
+
+	// APKINDEX has 3.8 (auto-discovered) and 3.9 (explicit).
+	pkgs := []apkindex.Package{
+		{Name: "prometheus-3.8"},
+		{Name: "prometheus-3.9"},
+	}
+
+	imgs, err := discovery.DiscoverFromFiles(opts(imagesDir, genDir, pkgs))
+	require.NoError(t, err)
+
+	// 3.8: default only (fips skipped because melange + auto-discovered) = 1
+	// 3.9: default + fips = 2
+	// Total = 3
+	assert.Len(t, imgs, 3)
+
+	for _, img := range imgs {
+		if img.Version == "3.8" {
+			assert.Equal(t, "default", img.Type, "auto-discovered 3.8 should only have default")
+		}
+	}
+
+	var fipsVersions []string
+	for _, img := range imgs {
+		if img.Type == "fips" {
+			fipsVersions = append(fipsVersions, img.Version)
+		}
+	}
+	assert.Equal(t, []string{"3.9"}, fipsVersions, "only explicit version should get fips")
+}
+
 func TestApplyTypeSuffix(t *testing.T) {
 	imagesDir := setupImages(t, map[string]string{"node.yaml": nodeYAML})
 	genDir := t.TempDir()

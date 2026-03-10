@@ -447,6 +447,53 @@ versions:
 	assert.Contains(t, variantTypes, "fips")
 }
 
+func TestGenerate_AutoDiscoveredMelangeSkipped(t *testing.T) {
+	imagesDir := t.TempDir()
+
+	const fipsImageYAML = `
+name: prometheus
+description: "Prometheus"
+upstream:
+  package: "prometheus-{{version}}"
+types:
+  default:
+    base: wolfi-base
+    packages: ["prometheus-{{version}}"]
+    entrypoint: /usr/bin/prometheus
+  fips:
+    base: wolfi-base
+    packages: ["prometheus-{{version}}"]
+    entrypoint: /usr/bin/prometheus
+    melange:
+      upstream: "prometheus-3.9"
+      env-file: "fips.env"
+versions:
+  "3.9": {}
+`
+	writeFile(t, imagesDir, "prometheus.yaml", fipsImageYAML)
+
+	pkgs := []apkindex.Package{
+		{Name: "prometheus-3.8"},
+		{Name: "prometheus-3.9"},
+	}
+
+	cat, err := catalog.Generate(imagesDir, "", "ghcr.io/verity-org", pkgs, nil)
+	require.NoError(t, err)
+
+	require.Len(t, cat.Images, 1)
+	img := cat.Images[0]
+	require.Len(t, img.Versions, 2)
+
+	v38 := img.Versions[0]
+	assert.Equal(t, "3.8", v38.Version)
+	require.Len(t, v38.Variants, 1, "auto-discovered 3.8 should only have default variant")
+	assert.Equal(t, "default", v38.Variants[0].Type)
+
+	v39 := img.Versions[1]
+	assert.Equal(t, "3.9", v39.Version)
+	require.Len(t, v39.Variants, 2, "explicit 3.9 should have default + fips variants")
+}
+
 func TestGenerate_UnversionedPackageNoDuplicateTags(t *testing.T) {
 	imagesDir := t.TempDir()
 

@@ -26,4 +26,5 @@ types:
       env-file: "fips.env"
 
 versions:
-  "0": {}
+  "0":
+    skip-types: [fips]  # iamguarded-compat subpackage needs metadata.google.internal; re-enable after upstream fix
