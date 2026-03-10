@@ -4,10 +4,18 @@ upstream:
   package: cosign
 
 types:
-  default:
-    base: wolfi-base
-    packages: ["cosign"]
-    entrypoint: /usr/bin/cosign
+   default:
+     base: wolfi-base
+     packages: ["cosign"]
+     entrypoint: /usr/bin/cosign
+
+   fips:
+     base: wolfi-fips
+     packages: ["cosign"]
+     entrypoint: /usr/bin/cosign
+     environment:
+       OPENSSL_MODULES: /usr/lib/ossl-modules
+       OPENSSL_CONF: /etc/ssl/openssl-fips.cnf
 
 versions:
   "2": {}
