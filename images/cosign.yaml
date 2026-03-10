@@ -9,5 +9,15 @@ types:
     packages: ["cosign"]
     entrypoint: /usr/bin/cosign
 
+  fips:
+    base: wolfi-base
+    packages: ["cosign"]
+    entrypoint: /usr/bin/cosign
+    environment:
+      GODEBUG: "fips140=on"
+    melange:
+      upstream: "cosign"
+      env-file: "fips.env"
+
 versions:
   "2": {}

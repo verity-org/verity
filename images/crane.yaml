@@ -9,5 +9,15 @@ types:
     packages: ["crane"]
     entrypoint: /usr/bin/crane
 
+  fips:
+    base: wolfi-base
+    packages: ["crane"]
+    entrypoint: /usr/bin/crane
+    environment:
+      GODEBUG: "fips140=on"
+    melange:
+      upstream: "crane"
+      env-file: "fips.env"
+
 versions:
   "0": {}

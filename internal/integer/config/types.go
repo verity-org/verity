@@ -92,6 +92,7 @@ type PathDef struct {
 // Fields are optional — versions without an entry in the map are still
 // built with auto-generated tags.
 type VersionMeta struct {
-	EOL    string `yaml:"eol,omitempty"`    // "2027-04-30"
-	Latest bool   `yaml:"latest,omitempty"` // carries the "latest" tag
+	EOL       string   `yaml:"eol,omitempty"`        // "2027-04-30"
+	Latest    bool     `yaml:"latest,omitempty"`     // carries the "latest" tag
+	SkipTypes []string `yaml:"skip-types,omitempty"` // types to exclude for this version (e.g. ["fips"])
 }

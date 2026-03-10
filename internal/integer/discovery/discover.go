@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 
 	"github.com/verity-org/verity/internal/integer/apkindex"
@@ -98,7 +99,11 @@ func expandImage(def *config.ImageDef, imagesDir, registry string, pkgs []apkind
 
 	for _, v := range versions {
 		tags := DeriveTags(v, latestVersion)
+
 		for typeName := range def.Types {
+			if ShouldSkipType(def, v, typeName) {
+				continue
+			}
 			tmpl := def.Types[typeName]
 
 			out, err := render.Config(&tmpl, v, basePath)
@@ -135,6 +140,16 @@ func expandImage(def *config.ImageDef, imagesDir, registry string, pkgs []apkind
 	})
 
 	return results, nil
+}
+
+// ShouldSkipType reports whether a type should be omitted for a specific
+// version based on the image YAML's versions.<version>.skip-types metadata.
+func ShouldSkipType(def *config.ImageDef, version, typeName string) bool {
+	meta, ok := def.Versions[version]
+	if !ok {
+		return false
+	}
+	return slices.Contains(meta.SkipTypes, typeName)
 }
 
 // ResolveVersions merges auto-discovered APKINDEX versions with the

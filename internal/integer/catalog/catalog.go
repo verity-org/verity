@@ -139,30 +139,12 @@ func buildImage(def *config.ImageDef, registry, reportsDir string, pkgs []apkind
 			EOL:     eolDate,
 		}
 
-		// Build one variant per type, sorted for determinism.
 		typeNames := sortedKeys(def.Types)
 		for _, typeName := range typeNames {
-			tags := []string{v}
-			typeTags := discovery.ApplyTypeSuffix(tags, typeName)
-			if len(typeTags) == 0 {
+			if discovery.ShouldSkipType(def, v, typeName) {
 				continue
 			}
-			ref := fmt.Sprintf("%s/%s:%s", registry, def.Name, typeTags[0])
-			variant := Variant{
-				Type:   typeName,
-				Tags:   typeTags,
-				Ref:    ref,
-				Status: "unknown",
-			}
-			if reportsDir != "" {
-				reportPath := filepath.Join(reportsDir, def.Name, v, typeName, "latest.json")
-				if report, err := loadReport(reportPath); err == nil {
-					variant.Digest = report.Digest
-					variant.BuiltAt = report.BuiltAt
-					variant.Status = report.Status
-				}
-			}
-			ver.Variants = append(ver.Variants, variant)
+			ver.Variants = append(ver.Variants, buildVariant(def.Name, v, typeName, registry, reportsDir))
 		}
 
 		img.Versions = append(img.Versions, ver)
@@ -184,6 +166,26 @@ func buildImage(def *config.ImageDef, registry, reportsDir string, pkgs []apkind
 	}
 
 	return img, nil
+}
+
+func buildVariant(imageName, version, typeName, registry, reportsDir string) Variant {
+	typeTags := discovery.ApplyTypeSuffix([]string{version}, typeName)
+	ref := fmt.Sprintf("%s/%s:%s", registry, imageName, typeTags[0])
+	variant := Variant{
+		Type:   typeName,
+		Tags:   typeTags,
+		Ref:    ref,
+		Status: "unknown",
+	}
+	if reportsDir != "" {
+		reportPath := filepath.Join(reportsDir, imageName, version, typeName, "latest.json")
+		if report, err := loadReport(reportPath); err == nil {
+			variant.Digest = report.Digest
+			variant.BuiltAt = report.BuiltAt
+			variant.Status = report.Status
+		}
+	}
+	return variant
 }
 
 func loadReport(path string) (*buildReport, error) {
