@@ -398,6 +398,55 @@ versions:
 	}
 }
 
+func TestGenerate_SkipTypes(t *testing.T) {
+	imagesDir := t.TempDir()
+
+	const skipFipsYAML = `
+name: prometheus
+description: "Prometheus"
+upstream:
+  package: "prometheus-{{version}}"
+types:
+  default:
+    base: wolfi-base
+    packages: ["prometheus-{{version}}"]
+    entrypoint: /usr/bin/prometheus
+  fips:
+    base: wolfi-base
+    packages: ["prometheus-{{version}}"]
+    entrypoint: /usr/bin/prometheus
+versions:
+  "2.55":
+    skip-types: [fips]
+  "3.9": {}
+`
+	writeFile(t, imagesDir, "prometheus.yaml", skipFipsYAML)
+
+	pkgs := []apkindex.Package{
+		{Name: "prometheus-2.55"},
+		{Name: "prometheus-3.9"},
+	}
+
+	cat, err := catalog.Generate(imagesDir, "", "ghcr.io/verity-org", pkgs, nil)
+	require.NoError(t, err)
+
+	require.Len(t, cat.Images, 1)
+	img := cat.Images[0]
+
+	v255 := img.Versions[0]
+	assert.Equal(t, "2.55", v255.Version)
+	require.Len(t, v255.Variants, 1)
+	assert.Equal(t, "default", v255.Variants[0].Type)
+
+	v39 := img.Versions[1]
+	assert.Equal(t, "3.9", v39.Version)
+	require.Len(t, v39.Variants, 2)
+
+	variantTypes := []string{v39.Variants[0].Type, v39.Variants[1].Type}
+	assert.Contains(t, variantTypes, "default")
+	assert.Contains(t, variantTypes, "fips")
+}
+
 func TestGenerate_UnversionedPackageNoDuplicateTags(t *testing.T) {
 	imagesDir := t.TempDir()
 

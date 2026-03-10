@@ -99,15 +99,8 @@ func expandImage(def *config.ImageDef, imagesDir, registry string, pkgs []apkind
 	for _, v := range versions {
 		tags := DeriveTags(v, latestVersion)
 
-		skipped := make(map[string]bool)
-		if meta, ok := def.Versions[v]; ok {
-			for _, t := range meta.SkipTypes {
-				skipped[t] = true
-			}
-		}
-
 		for typeName := range def.Types {
-			if skipped[typeName] {
+			if ShouldSkipType(def, v, typeName) {
 				continue
 			}
 			tmpl := def.Types[typeName]
@@ -146,6 +139,21 @@ func expandImage(def *config.ImageDef, imagesDir, registry string, pkgs []apkind
 	})
 
 	return results, nil
+}
+
+// ShouldSkipType reports whether a type should be omitted for a specific
+// version based on the image YAML's versions.<version>.skip-types metadata.
+func ShouldSkipType(def *config.ImageDef, version, typeName string) bool {
+	meta, ok := def.Versions[version]
+	if !ok {
+		return false
+	}
+	for _, skipped := range meta.SkipTypes {
+		if skipped == typeName {
+			return true
+		}
+	}
+	return false
 }
 
 // ResolveVersions merges auto-discovered APKINDEX versions with the

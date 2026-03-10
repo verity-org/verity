@@ -142,6 +142,9 @@ func buildImage(def *config.ImageDef, registry, reportsDir string, pkgs []apkind
 		// Build one variant per type, sorted for determinism.
 		typeNames := sortedKeys(def.Types)
 		for _, typeName := range typeNames {
+			if discovery.ShouldSkipType(def, v, typeName) {
+				continue
+			}
 			tags := []string{v}
 			typeTags := discovery.ApplyTypeSuffix(tags, typeName)
 			if len(typeTags) == 0 {

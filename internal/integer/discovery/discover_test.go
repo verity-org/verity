@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/verity-org/verity/internal/integer/apkindex"
+	"github.com/verity-org/verity/internal/integer/config"
 	"github.com/verity-org/verity/internal/integer/discovery"
 )
 
@@ -240,6 +241,77 @@ versions:
 	}
 	assert.True(t, names["node"])
 	assert.True(t, names["curl"])
+}
+
+func TestShouldSkipType(t *testing.T) {
+	def := &config.ImageDef{
+		Types: map[string]config.TypeTemplate{
+			"default": {},
+			"fips":    {},
+		},
+		Versions: map[string]config.VersionMeta{
+			"2.55": {SkipTypes: []string{"fips"}},
+			"3.9":  {},
+		},
+	}
+
+	assert.True(t, discovery.ShouldSkipType(def, "2.55", "fips"))
+	assert.False(t, discovery.ShouldSkipType(def, "2.55", "default"))
+	assert.False(t, discovery.ShouldSkipType(def, "3.9", "fips"))
+	assert.False(t, discovery.ShouldSkipType(def, "3.9", "default"))
+	assert.False(t, discovery.ShouldSkipType(def, "9.99", "fips"))
+}
+
+func TestDiscoverFromFiles_SkipTypes(t *testing.T) {
+	const skipFipsYAML = `
+name: prometheus
+description: "Prometheus"
+upstream:
+  package: "prometheus-{{version}}"
+types:
+  default:
+    base: wolfi-base
+    packages: ["prometheus-{{version}}"]
+    entrypoint: /usr/bin/prometheus
+  fips:
+    base: wolfi-base
+    packages: ["prometheus-{{version}}"]
+    entrypoint: /usr/bin/prometheus
+versions:
+  "2.55":
+    skip-types: [fips]
+  "3.9": {}
+`
+	imagesDir := setupImages(t, map[string]string{"prometheus.yaml": skipFipsYAML})
+	genDir := t.TempDir()
+
+	pkgs := []apkindex.Package{
+		{Name: "prometheus-2.55"},
+		{Name: "prometheus-3.9"},
+	}
+
+	imgs, err := discovery.DiscoverFromFiles(opts(imagesDir, genDir, pkgs))
+	require.NoError(t, err)
+
+	// 2.55: default only (fips skipped) = 1
+	// 3.9: default + fips = 2
+	// Total = 3
+	assert.Len(t, imgs, 3)
+
+	for _, img := range imgs {
+		if img.Version == "2.55" {
+			assert.Equal(t, "default", img.Type, "2.55 should only have default, got %s", img.Type)
+		}
+	}
+
+	var fipsCount int
+	for _, img := range imgs {
+		if img.Type == "fips" {
+			fipsCount++
+			assert.Equal(t, "3.9", img.Version)
+		}
+	}
+	assert.Equal(t, 1, fipsCount)
 }
 
 func TestApplyTypeSuffix(t *testing.T) {
