@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 
 	"github.com/verity-org/verity/internal/integer/apkindex"
@@ -148,12 +149,7 @@ func ShouldSkipType(def *config.ImageDef, version, typeName string) bool {
 	if !ok {
 		return false
 	}
-	for _, skipped := range meta.SkipTypes {
-		if skipped == typeName {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(meta.SkipTypes, typeName)
 }
 
 // ResolveVersions merges auto-discovered APKINDEX versions with the
