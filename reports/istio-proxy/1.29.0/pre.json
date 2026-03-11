@@ -3,8 +3,8 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019ccbb3-6446-7835-b58e-55f815054d55",
-  "CreatedAt": "2026-03-08T04:27:37.414538928Z",
+  "ReportID": "019cdec3-26f6-7b34-9c1d-30397f7370a8",
+  "CreatedAt": "2026-03-11T21:17:37.398735366Z",
   "ArtifactID": "sha256:f1e8764a647ff07bd0577932f0595c556fd3f10701d09d45582e30aeca20b650",
   "ArtifactName": "mirror.gcr.io/istio/proxyv2:1.29.0",
   "ArtifactType": "container_image",
@@ -10474,6 +10474,84 @@
           "LastModifiedDate": "2026-01-27T21:29:39.953Z"
         },
         {
+          "VulnerabilityID": "CVE-2026-1965",
+          "PkgID": "curl@8.5.0-2ubuntu10.6",
+          "PkgName": "curl",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.6?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "484419a04872dc56"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.6",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:74aeac1d657a1e3609889947573a1fba569d94d4af17abb322e6f1bd79936d34",
+            "DiffID": "sha256:1839942d4e071378a2d039fdf28b42c6ad08a6b4d99ccbab33c803579f7aa25d"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1965",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:b8e9c0856671b2d2aba8b2b222a9f1d9bcd556367d197d1efe259ca487ee065e",
+          "Description": "libcurl can in some circumstances reuse the wrong connection when asked to do\nan Negotiate-authenticated HTTP or HTTPS request.\n\nlibcurl features a pool of recent connections so that subsequent requests can\nreuse an existing connection to avoid overhead.\n\nWhen reusing a connection a range of criterion must first be met. Due to a\nlogical error in the code, a request that was issued by an application could\nwrongfully reuse an existing connection to the same server that was\nauthenticated using different credentials. One underlying reason being that\nNegotiate sometimes authenticates *connections* and not *requests*, contrary\nto how HTTP is designed to work.\n\nAn application that allows Negotiate authentication to a server (that responds\nwanting Negotiate) with `user1:password1` and then does another operation to\nthe same server also using Negotiate but with `user2:password2` (while the\nprevious connection is still alive) - the second request wrongly reused the\nsame connection and since it then sees that the Negotiate negotiation is\nalready made, it just sends the request over that connection thinking it uses\nthe user2 credentials when it is in fact still using the connection\nauthenticated for user1...\n\nThe set of authentication methods to use is set with  `CURLOPT_HTTPAUTH`.\n\nApplications can disable libcurl's reuse of connections and thus mitigate this\nproblem, by using one of the following libcurl options to alter how\nconnections are or are not reused: `CURLOPT_FRESH_CONNECT`,\n`CURLOPT_MAXCONNECTS` and `CURLMOPT_MAX_HOST_CONNECTIONS` (if using the\ncurl_multi API).",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "https://curl.se/docs/CVE-2026-1965.html",
+            "https://curl.se/docs/CVE-2026-1965.json",
+            "https://www.cve.org/CVERecord?id=CVE-2026-1965"
+          ],
+          "PublishedDate": "2026-03-11T11:15:59.177Z",
+          "LastModifiedDate": "2026-03-11T15:16:25.763Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3783",
+          "PkgID": "curl@8.5.0-2ubuntu10.6",
+          "PkgName": "curl",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.6?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "484419a04872dc56"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.6",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:74aeac1d657a1e3609889947573a1fba569d94d4af17abb322e6f1bd79936d34",
+            "DiffID": "sha256:1839942d4e071378a2d039fdf28b42c6ad08a6b4d99ccbab33c803579f7aa25d"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3783",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:a329eb49ca15de3372209d932f5c3b4e0c7d8eca9848fb04de9e0d909fe8c245",
+          "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a redirect to a second URL, curl could leak that token to the second\nhostname under some circumstances.\n\nIf the hostname that the first request is redirected to has information in the\nused .netrc file, with either of the `machine` or `default` keywords, curl\nwould pass on the bearer token set for the first host also to the second one.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-522"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/2",
+            "https://curl.se/docs/CVE-2026-3783.html",
+            "https://curl.se/docs/CVE-2026-3783.json",
+            "https://hackerone.com/reports/3583983",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3783"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.08Z",
+          "LastModifiedDate": "2026-03-11T15:16:33.117Z"
+        },
+        {
           "VulnerabilityID": "CVE-2025-0167",
           "PkgID": "curl@8.5.0-2ubuntu10.6",
           "PkgName": "curl",
@@ -10753,6 +10831,47 @@
           "LastModifiedDate": "2026-01-20T14:47:52.71Z"
         },
         {
+          "VulnerabilityID": "CVE-2026-3784",
+          "PkgID": "curl@8.5.0-2ubuntu10.6",
+          "PkgName": "curl",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.6?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "484419a04872dc56"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.6",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:74aeac1d657a1e3609889947573a1fba569d94d4af17abb322e6f1bd79936d34",
+            "DiffID": "sha256:1839942d4e071378a2d039fdf28b42c6ad08a6b4d99ccbab33c803579f7aa25d"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3784",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:29b3eae236faa012ac9376e226653c403ca6568282eb0d450d6269b9847fdd15",
+          "Description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a\nserver, even if the new request uses different credentials for the HTTP proxy.\nThe proper behavior is to create or use a separate connection.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 1
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/3",
+            "https://curl.se/docs/CVE-2026-3784.html",
+            "https://curl.se/docs/CVE-2026-3784.json",
+            "https://curl.se/docs/CVE-2026-proxy.html",
+            "https://hackerone.com/reports/3584903",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3784"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.437Z",
+          "LastModifiedDate": "2026-03-11T16:16:46.583Z"
+        },
+        {
           "VulnerabilityID": "CVE-2025-68972",
           "PkgID": "gpgv@2.4.4-2ubuntu17.4",
           "PkgName": "gpgv",
@@ -10969,6 +11088,84 @@
           ],
           "PublishedDate": "2026-01-08T10:15:45.667Z",
           "LastModifiedDate": "2026-01-27T21:29:39.953Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-1965",
+          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.6",
+          "PkgName": "libcurl4t64",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.6?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "af69591deec566e"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.6",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:74aeac1d657a1e3609889947573a1fba569d94d4af17abb322e6f1bd79936d34",
+            "DiffID": "sha256:1839942d4e071378a2d039fdf28b42c6ad08a6b4d99ccbab33c803579f7aa25d"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1965",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:e09ee350deb373836a850309101fd8ab8bf78b5aa67c2f42f6e88d4cbbf5744c",
+          "Description": "libcurl can in some circumstances reuse the wrong connection when asked to do\nan Negotiate-authenticated HTTP or HTTPS request.\n\nlibcurl features a pool of recent connections so that subsequent requests can\nreuse an existing connection to avoid overhead.\n\nWhen reusing a connection a range of criterion must first be met. Due to a\nlogical error in the code, a request that was issued by an application could\nwrongfully reuse an existing connection to the same server that was\nauthenticated using different credentials. One underlying reason being that\nNegotiate sometimes authenticates *connections* and not *requests*, contrary\nto how HTTP is designed to work.\n\nAn application that allows Negotiate authentication to a server (that responds\nwanting Negotiate) with `user1:password1` and then does another operation to\nthe same server also using Negotiate but with `user2:password2` (while the\nprevious connection is still alive) - the second request wrongly reused the\nsame connection and since it then sees that the Negotiate negotiation is\nalready made, it just sends the request over that connection thinking it uses\nthe user2 credentials when it is in fact still using the connection\nauthenticated for user1...\n\nThe set of authentication methods to use is set with  `CURLOPT_HTTPAUTH`.\n\nApplications can disable libcurl's reuse of connections and thus mitigate this\nproblem, by using one of the following libcurl options to alter how\nconnections are or are not reused: `CURLOPT_FRESH_CONNECT`,\n`CURLOPT_MAXCONNECTS` and `CURLMOPT_MAX_HOST_CONNECTIONS` (if using the\ncurl_multi API).",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "https://curl.se/docs/CVE-2026-1965.html",
+            "https://curl.se/docs/CVE-2026-1965.json",
+            "https://www.cve.org/CVERecord?id=CVE-2026-1965"
+          ],
+          "PublishedDate": "2026-03-11T11:15:59.177Z",
+          "LastModifiedDate": "2026-03-11T15:16:25.763Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3783",
+          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.6",
+          "PkgName": "libcurl4t64",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.6?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "af69591deec566e"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.6",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:74aeac1d657a1e3609889947573a1fba569d94d4af17abb322e6f1bd79936d34",
+            "DiffID": "sha256:1839942d4e071378a2d039fdf28b42c6ad08a6b4d99ccbab33c803579f7aa25d"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3783",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:ece2a30301e1a6518ae9ffb0073dc6eeee8e06c42757f5363ed2760811118673",
+          "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a redirect to a second URL, curl could leak that token to the second\nhostname under some circumstances.\n\nIf the hostname that the first request is redirected to has information in the\nused .netrc file, with either of the `machine` or `default` keywords, curl\nwould pass on the bearer token set for the first host also to the second one.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-522"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/2",
+            "https://curl.se/docs/CVE-2026-3783.html",
+            "https://curl.se/docs/CVE-2026-3783.json",
+            "https://hackerone.com/reports/3583983",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3783"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.08Z",
+          "LastModifiedDate": "2026-03-11T15:16:33.117Z"
         },
         {
           "VulnerabilityID": "CVE-2025-0167",
@@ -11250,6 +11447,47 @@
           "LastModifiedDate": "2026-01-20T14:47:52.71Z"
         },
         {
+          "VulnerabilityID": "CVE-2026-3784",
+          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.6",
+          "PkgName": "libcurl4t64",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.6?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "af69591deec566e"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.6",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:74aeac1d657a1e3609889947573a1fba569d94d4af17abb322e6f1bd79936d34",
+            "DiffID": "sha256:1839942d4e071378a2d039fdf28b42c6ad08a6b4d99ccbab33c803579f7aa25d"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3784",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:032b00e804811be9f4644d7094ebfb859e637324e0f913410991f061cb7c74d4",
+          "Description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a\nserver, even if the new request uses different credentials for the HTTP proxy.\nThe proper behavior is to create or use a separate connection.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 1
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/3",
+            "https://curl.se/docs/CVE-2026-3784.html",
+            "https://curl.se/docs/CVE-2026-3784.json",
+            "https://curl.se/docs/CVE-2026-proxy.html",
+            "https://hackerone.com/reports/3584903",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3784"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.437Z",
+          "LastModifiedDate": "2026-03-11T16:16:46.583Z"
+        },
+        {
           "VulnerabilityID": "CVE-2025-1352",
           "PkgID": "libelf1t64@0.190-1.1ubuntu0.1",
           "PkgName": "libelf1t64",
@@ -11478,6 +11716,7 @@
           },
           "References": [
             "https://access.redhat.com/errata/RHSA-2026:3477",
+            "https://access.redhat.com/errata/RHSA-2026:4188",
             "https://access.redhat.com/security/cve/CVE-2025-14831",
             "https://bugzilla.redhat.com/2392528",
             "https://bugzilla.redhat.com/2423177",
@@ -11490,7 +11729,7 @@
             "https://www.cve.org/CVERecord?id=CVE-2025-14831"
           ],
           "PublishedDate": "2026-02-09T15:16:09.937Z",
-          "LastModifiedDate": "2026-03-02T17:16:23.137Z"
+          "LastModifiedDate": "2026-03-11T09:16:12.097Z"
         },
         {
           "VulnerabilityID": "CVE-2025-9820",
@@ -11538,6 +11777,7 @@
           "References": [
             "http://www.openwall.com/lists/oss-security/2025/11/20/2",
             "https://access.redhat.com/errata/RHSA-2026:3477",
+            "https://access.redhat.com/errata/RHSA-2026:4188",
             "https://access.redhat.com/security/cve/CVE-2025-9820",
             "https://bugzilla.redhat.com/2392528",
             "https://bugzilla.redhat.com/2423177",
@@ -11553,7 +11793,7 @@
             "https://www.gnutls.org/security-new.html#GNUTLS-SA-2025-11-18"
           ],
           "PublishedDate": "2026-01-26T20:16:09.37Z",
-          "LastModifiedDate": "2026-03-02T18:16:25.787Z"
+          "LastModifiedDate": "2026-03-11T10:16:12.573Z"
         },
         {
           "VulnerabilityID": "CVE-2026-22185",
@@ -12049,6 +12289,64 @@
             "https://www.cve.org/CVERecord?id=CVE-2026-0968",
             "https://www.libssh.org/security/advisories/CVE-2026-0968.txt"
           ]
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3731",
+          "PkgID": "libssh-4@0.10.6-2ubuntu0.2",
+          "PkgName": "libssh-4",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libssh-4@0.10.6-2ubuntu0.2?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "f34d5a10961bfc52"
+          },
+          "InstalledVersion": "0.10.6-2ubuntu0.2",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:74aeac1d657a1e3609889947573a1fba569d94d4af17abb322e6f1bd79936d34",
+            "DiffID": "sha256:1839942d4e071378a2d039fdf28b42c6ad08a6b4d99ccbab33c803579f7aa25d"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3731",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:27acb6234eb2c7835f84238145b76d5a3446a7c4b0a1ecc1d83b3e42c6764ca6",
+          "Title": "libssh: libssh: Denial of Service via out-of-bounds read in SFTP extension name handler",
+          "Description": "A weakness has been identified in libssh up to 0.11.3. The impacted element is the function sftp_extensions_get_name/sftp_extensions_get_data of the file src/sftp.c of the component SFTP Extension Name Handler. Executing a manipulation of the argument idx can lead to out-of-bounds read. The attack may be performed from remote. Upgrading to version 0.11.4 and 0.12.0 is sufficient to resolve this issue. This patch is called 855a0853ad3abd4a6cd85ce06fce6d8d4c7a0b60. You should upgrade the affected component.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-119",
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "nvd": 4,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-3731",
+            "https://gitlab.com/libssh/libssh-mirror/-/commit/855a0853ad3abd4a6cd85ce06fce6d8d4c7a0b60",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3731",
+            "https://vuldb.com/?ctiid.349709",
+            "https://vuldb.com/?id.349709",
+            "https://vuldb.com/?submit.767120",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3731",
+            "https://www.libssh.org/files/0.12/libssh-0.12.0.tar.xz",
+            "https://www.libssh.org/security/advisories/libssh-2026-sftp-extensions.txt"
+          ],
+          "PublishedDate": "2026-03-08T11:15:50.307Z",
+          "LastModifiedDate": "2026-03-09T18:36:33.48Z"
         },
         {
           "VulnerabilityID": "CVE-2025-8277",
@@ -13715,13 +14013,23 @@
             "CWE-427"
           ],
           "VendorSeverity": {
+            "bitnami": 3,
             "ghsa": 3,
+            "nvd": 3,
             "redhat": 3
           },
           "CVSS": {
+            "bitnami": {
+              "V40Vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N/AU:N/R:U",
+              "V40Score": 7
+            },
             "ghsa": {
               "V40Vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N",
               "V40Score": 7
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 8
             },
             "redhat": {
               "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
@@ -13743,7 +14051,7 @@
             "https://www.zerodayinitiative.com/advisories/ZDI-CAN-28304/"
           ],
           "PublishedDate": "2026-03-04T17:16:14.763Z",
-          "LastModifiedDate": "2026-03-04T18:08:05.73Z"
+          "LastModifiedDate": "2026-03-09T17:38:15.95Z"
         },
         {
           "VulnerabilityID": "CVE-2026-24051",
@@ -14157,54 +14465,34 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:466569d34fc5b85f56ed6d556a622180fe2c0faf6ea8ff977b70eedb30a974f4",
-          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
+          "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
-          "Severity": "UNKNOWN",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "bitnami": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            }
+          },
           "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-25679",
             "https://go.dev/cl/752180",
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4601"
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-25679",
+            "https://pkg.go.dev/vuln/GO-2026-4601",
+            "https://www.cve.org/CVERecord?id=CVE-2026-25679"
           ],
           "PublishedDate": "2026-03-06T22:16:00.72Z",
-          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27139",
-          "VendorIDs": [
-            "GO-2026-4602"
-          ],
-          "PkgID": "stdlib@v1.25.7",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.25.7",
-            "UID": "face6b454849aa89"
-          },
-          "InstalledVersion": "v1.25.7",
-          "FixedVersion": "1.25.8, 1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:1f6a141f6c34f6df363bfdfa92d250757639c3258a094462291eecddc6409daf",
-            "DiffID": "sha256:ac9a68dc129ba55271e72c7a4df65aae7cc6132b512238b86fd2695f7cee0812"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27139",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:08c48765ac9b529dff57a24cf8a961deff3f4afc62b9565aea5486d26507196d",
-          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/749480",
-            "https://go.dev/issue/77827",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4602"
-          ],
-          "PublishedDate": "2026-03-06T22:16:01.07Z",
-          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
+          "LastModifiedDate": "2026-03-10T18:18:37.74Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -14231,17 +14519,88 @@
             "URL": "https://pkg.go.dev/vuln/"
           },
           "Fingerprint": "sha256:8d0c014299dec9feb65141db721a70b9dc6ec5db8e81ac94d95c5375098c275f",
-          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
-          "Severity": "UNKNOWN",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "bitnami": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+              "V3Score": 5.4
+            }
+          },
           "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-27142",
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4603"
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27142",
+            "https://pkg.go.dev/vuln/GO-2026-4603",
+            "https://www.cve.org/CVERecord?id=CVE-2026-27142"
           ],
           "PublishedDate": "2026-03-06T22:16:01.177Z",
-          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
+          "LastModifiedDate": "2026-03-10T18:18:44.607Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-27139",
+          "VendorIDs": [
+            "GO-2026-4602"
+          ],
+          "PkgID": "stdlib@v1.25.7",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.25.7",
+            "UID": "face6b454849aa89"
+          },
+          "InstalledVersion": "v1.25.7",
+          "FixedVersion": "1.25.8, 1.26.1",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:1f6a141f6c34f6df363bfdfa92d250757639c3258a094462291eecddc6409daf",
+            "DiffID": "sha256:ac9a68dc129ba55271e72c7a4df65aae7cc6132b512238b86fd2695f7cee0812"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27139",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:08c48765ac9b529dff57a24cf8a961deff3f4afc62b9565aea5486d26507196d",
+          "Title": "os: FileInfo can escape from a Root in golang os module",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Severity": "LOW",
+          "VendorSeverity": {
+            "bitnami": 1,
+            "redhat": 1
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 2.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 2.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-27139",
+            "https://go.dev/cl/749480",
+            "https://go.dev/issue/77827",
+            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27139",
+            "https://pkg.go.dev/vuln/GO-2026-4602",
+            "https://www.cve.org/CVERecord?id=CVE-2026-27139"
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-09T15:15:57.15Z"
         }
       ]
     }
