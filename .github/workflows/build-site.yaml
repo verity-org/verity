@@ -50,7 +50,7 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: Install mise
-        uses: step-security/mise-action@d65cf9dcb78b983ae2530c89fd28e72286713505 # v3.5.1
+        uses: jdx/mise-action@5228313ee0372e111a38da051671ca30fc5a96db # v3.6.3
         with:
           install: true
           cache: true
@@ -72,7 +72,7 @@ jobs:
           restore-keys: go-${{ runner.os }}-
 
       - name: Login to GHCR
-        uses: step-security/docker-login-action@c3e677aae8393bc9c81cfdf9709648720ea4bd4d # v3.6.0
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
