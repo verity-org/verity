@@ -91,16 +91,7 @@ var DiscoverCommand = &cli.Command{
 			maps.Copy(overrides, vc.Overrides)
 		}
 		// Parse --exclude-names into a set for chart image filtering.
-		var excludeNames map[string]struct{}
-		if exc := c.String("exclude-names"); exc != "" {
-			excludeNames = make(map[string]struct{})
-			for n := range strings.SplitSeq(exc, ",") {
-				n = strings.TrimSpace(n)
-				if n != "" {
-					excludeNames[n] = struct{}{}
-				}
-			}
-		}
+		excludeNames := parseNameSet(c.String("exclude-names"))
 
 		images, err := discovery.Discover(cfg, c.String("target-registry"), overrides, excludeNames)
 		if err != nil {
@@ -141,15 +132,28 @@ var DiscoverCommand = &cli.Command{
 	},
 }
 
+// parseNameSet splits a comma-separated string into a set of trimmed,
+// non-empty names. Returns nil for empty input.
+func parseNameSet(csv string) map[string]struct{} {
+	if csv == "" {
+		return nil
+	}
+	set := make(map[string]struct{})
+	for n := range strings.SplitSeq(csv, ",") {
+		n = strings.TrimSpace(n)
+		if n != "" {
+			set[n] = struct{}{}
+		}
+	}
+	return set
+}
+
 // filterCopaImagesByName filters images to only those whose Name matches one
 // of the comma-separated names.
 func filterCopaImagesByName(images []discovery.DiscoveredImage, names string) []discovery.DiscoveredImage {
-	allowed := make(map[string]struct{})
-	for n := range strings.SplitSeq(names, ",") {
-		n = strings.TrimSpace(n)
-		if n != "" {
-			allowed[n] = struct{}{}
-		}
+	allowed := parseNameSet(names)
+	if allowed == nil {
+		return images
 	}
 
 	var filtered []discovery.DiscoveredImage

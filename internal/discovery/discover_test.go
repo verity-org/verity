@@ -447,10 +447,33 @@ func TestDiscover_InvalidImageWarningContinues(t *testing.T) {
 }
 
 func TestDiscover_ExcludeChartNames(t *testing.T) {
-	// Chart-discovered images whose name matches an Integer image should be excluded.
-	// We can't use real helm charts in unit tests, so we test through the
-	// Discover function by verifying that standalone images are NOT excluded
-	// even when their name appears in the exclude set.
+	// Stub a fake helm binary that outputs a minimal manifest with image fields.
+	// This exercises the full chart-discovery → exclude-names path.
+	binDir := t.TempDir()
+	helmScript := filepath.Join(binDir, "helm")
+	script := `#!/bin/sh
+cat <<'YAML'
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test
+spec:
+  template:
+    spec:
+      containers:
+      - name: prometheus
+        image: quay.io/prometheus/prometheus:v3.0.0
+      - name: sidecar
+        image: ghcr.io/kiwigrid/k8s-sidecar:1.28.0
+      - name: rabbitmq
+        image: docker.io/library/rabbitmq:4.2.3
+YAML
+`
+	if err := os.WriteFile(helmScript, []byte(script), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	t.Setenv("PATH", binDir+":"+os.Getenv("PATH"))
+
 	cfg := &config.CopaConfig{
 		Target: config.TargetSpec{Registry: "ghcr.io/verity-org"},
 		Images: []config.ImageSpec{
@@ -460,22 +483,43 @@ func TestDiscover_ExcludeChartNames(t *testing.T) {
 				Tags:  config.TagStrategy{Strategy: "list", List: []string{"v3.0.0"}},
 			},
 		},
-		// Add a chart that will fail (no real helm), but the standalone image should survive.
 		Charts: []config.ChartSpec{
-			{Name: "bogus", Version: "0.0.1", Repository: "https://nonexistent.invalid/charts"},
+			{Name: "test-chart", Version: "1.0.0", Repository: "oci://ghcr.io/test/charts"},
 		},
 	}
 
-	exclude := map[string]struct{}{"prometheus": {}}
+	// Exclude "prometheus" and "rabbitmq" — both should be filtered from chart images.
+	// "prometheus" matches via nameFromRef (org==name deduplicated).
+	// "rabbitmq" matches via nameBasename (nameFromRef returns "library-rabbitmq").
+	exclude := map[string]struct{}{"prometheus": {}, "rabbitmq": {}}
 
 	got, err := Discover(cfg, "", nil, exclude)
 	if err != nil {
 		t.Fatalf("Discover() error = %v", err)
 	}
 
-	// Standalone image should NOT be excluded — only chart images are filtered.
-	if len(got) != 1 || got[0].Name != "prometheus" {
-		t.Errorf("Discover() = %v, want [{prometheus ...}] — standalone images must not be excluded", got)
+	// Expect:
+	// - standalone "prometheus" (NOT excluded — standalone images are never filtered)
+	// - chart "kiwigrid-k8s-sidecar" (not in exclude set)
+	// Excluded:
+	// - chart "prometheus" (in exclude set, nameFromRef match)
+	// - chart "library-rabbitmq" (in exclude set via basename "rabbitmq")
+	var names []string
+	for _, img := range got {
+		names = append(names, img.Name)
+	}
+
+	if len(got) != 2 {
+		t.Fatalf("Discover() returned %d images %v, want 2 [prometheus, kiwigrid-k8s-sidecar]", len(got), names)
+	}
+
+	// Standalone prometheus must survive (standalone images are never excluded).
+	if got[0].Name != "prometheus" || got[0].Source != "mirror.gcr.io/library/prometheus:v3.0.0" {
+		t.Errorf("got[0] = %+v, want standalone prometheus", got[0])
+	}
+	// Chart kiwigrid-k8s-sidecar must survive (not in exclude set).
+	if got[1].Name != "kiwigrid-k8s-sidecar" {
+		t.Errorf("got[1].Name = %q, want kiwigrid-k8s-sidecar", got[1].Name)
 	}
 }
 
@@ -499,5 +543,71 @@ func TestDiscover_ExcludeNamesNil(t *testing.T) {
 
 	if len(got) != 1 || got[0].Name != testNginxName {
 		t.Errorf("Discover() = %v, want [{nginx ...}]", got)
+	}
+}
+
+func TestNameBasename(t *testing.T) {
+	tests := []struct {
+		ref  string
+		want string
+	}{
+		{"docker.io/library/rabbitmq:4.2.3", "rabbitmq"},
+		{"quay.io/prometheus/prometheus:v3.2.1", "prometheus"},
+		{"ghcr.io/kiwigrid/k8s-sidecar:1.28.0", "k8s-sidecar"},
+		{"nginx:1.25", "nginx"},
+		{"quay.io/some-org/tool@sha256:abc123", "tool"},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.ref, func(t *testing.T) {
+			got := nameBasename(tc.ref)
+			if got != tc.want {
+				t.Errorf("nameBasename(%q) = %q, want %q", tc.ref, got, tc.want)
+			}
+		})
+	}
+}
+
+func TestIsExcluded(t *testing.T) {
+	exclude := map[string]struct{}{"prometheus": {}, "rabbitmq": {}}
+
+	tests := []struct {
+		name   string
+		img    DiscoveredImage
+		want   bool
+	}{
+		{
+			name: "exact nameFromRef match",
+			img:  DiscoveredImage{Name: "prometheus", Source: "quay.io/prometheus/prometheus:v3"},
+			want: true,
+		},
+		{
+			name: "basename fallback match",
+			img:  DiscoveredImage{Name: "library-rabbitmq", Source: "docker.io/library/rabbitmq:4.2.3"},
+			want: true,
+		},
+		{
+			name: "no match",
+			img:  DiscoveredImage{Name: "kiwigrid-k8s-sidecar", Source: "ghcr.io/kiwigrid/k8s-sidecar:1.28.0"},
+			want: false,
+		},
+		{
+			name: "nil exclude set",
+			img:  DiscoveredImage{Name: "prometheus", Source: "quay.io/prometheus/prometheus:v3"},
+			want: false,
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			exc := exclude
+			if tc.name == "nil exclude set" {
+				exc = nil
+			}
+			got := isExcluded(tc.img, exc)
+			if got != tc.want {
+				t.Errorf("isExcluded(%+v) = %v, want %v", tc.img, got, tc.want)
+			}
+		})
 	}
 }

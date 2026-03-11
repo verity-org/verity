@@ -57,11 +57,9 @@ func Discover(cfg *config.CopaConfig, targetRegistry string, overrides map[strin
 			continue
 		}
 		for _, img := range imgs {
-			if excludeNames != nil {
-				if _, excluded := excludeNames[img.Name]; excluded {
-					fmt.Fprintf(os.Stderr, "Skipping chart image %q: name %q conflicts with Integer image\n", img.Source, img.Name)
-					continue
-				}
+			if isExcluded(img, excludeNames) {
+				fmt.Fprintf(os.Stderr, "Skipping chart image %q: name %q excluded via --exclude-names\n", img.Source, img.Name)
+				continue
 			}
 			key := img.Name + "|" + img.Source
 			if _, exists := seen[key]; !exists {
@@ -72,6 +70,45 @@ func Discover(cfg *config.CopaConfig, targetRegistry string, overrides map[strin
 	}
 
 	return results, nil
+}
+
+// isExcluded checks whether a chart-discovered image should be skipped.
+// It matches the derived name (from nameFromRef) AND the raw basename of
+// the source ref against the exclude set, so that e.g. both "library-rabbitmq"
+// and "rabbitmq" are checked when the source is docker.io/library/rabbitmq.
+func isExcluded(img DiscoveredImage, excludeNames map[string]struct{}) bool {
+	if len(excludeNames) == 0 {
+		return false
+	}
+	if _, ok := excludeNames[img.Name]; ok {
+		return true
+	}
+	// Also check the raw last path component of the source ref, since
+	// nameFromRef may produce org-prefixed names (e.g. library-rabbitmq)
+	// while the exclude set uses simple names (e.g. rabbitmq).
+	baseName := nameBasename(img.Source)
+	if baseName != img.Name {
+		if _, ok := excludeNames[baseName]; ok {
+			return true
+		}
+	}
+	return false
+}
+
+// nameBasename returns the last path component of an image ref with tag/digest stripped.
+// e.g. "docker.io/library/rabbitmq:4.2.3" → "rabbitmq".
+func nameBasename(ref string) string {
+	if idx := strings.Index(ref, "@"); idx != -1 {
+		ref = ref[:idx]
+	}
+	lastSlash := strings.LastIndex(ref, "/")
+	if lastColon := strings.LastIndex(ref, ":"); lastColon > lastSlash {
+		ref = ref[:lastColon]
+	}
+	if lastSlash >= 0 {
+		return ref[lastSlash+1:]
+	}
+	return ref
 }
 
 // LoadConfig reads and parses a copa-config.yaml file.
