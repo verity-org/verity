@@ -1,0 +1,3403 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.69.2"
+  },
+  "ReportID": "019cded4-5673-7738-b681-34c733dad3ab",
+  "CreatedAt": "2026-03-11T21:36:23.667474769Z",
+  "ArtifactID": "sha256:06cc770604057b4d94371eb4a74188f30621c1935950e46df9edd2635b57ce68",
+  "ArtifactName": "ghcr.io/goharbor/registry-photon:v2.14.3",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 88413696,
+    "OS": {
+      "Family": "photon",
+      "Name": "5.0"
+    },
+    "ImageID": "sha256:748f8a70e67d48b95a8b19dfd5886e7900648f095edac77472b905a6d8c668cb",
+    "DiffIDs": [
+      "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b",
+      "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6",
+      "sha256:80e8bf6c6b6c244941ed728dd309eba2f059189a3e0949674145c9e8a214e423",
+      "sha256:699d103ec7790f70f5dadf916e1f463e3ff6714601f7154c27f64d29a774d029",
+      "sha256:d3c1f81907611f99eb823e0cb8fad91386c1ba6c41fe62e9d6bd30f44f49751a",
+      "sha256:892a6e713d21de47bad6516a12d1088ab87ffd27432f9a69d8334e1af8df6774"
+    ],
+    "RepoTags": [
+      "ghcr.io/goharbor/registry-photon:v2.14.3"
+    ],
+    "RepoDigests": [
+      "ghcr.io/goharbor/registry-photon@sha256:6533fc396cbce57131053faec55e1bd1da8b92aed318410c203ff1c7a9b910ab"
+    ],
+    "Reference": "ghcr.io/goharbor/registry-photon:v2.14.3",
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2026-03-08T05:38:25.661976994Z",
+      "history": [
+        {
+          "created": "2026-03-03T18:45:13.410719564Z",
+          "created_by": "ADD photon-rootfs-5.0-eb39da49f.x86_64.tar.gz / # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-03-03T18:45:13.410719564Z",
+          "created_by": "LABEL name=Photon OS x86_64/5.0 Base Image vendor=VMware build-date=20260214",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-03-03T18:45:13.410719564Z",
+          "created_by": "CMD [\"/bin/bash\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-03-06T14:37:31.404387177Z",
+          "created_by": "RUN /bin/sh -c tdnf install -y shadow \u003e\u003e /dev/null     \u0026\u0026 tdnf clean all     \u0026\u0026 mkdir -p /etc/registry     \u0026\u0026 groupadd -r -g 10000 harbor \u0026\u0026 useradd --no-log-init -m -g 10000 -u 10000 harbor # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-03-08T05:38:25.465290063Z",
+          "created_by": "COPY ./make/photon/common/install_cert.sh /home/harbor # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-03-08T05:38:25.47363613Z",
+          "created_by": "COPY ./make/photon/registry/entrypoint.sh /home/harbor # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-03-08T05:38:25.505606736Z",
+          "created_by": "COPY ./make/photon/registry/binary/registry /usr/bin/registry_DO_NOT_USE_GC # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-03-08T05:38:25.661976994Z",
+          "created_by": "RUN /bin/sh -c chown -R harbor:harbor /etc/pki/tls/certs     \u0026\u0026 chown harbor:harbor /home/harbor/entrypoint.sh \u0026\u0026 chmod u+x /home/harbor/entrypoint.sh     \u0026\u0026 chown harbor:harbor /home/harbor/install_cert.sh \u0026\u0026 chmod u+x /home/harbor/install_cert.sh     \u0026\u0026 chown harbor:harbor /usr/bin/registry_DO_NOT_USE_GC \u0026\u0026 chmod u+x /usr/bin/registry_DO_NOT_USE_GC # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-03-08T05:38:25.661976994Z",
+          "created_by": "HEALTHCHECK \u0026{[\"CMD-SHELL\" \"curl --fail -s http://localhost:5000 || curl -k --fail -s https://localhost:5443 || exit 1\"] \"0s\" \"0s\" \"0s\" \"0s\" '\\x00'}",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-03-08T05:38:25.661976994Z",
+          "created_by": "USER harbor",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-03-08T05:38:25.661976994Z",
+          "created_by": "ENTRYPOINT [\"/home/harbor/entrypoint.sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-03-08T05:38:25.661976994Z",
+          "created_by": "VOLUME [/storage]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b",
+          "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6",
+          "sha256:80e8bf6c6b6c244941ed728dd309eba2f059189a3e0949674145c9e8a214e423",
+          "sha256:699d103ec7790f70f5dadf916e1f463e3ff6714601f7154c27f64d29a774d029",
+          "sha256:d3c1f81907611f99eb823e0cb8fad91386c1ba6c41fe62e9d6bd30f44f49751a",
+          "sha256:892a6e713d21de47bad6516a12d1088ab87ffd27432f9a69d8334e1af8df6774"
+        ]
+      },
+      "config": {
+        "Healthcheck": {
+          "Test": [
+            "CMD-SHELL",
+            "curl --fail -s http://localhost:5000 || curl -k --fail -s https://localhost:5443 || exit 1"
+          ]
+        },
+        "Entrypoint": [
+          "/home/harbor/entrypoint.sh"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Labels": {
+          "base-build-date": "20260306",
+          "build-date": "20260214",
+          "name": "Photon OS x86_64/5.0 Base Image",
+          "vendor": "VMware"
+        },
+        "User": "harbor",
+        "Volumes": {
+          "/storage": {}
+        },
+        "WorkingDir": "/"
+      }
+    },
+    "Layers": [
+      {
+        "Size": 40994816,
+        "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+        "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+      },
+      {
+        "Size": 8540672,
+        "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+        "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+      },
+      {
+        "Size": 4096,
+        "Digest": "sha256:32d3ac64f888d3c8cdd23418c902a83b9866f0246fc1f18e6e181c4f2e2f6b73",
+        "DiffID": "sha256:80e8bf6c6b6c244941ed728dd309eba2f059189a3e0949674145c9e8a214e423"
+      },
+      {
+        "Size": 3072,
+        "Digest": "sha256:16d286d13c5d11578433aad6264a62d40c8f2dc6a89fe6f1ae30cf44054a4ffc",
+        "DiffID": "sha256:699d103ec7790f70f5dadf916e1f463e3ff6714601f7154c27f64d29a774d029"
+      },
+      {
+        "Size": 18971648,
+        "Digest": "sha256:4e584506034e69670d30ad525d62081243609e998ad5fd09c05ced01a78d4da0",
+        "DiffID": "sha256:d3c1f81907611f99eb823e0cb8fad91386c1ba6c41fe62e9d6bd30f44f49751a"
+      },
+      {
+        "Size": 19899392,
+        "Digest": "sha256:5de7167601cd3c0894440d217b3d9f007f65d9acc8e9897112c4d02e7dafa880",
+        "DiffID": "sha256:892a6e713d21de47bad6516a12d1088ab87ffd27432f9a69d8334e1af8df6774"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "ghcr.io/goharbor/registry-photon:v2.14.3 (photon 5.0)",
+      "Class": "os-pkgs",
+      "Type": "photon",
+      "Packages": [
+        {
+          "ID": "Linux-PAM@1.7.2-1.ph5.x86_64",
+          "Name": "Linux-PAM",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/Linux-PAM@1.7.2-1.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "a6074b28643efbef"
+          },
+          "Version": "1.7.2",
+          "Release": "1.ph5",
+          "Arch": "x86_64",
+          "SrcName": "Linux-PAM",
+          "SrcVersion": "1.7.2",
+          "SrcRelease": "1.ph5",
+          "Licenses": [
+            "BSD-3-Clause AND GPL-2.0-or-later WITH Libtool-exception AND GPL-3.0-or-later WITH Bison-exception-2.2 AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND (BSD-3-Clause OR LGPL-2.0-or-later) AND (BSD-3-Clause OR GPL-1.0-or-later) AND GPL-2.0-or-later WITH Autoconf-exception-generic AND LGPL-2.0-or-later AND FSFAP AND GPL-2.0-only AND (BSD-3-Clause OR GPL-1.0-or-later) AND MIT AND ISC AND FSFULLR AND Beerware AND X11 AND TCP-wrappers AND GPL-1.0-or-later AND FSFUL AND GPL-2.0-or-later AND FSFULLRWD"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64",
+            "libnsl@2.0.0-4.ph5.x86_64",
+            "libselinux@3.4-6.ph5.x86_64",
+            "libtirpc@1.3.3-4.ph5.x86_64",
+            "libxcrypt@4.4.36-3.ph5.x86_64",
+            "openssl-libs@3.0.18-2.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:042ad8ee7d50bf766dc57cd09e0f79f9",
+          "InstalledFiles": [
+            "/etc/environment",
+            "/etc/security",
+            "/etc/security/access.conf",
+            "/etc/security/faillock.conf",
+            "/etc/security/group.conf",
+            "/etc/security/limits.conf",
+            "/etc/security/namespace.conf",
+            "/etc/security/namespace.init",
+            "/etc/security/opasswd",
+            "/etc/security/opasswd.old",
+            "/etc/security/pam_env.conf",
+            "/etc/security/pwhistory.conf",
+            "/etc/security/sepermit.conf",
+            "/etc/security/time.conf",
+            "/run/faillock",
+            "/usr/lib/libpam.so.0",
+            "/usr/lib/libpam.so.0.85.1",
+            "/usr/lib/libpam_misc.so.0",
+            "/usr/lib/libpam_misc.so.0.82.1",
+            "/usr/lib/libpamc.so.0",
+            "/usr/lib/libpamc.so.0.82.1",
+            "/usr/lib/security/pam_access.so",
+            "/usr/lib/security/pam_canonicalize_user.so",
+            "/usr/lib/security/pam_debug.so",
+            "/usr/lib/security/pam_deny.so",
+            "/usr/lib/security/pam_echo.so",
+            "/usr/lib/security/pam_env.so",
+            "/usr/lib/security/pam_exec.so",
+            "/usr/lib/security/pam_faildelay.so",
+            "/usr/lib/security/pam_faillock.so",
+            "/usr/lib/security/pam_filter",
+            "/usr/lib/security/pam_filter.so",
+            "/usr/lib/security/pam_filter/upperLOWER",
+            "/usr/lib/security/pam_ftp.so",
+            "/usr/lib/security/pam_group.so",
+            "/usr/lib/security/pam_issue.so",
+            "/usr/lib/security/pam_keyinit.so",
+            "/usr/lib/security/pam_limits.so",
+            "/usr/lib/security/pam_listfile.so",
+            "/usr/lib/security/pam_localuser.so",
+            "/usr/lib/security/pam_loginuid.so",
+            "/usr/lib/security/pam_mail.so",
+            "/usr/lib/security/pam_mkhomedir.so",
+            "/usr/lib/security/pam_motd.so",
+            "/usr/lib/security/pam_namespace.so",
+            "/usr/lib/security/pam_nologin.so",
+            "/usr/lib/security/pam_permit.so",
+            "/usr/lib/security/pam_pwhistory.so",
+            "/usr/lib/security/pam_rhosts.so",
+            "/usr/lib/security/pam_rootok.so",
+            "/usr/lib/security/pam_securetty.so",
+            "/usr/lib/security/pam_selinux.so",
+            "/usr/lib/security/pam_sepermit.so",
+            "/usr/lib/security/pam_setquota.so",
+            "/usr/lib/security/pam_shells.so",
+            "/usr/lib/security/pam_stress.so",
+            "/usr/lib/security/pam_succeed_if.so",
+            "/usr/lib/security/pam_time.so",
+            "/usr/lib/security/pam_timestamp.so",
+            "/usr/lib/security/pam_umask.so",
+            "/usr/lib/security/pam_unix.so",
+            "/usr/lib/security/pam_unix_acct.so",
+            "/usr/lib/security/pam_unix_auth.so",
+            "/usr/lib/security/pam_unix_passwd.so",
+            "/usr/lib/security/pam_unix_session.so",
+            "/usr/lib/security/pam_usertype.so",
+            "/usr/lib/security/pam_warn.so",
+            "/usr/lib/security/pam_wheel.so",
+            "/usr/lib/security/pam_xauth.so",
+            "/usr/lib/systemd/system/pam_namespace.service",
+            "/usr/lib/tmpfiles.d/pam.conf",
+            "/usr/sbin/faillock",
+            "/usr/sbin/mkhomedir_helper",
+            "/usr/sbin/pam_namespace_helper",
+            "/usr/sbin/pam_timestamp_check",
+            "/usr/sbin/pwhistory_helper",
+            "/usr/sbin/unix_chkpwd",
+            "/usr/sbin/unix_update",
+            "/var/log/faillock"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "bash@5.2-10.ph5.x86_64",
+          "Name": "bash",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/bash@5.2-10.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "479012820495725e"
+          },
+          "Version": "5.2",
+          "Release": "10.ph5",
+          "Arch": "x86_64",
+          "SrcName": "bash",
+          "SrcVersion": "5.2",
+          "SrcRelease": "10.ph5",
+          "Licenses": [
+            "BSD-3-Clause AND BSD-4-Clause-UC AND FSFAP AND FSFUL AND FSFULLR AND FSFULLRWD AND GFDL-1.1-or-later AND GFDL-1.3-only AND GFDL-1.3-or-later AND GPL-1.0-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-2.0-or-later WITH Autoconf-exception-generic AND GPL-3.0-only AND GPL-3.0-or-later AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND GPL-3.0-or-later WITH Bison-exception-2.2 AND GPL-3.0-or-later WITH Texinfo-exception AND HPND AND LGPL-2.1-or-later AND Latex2e AND NTP AND OFL-1.1 AND X11"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "ncurses-libs@6.5-1.ph5.x86_64",
+            "readline@8.2-8.ph5.x86_64",
+            "toybox@0.8.9-10.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:c551ab659b38a8b0cc42fb05b30cf3e2",
+          "InstalledFiles": [
+            "/etc",
+            "/etc/bash.bashrc",
+            "/etc/dircolors",
+            "/etc/profile.d",
+            "/etc/profile.d/dircolors.sh",
+            "/etc/profile.d/extrapaths.sh",
+            "/etc/profile.d/i18n.sh",
+            "/etc/profile.d/readline.sh",
+            "/etc/skel",
+            "/etc/skel/.bash_logout",
+            "/etc/skel/.bash_profile",
+            "/etc/skel/.bashrc",
+            "/usr/bin/bash",
+            "/usr/bin/bashbug",
+            "/usr/bin/sh",
+            "/usr/lib/bash/Makefile.sample",
+            "/usr/lib/bash/accept",
+            "/usr/lib/bash/basename",
+            "/usr/lib/bash/csv",
+            "/usr/lib/bash/cut",
+            "/usr/lib/bash/dirname",
+            "/usr/lib/bash/dsv",
+            "/usr/lib/bash/fdflags",
+            "/usr/lib/bash/finfo",
+            "/usr/lib/bash/getconf",
+            "/usr/lib/bash/head",
+            "/usr/lib/bash/id",
+            "/usr/lib/bash/ln",
+            "/usr/lib/bash/loadables.h",
+            "/usr/lib/bash/logname",
+            "/usr/lib/bash/mkdir",
+            "/usr/lib/bash/mkfifo",
+            "/usr/lib/bash/mktemp",
+            "/usr/lib/bash/mypid",
+            "/usr/lib/bash/pathchk",
+            "/usr/lib/bash/print",
+            "/usr/lib/bash/printenv",
+            "/usr/lib/bash/push",
+            "/usr/lib/bash/realpath",
+            "/usr/lib/bash/rm",
+            "/usr/lib/bash/rmdir",
+            "/usr/lib/bash/seq",
+            "/usr/lib/bash/setpgid",
+            "/usr/lib/bash/sleep",
+            "/usr/lib/bash/stat",
+            "/usr/lib/bash/strftime",
+            "/usr/lib/bash/sync",
+            "/usr/lib/bash/tee",
+            "/usr/lib/bash/truefalse",
+            "/usr/lib/bash/tty",
+            "/usr/lib/bash/uname",
+            "/usr/lib/bash/unlink",
+            "/usr/lib/bash/whoami"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "bzip2-libs@1.0.8-7.ph5.x86_64",
+          "Name": "bzip2-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/bzip2-libs@1.0.8-7.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "2d4578b9d4672493"
+          },
+          "Version": "1.0.8",
+          "Release": "7.ph5",
+          "Arch": "x86_64",
+          "SrcName": "bzip2",
+          "SrcVersion": "1.0.8",
+          "SrcRelease": "7.ph5",
+          "Licenses": [
+            "OFL-1.1 AND GPL-1.0-or-later WITH PS-or-PDF-font-exception-20170817 AND bzip2-1.0.6 AND BSD-3-Clause"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:0ed8a02b13e6aa6aa8cacee58b3dc67e",
+          "InstalledFiles": [
+            "/usr/lib/libbz2.so.1",
+            "/usr/lib/libbz2.so.1.0",
+            "/usr/lib/libbz2.so.1.0.8"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "ca-certificates@20250612-1.ph5.x86_64",
+          "Name": "ca-certificates",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/ca-certificates@20250612-1.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "65362663663cfdb3"
+          },
+          "Version": "20250612",
+          "Release": "1.ph5",
+          "Arch": "x86_64",
+          "SrcName": "ca-certificates",
+          "SrcVersion": "20250612",
+          "SrcRelease": "1.ph5",
+          "Licenses": [
+            "MIT AND GPL-2.0-or-later"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "ca-certificates-pki@20250612-1.ph5.x86_64",
+            "openssl-libs@3.0.18-2.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:86f6aa7895f242061e092273e81552ba",
+          "InstalledFiles": [
+            "/etc/ssl/certs/002c0b4f.0",
+            "/etc/ssl/certs/002c0b4f.pem",
+            "/etc/ssl/certs/0179095f.0",
+            "/etc/ssl/certs/0179095f.pem",
+            "/etc/ssl/certs/02265526.0",
+            "/etc/ssl/certs/02265526.pem",
+            "/etc/ssl/certs/062cdee6.0",
+            "/etc/ssl/certs/062cdee6.pem",
+            "/etc/ssl/certs/064e0aa9.0",
+            "/etc/ssl/certs/064e0aa9.pem",
+            "/etc/ssl/certs/06dc52d5.0",
+            "/etc/ssl/certs/06dc52d5.pem",
+            "/etc/ssl/certs/09789157.0",
+            "/etc/ssl/certs/09789157.pem",
+            "/etc/ssl/certs/0a775a30.0",
+            "/etc/ssl/certs/0a775a30.pem",
+            "/etc/ssl/certs/0b1b94ef.0",
+            "/etc/ssl/certs/0b1b94ef.pem",
+            "/etc/ssl/certs/0b7c536a.0",
+            "/etc/ssl/certs/0b7c536a.pem",
+            "/etc/ssl/certs/0b9bc432.0",
+            "/etc/ssl/certs/0b9bc432.pem",
+            "/etc/ssl/certs/0bf05006.0",
+            "/etc/ssl/certs/0bf05006.pem",
+            "/etc/ssl/certs/0d972af8.0",
+            "/etc/ssl/certs/0d972af8.pem",
+            "/etc/ssl/certs/0f5dc4f3.0",
+            "/etc/ssl/certs/0f5dc4f3.pem",
+            "/etc/ssl/certs/0f6fa695.0",
+            "/etc/ssl/certs/0f6fa695.pem",
+            "/etc/ssl/certs/1001acf7.0",
+            "/etc/ssl/certs/1001acf7.pem",
+            "/etc/ssl/certs/106f3e4d.0",
+            "/etc/ssl/certs/106f3e4d.pem",
+            "/etc/ssl/certs/1422d63c.0",
+            "/etc/ssl/certs/1422d63c.pem",
+            "/etc/ssl/certs/14bc7599.0",
+            "/etc/ssl/certs/14bc7599.pem",
+            "/etc/ssl/certs/1766e401.0",
+            "/etc/ssl/certs/1766e401.pem",
+            "/etc/ssl/certs/19dbc0dd.0",
+            "/etc/ssl/certs/19dbc0dd.pem",
+            "/etc/ssl/certs/1cef98f5.0",
+            "/etc/ssl/certs/1cef98f5.pem",
+            "/etc/ssl/certs/1d3472b9.0",
+            "/etc/ssl/certs/1d3472b9.pem",
+            "/etc/ssl/certs/1e08bfd1.0",
+            "/etc/ssl/certs/1e08bfd1.pem",
+            "/etc/ssl/certs/1e09d511.0",
+            "/etc/ssl/certs/1e09d511.pem",
+            "/etc/ssl/certs/228f89db.0",
+            "/etc/ssl/certs/228f89db.pem",
+            "/etc/ssl/certs/244b5494.0",
+            "/etc/ssl/certs/244b5494.pem",
+            "/etc/ssl/certs/2923b3f9.0",
+            "/etc/ssl/certs/2923b3f9.pem",
+            "/etc/ssl/certs/2ae6433e.0",
+            "/etc/ssl/certs/2ae6433e.pem",
+            "/etc/ssl/certs/2b349938.0",
+            "/etc/ssl/certs/2b349938.pem",
+            "/etc/ssl/certs/2dab9e33.0",
+            "/etc/ssl/certs/2dab9e33.pem",
+            "/etc/ssl/certs/3136ea36.0",
+            "/etc/ssl/certs/3136ea36.pem",
+            "/etc/ssl/certs/32888f65.0",
+            "/etc/ssl/certs/32888f65.pem",
+            "/etc/ssl/certs/3513523f.0",
+            "/etc/ssl/certs/3513523f.pem",
+            "/etc/ssl/certs/3bde41ac.0",
+            "/etc/ssl/certs/3bde41ac.pem",
+            "/etc/ssl/certs/3e359ba6.0",
+            "/etc/ssl/certs/3e359ba6.pem",
+            "/etc/ssl/certs/3fb36b73.0",
+            "/etc/ssl/certs/3fb36b73.pem",
+            "/etc/ssl/certs/40193066.0",
+            "/etc/ssl/certs/40193066.pem",
+            "/etc/ssl/certs/4042bcee.0",
+            "/etc/ssl/certs/4042bcee.pem",
+            "/etc/ssl/certs/40547a79.0",
+            "/etc/ssl/certs/40547a79.pem",
+            "/etc/ssl/certs/406c9bb1.0",
+            "/etc/ssl/certs/406c9bb1.pem",
+            "/etc/ssl/certs/442adcac.0",
+            "/etc/ssl/certs/442adcac.pem",
+            "/etc/ssl/certs/4632c230.0",
+            "/etc/ssl/certs/4632c230.pem",
+            "/etc/ssl/certs/48bec511.0",
+            "/etc/ssl/certs/48bec511.pem",
+            "/etc/ssl/certs/4b718d9b.0",
+            "/etc/ssl/certs/4b718d9b.pem",
+            "/etc/ssl/certs/4bfab552.0",
+            "/etc/ssl/certs/4bfab552.pem",
+            "/etc/ssl/certs/4c3cbf99.0",
+            "/etc/ssl/certs/4c3cbf99.pem",
+            "/etc/ssl/certs/4f316efb.0",
+            "/etc/ssl/certs/4f316efb.pem",
+            "/etc/ssl/certs/4fd49c6c.0",
+            "/etc/ssl/certs/4fd49c6c.pem",
+            "/etc/ssl/certs/5443e9e3.0",
+            "/etc/ssl/certs/5443e9e3.pem",
+            "/etc/ssl/certs/54657681.0",
+            "/etc/ssl/certs/54657681.pem",
+            "/etc/ssl/certs/5860aaa6.0",
+            "/etc/ssl/certs/5860aaa6.pem",
+            "/etc/ssl/certs/5931b5bc.0",
+            "/etc/ssl/certs/5931b5bc.pem",
+            "/etc/ssl/certs/5a4d6896.0",
+            "/etc/ssl/certs/5a4d6896.pem",
+            "/etc/ssl/certs/5ad8a5d6.0",
+            "/etc/ssl/certs/5ad8a5d6.pem",
+            "/etc/ssl/certs/5c79eb85.0",
+            "/etc/ssl/certs/5c79eb85.pem",
+            "/etc/ssl/certs/5cd81ad7.0",
+            "/etc/ssl/certs/5cd81ad7.pem",
+            "/etc/ssl/certs/5e98733a.0",
+            "/etc/ssl/certs/5e98733a.pem",
+            "/etc/ssl/certs/5f15c80c.0",
+            "/etc/ssl/certs/5f15c80c.pem",
+            "/etc/ssl/certs/5f618aec.0",
+            "/etc/ssl/certs/5f618aec.pem",
+            "/etc/ssl/certs/607986c7.0",
+            "/etc/ssl/certs/607986c7.pem",
+            "/etc/ssl/certs/616816f6.0",
+            "/etc/ssl/certs/616816f6.pem",
+            "/etc/ssl/certs/626dceaf.0",
+            "/etc/ssl/certs/626dceaf.pem",
+            "/etc/ssl/certs/68dd7389.0",
+            "/etc/ssl/certs/68dd7389.pem",
+            "/etc/ssl/certs/69cf9657.0",
+            "/etc/ssl/certs/69cf9657.pem",
+            "/etc/ssl/certs/6a9bdba3.0",
+            "/etc/ssl/certs/6a9bdba3.pem",
+            "/etc/ssl/certs/6b99d060.0",
+            "/etc/ssl/certs/6b99d060.pem",
+            "/etc/ssl/certs/6d41d539.0",
+            "/etc/ssl/certs/6d41d539.pem",
+            "/etc/ssl/certs/6fa5da56.0",
+            "/etc/ssl/certs/6fa5da56.pem",
+            "/etc/ssl/certs/706f604c.0",
+            "/etc/ssl/certs/706f604c.pem",
+            "/etc/ssl/certs/749e9e03.0",
+            "/etc/ssl/certs/749e9e03.pem",
+            "/etc/ssl/certs/75d1b2ed.0",
+            "/etc/ssl/certs/75d1b2ed.pem",
+            "/etc/ssl/certs/76faf6c0.0",
+            "/etc/ssl/certs/76faf6c0.pem",
+            "/etc/ssl/certs/7719f463.0",
+            "/etc/ssl/certs/7719f463.pem",
+            "/etc/ssl/certs/773e07ad.0",
+            "/etc/ssl/certs/773e07ad.pem",
+            "/etc/ssl/certs/779a714a.0",
+            "/etc/ssl/certs/779a714a.pem",
+            "/etc/ssl/certs/7a3adc42.0",
+            "/etc/ssl/certs/7a3adc42.pem",
+            "/etc/ssl/certs/7a780d93.0",
+            "/etc/ssl/certs/7a780d93.pem",
+            "/etc/ssl/certs/7f3d5d1d.0",
+            "/etc/ssl/certs/7f3d5d1d.pem",
+            "/etc/ssl/certs/7fa05551.0",
+            "/etc/ssl/certs/7fa05551.pem",
+            "/etc/ssl/certs/7ffa47b4.0",
+            "/etc/ssl/certs/7ffa47b4.pem",
+            "/etc/ssl/certs/8160b96c.0",
+            "/etc/ssl/certs/8160b96c.pem",
+            "/etc/ssl/certs/81f2d2b1.0",
+            "/etc/ssl/certs/81f2d2b1.pem",
+            "/etc/ssl/certs/8312c4c1.0",
+            "/etc/ssl/certs/8312c4c1.pem",
+            "/etc/ssl/certs/8508e720.0",
+            "/etc/ssl/certs/8508e720.pem",
+            "/etc/ssl/certs/865fbdf9.0",
+            "/etc/ssl/certs/865fbdf9.pem",
+            "/etc/ssl/certs/878d9bca.0",
+            "/etc/ssl/certs/878d9bca.pem",
+            "/etc/ssl/certs/896c8bb4.0",
+            "/etc/ssl/certs/896c8bb4.pem",
+            "/etc/ssl/certs/8cb5ee0f.0",
+            "/etc/ssl/certs/8cb5ee0f.pem",
+            "/etc/ssl/certs/8d86cdd1.0",
+            "/etc/ssl/certs/8d86cdd1.pem",
+            "/etc/ssl/certs/8d89cda1.0",
+            "/etc/ssl/certs/8d89cda1.pem",
+            "/etc/ssl/certs/8f103249.0",
+            "/etc/ssl/certs/8f103249.pem",
+            "/etc/ssl/certs/9046744a.0",
+            "/etc/ssl/certs/9046744a.pem",
+            "/etc/ssl/certs/90c5a3c8.0",
+            "/etc/ssl/certs/90c5a3c8.pem",
+            "/etc/ssl/certs/930ac5d2.0",
+            "/etc/ssl/certs/930ac5d2.pem",
+            "/etc/ssl/certs/93bc0acc.0",
+            "/etc/ssl/certs/93bc0acc.pem",
+            "/etc/ssl/certs/9482e63a.0",
+            "/etc/ssl/certs/9482e63a.pem",
+            "/etc/ssl/certs/9846683b.0",
+            "/etc/ssl/certs/9846683b.pem",
+            "/etc/ssl/certs/988a38cb.0",
+            "/etc/ssl/certs/988a38cb.pem",
+            "/etc/ssl/certs/9b46e03d.0",
+            "/etc/ssl/certs/9b46e03d.pem",
+            "/etc/ssl/certs/9b5697b0.0",
+            "/etc/ssl/certs/9b5697b0.pem",
+            "/etc/ssl/certs/9bf03295.0",
+            "/etc/ssl/certs/9bf03295.pem",
+            "/etc/ssl/certs/9c8dfbd4.0",
+            "/etc/ssl/certs/9c8dfbd4.pem",
+            "/etc/ssl/certs/9d04f354.0",
+            "/etc/ssl/certs/9d04f354.pem",
+            "/etc/ssl/certs/9ef4a08a.0",
+            "/etc/ssl/certs/9ef4a08a.pem",
+            "/etc/ssl/certs/9f727ac7.0",
+            "/etc/ssl/certs/9f727ac7.pem",
+            "/etc/ssl/certs/a09a51ae.0",
+            "/etc/ssl/certs/a09a51ae.pem",
+            "/etc/ssl/certs/a3418fda.0",
+            "/etc/ssl/certs/a3418fda.pem",
+            "/etc/ssl/certs/a89d74c2.0",
+            "/etc/ssl/certs/a89d74c2.pem",
+            "/etc/ssl/certs/a94d09e5.0",
+            "/etc/ssl/certs/a94d09e5.pem",
+            "/etc/ssl/certs/ade2cc8c.0",
+            "/etc/ssl/certs/ade2cc8c.pem",
+            "/etc/ssl/certs/aee5f10d.0",
+            "/etc/ssl/certs/aee5f10d.pem",
+            "/etc/ssl/certs/b0e59380.0",
+            "/etc/ssl/certs/b0e59380.pem",
+            "/etc/ssl/certs/b1159c4c.0",
+            "/etc/ssl/certs/b1159c4c.pem",
+            "/etc/ssl/certs/b1b8a7f3.0",
+            "/etc/ssl/certs/b1b8a7f3.pem",
+            "/etc/ssl/certs/b433981b.0",
+            "/etc/ssl/certs/b433981b.pem",
+            "/etc/ssl/certs/b66938e9.0",
+            "/etc/ssl/certs/b66938e9.pem",
+            "/etc/ssl/certs/b727005e.0",
+            "/etc/ssl/certs/b727005e.pem",
+            "/etc/ssl/certs/b7a5b843.0",
+            "/etc/ssl/certs/b7a5b843.pem",
+            "/etc/ssl/certs/b81b93f0.0",
+            "/etc/ssl/certs/b81b93f0.pem",
+            "/etc/ssl/certs/b8d25de6.0",
+            "/etc/ssl/certs/b8d25de6.pem",
+            "/etc/ssl/certs/ba8887ce.0",
+            "/etc/ssl/certs/ba8887ce.pem",
+            "/etc/ssl/certs/bf53fb88.0",
+            "/etc/ssl/certs/bf53fb88.pem",
+            "/etc/ssl/certs/c01eb047.0",
+            "/etc/ssl/certs/c01eb047.pem",
+            "/etc/ssl/certs/c28a8a30.0",
+            "/etc/ssl/certs/c28a8a30.pem",
+            "/etc/ssl/certs/c9e4c02b.0",
+            "/etc/ssl/certs/c9e4c02b.pem",
+            "/etc/ssl/certs/ca6e4ad9.0",
+            "/etc/ssl/certs/ca6e4ad9.pem",
+            "/etc/ssl/certs/cbd811bd.0",
+            "/etc/ssl/certs/cbd811bd.pem",
+            "/etc/ssl/certs/cbf06781.0",
+            "/etc/ssl/certs/cbf06781.pem",
+            "/etc/ssl/certs/cc450945.0",
+            "/etc/ssl/certs/cc450945.pem",
+            "/etc/ssl/certs/cd58d51e.0",
+            "/etc/ssl/certs/cd58d51e.pem",
+            "/etc/ssl/certs/cd8c0d63.0",
+            "/etc/ssl/certs/cd8c0d63.pem",
+            "/etc/ssl/certs/ce5e74ef.0",
+            "/etc/ssl/certs/ce5e74ef.pem",
+            "/etc/ssl/certs/d2be6420.0",
+            "/etc/ssl/certs/d2be6420.pem",
+            "/etc/ssl/certs/d4dae3dd.0",
+            "/etc/ssl/certs/d4dae3dd.pem",
+            "/etc/ssl/certs/d52c538d.0",
+            "/etc/ssl/certs/d52c538d.pem",
+            "/etc/ssl/certs/d6325660.0",
+            "/etc/ssl/certs/d6325660.pem",
+            "/etc/ssl/certs/d7e8dc79.0",
+            "/etc/ssl/certs/d7e8dc79.pem",
+            "/etc/ssl/certs/d887a5bb.0",
+            "/etc/ssl/certs/d887a5bb.pem",
+            "/etc/ssl/certs/da0cfd1d.0",
+            "/etc/ssl/certs/da0cfd1d.pem",
+            "/etc/ssl/certs/dc4d6a89.0",
+            "/etc/ssl/certs/dc4d6a89.pem",
+            "/etc/ssl/certs/dd8e9d41.0",
+            "/etc/ssl/certs/dd8e9d41.pem",
+            "/etc/ssl/certs/ddcda989.0",
+            "/etc/ssl/certs/ddcda989.pem",
+            "/etc/ssl/certs/de6d66f3.0",
+            "/etc/ssl/certs/de6d66f3.pem",
+            "/etc/ssl/certs/e113c810.0",
+            "/etc/ssl/certs/e113c810.pem",
+            "/etc/ssl/certs/e18bfb83.0",
+            "/etc/ssl/certs/e18bfb83.pem",
+            "/etc/ssl/certs/e35234b1.0",
+            "/etc/ssl/certs/e35234b1.pem",
+            "/etc/ssl/certs/e36a6752.0",
+            "/etc/ssl/certs/e36a6752.pem",
+            "/etc/ssl/certs/e53e0c3b.0",
+            "/etc/ssl/certs/e53e0c3b.pem",
+            "/etc/ssl/certs/e73d606e.0",
+            "/etc/ssl/certs/e73d606e.pem",
+            "/etc/ssl/certs/e868b802.0",
+            "/etc/ssl/certs/e868b802.pem",
+            "/etc/ssl/certs/e8de2f56.0",
+            "/etc/ssl/certs/e8de2f56.pem",
+            "/etc/ssl/certs/ecccd8db.0",
+            "/etc/ssl/certs/ecccd8db.pem",
+            "/etc/ssl/certs/ed858448.0",
+            "/etc/ssl/certs/ed858448.pem",
+            "/etc/ssl/certs/ee64a828.0",
+            "/etc/ssl/certs/ee64a828.pem",
+            "/etc/ssl/certs/eed8c118.0",
+            "/etc/ssl/certs/eed8c118.pem",
+            "/etc/ssl/certs/ef954a4e.0",
+            "/etc/ssl/certs/ef954a4e.pem",
+            "/etc/ssl/certs/f081611a.0",
+            "/etc/ssl/certs/f081611a.pem",
+            "/etc/ssl/certs/f0c70a8d.0",
+            "/etc/ssl/certs/f0c70a8d.pem",
+            "/etc/ssl/certs/f249de83.0",
+            "/etc/ssl/certs/f249de83.pem",
+            "/etc/ssl/certs/f2d4863f.0",
+            "/etc/ssl/certs/f2d4863f.pem",
+            "/etc/ssl/certs/f30dd6ad.0",
+            "/etc/ssl/certs/f30dd6ad.pem",
+            "/etc/ssl/certs/f387163d.0",
+            "/etc/ssl/certs/f387163d.pem",
+            "/etc/ssl/certs/f39fc864.0",
+            "/etc/ssl/certs/f39fc864.pem",
+            "/etc/ssl/certs/f51bb24c.0",
+            "/etc/ssl/certs/f51bb24c.pem",
+            "/etc/ssl/certs/f84fab51.0",
+            "/etc/ssl/certs/f84fab51.pem",
+            "/etc/ssl/certs/fa5da96b.0",
+            "/etc/ssl/certs/fa5da96b.pem",
+            "/etc/ssl/certs/fb717492.0",
+            "/etc/ssl/certs/fb717492.pem",
+            "/etc/ssl/certs/fc5a8f99.0",
+            "/etc/ssl/certs/fc5a8f99.pem",
+            "/etc/ssl/certs/fd64f3fc.0",
+            "/etc/ssl/certs/fd64f3fc.pem",
+            "/etc/ssl/certs/fe8a2cd8.0",
+            "/etc/ssl/certs/fe8a2cd8.pem",
+            "/etc/ssl/certs/feffd413.0",
+            "/etc/ssl/certs/feffd413.pem",
+            "/etc/ssl/certs/ff34af3f.0",
+            "/etc/ssl/certs/ff34af3f.pem",
+            "/etc/ssl/certs/ffdd40f9.0",
+            "/etc/ssl/certs/ffdd40f9.pem",
+            "/usr/bin/make-ca.sh",
+            "/usr/bin/make-cert.pl",
+            "/usr/bin/make-cert.sh",
+            "/usr/bin/remove-expired-certs.sh"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "ca-certificates-pki@20250612-1.ph5.x86_64",
+          "Name": "ca-certificates-pki",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/ca-certificates-pki@20250612-1.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "6ce39bfcca5b24f0"
+          },
+          "Version": "20250612",
+          "Release": "1.ph5",
+          "Arch": "x86_64",
+          "SrcName": "ca-certificates",
+          "SrcVersion": "20250612",
+          "SrcRelease": "1.ph5",
+          "Licenses": [
+            "MIT AND GPL-2.0-or-later"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:dcc0bbc9d80e96a929548fcd1b749dc0",
+          "InstalledFiles": [
+            "/etc/pki/tls/certs/ca-bundle.crt"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "cracklib@2.9.8-3.ph5.x86_64",
+          "Name": "cracklib",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/cracklib@2.9.8-3.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "eb8dc0991e61344e"
+          },
+          "Version": "2.9.8",
+          "Release": "3.ph5",
+          "Arch": "x86_64",
+          "SrcName": "cracklib",
+          "SrcVersion": "2.9.8",
+          "SrcRelease": "3.ph5",
+          "Licenses": [
+            "Artistic-2.0 AND LGPL-2.0-or-later AND GPL-1.0-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.1-only AND LGPL-2.1-or-later AND Artistic-1.0"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "zlib@1.2.13-5.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:b746de3bd1ed408b7e1a1db522334be0",
+          "InstalledFiles": [
+            "/usr/lib/libcrack.so.2",
+            "/usr/lib/libcrack.so.2.9.0",
+            "/usr/share/cracklib/cracklib.magic",
+            "/usr/share/cracklib/empty.hwm",
+            "/usr/share/cracklib/empty.pwd",
+            "/usr/share/cracklib/empty.pwi"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "curl@8.18.0-1.ph5.x86_64",
+          "Name": "curl",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/curl@8.18.0-1.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "6014083efbc4cce6"
+          },
+          "Version": "8.18.0",
+          "Release": "1.ph5",
+          "Arch": "x86_64",
+          "SrcName": "curl",
+          "SrcVersion": "8.18.0",
+          "SrcRelease": "1.ph5",
+          "Licenses": [
+            "BSD-3-Clause AND BSD-4-Clause-UC AND FSFUL AND FSFULLR AND FSFULLRWD AND GPL-1.0-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-or-later AND ISC AND LGPL-2.0-or-later AND MIT AND X11 AND bcrypt-Solar-Designer AND curl"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "ca-certificates@20250612-1.ph5.x86_64",
+            "curl-libs@8.18.0-1.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64",
+            "krb5@1.20.2-10.ph5.x86_64",
+            "libssh2@1.11.0-4.ph5.x86_64",
+            "openssl-libs@3.0.18-2.ph5.x86_64",
+            "zlib@1.2.13-5.ph5.x86_64",
+            "zstd-libs@1.5.5-4.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:c352198af5dbff7db89c8b9541fd5fb0",
+          "InstalledFiles": [
+            "/usr/bin/curl",
+            "/usr/bin/curl-config",
+            "/usr/bin/wcurl",
+            "/usr/share/man/man1/curl-config.1.gz",
+            "/usr/share/man/man1/curl.1.gz",
+            "/usr/share/man/man1/wcurl.1.gz"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "curl-libs@8.18.0-1.ph5.x86_64",
+          "Name": "curl-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/curl-libs@8.18.0-1.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "3dace5d469e09f08"
+          },
+          "Version": "8.18.0",
+          "Release": "1.ph5",
+          "Arch": "x86_64",
+          "SrcName": "curl",
+          "SrcVersion": "8.18.0",
+          "SrcRelease": "1.ph5",
+          "Licenses": [
+            "BSD-3-Clause AND BSD-4-Clause-UC AND FSFUL AND FSFULLR AND FSFULLRWD AND GPL-1.0-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-3.0-or-later AND ISC AND LGPL-2.0-or-later AND MIT AND X11 AND bcrypt-Solar-Designer AND curl"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "ca-certificates-pki@20250612-1.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "krb5@1.20.2-10.ph5.x86_64",
+            "libssh2@1.11.0-4.ph5.x86_64",
+            "openssl-libs@3.0.18-2.ph5.x86_64",
+            "zlib@1.2.13-5.ph5.x86_64",
+            "zstd-libs@1.5.5-4.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:60a96e6fafd548698e257fa69f0146b6",
+          "InstalledFiles": [
+            "/usr/lib/libcurl.so.4",
+            "/usr/lib/libcurl.so.4.8.0"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "e2fsprogs-libs@1.46.5-5.ph5.x86_64",
+          "Name": "e2fsprogs-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/e2fsprogs-libs@1.46.5-5.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "9a2567e250174cc2"
+          },
+          "Version": "1.46.5",
+          "Release": "5.ph5",
+          "Arch": "x86_64",
+          "SrcName": "e2fsprogs",
+          "SrcVersion": "1.46.5",
+          "SrcRelease": "5.ph5",
+          "Licenses": [
+            "BSD-3-Clause AND LGPL-2.0-only AND GPL-3.0-or-later WITH Libtool-exception AND GPL-2.0-or-later WITH Libtool-exception AND GPL-3.0-or-later WITH Autoconf-exception-2.0 AND LGPL-2.1-or-later AND BSD-4.3TAHOE AND 0BSD AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND Latex2e-translated-notice AND NTP-0 AND GPL-2.0-or-later WITH Autoconf-exception-generic AND GPL-1.0-or-later WITH Autoconf-exception-macro AND Apache-2.0 AND LGPL-2.0-or-later AND LGPL-3.0-only AND FSFAP AND GPL-2.0-only AND MIT AND ISC AND GPL-3.0-or-later AND NTP AND BSD-4-Clause AND FSFULLR AND LGPL-2.1-only AND GPL-2.0-or-later WITH Texinfo-exception AND Kazlib AND GPL-1.0-or-later AND FSFUL AND GPL-2.0-or-later AND FSFULLRWD AND HPND-export-US-modify"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:c7a68b32ab468be3b3b856060e134219",
+          "InstalledFiles": [
+            "/usr/lib/libcom_err.so",
+            "/usr/lib/libcom_err.so.2",
+            "/usr/lib/libcom_err.so.2.1",
+            "/usr/lib/libss.so",
+            "/usr/lib/libss.so.2",
+            "/usr/lib/libss.so.2.0"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "elfutils-libelf@0.189-7.ph5.x86_64",
+          "Name": "elfutils-libelf",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/elfutils-libelf@0.189-7.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "b3653b05a9265ef4"
+          },
+          "Version": "0.189",
+          "Release": "7.ph5",
+          "Arch": "x86_64",
+          "SrcName": "elfutils",
+          "SrcVersion": "0.189",
+          "SrcRelease": "7.ph5",
+          "Licenses": [
+            "BSD-2-Clause AND BSD-3-Clause AND GPL-3.0-or-later WITH Bison-exception-2.2 AND LGPL-2.1-or-later AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND GPL-2.0-or-later WITH Autoconf-exception-generic AND LGPL-3.0-only AND FSFAP AND GPL-2.0-only AND GPL-3.0-only AND GPL-3.0-or-later AND FSFULLR AND (LGPL-3.0-or-later OR GPL-2.0-or-later) AND X11 AND LGPL-3.0-or-later AND GPL-1.0-or-later AND FSFUL AND GPL-2.0-or-later AND FSFULLRWD AND GFDL-1.3-only"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bzip2-libs@1.0.8-7.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "zlib@1.2.13-5.ph5.x86_64",
+            "zstd-libs@1.5.5-4.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:5704372838596b843eae523d0ce5f6ab",
+          "InstalledFiles": [
+            "/usr/lib/libelf-0.189.so",
+            "/usr/lib/libelf.so.1"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "expat-libs@2.7.4-1.ph5.x86_64",
+          "Name": "expat-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/expat-libs@2.7.4-1.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "1bf32edb78472dc3"
+          },
+          "Version": "2.7.4",
+          "Release": "1.ph5",
+          "Arch": "x86_64",
+          "SrcName": "expat",
+          "SrcVersion": "2.7.4",
+          "SrcRelease": "1.ph5",
+          "Licenses": [
+            "MIT AND X11 AND GPL-2.0-or-later WITH Autoconf-exception-generic AND BSD-3-Clause AND GFDL-1.1-only AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND Apache-2.0 AND GPL-2.0-or-later WITH Libtool-exception AND GPL-3.0-or-later WITH Autoconf-exception-macro AND FSFAP AND GPL-2.0-only AND FSFUL AND CC0-1.0 AND FSFULLR AND FSFULLRWD AND GPL-2.0-or-later"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:9cca9ae99d448b04fc8fa2f9cfec5ab1",
+          "InstalledFiles": [
+            "/usr/lib/libexpat.so.1",
+            "/usr/lib/libexpat.so.1.11.2"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "filesystem@1.1-10.ph5.x86_64",
+          "Name": "filesystem",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/filesystem@1.1-10.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "17430fab84dddf8"
+          },
+          "Version": "1.1",
+          "Release": "10.ph5",
+          "Arch": "x86_64",
+          "SrcName": "filesystem",
+          "SrcVersion": "1.1",
+          "SrcRelease": "10.ph5",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:3135dab444434c98311ce9f8a96145aa",
+          "InstalledFiles": [
+            "/bin",
+            "/boot",
+            "/dev",
+            "/etc",
+            "/etc/fstab",
+            "/etc/group",
+            "/etc/hosts",
+            "/etc/inputrc",
+            "/etc/modprobe.d",
+            "/etc/modprobe.d/usb.conf",
+            "/etc/mtab",
+            "/etc/opt",
+            "/etc/passwd",
+            "/etc/profile",
+            "/etc/profile.d",
+            "/etc/profile.d/proxy.sh",
+            "/etc/sysconfig",
+            "/etc/sysconfig/clock",
+            "/etc/sysconfig/console",
+            "/etc/sysconfig/proxy",
+            "/home",
+            "/lib",
+            "/lib64",
+            "/media",
+            "/mnt",
+            "/mnt/cdrom",
+            "/mnt/hgfs",
+            "/proc",
+            "/root",
+            "/run",
+            "/run/lock",
+            "/run/media/cdrom",
+            "/run/media/floppy",
+            "/sbin",
+            "/srv",
+            "/sys",
+            "/tmp",
+            "/usr",
+            "/usr/bin",
+            "/usr/include",
+            "/usr/lib",
+            "/usr/lib/debug",
+            "/usr/lib/debug/bin",
+            "/usr/lib/debug/lib",
+            "/usr/lib/debug/lib64",
+            "/usr/lib/debug/sbin",
+            "/usr/lib/debug/usr/bin",
+            "/usr/lib/debug/usr/lib",
+            "/usr/lib/debug/usr/lib64",
+            "/usr/lib/debug/usr/sbin",
+            "/usr/lib/sysusers.d/group.conf",
+            "/usr/lib/sysusers.d/users.conf",
+            "/usr/lib64",
+            "/usr/libexec",
+            "/usr/local",
+            "/usr/local/bin",
+            "/usr/local/include",
+            "/usr/local/lib",
+            "/usr/local/lib64",
+            "/usr/local/share",
+            "/usr/local/share/color",
+            "/usr/local/share/dict",
+            "/usr/local/share/doc",
+            "/usr/local/share/info",
+            "/usr/local/share/locale",
+            "/usr/local/share/man",
+            "/usr/local/share/man/man1",
+            "/usr/local/share/man/man2",
+            "/usr/local/share/man/man3",
+            "/usr/local/share/man/man4",
+            "/usr/local/share/man/man5",
+            "/usr/local/share/man/man6",
+            "/usr/local/share/man/man7",
+            "/usr/local/share/man/man8",
+            "/usr/local/share/misc",
+            "/usr/local/share/terminfo",
+            "/usr/local/share/zoneinfo",
+            "/usr/local/src",
+            "/usr/sbin",
+            "/usr/share",
+            "/usr/share/color",
+            "/usr/share/dict",
+            "/usr/share/doc",
+            "/usr/share/info",
+            "/usr/share/locale",
+            "/usr/share/man",
+            "/usr/share/man/man1",
+            "/usr/share/man/man2",
+            "/usr/share/man/man3",
+            "/usr/share/man/man4",
+            "/usr/share/man/man5",
+            "/usr/share/man/man6",
+            "/usr/share/man/man7",
+            "/usr/share/man/man8",
+            "/usr/share/misc",
+            "/usr/share/terminfo",
+            "/usr/share/zoneinfo",
+            "/usr/src",
+            "/var",
+            "/var/cache",
+            "/var/lib",
+            "/var/lib/color",
+            "/var/lib/locate",
+            "/var/lib/misc",
+            "/var/local",
+            "/var/lock",
+            "/var/log",
+            "/var/log/btmp",
+            "/var/log/wtmp",
+            "/var/mail",
+            "/var/mnt",
+            "/var/opt",
+            "/var/run",
+            "/var/spool",
+            "/var/srv",
+            "/var/tmp"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "glibc@2.36-22.ph5.x86_64",
+          "Name": "glibc",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/glibc@2.36-22.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "9561c12b058930b5"
+          },
+          "Version": "2.36",
+          "Release": "22.ph5",
+          "Arch": "x86_64",
+          "SrcName": "glibc",
+          "SrcVersion": "2.36",
+          "SrcRelease": "22.ph5",
+          "Licenses": [
+            "SunPro AND Spencer-94 AND BSD-3-Clause AND LGPL-2.0-only AND GPL-3.0-or-later WITH GCC-exception-2.0 AND LGPL-2.1-or-later AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND LGPL-2.0-or-later AND FSFAP AND GPL-2.0-only AND CMU-Mach AND Inner-Net-2.0 AND GPL-3.0-or-later WITH Texinfo-exception AND ISC AND Unicode-DFS-2015 AND GPL-3.0-or-later AND BSL-1.0 AND LGPL-2.1-only AND GFDL-1.1-or-later AND Unlicense AND X11 AND (AFL-2.0 OR LGPL-2.0-or-later) AND LGPL-3.0-or-later AND MIT-CMU AND GPL-1.0-or-later AND FSFUL AND GPL-2.0-or-later AND GFDL-1.3-only AND HPND"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "filesystem@1.1-10.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:57ab62e78df991cf9ebfd0299935eae8",
+          "InstalledFiles": [
+            "/etc/ld.so.cache",
+            "/etc/ld.so.conf",
+            "/etc/ld.so.conf.d",
+            "/etc/locale-gen.conf",
+            "/etc/nsswitch.conf",
+            "/etc/rpc",
+            "/usr/bin/gencat",
+            "/usr/bin/getconf",
+            "/usr/bin/getent",
+            "/usr/bin/ld.so",
+            "/usr/bin/ldd",
+            "/usr/bin/locale",
+            "/usr/bin/localedef",
+            "/usr/bin/makedb",
+            "/usr/bin/tzselect",
+            "/usr/bin/zdump",
+            "/usr/lib/locale/en_US.UTF-8",
+            "/usr/lib/locale/en_US.UTF-8/LC_ADDRESS",
+            "/usr/lib/locale/en_US.UTF-8/LC_COLLATE",
+            "/usr/lib/locale/en_US.UTF-8/LC_CTYPE",
+            "/usr/lib/locale/en_US.UTF-8/LC_IDENTIFICATION",
+            "/usr/lib/locale/en_US.UTF-8/LC_MEASUREMENT",
+            "/usr/lib/locale/en_US.UTF-8/LC_MESSAGES",
+            "/usr/lib/locale/en_US.UTF-8/LC_MESSAGES/SYS_LC_MESSAGES",
+            "/usr/lib/locale/en_US.UTF-8/LC_MONETARY",
+            "/usr/lib/locale/en_US.UTF-8/LC_NAME",
+            "/usr/lib/locale/en_US.UTF-8/LC_NUMERIC",
+            "/usr/lib/locale/en_US.UTF-8/LC_PAPER",
+            "/usr/lib/locale/en_US.UTF-8/LC_TELEPHONE",
+            "/usr/lib/locale/en_US.UTF-8/LC_TIME",
+            "/usr/libexec/getconf",
+            "/usr/libexec/getconf/POSIX_V6_LP64_OFF64",
+            "/usr/libexec/getconf/POSIX_V7_LP64_OFF64",
+            "/usr/libexec/getconf/XBS5_LP64_OFF64",
+            "/usr/sbin/ldconfig",
+            "/usr/sbin/locale-gen.sh",
+            "/usr/share/i18n/charmaps/ISO-8859-1.gz",
+            "/usr/share/i18n/charmaps/UTF-8.gz",
+            "/usr/share/i18n/locales/en_GB",
+            "/usr/share/i18n/locales/en_US",
+            "/usr/share/i18n/locales/i18n",
+            "/usr/share/i18n/locales/i18n_ctype",
+            "/usr/share/i18n/locales/iso14651_t1",
+            "/usr/share/i18n/locales/iso14651_t1_common",
+            "/usr/share/i18n/locales/translit_circle",
+            "/usr/share/i18n/locales/translit_cjk_compat",
+            "/usr/share/i18n/locales/translit_cjk_variants",
+            "/usr/share/i18n/locales/translit_combining",
+            "/usr/share/i18n/locales/translit_compat",
+            "/usr/share/i18n/locales/translit_font",
+            "/usr/share/i18n/locales/translit_fraction",
+            "/usr/share/i18n/locales/translit_hangul",
+            "/usr/share/i18n/locales/translit_narrow",
+            "/usr/share/i18n/locales/translit_neutral",
+            "/usr/share/i18n/locales/translit_small",
+            "/usr/share/i18n/locales/translit_wide",
+            "/usr/share/locale/locale.alias"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "glibc-libs@2.36-22.ph5.x86_64",
+          "Name": "glibc-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/glibc-libs@2.36-22.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "a47b8f4c742bf3db"
+          },
+          "Version": "2.36",
+          "Release": "22.ph5",
+          "Arch": "x86_64",
+          "SrcName": "glibc",
+          "SrcVersion": "2.36",
+          "SrcRelease": "22.ph5",
+          "Licenses": [
+            "SunPro AND Spencer-94 AND BSD-3-Clause AND LGPL-2.0-only AND GPL-3.0-or-later WITH GCC-exception-2.0 AND LGPL-2.1-or-later AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND LGPL-2.0-or-later AND FSFAP AND GPL-2.0-only AND CMU-Mach AND Inner-Net-2.0 AND GPL-3.0-or-later WITH Texinfo-exception AND ISC AND Unicode-DFS-2015 AND GPL-3.0-or-later AND BSL-1.0 AND LGPL-2.1-only AND GFDL-1.1-or-later AND Unlicense AND X11 AND (AFL-2.0 OR LGPL-2.0-or-later) AND LGPL-3.0-or-later AND MIT-CMU AND GPL-1.0-or-later AND FSFUL AND GPL-2.0-or-later AND GFDL-1.3-only AND HPND"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:8749649f28a1037c5aa8c60c69de766c",
+          "InstalledFiles": [
+            "/usr/lib/ld-linux-x86-64.so.2",
+            "/usr/lib/libBrokenLocale.so",
+            "/usr/lib/libBrokenLocale.so.1",
+            "/usr/lib/libanl.so",
+            "/usr/lib/libanl.so.1",
+            "/usr/lib/libc.so",
+            "/usr/lib/libc.so.6",
+            "/usr/lib/libc_malloc_debug.so",
+            "/usr/lib/libc_malloc_debug.so.0",
+            "/usr/lib/libdl.so.2",
+            "/usr/lib/libm.so",
+            "/usr/lib/libm.so.6",
+            "/usr/lib/libmemusage.so",
+            "/usr/lib/libmvec.so",
+            "/usr/lib/libmvec.so.1",
+            "/usr/lib/libnsl.so.1",
+            "/usr/lib/libnss_compat.so",
+            "/usr/lib/libnss_compat.so.2",
+            "/usr/lib/libnss_db.so",
+            "/usr/lib/libnss_db.so.2",
+            "/usr/lib/libnss_dns.so.2",
+            "/usr/lib/libnss_files.so.2",
+            "/usr/lib/libnss_hesiod.so",
+            "/usr/lib/libnss_hesiod.so.2",
+            "/usr/lib/libpthread.so.0",
+            "/usr/lib/libresolv.so",
+            "/usr/lib/libresolv.so.2",
+            "/usr/lib/librt.so.1",
+            "/usr/lib/libthread_db.so",
+            "/usr/lib/libthread_db.so.1",
+            "/usr/lib/libutil.so.1"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "gpg-pubkey@66fd4949-4803fe57.",
+          "Name": "gpg-pubkey",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/gpg-pubkey@66fd4949-4803fe57?arch=None\u0026distro=photon-5.0",
+            "UID": "5a9c7001d432e179"
+          },
+          "Version": "66fd4949",
+          "Release": "4803fe57",
+          "Arch": "None",
+          "Licenses": [
+            "pubkey"
+          ],
+          "Repository": {
+            "Class": "third-party"
+          },
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "gpg-pubkey@8a6a826d-596882ca.",
+          "Name": "gpg-pubkey",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/gpg-pubkey@8a6a826d-596882ca?arch=None\u0026distro=photon-5.0",
+            "UID": "eb4369224cc08a69"
+          },
+          "Version": "8a6a826d",
+          "Release": "596882ca",
+          "Arch": "None",
+          "Licenses": [
+            "pubkey"
+          ],
+          "Repository": {
+            "Class": "third-party"
+          },
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "krb5@1.20.2-10.ph5.x86_64",
+          "Name": "krb5",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/krb5@1.20.2-10.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "74359be8bc53da43"
+          },
+          "Version": "1.20.2",
+          "Release": "10.ph5",
+          "Arch": "x86_64",
+          "SrcName": "krb5",
+          "SrcVersion": "1.20.2",
+          "SrcRelease": "10.ph5",
+          "Licenses": [
+            "(BSD-2-Clause OR GPL-2.0-or-later) AND BSD-3-Clause-flex AND FSFUL AND GPL-3.0-or-later WITH Autoconf-exception-2.0 AND HPND-export2-US AND BSD-3-Clause AND HPND-export-US-acknowledgement AND BSD-2-Clause-first-lines AND BSD-4-Clause-UC AND FSFULLRWD AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND X11 AND OpenVision AND BSD-2-Clause AND GPL-2.0-or-later WITH Autoconf-exception-macro AND MIT AND GPL-3.0-or-later WITH Bison-exception-2.2 AND GPL-2.0-or-later WITH Autoconf-exception-generic AND MIT-CMU AND GPL-1.0-or-later AND Brian-Gladman-2-Clause AND HPND-export-US-modify AND CMU-Mach-nodoc AND NTP AND BSD-4-Clause AND BSD-4.3TAHOE AND OLDAP-2.8 AND HPND-sell-variant AND HPND-export-US AND RSA-MD AND HPND AND ISC"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "e2fsprogs-libs@1.46.5-5.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64",
+            "openssl-libs@3.0.18-2.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:a8928fada74010feae6c60f89ead5479",
+          "InstalledFiles": [
+            "/usr/bin/gss-client",
+            "/usr/bin/k5srvutil",
+            "/usr/bin/kadmin",
+            "/usr/bin/kdestroy",
+            "/usr/bin/kinit",
+            "/usr/bin/klist",
+            "/usr/bin/kpasswd",
+            "/usr/bin/krb5-config",
+            "/usr/bin/ksu",
+            "/usr/bin/kswitch",
+            "/usr/bin/ktutil",
+            "/usr/bin/kvno",
+            "/usr/bin/sclient",
+            "/usr/bin/sim_client",
+            "/usr/bin/uuclient",
+            "/usr/lib/krb5/plugins/authdata",
+            "/usr/lib/krb5/plugins/kdb",
+            "/usr/lib/krb5/plugins/kdb/db2.so",
+            "/usr/lib/krb5/plugins/libkrb5",
+            "/usr/lib/krb5/plugins/preauth",
+            "/usr/lib/krb5/plugins/preauth/otp.so",
+            "/usr/lib/krb5/plugins/preauth/pkinit.so",
+            "/usr/lib/krb5/plugins/preauth/spake.so",
+            "/usr/lib/krb5/plugins/preauth/test.so",
+            "/usr/lib/krb5/plugins/tls",
+            "/usr/lib/krb5/plugins/tls/k5tls.so",
+            "/usr/lib/libgssapi_krb5.so.2",
+            "/usr/lib/libgssapi_krb5.so.2.2",
+            "/usr/lib/libgssrpc.so.4",
+            "/usr/lib/libgssrpc.so.4.2",
+            "/usr/lib/libk5crypto.so.3",
+            "/usr/lib/libk5crypto.so.3.1",
+            "/usr/lib/libkadm5clnt_mit.so.12",
+            "/usr/lib/libkadm5clnt_mit.so.12.0",
+            "/usr/lib/libkadm5srv_mit.so.12",
+            "/usr/lib/libkadm5srv_mit.so.12.0",
+            "/usr/lib/libkdb5.so.10",
+            "/usr/lib/libkdb5.so.10.0",
+            "/usr/lib/libkrad.so.0",
+            "/usr/lib/libkrad.so.0.0",
+            "/usr/lib/libkrb5.so.3",
+            "/usr/lib/libkrb5.so.3.3",
+            "/usr/lib/libkrb5support.so.0",
+            "/usr/lib/libkrb5support.so.0.1",
+            "/usr/lib/libverto.so.0",
+            "/usr/lib/libverto.so.0.0",
+            "/usr/sbin/gss-server",
+            "/usr/sbin/kadmin.local",
+            "/usr/sbin/kadmind",
+            "/usr/sbin/kdb5_util",
+            "/usr/sbin/kprop",
+            "/usr/sbin/kpropd",
+            "/usr/sbin/kproplog",
+            "/usr/sbin/krb5-send-pr",
+            "/usr/sbin/krb5kdc",
+            "/usr/sbin/sim_server",
+            "/usr/sbin/sserver",
+            "/usr/sbin/uuserver"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "libcap@2.66-4.ph5.x86_64",
+          "Name": "libcap",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/libcap@2.66-4.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "129d16a81ab18721"
+          },
+          "Version": "2.66",
+          "Release": "4.ph5",
+          "Arch": "x86_64",
+          "SrcName": "libcap",
+          "SrcVersion": "2.66",
+          "SrcRelease": "4.ph5",
+          "Licenses": [
+            "Apache-2.0 AND (BSD-3-Clause OR GPL-2.0-or-later) AND ((BSD-3-Clause OR GPL-2.0-only)) AND BSD-3-Clause AND (BSD-3-Clause OR LGPL-2.0-or-later) AND GPL-1.0-or-later AND GPL-2.0-only"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:cfa5880dfea5896b192e9bc11fefe1b7",
+          "InstalledFiles": [
+            "/usr/lib64/libcap.so.2",
+            "/usr/lib64/libcap.so.2.66",
+            "/usr/lib64/libpsx.so.2",
+            "/usr/lib64/libpsx.so.2.66",
+            "/usr/sbin/capsh",
+            "/usr/sbin/getcap",
+            "/usr/sbin/getpcaps",
+            "/usr/sbin/setcap",
+            "/usr/share/man/man1/capsh.1.gz",
+            "/usr/share/man/man8/captree.8.gz",
+            "/usr/share/man/man8/getcap.8.gz",
+            "/usr/share/man/man8/getpcaps.8.gz",
+            "/usr/share/man/man8/setcap.8.gz"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "libgcc@12.2.0-9.ph5.x86_64",
+          "Name": "libgcc",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/libgcc@12.2.0-9.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "f3871123586ddc7a"
+          },
+          "Version": "12.2.0",
+          "Release": "9.ph5",
+          "Arch": "x86_64",
+          "SrcName": "gcc",
+          "SrcVersion": "12.2.0",
+          "SrcRelease": "9.ph5",
+          "Licenses": [
+            "(BSD-3-Clause OR GPL-2.0-only) AND (NCSA OR MIT) AND (MPL-1.1 OR GPL-2.0-or-later OR LGPL-2.1-or-later) AND (AFL-2.0 OR LGPL-2.0-or-later) AND FSFULLR AND GPL-2.0-or-later WITH GNU-compiler-exception AND GPL-3.0-or-later WITH Texinfo-exception AND GPL-2.0-or-later WITH GNAT-exception AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-4.3TAHOE AND LGPL-2.1-or-later AND BSD-3-Clause AND LGPL-3.0-only AND Apache-2.0 AND GFDL-1.3-only AND BSD-4.3RENO AND GPL-3.0-only AND Apache-2.0 WITH LLVM-exception AND GFDL-1.3-or-later AND Unicode-DFS-2015 AND GPL-3.0-or-later WITH Autoconf-exception-macro AND curl AND GPL-3.0-or-later WITH GCC-exception-2.0 AND LGPL-2.1-only AND SunPro AND Spencer-86 AND FSFULLRWD AND NCSA AND bzip2-1.0.6 AND GPL-3.0-only WITH GCC-exception-3.1 AND GPL-3.0-or-later WITH GCC-exception-3.1 AND GFDL-1.2-or-later AND FSFAP-no-warranty-disclaimer AND ISC AND GPL-2.0-only AND MIT AND LGPL-3.0-or-later AND MPL-2.0 AND BSL-1.0 AND GPL-2.0-or-later WITH Autoconf-exception-generic AND BSD-2-Clause AND IJG AND LGPL-2.0-or-later AND CC-PDDC AND GPL-2.0-or-later WITH Bison-exception-1.24 AND MPEG-SSG AND LGPL-2.0-or-later WITH GCC-exception-2.0 AND GPL-1.0-or-later AND GPL-2.0-or-later AND FSFAP AND LPD-document AND Zlib AND GPL-2.0-or-later WITH Libtool-exception AND FSFUL AND GPL-3.0-or-later AND GFDL-1.1-or-later AND GPL-3.0-or-later WITH Autoconf-exception-2.0 AND X11 AND GPL-1.0-or-later WITH Autoconf-exception-generic AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:32d638a097de858f1f213d93d35dfcb4",
+          "InstalledFiles": [
+            "/usr/lib64/libgcc_s.so.1"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "libnsl@2.0.0-4.ph5.x86_64",
+          "Name": "libnsl",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/libnsl@2.0.0-4.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "6fc2333764e1e62"
+          },
+          "Version": "2.0.0",
+          "Release": "4.ph5",
+          "Arch": "x86_64",
+          "SrcName": "libnsl",
+          "SrcVersion": "2.0.0",
+          "SrcRelease": "4.ph5",
+          "Licenses": [
+            "LGPL-2.1-only AND FSFAP AND LGPL-2.1-or-later AND BSD-3-Clause"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64",
+            "libtirpc@1.3.3-4.ph5.x86_64",
+            "rpcsvc-proto@1.4.3-2.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:00c247458be4f9ffbdb45ea9eadb3dc8",
+          "InstalledFiles": [
+            "/usr/lib/libnsl.so.3",
+            "/usr/lib/libnsl.so.3.0.0"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "libpwquality@1.4.4-7.ph5.x86_64",
+          "Name": "libpwquality",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/libpwquality@1.4.4-7.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "a0daed0748022e60"
+          },
+          "Version": "1.4.4",
+          "Release": "7.ph5",
+          "Arch": "x86_64",
+          "SrcName": "libpwquality",
+          "SrcVersion": "1.4.4",
+          "SrcRelease": "7.ph5",
+          "Licenses": [
+            "LGPL-2.0-or-later AND GPL-3.0-or-later AND GPL-2.0-or-later AND FSFUL AND FSFULLRWD AND BSD-3-Clause AND X11 AND DOC AND (GPL-2.0-or-later WITH Autoconf-exception-generic) AND GPL-1.0-or-later AND (BSD-3-Clause OR GPL-1.0-or-later) AND GPL-2.0-only AND (GPL-3.0-or-later WITH Autoconf-exception-generic-3.0) AND (GPL-3.0-or-later WITH Libtool-exception) AND FSFAP AND FSFULLR AND (GPL-2.0-or-later WITH Libtool-exception)"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "Linux-PAM@1.7.2-1.ph5.x86_64",
+            "bash@5.2-10.ph5.x86_64",
+            "cracklib@2.9.8-3.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:eb249639b0a8a888e562f24b45536b41",
+          "InstalledFiles": [
+            "/etc/security/pwquality.conf",
+            "/usr/bin/pwmake",
+            "/usr/bin/pwscore",
+            "/usr/lib/libpwquality.so.1",
+            "/usr/lib/libpwquality.so.1.0.2",
+            "/usr/lib/security/pam_pwquality.so",
+            "/usr/share/locale/ar",
+            "/usr/share/locale/ar/LC_MESSAGES",
+            "/usr/share/locale/ar/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/as",
+            "/usr/share/locale/as/LC_MESSAGES",
+            "/usr/share/locale/as/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/az",
+            "/usr/share/locale/az/LC_MESSAGES",
+            "/usr/share/locale/az/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/bg",
+            "/usr/share/locale/bg/LC_MESSAGES",
+            "/usr/share/locale/bg/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/bn_IN",
+            "/usr/share/locale/bn_IN/LC_MESSAGES",
+            "/usr/share/locale/bn_IN/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/ca",
+            "/usr/share/locale/ca/LC_MESSAGES",
+            "/usr/share/locale/ca/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/cs",
+            "/usr/share/locale/cs/LC_MESSAGES",
+            "/usr/share/locale/cs/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/da",
+            "/usr/share/locale/da/LC_MESSAGES",
+            "/usr/share/locale/da/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/de",
+            "/usr/share/locale/de/LC_MESSAGES",
+            "/usr/share/locale/de/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/es",
+            "/usr/share/locale/es/LC_MESSAGES",
+            "/usr/share/locale/es/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/eu",
+            "/usr/share/locale/eu/LC_MESSAGES",
+            "/usr/share/locale/eu/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/fa",
+            "/usr/share/locale/fa/LC_MESSAGES",
+            "/usr/share/locale/fa/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/fi",
+            "/usr/share/locale/fi/LC_MESSAGES",
+            "/usr/share/locale/fi/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/fr",
+            "/usr/share/locale/fr/LC_MESSAGES",
+            "/usr/share/locale/fr/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/fur",
+            "/usr/share/locale/fur/LC_MESSAGES",
+            "/usr/share/locale/fur/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/gu",
+            "/usr/share/locale/gu/LC_MESSAGES",
+            "/usr/share/locale/gu/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/he",
+            "/usr/share/locale/he/LC_MESSAGES",
+            "/usr/share/locale/he/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/hi",
+            "/usr/share/locale/hi/LC_MESSAGES",
+            "/usr/share/locale/hi/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/hu",
+            "/usr/share/locale/hu/LC_MESSAGES",
+            "/usr/share/locale/hu/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/id",
+            "/usr/share/locale/id/LC_MESSAGES",
+            "/usr/share/locale/id/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/it",
+            "/usr/share/locale/it/LC_MESSAGES",
+            "/usr/share/locale/it/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/ja",
+            "/usr/share/locale/ja/LC_MESSAGES",
+            "/usr/share/locale/ja/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/kk",
+            "/usr/share/locale/kk/LC_MESSAGES",
+            "/usr/share/locale/kk/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/km",
+            "/usr/share/locale/km/LC_MESSAGES",
+            "/usr/share/locale/km/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/kn",
+            "/usr/share/locale/kn/LC_MESSAGES",
+            "/usr/share/locale/kn/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/ko",
+            "/usr/share/locale/ko/LC_MESSAGES",
+            "/usr/share/locale/ko/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/ml",
+            "/usr/share/locale/ml/LC_MESSAGES",
+            "/usr/share/locale/ml/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/mr",
+            "/usr/share/locale/mr/LC_MESSAGES",
+            "/usr/share/locale/mr/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/nb",
+            "/usr/share/locale/nb/LC_MESSAGES",
+            "/usr/share/locale/nb/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/nl",
+            "/usr/share/locale/nl/LC_MESSAGES",
+            "/usr/share/locale/nl/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/or",
+            "/usr/share/locale/or/LC_MESSAGES",
+            "/usr/share/locale/or/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/pa",
+            "/usr/share/locale/pa/LC_MESSAGES",
+            "/usr/share/locale/pa/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/pl",
+            "/usr/share/locale/pl/LC_MESSAGES",
+            "/usr/share/locale/pl/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/pt",
+            "/usr/share/locale/pt/LC_MESSAGES",
+            "/usr/share/locale/pt/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/pt_BR",
+            "/usr/share/locale/pt_BR/LC_MESSAGES",
+            "/usr/share/locale/pt_BR/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/ru",
+            "/usr/share/locale/ru/LC_MESSAGES",
+            "/usr/share/locale/ru/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/si",
+            "/usr/share/locale/si/LC_MESSAGES",
+            "/usr/share/locale/si/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/sk",
+            "/usr/share/locale/sk/LC_MESSAGES",
+            "/usr/share/locale/sk/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/sq",
+            "/usr/share/locale/sq/LC_MESSAGES",
+            "/usr/share/locale/sq/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/sr",
+            "/usr/share/locale/sr/LC_MESSAGES",
+            "/usr/share/locale/sr/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/sr@latin",
+            "/usr/share/locale/sr@latin/LC_MESSAGES",
+            "/usr/share/locale/sr@latin/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/sv",
+            "/usr/share/locale/sv/LC_MESSAGES",
+            "/usr/share/locale/sv/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/ta",
+            "/usr/share/locale/ta/LC_MESSAGES",
+            "/usr/share/locale/ta/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/te",
+            "/usr/share/locale/te/LC_MESSAGES",
+            "/usr/share/locale/te/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/tr",
+            "/usr/share/locale/tr/LC_MESSAGES",
+            "/usr/share/locale/tr/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/uk",
+            "/usr/share/locale/uk/LC_MESSAGES",
+            "/usr/share/locale/uk/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/ur",
+            "/usr/share/locale/ur/LC_MESSAGES",
+            "/usr/share/locale/ur/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/vi",
+            "/usr/share/locale/vi/LC_MESSAGES",
+            "/usr/share/locale/vi/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/zh_CN",
+            "/usr/share/locale/zh_CN/LC_MESSAGES",
+            "/usr/share/locale/zh_CN/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/zh_TW",
+            "/usr/share/locale/zh_TW/LC_MESSAGES",
+            "/usr/share/locale/zh_TW/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/locale/zu",
+            "/usr/share/locale/zu/LC_MESSAGES",
+            "/usr/share/locale/zu/LC_MESSAGES/libpwquality.mo",
+            "/usr/share/man/man1/pwmake.1.gz",
+            "/usr/share/man/man1/pwscore.1.gz",
+            "/usr/share/man/man5/pwquality.conf.5.gz",
+            "/usr/share/man/man8/pam_pwquality.8.gz"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "libselinux@3.4-6.ph5.x86_64",
+          "Name": "libselinux",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/libselinux@3.4-6.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "c80c07d4cfb03c56"
+          },
+          "Version": "3.4",
+          "Release": "6.ph5",
+          "Arch": "x86_64",
+          "SrcName": "libselinux",
+          "SrcVersion": "3.4",
+          "SrcRelease": "6.ph5",
+          "Licenses": [
+            "libselinux-1.0 AND GPL-2.0-only"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64",
+            "pcre2-libs@10.40-10.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:1f7801cd614a32b1cdfc947c6973d9cb",
+          "InstalledFiles": [
+            "/usr/lib/libselinux.so.1",
+            "/usr/lib/tmpfiles.d/libselinux.conf",
+            "/var/run/setrans"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "libsolv@0.7.22-7.ph5.x86_64",
+          "Name": "libsolv",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/libsolv@0.7.22-7.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "efda3465ed7082c1"
+          },
+          "Version": "0.7.22",
+          "Release": "7.ph5",
+          "Arch": "x86_64",
+          "SrcName": "libsolv",
+          "SrcVersion": "0.7.22",
+          "SrcRelease": "7.ph5",
+          "Licenses": [
+            "BSD-2-Clause AND MIT AND BSD-3-Clause"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "expat-libs@2.7.4-1.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "rpm-libs@4.18.2-8.ph5.x86_64",
+            "zlib@1.2.13-5.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:a588089b82ed59760cdae35037d714a9",
+          "InstalledFiles": [
+            "/usr/bin/deltainfoxml2solv",
+            "/usr/bin/dumpsolv",
+            "/usr/bin/installcheck",
+            "/usr/bin/mergesolv",
+            "/usr/bin/repo2solv",
+            "/usr/bin/repomdxml2solv",
+            "/usr/bin/rpmdb2solv",
+            "/usr/bin/rpmmd2solv",
+            "/usr/bin/rpms2solv",
+            "/usr/bin/testsolv",
+            "/usr/bin/updateinfoxml2solv",
+            "/usr/lib/libsolv.so.1",
+            "/usr/lib/libsolvext.so.1",
+            "/usr/share/man/man1/deltainfoxml2solv.1.gz",
+            "/usr/share/man/man1/dumpsolv.1.gz",
+            "/usr/share/man/man1/installcheck.1.gz",
+            "/usr/share/man/man1/mergesolv.1.gz",
+            "/usr/share/man/man1/repo2solv.1.gz",
+            "/usr/share/man/man1/repomdxml2solv.1.gz",
+            "/usr/share/man/man1/rpmdb2solv.1.gz",
+            "/usr/share/man/man1/rpmmd2solv.1.gz",
+            "/usr/share/man/man1/rpms2solv.1.gz",
+            "/usr/share/man/man1/solv.1.gz",
+            "/usr/share/man/man1/testsolv.1.gz",
+            "/usr/share/man/man1/updateinfoxml2solv.1.gz"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "libssh2@1.11.0-4.ph5.x86_64",
+          "Name": "libssh2",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/libssh2@1.11.0-4.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "6e5f5e8e54ac3ea"
+          },
+          "Version": "1.11.0",
+          "Release": "4.ph5",
+          "Arch": "x86_64",
+          "SrcName": "libssh2",
+          "SrcVersion": "1.11.0",
+          "SrcRelease": "4.ph5",
+          "Licenses": [
+            "ISC AND MIT AND FSFUL AND GPL-2.0-or-later AND BSD-2-Clause AND FSFULLRWD AND BSD-3-Clause AND (GPL-1.0-or-later WITH Autoconf-exception-generic) AND X11 AND (GPL-2.0-or-later WITH Autoconf-exception-generic) AND GPL-2.0-only AND (GPL-3.0-or-later WITH Autoconf-exception-generic-3.0) AND FSFULLR AND (GPL-2.0-or-later WITH Libtool-exception) AND SSH-short"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "openssl-libs@3.0.18-2.ph5.x86_64",
+            "zlib@1.2.13-5.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:a9382519ab1132d3ea8fefa997e51868",
+          "InstalledFiles": [
+            "/usr/lib/libssh2.so.1",
+            "/usr/lib/libssh2.so.1.0.1"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "libtirpc@1.3.3-4.ph5.x86_64",
+          "Name": "libtirpc",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/libtirpc@1.3.3-4.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "d2af6033a79d0696"
+          },
+          "Version": "1.3.3",
+          "Release": "4.ph5",
+          "Arch": "x86_64",
+          "SrcName": "libtirpc",
+          "SrcVersion": "1.3.3",
+          "SrcRelease": "4.ph5",
+          "Licenses": [
+            "BSD-2-Clause AND MIT AND X11 AND GPL-2.0-or-later WITH Autoconf-exception-generic AND BSD-3-Clause AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND GPL-2.0-or-later WITH Libtool-exception AND GPL-3.0-or-later WITH Autoconf-exception-2.0 AND BSD-4-Clause AND FSFUL AND GPL-2.0-or-later AND FSFULLR AND FSFULLRWD AND LGPL-2.1-or-later AND GPL-2.0-only"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "e2fsprogs-libs@1.46.5-5.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "krb5@1.20.2-10.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:73daf11b49f977fe650adf75be25e093",
+          "InstalledFiles": [
+            "/etc/bindresvport.blacklist",
+            "/etc/netconfig",
+            "/usr/lib/libtirpc.so.3",
+            "/usr/lib/libtirpc.so.3.0.0",
+            "/usr/share/man/man5/netconfig.5.gz"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "libxcrypt@4.4.36-3.ph5.x86_64",
+          "Name": "libxcrypt",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/libxcrypt@4.4.36-3.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "b798ac3c7f38dfbd"
+          },
+          "Version": "4.4.36",
+          "Release": "3.ph5",
+          "Arch": "x86_64",
+          "SrcName": "libxcrypt",
+          "SrcVersion": "4.4.36",
+          "SrcRelease": "3.ph5",
+          "Licenses": [
+            "LGPL-2.1"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:9e3189e6c475326bd9e233ce8d218c9f",
+          "InstalledFiles": [
+            "/usr/lib/libcrypt.so.1",
+            "/usr/lib/libcrypt.so.1.1.0"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "lua-libs@5.4.6-3.ph5.x86_64",
+          "Name": "lua-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/lua-libs@5.4.6-3.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "c8b30f86efa5bec9"
+          },
+          "Version": "5.4.6",
+          "Release": "3.ph5",
+          "Arch": "x86_64",
+          "SrcName": "lua",
+          "SrcVersion": "5.4.6",
+          "SrcRelease": "3.ph5",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:09ec8d847e1ed50a3aab6e3f61e28a3e",
+          "InstalledFiles": [
+            "/usr/lib/liblua.so.5.4",
+            "/usr/lib/liblua.so.5.4.6"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "ncurses-libs@6.5-1.ph5.x86_64",
+          "Name": "ncurses-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/ncurses-libs@6.5-1.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "afe19e1b8aaeea15"
+          },
+          "Version": "6.5",
+          "Release": "1.ph5",
+          "Arch": "x86_64",
+          "SrcName": "ncurses",
+          "SrcVersion": "6.5",
+          "SrcRelease": "1.ph5",
+          "Licenses": [
+            "SMLNJ AND MIT AND X11 AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND BSD-3-Clause AND FSFUL AND X11-distribute-modifications-variant AND BSD-4-Clause-UC AND HPND-Markus-Kuhn AND HPND"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:a913a4d8029f230db1dbdb417517a2ab",
+          "InstalledFiles": [
+            "/usr/lib/libformw.so.6",
+            "/usr/lib/libformw.so.6.5",
+            "/usr/lib/libmenuw.so.6",
+            "/usr/lib/libmenuw.so.6.5",
+            "/usr/lib/libncurses.so.6",
+            "/usr/lib/libncursesw.so.6",
+            "/usr/lib/libncursesw.so.6.5",
+            "/usr/lib/libpanelw.so.6",
+            "/usr/lib/libpanelw.so.6.5",
+            "/usr/lib/libtinfo.so.6",
+            "/usr/lib/libtinfo.so.6.5",
+            "/usr/lib/terminfo",
+            "/usr/share/tabset/std",
+            "/usr/share/tabset/stdcrt",
+            "/usr/share/tabset/vt100",
+            "/usr/share/tabset/vt300",
+            "/usr/share/terminfo/l/linux"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "nspr@4.33-3.ph5.x86_64",
+          "Name": "nspr",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/nspr@4.33-3.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "7ea8eb0273ebdbd1"
+          },
+          "Version": "4.33",
+          "Release": "3.ph5",
+          "Arch": "x86_64",
+          "SrcName": "nspr",
+          "SrcVersion": "4.33",
+          "SrcRelease": "3.ph5",
+          "Licenses": [
+            "MPL-2.0 AND BSD-3-Clause AND ISC AND (MPL-2.0 OR GPL-2.0-only) AND NTP AND FSFUL AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND dtoa AND Beerware AND HPND"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:ad3fdf4d327f6204217623009ab80b12",
+          "InstalledFiles": [
+            "/usr/bin/nspr-config",
+            "/usr/lib/libnspr4.so",
+            "/usr/lib/libplc4.so",
+            "/usr/lib/libplds4.so"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "nss-libs@3.78-11.ph5.x86_64",
+          "Name": "nss-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/nss-libs@3.78-11.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "ba7d3638cf1d9e1"
+          },
+          "Version": "3.78",
+          "Release": "11.ph5",
+          "Arch": "x86_64",
+          "SrcName": "nss",
+          "SrcVersion": "3.78",
+          "SrcRelease": "11.ph5",
+          "Licenses": [
+            "BSD-3-Clause AND LGPL-2.1-or-later AND CC0-1.0 AND blessing AND MPL-2.0 AND Zlib AND Apache-2.0 AND GPL-2.0-only AND (MPL-1.1 OR GPL-2.0-or-later OR LGPL-2.1-or-later) AND MPL-1.0 AND (BSD-3-Clause OR GPL-1.0-or-later) AND MIT AND Vim AND BSD-3-Clause-No-Nuclear-Warranty AND (MPL-2.0 OR GPL-2.0-only) AND (GPL-2.0-only OR LGPL-2.1-only OR MPL-1.1) AND LGPL-2.1-only AND GPL-1.0-or-later AND GPL-2.0-or-later"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "nspr@4.33-3.ph5.x86_64",
+            "sqlite-libs@3.43.2-5.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:86a49d61b8b187c9ad3e6ebb00fc2a27",
+          "InstalledFiles": [
+            "/usr/lib/libfreeblpriv3.chk",
+            "/usr/lib/libfreeblpriv3.so",
+            "/usr/lib/libnss3.so",
+            "/usr/lib/libnssutil3.so",
+            "/usr/lib/libsoftokn3.chk",
+            "/usr/lib/libsoftokn3.so"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "openssl@3.0.18-2.ph5.x86_64",
+          "Name": "openssl",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/openssl@3.0.18-2.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "d30d735c4786ae8b"
+          },
+          "Version": "3.0.18",
+          "Release": "2.ph5",
+          "Arch": "x86_64",
+          "SrcName": "openssl",
+          "SrcVersion": "3.0.18",
+          "SrcRelease": "2.ph5",
+          "Licenses": [
+            "(Artistic-1.0 OR GPL-1.0-or-later) AND (Artistic-1.0-Perl OR GPL-1.0-or-later) AND (Artistic-1.0-Perl OR GPL-1.0-or-later) AND (BSD-2-Clause OR OpenSSL) AND (BSD-3-Clause OR GPL-1.0-or-later OR GPL-2.0-only OR OpenSSL) AND (BSD-3-Clause OR GPL-1.0-or-later OR OpenSSL) AND (BSD-3-Clause OR GPL-2.0-or-later OR LGPL-2.1-or-later OR MPL-1.1) AND (BSD-3-Clause OR OpenSSL) AND Apache-2.0 AND Artistic-1.0 AND BSD-2-Clause AND BSD-3-Clause AND BSD-Source-Code AND CC0-1.0 AND GPL-1.0-only AND OpenSSL AND snprintf"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64",
+            "libgcc@12.2.0-9.ph5.x86_64",
+            "openssl-libs@3.0.18-2.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:4a4f164de67479b066a79da689701570",
+          "InstalledFiles": [
+            "/usr/bin/openssl"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "openssl-libs@3.0.18-2.ph5.x86_64",
+          "Name": "openssl-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/openssl-libs@3.0.18-2.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "f0dd9442ce6430c"
+          },
+          "Version": "3.0.18",
+          "Release": "2.ph5",
+          "Arch": "x86_64",
+          "SrcName": "openssl",
+          "SrcVersion": "3.0.18",
+          "SrcRelease": "2.ph5",
+          "Licenses": [
+            "(Artistic-1.0 OR GPL-1.0-or-later) AND (Artistic-1.0-Perl OR GPL-1.0-or-later) AND (Artistic-1.0-Perl OR GPL-1.0-or-later) AND (BSD-2-Clause OR OpenSSL) AND (BSD-3-Clause OR GPL-1.0-or-later OR GPL-2.0-only OR OpenSSL) AND (BSD-3-Clause OR GPL-1.0-or-later OR OpenSSL) AND (BSD-3-Clause OR GPL-2.0-or-later OR LGPL-2.1-or-later OR MPL-1.1) AND (BSD-3-Clause OR OpenSSL) AND Apache-2.0 AND Artistic-1.0 AND BSD-2-Clause AND BSD-3-Clause AND BSD-Source-Code AND CC0-1.0 AND GPL-1.0-only AND OpenSSL AND snprintf"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:cb7ff1340849a323e1990aa61b326d62",
+          "InstalledFiles": [
+            "/etc/ssl/certs",
+            "/etc/ssl/ct_log_list.cnf",
+            "/etc/ssl/ct_log_list.cnf.dist",
+            "/etc/ssl/distro.cnf",
+            "/etc/ssl/openssl.cnf",
+            "/etc/ssl/openssl.cnf.dist",
+            "/etc/ssl/private",
+            "/etc/ssl/provider_default.cnf",
+            "/etc/ssl/user.cnf",
+            "/usr/lib/engines-3/afalg.so",
+            "/usr/lib/engines-3/capi.so",
+            "/usr/lib/engines-3/loader_attic.so",
+            "/usr/lib/engines-3/padlock.so",
+            "/usr/lib/libcrypto.so.3",
+            "/usr/lib/libssl.so.3",
+            "/usr/lib/ossl-modules/jitterentropy.so",
+            "/usr/lib/ossl-modules/legacy.so"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "pcre2-libs@10.40-10.ph5.x86_64",
+          "Name": "pcre2-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/pcre2-libs@10.40-10.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "edd2a97c01edb4cd"
+          },
+          "Version": "10.40",
+          "Release": "10.ph5",
+          "Arch": "x86_64",
+          "SrcName": "pcre2",
+          "SrcVersion": "10.40",
+          "SrcRelease": "10.ph5",
+          "Licenses": [
+            "BSD-2-Clause AND MIT AND X11 AND GPL-2.0-or-later WITH Autoconf-exception-generic AND BSD-3-Clause AND GPL-2.0-or-later WITH Libtool-exception AND GPL-3.0-or-later WITH Autoconf-exception-macro AND FSFAP AND GPL-3.0-or-later AND GPL-1.0-or-later AND FSFUL AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND FSFULLR AND FSFULLRWD AND GPL-2.0-only"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:5659a80a6e183c676871cd2e971f2c5f",
+          "InstalledFiles": [
+            "/usr/lib/libpcre2-16.so.0",
+            "/usr/lib/libpcre2-16.so.0.11.0",
+            "/usr/lib/libpcre2-32.so.0",
+            "/usr/lib/libpcre2-32.so.0.11.0",
+            "/usr/lib/libpcre2-8.so.0",
+            "/usr/lib/libpcre2-8.so.0.11.0",
+            "/usr/lib/libpcre2-posix.so.3",
+            "/usr/lib/libpcre2-posix.so.3.0.2"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "photon-release@5.0-6.ph5.noarch",
+          "Name": "photon-release",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/photon-release@5.0-6.ph5?arch=noarch\u0026distro=photon-5.0",
+            "UID": "9fe50b29e0bc27af"
+          },
+          "Version": "5.0",
+          "Release": "6.ph5",
+          "Arch": "noarch",
+          "SrcName": "photon-release",
+          "SrcVersion": "5.0",
+          "SrcRelease": "6.ph5",
+          "Licenses": [
+            "Apache-2.0 OR GPL-2.0-only"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:fe37f8a50eb14962146fdd16f716310b",
+          "InstalledFiles": [
+            "/etc",
+            "/etc/issue",
+            "/etc/issue.net",
+            "/etc/lsb-release",
+            "/etc/os-release",
+            "/etc/photon-release",
+            "/usr/bin",
+            "/usr/bin/lsb_release",
+            "/usr/lib",
+            "/usr/lib/os-release"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "photon-repos@5.0-7.ph5.noarch",
+          "Name": "photon-repos",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/photon-repos@5.0-7.ph5?arch=noarch\u0026distro=photon-5.0",
+            "UID": "975b762de9a68e01"
+          },
+          "Version": "5.0",
+          "Release": "7.ph5",
+          "Arch": "noarch",
+          "SrcName": "photon-repos",
+          "SrcVersion": "5.0",
+          "SrcRelease": "7.ph5",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "photon-release@5.0-6.ph5.noarch"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:f0c33befa78e4d982765c22a25bb76ef",
+          "InstalledFiles": [
+            "/etc/pki/rpm-gpg/VMWARE-RPM-GPG-KEY",
+            "/etc/pki/rpm-gpg/VMWARE-RPM-GPG-KEY-4096",
+            "/etc/yum.repos.d",
+            "/etc/yum.repos.d/photon-debuginfo.repo",
+            "/etc/yum.repos.d/photon-extras.repo",
+            "/etc/yum.repos.d/photon-iso.repo",
+            "/etc/yum.repos.d/photon-release.repo",
+            "/etc/yum.repos.d/photon-srpms.repo",
+            "/etc/yum.repos.d/photon-updates.repo",
+            "/etc/yum.repos.d/photon.repo"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "popt@1.16-7.ph5.x86_64",
+          "Name": "popt",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/popt@1.16-7.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "f07d0132f1b3c857"
+          },
+          "Version": "1.16",
+          "Release": "7.ph5",
+          "Arch": "x86_64",
+          "SrcName": "popt",
+          "SrcVersion": "1.16",
+          "SrcRelease": "7.ph5",
+          "Licenses": [
+            "X11 AND GPL-2.0-or-later WITH Autoconf-exception-generic AND GPL-2.0-or-later WITH Libtool-exception AND LGPL-2.0-or-later AND (GPL-1.0-or-later AND LGPL-2.0-or-later) AND GPL-1.0-or-later AND FSFUL AND FSFULLR AND FSFULLRWD"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:3c212b620fab1419e1b796180607c9cd",
+          "InstalledFiles": [
+            "/usr/lib/libpopt.so.0",
+            "/usr/lib/libpopt.so.0.0.0"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "readline@8.2-8.ph5.x86_64",
+          "Name": "readline",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/readline@8.2-8.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "6493bbaca42cbb50"
+          },
+          "Version": "8.2",
+          "Release": "8.ph5",
+          "Arch": "x86_64",
+          "SrcName": "readline",
+          "SrcVersion": "8.2",
+          "SrcRelease": "8.ph5",
+          "Licenses": [
+            "BSD-3-Clause AND FSFUL AND FSFULLR AND FSFULLRWD AND GFDL-1.1-or-later AND GFDL-1.3-only AND GFDL-1.3-or-later AND GPL-1.0-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-2.0-or-later WITH Autoconf-exception-generic AND GPL-3.0-only AND GPL-3.0-or-later AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND GPL-3.0-or-later WITH Texinfo-exception AND HPND-Markus-Kuhn AND LGPL-2.1-or-later AND Latex2e AND Latex2e-translated-notice AND NTP"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64",
+            "ncurses-libs@6.5-1.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:660bb3dd1f33fb1499d1fab774b85778",
+          "InstalledFiles": [
+            "/usr/lib/libhistory.so.8",
+            "/usr/lib/libhistory.so.8.2",
+            "/usr/lib/libreadline.so.8",
+            "/usr/lib/libreadline.so.8.2"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "rpcsvc-proto@1.4.3-2.ph5.x86_64",
+          "Name": "rpcsvc-proto",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/rpcsvc-proto@1.4.3-2.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "ef18ae67c5821d34"
+          },
+          "Version": "1.4.3",
+          "Release": "2.ph5",
+          "Arch": "x86_64",
+          "SrcName": "rpcsvc-proto",
+          "SrcVersion": "1.4.3",
+          "SrcRelease": "2.ph5",
+          "Licenses": [
+            "X11 AND GPL-2.0-or-later WITH Autoconf-exception-generic AND BSD-3-Clause AND FSFAP AND FSFUL AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND FSFULLR AND FSFULLRWD"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:d27686a32a3c98d220063ee9e22b058a",
+          "InstalledFiles": [
+            "/usr/bin/rpcgen",
+            "/usr/share/man/man1/rpcgen.1.gz"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "rpm-libs@4.18.2-8.ph5.x86_64",
+          "Name": "rpm-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/rpm-libs@4.18.2-8.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "41d974f68bc5e491"
+          },
+          "Version": "4.18.2",
+          "Release": "8.ph5",
+          "Arch": "x86_64",
+          "SrcName": "rpm",
+          "SrcVersion": "4.18.2",
+          "SrcRelease": "8.ph5",
+          "Licenses": [
+            "FSFUL AND GPL-2.0-or-later AND FSFULLRWD AND BSD-3-Clause AND X11 AND CC-BY-2.5 AND GPL-3.0-only AND FSFULLR AND (GPL-2.0-or-later WITH Libtool-exception) AND CC0-1.0 AND GPL-1.0-or-later AND FSFAP AND Apache-1.0 AND LGPL-2.0-only AND LGPL-2.1-or-later AND MIT AND (GPL-2.0-only OR MIT) AND (GPL-1.0-or-later OR LGPL-2.0-or-later) AND LGPL-2.0-or-later AND OpenSSL AND ((GPL-2.0-only OR LGPL-2.0-only)) AND (GPL-2.0-or-later WITH Autoconf-exception-generic) AND GPL-2.0-only AND (GPL-3.0-or-later WITH Autoconf-exception-generic-3.0)"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "bzip2-libs@1.0.8-7.ph5.x86_64",
+            "elfutils-libelf@0.189-7.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64",
+            "libcap@2.66-4.ph5.x86_64",
+            "libgcc@12.2.0-9.ph5.x86_64",
+            "lua-libs@5.4.6-3.ph5.x86_64",
+            "nss-libs@3.78-11.ph5.x86_64",
+            "openssl-libs@3.0.18-2.ph5.x86_64",
+            "popt@1.16-7.ph5.x86_64",
+            "sqlite-libs@3.43.2-5.ph5.x86_64",
+            "xz-libs@5.4.0-5.ph5.x86_64",
+            "zlib@1.2.13-5.ph5.x86_64",
+            "zstd-libs@1.5.5-4.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:48aa061b512f1a8264f04171b4287902",
+          "InstalledFiles": [
+            "/etc/rpm/macros",
+            "/usr/bin/rpmdb",
+            "/usr/lib/librpm.so.9",
+            "/usr/lib/librpm.so.9.4.1",
+            "/usr/lib/librpmio.so.9",
+            "/usr/lib/librpmio.so.9.4.1",
+            "/usr/lib/rpm/macros",
+            "/usr/lib/rpm/rpmdb_dump",
+            "/usr/lib/rpm/rpmdb_load",
+            "/usr/lib/rpm/rpmrc"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "shadow@4.13-13.ph5.x86_64",
+          "Name": "shadow",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/shadow@4.13-13.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "3b18338582ddc920"
+          },
+          "Version": "4.13",
+          "Release": "13.ph5",
+          "Arch": "x86_64",
+          "SrcName": "shadow",
+          "SrcVersion": "4.13",
+          "SrcRelease": "13.ph5",
+          "Licenses": [
+            "BSD-2-Clause AND BSD-3-Clause AND GPL-3.0-or-later WITH Libtool-exception AND GPL-2.0-or-later WITH Libtool-exception AND GPL-3.0-or-later WITH Bison-exception-2.2 AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND 0BSD AND DOC AND GPL-2.0-or-later WITH Autoconf-exception-generic AND LGPL-2.0-or-later AND GPL-3.0-or-later AND BSD-4-Clause AND FSFULLR AND Unlicense AND X11 AND TCP-wrappers AND GPL-1.0-or-later AND FSFUL AND GPL-2.0-or-later AND FSFULLRWD"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "Linux-PAM@1.7.2-1.ph5.x86_64",
+            "bash@5.2-10.ph5.x86_64",
+            "cracklib@2.9.8-3.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "libpwquality@1.4.4-7.ph5.x86_64",
+            "libxcrypt@4.4.36-3.ph5.x86_64",
+            "openssl@3.0.18-2.ph5.x86_64",
+            "shadow-libs@4.13-13.ph5.x86_64",
+            "shadow-tools@4.13-13.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:196fdb5aa51861658d0370336d575499",
+          "InstalledFiles": [
+            "/etc/default/useradd",
+            "/etc/limits",
+            "/etc/login.access",
+            "/etc/login.defs",
+            "/etc/pam.d/chage",
+            "/etc/pam.d/chfn",
+            "/etc/pam.d/chgpasswd",
+            "/etc/pam.d/chpasswd",
+            "/etc/pam.d/chsh",
+            "/etc/pam.d/groupadd",
+            "/etc/pam.d/groupdel",
+            "/etc/pam.d/groupmems",
+            "/etc/pam.d/groupmod",
+            "/etc/pam.d/login",
+            "/etc/pam.d/newusers",
+            "/etc/pam.d/other",
+            "/etc/pam.d/passwd",
+            "/etc/pam.d/sshd",
+            "/etc/pam.d/su",
+            "/etc/pam.d/system-account",
+            "/etc/pam.d/system-auth",
+            "/etc/pam.d/system-password",
+            "/etc/pam.d/system-session",
+            "/etc/pam.d/useradd",
+            "/etc/pam.d/userdel",
+            "/etc/pam.d/usermod",
+            "/usr/bin/chage",
+            "/usr/bin/chfn",
+            "/usr/bin/chsh",
+            "/usr/bin/expiry",
+            "/usr/bin/faillog",
+            "/usr/bin/getsubids",
+            "/usr/bin/gpasswd",
+            "/usr/bin/lastlog",
+            "/usr/bin/newgidmap",
+            "/usr/bin/newgrp",
+            "/usr/bin/newuidmap",
+            "/usr/bin/sg",
+            "/usr/sbin/chgpasswd",
+            "/usr/sbin/chpasswd",
+            "/usr/sbin/groupadd",
+            "/usr/sbin/groupdel",
+            "/usr/sbin/groupmems",
+            "/usr/sbin/groupmod",
+            "/usr/sbin/grpck",
+            "/usr/sbin/grpconv",
+            "/usr/sbin/grpunconv",
+            "/usr/sbin/logoutd",
+            "/usr/sbin/newusers",
+            "/usr/sbin/nologin",
+            "/usr/sbin/pwck",
+            "/usr/sbin/pwconv",
+            "/usr/sbin/pwunconv",
+            "/usr/sbin/useradd",
+            "/usr/sbin/userdel",
+            "/usr/sbin/usermod",
+            "/usr/sbin/vigr",
+            "/usr/sbin/vipw"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "shadow-libs@4.13-13.ph5.x86_64",
+          "Name": "shadow-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/shadow-libs@4.13-13.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "f241d8adfa3d50b7"
+          },
+          "Version": "4.13",
+          "Release": "13.ph5",
+          "Arch": "x86_64",
+          "SrcName": "shadow",
+          "SrcVersion": "4.13",
+          "SrcRelease": "13.ph5",
+          "Licenses": [
+            "BSD-2-Clause AND BSD-3-Clause AND GPL-3.0-or-later WITH Libtool-exception AND GPL-2.0-or-later WITH Libtool-exception AND GPL-3.0-or-later WITH Bison-exception-2.2 AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND 0BSD AND DOC AND GPL-2.0-or-later WITH Autoconf-exception-generic AND LGPL-2.0-or-later AND GPL-3.0-or-later AND BSD-4-Clause AND FSFULLR AND Unlicense AND X11 AND TCP-wrappers AND GPL-1.0-or-later AND FSFUL AND GPL-2.0-or-later AND FSFULLRWD"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "Linux-PAM@1.7.2-1.ph5.x86_64",
+            "cracklib@2.9.8-3.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "libxcrypt@4.4.36-3.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:77167f5675fe33fdd4afd27b2aa3b733",
+          "InstalledFiles": [
+            "/usr/lib/libsubid.so.4",
+            "/usr/lib/libsubid.so.4.0.0"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "shadow-tools@4.13-13.ph5.x86_64",
+          "Name": "shadow-tools",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/shadow-tools@4.13-13.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "7e86ca1f01e01365"
+          },
+          "Version": "4.13",
+          "Release": "13.ph5",
+          "Arch": "x86_64",
+          "SrcName": "shadow",
+          "SrcVersion": "4.13",
+          "SrcRelease": "13.ph5",
+          "Licenses": [
+            "BSD-2-Clause AND BSD-3-Clause AND GPL-3.0-or-later WITH Libtool-exception AND GPL-2.0-or-later WITH Libtool-exception AND GPL-3.0-or-later WITH Bison-exception-2.2 AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND 0BSD AND DOC AND GPL-2.0-or-later WITH Autoconf-exception-generic AND LGPL-2.0-or-later AND GPL-3.0-or-later AND BSD-4-Clause AND FSFULLR AND Unlicense AND X11 AND TCP-wrappers AND GPL-1.0-or-later AND FSFUL AND GPL-2.0-or-later AND FSFULLRWD"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "Linux-PAM@1.7.2-1.ph5.x86_64",
+            "cracklib@2.9.8-3.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "shadow-libs@4.13-13.ph5.x86_64",
+            "shadow@4.13-13.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:b29711a50ff02ddf76d533f126a23924644f21ffb5c8e1243f3f058884eec2ef",
+            "DiffID": "sha256:4311346797978f019e36a4781d67f67b36013c62984d23e2d2ca19f014545de6"
+          },
+          "Digest": "md5:f170c0f9347add2bc0e9543d7ff15ee3",
+          "InstalledFiles": [
+            "/usr/bin/login",
+            "/usr/bin/passwd",
+            "/usr/bin/su"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "sqlite-libs@3.43.2-5.ph5.x86_64",
+          "Name": "sqlite-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/sqlite-libs@3.43.2-5.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "a37190bdb5747230"
+          },
+          "Version": "3.43.2",
+          "Release": "5.ph5",
+          "Arch": "x86_64",
+          "SrcName": "sqlite",
+          "SrcVersion": "3.43.2",
+          "SrcRelease": "5.ph5",
+          "Licenses": [
+            "BSD-2-Clause AND FSFAP AND FSFUL AND FSFULLR AND FSFULLRWD AND GPL-2.0-or-later WITH Libtool-exception AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND MIT AND NCSA AND NTP AND X11 AND blessing"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "zlib@1.2.13-5.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:454223312c43e2b9cde65138bed5db03",
+          "InstalledFiles": [
+            "/usr/lib/libsqlite3.so.0",
+            "/usr/lib/libsqlite3.so.0.8.6"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "tdnf@3.5.16-1.ph5.x86_64",
+          "Name": "tdnf",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/tdnf@3.5.16-1.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "e277bc6f7618373a"
+          },
+          "Version": "3.5.16",
+          "Release": "1.ph5",
+          "Arch": "x86_64",
+          "SrcName": "tdnf",
+          "SrcVersion": "3.5.16",
+          "SrcRelease": "1.ph5",
+          "Licenses": [
+            "LGPL-2.1-only AND LGPL-2.1-or-later AND GPL-2.0-only AND BSD-3-Clause"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "curl-libs@8.18.0-1.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "libsolv@0.7.22-7.ph5.x86_64",
+            "openssl-libs@3.0.18-2.ph5.x86_64",
+            "popt@1.16-7.ph5.x86_64",
+            "rpm-libs@4.18.2-8.ph5.x86_64",
+            "sqlite-libs@3.43.2-5.ph5.x86_64",
+            "tdnf-cli-libs@3.5.16-1.ph5.x86_64",
+            "zlib@1.2.13-5.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:bf2a3b7e5cf992a16cfd90ec6cff255a",
+          "InstalledFiles": [
+            "/etc/motdgen.d/02-tdnf-updateinfo.sh",
+            "/etc/tdnf/protected.d/tdnf.conf",
+            "/etc/tdnf/tdnf.conf",
+            "/usr/bin/tdnf",
+            "/usr/bin/tdnf-config",
+            "/usr/bin/tdnfj",
+            "/usr/bin/tyum",
+            "/usr/bin/yum",
+            "/usr/lib/libtdnf.so.3",
+            "/usr/lib/libtdnf.so.3.5.16",
+            "/usr/lib/sysimage/tdnf",
+            "/usr/lib/tdnf/tdnf-history-util",
+            "/usr/share/bash-completion/completions/tdnf",
+            "/var/cache/tdnf"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "tdnf-cli-libs@3.5.16-1.ph5.x86_64",
+          "Name": "tdnf-cli-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/tdnf-cli-libs@3.5.16-1.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "12cbb2567e4437fa"
+          },
+          "Version": "3.5.16",
+          "Release": "1.ph5",
+          "Arch": "x86_64",
+          "SrcName": "tdnf",
+          "SrcVersion": "3.5.16",
+          "SrcRelease": "1.ph5",
+          "Licenses": [
+            "LGPL-2.1-only AND LGPL-2.1-or-later AND GPL-2.0-only AND BSD-3-Clause"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:8048341f8bc704f1542bda7f1bf624e7",
+          "InstalledFiles": [
+            "/usr/lib/libtdnfcli.so.3",
+            "/usr/lib/libtdnfcli.so.3.5.16"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "toybox@0.8.9-10.ph5.x86_64",
+          "Name": "toybox",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/toybox@0.8.9-10.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "b9afb6d030ae8b9"
+          },
+          "Version": "0.8.9",
+          "Release": "10.ph5",
+          "Arch": "x86_64",
+          "SrcName": "toybox",
+          "SrcVersion": "0.8.9",
+          "SrcRelease": "10.ph5",
+          "Licenses": [
+            "BSD-2-Clause AND Unlicense AND GPL-3.0-only AND (BSD-3-Clause OR GPL-1.0-or-later) AND BSD-3-Clause AND Apache-2.0 AND LGPL-2.0-or-later AND GPL-2.0-only AND GPL-2.0-or-later AND CC0-1.0 AND 0BSD AND GPL-2.0-or-later WITH Bison-exception-1.24"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "bash@5.2-10.ph5.x86_64",
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "libxcrypt@4.4.36-3.ph5.x86_64",
+            "openssl-libs@3.0.18-2.ph5.x86_64",
+            "zlib@1.2.13-5.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:4bb005f202bff9fa4741fadde95771ee",
+          "InstalledFiles": [
+            "/usr/bin/[",
+            "/usr/bin/acpi",
+            "/usr/bin/arp",
+            "/usr/bin/base64",
+            "/usr/bin/basename",
+            "/usr/bin/bash",
+            "/usr/bin/bunzip2",
+            "/usr/bin/bzcat",
+            "/usr/bin/cal",
+            "/usr/bin/cat",
+            "/usr/bin/chattr",
+            "/usr/bin/chgrp",
+            "/usr/bin/chmod",
+            "/usr/bin/chown",
+            "/usr/bin/chvt",
+            "/usr/bin/cksum",
+            "/usr/bin/cmp",
+            "/usr/bin/comm",
+            "/usr/bin/count",
+            "/usr/bin/cp",
+            "/usr/bin/cpio",
+            "/usr/bin/cut",
+            "/usr/bin/date",
+            "/usr/bin/df",
+            "/usr/bin/dirname",
+            "/usr/bin/dmesg",
+            "/usr/bin/dos2unix",
+            "/usr/bin/du",
+            "/usr/bin/echo",
+            "/usr/bin/egrep",
+            "/usr/bin/eject",
+            "/usr/bin/env",
+            "/usr/bin/expand",
+            "/usr/bin/factor",
+            "/usr/bin/fallocate",
+            "/usr/bin/false",
+            "/usr/bin/fgrep",
+            "/usr/bin/file",
+            "/usr/bin/find",
+            "/usr/bin/flock",
+            "/usr/bin/free",
+            "/usr/bin/fstype",
+            "/usr/bin/fsync",
+            "/usr/bin/ftpget",
+            "/usr/bin/ftpput",
+            "/usr/bin/grep",
+            "/usr/bin/groups",
+            "/usr/bin/gunzip",
+            "/usr/bin/gzip",
+            "/usr/bin/head",
+            "/usr/bin/help",
+            "/usr/bin/hexedit",
+            "/usr/bin/host",
+            "/usr/bin/hostname",
+            "/usr/bin/id",
+            "/usr/bin/ifconfig",
+            "/usr/bin/inotifyd",
+            "/usr/bin/install",
+            "/usr/bin/ionice",
+            "/usr/bin/iorenice",
+            "/usr/bin/kill",
+            "/usr/bin/killall",
+            "/usr/bin/link",
+            "/usr/bin/ln",
+            "/usr/bin/logger",
+            "/usr/bin/login",
+            "/usr/bin/logname",
+            "/usr/bin/ls",
+            "/usr/bin/lsattr",
+            "/usr/bin/lspci",
+            "/usr/bin/lsusb",
+            "/usr/bin/makedevs",
+            "/usr/bin/md5sum",
+            "/usr/bin/microcom",
+            "/usr/bin/mix",
+            "/usr/bin/mkdir",
+            "/usr/bin/mkfifo",
+            "/usr/bin/mknod",
+            "/usr/bin/mkpasswd",
+            "/usr/bin/mktemp",
+            "/usr/bin/mount",
+            "/usr/bin/mountpoint",
+            "/usr/bin/mv",
+            "/usr/bin/nbd-client",
+            "/usr/bin/nc",
+            "/usr/bin/netcat",
+            "/usr/bin/netstat",
+            "/usr/bin/nice",
+            "/usr/bin/nl",
+            "/usr/bin/nohup",
+            "/usr/bin/nproc",
+            "/usr/bin/nsenter",
+            "/usr/bin/od",
+            "/usr/bin/passwd",
+            "/usr/bin/paste",
+            "/usr/bin/patch",
+            "/usr/bin/pgrep",
+            "/usr/bin/pidof",
+            "/usr/bin/ping",
+            "/usr/bin/ping6",
+            "/usr/bin/pkill",
+            "/usr/bin/pmap",
+            "/usr/bin/printenv",
+            "/usr/bin/printf",
+            "/usr/bin/ps",
+            "/usr/bin/pwd",
+            "/usr/bin/pwdx",
+            "/usr/bin/readahead",
+            "/usr/bin/readlink",
+            "/usr/bin/realpath",
+            "/usr/bin/renice",
+            "/usr/bin/rev",
+            "/usr/bin/rm",
+            "/usr/bin/rmdir",
+            "/usr/bin/sed",
+            "/usr/bin/seq",
+            "/usr/bin/setsid",
+            "/usr/bin/sh",
+            "/usr/bin/sha1sum",
+            "/usr/bin/sha224sum",
+            "/usr/bin/sha256sum",
+            "/usr/bin/sha384sum",
+            "/usr/bin/sha512sum",
+            "/usr/bin/shred",
+            "/usr/bin/sleep",
+            "/usr/bin/sort",
+            "/usr/bin/split",
+            "/usr/bin/stat",
+            "/usr/bin/stty",
+            "/usr/bin/su",
+            "/usr/bin/sync",
+            "/usr/bin/tac",
+            "/usr/bin/tail",
+            "/usr/bin/tar",
+            "/usr/bin/taskset",
+            "/usr/bin/tee",
+            "/usr/bin/test",
+            "/usr/bin/time",
+            "/usr/bin/timeout",
+            "/usr/bin/top",
+            "/usr/bin/touch",
+            "/usr/bin/toybox",
+            "/usr/bin/toybox-toys",
+            "/usr/bin/toysh",
+            "/usr/bin/traceroute",
+            "/usr/bin/traceroute6",
+            "/usr/bin/true",
+            "/usr/bin/truncate",
+            "/usr/bin/tty",
+            "/usr/bin/tunctl",
+            "/usr/bin/umount",
+            "/usr/bin/uname",
+            "/usr/bin/uniq",
+            "/usr/bin/unix2dos",
+            "/usr/bin/unlink",
+            "/usr/bin/uptime",
+            "/usr/bin/uudecode",
+            "/usr/bin/uuencode",
+            "/usr/bin/vmstat",
+            "/usr/bin/w",
+            "/usr/bin/wc",
+            "/usr/bin/wget",
+            "/usr/bin/which",
+            "/usr/bin/who",
+            "/usr/bin/whoami",
+            "/usr/bin/xargs",
+            "/usr/bin/xxd",
+            "/usr/bin/yes",
+            "/usr/bin/zcat",
+            "/usr/sbin/arping",
+            "/usr/sbin/blkid",
+            "/usr/sbin/blockdev",
+            "/usr/sbin/chroot",
+            "/usr/sbin/dhcp",
+            "/usr/sbin/freeramdisk",
+            "/usr/sbin/fsfreeze",
+            "/usr/sbin/halt",
+            "/usr/sbin/httpd",
+            "/usr/sbin/hwclock",
+            "/usr/sbin/insmod",
+            "/usr/sbin/iotop",
+            "/usr/sbin/ip",
+            "/usr/sbin/ipaddr",
+            "/usr/sbin/iplink",
+            "/usr/sbin/iproute",
+            "/usr/sbin/iprule",
+            "/usr/sbin/iptunnel",
+            "/usr/sbin/killall5",
+            "/usr/sbin/losetup",
+            "/usr/sbin/lsmod",
+            "/usr/sbin/mkswap",
+            "/usr/sbin/modinfo",
+            "/usr/sbin/oneit",
+            "/usr/sbin/partprobe",
+            "/usr/sbin/pivot_root",
+            "/usr/sbin/poweroff",
+            "/usr/sbin/reboot",
+            "/usr/sbin/rfkill",
+            "/usr/sbin/rmmod",
+            "/usr/sbin/swapoff",
+            "/usr/sbin/swapon",
+            "/usr/sbin/switch_root",
+            "/usr/sbin/sysctl",
+            "/usr/sbin/vconfig"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "xz-libs@5.4.0-5.ph5.x86_64",
+          "Name": "xz-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/xz-libs@5.4.0-5.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "68538ba5527cc193"
+          },
+          "Version": "5.4.0",
+          "Release": "5.ph5",
+          "Arch": "x86_64",
+          "SrcName": "xz",
+          "SrcVersion": "5.4.0",
+          "SrcRelease": "5.ph5",
+          "Licenses": [
+            "GPL-3.0-only AND MIT AND X11 AND GPL-2.0-or-later WITH Autoconf-exception-generic AND BSD-3-Clause AND GPL-3.0-or-later WITH Autoconf-exception-generic-3.0 AND GPL-2.0-or-later WITH Libtool-exception AND GPL-3.0-or-later WITH Autoconf-exception-2.0 AND FSFAP AND GPL-3.0-or-later AND GPL-2.0-only AND FSFUL AND GPL-2.0-or-later AND FSFULLR AND FSFULLRWD AND LGPL-2.1-or-later AND LGPL-2.1-only"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:5d8f7498db63efac0334bca491a21d87",
+          "InstalledFiles": [
+            "/usr/lib/liblzma.so.5",
+            "/usr/lib/liblzma.so.5.4.0"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "zlib@1.2.13-5.ph5.x86_64",
+          "Name": "zlib",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/zlib@1.2.13-5.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "b7451c5b1c655c71"
+          },
+          "Version": "1.2.13",
+          "Release": "5.ph5",
+          "Arch": "x86_64",
+          "SrcName": "zlib",
+          "SrcVersion": "1.2.13",
+          "SrcRelease": "5.ph5",
+          "Licenses": [
+            "GPL-2.0-or-later WITH GNAT-exception AND Zlib AND LPD-document AND GPL-1.0-or-later AND BSL-1.0"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:0890c235a556d7a450a1df2dd4484fe5",
+          "InstalledFiles": [
+            "/usr/lib/libz.so.1",
+            "/usr/lib/libz.so.1.2.13"
+          ],
+          "AnalyzedBy": "rpm"
+        },
+        {
+          "ID": "zstd-libs@1.5.5-4.ph5.x86_64",
+          "Name": "zstd-libs",
+          "Identifier": {
+            "PURL": "pkg:rpm/photon/zstd-libs@1.5.5-4.ph5?arch=x86_64\u0026distro=photon-5.0",
+            "UID": "7859ea9489152e43"
+          },
+          "Version": "1.5.5",
+          "Release": "4.ph5",
+          "Arch": "x86_64",
+          "SrcName": "zstd",
+          "SrcVersion": "1.5.5",
+          "SrcRelease": "4.ph5",
+          "Licenses": [
+            "BSD-2-Clause AND MIT AND GPL-2.0-or-later WITH Autoconf-exception-generic AND BSD-3-Clause AND (GPL-2.0-only OR BSD-3-Clause) AND Zlib AND (GPL-2.0-or-later AND BSD-3-Clause) AND (MIT OR CC0-1.0) AND LPD-document AND (BSD-3-Clause OR GPL-2.0-only) AND GPL-3.0-or-later AND GPL-2.0-only AND CC0-1.0 AND (GPL-2.0-or-later OR BSD-3-Clause) AND (GPL-2.0-or-later OR BSD-3-Clause)"
+          ],
+          "Maintainer": "VMware, Inc.",
+          "Repository": {
+            "Class": "official"
+          },
+          "DependsOn": [
+            "glibc-libs@2.36-22.ph5.x86_64",
+            "glibc@2.36-22.ph5.x86_64"
+          ],
+          "Layer": {
+            "Digest": "sha256:f32f037feefe20936642c5e340e8c64d93058451336cb65f19d013394bb72823",
+            "DiffID": "sha256:ff7b01873518ca998eb8fb59b6878c1347d88407f5736b51b718a2f213d9f08b"
+          },
+          "Digest": "md5:dea07be66d571b7bc084d7040d5f8cf0",
+          "InstalledFiles": [
+            "/usr/lib/libzstd.so.1",
+            "/usr/lib/libzstd.so.1.5.5"
+          ],
+          "AnalyzedBy": "rpm"
+        }
+      ]
+    },
+    {
+      "Target": "usr/bin/registry_DO_NOT_USE_GC",
+      "Class": "lang-pkgs",
+      "Type": "gobinary",
+      "Packages": [
+        {
+          "ID": "stdlib@v1.24.13",
+          "Name": "stdlib",
+          "Identifier": {
+            "PURL": "pkg:golang/stdlib@v1.24.13",
+            "UID": "d8928fc524d5ece6"
+          },
+          "Version": "v1.24.13",
+          "Relationship": "direct",
+          "Layer": {
+            "Digest": "sha256:4e584506034e69670d30ad525d62081243609e998ad5fd09c05ced01a78d4da0",
+            "DiffID": "sha256:d3c1f81907611f99eb823e0cb8fad91386c1ba6c41fe62e9d6bd30f44f49751a"
+          },
+          "AnalyzedBy": "gobinary"
+        }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2026-25679",
+          "VendorIDs": [
+            "GO-2026-4601"
+          ],
+          "PkgID": "stdlib@v1.24.13",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.24.13",
+            "UID": "d8928fc524d5ece6"
+          },
+          "InstalledVersion": "v1.24.13",
+          "FixedVersion": "1.25.8, 1.26.1",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:4e584506034e69670d30ad525d62081243609e998ad5fd09c05ced01a78d4da0",
+            "DiffID": "sha256:d3c1f81907611f99eb823e0cb8fad91386c1ba6c41fe62e9d6bd30f44f49751a"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-25679",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:acc1628bb531d5e1248a10a39fe042f02f6b2465d554ac19b6ca89d625080ce5",
+          "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
+          "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "bitnami": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-25679",
+            "https://go.dev/cl/752180",
+            "https://go.dev/issue/77578",
+            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-25679",
+            "https://pkg.go.dev/vuln/GO-2026-4601",
+            "https://www.cve.org/CVERecord?id=CVE-2026-25679"
+          ],
+          "PublishedDate": "2026-03-06T22:16:00.72Z",
+          "LastModifiedDate": "2026-03-10T18:18:37.74Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-27142",
+          "VendorIDs": [
+            "GO-2026-4603"
+          ],
+          "PkgID": "stdlib@v1.24.13",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.24.13",
+            "UID": "d8928fc524d5ece6"
+          },
+          "InstalledVersion": "v1.24.13",
+          "FixedVersion": "1.25.8, 1.26.1",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:4e584506034e69670d30ad525d62081243609e998ad5fd09c05ced01a78d4da0",
+            "DiffID": "sha256:d3c1f81907611f99eb823e0cb8fad91386c1ba6c41fe62e9d6bd30f44f49751a"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27142",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:14206b139a167d3c185eb920ff6dbc408aef8554125e42768a1d0f5cfba46176",
+          "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
+          "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "bitnami": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+              "V3Score": 5.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-27142",
+            "https://go.dev/cl/752081",
+            "https://go.dev/issue/77954",
+            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27142",
+            "https://pkg.go.dev/vuln/GO-2026-4603",
+            "https://www.cve.org/CVERecord?id=CVE-2026-27142"
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.177Z",
+          "LastModifiedDate": "2026-03-10T18:18:44.607Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-27139",
+          "VendorIDs": [
+            "GO-2026-4602"
+          ],
+          "PkgID": "stdlib@v1.24.13",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.24.13",
+            "UID": "d8928fc524d5ece6"
+          },
+          "InstalledVersion": "v1.24.13",
+          "FixedVersion": "1.25.8, 1.26.1",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:4e584506034e69670d30ad525d62081243609e998ad5fd09c05ced01a78d4da0",
+            "DiffID": "sha256:d3c1f81907611f99eb823e0cb8fad91386c1ba6c41fe62e9d6bd30f44f49751a"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27139",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:b8d832384927a76ee806a02935432475ecb00c08683d50640c3ec6da60bcef5b",
+          "Title": "os: FileInfo can escape from a Root in golang os module",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Severity": "LOW",
+          "VendorSeverity": {
+            "bitnami": 1,
+            "redhat": 1
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 2.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 2.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-27139",
+            "https://go.dev/cl/749480",
+            "https://go.dev/issue/77827",
+            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27139",
+            "https://pkg.go.dev/vuln/GO-2026-4602",
+            "https://www.cve.org/CVERecord?id=CVE-2026-27139"
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-09T15:15:57.15Z"
+        }
+      ]
+    }
+  ]
+}
