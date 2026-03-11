@@ -66,6 +66,7 @@ export const fullCatalog: FullCatalogCategory[] = [
       { name: "haproxy", source: "integer" },
       { name: "traefik", source: "integer" },
       { name: "envoy", source: "integer" },
+      { name: "caddy", source: "integer", variants: ["default", "fips"] },
       { name: "nginx-s3-gateway", source: "copa", upstream: "ghcr.io/nginxinc/nginx-s3-gateway" },
       { name: "haproxy-ingress", source: "copa", upstream: "quay.io/jcmoraisjr/haproxy-ingress" },
       {
@@ -159,6 +160,7 @@ export const fullCatalog: FullCatalogCategory[] = [
       },
       { name: "strimzi-kafka", source: "copa", upstream: "quay.io/strimzi/kafka" },
       { name: "nats", source: "integer" },
+      { name: "kafka", source: "integer" },
       { name: "zookeeper", source: "copa", upstream: "mirror.gcr.io/library/zookeeper" },
     ],
   },
