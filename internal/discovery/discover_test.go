@@ -504,7 +504,7 @@ YAML
 	// Excluded:
 	// - chart "prometheus" (in exclude set, nameFromRef match)
 	// - chart "library-rabbitmq" (in exclude set via basename "rabbitmq")
-	var names []string
+	names := make([]string, 0, len(got))
 	for _, img := range got {
 		names = append(names, img.Name)
 	}
@@ -572,9 +572,9 @@ func TestIsExcluded(t *testing.T) {
 	exclude := map[string]struct{}{"prometheus": {}, "rabbitmq": {}}
 
 	tests := []struct {
-		name   string
-		img    DiscoveredImage
-		want   bool
+		name string
+		img  DiscoveredImage
+		want bool
 	}{
 		{
 			name: "exact nameFromRef match",
