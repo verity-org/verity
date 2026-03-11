@@ -48,6 +48,10 @@ var DiscoverCommand = &cli.Command{
 			Name:  "only",
 			Usage: "Comma-separated list of image names to include (empty = all)",
 		},
+		&cli.StringFlag{
+			Name:  "exclude-names",
+			Usage: "Comma-separated image names to exclude from chart discovery (e.g., Integer/Wolfi image names)",
+		},
 		&cli.BoolFlag{
 			Name:  "preflight",
 			Usage: "Enable preflight digest-based skip logic (compares upstream digests with manifest)",
@@ -86,7 +90,19 @@ var DiscoverCommand = &cli.Command{
 		} else {
 			maps.Copy(overrides, vc.Overrides)
 		}
-		images, err := discovery.Discover(cfg, c.String("target-registry"), overrides)
+		// Parse --exclude-names into a set for chart image filtering.
+		var excludeNames map[string]struct{}
+		if exc := c.String("exclude-names"); exc != "" {
+			excludeNames = make(map[string]struct{})
+			for n := range strings.SplitSeq(exc, ",") {
+				n = strings.TrimSpace(n)
+				if n != "" {
+					excludeNames[n] = struct{}{}
+				}
+			}
+		}
+
+		images, err := discovery.Discover(cfg, c.String("target-registry"), overrides, excludeNames)
 		if err != nil {
 			return fmt.Errorf("failed to discover images: %w", err)
 		}

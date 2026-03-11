@@ -313,7 +313,7 @@ func TestDiscover_StandaloneOnly(t *testing.T) {
 		},
 	}
 
-	got, err := Discover(cfg, "", nil)
+	got, err := Discover(cfg, "", nil, nil)
 	if err != nil {
 		t.Fatalf("Discover() error = %v", err)
 	}
@@ -342,7 +342,7 @@ func TestDiscover_TargetRegistryOverride(t *testing.T) {
 		},
 	}
 
-	got, err := Discover(cfg, "ghcr.io/override-org", nil)
+	got, err := Discover(cfg, "ghcr.io/override-org", nil, nil)
 	if err != nil {
 		t.Fatalf("Discover() error = %v", err)
 	}
@@ -373,7 +373,7 @@ func TestDiscover_Deduplication(t *testing.T) {
 		},
 	}
 
-	got, err := Discover(cfg, "", nil)
+	got, err := Discover(cfg, "", nil, nil)
 	if err != nil {
 		t.Fatalf("Discover() error = %v", err)
 	}
@@ -405,7 +405,7 @@ func TestDiscover_ChartErrorContinues(t *testing.T) {
 		},
 	}
 
-	got, err := Discover(cfg, "", nil)
+	got, err := Discover(cfg, "", nil, nil)
 	if err != nil {
 		t.Fatalf("Discover() error = %v (should be nil even with chart failures)", err)
 	}
@@ -435,7 +435,7 @@ func TestDiscover_InvalidImageWarningContinues(t *testing.T) {
 		},
 	}
 
-	got, err := Discover(cfg, "", nil)
+	got, err := Discover(cfg, "", nil, nil)
 	if err != nil {
 		t.Fatalf("Discover() error = %v (should be nil even with image failures)", err)
 	}
@@ -443,5 +443,61 @@ func TestDiscover_InvalidImageWarningContinues(t *testing.T) {
 	// Only the good image should be discovered
 	if len(got) != 1 || got[0].Name != "good-image" {
 		t.Errorf("Discover() = %v, want [{good-image ...}]", got)
+	}
+}
+
+func TestDiscover_ExcludeChartNames(t *testing.T) {
+	// Chart-discovered images whose name matches an Integer image should be excluded.
+	// We can't use real helm charts in unit tests, so we test through the
+	// Discover function by verifying that standalone images are NOT excluded
+	// even when their name appears in the exclude set.
+	cfg := &config.CopaConfig{
+		Target: config.TargetSpec{Registry: "ghcr.io/verity-org"},
+		Images: []config.ImageSpec{
+			{
+				Name:  "prometheus",
+				Image: "mirror.gcr.io/library/prometheus",
+				Tags:  config.TagStrategy{Strategy: "list", List: []string{"v3.0.0"}},
+			},
+		},
+		// Add a chart that will fail (no real helm), but the standalone image should survive.
+		Charts: []config.ChartSpec{
+			{Name: "bogus", Version: "0.0.1", Repository: "https://nonexistent.invalid/charts"},
+		},
+	}
+
+	exclude := map[string]struct{}{"prometheus": {}}
+
+	got, err := Discover(cfg, "", nil, exclude)
+	if err != nil {
+		t.Fatalf("Discover() error = %v", err)
+	}
+
+	// Standalone image should NOT be excluded — only chart images are filtered.
+	if len(got) != 1 || got[0].Name != "prometheus" {
+		t.Errorf("Discover() = %v, want [{prometheus ...}] — standalone images must not be excluded", got)
+	}
+}
+
+func TestDiscover_ExcludeNamesNil(t *testing.T) {
+	// nil excludeNames should not affect anything.
+	cfg := &config.CopaConfig{
+		Target: config.TargetSpec{Registry: "ghcr.io/verity-org"},
+		Images: []config.ImageSpec{
+			{
+				Name:  testNginxName,
+				Image: "mirror.gcr.io/library/nginx",
+				Tags:  config.TagStrategy{Strategy: "list", List: []string{"1.25.3"}},
+			},
+		},
+	}
+
+	got, err := Discover(cfg, "", nil, nil)
+	if err != nil {
+		t.Fatalf("Discover() error = %v", err)
+	}
+
+	if len(got) != 1 || got[0].Name != testNginxName {
+		t.Errorf("Discover() = %v, want [{nginx ...}]", got)
 	}
 }

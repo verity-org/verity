@@ -24,7 +24,9 @@ type DiscoveredImage struct {
 // Discover enumerates all image+tag combos from the config.
 // If targetRegistry is non-empty it overrides the config-level registry.
 // overrides substitutes tag variants for chart-sourced images (from verity.yaml).
-func Discover(cfg *config.CopaConfig, targetRegistry string, overrides map[string]config.Override) ([]DiscoveredImage, error) {
+// excludeNames, when non-nil, causes chart-discovered images whose derived name
+// matches a key in the set to be skipped (used to avoid conflicts with Integer images).
+func Discover(cfg *config.CopaConfig, targetRegistry string, overrides map[string]config.Override, excludeNames map[string]struct{}) ([]DiscoveredImage, error) {
 	registry := targetRegistry
 	if registry == "" {
 		registry = cfg.Target.Registry
@@ -55,6 +57,12 @@ func Discover(cfg *config.CopaConfig, targetRegistry string, overrides map[strin
 			continue
 		}
 		for _, img := range imgs {
+			if excludeNames != nil {
+				if _, excluded := excludeNames[img.Name]; excluded {
+					fmt.Fprintf(os.Stderr, "Skipping chart image %q: name %q conflicts with Integer image\n", img.Source, img.Name)
+					continue
+				}
+			}
 			key := img.Name + "|" + img.Source
 			if _, exists := seen[key]; !exists {
 				seen[key] = struct{}{}
