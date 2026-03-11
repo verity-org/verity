@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019cd059-ba8e-7916-a3e5-682ef1ce1c8b",
-  "CreatedAt": "2026-03-09T02:07:47.342597058Z",
-  "ArtifactID": "sha256:70860587db9229fe6857c0f4418f98e775c4c90a36b3426d728a6c201699c6b6",
+  "ReportID": "019cded3-5123-7513-90f2-b2ae2ae5305b",
+  "CreatedAt": "2026-03-11T21:35:16.771334652Z",
+  "ArtifactID": "sha256:bddb42519246e4c39440150e3196d02cef278aca916768018f39528a01e19697",
   "ArtifactName": "ghcr.io/verity-org/cache:cockroach-v25.4.3-patched",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -14,7 +14,7 @@
       "Family": "redhat",
       "Name": "9.7"
     },
-    "ImageID": "sha256:b146ef667da49bd4ac2e9a9cd976083d398ab4a5eff56d928e1ecc34b4a9eb5a",
+    "ImageID": "sha256:036bd98ca54690e0d23828044a9673af784084073e32c80265960cdf2ccb96ba",
     "DiffIDs": [
       "sha256:4e140ff8bd9a23afd7615f9a56d0521b539df31404142c6e9fb61e24e5e6cdd4",
       "sha256:b4ee8942269d56e0748cdec480cd38d132d2a2ab8697eaecdeaf997ee48e53a9",
@@ -25,13 +25,13 @@
       "sha256:5e53882b1c3a016c77e96063427c3c2c85879dd9f7a19f5f67de67251df2ab87",
       "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
       "sha256:2b7717a2b1acb381d4164ab37a2cc162566790c5a2f62616b110fd39fb01bb44",
-      "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+      "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
     ],
     "RepoTags": [
       "ghcr.io/verity-org/cache:cockroach-v25.4.3-patched"
     ],
     "RepoDigests": [
-      "ghcr.io/verity-org/cache@sha256:c38a3f01c30c2650076322574c4ca707ec7150fe116fc4617d94752568252214"
+      "ghcr.io/verity-org/cache@sha256:1ad1e46cab53b56c61a4b3c84039ff48395c18a96a3d54098e87eb27733603b6"
     ],
     "Reference": "ghcr.io/verity-org/cache:cockroach-v25.4.3-patched",
     "ImageConfig": {
@@ -208,7 +208,7 @@
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-03-09T01:43:14.668596583Z",
+          "created": "2026-03-11T21:16:25.002430676Z",
           "created_by": "mount / from exec sh -c /usr/bin/microdnf update curl-minimal glib2 gnupg2 libcurl-minimal openssl-libs -y \u0026\u0026 /usr/bin/microdnf clean all",
           "comment": "buildkit.exporter.image.v0"
         }
@@ -226,7 +226,7 @@
           "sha256:5e53882b1c3a016c77e96063427c3c2c85879dd9f7a19f5f67de67251df2ab87",
           "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
           "sha256:2b7717a2b1acb381d4164ab37a2cc162566790c5a2f62616b110fd39fb01bb44",
-          "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+          "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
         ]
       },
       "config": {
@@ -319,8 +319,8 @@
       },
       {
         "Size": 33090048,
-        "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-        "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+        "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+        "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
       }
     ]
   },
@@ -1734,8 +1734,8 @@
             "libcurl-minimal@7.76.1-35.el9_7.3.x86_64"
           ],
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "Digest": "md5:76f9760858bc667daecdefcab2693d9a",
           "InstalledFiles": [
@@ -19839,8 +19839,8 @@
             "zlib@1.2.11-40.el9.x86_64"
           ],
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "Digest": "md5:c9fbf135535c22bc73354a1749ac9f3c",
           "InstalledFiles": [
@@ -20462,8 +20462,8 @@
             "zlib@1.2.11-40.el9.x86_64"
           ],
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "Digest": "md5:43713992721a1ab864836bfb9a092a78",
           "InstalledFiles": [
@@ -22382,8 +22382,8 @@
             "zlib@1.2.11-40.el9.x86_64"
           ],
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "Digest": "md5:0d3752372577208a792a474ab6c36d28",
           "InstalledFiles": [
@@ -25701,8 +25701,8 @@
             "zlib@1.2.11-40.el9.x86_64"
           ],
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "Digest": "md5:5f6d60946dc7dd4785a5342b8afa0e05",
           "InstalledFiles": [
@@ -29945,7 +29945,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-5278",
-          "Fingerprint": "sha256:3c27452a131693c36b04847ee7ebc04614e839f27d96645b44bdf9f89c3b5b76",
+          "Fingerprint": "sha256:5c7e351ca6da12f8af81b7fffe0bef9f1cb86b561f5119df85d600d2ed195a36",
           "Title": "coreutils: Heap Buffer Under-Read in GNU Coreutils sort via Key Specification",
           "Description": "A flaw was found in GNU Coreutils. The sort utility's begfield() function is vulnerable to a heap buffer under-read. The program may access memory outside the allocated buffer if a user runs a crafted command using the traditional key format. A malicious input could lead to a crash or leak sensitive data.",
           "Severity": "MEDIUM",
@@ -29989,12 +29989,12 @@
           "InstalledVersion": "7.76.1-35.el9_7.3",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14017",
-          "Fingerprint": "sha256:167d71c65b99b9669ec0e67a5a616c1bee764ce92e85d95001bba1f6a3168707",
+          "Fingerprint": "sha256:e0817754035a9c569dbc9ed3a32d5f115a309ff6ee245ffcf6c489b891d5afa9",
           "Title": "curl: curl: Security bypass due to global TLS option changes in multi-threaded LDAPS transfers",
           "Description": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl,\nchanging TLS options in one thread would inadvertently change them globally\nand therefore possibly also affect other concurrently setup transfers.\n\nDisabling certificate verification for a specific transfer could\nunintentionally disable the feature for other threads as well.",
           "Severity": "MEDIUM",
@@ -30036,12 +30036,12 @@
           "InstalledVersion": "7.76.1-35.el9_7.3",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-11053",
-          "Fingerprint": "sha256:64dfb1be70404369da5e8cc04a7f7c2528a4d4329f9c804c3f9ae7cc1803986e",
+          "Fingerprint": "sha256:c6dfa98e92cbcecb30affb33e6ec729ab2e0f048c68461bebbd1854ed7b443e8",
           "Title": "curl: curl netrc password leak",
           "Description": "When asked to both use a `.netrc` file for credentials and to follow HTTP\nredirects, curl could leak the password used for the first host to the\nfollowed-to host under certain circumstances.\n\nThis flaw only manifests itself if the netrc file has an entry that matches\nthe redirect target hostname but the entry either omits just the password or\nomits both login and password.",
           "Severity": "LOW",
@@ -30242,12 +30242,12 @@
           "InstalledVersion": "7.76.1-35.el9_7.3",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-7264",
-          "Fingerprint": "sha256:78ea2a3f1547821c66da4c9e69e304d008b5531a87ceacd9dc029809946150f1",
+          "Fingerprint": "sha256:2f5c98841eccfa84fcfed2946fb0183a89d55a25886000feafc716e04321c0dc",
           "Title": "curl: libcurl: ASN.1 date parser overread",
           "Description": "libcurl's ASN1 parser code has the `GTime2str()` function, used for parsing an\nASN.1 Generalized Time field. If given an syntactically incorrect field, the\nparser might end up using -1 for the length of the *time fraction*, leading to\na `strlen()` getting performed on a pointer to a heap buffer area that is not\n(purposely) null terminated.\n\nThis flaw most likely leads to a crash, but can also lead to heap contents\ngetting returned to the application when\n[CURLINFO_CERTINFO](https://curl.se/libcurl/c/CURLINFO_CERTINFO.html) is used.",
           "Severity": "LOW",
@@ -30458,12 +30458,12 @@
           "InstalledVersion": "7.76.1-35.el9_7.3",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-9681",
-          "Fingerprint": "sha256:e9ba41dd32ddd9ad4f189800d5addfd16d08c261dc32d82950debc98edf64e6f",
+          "Fingerprint": "sha256:27289d8bae1cc0d9a2ee44bcab525d52a867deeac1d48719c2113880c0327628",
           "Title": "curl: HSTS subdomain overwrites parent cache entry",
           "Description": "When curl is asked to use HSTS, the expiry time for a subdomain might\noverwrite a parent domain's cache entry, making it end sooner or later than\notherwise intended.\n\nThis affects curl using applications that enable HSTS and use URLs with the\ninsecure `HTTP://` scheme and perform transfers with hosts like\n`x.example.com` as well as `example.com` where the first host is a subdomain\nof the second host.\n\n(The HSTS cache either needs to have been populated manually or there needs to\nhave been previous HTTPS accesses done as the cache needs to have entries for\nthe domains involved to trigger this problem.)\n\nWhen `x.example.com` responds with `Strict-Transport-Security:` headers, this\nbug can make the subdomain's expiry timeout *bleed over* and get set for the\nparent domain `example.com` in curl's HSTS cache.\n\nThe result of a triggered bug is that HTTP accesses to `example.com` get\nconverted to HTTPS for a different period of time than what was asked for by\nthe origin server. If `example.com` for example stops supporting HTTPS at its\nexpiry time, curl might then fail to access `http://example.com` until the\n(wrongly set) timeout expires. This bug can also expire the parent's entry\n*earlier*, thus making curl inadvertently switch back to insecure HTTP earlier\nthan otherwise intended.",
           "Severity": "LOW",
@@ -30527,7 +30527,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-4156",
-          "Fingerprint": "sha256:87cf5761e34ecc27acded2fbf0ae0d62c6a7c31fa01b8b5f4d77a63a09549ba6",
+          "Fingerprint": "sha256:54dae19f7cf6bf9b0152d93cd4786031b48b97ad991a5be62ea6df1af8cb2540",
           "Title": "gawk: heap out of bound read in builtin.c",
           "Description": "A heap out-of-bounds read flaw was found in builtin.c in the gawk package. This issue may lead to a crash and could be used to read sensitive information.",
           "Severity": "LOW",
@@ -30576,12 +30576,12 @@
           "InstalledVersion": "2.68.4-18.el9_7.1",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14087",
-          "Fingerprint": "sha256:501c72d318144437b0017525ac752d370dc1efb2e84e6668bc6306393b0a5db3",
+          "Fingerprint": "sha256:5b11cec69b85f4655f0cd90a39284fcfe2e59bce50e968e4a946725e33ada2a8",
           "Title": "glib: GLib: Buffer underflow in GVariant parser leads to heap corruption",
           "Description": "A flaw was found in GLib (Gnome Lib). This vulnerability allows a remote attacker to cause heap corruption, leading to a denial of service or potential code execution via a buffer-underflow in the GVariant parser when processing maliciously crafted input strings.",
           "Severity": "MEDIUM",
@@ -30631,12 +30631,12 @@
           "InstalledVersion": "2.68.4-18.el9_7.1",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14512",
-          "Fingerprint": "sha256:ecb1af05d6f0eaa9795b9a9e934082054caaebe18a5c71979de03c928a619b56",
+          "Fingerprint": "sha256:47edb9d56a11ac59d6f7e50c702f644aca73ae5ca780b4fb265b44189584bcb3",
           "Title": "glib: Integer Overflow in GLib GIO Attribute Escaping Causes Heap Buffer Overflow",
           "Description": "A flaw was found in glib. This vulnerability allows a heap buffer overflow and denial-of-service (DoS) via an integer overflow in GLib's GIO (GLib Input/Output) escape_byte_string() function when processing malicious file or remote filesystem attribute values.",
           "Severity": "MEDIUM",
@@ -30678,12 +30678,12 @@
           "InstalledVersion": "2.68.4-18.el9_7.1",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1484",
-          "Fingerprint": "sha256:637d49c648d26d9920bd09bfbb10cd398346553d82b7ab338df0749a2890fa38",
+          "Fingerprint": "sha256:68cbc641677c192ee01edcf08f8b292914ea032ba9ea0e51aee08a6a0614a543",
           "Title": "Glib: Integer Overflow Leading to Buffer Underflow and Out-of-Bounds Write in GLib g_base64_encode()",
           "Description": "A flaw was found in the GLib Base64 encoding routine when processing very large input data. Due to incorrect use of integer types during length calculation, the library may miscalculate buffer boundaries. This can cause memory writes outside the allocated buffer. Applications that process untrusted or extremely large Base64 input using GLib may crash or behave unpredictably.",
           "Severity": "MEDIUM",
@@ -30723,12 +30723,12 @@
           "InstalledVersion": "2.68.4-18.el9_7.1",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1489",
-          "Fingerprint": "sha256:b3a8808d2c1553edaa28ec1cb14ed8bcd47df27dd2296744769130d33d9e7abf",
+          "Fingerprint": "sha256:fdfb4de0bce210b383d38995b3883508d794f423b5bc45ebab47d79171a473a8",
           "Title": "Glib: GLib: Memory corruption via integer overflow in Unicode case conversion",
           "Description": "A flaw was found in GLib. An integer overflow vulnerability in its Unicode case conversion implementation can lead to memory corruption. By processing specially crafted and extremely large Unicode strings, an attacker could trigger an undersized memory allocation, resulting in out-of-bounds writes. This could cause applications utilizing GLib for string conversion to crash or become unstable.",
           "Severity": "MEDIUM",
@@ -30766,12 +30766,12 @@
           "InstalledVersion": "2.68.4-18.el9_7.1",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-32636",
-          "Fingerprint": "sha256:f98aebf0a8bd512bcb0d98182caf46ca15eee3995c538990b554ba0370bd54bf",
+          "Fingerprint": "sha256:cc19f83bab29c52c5590eae4721620bc212a9707bc480d11b8946b412fbb3052",
           "Title": "glib: Timeout in fuzz_variant_text",
           "Description": "A flaw was found in glib, where the gvariant deserialization code is vulnerable to a denial of service introduced by additional input validation added to resolve CVE-2023-29499. The offset table validation may be very slow. This bug does not affect any released version of glib but does affect glib distributors who followed the guidance of glib developers to backport the initial fix for CVE-2023-29499.",
           "Severity": "LOW",
@@ -30832,12 +30832,12 @@
           "InstalledVersion": "2.68.4-18.el9_7.1",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-3360",
-          "Fingerprint": "sha256:ba2b8eaaeb13db96ec984676cce9c02e3d12d17aa02e5eb0bae79b2cb40c106d",
+          "Fingerprint": "sha256:6b5c8243ae2850c2b67047029b0bc6a3c9590c73697dd81b344abf7e502339e4",
           "Title": "glibc: GLib prior to 2.82.5 is vulnerable to integer  overflow and buffer under-read when parsing a very long invalid ISO  8601 timestamp with g_date_time_new_from_iso8601().",
           "Description": "A flaw was found in GLib. An integer overflow and buffer under-read occur when parsing a long invalid ISO 8601 timestamp with the g_date_time_new_from_iso8601() function.",
           "Severity": "LOW",
@@ -30880,12 +30880,12 @@
           "InstalledVersion": "2.68.4-18.el9_7.1",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-7039",
-          "Fingerprint": "sha256:d5088336e74d96776c6445f53e852bc97b39ec0e95f955f71be70c098f778c36",
+          "Fingerprint": "sha256:a30b85f9135ea40a06d581faf3f0b79a7ff8a06844045919f726ee2bd493ae8a",
           "Title": "glib: Buffer Under-read on GLib through glib/gfileutils.c via get_tmp_file()",
           "Description": "A flaw was found in glib. An integer overflow during temporary file creation leads to an out-of-bounds memory access, allowing an attacker to potentially perform path traversal or access private temporary file content by creating symbolic links. This vulnerability allows a local attacker to manipulate file paths and access unauthorized data. The core issue stems from insufficient validation of file path lengths during temporary file operations.",
           "Severity": "LOW",
@@ -30926,12 +30926,12 @@
           "InstalledVersion": "2.68.4-18.el9_7.1",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0988",
-          "Fingerprint": "sha256:fd3d302e95788b9ac3ab75cb79dc02e8d3c1fd1d5e31722d1a5fd1f09dd4ec7a",
+          "Fingerprint": "sha256:6442a79fff529212f41ec02e3d43ca52a92f70ab6b4fe30f7dcfa915ac7ce2aa",
           "Title": "glib: GLib: Denial of Service via Integer Overflow in g_buffered_input_stream_peek()",
           "Description": "A flaw was found in glib. Missing validation of offset and count parameters in the g_buffered_input_stream_peek() function can lead to an integer overflow during length calculation. When specially crafted values are provided, this overflow results in an incorrect size being passed to memcpy(), triggering a buffer overflow. This can cause application crashes, leading to a Denial of Service (DoS).",
           "Severity": "LOW",
@@ -30969,12 +30969,12 @@
           "InstalledVersion": "2.68.4-18.el9_7.1",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1485",
-          "Fingerprint": "sha256:2ca03acfda9233855a8d63b3faacf98a6026283c64e4cf093f51d8b4f5228455",
+          "Fingerprint": "sha256:578b593f72d6002022b45d1f731199b18253ba6e4c79274626f41944785dbbf0",
           "Title": "Glib: Glib: Local denial of service via buffer underflow in content type parsing",
           "Description": "A flaw was found in Glib's content type parsing logic. This buffer underflow vulnerability occurs because the length of a header line is stored in a signed integer, which can lead to integer wraparound for very large inputs. This results in pointer underflow and out-of-bounds memory access. Exploitation requires a local user to install or process a specially crafted treemagic file, which can lead to local denial of service or application instability.",
           "Severity": "LOW",
@@ -31018,7 +31018,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0915",
-          "Fingerprint": "sha256:8e3aa4d1acfa42722baadff55e4c1663ef6b0b9afd569129b2795b0d3f40755e",
+          "Fingerprint": "sha256:d2fdc3a62267fff0cc949854d5cba41fe1dcc6fed3c620dfa392121cb69c534f",
           "Title": "glibc: glibc: Information disclosure via zero-valued network query",
           "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver.",
           "Severity": "MEDIUM",
@@ -31083,7 +31083,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-15281",
-          "Fingerprint": "sha256:4cacc49242186712da4de21c50fe7da64e6dd4e81aae1e5d19b7fa76f3900500",
+          "Fingerprint": "sha256:27e9dffdc800b6ac4f7bde96f143448c67f886637f41f223bc83434b0aed38a2",
           "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
           "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process.",
           "Severity": "LOW",
@@ -31093,6 +31093,7 @@
           "VendorSeverity": {
             "alma": 2,
             "azure": 2,
+            "cbl-mariner": 2,
             "oracle-oval": 2,
             "photon": 3,
             "redhat": 1,
@@ -31147,7 +31148,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0861",
-          "Fingerprint": "sha256:9ec20af0a9c596c993d6946b491c9ee868c7d91159895b70881975c2b03f0106",
+          "Fingerprint": "sha256:b95767d3aa605b18c1c414a14803f28ab48c13416aacf91b6c17e67e95a4c503",
           "Title": "glibc: Integer overflow in memalign leads to heap corruption",
           "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1\u003c\u003c62+ 1, 1\u003c\u003c63] and exactly 1\u003c\u003c63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments.",
           "Severity": "LOW",
@@ -31212,7 +31213,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0915",
-          "Fingerprint": "sha256:840d2c6ba1761285f6f78dfe4fdb5057dad59db90b63330248345200526e8f42",
+          "Fingerprint": "sha256:c8491a3a8adc00eb32f9722730c25c12371a8d250875dc2f35c697b3df1a093b",
           "Title": "glibc: glibc: Information disclosure via zero-valued network query",
           "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver.",
           "Severity": "MEDIUM",
@@ -31277,7 +31278,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-15281",
-          "Fingerprint": "sha256:dbfbb039b044d5da5ce393c6cefbfaaab5fffba5b2cd7b08f3c764dd878a9a87",
+          "Fingerprint": "sha256:e66be39826509c3b7e83ca8567e50a608477eb4182e7cf4b931834171bc29bef",
           "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
           "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process.",
           "Severity": "LOW",
@@ -31287,6 +31288,7 @@
           "VendorSeverity": {
             "alma": 2,
             "azure": 2,
+            "cbl-mariner": 2,
             "oracle-oval": 2,
             "photon": 3,
             "redhat": 1,
@@ -31341,7 +31343,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0861",
-          "Fingerprint": "sha256:c69d86c138a99b47bbdf4051b389d97dc5b524eaad2f0e472d1d613b74c7b99b",
+          "Fingerprint": "sha256:11eb5f31513fd2b5bccafe2abbfa511d53f87d03645e40fa0f3a12b63b4a36ba",
           "Title": "glibc: Integer overflow in memalign leads to heap corruption",
           "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1\u003c\u003c62+ 1, 1\u003c\u003c63] and exactly 1\u003c\u003c63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments.",
           "Severity": "LOW",
@@ -31406,7 +31408,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0915",
-          "Fingerprint": "sha256:b3c6bb0377f3372125cba3aa0182598f606acb57520dc65b1e213c515e086567",
+          "Fingerprint": "sha256:20cf08f97fa8848d5d00134b4f93685ba3587e6ac375116d2965cddcfcf71ced",
           "Title": "glibc: glibc: Information disclosure via zero-valued network query",
           "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver.",
           "Severity": "MEDIUM",
@@ -31471,7 +31473,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-15281",
-          "Fingerprint": "sha256:f329ae3471a52e980646594b83ce131e09153ce12ee9bace6703f8c717bc111a",
+          "Fingerprint": "sha256:fdb258029c49ae9f83c453d4359e1481ca83a7d8177f2e38b9e0d75cbca209c3",
           "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
           "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process.",
           "Severity": "LOW",
@@ -31481,6 +31483,7 @@
           "VendorSeverity": {
             "alma": 2,
             "azure": 2,
+            "cbl-mariner": 2,
             "oracle-oval": 2,
             "photon": 3,
             "redhat": 1,
@@ -31535,7 +31538,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0861",
-          "Fingerprint": "sha256:087a913bee548ee70db848c44f012cc6dd3c70563690556bcbd654494b03849a",
+          "Fingerprint": "sha256:988863abef1fbb4ddb73f95bd172b923f56146f63634446a0bf3abce5a3f467d",
           "Title": "glibc: Integer overflow in memalign leads to heap corruption",
           "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1\u003c\u003c62+ 1, 1\u003c\u003c63] and exactly 1\u003c\u003c63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments.",
           "Severity": "LOW",
@@ -31595,12 +31598,12 @@
           "InstalledVersion": "2.3.3-5.el9_7",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-68972",
-          "Fingerprint": "sha256:584783bc0a5c7a4cb9bf02e619752d5c2102d95109425ebf4da66872924a1771",
+          "Fingerprint": "sha256:5e027506ad00bbb5a88e52ec357eb8ccb339b1f31e75b85e113dfe326187d3a3",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -31645,12 +31648,12 @@
           "InstalledVersion": "2.3.3-5.el9_7",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-3219",
-          "Fingerprint": "sha256:74f9d493762ab42384aabed47965d0c45ff8e376f51393c2e034edfc5f189692",
+          "Fingerprint": "sha256:07e5469a26d3afe326a3eaf1e4ea06f66fee76cb069e23dfe95f841ee03afea5",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -31696,12 +31699,12 @@
           "InstalledVersion": "2.3.3-5.el9_7",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-30258",
-          "Fingerprint": "sha256:9afee3a88d4213bdfa3494eb76cdf7309a9ef6785dfdf3586b2bea32f2ad826e",
+          "Fingerprint": "sha256:dccb778aecdeeb132d398660e04301c371585d16f278496f9aa5303e3338d299",
           "Title": "gnupg: verification DoS due to a malicious subkey in the keyring",
           "Description": "In GnuPG before 2.5.5, if a user chooses to import a certificate with certain crafted subkey data that lacks a valid backsig or that has incorrect usage flags, the user loses the ability to verify signatures made from certain other signing keys, aka a \"verification DoS.\"",
           "Severity": "LOW",
@@ -31748,12 +31751,12 @@
           "InstalledVersion": "2.3.3-5.el9_7",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-24883",
-          "Fingerprint": "sha256:7e2115d3c180115b247be9839527b41cf8f82a1b89b49947525a59caaa72b084",
+          "Fingerprint": "sha256:7561bcd05d158f06dc6fed2f52216c5692ed2803514bdaa5b0bd6d043ef422c9",
           "Title": "GnuPG: GnuPG: Denial of service due to specially crafted signature packet",
           "Description": "In GnuPG before 2.5.17, a long signature packet length causes parse_signature to return success with sig-\u003edata[] set to a NULL value, leading to a denial of service (application crash).",
           "Severity": "LOW",
@@ -31800,7 +31803,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-9820",
-          "Fingerprint": "sha256:e991cb12cb1a82ae9d493db3c89ce293e78a3e122b2f171499bb7d43669735b5",
+          "Fingerprint": "sha256:cb030b876ff73c28892b71e4b922feb63b1d5192a7c30d2afb0e5c30a08ae064",
           "Title": "gnutls: Stack-based Buffer Overflow in gnutls_pkcs11_token_init() Function",
           "Description": "A flaw was found in the GnuTLS library, specifically in the gnutls_pkcs11_token_init() function that handles PKCS#11 token initialization. When a token label longer than expected is processed, the function writes past the end of a fixed-size stack buffer. This programming error can cause the application using GnuTLS to crash or, in certain conditions, be exploited for code execution. As a result, systems or applications relying on GnuTLS may be vulnerable to a denial of service or local privilege escalation attacks.",
           "Severity": "LOW",
@@ -31824,6 +31827,7 @@
           "References": [
             "http://www.openwall.com/lists/oss-security/2025/11/20/2",
             "https://access.redhat.com/errata/RHSA-2026:3477",
+            "https://access.redhat.com/errata/RHSA-2026:4188",
             "https://access.redhat.com/security/cve/CVE-2025-9820",
             "https://bugzilla.redhat.com/2392528",
             "https://bugzilla.redhat.com/2423177",
@@ -31839,7 +31843,7 @@
             "https://www.gnutls.org/security-new.html#GNUTLS-SA-2025-11-18"
           ],
           "PublishedDate": "2026-01-26T20:16:09.37Z",
-          "LastModifiedDate": "2026-03-02T18:16:25.787Z"
+          "LastModifiedDate": "2026-03-11T10:16:12.573Z"
         },
         {
           "VulnerabilityID": "CVE-2023-30571",
@@ -31857,7 +31861,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-30571",
-          "Fingerprint": "sha256:70367a3e0060fc1f3d660cd4892f86e4b0bd5265b3afb5b1fa1ec6b35bdec4b6",
+          "Fingerprint": "sha256:9fe3c8f56744d4dd7fefb83a59253fd35fcd23b3edeea81353b36b6384f53d93",
           "Title": "libarchive: Race condition in multi-threaded use of archive_write_disk_header() on posix based systems",
           "Description": "Libarchive through 3.6.2 can cause directories to have world-writable permissions. The umask() call inside archive_write_disk_posix.c changes the umask of the whole process for a very short period of time; a race condition with another thread can lead to a permanent umask 0 setting. Such a race condition could lead to implicit directory creation with permissions 0777 (without the sticky bit), which means that any low-privileged local user can delete and rename files inside those directories.",
           "Severity": "MEDIUM",
@@ -31905,7 +31909,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-60753",
-          "Fingerprint": "sha256:1f77cf39be6acced29a6de4a0311dcb4bc324baa70df22df5c30833a854f1d91",
+          "Fingerprint": "sha256:b334c370548180b6a8042efede9c441111fbfac8360e4bc8fd1ce4374b15519b",
           "Title": "libarchive: bsdtar hangs and OOMs with zero-length pattern matches",
           "Description": "An issue was discovered in libarchive bsdtar before version 3.8.1 in function apply_substitution in file tar/subst.c when processing crafted -s substitution rules. This can cause unbounded memory allocation and lead to denial of service (Out-of-Memory crash).",
           "Severity": "MEDIUM",
@@ -31951,7 +31955,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-1632",
-          "Fingerprint": "sha256:91abc017146377013b99bd54d69d4ce2f615162ac9b4ad83a72f3810642723bd",
+          "Fingerprint": "sha256:54c967b1d96e6b0294ae9d9cc3e33d35da3e0e2c6aafc233a1de5a7b9e040d4f",
           "Title": "libarchive: null pointer dereference in bsdunzip.c",
           "Description": "A vulnerability was found in libarchive up to 3.7.7. It has been classified as problematic. This affects the function list of the file bsdunzip.c. The manipulation leads to null pointer dereference. It is possible to launch the attack on the local host. The exploit has been disclosed to the public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
           "Severity": "LOW",
@@ -32005,7 +32009,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-5915",
-          "Fingerprint": "sha256:afa4d9c597545269eb5d320832a64a5d7b27df9579526a9359494c3ade3605ba",
+          "Fingerprint": "sha256:0aa76709304efa98e8c184320575ede286239e175660476fdcd55350a7735260",
           "Title": "libarchive: Heap buffer over read in copy_from_lzss_window() at archive_read_support_format_rar.c",
           "Description": "A vulnerability has been identified in the libarchive library. This flaw can lead to a heap buffer over-read due to the size of a filter block potentially exceeding the Lempel-Ziv-Storer-Schieber (LZSS) window. This means the library may attempt to read beyond the allocated memory buffer, which can result in unpredictable program behavior, crashes (denial of service), or the disclosure of sensitive information from adjacent memory regions.",
           "Severity": "LOW",
@@ -32059,7 +32063,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-5916",
-          "Fingerprint": "sha256:b256f63bd67a7e887a865775ce995834b91e5e9d642e1a5cf73686f707904bd3",
+          "Fingerprint": "sha256:ba500baf881b452176ed80d3d7650c191646c64b30959b998aa6fb96e015d536",
           "Title": "libarchive: Integer overflow while reading warc files at archive_read_support_format_warc.c",
           "Description": "A vulnerability has been identified in the libarchive library. This flaw involves an integer overflow that can be triggered when processing a Web Archive (WARC) file that claims to have more than INT64_MAX - 4 content bytes. An attacker could craft a malicious WARC archive to induce this overflow, potentially leading to unpredictable program behavior, memory corruption, or a denial-of-service condition within applications that process such archives using libarchive. This bug affects libarchive versions prior to 3.8.0.",
           "Severity": "LOW",
@@ -32113,7 +32117,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-5917",
-          "Fingerprint": "sha256:d33980681e2783544f8e8a710e2dc6deb11825d8480935b47a17dd811b7c5db7",
+          "Fingerprint": "sha256:1e7e0d734294da1ed2418c160f8241f140ef37aa657c5c2e92289d0ca06495ca",
           "Title": "libarchive: Off by one error in build_ustar_entry_name() at archive_write_set_format_pax.c",
           "Description": "A vulnerability has been identified in the libarchive library. This flaw involves an 'off-by-one' miscalculation when handling prefixes and suffixes for file names. This can lead to a 1-byte write overflow. While seemingly small, such an overflow can corrupt adjacent memory, leading to unpredictable program behavior, crashes, or in specific circumstances, could be leveraged as a building block for more sophisticated exploitation. This bug affects libarchive versions prior to 3.8.0.",
           "Severity": "LOW",
@@ -32167,7 +32171,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-5918",
-          "Fingerprint": "sha256:045a33b0402bf448fafb79ca2634d52262602ab9ca06f22fde7d468d99e2ba91",
+          "Fingerprint": "sha256:86a91faabe7133c2462cd925d13d4a2032f9ca94202673a12dd2ef8cc9b7b71b",
           "Title": "libarchive: Reading past EOF may be triggered for piped file streams",
           "Description": "A vulnerability has been identified in the libarchive library. This flaw can be triggered when file streams are piped into bsdtar, potentially allowing for reading past the end of the file. This out-of-bounds read can lead to unintended consequences, including unpredictable program behavior, memory corruption, or a denial-of-service condition.",
           "Severity": "LOW",
@@ -32218,7 +32222,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "Fingerprint": "sha256:b109b48e86abaad4ccf87fad8d4f1614f5542d0ce4def55f751c5b25cbbbb6b8",
+          "Fingerprint": "sha256:de6c04af753a4c5230e0365aa38226748f56c40746c31b97a8b4ee45de5c317b",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -32274,12 +32278,12 @@
           "InstalledVersion": "7.76.1-35.el9_7.3",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14017",
-          "Fingerprint": "sha256:48080867b8acd2eb81370a22350f8b766c1939d172096bb93ab604ba307ed230",
+          "Fingerprint": "sha256:5faa1ef8695a5327a41a63f5fd26a08e25c681adb9e13f72ff0e01c868652aa9",
           "Title": "curl: curl: Security bypass due to global TLS option changes in multi-threaded LDAPS transfers",
           "Description": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl,\nchanging TLS options in one thread would inadvertently change them globally\nand therefore possibly also affect other concurrently setup transfers.\n\nDisabling certificate verification for a specific transfer could\nunintentionally disable the feature for other threads as well.",
           "Severity": "MEDIUM",
@@ -32321,12 +32325,12 @@
           "InstalledVersion": "7.76.1-35.el9_7.3",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-11053",
-          "Fingerprint": "sha256:b5c8f258ac0381e43df4c50ab2ce8c47e316e37cd8cf831145205d1f71608173",
+          "Fingerprint": "sha256:3753cb7314d7283c283a0eba79bce2deaf0a626dc0a8eae157c6aca34870f147",
           "Title": "curl: curl netrc password leak",
           "Description": "When asked to both use a `.netrc` file for credentials and to follow HTTP\nredirects, curl could leak the password used for the first host to the\nfollowed-to host under certain circumstances.\n\nThis flaw only manifests itself if the netrc file has an entry that matches\nthe redirect target hostname but the entry either omits just the password or\nomits both login and password.",
           "Severity": "LOW",
@@ -32527,12 +32531,12 @@
           "InstalledVersion": "7.76.1-35.el9_7.3",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-7264",
-          "Fingerprint": "sha256:a787809ff8fec56d963e24b1a496a6ae3ecb9114934539330e79f091550cf564",
+          "Fingerprint": "sha256:114dfede05b05a2989cce73cb72eedd53d97b71105329beacc52fc4a823fc75c",
           "Title": "curl: libcurl: ASN.1 date parser overread",
           "Description": "libcurl's ASN1 parser code has the `GTime2str()` function, used for parsing an\nASN.1 Generalized Time field. If given an syntactically incorrect field, the\nparser might end up using -1 for the length of the *time fraction*, leading to\na `strlen()` getting performed on a pointer to a heap buffer area that is not\n(purposely) null terminated.\n\nThis flaw most likely leads to a crash, but can also lead to heap contents\ngetting returned to the application when\n[CURLINFO_CERTINFO](https://curl.se/libcurl/c/CURLINFO_CERTINFO.html) is used.",
           "Severity": "LOW",
@@ -32743,12 +32747,12 @@
           "InstalledVersion": "7.76.1-35.el9_7.3",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-9681",
-          "Fingerprint": "sha256:b8ee97b01a87c3b919a25124784eabb75e2737ecdbfea85e39391c2873dce9d5",
+          "Fingerprint": "sha256:db7ce2b03428933312e33eb9a3ed1f6a9d3d4ac21a6974e48b1d43c70cf90981",
           "Title": "curl: HSTS subdomain overwrites parent cache entry",
           "Description": "When curl is asked to use HSTS, the expiry time for a subdomain might\noverwrite a parent domain's cache entry, making it end sooner or later than\notherwise intended.\n\nThis affects curl using applications that enable HSTS and use URLs with the\ninsecure `HTTP://` scheme and perform transfers with hosts like\n`x.example.com` as well as `example.com` where the first host is a subdomain\nof the second host.\n\n(The HSTS cache either needs to have been populated manually or there needs to\nhave been previous HTTPS accesses done as the cache needs to have entries for\nthe domains involved to trigger this problem.)\n\nWhen `x.example.com` responds with `Strict-Transport-Security:` headers, this\nbug can make the subdomain's expiry timeout *bleed over* and get set for the\nparent domain `example.com` in curl's HSTS cache.\n\nThe result of a triggered bug is that HTTP accesses to `example.com` get\nconverted to HTTPS for a different period of time than what was asked for by\nthe origin server. If `example.com` for example stops supporting HTTPS at its\nexpiry time, curl might then fail to access `http://example.com` until the\n(wrongly set) timeout expires. This bug can also expire the parent's entry\n*earlier*, thus making curl inadvertently switch back to insecure HTTP earlier\nthan otherwise intended.",
           "Severity": "LOW",
@@ -32812,7 +32816,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-27943",
-          "Fingerprint": "sha256:d6d8d21ae1526a0049dc1ff4e93221f95606d51e7acdc720ba2185a2e6dc2a21",
+          "Fingerprint": "sha256:c400bb8fa5b3fdbf86a96cb5b0bfd08206d409b3ddf7e40f7b5729eb5ca4900e",
           "Title": "binutils: libiberty/rust-demangle.c in GNU GCC 11.2 allows stack exhaustion in demangle_const",
           "Description": "libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption in demangle_const, as demonstrated by nm-new.",
           "Severity": "LOW",
@@ -32868,7 +32872,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "Fingerprint": "sha256:eb099d5a150816396ea46bf9a04deadcde60cec0bf7050000e523a06d39184c1",
+          "Fingerprint": "sha256:41a901340a2039ede529f0ef642eb7a7de4f20b4c6684fa6666d5a5622ef47e2",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -32929,7 +32933,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "Fingerprint": "sha256:8f70283480e654bc5ad7b6bdc6a9ffc885315f3050870add53074cf30c58ccec",
+          "Fingerprint": "sha256:c38d9a4dd7d05f87b5fc1fbd453ada7afa0030cca7109cd97b10a5f838285054",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -32990,7 +32994,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-27943",
-          "Fingerprint": "sha256:3541ee69d60024665072aca5d4d4f9f9669ed339cf1598d16525eb16b0c03336",
+          "Fingerprint": "sha256:a002c78930bd6cb392e812019d7de3b7cc7009e898d08d45891ed76ad1535602",
           "Title": "binutils: libiberty/rust-demangle.c in GNU GCC 11.2 allows stack exhaustion in demangle_const",
           "Description": "libiberty/rust-demangle.c in GNU GCC 11.2 allows stack consumption in demangle_const, as demonstrated by nm-new.",
           "Severity": "LOW",
@@ -33046,7 +33050,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-13151",
-          "Fingerprint": "sha256:07246f5aa7d4798b82bfb12feea77a4ad2d197a4f5fb2f4749715cc7208ce832",
+          "Fingerprint": "sha256:dacb783241a95f242fb3e969700dabb4e2e35385a792dd8907f942fcfe3aa0b4",
           "Title": "libtasn1: libtasn1: Denial of Service via stack-based buffer overflow in asn1_expend_octet_string",
           "Description": "Stack-based buffer overflow in libtasn1 version: v4.20.0. The function fails to validate the size of input data resulting in a buffer overflow in asn1_expend_octet_string.",
           "Severity": "LOW",
@@ -33097,7 +33101,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "Fingerprint": "sha256:e1f317b755d8ee2971962daea120bdeabbd1463e03e355c2a091ad74f61f37bd",
+          "Fingerprint": "sha256:defd81a0533be46e79db2737a57859375e9c245014c510af763866165ea83a46",
           "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
           "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
           "Severity": "MEDIUM",
@@ -33158,7 +33162,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0990",
-          "Fingerprint": "sha256:b1c0735909410139783a727435e6267f6988814f5099db22e3adf2da3ab35f2e",
+          "Fingerprint": "sha256:938098441431bf8969c7ef6f0eae7e5e86dc4ac43f2213f6c1c1eb868fc35a91",
           "Title": "libxml2: libxml2: Denial of Service via uncontrolled recursion in XML catalog processing",
           "Description": "A flaw was found in libxml2, an XML parsing library. This uncontrolled recursion vulnerability occurs in the xmlCatalogXMLResolveURI function when an XML catalog contains a delegate URI entry that references itself. A remote attacker could exploit this configuration-dependent issue by providing a specially crafted XML catalog, leading to infinite recursion and call stack exhaustion. This ultimately results in a segmentation fault, causing a Denial of Service (DoS) by crashing affected applications.",
           "Severity": "MEDIUM",
@@ -33203,7 +33207,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1757",
-          "Fingerprint": "sha256:4ad5e88e827510b7f2efa28dc0d64c3633918a9ed7bd120e5120aaa5b65519ad",
+          "Fingerprint": "sha256:14947315d284d81d5891c86637bc447005ece4c3b346f7b90551104a1d89aeee",
           "Title": "libxml2: Memory Leak Leading to Local Denial of Service in xmllint Interactive Shell",
           "Description": "A flaw was identified in the interactive shell of the xmllint utility, part of the libxml2 project, where memory allocated for user input is not properly released under certain conditions. When a user submits input consisting only of whitespace, the program skips command execution but fails to free the allocated buffer. Repeating this action causes memory to continuously accumulate. Over time, this can exhaust system memory and terminate the xmllint process, creating a denial-of-service condition on the local system.",
           "Severity": "MEDIUM",
@@ -33246,7 +33250,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-45322",
-          "Fingerprint": "sha256:260543946a4e3679775e5ed7ce433527192443726daef998df1a76f050b28b41",
+          "Fingerprint": "sha256:4bb0aafd930e0f87293fc239c0eedb04fc3b1ea17fc61a015036572d4a64bd0a",
           "Title": "libxml2: use-after-free in xmlUnlinkNode() in tree.c",
           "Description": "libxml2 through 2.11.5 has a use-after-free that can only occur after a certain memory allocation fails. This occurs in xmlUnlinkNode in tree.c. NOTE: the vendor's position is \"I don't think these issues are critical enough to warrant a CVE ID ... because an attacker typically can't control when memory allocations fail.\"",
           "Severity": "LOW",
@@ -33299,7 +33303,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-34459",
-          "Fingerprint": "sha256:fca91400b04ef413e22de9e85a835b47da4c85e0e630dceaecb80d911b24763a",
+          "Fingerprint": "sha256:110b40ecf92b2e440916b2dbb5ad642357b4541e4108f103945f5812c9f89839",
           "Title": "libxml2: buffer over-read in xmlHTMLPrintFileContext in xmllint.c",
           "Description": "An issue was discovered in xmllint (from libxml2) before 2.11.8 and 2.12.x before 2.12.7. Formatting error messages with xmllint --htmlout can result in a buffer over-read in xmlHTMLPrintFileContext in xmllint.c.",
           "Severity": "LOW",
@@ -33356,7 +33360,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-27113",
-          "Fingerprint": "sha256:bfcc4c7a61deddaf4909d2764b6a1e38442ebdb4719178b5ec42317c6d79f09c",
+          "Fingerprint": "sha256:a11d4e57e1c9bc571dc77ddb3becdedc800587a04a1da3fe1e482d903010f4c7",
           "Title": "libxml2: NULL Pointer Dereference in libxml2 xmlPatMatch",
           "Description": "libxml2 before 2.12.10 and 2.13.x before 2.13.6 has a NULL pointer dereference in xmlPatMatch in pattern.c.",
           "Severity": "LOW",
@@ -33419,7 +33423,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-6170",
-          "Fingerprint": "sha256:591b51b5741d58c07d66b67746f39a7dbad602d32e749a776d16f7109d2b3720",
+          "Fingerprint": "sha256:efe2f56041c3e4835ef1b6f9310d7a38cde1f4687ef6175083cfdd2ea993fac3",
           "Title": "libxml2: Stack Buffer Overflow in xmllint Interactive Shell Command Handling",
           "Description": "A flaw was found in the interactive shell of the xmllint command-line tool, used for parsing XML files. When a user inputs an overly long command, the program does not check the input size properly, which can cause it to crash. This issue might allow attackers to run harmful code in rare configurations without modern protections.",
           "Severity": "LOW",
@@ -33472,7 +33476,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0989",
-          "Fingerprint": "sha256:81fbe1e31962e70f9f70c9d6f53e367fe35a39c9745ebdc986604b7a05b1d579",
+          "Fingerprint": "sha256:b817c136a0732382736172e405f44d175c492940271a02652b5185e8f51914c8",
           "Title": "libxml2: Unbounded RelaxNG Include Recursion Leading to Stack Overflow",
           "Description": "A flaw was identified in the RelaxNG parser of libxml2 related to how external schema inclusions are handled. The parser does not enforce a limit on inclusion depth when resolving nested \u003cinclude\u003e directives. Specially crafted or overly complex schemas can cause excessive recursion during parsing. This may lead to stack exhaustion and application crashes, creating a denial-of-service risk.",
           "Severity": "LOW",
@@ -33517,7 +33521,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0992",
-          "Fingerprint": "sha256:3e4589b630813e2e32e0745eb7589416dfbe249c559670bb28e1ad384d9f6eef",
+          "Fingerprint": "sha256:1099eab1268de95264429ec618318d1be47f70546e3ae991f8093f11b0eb20d4",
           "Title": "libxml2: libxml2: Denial of Service via crafted XML catalogs",
           "Description": "A flaw was found in the libxml2 library. This uncontrolled resource consumption vulnerability occurs when processing XML catalogs that contain repeated \u003cnextCatalog\u003e elements pointing to the same downstream catalog. A remote attacker can exploit this by supplying crafted catalogs, causing the parser to redundantly traverse catalog chains. This leads to excessive CPU consumption and degrades application availability, resulting in a denial-of-service condition.",
           "Severity": "LOW",
@@ -33562,7 +33566,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-50495",
-          "Fingerprint": "sha256:989e7cd8b9bacb395d7bda80d5fb9de189a5ebddefa7ef4d920bd27a69325a8e",
+          "Fingerprint": "sha256:6cc1e4e9f186339841525804b65bfe1cb367f97906b3c1cd2195ead9082c7ef0",
           "Title": "ncurses: segmentation fault via _nc_wrap_entry()",
           "Description": "NCurse v6.4-20230418 was discovered to contain a segmentation fault via the component _nc_wrap_entry().",
           "Severity": "LOW",
@@ -33613,7 +33617,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-50495",
-          "Fingerprint": "sha256:916ce9fe9b7c98f43420eccf0888a729e3ffad8db517533f042ab0c8dfb2ca2e",
+          "Fingerprint": "sha256:dde191c232ef92fae42f338d55153430a3e0b773195d9a69034bccb523793f4e",
           "Title": "ncurses: segmentation fault via _nc_wrap_entry()",
           "Description": "NCurse v6.4-20230418 was discovered to contain a segmentation fault via the component _nc_wrap_entry().",
           "Severity": "LOW",
@@ -33664,7 +33668,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-22185",
-          "Fingerprint": "sha256:f87fe9f065b71a02feacce11cef00bd43bcdcf920e10aba23712f946cd3b6eb1",
+          "Fingerprint": "sha256:11f6ee82eef753bad7c44837f6910d84839063740848d3161059b2ef248ece21",
           "Title": "OpenLDAP: OpenLDAP LMDB: Denial of Service and Information Disclosure via Heap Buffer Underflow",
           "Description": "OpenLDAP Lightning Memory-Mapped Database (LMDB) versions up to and including 0.9.14, prior to commit 8e1fda8, contain a heap buffer underflow in the readline() function of mdb_load. When processing malformed input containing an embedded NUL byte, an unsigned offset calculation can underflow and cause an out-of-bounds read of one byte before the allocated heap buffer. This can cause mdb_load to crash, leading to a limited denial-of-service condition.",
           "Severity": "MEDIUM",
@@ -33706,12 +33710,12 @@
           "InstalledVersion": "1:3.5.1-7.el9_7",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-13176",
-          "Fingerprint": "sha256:2d3efabaa87f104d131d452e6bf5a403d21269bfb7d1b80ef7d77cd5b6295398",
+          "Fingerprint": "sha256:52eb5da6071c7add32732b28c962ba709249e3b18d0df92da39cbd260658ea2f",
           "Title": "openssl: Timing side-channel in ECDSA signature computation",
           "Description": "Issue summary: A timing side-channel which could potentially allow recovering\nthe private key exists in the ECDSA signature computation.\n\nImpact summary: A timing side-channel in ECDSA signature computations\ncould allow recovering the private key by an attacker. However, measuring\nthe timing would require either local access to the signing application or\na very fast network connection with low latency.\n\nThere is a timing signal of around 300 nanoseconds when the top word of\nthe inverted ECDSA nonce value is zero. This can happen with significant\nprobability only for some of the supported elliptic curves. In particular\nthe NIST P-521 curve is affected. To be able to measure this leak, the attacker\nprocess must either be located in the same physical computer or must\nhave a very fast network connection with low latency. For that reason\nthe severity of this vulnerability is Low.\n\nThe FIPS modules in 3.4, 3.3, 3.2, 3.1 and 3.0 are affected by this issue.",
           "Severity": "LOW",
@@ -33933,12 +33937,12 @@
           "InstalledVersion": "1:3.5.1-7.el9_7",
           "Status": "will_not_fix",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-41996",
-          "Fingerprint": "sha256:3e76b5b798fd44719d53dfae5115a9094c685ff2632eed2ab924d04463d75d64",
+          "Fingerprint": "sha256:e517fab34f68a0fe37ef252ab35838cc71921f7852737eeba498350c5b837e47",
           "Title": "openssl: remote attackers (from the client side) to trigger unnecessarily expensive server-side DHE modular-exponentiation calculations",
           "Description": "Validating the order of the public keys in the Diffie-Hellman Key Agreement Protocol, when an approved safe prime is used, allows remote attackers (from the client side) to trigger unnecessarily expensive server-side DHE modular-exponentiation calculations. The client may cause asymmetric resource consumption. The basic attack scenario is that the client must claim that it can only communicate with DHE, and the server must be configured to allow DHE and validate the order of the public key.",
           "Severity": "LOW",
@@ -33979,12 +33983,12 @@
           "InstalledVersion": "1:3.5.1-7.el9_7",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:e3d1138b677e5d66b117c7c8a2748ca11d620dd5032d2922d41f50c03bca9428",
-            "DiffID": "sha256:ad81a1df13f0f20c5d18b7a18b4f29e4f405a40d021d5413a7926f639f180254"
+            "Digest": "sha256:cac62c204661cf08ba8112255b900f52622c2677884dca411cdcc16d303e2754",
+            "DiffID": "sha256:62395a48227e5083e1b2eea85a0f63e93271d6873ac85f3ff5f711828bfa3165"
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-9232",
-          "Fingerprint": "sha256:3a8d412ab010b1a34c1340283b67cfed4b6b182fede1e88123f76eb09260db72",
+          "Fingerprint": "sha256:58787a4cb3c871dc3abe69c3cb1d74e7b6225d453b9c1740be307288d55ecbe0",
           "Title": "openssl: Out-of-bounds read in HTTP client no_proxy handling",
           "Description": "Issue summary: An application using the OpenSSL HTTP client API functions may\ntrigger an out-of-bounds read if the 'no_proxy' environment variable is set and\nthe host portion of the authority component of the HTTP URL is an IPv6 address.\n\nImpact summary: An out-of-bounds read can trigger a crash which leads to\nDenial of Service for an application.\n\nThe OpenSSL HTTP client API functions can be used directly by applications\nbut they are also used by the OCSP client functions and CMP (Certificate\nManagement Protocol) client implementation in OpenSSL. However the URLs used\nby these implementations are unlikely to be controlled by an attacker.\n\nIn this vulnerable code the out of bounds read can only trigger a crash.\nFurthermore the vulnerability requires an attacker-controlled URL to be\npassed from an application to the OpenSSL function and the user has to have\na 'no_proxy' environment variable set. For the aforementioned reasons the\nissue was assessed as Low severity.\n\nThe vulnerable code was introduced in the following patch releases:\n3.0.16, 3.1.8, 3.2.4, 3.3.3, 3.4.0 and 3.5.0.\n\nThe FIPS modules in 3.5, 3.4, 3.3, 3.2, 3.1 and 3.0 are not affected by this\nissue, as the HTTP client implementation is outside the OpenSSL FIPS module\nboundary.",
           "Severity": "LOW",
@@ -34036,7 +34040,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-41409",
-          "Fingerprint": "sha256:51c2f43c2299c5ad5fae583c29cddc41150507a1d8b1c44d52fa7ff7b2a34de5",
+          "Fingerprint": "sha256:f8715ead2fd0a56d4eec362e14b3720303e41260df3db0fad44ef6cfe4c68bb9",
           "Title": "pcre2: negative repeat value in a pcre2test subject line leads to inifinite loop",
           "Description": "Integer overflow vulnerability in pcre2test before 10.41 allows attackers to cause a denial of service or other unspecified impacts via negative input.",
           "Severity": "LOW",
@@ -34088,7 +34092,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-41409",
-          "Fingerprint": "sha256:65280ed1a5f95f6a4a3e0fd484acfdd4f9709f69d34304e5f80fa0523b49c244",
+          "Fingerprint": "sha256:3e8de095b7afd27cad1bbf3d1c941ce47029f713e0924ce3f37a56b25f28f4a3",
           "Title": "pcre2: negative repeat value in a pcre2test subject line leads to inifinite loop",
           "Description": "Integer overflow vulnerability in pcre2test before 10.41 allows attackers to cause a denial of service or other unspecified impacts via negative input.",
           "Severity": "LOW",
@@ -34140,7 +34144,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-0232",
-          "Fingerprint": "sha256:e6234b63de4cb3cfc780eb29bc10968d081102837c0efa5bc9af832eb150d63c",
+          "Fingerprint": "sha256:390a608429dff1ccd8076faf0ec3c1bd780e455bd3a8a92869be96eb17c89403",
           "Title": "sqlite: use-after-free bug in jsonParseAddNodeArray",
           "Description": "A heap use-after-free issue has been identified in SQLite in the jsonParseAddNodeArray() function in sqlite3.c. This flaw allows a local attacker to leverage a victim to pass specially crafted malicious input to the application, potentially causing a crash and leading to a denial of service.",
           "Severity": "LOW",
@@ -34193,7 +34197,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-23745",
-          "Fingerprint": "sha256:716fabdb9dd83a538f1641a97e9ea1f00547c24660486d1fadd7c5dc972ebeeb",
+          "Fingerprint": "sha256:c6eb4e12d9ef54763ea6d8c625a25977dbda80f0f722afd8789c3f640e5c1c7e",
           "Title": "node-tar: tar: node-tar: Arbitrary file overwrite and symlink poisoning via unsanitized linkpaths in archives",
           "Description": "node-tar is a Tar for Node.js. The node-tar library (\u003c= 7.5.2) fails to sanitize the linkpath of Link (hardlink) and SymbolicLink entries when preservePaths is false (the default secure behavior). This allows malicious archives to bypass the extraction root restriction, leading to Arbitrary File Overwrite via hardlinks and Symlink Poisoning via absolute symlink targets. This vulnerability is fixed in 7.5.3.",
           "Severity": "HIGH",
@@ -34247,7 +34251,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2005-2541",
-          "Fingerprint": "sha256:ed3eebf2183f274f8629954849f7f1634829436c2dd461b0321423cccf004978",
+          "Fingerprint": "sha256:eae859792b6d43afba22c8a2316116d3f787d4ec3b39be34c900b43c77ede8af",
           "Title": "tar: does not properly warn the user when extracting setuid or setgid files",
           "Description": "Tar 1.15.1 does not properly warn the user when extracting setuid or setgid files, which may allow local users or remote attackers to gain privileges.",
           "Severity": "MEDIUM",
@@ -34291,7 +34295,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-64118",
-          "Fingerprint": "sha256:220d27d08a5b54bd73323040f8a7e74bcd569e3804ce23934dfd72cef41dc213",
+          "Fingerprint": "sha256:be07515c7ca0df3eb1e977bac011e588630a6718a5de46247cca6f291492602a",
           "Title": "node-tar: tar: node-tar: Information disclosure via reading a truncated tar file",
           "Description": "node-tar is a Tar for Node.js. In 7.5.1, using .t (aka .list) with { sync: true } to read tar entry contents returns uninitialized memory contents if tar file was changed on disk to a smaller size while being read. This vulnerability is fixed in 7.5.2.",
           "Severity": "MEDIUM",
@@ -34343,7 +34347,7 @@
           },
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-39804",
-          "Fingerprint": "sha256:8c98aa450d1c62094476e7d142cba9411220109194e59b9fd40f861a9ec53dec",
+          "Fingerprint": "sha256:4b0414e99fab3e701c15801881e589e730ec619215ca4a36710f9c8ccbffdc3a",
           "Title": "tar: Incorrectly handled extension attributes in PAX archives can lead to a crash",
           "Description": "In GNU tar before 1.35, mishandled extension attributes in a PAX archive can lead to an application crash in xheader.c.",
           "Severity": "LOW",
@@ -34422,7 +34426,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f3fd5eb5c6308e9bef049afb018d3d2c1a76b46215fa444e512f2bde86a0e1a2",
+          "Fingerprint": "sha256:f45f66382f840938a2e96784df9b1e62ee0e29bcebcc433c419d23fd09404198",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -34473,7 +34477,7 @@
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
             "https://linux.oracle.com/cve/CVE-2025-68121.html",
-            "https://linux.oracle.com/errata/ELSA-2026-3928.html",
+            "https://linux.oracle.com/errata/ELSA-2026-4164.html",
             "https://nvd.nist.gov/vuln/detail/CVE-2025-68121",
             "https://pkg.go.dev/vuln/GO-2026-4337",
             "https://www.cve.org/CVERecord?id=CVE-2025-68121"
@@ -34505,7 +34509,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:a825eb3b53421f3891fa1042dc26d2adf9143443dbec29455e58458329a2c2b6",
+          "Fingerprint": "sha256:8507a3d629d1ddb08703763f7b2f36f9e8d6faf8d06d32e8ca1c16158a0d6726",
           "Title": "golang: archive/tar: Unbounded allocation when parsing GNU sparse map",
           "Description": "tar.Reader does not set a maximum size on the number of sparse region data blocks in GNU tar pax 1.0 sparse files. A maliciously-crafted archive containing a large number of sparse regions can cause a Reader to read an unbounded amount of data from the archive into memory. When reading from a compressed source, a small compressed input can result in large allocations.",
           "Severity": "HIGH",
@@ -34575,7 +34579,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:26541db3c1e6777653e06d8f25bbaf4275c1ad98734dad792bc2cceeddc02cfa",
+          "Fingerprint": "sha256:f13f82317369d21c014b8adaf018785c39346f458c5c898e65a32bc8882afe4f",
           "Title": "golang: net/url: Memory exhaustion in query parameter parsing in net/url",
           "Description": "The net/url package does not set a limit on the number of query parameters in a query. While the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.",
           "Severity": "HIGH",
@@ -34621,7 +34625,7 @@
             "https://go.dev/issue/77101",
             "https://groups.google.com/g/golang-announce/c/Vd2tYVM8eUc",
             "https://linux.oracle.com/cve/CVE-2025-61726.html",
-            "https://linux.oracle.com/errata/ELSA-2026-3928.html",
+            "https://linux.oracle.com/errata/ELSA-2026-4164.html",
             "https://nvd.nist.gov/vuln/detail/CVE-2025-61726",
             "https://pkg.go.dev/vuln/GO-2026-4341",
             "https://www.cve.org/CVERecord?id=CVE-2025-61726"
@@ -34653,7 +34657,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:373276558b61295061b2fadc481e73c29de96302c82291d8efb7f9d87cc744d6",
+          "Fingerprint": "sha256:6d6e19b70bd06f2de6194586f2a7c6134c2106dbfd15ad01b5c7ff636247bb49",
           "Title": "golang: archive/zip: Excessive CPU consumption when building archive index in archive/zip",
           "Description": "archive/zip uses a super-linear file name indexing algorithm that is invoked the first time a file in an archive is opened. This can lead to a denial of service when consuming a maliciously constructed ZIP archive.",
           "Severity": "HIGH",
@@ -34682,7 +34686,7 @@
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/01/15/4",
-            "https://access.redhat.com/errata/RHSA-2026:3337",
+            "https://access.redhat.com/errata/RHSA-2026:3753",
             "https://access.redhat.com/security/cve/CVE-2025-61728",
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434431",
@@ -34696,7 +34700,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61728",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
-            "https://errata.almalinux.org/9/ALSA-2026-3337.html",
+            "https://errata.almalinux.org/9/ALSA-2026-3753.html",
             "https://errata.rockylinux.org/RLSA-2026:3337",
             "https://go.dev/cl/736713",
             "https://go.dev/issue/77102",
@@ -34734,7 +34738,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:ae3a990d7760074b127e9ca26c84f5df1c170bbd6ceccd4d86feaedd78aa5235",
+          "Fingerprint": "sha256:59bcf192028543464ff8910b570632d8132c07d5ce882ef2e1666f66d6a7e2d8",
           "Title": "crypto/x509: golang: Denial of Service due to excessive resource consumption via crafted certificate",
           "Description": "Within HostnameError.Error(), when constructing an error string, there is no limit to the number of hosts that will be printed out. Furthermore, the error string is constructed by repeated string concatenation, leading to quadratic runtime. Therefore, a certificate provided by a malicious actor can result in excessive resource consumption.",
           "Severity": "HIGH",
@@ -34779,7 +34783,7 @@
             "https://go.dev/issue/76445",
             "https://groups.google.com/g/golang-announce/c/8FJoBkPddm4",
             "https://linux.oracle.com/cve/CVE-2025-61729.html",
-            "https://linux.oracle.com/errata/ELSA-2026-3928.html",
+            "https://linux.oracle.com/errata/ELSA-2026-4164.html",
             "https://nvd.nist.gov/vuln/detail/CVE-2025-61729",
             "https://pkg.go.dev/vuln/GO-2025-4155",
             "https://www.cve.org/CVERecord?id=CVE-2025-61729"
@@ -34811,7 +34815,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:341b30daa7b5940da0bb80be869355ab90c0e4b4abe9639c40aa0062d1c0beba",
+          "Fingerprint": "sha256:6c4d275aff9a26a4474ea43ba250f9d90a6487d895da9a218200e1c96e4219e1",
           "Title": "net/url: Insufficient validation of bracketed IPv6 hostnames in net/url",
           "Description": "The Parse function permits values other than IPv6 addresses to be included in square brackets within the host component of a URL. RFC 3986 permits IPv6 addresses to be included within the host component, enclosed within square brackets. For example: \"http://[::1]/\". IPv4 addresses and hostnames must not appear within square brackets. Parse did not enforce this requirement.",
           "Severity": "MEDIUM",
@@ -34868,7 +34872,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7d36d173d9c226863052b398b4e046d627b09683b91ac89ddc4084d7a08eb634",
+          "Fingerprint": "sha256:4c75358ea7e5579236a8d8c186d1a0dff5860cb935e62a266baf1c00101ad0e0",
           "Title": "encoding/asn1: Parsing DER payload can cause memory exhaustion in encoding/asn1",
           "Description": "Parsing a maliciously crafted DER payload could allocate large amounts of memory, causing memory exhaustion.",
           "Severity": "MEDIUM",
@@ -34929,7 +34933,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:99a0b7e31de9729d2bf57bb13da8fc2785d51d06abe7e60253e107a3729e8c76",
+          "Fingerprint": "sha256:a79be106a98d76a8c82c10172c282b2b17d0d51df9d98b60a70031c027fb3c4d",
           "Title": "golang.org/net/http: Lack of limit when parsing cookies can cause memory exhaustion in net/http",
           "Description": "Despite HTTP headers having a default limit of 1MB, the number of cookies that can be parsed does not have a limit. By sending a lot of very small cookies such as \"a=;\", an attacker can make an HTTP server allocate a large amount of structs, causing large memory consumption.",
           "Severity": "MEDIUM",
@@ -34986,7 +34990,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7ae4c16b32a771c3afc52dba995d9a3714ab9bc83307083ad0f866abb8517e86",
+          "Fingerprint": "sha256:c5a86bbcf86ed5142c23516662c4c6e8071e6bdd497cf961d689d3fbc25aaf25",
           "Title": "crypto/x509: Quadratic complexity when checking name constraints in crypto/x509",
           "Description": "Due to the design of the name constraint checking algorithm, the processing time of some inputs scale non-linearly with respect to the size of the certificate. This affects programs which validate arbitrary certificate chains.",
           "Severity": "MEDIUM",
@@ -35047,7 +35051,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:22d51812a99fd4a4110d7463350baa1fe350999ff172b4a5188004c4bbae414c",
+          "Fingerprint": "sha256:57a667037893c89c822949c2ce2ce36b8204b1260fc5880a83281ea1d4bfbc61",
           "Title": "crypto/x509: golang: Panic when validating certificates with DSA public keys in crypto/x509",
           "Description": "Validating certificate chains which contain DSA public keys can cause programs to panic, due to a interface cast that assumes they implement the Equal method. This affects programs which validate arbitrary certificate chains.",
           "Severity": "MEDIUM",
@@ -35108,7 +35112,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:b3f004fe06c6aefdc3b9b972f78f5441577a986544349c193db7199e821b9ba0",
+          "Fingerprint": "sha256:c02097db5a571f94f68a7ed8d9142aa2efbdfbcc094eedb911f9630b6979dd06",
           "Title": "crypto/tls: go crypto/tls ALPN negotiation error contains attacker controlled information",
           "Description": "When Conn.Handshake fails during ALPN negotiation the error contains attacker controlled information (the ALPN protocols sent by the client) which is not escaped.",
           "Severity": "MEDIUM",
@@ -35168,7 +35172,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:186af8a97c89cbd2e611e1efcebc68e91ba1d1060351ec151bff21a066ffface",
+          "Fingerprint": "sha256:6909eb521a5ff66d8c9421d55062234f6526367c3a80188d7116fd5f3303835f",
           "Title": "encoding/pem: Quadratic complexity when parsing some invalid inputs in encoding/pem",
           "Description": "The processing time for parsing some invalid inputs scales non-linearly with respect to the size of the input. This affects programs which parse untrusted PEM inputs.",
           "Severity": "MEDIUM",
@@ -35229,7 +35233,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:08dc91ad72ec039e8bfef12925404ac77a0c208c7ad9131aa1239072bce9e516",
+          "Fingerprint": "sha256:42465ff6e7d8de1247968aa43fd46a7dbc411f8146945ab709173bb70ab716f5",
           "Title": "net/textproto: Excessive CPU consumption in Reader.ReadResponse in net/textproto",
           "Description": "The Reader.ReadResponse function constructs a response string through repeated string concatenation of lines. When the number of lines in a response is large, this can cause excessive CPU consumption.",
           "Severity": "MEDIUM",
@@ -35289,7 +35293,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:19c6f5a81e1e1bbf10d52a385239d5b9b961622836921015cbf419244fb9e58d",
+          "Fingerprint": "sha256:b0c9ecdf55fb4966df58987216812f981491af6f534fcd92f4326a5692f2f006",
           "Title": "net/mail: Excessive CPU consumption in ParseAddress in net/mail",
           "Description": "The ParseAddress function constructs domain-literal address components through repeated string concatenation. When parsing large domain-literal components, this can cause excessive CPU consumption.",
           "Severity": "MEDIUM",
@@ -35346,7 +35350,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:3926f1408582aaef0cd187bf6ab951773856e7919afa93033c608dd8d7d70960",
+          "Fingerprint": "sha256:1fc4d75694b9fcba24ee15dda2990eaf68fafe848a3658c5d133cf63cfdf7185",
           "Title": "golang: crypto/x509: excluded subdomain constraint does not restrict wildcard SANs",
           "Description": "An excluded subdomain constraint in a certificate chain does not restrict the usage of wildcard SANs in the leaf certificate. For example a constraint that excludes the subdomain test.example.com does not prevent a leaf certificate from claiming the SAN *.example.com.",
           "Severity": "MEDIUM",
@@ -35405,7 +35409,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:33920f65f5588fa1e02a9b2a0bb258c447be330ecce0a9ffd6156d4fe03a92be",
+          "Fingerprint": "sha256:0769f118f88ee30568bc525d397f95d0e60f0c083d25b2a67e212de9abf25c9b",
           "Title": "During the TLS 1.3 handshake if multiple messages are sent in records  ...",
           "Description": "During the TLS 1.3 handshake if multiple messages are sent in records that span encryption level boundaries (for instance the Client Hello and Encrypted Extensions messages), the subsequent messages may be processed before the encryption level changes. This can cause some minor information disclosure if a network-local attacker can inject messages during the handshake.",
           "Severity": "MEDIUM",
@@ -35456,55 +35460,35 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:3082967ace7394fd50859eb37a9799516a4352ba0bc95102553f12284261b49b",
-          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
+          "Fingerprint": "sha256:e593e48ffe1fd92f57622f4fe2ee3ee07e39bfeb00d90c19c01f7e0d7fe90d44",
+          "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
-          "Severity": "UNKNOWN",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "bitnami": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            }
+          },
           "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-25679",
             "https://go.dev/cl/752180",
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4601"
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-25679",
+            "https://pkg.go.dev/vuln/GO-2026-4601",
+            "https://www.cve.org/CVERecord?id=CVE-2026-25679"
           ],
           "PublishedDate": "2026-03-06T22:16:00.72Z",
-          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27139",
-          "VendorIDs": [
-            "GO-2026-4602"
-          ],
-          "PkgID": "stdlib@v1.23.12",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.23.12",
-            "UID": "aa652a2e158905fa"
-          },
-          "InstalledVersion": "v1.23.12",
-          "FixedVersion": "1.25.8, 1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:13f4dea4712680ad2e2e195a4602cfd05fe5e3d3f17c4ab647e1401706725b6e",
-            "DiffID": "sha256:f7968f5f2bc1e198472c5d2c3cc30ce43de28538919e41aecc16dcbec95b397b"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27139",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:d6f0b1f5efc79e60df2c92de86e1bdb26e01c40d0d81c1ddd13bf6cca6388a80",
-          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/749480",
-            "https://go.dev/issue/77827",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4602"
-          ],
-          "PublishedDate": "2026-03-06T22:16:01.07Z",
-          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
+          "LastModifiedDate": "2026-03-10T18:18:37.74Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -35530,18 +35514,89 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0d88104914e14f6d31b7c7e9316075a01a15b896e29e2526b4fa79a166563df4",
-          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Fingerprint": "sha256:10cbcafaf937f8f45ea065afd211e11b0dec17a2cd6bb9101edc670962a9d66b",
+          "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
-          "Severity": "UNKNOWN",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "bitnami": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+              "V3Score": 5.4
+            }
+          },
           "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-27142",
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4603"
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27142",
+            "https://pkg.go.dev/vuln/GO-2026-4603",
+            "https://www.cve.org/CVERecord?id=CVE-2026-27142"
           ],
           "PublishedDate": "2026-03-06T22:16:01.177Z",
-          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
+          "LastModifiedDate": "2026-03-10T18:18:44.607Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-27139",
+          "VendorIDs": [
+            "GO-2026-4602"
+          ],
+          "PkgID": "stdlib@v1.23.12",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.23.12",
+            "UID": "aa652a2e158905fa"
+          },
+          "InstalledVersion": "v1.23.12",
+          "FixedVersion": "1.25.8, 1.26.1",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13f4dea4712680ad2e2e195a4602cfd05fe5e3d3f17c4ab647e1401706725b6e",
+            "DiffID": "sha256:f7968f5f2bc1e198472c5d2c3cc30ce43de28538919e41aecc16dcbec95b397b"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27139",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:d4ac9415a41aa3f7c67e9013adcaa0e338643a802e850e0a67d0c39aae8597ea",
+          "Title": "os: FileInfo can escape from a Root in golang os module",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Severity": "LOW",
+          "VendorSeverity": {
+            "bitnami": 1,
+            "redhat": 1
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 2.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 2.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-27139",
+            "https://go.dev/cl/749480",
+            "https://go.dev/issue/77827",
+            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27139",
+            "https://pkg.go.dev/vuln/GO-2026-4602",
+            "https://www.cve.org/CVERecord?id=CVE-2026-27139"
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-09T15:15:57.15Z"
         }
       ]
     }
