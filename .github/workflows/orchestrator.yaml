@@ -11,6 +11,8 @@ on:
     branches: [main]
     paths:
       - 'copa-config.yaml'
+      - 'Chart.yaml'
+      - 'verity.yaml'
       - '.github/workflows/orchestrator.yaml'
       - '.github/workflows/patch-image.yaml'
   workflow_dispatch:
@@ -195,10 +197,16 @@ jobs:
             EXTRA_FLAGS="--only $DETECT_FILTER"
           fi
 
+          # Derive Integer/Wolfi image names to exclude from chart discovery.
+          # Chart-discovered images that share a name with an Integer image are
+          # skipped because the Wolfi rebuild is the preferred zero-CVE variant.
+          EXCLUDE_NAMES=$(find images -maxdepth 1 -name '*.yaml' -printf '%f\n' 2>/dev/null | sed 's/\.yaml$//' | paste -sd, || true)
+
           # shellcheck disable=SC2086
           ./verity discover \
             --config copa-config.yaml \
             --target-registry "${TARGET_REGISTRY}" \
+            --exclude-names "${EXCLUDE_NAMES}" \
             $EXTRA_FLAGS \
             > images.json
 

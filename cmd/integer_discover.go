@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/urfave/cli/v2"
 
@@ -116,12 +115,9 @@ var integerDiscoverCmd = &cli.Command{
 // filterIntegerImagesByName filters images to only those whose Name matches one
 // of the comma-separated names.
 func filterIntegerImagesByName(images []discovery.DiscoveredImage, names string) []discovery.DiscoveredImage {
-	allowed := make(map[string]struct{})
-	for n := range strings.SplitSeq(names, ",") {
-		n = strings.TrimSpace(n)
-		if n != "" {
-			allowed[n] = struct{}{}
-		}
+	allowed := parseNameSet(names)
+	if allowed == nil {
+		return images
 	}
 
 	var filtered []discovery.DiscoveredImage
