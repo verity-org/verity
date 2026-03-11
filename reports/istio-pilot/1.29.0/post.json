@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019ccbc2-0bbb-726c-b394-7d906ac255e7",
-  "CreatedAt": "2026-03-08T04:43:37.787161352Z",
-  "ArtifactID": "sha256:cbd93a1c2b774717b2c7b7356ff7a351b7f3cf0af3cba8c490b5b48caca83f19",
+  "ReportID": "019cdee8-834f-79bc-9f66-71155e44c153",
+  "CreatedAt": "2026-03-11T21:58:25.871639269Z",
+  "ArtifactID": "sha256:5d4e5d4ad6d4994a524ccdd35fddd06ec43cf20ff77466e52e226fd822f6d4c0",
   "ArtifactName": "ghcr.io/verity-org/cache:istio-pilot-1.29.0-patched",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -14,19 +14,19 @@
       "Family": "ubuntu",
       "Name": "24.04"
     },
-    "ImageID": "sha256:1dbd9aefe23685ecb6463f2129fd79ccde41569b8ce69ec4ce312440c9980848",
+    "ImageID": "sha256:63902b20d178a19ad1d745379d5b8fa181c9414acc2b40604c328b93f0b39d48",
     "DiffIDs": [
       "sha256:123a078714d5ea9382d4d9f550753aefce8b34ec5ae11ae8273038d3bcbb943f",
       "sha256:1839942d4e071378a2d039fdf28b42c6ad08a6b4d99ccbab33c803579f7aa25d",
       "sha256:fdd8f7bad6f18268212a5bcd8dc0f755f3a1f3618b789962a6c3f3405abb5c96",
       "sha256:6cceaf96b9906282448ae64df0ebf6fd91c09af8aeb120324f46f808734cc7ff",
-      "sha256:71a7e669382211e487d25888399937573a101dfc25d49a155cc85bb056aa1f63"
+      "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
     ],
     "RepoTags": [
       "ghcr.io/verity-org/cache:istio-pilot-1.29.0-patched"
     ],
     "RepoDigests": [
-      "ghcr.io/verity-org/cache@sha256:116adb21d57b2c32de2e636705aea6618e3f715274e2de60aa0164f190dea655"
+      "ghcr.io/verity-org/cache@sha256:97cc5ed9598f3ffd566797f0bfa6806d2f14f354978814609c7b122f0f6a138b"
     ],
     "Reference": "ghcr.io/verity-org/cache:istio-pilot-1.29.0-patched",
     "ImageConfig": {
@@ -102,7 +102,7 @@
           "empty_layer": true
         },
         {
-          "created": "2026-03-08T04:34:29.386863344Z",
+          "created": "2026-03-11T21:39:55.236608696Z",
           "created_by": "mount / from exec sh -c apt-get -o Acquire::Retries=3 install --no-install-recommends -y curl libcurl4t64 libgnutls30t64 libssh-4 \u0026\u0026 apt-get clean -y",
           "comment": "buildkit.exporter.image.v0"
         }
@@ -115,7 +115,7 @@
           "sha256:1839942d4e071378a2d039fdf28b42c6ad08a6b4d99ccbab33c803579f7aa25d",
           "sha256:fdd8f7bad6f18268212a5bcd8dc0f755f3a1f3618b789962a6c3f3405abb5c96",
           "sha256:6cceaf96b9906282448ae64df0ebf6fd91c09af8aeb120324f46f808734cc7ff",
-          "sha256:71a7e669382211e487d25888399937573a101dfc25d49a155cc85bb056aa1f63"
+          "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
         ]
       },
       "config": {
@@ -157,8 +157,8 @@
       },
       {
         "Size": 4115456,
-        "Digest": "sha256:4a9593a11d2c5cd9f42af72b44f7c11658d2961f0643d79a2df5bbadd0ecee5c",
-        "DiffID": "sha256:71a7e669382211e487d25888399937573a101dfc25d49a155cc85bb056aa1f63"
+        "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+        "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
       }
     ]
   },
@@ -1302,18 +1302,18 @@
           "AnalyzedBy": "dpkg"
         },
         {
-          "ID": "curl@8.5.0-2ubuntu10.7",
+          "ID": "curl@8.5.0-2ubuntu10.8",
           "Name": "curl",
           "Identifier": {
-            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "508f7a363a85e9cd"
+            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7be807158869e869"
           },
           "Version": "8.5.0",
-          "Release": "2ubuntu10.7",
+          "Release": "2ubuntu10.8",
           "Arch": "amd64",
           "SrcName": "curl",
           "SrcVersion": "8.5.0",
-          "SrcRelease": "2ubuntu10.7",
+          "SrcRelease": "2ubuntu10.8",
           "Licenses": [
             "curl",
             "OLDAP-2.8",
@@ -1333,12 +1333,12 @@
           },
           "DependsOn": [
             "libc6@2.39-0ubuntu8.7",
-            "libcurl4t64@8.5.0-2ubuntu10.7",
+            "libcurl4t64@8.5.0-2ubuntu10.8",
             "zlib1g@1:1.3.dfsg-3.1ubuntu2.1"
           ],
           "Layer": {
-            "Digest": "sha256:4a9593a11d2c5cd9f42af72b44f7c11658d2961f0643d79a2df5bbadd0ecee5c",
-            "DiffID": "sha256:71a7e669382211e487d25888399937573a101dfc25d49a155cc85bb056aa1f63"
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
           },
           "InstalledFiles": [
             "/usr/bin/curl",
@@ -3913,18 +3913,18 @@
           "AnalyzedBy": "dpkg"
         },
         {
-          "ID": "libcurl4t64@8.5.0-2ubuntu10.7",
+          "ID": "libcurl4t64@8.5.0-2ubuntu10.8",
           "Name": "libcurl4t64",
           "Identifier": {
-            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "2127607ae96d830c"
+            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "206d3a2ea5f4d26c"
           },
           "Version": "8.5.0",
-          "Release": "2ubuntu10.7",
+          "Release": "2ubuntu10.8",
           "Arch": "amd64",
           "SrcName": "curl",
           "SrcVersion": "8.5.0",
-          "SrcRelease": "2ubuntu10.7",
+          "SrcRelease": "2ubuntu10.8",
           "Licenses": [
             "curl",
             "OLDAP-2.8",
@@ -3957,8 +3957,8 @@
             "zlib1g@1:1.3.dfsg-3.1ubuntu2.1"
           ],
           "Layer": {
-            "Digest": "sha256:4a9593a11d2c5cd9f42af72b44f7c11658d2961f0643d79a2df5bbadd0ecee5c",
-            "DiffID": "sha256:71a7e669382211e487d25888399937573a101dfc25d49a155cc85bb056aa1f63"
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libcurl.so.4.8.0",
@@ -4504,8 +4504,8 @@
             "libunistring5@1.1-2build1.1"
           ],
           "Layer": {
-            "Digest": "sha256:4a9593a11d2c5cd9f42af72b44f7c11658d2961f0643d79a2df5bbadd0ecee5c",
-            "DiffID": "sha256:71a7e669382211e487d25888399937573a101dfc25d49a155cc85bb056aa1f63"
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libgnutls.so.30.37.1",
@@ -6730,8 +6730,8 @@
             "zlib1g@1:1.3.dfsg-3.1ubuntu2.1"
           ],
           "Layer": {
-            "Digest": "sha256:4a9593a11d2c5cd9f42af72b44f7c11658d2961f0643d79a2df5bbadd0ecee5c",
-            "DiffID": "sha256:71a7e669382211e487d25888399937573a101dfc25d49a155cc85bb056aa1f63"
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libssh.so.4.9.6",
@@ -10342,7 +10342,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:ee216441bd19687b92c7de269f89beab1d1ac515db64f632ee9af554e511a2a1",
+          "Fingerprint": "sha256:396654f5da52699a052667aed0e4b4fbc71f48a83b0c31eaddf83ec70568ff8a",
           "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
           "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
           "Severity": "LOW",
@@ -10385,18 +10385,96 @@
           "LastModifiedDate": "2025-06-09T16:15:25.013Z"
         },
         {
-          "VulnerabilityID": "CVE-2025-0167",
-          "PkgID": "curl@8.5.0-2ubuntu10.7",
+          "VulnerabilityID": "CVE-2026-1965",
+          "PkgID": "curl@8.5.0-2ubuntu10.8",
           "PkgName": "curl",
           "PkgIdentifier": {
-            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "508f7a363a85e9cd"
+            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7be807158869e869"
           },
-          "InstalledVersion": "8.5.0-2ubuntu10.7",
+          "InstalledVersion": "8.5.0-2ubuntu10.8",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:4a9593a11d2c5cd9f42af72b44f7c11658d2961f0643d79a2df5bbadd0ecee5c",
-            "DiffID": "sha256:71a7e669382211e487d25888399937573a101dfc25d49a155cc85bb056aa1f63"
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1965",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:b5dcb715a068f4b949f45f6510e99e452352c6c895d56ac97e854ff6edb130ac",
+          "Description": "libcurl can in some circumstances reuse the wrong connection when asked to do\nan Negotiate-authenticated HTTP or HTTPS request.\n\nlibcurl features a pool of recent connections so that subsequent requests can\nreuse an existing connection to avoid overhead.\n\nWhen reusing a connection a range of criterion must first be met. Due to a\nlogical error in the code, a request that was issued by an application could\nwrongfully reuse an existing connection to the same server that was\nauthenticated using different credentials. One underlying reason being that\nNegotiate sometimes authenticates *connections* and not *requests*, contrary\nto how HTTP is designed to work.\n\nAn application that allows Negotiate authentication to a server (that responds\nwanting Negotiate) with `user1:password1` and then does another operation to\nthe same server also using Negotiate but with `user2:password2` (while the\nprevious connection is still alive) - the second request wrongly reused the\nsame connection and since it then sees that the Negotiate negotiation is\nalready made, it just sends the request over that connection thinking it uses\nthe user2 credentials when it is in fact still using the connection\nauthenticated for user1...\n\nThe set of authentication methods to use is set with  `CURLOPT_HTTPAUTH`.\n\nApplications can disable libcurl's reuse of connections and thus mitigate this\nproblem, by using one of the following libcurl options to alter how\nconnections are or are not reused: `CURLOPT_FRESH_CONNECT`,\n`CURLOPT_MAXCONNECTS` and `CURLMOPT_MAX_HOST_CONNECTIONS` (if using the\ncurl_multi API).",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "https://curl.se/docs/CVE-2026-1965.html",
+            "https://curl.se/docs/CVE-2026-1965.json",
+            "https://www.cve.org/CVERecord?id=CVE-2026-1965"
+          ],
+          "PublishedDate": "2026-03-11T11:15:59.177Z",
+          "LastModifiedDate": "2026-03-11T15:16:25.763Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3783",
+          "PkgID": "curl@8.5.0-2ubuntu10.8",
+          "PkgName": "curl",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7be807158869e869"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.8",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3783",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:804f358b64d785305932cd7cd2e25a972215e335310586298972d809f2f48e1f",
+          "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a redirect to a second URL, curl could leak that token to the second\nhostname under some circumstances.\n\nIf the hostname that the first request is redirected to has information in the\nused .netrc file, with either of the `machine` or `default` keywords, curl\nwould pass on the bearer token set for the first host also to the second one.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-522"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/2",
+            "https://curl.se/docs/CVE-2026-3783.html",
+            "https://curl.se/docs/CVE-2026-3783.json",
+            "https://hackerone.com/reports/3583983",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3783"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.08Z",
+          "LastModifiedDate": "2026-03-11T15:16:33.117Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-0167",
+          "PkgID": "curl@8.5.0-2ubuntu10.8",
+          "PkgName": "curl",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7be807158869e869"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.8",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
           },
           "SeveritySource": "ubuntu",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-0167",
@@ -10405,7 +10483,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:14725cf87d8e0240e82ee7b14818ed6d0ab7b81541b1be921481d0b48452e8df",
+          "Fingerprint": "sha256:68f96a4bd4dc34b3fdfb0e6c4c62f8817aa961ecdf63c2e35c12bc22f7d9bd7e",
           "Title": "When asked to use a `.netrc` file for credentials **and** to follow HT ...",
           "Description": "When asked to use a `.netrc` file for credentials **and** to follow HTTP\nredirects, curl could leak the password used for the first host to the\nfollowed-to host under certain circumstances.\n\nThis flaw only manifests itself if the netrc file has a `default` entry that\nomits both login and password. A rare circumstance.",
           "Severity": "LOW",
@@ -10428,6 +10506,47 @@
           "LastModifiedDate": "2025-07-30T19:41:45.08Z"
         },
         {
+          "VulnerabilityID": "CVE-2026-3784",
+          "PkgID": "curl@8.5.0-2ubuntu10.8",
+          "PkgName": "curl",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7be807158869e869"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.8",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3784",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:8adcb31fe3b47858191afc8e3a2974975f23f744e2e48c982dbb88698d98888d",
+          "Description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a\nserver, even if the new request uses different credentials for the HTTP proxy.\nThe proper behavior is to create or use a separate connection.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 1
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/3",
+            "https://curl.se/docs/CVE-2026-3784.html",
+            "https://curl.se/docs/CVE-2026-3784.json",
+            "https://curl.se/docs/CVE-2026-proxy.html",
+            "https://hackerone.com/reports/3584903",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3784"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.437Z",
+          "LastModifiedDate": "2026-03-11T16:16:46.583Z"
+        },
+        {
           "VulnerabilityID": "CVE-2025-68972",
           "PkgID": "gpgv@2.4.4-2ubuntu17.4",
           "PkgName": "gpgv",
@@ -10448,7 +10567,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:17ed9a4cfa40648d6004c6f57633f9e0a32d67f0100846caccce0385882d3256",
+          "Fingerprint": "sha256:731352bc82910ed923fa3bcea06f359ceedde41dcbf9b6aae753ae90a21cc2ae",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -10503,7 +10622,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:8d311c9f0d482f61ecc82f777d229cf972e40239715b3c47b1ae505581448f7a",
+          "Fingerprint": "sha256:00af09974e6fbdfb7d76883c12b199f4a60923347cc389eb693fbe0c5ebb514a",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -10559,7 +10678,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:bd04b8933bc6f2a718a1ea2663b385865aa718eb49ae2911564d07b0c59a0d91",
+          "Fingerprint": "sha256:e7dda96b3de02f2b0a52911db8613467fd25ef976070277b6f019e4445b69963",
           "Title": "libbpf: Heap Buffer Overflow in libbpf",
           "Description": "Buffer Overflow vulnerability in libbpf 1.5.0 allows a local attacker to execute arbitrary code via the bpf_object__init_prog` function of libbpf. This has been disputed by third parties who assert that \"no one in their sane mind should be passing untrusted ELF files into libbpf while running under root.\"",
           "Severity": "LOW",
@@ -10593,18 +10712,96 @@
           "LastModifiedDate": "2026-02-25T08:16:18.86Z"
         },
         {
-          "VulnerabilityID": "CVE-2025-0167",
-          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.7",
+          "VulnerabilityID": "CVE-2026-1965",
+          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.8",
           "PkgName": "libcurl4t64",
           "PkgIdentifier": {
-            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "2127607ae96d830c"
+            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "206d3a2ea5f4d26c"
           },
-          "InstalledVersion": "8.5.0-2ubuntu10.7",
+          "InstalledVersion": "8.5.0-2ubuntu10.8",
           "Status": "affected",
           "Layer": {
-            "Digest": "sha256:4a9593a11d2c5cd9f42af72b44f7c11658d2961f0643d79a2df5bbadd0ecee5c",
-            "DiffID": "sha256:71a7e669382211e487d25888399937573a101dfc25d49a155cc85bb056aa1f63"
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1965",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:980b7cb1773486d9666d6e9035c40989b226f9ea621b3277d927acc57aaf79b5",
+          "Description": "libcurl can in some circumstances reuse the wrong connection when asked to do\nan Negotiate-authenticated HTTP or HTTPS request.\n\nlibcurl features a pool of recent connections so that subsequent requests can\nreuse an existing connection to avoid overhead.\n\nWhen reusing a connection a range of criterion must first be met. Due to a\nlogical error in the code, a request that was issued by an application could\nwrongfully reuse an existing connection to the same server that was\nauthenticated using different credentials. One underlying reason being that\nNegotiate sometimes authenticates *connections* and not *requests*, contrary\nto how HTTP is designed to work.\n\nAn application that allows Negotiate authentication to a server (that responds\nwanting Negotiate) with `user1:password1` and then does another operation to\nthe same server also using Negotiate but with `user2:password2` (while the\nprevious connection is still alive) - the second request wrongly reused the\nsame connection and since it then sees that the Negotiate negotiation is\nalready made, it just sends the request over that connection thinking it uses\nthe user2 credentials when it is in fact still using the connection\nauthenticated for user1...\n\nThe set of authentication methods to use is set with  `CURLOPT_HTTPAUTH`.\n\nApplications can disable libcurl's reuse of connections and thus mitigate this\nproblem, by using one of the following libcurl options to alter how\nconnections are or are not reused: `CURLOPT_FRESH_CONNECT`,\n`CURLOPT_MAXCONNECTS` and `CURLMOPT_MAX_HOST_CONNECTIONS` (if using the\ncurl_multi API).",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "https://curl.se/docs/CVE-2026-1965.html",
+            "https://curl.se/docs/CVE-2026-1965.json",
+            "https://www.cve.org/CVERecord?id=CVE-2026-1965"
+          ],
+          "PublishedDate": "2026-03-11T11:15:59.177Z",
+          "LastModifiedDate": "2026-03-11T15:16:25.763Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3783",
+          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.8",
+          "PkgName": "libcurl4t64",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "206d3a2ea5f4d26c"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.8",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3783",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:5a345cc654e2c153f29ddcd774c722aa63b34c443af3b541495181fd13a1ebc3",
+          "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a redirect to a second URL, curl could leak that token to the second\nhostname under some circumstances.\n\nIf the hostname that the first request is redirected to has information in the\nused .netrc file, with either of the `machine` or `default` keywords, curl\nwould pass on the bearer token set for the first host also to the second one.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-522"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 2
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/2",
+            "https://curl.se/docs/CVE-2026-3783.html",
+            "https://curl.se/docs/CVE-2026-3783.json",
+            "https://hackerone.com/reports/3583983",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3783"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.08Z",
+          "LastModifiedDate": "2026-03-11T15:16:33.117Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-0167",
+          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.8",
+          "PkgName": "libcurl4t64",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "206d3a2ea5f4d26c"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.8",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
           },
           "SeveritySource": "ubuntu",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-0167",
@@ -10613,7 +10810,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:e67fae63ecbb7fbf7c2363533ca63c9c5bced680ea61d8f1940e8a7c3df7e665",
+          "Fingerprint": "sha256:17f28891a0bcd4a25db4e645ef1f9276fc7d252eaf7b7bf564de802f766c4c74",
           "Title": "When asked to use a `.netrc` file for credentials **and** to follow HT ...",
           "Description": "When asked to use a `.netrc` file for credentials **and** to follow HTTP\nredirects, curl could leak the password used for the first host to the\nfollowed-to host under certain circumstances.\n\nThis flaw only manifests itself if the netrc file has a `default` entry that\nomits both login and password. A rare circumstance.",
           "Severity": "LOW",
@@ -10636,6 +10833,47 @@
           "LastModifiedDate": "2025-07-30T19:41:45.08Z"
         },
         {
+          "VulnerabilityID": "CVE-2026-3784",
+          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.8",
+          "PkgName": "libcurl4t64",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "206d3a2ea5f4d26c"
+          },
+          "InstalledVersion": "8.5.0-2ubuntu10.8",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3784",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:5786f4edaa46aafb39368f71ab5fdd1a26ebbd7be634bd03217b6b3715cdd0c7",
+          "Description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a\nserver, even if the new request uses different credentials for the HTTP proxy.\nThe proper behavior is to create or use a separate connection.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 1
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/3",
+            "https://curl.se/docs/CVE-2026-3784.html",
+            "https://curl.se/docs/CVE-2026-3784.json",
+            "https://curl.se/docs/CVE-2026-proxy.html",
+            "https://hackerone.com/reports/3584903",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3784"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.437Z",
+          "LastModifiedDate": "2026-03-11T16:16:46.583Z"
+        },
+        {
           "VulnerabilityID": "CVE-2025-1352",
           "PkgID": "libelf1t64@0.190-1.1ubuntu0.1",
           "PkgName": "libelf1t64",
@@ -10656,7 +10894,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:0bf187e2f04d2a083786efaab5100e3626abd80e44c74b7156e5c7b22f32bd8a",
+          "Fingerprint": "sha256:8409abe0a0ed5d897a99dec767970512f876a48ca44c9084d2e5f01e1a7791a2",
           "Title": "elfutils: GNU elfutils eu-readelf libdw_alloc.c __libdw_thread_tail memory corruption",
           "Description": "A vulnerability has been found in GNU elfutils 0.192 and classified as critical. This vulnerability affects the function __libdw_thread_tail in the library libdw_alloc.c of the component eu-readelf. The manipulation of the argument w leads to memory corruption. The attack can be initiated remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is 2636426a091bd6c6f7f02e49ab20d4cdc6bfc753. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -10717,7 +10955,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:f1521a79100b56f42347ce0640bca31dbba486f83b6d90d38b03aa10570b1f1a",
+          "Fingerprint": "sha256:5a15194863dc0d4b4165b5e860f8ed38311e8a93a3dba6bdb79c412d097734e5",
           "Title": "elfutils: GNU elfutils eu-strip elf_strptr.c elf_strptr denial of service",
           "Description": "A vulnerability classified as problematic was found in GNU elfutils 0.192. This vulnerability affects the function elf_strptr in the library /libelf/elf_strptr.c of the component eu-strip. The manipulation leads to denial of service. It is possible to launch the attack on the local host. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is b16f441cca0a4841050e3215a9f120a6d8aea918. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -10777,7 +11015,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:19ab95c6ee7f8ce9cd031a0b7a4272acda688996315055457317c396f4b4dd44",
+          "Fingerprint": "sha256:c340969205462aaceb9a69e208941d4e5bfbf54de072afb7bb59a11e03eabf89",
           "Title": "libgcrypt: vulnerable to Marvin Attack",
           "Description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
           "Severity": "LOW",
@@ -10842,7 +11080,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:3f0957062f4dc971239141b6a7005732e165b3abded31b028bc5e077c291426a",
+          "Fingerprint": "sha256:60cc50cb69dbfb1bb4acb4d71729e75211f56849d14810e83c3551c0250266c3",
           "Title": "OpenLDAP: OpenLDAP LMDB: Denial of Service and Information Disclosure via Heap Buffer Underflow",
           "Description": "OpenLDAP Lightning Memory-Mapped Database (LMDB) versions up to and including 0.9.14, prior to commit 8e1fda8, contain a heap buffer underflow in the readline() function of mdb_load. When processing malformed input containing an embedded NUL byte, an unsigned offset calculation can underflow and cause an out-of-bounds read of one byte before the allocated heap buffer. This can cause mdb_load to crash, leading to a limited denial-of-service condition.",
           "Severity": "MEDIUM",
@@ -10894,7 +11132,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:69556d8ebf2ed64fddd58dcedc70db77986c1252ac0d92b5cca4fbac4f92bd36",
+          "Fingerprint": "sha256:f12223e8fc5a7c9ef2d11e897b1230f57e9e9752b47ee431122ce4d7a855ee08",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -10971,7 +11209,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:873e82a042cdc25cb8fbe764769430081ea3b7667a326a39587bdd4f2258c84d",
+          "Fingerprint": "sha256:6d45547f62c678aea2c6c5e42c15b233c04aa4e333efcce1f5dcf376f105a84c",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -11048,7 +11286,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:3b1ded7eed1abaffc28bc2d9b28b03f3ad11f39517af75a9b0ed02b42e474e28",
+          "Fingerprint": "sha256:a9f491851ef97a36d94ac96491687468595f7451c032fefb5166af4941d3bcf2",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -11125,7 +11363,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:4b5e943111f925a7a9d6152d0b6558aac83969e4c633627c3b5cb6a2dd2805c5",
+          "Fingerprint": "sha256:7eac8efbcda2f26e802ece1f0103cf188f7e1d01552e2fe10ca7cb9cf7617498",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -11182,6 +11420,64 @@
           "LastModifiedDate": "2025-11-20T21:16:08.11Z"
         },
         {
+          "VulnerabilityID": "CVE-2026-3731",
+          "PkgID": "libssh-4@0.10.6-2ubuntu0.3",
+          "PkgName": "libssh-4",
+          "PkgIdentifier": {
+            "PURL": "pkg:deb/ubuntu/libssh-4@0.10.6-2ubuntu0.3?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "5eaabefa80e694dc"
+          },
+          "InstalledVersion": "0.10.6-2ubuntu0.3",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:ff08dfcbe8dbdcb4384b037e07a56a23a0854cd73a7dfca4d8fe066236fd1959",
+            "DiffID": "sha256:311c15d5e2b569c7520daae5c5c28f2c5abf273bd8f4a7e84e58c827ba93d3ba"
+          },
+          "SeveritySource": "ubuntu",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3731",
+          "DataSource": {
+            "ID": "ubuntu",
+            "Name": "Ubuntu CVE Tracker",
+            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
+          },
+          "Fingerprint": "sha256:738c6aecf5f7f2870fb43a70ea9f45cb778c7057757cd636bc54fe92e6de7fd2",
+          "Title": "libssh: libssh: Denial of Service via out-of-bounds read in SFTP extension name handler",
+          "Description": "A weakness has been identified in libssh up to 0.11.3. The impacted element is the function sftp_extensions_get_name/sftp_extensions_get_data of the file src/sftp.c of the component SFTP Extension Name Handler. Executing a manipulation of the argument idx can lead to out-of-bounds read. The attack may be performed from remote. Upgrading to version 0.11.4 and 0.12.0 is sufficient to resolve this issue. This patch is called 855a0853ad3abd4a6cd85ce06fce6d8d4c7a0b60. You should upgrade the affected component.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-119",
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "nvd": 4,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 9.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-3731",
+            "https://gitlab.com/libssh/libssh-mirror/-/commit/855a0853ad3abd4a6cd85ce06fce6d8d4c7a0b60",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3731",
+            "https://vuldb.com/?ctiid.349709",
+            "https://vuldb.com/?id.349709",
+            "https://vuldb.com/?submit.767120",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3731",
+            "https://www.libssh.org/files/0.12/libssh-0.12.0.tar.xz",
+            "https://www.libssh.org/security/advisories/libssh-2026-sftp-extensions.txt"
+          ],
+          "PublishedDate": "2026-03-08T11:15:50.307Z",
+          "LastModifiedDate": "2026-03-09T18:36:33.48Z"
+        },
+        {
           "VulnerabilityID": "CVE-2024-56433",
           "PkgID": "login@1:4.13+dfsg1-4ubuntu3.2",
           "PkgName": "login",
@@ -11202,7 +11498,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:ffb0db12fcaf7dc5f2e40002f065d9528a3bba463a43b7435342944607422e2b",
+          "Fingerprint": "sha256:32523ffb96096feb78f9d947c8534632aa7d7bc4dc30e6f9c6d6e83e39c1bdf7",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -11263,7 +11559,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:55cf365312281d2de4b8cd7ba1bf986144e0db2e0a4509851b8914834b3c0294",
+          "Fingerprint": "sha256:e2714ffeea05335d5f84e8e413a5f90787ded6e7d2b3cb5df4afd8061d5784d1",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -11324,7 +11620,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:6a4638cfdeb6a6e7b85afde1281ea82d8116364bad1f2f04d221eaf8c9a24132",
+          "Fingerprint": "sha256:9d3b6b25a9cac364485950a42be80a77dafa9be5ec3ce7a9818bf4d5a9fa71b8",
           "Title": "tar: Tar path traversal",
           "Description": "GNU Tar through 1.35 allows file overwrite via directory traversal in crafted TAR archives, with a certain two-step process. First, the victim must extract an archive that contains a ../ symlink to a critical directory. Second, the victim must extract an archive that contains a critical file, specified via a relative pathname that begins with the symlink name and ends with that critical file's name. Here, the extraction follows the symlink and overwrites the critical file. This bypasses the protection mechanism of \"Member name contains '..'\" that would occur for a single TAR archive that attempted to specify the critical file via a ../ approach. For example, the first archive can contain \"x -\u003e ../../../../../home/victim/.ssh\" and the second archive can contain x/authorized_keys. This can affect server applications that automatically extract any number of user-supplied TAR archives, and were relying on the blocking of traversal. This can also affect software installation processes in which \"tar xf\" is run more than once (e.g., when installing a package can automatically install two dependencies that are set up as untrusted tarballs instead of official packages). NOTE: the official GNU Tar manual has an otherwise-empty directory for each \"tar xf\" in its Security Rules of Thumb; however, third-party advice leads users to run \"tar xf\" more than once into the same directory.",
           "Severity": "MEDIUM",
@@ -13744,7 +14040,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:d47bbfd2fbd1e85aa15d8a04550ddc4de755085af8e72bd397a212d9010612f4",
+          "Fingerprint": "sha256:a4453dd26b6861baf0767359f18fd366184b64f51ee1b739b7b695c8b19ce6c3",
           "Title": "docker/cli: Docker CLI for Windows: Privilege escalation via malicious plugin binaries",
           "Description": "Docker CLI for Windows searches for plugin binaries in C:\\ProgramData\\Docker\\cli-plugins, a directory that does not exist by default. A low-privileged attacker can create this directory and place malicious CLI plugin binaries (docker-compose.exe, docker-buildx.exe, etc.) that are executed when a victim user opens Docker Desktop or invokes Docker CLI plugin features, and allow privilege-escalation if the docker CLI is executed as a privileged user.\n\nThis issue affects Docker CLI: through 29.1.5 and Windows binaries acting as a CLI-plugin manager using the  github.com/docker/cli/cli-plugins/manager https://pkg.go.dev/github.com/docker/cli@v29.1.5+incompatible/cli-plugins/manager  package, such as Docker Compose.\n\nThis issue does not impact non-Windows binaries, and projects not using the plugin-manager code.",
           "Severity": "HIGH",
@@ -13752,13 +14048,23 @@
             "CWE-427"
           ],
           "VendorSeverity": {
+            "bitnami": 3,
             "ghsa": 3,
+            "nvd": 3,
             "redhat": 3
           },
           "CVSS": {
+            "bitnami": {
+              "V40Vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N/AU:N/R:U",
+              "V40Score": 7
+            },
             "ghsa": {
               "V40Vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N",
               "V40Score": 7
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 8
             },
             "redhat": {
               "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
@@ -13780,7 +14086,7 @@
             "https://www.zerodayinitiative.com/advisories/ZDI-CAN-28304/"
           ],
           "PublishedDate": "2026-03-04T17:16:14.763Z",
-          "LastModifiedDate": "2026-03-04T18:08:05.73Z"
+          "LastModifiedDate": "2026-03-09T17:38:15.95Z"
         },
         {
           "VulnerabilityID": "CVE-2026-24051",
@@ -13807,7 +14113,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:270d799d042a4c6c9365fbe1210a6855db0f9e5e719b721f6c89421a179f35e2",
+          "Fingerprint": "sha256:1fb767e53f79c0be9a2fe85b37678e265bd720e76b54e7876a18c821b93649a4",
           "Title": "OpenTelemetry Go SDK Vulnerable to Arbitrary Code Execution via PATH Hijacking",
           "Description": "OpenTelemetry-Go is the Go implementation of OpenTelemetry. The OpenTelemetry Go SDK in version v1.20.0-1.39.0 is vulnerable to Path Hijacking (Untrusted Search Paths) on macOS/Darwin systems. The resource detection code in sdk/resource/host_id.go executes the ioreg system command using a search path. An attacker with the ability to locally modify the PATH environment variable can achieve Arbitrary Code Execution (ACE) within the context of the application. A fix was released with v1.40.0.",
           "Severity": "HIGH",
@@ -13858,7 +14164,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:d4a9069e1ecdbc1df331592243d47284c9b0b5f9d85a1b23c00b327e940d1300",
+          "Fingerprint": "sha256:f2991a553f750701651452b351d2846ae79b62332e89b0ce7b30ecf4561cc6a4",
           "Title": "istio/envoy: mishandling regular expressions for long URIs leading to DoS",
           "Description": "Istio before 1.1.13 and 1.2.x before 1.2.4 mishandles regular expressions for long URIs, leading to a denial of service during use of the JWT, VirtualService, HTTPAPISpecBinding, or QuotaSpecBinding API.",
           "Severity": "HIGH",
@@ -13925,7 +14231,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:34ea1d3d010fad86637bfa92774be8a18934d94dc354d837273f771615777616",
+          "Fingerprint": "sha256:2e49f9112bab188075d059defe110f078c61e8e6f583e7e28bc1baea4e1bbea2",
           "Title": "istio/istio: HTTP request can bypass authorization mechanisms due to case insensitive host comparison",
           "Description": "Istio is an open source platform for providing a uniform way to integrate microservices, manage traffic flow across microservices, enforce policies and aggregate telemetry data. According to [RFC 4343](https://datatracker.ietf.org/doc/html/rfc4343), Istio authorization policy should compare the hostname in the HTTP Host header in a case insensitive way, but currently the comparison is case sensitive. The proxy will route the request hostname in a case-insensitive way which means the authorization policy could be bypassed. As an example, the user may have an authorization policy that rejects request with hostname \"httpbin.foo\" for some source IPs, but the attacker can bypass this by sending the request with hostname \"Httpbin.Foo\". Patches are available in Istio 1.11.1, Istio 1.10.4 and Istio 1.9.8. As a work around a Lua filter may be written to normalize Host header before the authorization check. This is similar to the Path normalization presented in the [Security Best Practices](https://istio.io/latest/docs/ops/best-practices/security/#case-normalization) guide.",
           "Severity": "HIGH",
@@ -13994,7 +14300,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:39efbc71d18492406057bc4145f6bd0176513f65bea47e75a824868182121393",
+          "Fingerprint": "sha256:e77f7bcbf0e519df59a6372fa349349ec94090aecef291da42b6df82937139dd",
           "Title": "istio/istio: HTTP request with fragment in URI can bypass authorization mechanisms",
           "Description": "Istio is an open source platform for providing a uniform way to integrate microservices, manage traffic flow across microservices, enforce policies and aggregate telemetry data. Istio 1.11.0, 1.10.3 and below, and 1.9.7 and below contain a remotely exploitable vulnerability where an HTTP request with `#fragment` in the path may bypass Istio’s URI path based authorization policies. Patches are available in Istio 1.11.1, Istio 1.10.4 and Istio 1.9.8. As a work around a Lua filter may be written to normalize the path.",
           "Severity": "HIGH",
@@ -14060,7 +14366,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:bb4d7a8a36b4e86851e1386eb4717efa6c14c4ad041d8034fc2d56b4a73ecb51",
+          "Fingerprint": "sha256:889608f778c6496b5270511e84e0da2603eafca47d6b93ccc8985105930e9c6f",
           "Title": "istio: unauthenticated control plane denial of service attack",
           "Description": "Istio is an open platform to connect, manage, and secure microservices. In affected versions the Istio control plane, `istiod`, is vulnerable to a request processing error, allowing a malicious attacker that sends a specially crafted message which results in the control plane crashing. This endpoint is served over TLS port 15012, but does not require any authentication from the attacker. For simple installations, Istiod is typically only reachable from within the cluster, limiting the blast radius. However, for some deployments, especially [multicluster](https://istio.io/latest/docs/setup/install/multicluster/primary-remote/) topologies, this port is exposed over the public internet. There are no effective workarounds, beyond upgrading. Limiting network access to Istiod to the minimal set of clients can help lessen the scope of the vulnerability to some extent.",
           "Severity": "HIGH",
@@ -14126,7 +14432,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:1ffc498bdde87cc6675730f3df0ba91948df44bb34bf2eae1c6f5287fa9f3651",
+          "Fingerprint": "sha256:f08176ae47280423b5001ff4ff52b68a93b805070faf7f560228b7981fcf7f1a",
           "Title": "Istio: Unsafe memory access in metadata exchange.",
           "Description": "Istio is an open platform to connect, manage, and secure microservices. In affected versions ill-formed headers sent to Envoy in certain configurations can lead to unexpected memory access resulting in undefined behavior or crashing. Users are most likely at risk if they have an Istio ingress Gateway exposed to external traffic. This vulnerability has been resolved in versions 1.12.8, 1.13.5, and 1.14.1. Users are advised to upgrade. There are no known workarounds for this issue.",
           "Severity": "MEDIUM",
@@ -14193,55 +14499,35 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:a845d83d9abb946e246d6ea1d556d13ad70afb8f0cafdca91719c63e578dd70c",
-          "Title": "url.Parse insufficiently validated the host/authority component and ac ...",
+          "Fingerprint": "sha256:811bea4a681a383887e3e16b528b11d84b2c3f615f7e29f5497dcd867e715c2c",
+          "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
-          "Severity": "UNKNOWN",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "bitnami": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            }
+          },
           "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-25679",
             "https://go.dev/cl/752180",
             "https://go.dev/issue/77578",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4601"
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-25679",
+            "https://pkg.go.dev/vuln/GO-2026-4601",
+            "https://www.cve.org/CVERecord?id=CVE-2026-25679"
           ],
           "PublishedDate": "2026-03-06T22:16:00.72Z",
-          "LastModifiedDate": "2026-03-06T22:16:00.72Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-27139",
-          "VendorIDs": [
-            "GO-2026-4602"
-          ],
-          "PkgID": "stdlib@v1.25.7",
-          "PkgName": "stdlib",
-          "PkgIdentifier": {
-            "PURL": "pkg:golang/stdlib@v1.25.7",
-            "UID": "3d8e9359b205adbd"
-          },
-          "InstalledVersion": "v1.25.7",
-          "FixedVersion": "1.25.8, 1.26.1",
-          "Status": "fixed",
-          "Layer": {
-            "Digest": "sha256:f68427d9e5a708afd32917ebb49cc3b03daf322a01b2a6c7585f96ab812f5b91",
-            "DiffID": "sha256:6cceaf96b9906282448ae64df0ebf6fd91c09af8aeb120324f46f808734cc7ff"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27139",
-          "DataSource": {
-            "ID": "govulndb",
-            "Name": "The Go Vulnerability Database",
-            "URL": "https://pkg.go.dev/vuln/"
-          },
-          "Fingerprint": "sha256:cbd384c223207e9a342b28ae9d3de86332ac8e3140896ee75a7b3f502c9e7c1b",
-          "Title": "On Unix platforms, when listing the contents of a directory using File ...",
-          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
-          "Severity": "UNKNOWN",
-          "References": [
-            "https://go.dev/cl/749480",
-            "https://go.dev/issue/77827",
-            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4602"
-          ],
-          "PublishedDate": "2026-03-06T22:16:01.07Z",
-          "LastModifiedDate": "2026-03-06T22:16:01.07Z"
+          "LastModifiedDate": "2026-03-10T18:18:37.74Z"
         },
         {
           "VulnerabilityID": "CVE-2026-27142",
@@ -14267,18 +14553,89 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:666c1673c776f289bfd7ba5bf25e0ed0643e9ac789cf180caba852e8e25742a9",
-          "Title": "Actions which insert URLs into the content attribute of HTML meta tags ...",
+          "Fingerprint": "sha256:15cb362ba20d7ad2b00fbc0247722fb69da8970d4c02b4d670fd85c09f2d54b1",
+          "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
-          "Severity": "UNKNOWN",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "bitnami": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+              "V3Score": 5.4
+            }
+          },
           "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-27142",
             "https://go.dev/cl/752081",
             "https://go.dev/issue/77954",
             "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
-            "https://pkg.go.dev/vuln/GO-2026-4603"
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27142",
+            "https://pkg.go.dev/vuln/GO-2026-4603",
+            "https://www.cve.org/CVERecord?id=CVE-2026-27142"
           ],
           "PublishedDate": "2026-03-06T22:16:01.177Z",
-          "LastModifiedDate": "2026-03-06T22:16:01.177Z"
+          "LastModifiedDate": "2026-03-10T18:18:44.607Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-27139",
+          "VendorIDs": [
+            "GO-2026-4602"
+          ],
+          "PkgID": "stdlib@v1.25.7",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.25.7",
+            "UID": "3d8e9359b205adbd"
+          },
+          "InstalledVersion": "v1.25.7",
+          "FixedVersion": "1.25.8, 1.26.1",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:f68427d9e5a708afd32917ebb49cc3b03daf322a01b2a6c7585f96ab812f5b91",
+            "DiffID": "sha256:6cceaf96b9906282448ae64df0ebf6fd91c09af8aeb120324f46f808734cc7ff"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27139",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:529fb77663635e460cfb2c9028ce32eee97d97da924fc67ff637da4f0bebb5f9",
+          "Title": "os: FileInfo can escape from a Root in golang os module",
+          "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
+          "Severity": "LOW",
+          "VendorSeverity": {
+            "bitnami": 1,
+            "redhat": 1
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 2.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 2.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-27139",
+            "https://go.dev/cl/749480",
+            "https://go.dev/issue/77827",
+            "https://groups.google.com/g/golang-announce/c/EdhZqrQ98hk",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27139",
+            "https://pkg.go.dev/vuln/GO-2026-4602",
+            "https://www.cve.org/CVERecord?id=CVE-2026-27139"
+          ],
+          "PublishedDate": "2026-03-06T22:16:01.07Z",
+          "LastModifiedDate": "2026-03-09T15:15:57.15Z"
         }
       ]
     }
