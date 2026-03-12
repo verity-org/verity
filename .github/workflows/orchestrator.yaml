@@ -190,7 +190,7 @@ jobs:
           EXTRA_FLAGS=""
 
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            EXTRA_FLAGS="--preflight true --github-repo ${{ github.repository }}"
+            EXTRA_FLAGS="--preflight --github-repo ${{ github.repository }}"
           elif [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "$DISPATCH_IMAGE" ]; then
             EXTRA_FLAGS="--only $DISPATCH_IMAGE"
           elif [ "${{ github.event_name }}" = "push" ] && [ "$DETECT_MODE" = "filter" ] && [ -n "$DETECT_FILTER" ]; then
