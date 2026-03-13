@@ -3,8 +3,8 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019cdec3-344c-73da-acb2-42217e998341",
-  "CreatedAt": "2026-03-11T21:17:40.812253857Z",
+  "ReportID": "019ce698-b24c-7dda-9403-330abfa6aaa3",
+  "CreatedAt": "2026-03-13T09:48:12.748909084Z",
   "ArtifactID": "sha256:b69dad3d6de15a824194acd69d1f981ce9aead266e73c125777e51ee46c1db7e",
   "ArtifactName": "mirror.gcr.io/istio/pilot:1.28.5",
   "ArtifactType": "container_image",
@@ -10380,7 +10380,8 @@
             "UID": "508f7a363a85e9cd"
           },
           "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
+          "FixedVersion": "8.5.0-2ubuntu10.8",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
             "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
@@ -10393,21 +10394,32 @@
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
           "Fingerprint": "sha256:a95dc409ab780ad08eb28d5ae8b5c78e82ba4825ff5e6684920216d35d4b7a9d",
+          "Title": "curl: curl: Authentication bypass due to incorrect connection reuse with Negotiate authentication",
           "Description": "libcurl can in some circumstances reuse the wrong connection when asked to do\nan Negotiate-authenticated HTTP or HTTPS request.\n\nlibcurl features a pool of recent connections so that subsequent requests can\nreuse an existing connection to avoid overhead.\n\nWhen reusing a connection a range of criterion must first be met. Due to a\nlogical error in the code, a request that was issued by an application could\nwrongfully reuse an existing connection to the same server that was\nauthenticated using different credentials. One underlying reason being that\nNegotiate sometimes authenticates *connections* and not *requests*, contrary\nto how HTTP is designed to work.\n\nAn application that allows Negotiate authentication to a server (that responds\nwanting Negotiate) with `user1:password1` and then does another operation to\nthe same server also using Negotiate but with `user2:password2` (while the\nprevious connection is still alive) - the second request wrongly reused the\nsame connection and since it then sees that the Negotiate negotiation is\nalready made, it just sends the request over that connection thinking it uses\nthe user2 credentials when it is in fact still using the connection\nauthenticated for user1...\n\nThe set of authentication methods to use is set with  `CURLOPT_HTTPAUTH`.\n\nApplications can disable libcurl's reuse of connections and thus mitigate this\nproblem, by using one of the following libcurl options to alter how\nconnections are or are not reused: `CURLOPT_FRESH_CONNECT`,\n`CURLOPT_MAXCONNECTS` and `CURLMOPT_MAX_HOST_CONNECTIONS` (if using the\ncurl_multi API).",
           "Severity": "MEDIUM",
           "CweIDs": [
             "CWE-305"
           ],
           "VendorSeverity": {
+            "redhat": 2,
             "ubuntu": 2
           },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 6.8
+            }
+          },
           "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-1965",
             "https://curl.se/docs/CVE-2026-1965.html",
             "https://curl.se/docs/CVE-2026-1965.json",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-1965",
+            "https://ubuntu.com/security/notices/USN-8084-1",
             "https://www.cve.org/CVERecord?id=CVE-2026-1965"
           ],
           "PublishedDate": "2026-03-11T11:15:59.177Z",
-          "LastModifiedDate": "2026-03-11T15:16:25.763Z"
+          "LastModifiedDate": "2026-03-12T14:11:19.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-3783",
@@ -10418,7 +10430,8 @@
             "UID": "508f7a363a85e9cd"
           },
           "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
+          "FixedVersion": "8.5.0-2ubuntu10.8",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
             "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
@@ -10431,23 +10444,34 @@
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
           "Fingerprint": "sha256:694c0b44e870ef4b2a9fc602919df7d44670530ee93a6eeba669325f8e198857",
+          "Title": "curl: curl: Information disclosure via OAuth2 bearer token leakage during HTTP(S) redirect",
           "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a redirect to a second URL, curl could leak that token to the second\nhostname under some circumstances.\n\nIf the hostname that the first request is redirected to has information in the\nused .netrc file, with either of the `machine` or `default` keywords, curl\nwould pass on the bearer token set for the first host also to the second one.",
           "Severity": "MEDIUM",
           "CweIDs": [
             "CWE-522"
           ],
           "VendorSeverity": {
+            "redhat": 2,
             "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N",
+              "V3Score": 5.7
+            }
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/03/11/2",
+            "https://access.redhat.com/security/cve/CVE-2026-3783",
             "https://curl.se/docs/CVE-2026-3783.html",
             "https://curl.se/docs/CVE-2026-3783.json",
             "https://hackerone.com/reports/3583983",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3783",
+            "https://ubuntu.com/security/notices/USN-8084-1",
             "https://www.cve.org/CVERecord?id=CVE-2026-3783"
           ],
           "PublishedDate": "2026-03-11T11:16:00.08Z",
-          "LastModifiedDate": "2026-03-11T15:16:33.117Z"
+          "LastModifiedDate": "2026-03-12T14:10:37.3Z"
         },
         {
           "VulnerabilityID": "CVE-2025-0167",
@@ -10458,7 +10482,8 @@
             "UID": "508f7a363a85e9cd"
           },
           "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
+          "FixedVersion": "8.5.0-2ubuntu10.8",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
             "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
@@ -10487,6 +10512,7 @@
             "https://hackerone.com/reports/2917232",
             "https://nvd.nist.gov/vuln/detail/CVE-2025-0167",
             "https://security.netapp.com/advisory/ntap-20250306-0008/",
+            "https://ubuntu.com/security/notices/USN-8084-1",
             "https://www.cve.org/CVERecord?id=CVE-2025-0167"
           ],
           "PublishedDate": "2025-02-05T10:15:22.71Z",
@@ -10501,7 +10527,8 @@
             "UID": "508f7a363a85e9cd"
           },
           "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
+          "FixedVersion": "8.5.0-2ubuntu10.8",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
             "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
@@ -10514,24 +10541,34 @@
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
           "Fingerprint": "sha256:1a4b32ee602173b7e3a87f5170513922b4c35cd9a893be86eaa42f2b7897e2df",
+          "Title": "curl: curl: Unauthorized access due to improper HTTP proxy connection reuse",
           "Description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a\nserver, even if the new request uses different credentials for the HTTP proxy.\nThe proper behavior is to create or use a separate connection.",
           "Severity": "LOW",
           "CweIDs": [
             "CWE-305"
           ],
           "VendorSeverity": {
+            "redhat": 2,
             "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 6.5
+            }
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/03/11/3",
+            "https://access.redhat.com/security/cve/CVE-2026-3784",
             "https://curl.se/docs/CVE-2026-3784.html",
             "https://curl.se/docs/CVE-2026-3784.json",
-            "https://curl.se/docs/CVE-2026-proxy.html",
             "https://hackerone.com/reports/3584903",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3784",
+            "https://ubuntu.com/security/notices/USN-8084-1",
             "https://www.cve.org/CVERecord?id=CVE-2026-3784"
           ],
           "PublishedDate": "2026-03-11T11:16:00.437Z",
-          "LastModifiedDate": "2026-03-11T16:16:46.583Z"
+          "LastModifiedDate": "2026-03-12T14:09:50.47Z"
         },
         {
           "VulnerabilityID": "CVE-2025-68972",
@@ -10707,7 +10744,8 @@
             "UID": "2127607ae96d830c"
           },
           "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
+          "FixedVersion": "8.5.0-2ubuntu10.8",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
             "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
@@ -10720,21 +10758,32 @@
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
           "Fingerprint": "sha256:a82fe0d0ecebe8bb80d5832bedaaae559144555d4c1326586563b290d666ec4c",
+          "Title": "curl: curl: Authentication bypass due to incorrect connection reuse with Negotiate authentication",
           "Description": "libcurl can in some circumstances reuse the wrong connection when asked to do\nan Negotiate-authenticated HTTP or HTTPS request.\n\nlibcurl features a pool of recent connections so that subsequent requests can\nreuse an existing connection to avoid overhead.\n\nWhen reusing a connection a range of criterion must first be met. Due to a\nlogical error in the code, a request that was issued by an application could\nwrongfully reuse an existing connection to the same server that was\nauthenticated using different credentials. One underlying reason being that\nNegotiate sometimes authenticates *connections* and not *requests*, contrary\nto how HTTP is designed to work.\n\nAn application that allows Negotiate authentication to a server (that responds\nwanting Negotiate) with `user1:password1` and then does another operation to\nthe same server also using Negotiate but with `user2:password2` (while the\nprevious connection is still alive) - the second request wrongly reused the\nsame connection and since it then sees that the Negotiate negotiation is\nalready made, it just sends the request over that connection thinking it uses\nthe user2 credentials when it is in fact still using the connection\nauthenticated for user1...\n\nThe set of authentication methods to use is set with  `CURLOPT_HTTPAUTH`.\n\nApplications can disable libcurl's reuse of connections and thus mitigate this\nproblem, by using one of the following libcurl options to alter how\nconnections are or are not reused: `CURLOPT_FRESH_CONNECT`,\n`CURLOPT_MAXCONNECTS` and `CURLMOPT_MAX_HOST_CONNECTIONS` (if using the\ncurl_multi API).",
           "Severity": "MEDIUM",
           "CweIDs": [
             "CWE-305"
           ],
           "VendorSeverity": {
+            "redhat": 2,
             "ubuntu": 2
           },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 6.8
+            }
+          },
           "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-1965",
             "https://curl.se/docs/CVE-2026-1965.html",
             "https://curl.se/docs/CVE-2026-1965.json",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-1965",
+            "https://ubuntu.com/security/notices/USN-8084-1",
             "https://www.cve.org/CVERecord?id=CVE-2026-1965"
           ],
           "PublishedDate": "2026-03-11T11:15:59.177Z",
-          "LastModifiedDate": "2026-03-11T15:16:25.763Z"
+          "LastModifiedDate": "2026-03-12T14:11:19.07Z"
         },
         {
           "VulnerabilityID": "CVE-2026-3783",
@@ -10745,7 +10794,8 @@
             "UID": "2127607ae96d830c"
           },
           "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
+          "FixedVersion": "8.5.0-2ubuntu10.8",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
             "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
@@ -10758,23 +10808,34 @@
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
           "Fingerprint": "sha256:2ba72aa523475f2496558a9642ab9e1bba6ef5bd396f4ae82167860a4c700ac6",
+          "Title": "curl: curl: Information disclosure via OAuth2 bearer token leakage during HTTP(S) redirect",
           "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a redirect to a second URL, curl could leak that token to the second\nhostname under some circumstances.\n\nIf the hostname that the first request is redirected to has information in the\nused .netrc file, with either of the `machine` or `default` keywords, curl\nwould pass on the bearer token set for the first host also to the second one.",
           "Severity": "MEDIUM",
           "CweIDs": [
             "CWE-522"
           ],
           "VendorSeverity": {
+            "redhat": 2,
             "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N",
+              "V3Score": 5.7
+            }
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/03/11/2",
+            "https://access.redhat.com/security/cve/CVE-2026-3783",
             "https://curl.se/docs/CVE-2026-3783.html",
             "https://curl.se/docs/CVE-2026-3783.json",
             "https://hackerone.com/reports/3583983",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3783",
+            "https://ubuntu.com/security/notices/USN-8084-1",
             "https://www.cve.org/CVERecord?id=CVE-2026-3783"
           ],
           "PublishedDate": "2026-03-11T11:16:00.08Z",
-          "LastModifiedDate": "2026-03-11T15:16:33.117Z"
+          "LastModifiedDate": "2026-03-12T14:10:37.3Z"
         },
         {
           "VulnerabilityID": "CVE-2025-0167",
@@ -10785,7 +10846,8 @@
             "UID": "2127607ae96d830c"
           },
           "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
+          "FixedVersion": "8.5.0-2ubuntu10.8",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
             "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
@@ -10814,6 +10876,7 @@
             "https://hackerone.com/reports/2917232",
             "https://nvd.nist.gov/vuln/detail/CVE-2025-0167",
             "https://security.netapp.com/advisory/ntap-20250306-0008/",
+            "https://ubuntu.com/security/notices/USN-8084-1",
             "https://www.cve.org/CVERecord?id=CVE-2025-0167"
           ],
           "PublishedDate": "2025-02-05T10:15:22.71Z",
@@ -10828,7 +10891,8 @@
             "UID": "2127607ae96d830c"
           },
           "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
+          "FixedVersion": "8.5.0-2ubuntu10.8",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
             "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
@@ -10841,24 +10905,34 @@
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
           "Fingerprint": "sha256:ace380a44a0e6e74b0210159a041d9336f750f961c5870cee0b20c26c7c8d7c3",
+          "Title": "curl: curl: Unauthorized access due to improper HTTP proxy connection reuse",
           "Description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a\nserver, even if the new request uses different credentials for the HTTP proxy.\nThe proper behavior is to create or use a separate connection.",
           "Severity": "LOW",
           "CweIDs": [
             "CWE-305"
           ],
           "VendorSeverity": {
+            "redhat": 2,
             "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 6.5
+            }
           },
           "References": [
             "http://www.openwall.com/lists/oss-security/2026/03/11/3",
+            "https://access.redhat.com/security/cve/CVE-2026-3784",
             "https://curl.se/docs/CVE-2026-3784.html",
             "https://curl.se/docs/CVE-2026-3784.json",
-            "https://curl.se/docs/CVE-2026-proxy.html",
             "https://hackerone.com/reports/3584903",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3784",
+            "https://ubuntu.com/security/notices/USN-8084-1",
             "https://www.cve.org/CVERecord?id=CVE-2026-3784"
           ],
           "PublishedDate": "2026-03-11T11:16:00.437Z",
-          "LastModifiedDate": "2026-03-11T16:16:46.583Z"
+          "LastModifiedDate": "2026-03-12T14:09:50.47Z"
         },
         {
           "VulnerabilityID": "CVE-2025-1352",
@@ -11436,14 +11510,14 @@
             "CWE-125"
           ],
           "VendorSeverity": {
-            "nvd": 4,
+            "nvd": 3,
             "redhat": 2,
             "ubuntu": 2
           },
           "CVSS": {
             "nvd": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 9.8
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
             },
             "redhat": {
               "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
@@ -11462,7 +11536,7 @@
             "https://www.libssh.org/security/advisories/libssh-2026-sftp-extensions.txt"
           ],
           "PublishedDate": "2026-03-08T11:15:50.307Z",
-          "LastModifiedDate": "2026-03-09T18:36:33.48Z"
+          "LastModifiedDate": "2026-03-12T19:02:31.637Z"
         },
         {
           "VulnerabilityID": "CVE-2024-56433",
