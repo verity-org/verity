@@ -1,0 +1,77 @@
+name: Chart Generation
+
+# Generates patched wrapper Helm charts for each chart in Chart.yaml.
+# Runs after the nightly orchestrator (02:00 UTC) has had time to patch
+# all chart-discovered images. Also triggerable manually.
+
+on:
+  schedule:
+    - cron: '0 4 * * *'   # 04:00 UTC daily (2h after orchestrator)
+  push:
+    branches: [main]
+    paths:
+      - 'Chart.yaml'
+      - 'verity.yaml'
+      - '.github/workflows/chart-gen.yaml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  TARGET_REGISTRY: ghcr.io/verity-org
+  CHART_REGISTRY: oci://ghcr.io/verity-org/charts
+
+jobs:
+  chart-gen:
+    name: Generate Wrapper Charts
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@58077d3c7e43986b6b15fba718e8ea69e387dfcc # v2.15.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install mise
+        uses: jdx/mise-action@5228313ee0372e111a38da051671ca30fc5a96db # v3.6.3
+        with:
+          install: true
+          cache: true
+
+      - name: Cache Go modules
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        with:
+          path: |
+            ~/dev/go/pkg/mod
+            ~/.cache/go-build
+          key: go-${{ runner.os }}-${{ hashFiles('go.sum') }}
+          restore-keys: go-${{ runner.os }}-
+
+      - name: Build verity
+        run: go build -o verity .
+
+      - name: Login to GHCR
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Derive exclude names from Integer images
+        id: exclude
+        run: |
+          EXCLUDE_NAMES=$(find images -maxdepth 1 -name '*.yaml' -printf '%f\n' 2>/dev/null | sed 's/\.yaml$//' | paste -sd, || true)
+          echo "names=${EXCLUDE_NAMES}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate and push wrapper charts
+        run: |
+          ./verity chart-gen \
+            --charts-file Chart.yaml \
+            --verity-config verity.yaml \
+            --target-registry "${TARGET_REGISTRY}" \
+            --chart-registry "${CHART_REGISTRY}" \
+            --exclude-names "${{ steps.exclude.outputs.names }}"

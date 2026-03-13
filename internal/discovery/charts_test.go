@@ -157,18 +157,18 @@ func TestValidateChartSpec(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			err := validateChartSpec(tc.chart)
+			err := ValidateChartSpec(tc.chart)
 			if tc.wantErr == nil {
 				if err != nil {
-					t.Fatalf("validateChartSpec() unexpected error: %v", err)
+					t.Fatalf("ValidateChartSpec() unexpected error: %v", err)
 				}
 				return
 			}
 			if err == nil {
-				t.Fatalf("validateChartSpec() expected error wrapping %v, got nil", tc.wantErr)
+				t.Fatalf("ValidateChartSpec() expected error wrapping %v, got nil", tc.wantErr)
 			}
 			if !errors.Is(err, tc.wantErr) {
-				t.Errorf("validateChartSpec() error = %v, want %v", err, tc.wantErr)
+				t.Errorf("ValidateChartSpec() error = %v, want %v", err, tc.wantErr)
 			}
 		})
 	}
