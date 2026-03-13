@@ -1,10 +1,8 @@
 package chartgen
 
 import (
-	"bytes"
 	"context"
 	"fmt"
-	"os/exec"
 	"sort"
 	"strings"
 	"time"
@@ -12,6 +10,7 @@ import (
 	"gopkg.in/yaml.v3"
 
 	"github.com/verity-org/verity/internal/config"
+	"github.com/verity-org/verity/internal/discovery"
 )
 
 type ValueOverride struct {
@@ -89,6 +88,10 @@ func ResolveValuePaths(valuesYAML []byte, mappings []ImageMapping, overrides map
 }
 
 func GetChartValues(chart config.ChartSpec) ([]byte, error) {
+	if err := discovery.ValidateChartSpec(chart); err != nil {
+		return nil, fmt.Errorf("validate chart spec: %w", err)
+	}
+
 	args := []string{"show", "values"}
 	if strings.HasPrefix(chart.Repository, "oci://") {
 		args = append(args, chart.Repository+"/"+chart.Name)
@@ -97,7 +100,7 @@ func GetChartValues(chart config.ChartSpec) ([]byte, error) {
 	}
 	args = append(args, "--version", chart.Version)
 
-	out, err := runHelm(context.Background(), args...)
+	out, err := runCommand(context.Background(), 5*time.Minute, "helm", args...)
 	if err != nil {
 		return nil, fmt.Errorf("get chart values for %s: %w", chart.Name, err)
 	}
@@ -119,7 +122,7 @@ func walkValues(prefix string, node map[string]any, pairs *[]repoTagPair) {
 
 		repo, hasRepo := child["repository"].(string)
 		if hasRepo && repo != "" {
-			_, hasTag := child["tag"].(string)
+			_, hasTag := child["tag"]
 			*pairs = append(*pairs, repoTagPair{Path: path, Repo: repo, HasTag: hasTag})
 		}
 
@@ -138,21 +141,4 @@ func matchesRepo(imageRepo, candidate string) bool {
 		return true
 	}
 	return false
-}
-
-func runHelm(ctx context.Context, args ...string) (string, error) {
-	ctx, cancel := context.WithTimeout(ctx, 5*time.Minute)
-	defer cancel()
-
-	cmd := exec.CommandContext(ctx, "helm", args...)
-
-	var stdout, stderr bytes.Buffer
-	cmd.Stdout = &stdout
-	cmd.Stderr = &stderr
-
-	if err := cmd.Run(); err != nil {
-		return "", fmt.Errorf("helm %s: %w\nstderr: %s", strings.Join(args, " "), err, stderr.String())
-	}
-
-	return stdout.String(), nil
 }

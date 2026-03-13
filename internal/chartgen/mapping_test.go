@@ -130,10 +130,16 @@ func TestSplitRef(t *testing.T) {
 			wantTag:  "",
 		},
 		{
-			name:     "digest with colon",
+			name:     "digest stripped",
+			ref:      "quay.io/foo/bar:v1.2@sha256:abc123",
+			wantName: "quay.io/foo/bar",
+			wantTag:  "v1.2",
+		},
+		{
+			name:     "digest only no tag",
 			ref:      "quay.io/foo/bar@sha256:abc123",
-			wantName: "quay.io/foo/bar@sha256",
-			wantTag:  "abc123",
+			wantName: "quay.io/foo/bar",
+			wantTag:  "",
 		},
 	}
 
@@ -205,5 +211,61 @@ esac
 
 	if got[0] != want {
 		t.Errorf("BuildImageMappings()[0] = %+v, want %+v", got[0], want)
+	}
+}
+
+func TestIsExcluded(t *testing.T) {
+	exclude := map[string]struct{}{"rabbitmq": {}, "kiwigrid-k8s-sidecar": {}}
+
+	tests := []struct {
+		name     string
+		imgName  string
+		imageRef string
+		want     bool
+	}{
+		{
+			name:     "exact nameFromRef match",
+			imgName:  "kiwigrid-k8s-sidecar",
+			imageRef: "ghcr.io/kiwigrid/k8s-sidecar:1.28.0",
+			want:     true,
+		},
+		{
+			name:     "basename fallback match",
+			imgName:  "library-rabbitmq",
+			imageRef: "docker.io/library/rabbitmq:4.2.3",
+			want:     true,
+		},
+		{
+			name:     "no match",
+			imgName:  "prometheus",
+			imageRef: "quay.io/prometheus/prometheus:v3",
+			want:     false,
+		},
+		{
+			name:     "nil exclude set",
+			imgName:  "rabbitmq",
+			imageRef: "docker.io/library/rabbitmq:4.2.3",
+			want:     false,
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			exc := exclude
+			if tc.name == "nil exclude set" {
+				exc = nil
+			}
+			got := isExcluded(tc.imgName, tc.imageRef, exc)
+			if got != tc.want {
+				t.Errorf("isExcluded(%q, %q) = %v, want %v", tc.imgName, tc.imageRef, got, tc.want)
+			}
+		})
+	}
+}
+
+func TestFindLatestPatchedTagEmptySource(t *testing.T) {
+	got := FindLatestPatchedTag("v1-patched\nv2-patched", "")
+	if got != "" {
+		t.Errorf("FindLatestPatchedTag with empty sourceTag = %q, want empty", got)
 	}
 }

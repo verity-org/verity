@@ -30,7 +30,7 @@ type DryRunResult struct {
 	Charts []ChartResult `json:"charts"`
 }
 
-func Run(cfg Config) (*DryRunResult, error) {
+func Run(cfg *Config) (*DryRunResult, error) {
 	charts, err := discovery.LoadChartsFile(cfg.ChartsFile)
 	if err != nil {
 		return nil, fmt.Errorf("load charts file: %w", err)

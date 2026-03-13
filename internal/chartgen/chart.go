@@ -6,12 +6,15 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"gopkg.in/yaml.v3"
 
 	"github.com/verity-org/verity/internal/config"
+	"github.com/verity-org/verity/internal/discovery"
 )
 
+// WrapperChart holds the generated wrapper chart YAML content.
 type WrapperChart struct {
 	Name       string
 	Version    string
@@ -19,9 +22,14 @@ type WrapperChart struct {
 	ValuesYAML []byte
 }
 
+// BuildWrapperChart creates a wrapper Helm chart that depends on the original
+// chart and overrides image values with patched references.
 func BuildWrapperChart(original config.ChartSpec, overrides []ValueOverride) (*WrapperChart, error) {
 	if original.Name == "" {
-		return nil, fmt.Errorf("build wrapper chart: original chart name is required")
+		return nil, ErrEmptyChartName
+	}
+	if err := discovery.ValidateChartSpec(original); err != nil {
+		return nil, fmt.Errorf("validate chart spec: %w", err)
 	}
 
 	wrapperName := original.Name + "-patched"
@@ -64,9 +72,11 @@ func BuildWrapperChart(original config.ChartSpec, overrides []ValueOverride) (*W
 	}, nil
 }
 
+// PackageChart writes the wrapper chart to a temp dir and runs helm package.
+// Returns the path to the .tgz archive. Caller is responsible for cleanup.
 func PackageChart(chart *WrapperChart) (string, error) {
 	if chart == nil {
-		return "", fmt.Errorf("package chart: chart is nil")
+		return "", ErrNilChart
 	}
 
 	tmpDir, err := os.MkdirTemp("", "verity-wrapper-chart-")
@@ -85,32 +95,35 @@ func PackageChart(chart *WrapperChart) (string, error) {
 		return "", fmt.Errorf("write values.yaml: %w", err)
 	}
 
-	out, err := runHelm(context.Background(), "package", tmpDir)
+	out, err := runCommand(context.Background(), 5*time.Minute, "helm", "package", tmpDir)
 	if err != nil {
 		return "", fmt.Errorf("helm package: %w", err)
 	}
 
 	const prefix = "Successfully packaged chart and saved it to:"
-	for _, line := range strings.Split(out, "\n") {
+	for line := range strings.SplitSeq(out, "\n") {
 		line = strings.TrimSpace(line)
-		if strings.HasPrefix(line, prefix) {
-			path := strings.TrimSpace(strings.TrimPrefix(line, prefix))
+		if rest, found := strings.CutPrefix(line, prefix); found {
+			path := strings.TrimSpace(rest)
 			if strings.HasSuffix(path, ".tgz") {
 				return path, nil
 			}
 		}
 	}
 
-	return "", fmt.Errorf("helm package output did not contain chart archive path")
+	return "", ErrNoArchivePath
 }
 
-func PushChart(tgzPath string, registry string) error {
-	if _, err := runHelm(context.Background(), "push", tgzPath, registry); err != nil {
+// PushChart pushes a packaged chart archive to an OCI registry.
+func PushChart(tgzPath, registry string) error {
+	if _, err := runCommand(context.Background(), 5*time.Minute, "helm", "push", tgzPath, registry); err != nil {
 		return fmt.Errorf("helm push %s to %s: %w", tgzPath, registry, err)
 	}
 	return nil
 }
 
+// buildValuesTree converts flat dotted-path overrides to a nested map scoped
+// under the chart name (Helm dependency override convention).
 func buildValuesTree(chartName string, overrides []ValueOverride) map[string]any {
 	if len(overrides) == 0 {
 		return map[string]any{}

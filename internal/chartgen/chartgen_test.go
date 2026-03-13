@@ -71,7 +71,7 @@ func TestRunDryRunNoCharts(t *testing.T) {
 	chartsPath := filepath.Join(tmpDir, "does-not-exist-chart.yaml")
 	verityPath := filepath.Join(tmpDir, "does-not-exist-verity.yaml")
 
-	res, err := Run(Config{
+	res, err := Run(&Config{
 		ChartsFile:     chartsPath,
 		VerityConfig:   verityPath,
 		TargetRegistry: "ghcr.io/verity-org",

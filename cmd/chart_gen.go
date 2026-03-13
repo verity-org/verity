@@ -46,7 +46,7 @@ var ChartGenCommand = &cli.Command{
 		},
 	},
 	Action: func(c *cli.Context) error {
-		cfg := chartgen.Config{
+		cfg := &chartgen.Config{
 			ChartsFile:     c.String("charts-file"),
 			VerityConfig:   c.String("verity-config"),
 			TargetRegistry: c.String("target-registry"),

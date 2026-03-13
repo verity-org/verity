@@ -26,7 +26,7 @@ var (
 // ExtractChartImages runs helm template for a chart and returns all unique image references found.
 // Overrides are applied to substitute tag variants (e.g., distroless-libc → debian).
 func ExtractChartImages(chart config.ChartSpec, overrides map[string]config.Override) ([]string, error) {
-	if err := validateChartSpec(chart); err != nil {
+	if err := ValidateChartSpec(chart); err != nil {
 		return nil, err
 	}
 
@@ -96,9 +96,9 @@ func extractImagesFromManifests(data []byte) ([]string, error) {
 	return result, nil
 }
 
-// validateChartSpec checks that ChartSpec fields are safe to pass to helm.
+// ValidateChartSpec checks that ChartSpec fields are safe to pass to helm.
 // Guards against argument injection (e.g., names or versions starting with "--").
-func validateChartSpec(chart config.ChartSpec) error {
+func ValidateChartSpec(chart config.ChartSpec) error {
 	if strings.HasPrefix(chart.Name, "-") {
 		return fmt.Errorf("%w: %q", ErrInvalidChartName, chart.Name)
 	}
