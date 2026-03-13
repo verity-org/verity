@@ -19,6 +19,7 @@ func main() {
 			cmd.DiscoverCommand,
 			cmd.IntegerCommand,
 			cmd.PreflightCommand,
+			cmd.ChartGenCommand,
 		},
 		Version: "2.0.0",
 	}

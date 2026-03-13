@@ -58,7 +58,14 @@ type HelmChartFile struct {
 // Override describes a tag variant substitution for chart images.
 // If an image ref contains the map key and its tag contains the From suffix,
 // the suffix is replaced with To (e.g., distroless-libc → debian).
+// Override describes a tag variant substitution for chart images.
+// If an image ref contains the map key and its tag contains the From suffix,
+// the suffix is replaced with To (e.g., distroless-libc → debian).
+// ValuePath optionally provides the dot-delimited values.yaml path for chart-gen
+// (e.g., "image" → "image.repository" / "image.tag"). When set, chart-gen uses
+// this path instead of auto-detecting from the chart's values.yaml tree.
 type Override struct {
-	From string `yaml:"from"`
-	To   string `yaml:"to"`
+	From      string `yaml:"from"`
+	To        string `yaml:"to"`
+	ValuePath string `yaml:"valuePath,omitempty"`
 }
