@@ -94,6 +94,11 @@ func PackageChart(chart *WrapperChart) (string, error) {
 	if err := os.WriteFile(valuesPath, chart.ValuesYAML, 0o644); err != nil {
 		return "", fmt.Errorf("write values.yaml: %w", err)
 	}
+	// Download the declared dependency (the original chart) into charts/.
+	// helm package requires dependencies to be present.
+	if _, err := runCommand(context.Background(), 5*time.Minute, "helm", "dependency", "build", tmpDir); err != nil {
+		return "", fmt.Errorf("helm dependency build: %w", err)
+	}
 
 	out, err := runCommand(context.Background(), 5*time.Minute, "helm", "package", tmpDir)
 	if err != nil {
