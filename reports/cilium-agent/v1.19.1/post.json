@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019cdeea-86de-7cef-b475-d4d3dfc2a801",
-  "CreatedAt": "2026-03-11T22:00:37.854849983Z",
-  "ArtifactID": "sha256:924708f1a91bc4ea2c30fa8943fc7dc4151fe0eaa067c60f6a94824e1351ce1c",
+  "ReportID": "019ce6aa-2c58-7338-b429-96ec008ff1d0",
+  "CreatedAt": "2026-03-13T10:07:18.104212763Z",
+  "ArtifactID": "sha256:15f1aa19a07abd7da5a8598022fab4d444f0e868af987ad99be812323ed8558d",
   "ArtifactName": "ghcr.io/verity-org/cache:cilium-agent-v1.19.1-patched",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -14,7 +14,7 @@
       "Family": "ubuntu",
       "Name": "24.04"
     },
-    "ImageID": "sha256:b8fcb357a07c47de2f7d5a56a69cee8d41129997d18b2a599c21ceccce6b15d5",
+    "ImageID": "sha256:b8e1a696c8190e16f68946279cf53631290415d1d285d8bf8f7e385f70df1b2a",
     "DiffIDs": [
       "sha256:cdc6e8bd8f77e1440c43e6b0a0667479c93067448ee14db00c84173c225cd5a6",
       "sha256:2bf4270ead1d4a02ad3f933f2e0708cb0163d0dd42bd29c9f06aa4a022b74d37",
@@ -22,13 +22,13 @@
       "sha256:c471c409b9b7d056394c3c9b962ce4861deae2ff7dd4ed2ccb3ab77c64f25845",
       "sha256:61d4af289f9bb294540f94a2b233d505ac59fac92115e78db03e3d7cc9abdd6f",
       "sha256:cd1d03112974a6287fdb997299a1a610ac8b241f2f2f52fc00f539a222c08b65",
-      "sha256:e8d1b3fd1cadd98da8f4ba85a14b6828e1b43f181c3991af0bb25cc89c9bf79b"
+      "sha256:fcb078eddafece4c27a2d8080de12896fe23c648c45b06e58266a220bcb923d6"
     ],
     "RepoTags": [
       "ghcr.io/verity-org/cache:cilium-agent-v1.19.1-patched"
     ],
     "RepoDigests": [
-      "ghcr.io/verity-org/cache@sha256:1406b35fa0a2773b322ada9e4267e5b8d8c9e289ff061b110cb8407072186eb6"
+      "ghcr.io/verity-org/cache@sha256:21093103a2674a381fe7ce79ae9711c768ad94730aa521ba38cc1a24585dfcb5"
     ],
     "Reference": "ghcr.io/verity-org/cache:cilium-agent-v1.19.1-patched",
     "ImageConfig": {
@@ -108,7 +108,7 @@
           "empty_layer": true
         },
         {
-          "created": "2026-03-11T21:41:39.337980689Z",
+          "created": "2026-03-13T09:55:45.671807277Z",
           "created_by": "mount / from exec sh -c apt-get -o Acquire::Retries=3 install --no-install-recommends -y libgnutls30t64 \u0026\u0026 apt-get clean -y",
           "comment": "buildkit.exporter.image.v0"
         }
@@ -123,7 +123,7 @@
           "sha256:c471c409b9b7d056394c3c9b962ce4861deae2ff7dd4ed2ccb3ab77c64f25845",
           "sha256:61d4af289f9bb294540f94a2b233d505ac59fac92115e78db03e3d7cc9abdd6f",
           "sha256:cd1d03112974a6287fdb997299a1a610ac8b241f2f2f52fc00f539a222c08b65",
-          "sha256:e8d1b3fd1cadd98da8f4ba85a14b6828e1b43f181c3991af0bb25cc89c9bf79b"
+          "sha256:fcb078eddafece4c27a2d8080de12896fe23c648c45b06e58266a220bcb923d6"
         ]
       },
       "config": {
@@ -176,8 +176,8 @@
       },
       {
         "Size": 2647552,
-        "Digest": "sha256:32af1436a575acc2caa45a2a1d78d10b7b003d01dc83fa075102c1405e0ec5c0",
-        "DiffID": "sha256:e8d1b3fd1cadd98da8f4ba85a14b6828e1b43f181c3991af0bb25cc89c9bf79b"
+        "Digest": "sha256:ab1b6103576e5bfe18e0493ed87fa8e970e7b250b6131f478ba103e28b01c0ab",
+        "DiffID": "sha256:fcb078eddafece4c27a2d8080de12896fe23c648c45b06e58266a220bcb923d6"
       }
     ]
   },
@@ -4513,8 +4513,8 @@
             "libunistring5@1.1-2build1.1"
           ],
           "Layer": {
-            "Digest": "sha256:32af1436a575acc2caa45a2a1d78d10b7b003d01dc83fa075102c1405e0ec5c0",
-            "DiffID": "sha256:e8d1b3fd1cadd98da8f4ba85a14b6828e1b43f181c3991af0bb25cc89c9bf79b"
+            "Digest": "sha256:ab1b6103576e5bfe18e0493ed87fa8e970e7b250b6131f478ba103e28b01c0ab",
+            "DiffID": "sha256:fcb078eddafece4c27a2d8080de12896fe23c648c45b06e58266a220bcb923d6"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libgnutls.so.30.37.1",
@@ -9237,7 +9237,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:1804b2149c18f4d8c727ebd9d593c337a8a60673e97a80c792c4abef99a375cd",
+          "Fingerprint": "sha256:e31a35fd61c9ee125150b561844d903d84a97a466903da774d782365ae49db77",
           "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
           "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
           "Severity": "LOW",
@@ -9300,7 +9300,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:2c760197696d59ae6bcd4f1e9908c14fdac097d2d7266ba2cdb17197c2abc956",
+          "Fingerprint": "sha256:5441c011530aa585c36abdf82ba0eefc890e6379ae78e058c9f0022505cf2739",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -9355,7 +9355,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:261ffe321f63e14e47da8194cf8ed0486ecc0a1c57fe0c9e9a6a450b3eaae39c",
+          "Fingerprint": "sha256:af249ae82aa9ae1e027c2afac547efd39c30716357ee3931e96d3241b234ef60",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -9411,7 +9411,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:d02c2f4c57acfdc5c14970e659902c97003f7258dcecf03a903a3af1955695e3",
+          "Fingerprint": "sha256:c4c8e7a0704df619c4d024c673544d02829792918568143a8ad92a12bd7ff208",
           "Title": "libbpf: Heap Buffer Overflow in libbpf",
           "Description": "Buffer Overflow vulnerability in libbpf 1.5.0 allows a local attacker to execute arbitrary code via the bpf_object__init_prog` function of libbpf. This has been disputed by third parties who assert that \"no one in their sane mind should be passing untrusted ELF files into libbpf while running under root.\"",
           "Severity": "LOW",
@@ -9465,7 +9465,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:9d482b2d618e875297bc3fb991914e210fe09f9e155bfc250b2e8f82547669cb",
+          "Fingerprint": "sha256:a11237d039eacb10f3a6df17a7f9ba3110a3c9bd814fc4b5ed3c385f0383ece6",
           "Title": "elfutils: GNU elfutils eu-readelf libdw_alloc.c __libdw_thread_tail memory corruption",
           "Description": "A vulnerability has been found in GNU elfutils 0.192 and classified as critical. This vulnerability affects the function __libdw_thread_tail in the library libdw_alloc.c of the component eu-readelf. The manipulation of the argument w leads to memory corruption. The attack can be initiated remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is 2636426a091bd6c6f7f02e49ab20d4cdc6bfc753. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -9526,7 +9526,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:278d9ed0ff55477f98304230d96e9ed71fb2e090e14ba2094769c73c35420ea5",
+          "Fingerprint": "sha256:45c61466643bc4a0e50518ca60a4bbeb38bd824179eae694bc874a313e2fc2fb",
           "Title": "elfutils: GNU elfutils eu-strip elf_strptr.c elf_strptr denial of service",
           "Description": "A vulnerability classified as problematic was found in GNU elfutils 0.192. This vulnerability affects the function elf_strptr in the library /libelf/elf_strptr.c of the component eu-strip. The manipulation leads to denial of service. It is possible to launch the attack on the local host. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is b16f441cca0a4841050e3215a9f120a6d8aea918. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -9586,7 +9586,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:8d44b210bdcdc2434e7c194a5d23e2cff8177cc877820de13f16b51eefe597ed",
+          "Fingerprint": "sha256:a1e7224f4bed32035160317e6ea985426c1b75cbdf5aa797af6afd1f3b0f9655",
           "Title": "libgcrypt: vulnerable to Marvin Attack",
           "Description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
           "Severity": "LOW",
@@ -9651,7 +9651,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:025d9b7b9a6ad979d705e8be072c890faa9b582a0117ff68bd7d4afd5be71f7b",
+          "Fingerprint": "sha256:abfa5999cca8a3ef86d0309f05c1331d6b87adbf12d286acf6f077d5e7673b1f",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9728,7 +9728,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:ad1ea9062b20eb954227f95995a39050a40d15651ee6234415d00aa68ec503fe",
+          "Fingerprint": "sha256:a90b6f22132f909c765e99a396caf8d45c5f577340da2cfb0eb9f33a3142f8a6",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9805,7 +9805,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:2a75f957067d91f07d5f917e85da4966aa5d8db60bc337c79e844888f89ad58a",
+          "Fingerprint": "sha256:9207bde79fdf431fc2d29fce19ebb310186d546353381d06d7f353f6e6c023f7",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9882,7 +9882,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:357b091e84597fac11f88b4e58dd565e043023cc603a13b5e8e08f53f055ed53",
+          "Fingerprint": "sha256:7f7cfe10f1206551b94f0aea9e30b556c935bbbb7ee025feb6b04f21600e3a58",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9959,7 +9959,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:a90a918a9f4c3afa184ac57275ee520f04fb3dba0bbfb61027a5ac3fcf3d7cbb",
+          "Fingerprint": "sha256:d75d58cb85548ebd9fdb8506ea4ae1a6a1130599c87d7405905decd167741277",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -10020,7 +10020,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:b083909fe2c4a084a416c87dd64409876b8d2b12c630101935c55492cf68d124",
+          "Fingerprint": "sha256:7c81318b5b57a2a1bba0b3954573a0771a5ab82c5ae16e402d18d336b8f34aae",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -10081,7 +10081,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:a3d2355e7d465af79b2aca8af7d765323f24c53354b8cd358c4ebc12fa2d30d5",
+          "Fingerprint": "sha256:6420784fcd6128879033af3c9e5f2197f5354f239c37ab0f9da09ed8df88f1cf",
           "Title": "tar: Tar path traversal",
           "Description": "GNU Tar through 1.35 allows file overwrite via directory traversal in crafted TAR archives, with a certain two-step process. First, the victim must extract an archive that contains a ../ symlink to a critical directory. Second, the victim must extract an archive that contains a critical file, specified via a relative pathname that begins with the symlink name and ends with that critical file's name. Here, the extraction follows the symlink and overwrites the critical file. This bypasses the protection mechanism of \"Member name contains '..'\" that would occur for a single TAR archive that attempted to specify the critical file via a ../ approach. For example, the first archive can contain \"x -\u003e ../../../../../home/victim/.ssh\" and the second archive can contain x/authorized_keys. This can affect server applications that automatically extract any number of user-supplied TAR archives, and were relying on the blocking of traversal. This can also affect software installation processes in which \"tar xf\" is run more than once (e.g., when installing a package can automatically install two dependencies that are set up as untrusted tarballs instead of official packages). NOTE: the official GNU Tar manual has an otherwise-empty directory for each \"tar xf\" in its Security Rules of Thumb; however, third-party advice leads users to run \"tar xf\" more than once into the same directory.",
           "Severity": "MEDIUM",
@@ -10266,7 +10266,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7b6ade5062fad7f2f1f1464d7afc43f0ff312a0096339b44a8e7a3518b05d592",
+          "Fingerprint": "sha256:a3b1c18890f119f11874412fff6823d0cbe611b6c16d7fe25c2d6e5f0e758b1c",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -10305,14 +10305,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3341",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -10349,7 +10347,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f215fc61ef5dbae5152c54230fe1000fe092d4376d403c46ac3a272887e7ed1e",
+          "Fingerprint": "sha256:38589db08bfff51e98fb2253a64e5f1ca96d6c1306c75cf23f18560c199d1129",
           "Title": "golang: net/url: Memory exhaustion in query parameter parsing in net/url",
           "Description": "The net/url package does not set a limit on the number of query parameters in a query. While the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.",
           "Severity": "HIGH",
@@ -10359,7 +10357,7 @@
           "VendorSeverity": {
             "alma": 3,
             "amazon": 2,
-            "azure": 3,
+            "azure": 2,
             "bitnami": 3,
             "cbl-mariner": 2,
             "oracle-oval": 3,
@@ -10383,14 +10381,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3341",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/736712",
             "https://go.dev/issue/77101",
             "https://groups.google.com/g/golang-announce/c/Vd2tYVM8eUc",
@@ -10427,7 +10423,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:fb7a9175be6b679e8a591222801c4fd6d6cc66fd6d2b85be9530dda13caba891",
+          "Fingerprint": "sha256:230de0c853747f8131edf691fbdb729d56bdf45524553c31c704b5c203ae1b98",
           "Title": "golang: archive/zip: Excessive CPU consumption when building archive index in archive/zip",
           "Description": "archive/zip uses a super-linear file name indexing algorithm that is invoked the first time a file in an archive is opened. This can lead to a denial of service when consuming a maliciously constructed ZIP archive.",
           "Severity": "HIGH",
@@ -10508,7 +10504,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:02ac09d77643c7043265fe5e4c5aea9651fc7eb34cd392eaf437bc070f6710fc",
+          "Fingerprint": "sha256:5269b878a8c927357b86820b9a91d46ffa41ac80dbc4eb068a0256388dbaed99",
           "Title": "crypto/x509: golang: Denial of Service due to excessive resource consumption via crafted certificate",
           "Description": "Within HostnameError.Error(), when constructing an error string, there is no limit to the number of hosts that will be printed out. Furthermore, the error string is constructed by repeated string concatenation, leading to quadratic runtime. Therefore, a certificate provided by a malicious actor can result in excessive resource consumption.",
           "Severity": "HIGH",
@@ -10548,7 +10544,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3341",
+            "https://errata.rockylinux.org/RLSA-2026:3928",
             "https://go.dev/cl/725920",
             "https://go.dev/issue/76445",
             "https://groups.google.com/g/golang-announce/c/8FJoBkPddm4",
@@ -10585,7 +10581,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:4ab96e72695655a81dc985eed131b66f8ecfe08c2620457042aedf001dcee077",
+          "Fingerprint": "sha256:20d22e42e342721531699b9e7af278656c952fdd69593a390f3d260bd0151898",
           "Title": "golang: crypto/x509: excluded subdomain constraint does not restrict wildcard SANs",
           "Description": "An excluded subdomain constraint in a certificate chain does not restrict the usage of wildcard SANs in the leaf certificate. For example a constraint that excludes the subdomain test.example.com does not prevent a leaf certificate from claiming the SAN *.example.com.",
           "Severity": "MEDIUM",
@@ -10644,13 +10640,13 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:3298d26379e1961b6a39ec6d227d34f1bbc470c6fcccb5d9e299c403c231bfc8",
+          "Fingerprint": "sha256:4f46e535edc17130dbb9628f448802742e0ddb26589574b28fe372283ac84b54",
           "Title": "During the TLS 1.3 handshake if multiple messages are sent in records  ...",
           "Description": "During the TLS 1.3 handshake if multiple messages are sent in records that span encryption level boundaries (for instance the Client Hello and Encrypted Extensions messages), the subsequent messages may be processed before the encryption level changes. This can cause some minor information disclosure if a network-local attacker can inject messages during the handshake.",
           "Severity": "MEDIUM",
           "VendorSeverity": {
             "amazon": 2,
-            "azure": 2,
+            "azure": 1,
             "bitnami": 2,
             "cbl-mariner": 1,
             "photon": 2
@@ -10695,7 +10691,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:ddc9e5c4f8add1abdeb4b41c6e2eb8df148acf74472da99aaf9e1221bf7959dc",
+          "Fingerprint": "sha256:7d65b2f380e1c8e9407877526d78e1d78b68fee38c2a4bc0d2400297ec409093",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -10749,7 +10745,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:09c5337a8eeb5027cc805834bc6f37882e77764c446aac6ffa91103121e7be64",
+          "Fingerprint": "sha256:f46d605113fb85f49f45e3058746dfb48477c2208a496e0cd7324135d8a0cd09",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -10803,7 +10799,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:8027364885977bac55dd6c9b1be682021bdeffb7ed799d0e7a5c4d3b47fea60b",
+          "Fingerprint": "sha256:eb7e32a4c0372b89c1e2b7a121d282818b04907c95e086ab9e1cf6eb55ece9ae",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -12954,7 +12950,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:463e7c75a09b0effaec5db550bf7dbeb0baed449ce06eafa0e2662163a9182ee",
+          "Fingerprint": "sha256:38eb14daa43fd32a133c708cb8af68a061b22ac545f7db2a0d4d986d8ed8f701",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -13008,7 +13004,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f2f18ffc16a8c2f1b1eb2599a2d6d8ade3228da39aac1ba941e444ee3a3e2ea0",
+          "Fingerprint": "sha256:ed6b2f09c8bd172454fdcd0a434f8b678be16573b65687ac41d71340687018c3",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -13062,7 +13058,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0215a403b00554da098f1637929079fccb104c6b96bb2f2d49625bcd5a0b8edc",
+          "Fingerprint": "sha256:6818fbe1e6995cc24b346020e2550f3f0c5fbc535f2abc3afb3e969fac95584f",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -15948,7 +15944,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:5309237d0128ff77ee4c5fa3fc8a4139f2effbe653992901976b75b078dfc1a4",
+          "Fingerprint": "sha256:4214b7ae9df2dbef956d6492008a924108acac7b4eb53de37fba5e1d35a46316",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -16002,7 +15998,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:5802b2966795a5c7683aa103fcb0f5f739889e01e3038ef16674a9653ac94b27",
+          "Fingerprint": "sha256:156deb5d1e6ab17b41786c6aa99c0160de2c92f5ff60b4118d03bab860a41cea",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -16056,7 +16052,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:ba611d94c71b6f3e586c5f1c4bb37c2740b7f86bedd4bb5b45dde8fdbfc441fe",
+          "Fingerprint": "sha256:4461dadb47190a5f3a2908a9b54131292f891bea382df812407b136ab96b40c5",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -17262,7 +17258,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:af6ee5122af8e2efa112388c715b770ce91655c69a6734de5e8f6efffc9ad743",
+          "Fingerprint": "sha256:1d0a7ff5fe645f4d0e19e0f528421c07dad9dc5aa7b43faf391b12a87fe0a446",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -17316,7 +17312,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:5e4a2a0392e3f5e7addb2fa7fb5d39dfbcf30fa3b8c9b11d52cfcb71f0b1e2e4",
+          "Fingerprint": "sha256:948e88b342ba4372cc6b08e7c46ea0110201d260332412e11d8d9e5916a16931",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -17370,7 +17366,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:948dae55c8e34d7d16a93a794fe2aec51deb60c1e5adb8c66d3d1c83086ba55e",
+          "Fingerprint": "sha256:9189141b58d63fc99beddf416fbd7f654ff97c27ad1b256ed9b231f15c55ee04",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -19761,7 +19757,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:6ba67a213083dc7e41912ed71d8f107b74e86218df23eac7c71fe58d14f9c13e",
+          "Fingerprint": "sha256:7fd50edf3146ef25f3b6a27183bb9934d674315fd332419f896bfe27892353f8",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -19815,7 +19811,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0f153e8cb418b99fc4cdf616828731ab4b75406b3faa124d6d278279897f0e63",
+          "Fingerprint": "sha256:68745269e75d70632e8fb4fab0a60843368b873b869cca70ea7353e9acfcd4ce",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -19869,7 +19865,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e3b602696ece8a1a21258c4eb02723e9615cbc25c70797a2b2871e050fe3572b",
+          "Fingerprint": "sha256:8b3fec5bede6defb72b45b172bbd921e51384fc6cac6e35975837ee87ddd1106",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -20985,7 +20981,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7313d83dc4105e83598bb5362ff992017dbd2c7020177102f626c92248c4153e",
+          "Fingerprint": "sha256:34a887637702cec6c1906550cc5705e17692d11ff2277255ca1ba0ff1074ccc7",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -21039,7 +21035,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f4fb0ab7a29fb9f2543bce90607a31c42a301ed4d8610e6bf402f2f84f66438c",
+          "Fingerprint": "sha256:7428a1298b0f11b25322d42d398ddabfe919d0bed37d7295c75cd9e1a2ea6e8f",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -21093,7 +21089,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7a21fbb3bbbfb70f70ff45bc434b30e47a0344a2bf63f4098cd41f53b05ab04b",
+          "Fingerprint": "sha256:f6b72274e23bcd79d797f317c6dbacdc52bb30329edc6b7c8ee54c2a2c130eba",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -21249,7 +21245,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:9ccb0e9b10ac94736cfa1410c20cb912c1eea1671c5920ec87d51192807ee509",
+          "Fingerprint": "sha256:e0e2461ec13cdf79934c998c722bc82dfdfe8f575ed7e7d9e4a2333e19b32c32",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -21303,7 +21299,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:adddedbd13339ef3bc92cb0f17c7fa5b19ff39cf7a9e3859b85e30d4412ae134",
+          "Fingerprint": "sha256:613cd8cf08958ff77a5b0362db059770f5293e1403d3ae9341d49646b883531c",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -21357,7 +21353,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:8c04693341c9f06ea34cf71c9d82a0a05502bbd445676434ca41fdd5a1e58a15",
+          "Fingerprint": "sha256:81eaa6f8594be44aff0119998eaef28ff58bba8b87b807e4a286811d24682663",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -21588,7 +21584,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:6c07c9f6a9c7a308f32d0dfc90b44e7e0039177f9f8af19e153ef67c42d4ce3f",
+          "Fingerprint": "sha256:d98ec9bdfa43a0f5a3428b8069fc4add43dfe91e34a2b062633d611462de7aa2",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -21642,7 +21638,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:645d3dead903378baa52ee4c1d010937af13c9d38981d53fe2cfd9afc95ae33a",
+          "Fingerprint": "sha256:b0d24724f19d57ebe1305c962e697e61fee2c0720d2c6dcbb57cadee1a7b8568",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -21696,7 +21692,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:563d404aa4bb23cab3455f58f9fedd4a9fa49a44defd971e94c02472d57d1565",
+          "Fingerprint": "sha256:c7bfcee2af116698d875379aedbd7a0b43afcf7d87a404bf1e0b4113d4dcf0e1",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -21837,7 +21833,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e884fabaae164f95fe3696822ecbfce1430d45e93a2d9636bce03a31e18e9d31",
+          "Fingerprint": "sha256:a643c6bfa6292c66c106250e36f26896b8ef8248942de5f6d946656562e57215",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -21891,7 +21887,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:89e6c70704078eedc39d7ca760ec48b924b0cb2953f674988a630823242f6f16",
+          "Fingerprint": "sha256:1225f3e1f627d0c742b038fe4ee673560673e016fa8fdf78af90268f32e41d1f",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -21945,7 +21941,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:6f21a43e545eb7549141d01f68418b496bf9ad9360a906e150074f9d2aabb901",
+          "Fingerprint": "sha256:320e0ca352deb75ddf5d6032c73c72a91202c2f7e2e1805d922cc34f269a8667",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -22146,7 +22142,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:52283fde7063179d97b5c7c49d77780befc08823f596c3aa9a5ec0d6f340b545",
+          "Fingerprint": "sha256:cb88f324ff459a5aacc620ffe6ea9a3db1c95bfc370d767c41c1b9279acc03c9",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -22200,7 +22196,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:de2449f29aedad0646b3cb41535b96662c5f1663e4aa76387561f9a97a06c270",
+          "Fingerprint": "sha256:4b33818668648ce08d97f86f6070995ff1061c5ccb0eeb18a7fd6c4644985765",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -22254,7 +22250,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:dfcec2c4e03bd6b7f7e0a4324dba659e40b3957f740493cd8908c912136b92fd",
+          "Fingerprint": "sha256:bb375df09147526ed4e70d94e08f9f3f13ca267ddd459a16a34997b883016cc4",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -24450,7 +24446,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:fe1313b2e62b4394c489bcee21f5187f2f3e82102a0581358655517d95200862",
+          "Fingerprint": "sha256:7dde82f8b3305ac72c4ac1934beb473c2e4b4ae82957a7bcf912b39445eaee04",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -24504,7 +24500,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:bf70da26758e97319da45377e53c8f290f2393303ceb895f0be86a61e2edb600",
+          "Fingerprint": "sha256:ac978cb9eb2133a2640dce8b4863af69d9af67055420d59da77bcbc9b36844da",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -24558,7 +24554,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:66c2a884df04fab48b6f146d2bdc14259d0be8761f60dc0f493bba192b6ce585",
+          "Fingerprint": "sha256:a3bfbd8a37a04d408306f128860db402d7e8952cbc8155850b60f0f63ac26ea8",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
