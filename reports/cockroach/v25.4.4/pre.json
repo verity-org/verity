@@ -3,8 +3,8 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019ce0ae-99b1-73de-a54d-28a20731c2f6",
-  "CreatedAt": "2026-03-12T06:14:24.945255867Z",
+  "ReportID": "019ce693-9842-777e-8ca3-670424a83faa",
+  "CreatedAt": "2026-03-13T09:42:38.402493199Z",
   "ArtifactID": "sha256:6926ba87194e7baa90cf84bcccce34b85b8eb714ad41d5c4f5af8a81e8336d55",
   "ArtifactName": "mirror.gcr.io/cockroachdb/cockroach:v25.4.4",
   "ArtifactType": "container_image",
@@ -30013,6 +30013,188 @@
           "LastModifiedDate": "2026-01-27T21:29:39.953Z"
         },
         {
+          "VulnerabilityID": "CVE-2026-1965",
+          "PkgID": "curl-minimal@7.76.1-35.el9_7.3.x86_64",
+          "PkgName": "curl-minimal",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/curl-minimal@7.76.1-35.el9_7.3?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "802754ecef52a36b"
+          },
+          "InstalledVersion": "7.76.1-35.el9_7.3",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1965",
+          "Fingerprint": "sha256:4f57c162df88213dc0c7c768e03a04a0976484e57e7932f791274e5bf1afe967",
+          "Title": "curl: curl: Authentication bypass due to incorrect connection reuse with Negotiate authentication",
+          "Description": "libcurl can in some circumstances reuse the wrong connection when asked to do\nan Negotiate-authenticated HTTP or HTTPS request.\n\nlibcurl features a pool of recent connections so that subsequent requests can\nreuse an existing connection to avoid overhead.\n\nWhen reusing a connection a range of criterion must first be met. Due to a\nlogical error in the code, a request that was issued by an application could\nwrongfully reuse an existing connection to the same server that was\nauthenticated using different credentials. One underlying reason being that\nNegotiate sometimes authenticates *connections* and not *requests*, contrary\nto how HTTP is designed to work.\n\nAn application that allows Negotiate authentication to a server (that responds\nwanting Negotiate) with `user1:password1` and then does another operation to\nthe same server also using Negotiate but with `user2:password2` (while the\nprevious connection is still alive) - the second request wrongly reused the\nsame connection and since it then sees that the Negotiate negotiation is\nalready made, it just sends the request over that connection thinking it uses\nthe user2 credentials when it is in fact still using the connection\nauthenticated for user1...\n\nThe set of authentication methods to use is set with  `CURLOPT_HTTPAUTH`.\n\nApplications can disable libcurl's reuse of connections and thus mitigate this\nproblem, by using one of the following libcurl options to alter how\nconnections are or are not reused: `CURLOPT_FRESH_CONNECT`,\n`CURLOPT_MAXCONNECTS` and `CURLMOPT_MAX_HOST_CONNECTIONS` (if using the\ncurl_multi API).",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 6.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-1965",
+            "https://curl.se/docs/CVE-2026-1965.html",
+            "https://curl.se/docs/CVE-2026-1965.json",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-1965",
+            "https://ubuntu.com/security/notices/USN-8084-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-1965"
+          ],
+          "PublishedDate": "2026-03-11T11:15:59.177Z",
+          "LastModifiedDate": "2026-03-12T14:11:19.07Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3783",
+          "PkgID": "curl-minimal@7.76.1-35.el9_7.3.x86_64",
+          "PkgName": "curl-minimal",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/curl-minimal@7.76.1-35.el9_7.3?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "802754ecef52a36b"
+          },
+          "InstalledVersion": "7.76.1-35.el9_7.3",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3783",
+          "Fingerprint": "sha256:2fe1c0a7401d03fc1c734dfc88881d7828f6d3ac31ac5de4aee9c1db0b6c356f",
+          "Title": "curl: curl: Information disclosure via OAuth2 bearer token leakage during HTTP(S) redirect",
+          "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a redirect to a second URL, curl could leak that token to the second\nhostname under some circumstances.\n\nIf the hostname that the first request is redirected to has information in the\nused .netrc file, with either of the `machine` or `default` keywords, curl\nwould pass on the bearer token set for the first host also to the second one.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-522"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N",
+              "V3Score": 5.7
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/2",
+            "https://access.redhat.com/security/cve/CVE-2026-3783",
+            "https://curl.se/docs/CVE-2026-3783.html",
+            "https://curl.se/docs/CVE-2026-3783.json",
+            "https://hackerone.com/reports/3583983",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3783",
+            "https://ubuntu.com/security/notices/USN-8084-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3783"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.08Z",
+          "LastModifiedDate": "2026-03-12T14:10:37.3Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3784",
+          "PkgID": "curl-minimal@7.76.1-35.el9_7.3.x86_64",
+          "PkgName": "curl-minimal",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/curl-minimal@7.76.1-35.el9_7.3?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "802754ecef52a36b"
+          },
+          "InstalledVersion": "7.76.1-35.el9_7.3",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3784",
+          "Fingerprint": "sha256:f00b89331cc1456b29d2ce318e2c113944789dac3465e075b613975e62ede013",
+          "Title": "curl: curl: Unauthorized access due to improper HTTP proxy connection reuse",
+          "Description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a\nserver, even if the new request uses different credentials for the HTTP proxy.\nThe proper behavior is to create or use a separate connection.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 6.5
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/3",
+            "https://access.redhat.com/security/cve/CVE-2026-3784",
+            "https://curl.se/docs/CVE-2026-3784.html",
+            "https://curl.se/docs/CVE-2026-3784.json",
+            "https://hackerone.com/reports/3584903",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3784",
+            "https://ubuntu.com/security/notices/USN-8084-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3784"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.437Z",
+          "LastModifiedDate": "2026-03-12T14:09:50.47Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3805",
+          "PkgID": "curl-minimal@7.76.1-35.el9_7.3.x86_64",
+          "PkgName": "curl-minimal",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/curl-minimal@7.76.1-35.el9_7.3?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "802754ecef52a36b"
+          },
+          "InstalledVersion": "7.76.1-35.el9_7.3",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3805",
+          "Fingerprint": "sha256:e81aee2e15d9f3dab024c6be9e049a6b60720d9e5ef61976258bc341490d9aba",
+          "Title": "curl: curl: Arbitrary code execution or Denial of Service via use-after-free in SMB request handling",
+          "Description": "When doing a second SMB request to the same host again, curl would wrongly use\na data pointer pointing into already freed memory.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-416"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
+              "V3Score": 6.3
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/4",
+            "https://access.redhat.com/security/cve/CVE-2026-3805",
+            "https://curl.se/docs/CVE-2026-3805.html",
+            "https://curl.se/docs/CVE-2026-3805.json",
+            "https://hackerone.com/reports/3591944",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3805",
+            "https://ubuntu.com/security/notices/USN-8084-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3805"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.967Z",
+          "LastModifiedDate": "2026-03-12T14:08:56.79Z"
+        },
+        {
           "VulnerabilityID": "CVE-2024-11053",
           "PkgID": "curl-minimal@7.76.1-35.el9_7.3.x86_64",
           "PkgName": "curl-minimal",
@@ -30723,6 +30905,7 @@
             "CWE-787"
           ],
           "VendorSeverity": {
+            "azure": 2,
             "redhat": 2,
             "ubuntu": 2
           },
@@ -30991,6 +31174,9 @@
         },
         {
           "VulnerabilityID": "CVE-2026-0915",
+          "VendorIDs": [
+            "RHSA-2026:2786"
+          ],
           "PkgID": "glibc@2.34-231.el9_7.2.x86_64",
           "PkgName": "glibc",
           "PkgIdentifier": {
@@ -30998,7 +31184,8 @@
             "UID": "c4053454374d524b"
           },
           "InstalledVersion": "2.34-231.el9_7.2",
-          "Status": "affected",
+          "FixedVersion": "2.34-231.el9_7.10",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
             "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
@@ -31056,6 +31243,9 @@
         },
         {
           "VulnerabilityID": "CVE-2025-15281",
+          "VendorIDs": [
+            "RHSA-2026:2786"
+          ],
           "PkgID": "glibc@2.34-231.el9_7.2.x86_64",
           "PkgName": "glibc",
           "PkgIdentifier": {
@@ -31063,7 +31253,8 @@
             "UID": "c4053454374d524b"
           },
           "InstalledVersion": "2.34-231.el9_7.2",
-          "Status": "affected",
+          "FixedVersion": "2.34-231.el9_7.10",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
             "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
@@ -31121,6 +31312,9 @@
         },
         {
           "VulnerabilityID": "CVE-2026-0861",
+          "VendorIDs": [
+            "RHSA-2026:2786"
+          ],
           "PkgID": "glibc@2.34-231.el9_7.2.x86_64",
           "PkgName": "glibc",
           "PkgIdentifier": {
@@ -31128,7 +31322,8 @@
             "UID": "c4053454374d524b"
           },
           "InstalledVersion": "2.34-231.el9_7.2",
-          "Status": "affected",
+          "FixedVersion": "2.34-231.el9_7.10",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
             "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
@@ -31136,396 +31331,6 @@
           "SeveritySource": "redhat",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0861",
           "Fingerprint": "sha256:06bd9fa67306e1e348197b5bb069ce71c9afd29668d2c2bf1b011653e0a077c4",
-          "Title": "glibc: Integer overflow in memalign leads to heap corruption",
-          "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1\u003c\u003c62+ 1, 1\u003c\u003c63] and exactly 1\u003c\u003c63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments.",
-          "Severity": "LOW",
-          "CweIDs": [
-            "CWE-190"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 3,
-            "redhat": 1,
-            "rocky": 2,
-            "ubuntu": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 8.1
-            }
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/01/16/5",
-            "https://access.redhat.com/errata/RHSA-2026:2786",
-            "https://access.redhat.com/security/cve/CVE-2026-0861",
-            "https://bugzilla.redhat.com/2429771",
-            "https://bugzilla.redhat.com/2430201",
-            "https://bugzilla.redhat.com/2431196",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2429771",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2430201",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2431196",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-15281",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0861",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0915",
-            "https://errata.almalinux.org/9/ALSA-2026-2786.html",
-            "https://errata.rockylinux.org/RLSA-2026:2786",
-            "https://linux.oracle.com/cve/CVE-2026-0861.html",
-            "https://linux.oracle.com/errata/ELSA-2026-50120.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-0861",
-            "https://sourceware.org/bugzilla/show_bug.cgi?id=33796",
-            "https://sourceware.org/git/?p=glibc.git;a=blob_plain;f=advisories/GLIBC-SA-2026-0001",
-            "https://ubuntu.com/security/notices/USN-8005-1",
-            "https://www.cve.org/CVERecord?id=CVE-2026-0861"
-          ],
-          "PublishedDate": "2026-01-14T21:15:52.617Z",
-          "LastModifiedDate": "2026-02-03T18:26:25.39Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-0915",
-          "PkgID": "glibc-common@2.34-231.el9_7.2.x86_64",
-          "PkgName": "glibc-common",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2?arch=x86_64\u0026distro=redhat-9.7",
-            "UID": "f7996d4d462bf3d0"
-          },
-          "InstalledVersion": "2.34-231.el9_7.2",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
-            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0915",
-          "Fingerprint": "sha256:4e57b3676f3ae48c1502283e3a564d0ae50204cedde83d7060c6a0561ddff6cd",
-          "Title": "glibc: glibc: Information disclosure via zero-valued network query",
-          "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-908"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 1,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 3,
-            "redhat": 2,
-            "rocky": 2,
-            "ubuntu": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
-              "V3Score": 5.3
-            }
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/01/16/6",
-            "https://access.redhat.com/errata/RHSA-2026:2786",
-            "https://access.redhat.com/security/cve/CVE-2026-0915",
-            "https://bugzilla.redhat.com/2429771",
-            "https://bugzilla.redhat.com/2430201",
-            "https://bugzilla.redhat.com/2431196",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2429771",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2430201",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2431196",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-15281",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0861",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0915",
-            "https://errata.almalinux.org/9/ALSA-2026-2786.html",
-            "https://errata.rockylinux.org/RLSA-2026:2786",
-            "https://linux.oracle.com/cve/CVE-2026-0915.html",
-            "https://linux.oracle.com/errata/ELSA-2026-50120.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-0915",
-            "https://sourceware.org/bugzilla/show_bug.cgi?id=33802",
-            "https://ubuntu.com/security/notices/USN-8005-1",
-            "https://www.cve.org/CVERecord?id=CVE-2026-0915",
-            "https://www.openwall.com/lists/oss-security/2026/01/16/6"
-          ],
-          "PublishedDate": "2026-01-15T22:16:12.457Z",
-          "LastModifiedDate": "2026-01-23T19:36:50.73Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2025-15281",
-          "PkgID": "glibc-common@2.34-231.el9_7.2.x86_64",
-          "PkgName": "glibc-common",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2?arch=x86_64\u0026distro=redhat-9.7",
-            "UID": "f7996d4d462bf3d0"
-          },
-          "InstalledVersion": "2.34-231.el9_7.2",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
-            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-15281",
-          "Fingerprint": "sha256:3ba95d6faa1d4603380c9e2a2765fd3d0a6c784bbf9f566d40caaee7cb576eae",
-          "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
-          "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process.",
-          "Severity": "LOW",
-          "CweIDs": [
-            "CWE-908"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 3,
-            "redhat": 1,
-            "rocky": 2,
-            "ubuntu": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V3Score": 5.9
-            }
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/01/20/3",
-            "https://access.redhat.com/errata/RHSA-2026:2786",
-            "https://access.redhat.com/security/cve/CVE-2025-15281",
-            "https://bugzilla.redhat.com/2429771",
-            "https://bugzilla.redhat.com/2430201",
-            "https://bugzilla.redhat.com/2431196",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2429771",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2430201",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2431196",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-15281",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0861",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0915",
-            "https://errata.almalinux.org/9/ALSA-2026-2786.html",
-            "https://errata.rockylinux.org/RLSA-2026:2786",
-            "https://linux.oracle.com/cve/CVE-2025-15281.html",
-            "https://linux.oracle.com/errata/ELSA-2026-50120.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-15281",
-            "https://sourceware.org/bugzilla/show_bug.cgi?id=33814",
-            "https://ubuntu.com/security/notices/USN-8005-1",
-            "https://www.cve.org/CVERecord?id=CVE-2025-15281",
-            "https://www.openwall.com/lists/oss-security/2026/01/20/3"
-          ],
-          "PublishedDate": "2026-01-20T14:16:07.843Z",
-          "LastModifiedDate": "2026-02-05T17:43:18.63Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-0861",
-          "PkgID": "glibc-common@2.34-231.el9_7.2.x86_64",
-          "PkgName": "glibc-common",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/glibc-common@2.34-231.el9_7.2?arch=x86_64\u0026distro=redhat-9.7",
-            "UID": "f7996d4d462bf3d0"
-          },
-          "InstalledVersion": "2.34-231.el9_7.2",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
-            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0861",
-          "Fingerprint": "sha256:f3c6c1f499e24b5908a1ec93dcfef9746c0308aa4f51cea09da58f13862cf31f",
-          "Title": "glibc: Integer overflow in memalign leads to heap corruption",
-          "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1\u003c\u003c62+ 1, 1\u003c\u003c63] and exactly 1\u003c\u003c63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments.",
-          "Severity": "LOW",
-          "CweIDs": [
-            "CWE-190"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 3,
-            "redhat": 1,
-            "rocky": 2,
-            "ubuntu": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 8.1
-            }
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/01/16/5",
-            "https://access.redhat.com/errata/RHSA-2026:2786",
-            "https://access.redhat.com/security/cve/CVE-2026-0861",
-            "https://bugzilla.redhat.com/2429771",
-            "https://bugzilla.redhat.com/2430201",
-            "https://bugzilla.redhat.com/2431196",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2429771",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2430201",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2431196",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-15281",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0861",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0915",
-            "https://errata.almalinux.org/9/ALSA-2026-2786.html",
-            "https://errata.rockylinux.org/RLSA-2026:2786",
-            "https://linux.oracle.com/cve/CVE-2026-0861.html",
-            "https://linux.oracle.com/errata/ELSA-2026-50120.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-0861",
-            "https://sourceware.org/bugzilla/show_bug.cgi?id=33796",
-            "https://sourceware.org/git/?p=glibc.git;a=blob_plain;f=advisories/GLIBC-SA-2026-0001",
-            "https://ubuntu.com/security/notices/USN-8005-1",
-            "https://www.cve.org/CVERecord?id=CVE-2026-0861"
-          ],
-          "PublishedDate": "2026-01-14T21:15:52.617Z",
-          "LastModifiedDate": "2026-02-03T18:26:25.39Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-0915",
-          "PkgID": "glibc-minimal-langpack@2.34-231.el9_7.2.x86_64",
-          "PkgName": "glibc-minimal-langpack",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2?arch=x86_64\u0026distro=redhat-9.7",
-            "UID": "c64f2dd73e391fa8"
-          },
-          "InstalledVersion": "2.34-231.el9_7.2",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
-            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0915",
-          "Fingerprint": "sha256:f1bcbddb68db975c75184d42c187aa6489f936887d77753828cb884ac40dff8d",
-          "Title": "glibc: glibc: Information disclosure via zero-valued network query",
-          "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-908"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 1,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 3,
-            "redhat": 2,
-            "rocky": 2,
-            "ubuntu": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
-              "V3Score": 5.3
-            }
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/01/16/6",
-            "https://access.redhat.com/errata/RHSA-2026:2786",
-            "https://access.redhat.com/security/cve/CVE-2026-0915",
-            "https://bugzilla.redhat.com/2429771",
-            "https://bugzilla.redhat.com/2430201",
-            "https://bugzilla.redhat.com/2431196",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2429771",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2430201",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2431196",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-15281",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0861",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0915",
-            "https://errata.almalinux.org/9/ALSA-2026-2786.html",
-            "https://errata.rockylinux.org/RLSA-2026:2786",
-            "https://linux.oracle.com/cve/CVE-2026-0915.html",
-            "https://linux.oracle.com/errata/ELSA-2026-50120.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-0915",
-            "https://sourceware.org/bugzilla/show_bug.cgi?id=33802",
-            "https://ubuntu.com/security/notices/USN-8005-1",
-            "https://www.cve.org/CVERecord?id=CVE-2026-0915",
-            "https://www.openwall.com/lists/oss-security/2026/01/16/6"
-          ],
-          "PublishedDate": "2026-01-15T22:16:12.457Z",
-          "LastModifiedDate": "2026-01-23T19:36:50.73Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2025-15281",
-          "PkgID": "glibc-minimal-langpack@2.34-231.el9_7.2.x86_64",
-          "PkgName": "glibc-minimal-langpack",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2?arch=x86_64\u0026distro=redhat-9.7",
-            "UID": "c64f2dd73e391fa8"
-          },
-          "InstalledVersion": "2.34-231.el9_7.2",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
-            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-15281",
-          "Fingerprint": "sha256:6f424c84e60772ec38d0d3ec432b9bd2c812a0e5f9c0cc60a973627e5c00f4f2",
-          "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
-          "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process.",
-          "Severity": "LOW",
-          "CweIDs": [
-            "CWE-908"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 3,
-            "redhat": 1,
-            "rocky": 2,
-            "ubuntu": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V3Score": 5.9
-            }
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/01/20/3",
-            "https://access.redhat.com/errata/RHSA-2026:2786",
-            "https://access.redhat.com/security/cve/CVE-2025-15281",
-            "https://bugzilla.redhat.com/2429771",
-            "https://bugzilla.redhat.com/2430201",
-            "https://bugzilla.redhat.com/2431196",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2429771",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2430201",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2431196",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-15281",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0861",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-0915",
-            "https://errata.almalinux.org/9/ALSA-2026-2786.html",
-            "https://errata.rockylinux.org/RLSA-2026:2786",
-            "https://linux.oracle.com/cve/CVE-2025-15281.html",
-            "https://linux.oracle.com/errata/ELSA-2026-50120.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-15281",
-            "https://sourceware.org/bugzilla/show_bug.cgi?id=33814",
-            "https://ubuntu.com/security/notices/USN-8005-1",
-            "https://www.cve.org/CVERecord?id=CVE-2025-15281",
-            "https://www.openwall.com/lists/oss-security/2026/01/20/3"
-          ],
-          "PublishedDate": "2026-01-20T14:16:07.843Z",
-          "LastModifiedDate": "2026-02-05T17:43:18.63Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-0861",
-          "PkgID": "glibc-minimal-langpack@2.34-231.el9_7.2.x86_64",
-          "PkgName": "glibc-minimal-langpack",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/glibc-minimal-langpack@2.34-231.el9_7.2?arch=x86_64\u0026distro=redhat-9.7",
-            "UID": "c64f2dd73e391fa8"
-          },
-          "InstalledVersion": "2.34-231.el9_7.2",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
-            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-0861",
-          "Fingerprint": "sha256:bbdaa8f681dacef61249bba2d660d203bb20b0f5b4d9f0e0f72ce85dbaf744a6",
           "Title": "glibc: Integer overflow in memalign leads to heap corruption",
           "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1\u003c\u003c62+ 1, 1\u003c\u003c63] and exactly 1\u003c\u003c63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments.",
           "Severity": "LOW",
@@ -31775,7 +31580,10 @@
           "LastModifiedDate": "2026-02-06T18:06:07.76Z"
         },
         {
-          "VulnerabilityID": "CVE-2025-9820",
+          "VulnerabilityID": "CVE-2025-14831",
+          "VendorIDs": [
+            "RHSA-2026:4188"
+          ],
           "PkgID": "gnutls@3.8.3-9.el9.x86_64",
           "PkgName": "gnutls",
           "PkgIdentifier": {
@@ -31783,7 +31591,70 @@
             "UID": "a72f58fd01572560"
           },
           "InstalledVersion": "3.8.3-9.el9",
-          "Status": "affected",
+          "FixedVersion": "3.8.3-10.el9_7",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14831",
+          "Fingerprint": "sha256:2eebe47dd8fe267bb2688b03f96f1743dcbb5b8bad98b205e7fdacc3962eec9f",
+          "Title": "gnutls: GnuTLS: Denial of Service via excessive resource consumption during certificate verification",
+          "Description": "A flaw was found in GnuTLS. This vulnerability allows a denial of service (DoS) by excessive CPU (Central Processing Unit) and memory consumption via specially crafted malicious certificates containing a large number of name constraints and subject alternative names (SANs).",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-407"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "oracle-oval": 2,
+            "redhat": 2,
+            "rocky": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:3477",
+            "https://access.redhat.com/errata/RHSA-2026:4188",
+            "https://access.redhat.com/security/cve/CVE-2025-14831",
+            "https://bugzilla.redhat.com/2392528",
+            "https://bugzilla.redhat.com/2423177",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2392528",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2423177",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14831",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-9820",
+            "https://errata.almalinux.org/10/ALSA-2026-3477.html",
+            "https://errata.rockylinux.org/RLSA-2026:4188",
+            "https://gitlab.com/gnutls/gnutls/-/issues/1773",
+            "https://linux.oracle.com/cve/CVE-2025-14831.html",
+            "https://linux.oracle.com/errata/ELSA-2026-4188.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-14831",
+            "https://ubuntu.com/security/notices/USN-8043-1",
+            "https://www.cve.org/CVERecord?id=CVE-2025-14831"
+          ],
+          "PublishedDate": "2026-02-09T15:16:09.937Z",
+          "LastModifiedDate": "2026-03-12T18:16:21.56Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-9820",
+          "VendorIDs": [
+            "RHSA-2026:4188"
+          ],
+          "PkgID": "gnutls@3.8.3-9.el9.x86_64",
+          "PkgName": "gnutls",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/gnutls@3.8.3-9.el9?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "a72f58fd01572560"
+          },
+          "InstalledVersion": "3.8.3-9.el9",
+          "FixedVersion": "3.8.3-10.el9_7",
+          "Status": "fixed",
           "Layer": {
             "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
             "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
@@ -31803,6 +31674,7 @@
             "cbl-mariner": 2,
             "oracle-oval": 2,
             "redhat": 1,
+            "rocky": 2,
             "ubuntu": 1
           },
           "CVSS": {
@@ -31819,11 +31691,15 @@
             "https://bugzilla.redhat.com/2392528",
             "https://bugzilla.redhat.com/2423177",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2392528",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2423177",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14831",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-9820",
             "https://errata.almalinux.org/10/ALSA-2026-3477.html",
+            "https://errata.rockylinux.org/RLSA-2026:4188",
             "https://gitlab.com/gnutls/gnutls/-/commit/1d56f96f6ab5034d677136b9d50b5a75dff0faf5",
             "https://gitlab.com/gnutls/gnutls/-/issues/1732",
             "https://linux.oracle.com/cve/CVE-2025-9820.html",
-            "https://linux.oracle.com/errata/ELSA-2026-3477.html",
+            "https://linux.oracle.com/errata/ELSA-2026-4188.html",
             "https://nvd.nist.gov/vuln/detail/CVE-2025-9820",
             "https://ubuntu.com/security/notices/USN-8043-1",
             "https://www.cve.org/CVERecord?id=CVE-2025-9820",
@@ -32194,67 +32070,6 @@
           "LastModifiedDate": "2025-08-15T18:35:04.39Z"
         },
         {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "libblkid@2.37.4-21.el9_7.x86_64",
-          "PkgName": "libblkid",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/libblkid@2.37.4-21.el9_7?arch=x86_64\u0026distro=redhat-9.7",
-            "UID": "3eea390cafb4950f"
-          },
-          "InstalledVersion": "2.37.4-21.el9_7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:f6630ffda3812e66c992d71af6b6e445eeda408669f78d9eccffc323ae79f621",
-            "DiffID": "sha256:dcad3b0a96068ec933eb8450cb42a37f419ed87ac1e71a6f4aa4ea4c4850e4ba"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "Fingerprint": "sha256:7449a00580c6897f61952121b6f93909ec712d834c1cc092db607b75b07d7e01",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
-        },
-        {
           "VulnerabilityID": "CVE-2025-14017",
           "PkgID": "libcurl-minimal@7.76.1-35.el9_7.3.x86_64",
           "PkgName": "libcurl-minimal",
@@ -32300,6 +32115,188 @@
           ],
           "PublishedDate": "2026-01-08T10:15:45.667Z",
           "LastModifiedDate": "2026-01-27T21:29:39.953Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-1965",
+          "PkgID": "libcurl-minimal@7.76.1-35.el9_7.3.x86_64",
+          "PkgName": "libcurl-minimal",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/libcurl-minimal@7.76.1-35.el9_7.3?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "9dc20506db4594c4"
+          },
+          "InstalledVersion": "7.76.1-35.el9_7.3",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1965",
+          "Fingerprint": "sha256:2f17af8480a7d58dcbc9596cc8de32b69f33de28fd786e9b32b261924a39ba9c",
+          "Title": "curl: curl: Authentication bypass due to incorrect connection reuse with Negotiate authentication",
+          "Description": "libcurl can in some circumstances reuse the wrong connection when asked to do\nan Negotiate-authenticated HTTP or HTTPS request.\n\nlibcurl features a pool of recent connections so that subsequent requests can\nreuse an existing connection to avoid overhead.\n\nWhen reusing a connection a range of criterion must first be met. Due to a\nlogical error in the code, a request that was issued by an application could\nwrongfully reuse an existing connection to the same server that was\nauthenticated using different credentials. One underlying reason being that\nNegotiate sometimes authenticates *connections* and not *requests*, contrary\nto how HTTP is designed to work.\n\nAn application that allows Negotiate authentication to a server (that responds\nwanting Negotiate) with `user1:password1` and then does another operation to\nthe same server also using Negotiate but with `user2:password2` (while the\nprevious connection is still alive) - the second request wrongly reused the\nsame connection and since it then sees that the Negotiate negotiation is\nalready made, it just sends the request over that connection thinking it uses\nthe user2 credentials when it is in fact still using the connection\nauthenticated for user1...\n\nThe set of authentication methods to use is set with  `CURLOPT_HTTPAUTH`.\n\nApplications can disable libcurl's reuse of connections and thus mitigate this\nproblem, by using one of the following libcurl options to alter how\nconnections are or are not reused: `CURLOPT_FRESH_CONNECT`,\n`CURLOPT_MAXCONNECTS` and `CURLMOPT_MAX_HOST_CONNECTIONS` (if using the\ncurl_multi API).",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 6.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-1965",
+            "https://curl.se/docs/CVE-2026-1965.html",
+            "https://curl.se/docs/CVE-2026-1965.json",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-1965",
+            "https://ubuntu.com/security/notices/USN-8084-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-1965"
+          ],
+          "PublishedDate": "2026-03-11T11:15:59.177Z",
+          "LastModifiedDate": "2026-03-12T14:11:19.07Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3783",
+          "PkgID": "libcurl-minimal@7.76.1-35.el9_7.3.x86_64",
+          "PkgName": "libcurl-minimal",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/libcurl-minimal@7.76.1-35.el9_7.3?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "9dc20506db4594c4"
+          },
+          "InstalledVersion": "7.76.1-35.el9_7.3",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3783",
+          "Fingerprint": "sha256:05683b023cd9e9ced861ca5bcfe8f736c83f37c29456650c984b4bfba2a3c258",
+          "Title": "curl: curl: Information disclosure via OAuth2 bearer token leakage during HTTP(S) redirect",
+          "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a redirect to a second URL, curl could leak that token to the second\nhostname under some circumstances.\n\nIf the hostname that the first request is redirected to has information in the\nused .netrc file, with either of the `machine` or `default` keywords, curl\nwould pass on the bearer token set for the first host also to the second one.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-522"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N",
+              "V3Score": 5.7
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/2",
+            "https://access.redhat.com/security/cve/CVE-2026-3783",
+            "https://curl.se/docs/CVE-2026-3783.html",
+            "https://curl.se/docs/CVE-2026-3783.json",
+            "https://hackerone.com/reports/3583983",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3783",
+            "https://ubuntu.com/security/notices/USN-8084-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3783"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.08Z",
+          "LastModifiedDate": "2026-03-12T14:10:37.3Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3784",
+          "PkgID": "libcurl-minimal@7.76.1-35.el9_7.3.x86_64",
+          "PkgName": "libcurl-minimal",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/libcurl-minimal@7.76.1-35.el9_7.3?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "9dc20506db4594c4"
+          },
+          "InstalledVersion": "7.76.1-35.el9_7.3",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3784",
+          "Fingerprint": "sha256:3bd84fa1e98a19e4590ed0e5848a25687de715627dd7d4ac36db340759018a08",
+          "Title": "curl: curl: Unauthorized access due to improper HTTP proxy connection reuse",
+          "Description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a\nserver, even if the new request uses different credentials for the HTTP proxy.\nThe proper behavior is to create or use a separate connection.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 6.5
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/3",
+            "https://access.redhat.com/security/cve/CVE-2026-3784",
+            "https://curl.se/docs/CVE-2026-3784.html",
+            "https://curl.se/docs/CVE-2026-3784.json",
+            "https://hackerone.com/reports/3584903",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3784",
+            "https://ubuntu.com/security/notices/USN-8084-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3784"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.437Z",
+          "LastModifiedDate": "2026-03-12T14:09:50.47Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-3805",
+          "PkgID": "libcurl-minimal@7.76.1-35.el9_7.3.x86_64",
+          "PkgName": "libcurl-minimal",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/libcurl-minimal@7.76.1-35.el9_7.3?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "9dc20506db4594c4"
+          },
+          "InstalledVersion": "7.76.1-35.el9_7.3",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3805",
+          "Fingerprint": "sha256:94967cdd7a5b2590789f89706a4f6a7ab6a39c5db023aa6b3b06d903d7d220d1",
+          "Title": "curl: curl: Arbitrary code execution or Denial of Service via use-after-free in SMB request handling",
+          "Description": "When doing a second SMB request to the same host again, curl would wrongly use\na data pointer pointing into already freed memory.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-416"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
+              "V3Score": 6.3
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/03/11/4",
+            "https://access.redhat.com/security/cve/CVE-2026-3805",
+            "https://curl.se/docs/CVE-2026-3805.html",
+            "https://curl.se/docs/CVE-2026-3805.json",
+            "https://hackerone.com/reports/3591944",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-3805",
+            "https://ubuntu.com/security/notices/USN-8084-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-3805"
+          ],
+          "PublishedDate": "2026-03-11T11:16:00.967Z",
+          "LastModifiedDate": "2026-03-12T14:08:56.79Z"
         },
         {
           "VulnerabilityID": "CVE-2024-11053",
@@ -32844,128 +32841,6 @@
           "LastModifiedDate": "2024-11-21T06:56:31.04Z"
         },
         {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "libmount@2.37.4-21.el9_7.x86_64",
-          "PkgName": "libmount",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/libmount@2.37.4-21.el9_7?arch=x86_64\u0026distro=redhat-9.7",
-            "UID": "b204e2f34e53c4cf"
-          },
-          "InstalledVersion": "2.37.4-21.el9_7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:f6630ffda3812e66c992d71af6b6e445eeda408669f78d9eccffc323ae79f621",
-            "DiffID": "sha256:dcad3b0a96068ec933eb8450cb42a37f419ed87ac1e71a6f4aa4ea4c4850e4ba"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "Fingerprint": "sha256:5453175297876a97e5224a1a80393336d5417e0d4b3d72c3c306a8d9cdc36331",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "libsmartcols@2.37.4-21.el9_7.x86_64",
-          "PkgName": "libsmartcols",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/libsmartcols@2.37.4-21.el9_7?arch=x86_64\u0026distro=redhat-9.7",
-            "UID": "4d9edf88cb5d432a"
-          },
-          "InstalledVersion": "2.37.4-21.el9_7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:f6630ffda3812e66c992d71af6b6e445eeda408669f78d9eccffc323ae79f621",
-            "DiffID": "sha256:dcad3b0a96068ec933eb8450cb42a37f419ed87ac1e71a6f4aa4ea4c4850e4ba"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "Fingerprint": "sha256:79ee21b70dd2dfd5b43bef16f1d28837ca542636b53850be9039fe9ce3734c4f",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
-        },
-        {
           "VulnerabilityID": "CVE-2022-27943",
           "PkgID": "libstdc++@11.5.0-11.el9.x86_64",
           "PkgName": "libstdc++",
@@ -33073,67 +32948,6 @@
           "LastModifiedDate": "2026-02-02T19:27:23.07Z"
         },
         {
-          "VulnerabilityID": "CVE-2025-14104",
-          "PkgID": "libuuid@2.37.4-21.el9_7.x86_64",
-          "PkgName": "libuuid",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/libuuid@2.37.4-21.el9_7?arch=x86_64\u0026distro=redhat-9.7",
-            "UID": "141bb3990704c8e1"
-          },
-          "InstalledVersion": "2.37.4-21.el9_7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:f6630ffda3812e66c992d71af6b6e445eeda408669f78d9eccffc323ae79f621",
-            "DiffID": "sha256:dcad3b0a96068ec933eb8450cb42a37f419ed87ac1e71a6f4aa4ea4c4850e4ba"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-14104",
-          "Fingerprint": "sha256:f8ccd3b4a45175e93f5836bf1d9d1de587fd936f35b46c084fe895af4aa75e37",
-          "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
-          "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-125"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "azure": 2,
-            "cbl-mariner": 2,
-            "oracle-oval": 2,
-            "photon": 2,
-            "redhat": 2,
-            "rocky": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:1696",
-            "https://access.redhat.com/errata/RHSA-2026:1852",
-            "https://access.redhat.com/errata/RHSA-2026:1913",
-            "https://access.redhat.com/errata/RHSA-2026:2485",
-            "https://access.redhat.com/errata/RHSA-2026:2563",
-            "https://access.redhat.com/errata/RHSA-2026:2737",
-            "https://access.redhat.com/errata/RHSA-2026:2800",
-            "https://access.redhat.com/errata/RHSA-2026:3406",
-            "https://access.redhat.com/security/cve/CVE-2025-14104",
-            "https://bugzilla.redhat.com/2419369",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2419369",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-14104",
-            "https://errata.almalinux.org/9/ALSA-2026-1913.html",
-            "https://errata.rockylinux.org/RLSA-2026:1913",
-            "https://linux.oracle.com/cve/CVE-2025-14104.html",
-            "https://linux.oracle.com/errata/ELSA-2026-1913.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-14104",
-            "https://www.cve.org/CVERecord?id=CVE-2025-14104"
-          ],
-          "PublishedDate": "2025-12-05T17:16:03.117Z",
-          "LastModifiedDate": "2026-02-26T08:16:15.54Z"
-        },
-        {
           "VulnerabilityID": "CVE-2026-0990",
           "PkgID": "libxml2@2.9.13-14.el9_7.x86_64",
           "PkgName": "libxml2",
@@ -33158,6 +32972,7 @@
           ],
           "VendorSeverity": {
             "amazon": 2,
+            "azure": 2,
             "cbl-mariner": 2,
             "redhat": 2,
             "ubuntu": 2
@@ -33215,11 +33030,12 @@
           "References": [
             "https://access.redhat.com/security/cve/CVE-2026-1757",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2435940",
+            "https://gitlab.gnome.org/GNOME/libxml2/-/issues/1009",
             "https://nvd.nist.gov/vuln/detail/CVE-2026-1757",
             "https://www.cve.org/CVERecord?id=CVE-2026-1757"
           ],
           "PublishedDate": "2026-02-02T13:15:58.58Z",
-          "LastModifiedDate": "2026-02-03T16:44:36.63Z"
+          "LastModifiedDate": "2026-03-12T13:16:01.75Z"
         },
         {
           "VulnerabilityID": "CVE-2023-45322",
@@ -33517,6 +33333,7 @@
           ],
           "VendorSeverity": {
             "amazon": 2,
+            "azure": 1,
             "cbl-mariner": 1,
             "redhat": 1,
             "ubuntu": 2
@@ -34012,6 +33829,76 @@
           "LastModifiedDate": "2025-11-04T22:16:45.63Z"
         },
         {
+          "VulnerabilityID": "CVE-2026-2100",
+          "PkgID": "p11-kit@0.25.3-3.el9_5.x86_64",
+          "PkgName": "p11-kit",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/p11-kit@0.25.3-3.el9_5?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "6232299c9ad85da0"
+          },
+          "InstalledVersion": "0.25.3-3.el9_5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-2100",
+          "Fingerprint": "sha256:59685ed93004259c3b40d8113574a205f5d9e82bd5e3b009d6128f1f33f51717",
+          "Title": "p11-kit: p11-kit: NULL dereference via C_DeriveKey with specific NULL parameters",
+          "Description": "A flaw was found in p11-kit. A remote attacker could exploit this vulnerability by calling the C_DeriveKey function on a remote token with specific IBM kyber or IBM btc derive mechanism parameters set to NULL. This could lead to the RPC-client attempting to return an uninitialized value, potentially resulting in a NULL dereference or undefined behavior. This issue may cause an application level denial of service or other unpredictable system states.",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-2100",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-2100",
+            "https://www.cve.org/CVERecord?id=CVE-2026-2100"
+          ]
+        },
+        {
+          "VulnerabilityID": "CVE-2026-2100",
+          "PkgID": "p11-kit-trust@0.25.3-3.el9_5.x86_64",
+          "PkgName": "p11-kit-trust",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/p11-kit-trust@0.25.3-3.el9_5?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "914c7391caa38829"
+          },
+          "InstalledVersion": "0.25.3-3.el9_5",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-2100",
+          "Fingerprint": "sha256:3a0aaea3954ef0e400c0930ce87afd2e45ab25e244769b309a60731c95c9309d",
+          "Title": "p11-kit: p11-kit: NULL dereference via C_DeriveKey with specific NULL parameters",
+          "Description": "A flaw was found in p11-kit. A remote attacker could exploit this vulnerability by calling the C_DeriveKey function on a remote token with specific IBM kyber or IBM btc derive mechanism parameters set to NULL. This could lead to the RPC-client attempting to return an uninitialized value, potentially resulting in a NULL dereference or undefined behavior. This issue may cause an application level denial of service or other unpredictable system states.",
+          "Severity": "MEDIUM",
+          "VendorSeverity": {
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-2100",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-2100",
+            "https://www.cve.org/CVERecord?id=CVE-2026-2100"
+          ]
+        },
+        {
           "VulnerabilityID": "CVE-2022-41409",
           "PkgID": "pcre2@10.40-6.el9.x86_64",
           "PkgName": "pcre2",
@@ -34169,60 +34056,6 @@
           "LastModifiedDate": "2024-11-21T08:46:06.907Z"
         },
         {
-          "VulnerabilityID": "CVE-2026-23745",
-          "PkgID": "tar@1.34-9.el9_7.x86_64",
-          "PkgName": "tar",
-          "PkgIdentifier": {
-            "PURL": "pkg:rpm/redhat/tar@1.34-9.el9_7?arch=x86_64\u0026distro=redhat-9.7\u0026epoch=2",
-            "UID": "2ad533d6b942b14e"
-          },
-          "InstalledVersion": "2:1.34-9.el9_7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:ff8bacec91fc7bc2f89af88b62293b4c6f03ef428c7bc8569cada05a2dc14c49",
-            "DiffID": "sha256:18c0755dad1f902be6f31302a4d1df0bddf4a395faf81609ef6342549bbf4f37"
-          },
-          "SeveritySource": "redhat",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-23745",
-          "Fingerprint": "sha256:5d8afd354642143009b1dfeba01cdda17c5fb66e0ec9d9d0ecf5a74059ef3eb9",
-          "Title": "node-tar: tar: node-tar: Arbitrary file overwrite and symlink poisoning via unsanitized linkpaths in archives",
-          "Description": "node-tar is a Tar for Node.js. The node-tar library (\u003c= 7.5.2) fails to sanitize the linkpath of Link (hardlink) and SymbolicLink entries when preservePaths is false (the default secure behavior). This allows malicious archives to bypass the extraction root restriction, leading to Arbitrary File Overwrite via hardlinks and Symlink Poisoning via absolute symlink targets. This vulnerability is fixed in 7.5.3.",
-          "Severity": "HIGH",
-          "CweIDs": [
-            "CWE-22"
-          ],
-          "VendorSeverity": {
-            "amazon": 3,
-            "ghsa": 3,
-            "nvd": 2,
-            "redhat": 3
-          },
-          "CVSS": {
-            "ghsa": {
-              "V40Vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:A/VC:H/VI:L/VA:N/SC:H/SI:L/SA:N",
-              "V40Score": 8.2
-            },
-            "nvd": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N",
-              "V3Score": 6.1
-            },
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H",
-              "V3Score": 8.2
-            }
-          },
-          "References": [
-            "https://access.redhat.com/security/cve/CVE-2026-23745",
-            "https://github.com/isaacs/node-tar",
-            "https://github.com/isaacs/node-tar/commit/340eb285b6d986e91969a1170d7fe9b0face405e",
-            "https://github.com/isaacs/node-tar/security/advisories/GHSA-8qq5-rm4j-mr97",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-23745",
-            "https://www.cve.org/CVERecord?id=CVE-2026-23745"
-          ],
-          "PublishedDate": "2026-01-16T22:16:26.83Z",
-          "LastModifiedDate": "2026-02-18T16:20:07.823Z"
-        },
-        {
           "VulnerabilityID": "CVE-2005-2541",
           "PkgID": "tar@1.34-9.el9_7.x86_64",
           "PkgName": "tar",
@@ -34319,6 +34152,108 @@
           "LastModifiedDate": "2025-11-04T15:41:56.843Z"
         },
         {
+          "VulnerabilityID": "CVE-2026-26960",
+          "PkgID": "tar@1.34-9.el9_7.x86_64",
+          "PkgName": "tar",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/tar@1.34-9.el9_7?arch=x86_64\u0026distro=redhat-9.7\u0026epoch=2",
+            "UID": "2ad533d6b942b14e"
+          },
+          "InstalledVersion": "2:1.34-9.el9_7",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:ff8bacec91fc7bc2f89af88b62293b4c6f03ef428c7bc8569cada05a2dc14c49",
+            "DiffID": "sha256:18c0755dad1f902be6f31302a4d1df0bddf4a395faf81609ef6342549bbf4f37"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-26960",
+          "Fingerprint": "sha256:974a7a741b7a01fc4e2c80304213281e096070c964520ab6b5c6aa264aa737b7",
+          "Title": "tar: node-tar: node-tar: Arbitrary file read/write via malicious archive hardlink creation",
+          "Description": "node-tar is a full-featured Tar for Node.js. When using default options in versions 7.5.7 and below, an attacker-controlled archive can create a hardlink inside the extraction directory that points to a file outside the extraction root, enabling arbitrary file read and write as the extracting user. Severity is high because the primitive bypasses path protections and turns archive extraction into a direct filesystem access primitive. This issue has been fixed in version 7.5.8.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "nvd": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+              "V3Score": 7.1
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+              "V3Score": 7.1
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+              "V3Score": 7.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-26960",
+            "https://github.com/isaacs/node-tar",
+            "https://github.com/isaacs/node-tar/commit/2cb1120bcefe28d7ecc719b41441ade59c52e384",
+            "https://github.com/isaacs/node-tar/commit/d18e4e1f846f4ddddc153b0f536a19c050e7499f",
+            "https://github.com/isaacs/node-tar/security/advisories/GHSA-83g3-92jg-28cx",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-26960",
+            "https://www.cve.org/CVERecord?id=CVE-2026-26960"
+          ],
+          "PublishedDate": "2026-02-20T02:16:53.883Z",
+          "LastModifiedDate": "2026-02-20T19:24:16.537Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-31802",
+          "PkgID": "tar@1.34-9.el9_7.x86_64",
+          "PkgName": "tar",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/tar@1.34-9.el9_7?arch=x86_64\u0026distro=redhat-9.7\u0026epoch=2",
+            "UID": "2ad533d6b942b14e"
+          },
+          "InstalledVersion": "2:1.34-9.el9_7",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:ff8bacec91fc7bc2f89af88b62293b4c6f03ef428c7bc8569cada05a2dc14c49",
+            "DiffID": "sha256:18c0755dad1f902be6f31302a4d1df0bddf4a395faf81609ef6342549bbf4f37"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-31802",
+          "Fingerprint": "sha256:d5496a6bd6c522e8656ae555fde6764f38f69dc09c09075e701f7f56748454e5",
+          "Title": "tar: tar: File overwrite via drive-relative symlink traversal",
+          "Description": "node-tar is a full-featured Tar for Node.js. Prior to version 7.5.11, tar (npm) can be tricked into creating a symlink that points outside the extraction directory by using a drive-relative symlink target such as C:../../../target.txt, which enables file overwrite outside cwd during normal tar.x() extraction. This vulnerability is fixed in 7.5.11.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V40Vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:H/SA:N",
+              "V40Score": 8.2
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 6.2
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-31802",
+            "https://github.com/isaacs/node-tar",
+            "https://github.com/isaacs/node-tar/commit/f48b5fa3b7985ddab96dc0f2125a4ffc9911b6ad",
+            "https://github.com/isaacs/node-tar/security/advisories/GHSA-9ppj-qmqm-q256",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-31802",
+            "https://www.cve.org/CVERecord?id=CVE-2026-31802"
+          ],
+          "PublishedDate": "2026-03-10T07:44:58.02Z",
+          "LastModifiedDate": "2026-03-11T13:53:47.157Z"
+        },
+        {
           "VulnerabilityID": "CVE-2023-39804",
           "PkgID": "tar@1.34-9.el9_7.x86_64",
           "PkgName": "tar",
@@ -34363,6 +34298,58 @@
           ],
           "PublishedDate": "2024-03-27T04:15:08.897Z",
           "LastModifiedDate": "2025-11-04T19:15:55.43Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-27171",
+          "PkgID": "zlib@1.2.11-40.el9.x86_64",
+          "PkgName": "zlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:rpm/redhat/zlib@1.2.11-40.el9?arch=x86_64\u0026distro=redhat-9.7",
+            "UID": "616388c2e7ff3071"
+          },
+          "InstalledVersion": "1.2.11-40.el9",
+          "Status": "affected",
+          "Layer": {
+            "Digest": "sha256:9cac43bbf2b16f8c59962ff8fe75b2d093ac656d2c7f513206398b759ddafee8",
+            "DiffID": "sha256:2aa45a5d8db94d9ff7e35b2f898048df305c766f7861a4e3b83f356bcf4c4627"
+          },
+          "SeveritySource": "redhat",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27171",
+          "Fingerprint": "sha256:f997045552e12fc6367ba9007ec651319e8beb0816bf2b33dce5a06fe8e2e7a3",
+          "Title": "zlib: zlib: Denial of Service via infinite loop in CRC32 combine functions",
+          "Description": "zlib before 1.3.2 allows CPU consumption via crc32_combine64 and crc32_combine_gen64 because x2nmodp can do right shifts within a loop that has no termination condition.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-1284"
+          ],
+          "VendorSeverity": {
+            "azure": 1,
+            "nvd": 2,
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 2.9
+            }
+          },
+          "References": [
+            "https://7asecurity.com/blog/2026/02/zlib-7asecurity-audit/",
+            "https://7asecurity.com/reports/pentest-report-zlib-RC1.1.pdf",
+            "https://access.redhat.com/security/cve/CVE-2026-27171",
+            "https://github.com/madler/zlib/issues/904",
+            "https://github.com/madler/zlib/releases/tag/v1.3.2",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27171",
+            "https://ostif.org/zlib-audit-complete/",
+            "https://www.cve.org/CVERecord?id=CVE-2026-27171"
+          ],
+          "PublishedDate": "2026-02-18T04:16:01.263Z",
+          "LastModifiedDate": "2026-02-20T16:45:28.827Z"
         }
       ]
     },
@@ -34452,14 +34439,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3341",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -34576,7 +34561,7 @@
           "VendorSeverity": {
             "alma": 3,
             "amazon": 2,
-            "azure": 3,
+            "azure": 2,
             "bitnami": 3,
             "cbl-mariner": 2,
             "oracle-oval": 3,
@@ -34600,14 +34585,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3341",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/736712",
             "https://go.dev/issue/77101",
             "https://groups.google.com/g/golang-announce/c/Vd2tYVM8eUc",
@@ -34765,7 +34748,7 @@
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3341",
+            "https://errata.rockylinux.org/RLSA-2026:3928",
             "https://go.dev/cl/725920",
             "https://go.dev/issue/76445",
             "https://groups.google.com/g/golang-announce/c/8FJoBkPddm4",
@@ -35402,7 +35385,7 @@
           "Severity": "MEDIUM",
           "VendorSeverity": {
             "amazon": 2,
-            "azure": 2,
+            "azure": 1,
             "bitnami": 2,
             "cbl-mariner": 1,
             "photon": 2
