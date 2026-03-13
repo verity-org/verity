@@ -3,31 +3,32 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019cdee8-8bdc-7163-880c-55c23be6c44d",
-  "CreatedAt": "2026-03-11T21:58:28.060091847Z",
-  "ArtifactID": "sha256:c50a3cb7bba77898804137d8b7caeb193f0af85b3a022dc18ef9fd5530793ce2",
+  "ReportID": "019ce6a8-4b11-768c-8c2c-d5f40b288f30",
+  "CreatedAt": "2026-03-13T10:05:14.897431235Z",
+  "ArtifactID": "sha256:ba86d34a87baf460318596caa8a8ca228d9f5ff8018eec565e0bf3b177d7494d",
   "ArtifactName": "ghcr.io/verity-org/cache:istio-install-cni-1.28.5-patched",
   "ArtifactType": "container_image",
   "Metadata": {
-    "Size": 222301184,
+    "Size": 223769600,
     "OS": {
       "Family": "ubuntu",
       "Name": "24.04"
     },
-    "ImageID": "sha256:6683a04f554cc1f86aaa7e7663e7ecfb342224de59895ffe7d14663345eb6b11",
+    "ImageID": "sha256:df139b06d274e4ca4ca4b41c6908ac2c056f801c5135b827f0f6ef0d3d9f53d4",
     "DiffIDs": [
       "sha256:efafae78d70c98626c521c246827389128e7d7ea442db31bc433934647f0c791",
       "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456",
       "sha256:7fa5c1cdc86e5b4b5d06ea956742dde0ba691c93b2f19c2f81502b64731d3bd7",
       "sha256:601ac32e0345ee4cfeb6890dfc176650f5339cc16f4cfe04a3d7ce97aff74f5f",
       "sha256:31fddbcc8bdd4b336153a195ec4992e3167efbf4d67f5b740b6fd6f9d6e63b6b",
-      "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+      "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+      "sha256:a54255aacedcffa313c64b6ef692bc6c75ed629a2d41d3c7a8225ec4e3348f53"
     ],
     "RepoTags": [
       "ghcr.io/verity-org/cache:istio-install-cni-1.28.5-patched"
     ],
     "RepoDigests": [
-      "ghcr.io/verity-org/cache@sha256:7b57e2dcb494b835d29481bc1bb2376df439ee75e9355ab4e2d0200fbb49db1b"
+      "ghcr.io/verity-org/cache@sha256:1ea6436cd171ea12e5feed6b316dcb849a2abf1f7a45bb7537fb4d275493f54d"
     ],
     "Reference": "ghcr.io/verity-org/cache:istio-install-cni-1.28.5-patched",
     "ImageConfig": {
@@ -117,6 +118,11 @@
           "created_by": "CMD [\"/usr/local/bin/install-cni\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
+        },
+        {
+          "created": "2026-03-13T09:54:45.557704222Z",
+          "created_by": "mount / from exec sh -c apt-get -o Acquire::Retries=3 install --no-install-recommends -y curl libcurl4t64 \u0026\u0026 apt-get clean -y",
+          "comment": "buildkit.exporter.image.v0"
         }
       ],
       "os": "linux",
@@ -128,7 +134,8 @@
           "sha256:7fa5c1cdc86e5b4b5d06ea956742dde0ba691c93b2f19c2f81502b64731d3bd7",
           "sha256:601ac32e0345ee4cfeb6890dfc176650f5339cc16f4cfe04a3d7ce97aff74f5f",
           "sha256:31fddbcc8bdd4b336153a195ec4992e3167efbf4d67f5b740b6fd6f9d6e63b6b",
-          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:a54255aacedcffa313c64b6ef692bc6c75ed629a2d41d3c7a8225ec4e3348f53"
         ]
       },
       "config": {
@@ -140,6 +147,7 @@
           "DEBIAN_FRONTEND=noninteractive"
         ],
         "Labels": {
+          "BaseImage": "mirror.gcr.io/istio/install-cni:1.28.5",
           "description": "Istio CNI plugin installer.",
           "org.opencontainers.image.ref.name": "ubuntu",
           "org.opencontainers.image.version": "24.04"
@@ -178,6 +186,11 @@
         "Size": 1024,
         "Digest": "sha256:89732bc7504122601f40269fc9ddfb70982e633ea9caf641ae45736f2846b004",
         "DiffID": "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+      },
+      {
+        "Size": 1468416,
+        "Digest": "sha256:32eeb3797dfe1edf628c35f6c2db7382605fe52193b4e0eb310c25667f75211e",
+        "DiffID": "sha256:a54255aacedcffa313c64b6ef692bc6c75ed629a2d41d3c7a8225ec4e3348f53"
       }
     ]
   },
@@ -192,7 +205,7 @@
           "Name": "adduser",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/adduser@3.137ubuntu1?arch=all\u0026distro=ubuntu-24.04",
-            "UID": "6bd64fef9a2954e5"
+            "UID": "552c16b8cb76acf8"
           },
           "Version": "3.137ubuntu1",
           "Arch": "all",
@@ -670,7 +683,7 @@
           "Name": "bsdextrautils",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/bsdextrautils@2.39.3-9ubuntu6.4?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "c7a3208424d39301"
+            "UID": "3794977e4af2389d"
           },
           "Version": "2.39.3",
           "Release": "9ubuntu6.4",
@@ -743,7 +756,7 @@
           "Name": "bsdmainutils",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/bsdmainutils@12.1.8?arch=all\u0026distro=ubuntu-24.04",
-            "UID": "7c25e3f65bbb51f"
+            "UID": "96a8fa26502f1"
           },
           "Version": "12.1.8",
           "Arch": "all",
@@ -837,7 +850,7 @@
           "Name": "ca-certificates",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/ca-certificates@20240203?arch=all\u0026distro=ubuntu-24.04",
-            "UID": "8b2ceccd6893ae69"
+            "UID": "d5d695284ffa840a"
           },
           "Version": "20240203",
           "Arch": "all",
@@ -1032,7 +1045,7 @@
           "Name": "conntrack",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/conntrack@1.4.8-1ubuntu1?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
-            "UID": "f21d293c00520b51"
+            "UID": "b610682377bd8322"
           },
           "Version": "1.4.8",
           "Release": "1ubuntu1",
@@ -1321,18 +1334,18 @@
           "AnalyzedBy": "dpkg"
         },
         {
-          "ID": "curl@8.5.0-2ubuntu10.7",
+          "ID": "curl@8.5.0-2ubuntu10.8",
           "Name": "curl",
           "Identifier": {
-            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "508f7a363a85e9cd"
+            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "7be807158869e869"
           },
           "Version": "8.5.0",
-          "Release": "2ubuntu10.7",
+          "Release": "2ubuntu10.8",
           "Arch": "amd64",
           "SrcName": "curl",
           "SrcVersion": "8.5.0",
-          "SrcRelease": "2ubuntu10.7",
+          "SrcRelease": "2ubuntu10.8",
           "Licenses": [
             "curl",
             "OLDAP-2.8",
@@ -1352,12 +1365,12 @@
           },
           "DependsOn": [
             "libc6@2.39-0ubuntu8.7",
-            "libcurl4t64@8.5.0-2ubuntu10.7",
+            "libcurl4t64@8.5.0-2ubuntu10.8",
             "zlib1g@1:1.3.dfsg-3.1ubuntu2.1"
           ],
           "Layer": {
-            "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
-            "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
+            "Digest": "sha256:32eeb3797dfe1edf628c35f6c2db7382605fe52193b4e0eb310c25667f75211e",
+            "DiffID": "sha256:a54255aacedcffa313c64b6ef692bc6c75ed629a2d41d3c7a8225ec4e3348f53"
           },
           "InstalledFiles": [
             "/usr/bin/curl",
@@ -2069,7 +2082,7 @@
           "Name": "gcc-14-base",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/gcc-14-base@14.2.0-4ubuntu2~24.04.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "7c83f9441ba28484"
+            "UID": "ddb00995a4ab43ff"
           },
           "Version": "14.2.0",
           "Release": "4ubuntu2~24.04.1",
@@ -2339,7 +2352,7 @@
           "Name": "iproute2",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/iproute2@6.1.0-1ubuntu6.2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "cdee3738514d42ad"
+            "UID": "2637ae13fb4dbda5"
           },
           "Version": "6.1.0",
           "Release": "1ubuntu6.2",
@@ -2538,7 +2551,7 @@
           "Name": "iptables",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/iptables@1.8.10-3ubuntu2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "7334145361669d15"
+            "UID": "e41620f1ee16f7e3"
           },
           "Version": "1.8.10",
           "Release": "3ubuntu2",
@@ -2719,7 +2732,7 @@
           "Name": "iputils-ping",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/iputils-ping@20240117-1ubuntu0.1?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=3",
-            "UID": "4fab2b9a5ba1acde"
+            "UID": "251aa3f822a5fd54"
           },
           "Version": "20240117",
           "Release": "1ubuntu0.1",
@@ -2762,7 +2775,7 @@
           "Name": "knot-dnsutils",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/knot-dnsutils@3.3.4-1.1build2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "5d8594806981c5b2"
+            "UID": "9e84e2a7a6d560de"
           },
           "Version": "3.3.4",
           "Release": "1.1build2",
@@ -2853,7 +2866,7 @@
           "Name": "libapparmor1",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libapparmor1@4.0.1really4.0.1-0ubuntu0.24.04.5?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "f50a6652b34243cd"
+            "UID": "601bcec17a58b9ba"
           },
           "Version": "4.0.1really4.0.1",
           "Release": "0ubuntu0.24.04.5",
@@ -3191,7 +3204,7 @@
           "Name": "libbpf1",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libbpf1@1.3.0-2build2?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
-            "UID": "7346d917b4b86fe1"
+            "UID": "163a3e8bc22dc6b7"
           },
           "Version": "1.3.0",
           "Release": "2build2",
@@ -3234,7 +3247,7 @@
           "Name": "libbrotli1",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libbrotli1@1.1.0-2build2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "cc93457ed0b437a4"
+            "UID": "c4be00a17851246a"
           },
           "Version": "1.1.0",
           "Release": "2build2",
@@ -3271,7 +3284,7 @@
           "Name": "libbsd0",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libbsd0@0.12.1-1build1.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "b83bda3a1346a4f8"
+            "UID": "61dfb955c26be51b"
           },
           "Version": "0.12.1",
           "Release": "1build1.1",
@@ -3812,7 +3825,7 @@
           "Name": "libcap2-bin",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libcap2-bin@2.66-5ubuntu2.2?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
-            "UID": "565eb35820595105"
+            "UID": "4e32d09e52dc1b1e"
           },
           "Version": "2.66",
           "Release": "5ubuntu2.2",
@@ -3932,18 +3945,18 @@
           "AnalyzedBy": "dpkg"
         },
         {
-          "ID": "libcurl4t64@8.5.0-2ubuntu10.7",
+          "ID": "libcurl4t64@8.5.0-2ubuntu10.8",
           "Name": "libcurl4t64",
           "Identifier": {
-            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "2127607ae96d830c"
+            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.8?arch=amd64\u0026distro=ubuntu-24.04",
+            "UID": "206d3a2ea5f4d26c"
           },
           "Version": "8.5.0",
-          "Release": "2ubuntu10.7",
+          "Release": "2ubuntu10.8",
           "Arch": "amd64",
           "SrcName": "curl",
           "SrcVersion": "8.5.0",
-          "SrcRelease": "2ubuntu10.7",
+          "SrcRelease": "2ubuntu10.8",
           "Licenses": [
             "curl",
             "OLDAP-2.8",
@@ -3976,8 +3989,8 @@
             "zlib1g@1:1.3.dfsg-3.1ubuntu2.1"
           ],
           "Layer": {
-            "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
-            "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
+            "Digest": "sha256:32eeb3797dfe1edf628c35f6c2db7382605fe52193b4e0eb310c25667f75211e",
+            "DiffID": "sha256:a54255aacedcffa313c64b6ef692bc6c75ed629a2d41d3c7a8225ec4e3348f53"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libcurl.so.4.8.0",
@@ -4038,7 +4051,7 @@
           "Name": "libdbus-1-3",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libdbus-1-3@1.14.10-4ubuntu4.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "30993673096ac7b"
+            "UID": "a47a9a0dc6a0144"
           },
           "Version": "1.14.10",
           "Release": "4ubuntu4.1",
@@ -4121,7 +4134,7 @@
           "Name": "libdnssec9t64",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libdnssec9t64@3.3.4-1.1build2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "1265aeed3823e03e"
+            "UID": "e0b8e43fa935035e"
           },
           "Version": "3.3.4",
           "Release": "1.1build2",
@@ -4162,7 +4175,7 @@
           "Name": "libedit2",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libedit2@3.1-20230828-1build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "5e2257748181137a"
+            "UID": "2c531456100a0800"
           },
           "Version": "3.1-20230828",
           "Release": "1build1",
@@ -4202,7 +4215,7 @@
           "Name": "libelf1t64",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libelf1t64@0.190-1.1ubuntu0.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "df43921c24cf8d3"
+            "UID": "87535bcdf14a3ea6"
           },
           "Version": "0.190",
           "Release": "1.1ubuntu0.1",
@@ -4334,7 +4347,7 @@
           "Name": "libfstrm0",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libfstrm0@0.6.1-1build4?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "1ac315ef24f0ad17"
+            "UID": "89d7f42b0083ae27"
           },
           "Version": "0.6.1",
           "Release": "1build4",
@@ -4370,7 +4383,7 @@
           "Name": "libgcc-s1",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libgcc-s1@14.2.0-4ubuntu2~24.04.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "e9d813afa0132087"
+            "UID": "9138c6fe90db1eb8"
           },
           "Version": "14.2.0",
           "Release": "4ubuntu2~24.04.1",
@@ -4485,7 +4498,7 @@
           "Name": "libgnutls30t64",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libgnutls30t64@3.8.3-1.1ubuntu3.5?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "26c83c4a651c591"
+            "UID": "b8ebf335dcaf083a"
           },
           "Version": "3.8.3",
           "Release": "1.1ubuntu3.5",
@@ -4583,7 +4596,7 @@
           "Name": "libgssapi-krb5-2",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libgssapi-krb5-2@1.20.1-6ubuntu2.6?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "8554a4997566b07e"
+            "UID": "b554af788c2ad0d"
           },
           "Version": "1.20.1",
           "Release": "6ubuntu2.6",
@@ -4665,7 +4678,7 @@
           "Name": "libibverbs1",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libibverbs1@50.0-2ubuntu0.2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "a91d987a03176050"
+            "UID": "a498dbec2a4ec67b"
           },
           "Version": "50.0",
           "Release": "2ubuntu0.2",
@@ -4755,7 +4768,7 @@
           "Name": "libip4tc2",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libip4tc2@1.8.10-3ubuntu2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "8d58c7368278937a"
+            "UID": "1a729b2ac6633ea"
           },
           "Version": "1.8.10",
           "Release": "3ubuntu2",
@@ -4793,7 +4806,7 @@
           "Name": "libip6tc2",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libip6tc2@1.8.10-3ubuntu2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "256e8b297e680c57"
+            "UID": "908b70745029c1e4"
           },
           "Version": "1.8.10",
           "Release": "3ubuntu2",
@@ -4831,7 +4844,7 @@
           "Name": "libjansson4",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libjansson4@2.14-2build2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "7e3d69da145004bc"
+            "UID": "d00f2766d90ce703"
           },
           "Version": "2.14",
           "Release": "2build2",
@@ -4867,7 +4880,7 @@
           "Name": "libk5crypto3",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libk5crypto3@1.20.1-6ubuntu2.6?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "7cf707bee579a44c"
+            "UID": "9653e5bffd26dd95"
           },
           "Version": "1.20.1",
           "Release": "6ubuntu2.6",
@@ -4901,7 +4914,7 @@
           "Name": "libkeyutils1",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libkeyutils1@1.6.3-3build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "a86abad77ce89504"
+            "UID": "64b21c27c1ec6142"
           },
           "Version": "1.6.3",
           "Release": "3build1",
@@ -4938,7 +4951,7 @@
           "Name": "libknot14t64",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libknot14t64@3.3.4-1.1build2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "73c4a753903c263"
+            "UID": "e4030deb39daac7d"
           },
           "Version": "3.3.4",
           "Release": "1.1build2",
@@ -4982,7 +4995,7 @@
           "Name": "libkrb5-3",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libkrb5-3@1.20.1-6ubuntu2.6?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "6bc9f8816ee71e3b"
+            "UID": "e7987c0cc185ba6f"
           },
           "Version": "1.20.1",
           "Release": "6ubuntu2.6",
@@ -5024,7 +5037,7 @@
           "Name": "libkrb5support0",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libkrb5support0@1.20.1-6ubuntu2.6?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "efd40fbca974f15d"
+            "UID": "a0bc9299d0365a3b"
           },
           "Version": "1.20.1",
           "Release": "6ubuntu2.6",
@@ -5059,7 +5072,7 @@
           "Name": "libldap2",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libldap2@2.6.10%2Bdfsg-0ubuntu0.24.04.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "973177bcff3eff6c"
+            "UID": "86c4f5f8df00579"
           },
           "Version": "2.6.10+dfsg",
           "Release": "0ubuntu0.24.04.1",
@@ -5120,7 +5133,7 @@
           "Name": "liblmdb0",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/liblmdb0@0.9.31-1build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "16b5f8c40d7ec7fc"
+            "UID": "76580b3806348f57"
           },
           "Version": "0.9.31",
           "Release": "1build1",
@@ -5283,7 +5296,7 @@
           "Name": "libmnl0",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libmnl0@1.0.5-2build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "b29283d4379790bb"
+            "UID": "689ef6381b9282a3"
           },
           "Version": "1.0.5",
           "Release": "2build1",
@@ -5402,7 +5415,7 @@
           "Name": "libnetfilter-conntrack3",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libnetfilter-conntrack3@1.0.9-6build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "828bd07cffa931b6"
+            "UID": "bff3a6a30c6a8e28"
           },
           "Version": "1.0.9",
           "Release": "6build1",
@@ -5484,7 +5497,7 @@
           "Name": "libnfnetlink0",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libnfnetlink0@1.0.2-2build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "61af1f0394589156"
+            "UID": "e5976dc9370a8bc4"
           },
           "Version": "1.0.2",
           "Release": "2build1",
@@ -5519,7 +5532,7 @@
           "Name": "libnftables1",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libnftables1@1.0.9-1build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "80ba4c23dad074c7"
+            "UID": "9e89f39ad618d6d6"
           },
           "Version": "1.0.9",
           "Release": "1build1",
@@ -5563,7 +5576,7 @@
           "Name": "libnftnl11",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libnftnl11@1.2.6-2build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "a0a773bf6e349c22"
+            "UID": "9fd69e3fbcb53640"
           },
           "Version": "1.2.6",
           "Release": "2build1",
@@ -5599,7 +5612,7 @@
           "Name": "libnghttp2-14",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libnghttp2-14@1.59.0-1ubuntu0.2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "c2dbcf95c36872f1"
+            "UID": "c0564f0d9b2d22bb"
           },
           "Version": "1.59.0",
           "Release": "1ubuntu0.2",
@@ -5639,7 +5652,7 @@
           "Name": "libnl-3-200",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libnl-3-200@3.7.0-0.3build1.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "ae71b511440c880c"
+            "UID": "999bdf4e95329754"
           },
           "Version": "3.7.0",
           "Release": "0.3build1.1",
@@ -5675,7 +5688,7 @@
           "Name": "libnl-route-3-200",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libnl-route-3-200@3.7.0-0.3build1.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "1721598ba46db4ce"
+            "UID": "984e460afbe19276"
           },
           "Version": "3.7.0",
           "Release": "0.3build1.1",
@@ -6109,7 +6122,7 @@
           "Name": "libpcap0.8t64",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libpcap0.8t64@1.10.4-4.1ubuntu3?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "53b4d577711cddc0"
+            "UID": "2b6a03499df86722"
           },
           "Version": "1.10.4",
           "Release": "4.1ubuntu3",
@@ -6231,7 +6244,7 @@
           "Name": "libprotobuf-c1",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libprotobuf-c1@1.4.1-1ubuntu4?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "b636b5ab0563bbac"
+            "UID": "31785d76936171ed"
           },
           "Version": "1.4.1",
           "Release": "1ubuntu4",
@@ -6267,7 +6280,7 @@
           "Name": "libpsl5t64",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libpsl5t64@0.21.2-1.1build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "76666117a61f157a"
+            "UID": "8ec5c2bbf5ca8764"
           },
           "Version": "0.21.2",
           "Release": "1.1build1",
@@ -6306,7 +6319,7 @@
           "Name": "librtmp1",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/librtmp1@2.4%2B20151223.gitfa8646d.1-2build7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "e83edf2d1910f530"
+            "UID": "f443a2853fa661f3"
           },
           "Version": "2.4+20151223.gitfa8646d.1",
           "Release": "2build7",
@@ -6343,7 +6356,7 @@
           "Name": "libsasl2-2",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libsasl2-2@2.1.28%2Bdfsg1-5ubuntu3.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "dbcfbd9fd729857"
+            "UID": "d24872e48735a7c8"
           },
           "Version": "2.1.28+dfsg1",
           "Release": "5ubuntu3.1",
@@ -6396,7 +6409,7 @@
           "Name": "libsasl2-modules-db",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libsasl2-modules-db@2.1.28%2Bdfsg1-5ubuntu3.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "2a909f4331a3eb1d"
+            "UID": "ee481a1a8bf3fb73"
           },
           "Version": "2.1.28+dfsg1",
           "Release": "5ubuntu3.1",
@@ -6723,7 +6736,7 @@
           "Name": "libssh-4",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libssh-4@0.10.6-2ubuntu0.3?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "5eaabefa80e694dc"
+            "UID": "601e9f074faf9d70"
           },
           "Version": "0.10.6",
           "Release": "2ubuntu0.3",
@@ -6809,7 +6822,7 @@
           "Name": "libstdc++6",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libstdc%2B%2B6@14.2.0-4ubuntu2~24.04.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "a61cd62f0dfdfef8"
+            "UID": "4b448ab8341c0573"
           },
           "Version": "14.2.0",
           "Release": "4ubuntu2~24.04.1",
@@ -6969,7 +6982,7 @@
           "Name": "libtirpc-common",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libtirpc-common@1.3.4%2Bds-1.1build1?arch=all\u0026distro=ubuntu-24.04",
-            "UID": "b096415434f7bf1"
+            "UID": "5073220739af30e1"
           },
           "Version": "1.3.4+ds",
           "Release": "1.1build1",
@@ -7008,7 +7021,7 @@
           "Name": "libtirpc3t64",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libtirpc3t64@1.3.4%2Bds-1.1build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "c91be21bc4e4043b"
+            "UID": "15b3f9ca5c9029b6"
           },
           "Version": "1.3.4+ds",
           "Release": "1.1build1",
@@ -7189,7 +7202,7 @@
           "Name": "libxdp1",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libxdp1@1.4.2-1ubuntu4?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "c313052b931f0094"
+            "UID": "9b3780ac3c36ff59"
           },
           "Version": "1.4.2",
           "Release": "1ubuntu4",
@@ -7247,7 +7260,7 @@
           "Name": "libxtables12",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libxtables12@1.8.10-3ubuntu2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "e8650c3a517c8890"
+            "UID": "58cd36bfac2e9c13"
           },
           "Version": "1.8.10",
           "Release": "3ubuntu2",
@@ -7321,7 +7334,7 @@
           "Name": "libzscanner4t64",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/libzscanner4t64@3.3.4-1.1build2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "540d3f22e64cc312"
+            "UID": "6d2079f1e142cc57"
           },
           "Version": "3.3.4",
           "Release": "1.1build2",
@@ -7573,7 +7586,7 @@
           "Name": "lsof",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/lsof@4.95.0-1build3?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "7974e5fafc0cd28"
+            "UID": "9689687fffc7d291"
           },
           "Version": "4.95.0",
           "Release": "1build3",
@@ -7747,7 +7760,7 @@
           "Name": "ncal",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/ncal@12.1.8?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "d2173b4ac2ff5219"
+            "UID": "147b4389b4eeb8eb"
           },
           "Version": "12.1.8",
           "Arch": "amd64",
@@ -7911,7 +7924,7 @@
           "Name": "net-tools",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/net-tools@2.10-0.1ubuntu4.4?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "248807c6624a58dd"
+            "UID": "a3d9721d69093e51"
           },
           "Version": "2.10",
           "Release": "0.1ubuntu4.4",
@@ -7991,7 +8004,7 @@
           "Name": "netbase",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/netbase@6.4?arch=all\u0026distro=ubuntu-24.04",
-            "UID": "f5de852302697395"
+            "UID": "71ea7a99e7ca8ffb"
           },
           "Version": "6.4",
           "Arch": "all",
@@ -8019,7 +8032,7 @@
           "Name": "netcat-openbsd",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/netcat-openbsd@1.226-1ubuntu2?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "c3900195833cef9f"
+            "UID": "57351744350de4f6"
           },
           "Version": "1.226",
           "Release": "1ubuntu2",
@@ -8071,7 +8084,7 @@
           "Name": "nftables",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/nftables@1.0.9-1build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "f2561faa6babc30e"
+            "UID": "b64754c6b21db1aa"
           },
           "Version": "1.0.9",
           "Release": "1build1",
@@ -8137,7 +8150,7 @@
           "Name": "openssl",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "4ae8663a603a057b"
+            "UID": "7be17c26fb75f242"
           },
           "Version": "3.0.13",
           "Release": "0ubuntu3.7",
@@ -9683,7 +9696,7 @@
           "Name": "sudo",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/sudo@1.9.15p5-3ubuntu5.24.04.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "32a89cff627974"
+            "UID": "f5c4487940b9de7d"
           },
           "Version": "1.9.15p5",
           "Release": "3ubuntu5.24.04.1",
@@ -9876,7 +9889,7 @@
           "Name": "tcpdump",
           "Identifier": {
             "PURL": "pkg:deb/ubuntu/tcpdump@4.99.4-3ubuntu4.24.04.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "9c085cff8678db09"
+            "UID": "b6364a33b981d226"
           },
           "Version": "4.99.4",
           "Release": "3ubuntu4.24.04.1",
@@ -10361,7 +10374,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:29e52a57c6452cf68f3a2a79dace96f1f8e505f1887d0b4da769ed8646f36b49",
+          "Fingerprint": "sha256:039bb4fe1db8a0b74bbc631f6037372a6c27d79ad2faa0b2e73b111e39b04fa1",
           "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
           "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
           "Severity": "LOW",
@@ -10404,168 +10417,6 @@
           "LastModifiedDate": "2025-06-09T16:15:25.013Z"
         },
         {
-          "VulnerabilityID": "CVE-2026-1965",
-          "PkgID": "curl@8.5.0-2ubuntu10.7",
-          "PkgName": "curl",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "508f7a363a85e9cd"
-          },
-          "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
-            "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
-          },
-          "SeveritySource": "ubuntu",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1965",
-          "DataSource": {
-            "ID": "ubuntu",
-            "Name": "Ubuntu CVE Tracker",
-            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
-          },
-          "Fingerprint": "sha256:281b165693d2de7ae4d19d2fbd366fa54c0d4bb99067feb82c28b79177af5e00",
-          "Description": "libcurl can in some circumstances reuse the wrong connection when asked to do\nan Negotiate-authenticated HTTP or HTTPS request.\n\nlibcurl features a pool of recent connections so that subsequent requests can\nreuse an existing connection to avoid overhead.\n\nWhen reusing a connection a range of criterion must first be met. Due to a\nlogical error in the code, a request that was issued by an application could\nwrongfully reuse an existing connection to the same server that was\nauthenticated using different credentials. One underlying reason being that\nNegotiate sometimes authenticates *connections* and not *requests*, contrary\nto how HTTP is designed to work.\n\nAn application that allows Negotiate authentication to a server (that responds\nwanting Negotiate) with `user1:password1` and then does another operation to\nthe same server also using Negotiate but with `user2:password2` (while the\nprevious connection is still alive) - the second request wrongly reused the\nsame connection and since it then sees that the Negotiate negotiation is\nalready made, it just sends the request over that connection thinking it uses\nthe user2 credentials when it is in fact still using the connection\nauthenticated for user1...\n\nThe set of authentication methods to use is set with  `CURLOPT_HTTPAUTH`.\n\nApplications can disable libcurl's reuse of connections and thus mitigate this\nproblem, by using one of the following libcurl options to alter how\nconnections are or are not reused: `CURLOPT_FRESH_CONNECT`,\n`CURLOPT_MAXCONNECTS` and `CURLMOPT_MAX_HOST_CONNECTIONS` (if using the\ncurl_multi API).",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-305"
-          ],
-          "VendorSeverity": {
-            "ubuntu": 2
-          },
-          "References": [
-            "https://curl.se/docs/CVE-2026-1965.html",
-            "https://curl.se/docs/CVE-2026-1965.json",
-            "https://www.cve.org/CVERecord?id=CVE-2026-1965"
-          ],
-          "PublishedDate": "2026-03-11T11:15:59.177Z",
-          "LastModifiedDate": "2026-03-11T15:16:25.763Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-3783",
-          "PkgID": "curl@8.5.0-2ubuntu10.7",
-          "PkgName": "curl",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "508f7a363a85e9cd"
-          },
-          "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
-            "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
-          },
-          "SeveritySource": "ubuntu",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3783",
-          "DataSource": {
-            "ID": "ubuntu",
-            "Name": "Ubuntu CVE Tracker",
-            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
-          },
-          "Fingerprint": "sha256:a7c882733d7b8788524d8b35cea0afe837d9041ae1b1f35998ceceb23b3e4664",
-          "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a redirect to a second URL, curl could leak that token to the second\nhostname under some circumstances.\n\nIf the hostname that the first request is redirected to has information in the\nused .netrc file, with either of the `machine` or `default` keywords, curl\nwould pass on the bearer token set for the first host also to the second one.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-522"
-          ],
-          "VendorSeverity": {
-            "ubuntu": 2
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/03/11/2",
-            "https://curl.se/docs/CVE-2026-3783.html",
-            "https://curl.se/docs/CVE-2026-3783.json",
-            "https://hackerone.com/reports/3583983",
-            "https://www.cve.org/CVERecord?id=CVE-2026-3783"
-          ],
-          "PublishedDate": "2026-03-11T11:16:00.08Z",
-          "LastModifiedDate": "2026-03-11T15:16:33.117Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2025-0167",
-          "PkgID": "curl@8.5.0-2ubuntu10.7",
-          "PkgName": "curl",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "508f7a363a85e9cd"
-          },
-          "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
-            "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
-          },
-          "SeveritySource": "ubuntu",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-0167",
-          "DataSource": {
-            "ID": "ubuntu",
-            "Name": "Ubuntu CVE Tracker",
-            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
-          },
-          "Fingerprint": "sha256:7820014971cdd5b6ce780578e4959e67e9bd602960e5d42482b2f3ad880803ad",
-          "Title": "When asked to use a `.netrc` file for credentials **and** to follow HT ...",
-          "Description": "When asked to use a `.netrc` file for credentials **and** to follow HTTP\nredirects, curl could leak the password used for the first host to the\nfollowed-to host under certain circumstances.\n\nThis flaw only manifests itself if the netrc file has a `default` entry that\nomits both login and password. A rare circumstance.",
-          "Severity": "LOW",
-          "VendorSeverity": {
-            "amazon": 2,
-            "azure": 1,
-            "cbl-mariner": 1,
-            "photon": 1,
-            "ubuntu": 1
-          },
-          "References": [
-            "https://curl.se/docs/CVE-2025-0167.html",
-            "https://curl.se/docs/CVE-2025-0167.json",
-            "https://hackerone.com/reports/2917232",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-0167",
-            "https://security.netapp.com/advisory/ntap-20250306-0008/",
-            "https://www.cve.org/CVERecord?id=CVE-2025-0167"
-          ],
-          "PublishedDate": "2025-02-05T10:15:22.71Z",
-          "LastModifiedDate": "2025-07-30T19:41:45.08Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-3784",
-          "PkgID": "curl@8.5.0-2ubuntu10.7",
-          "PkgName": "curl",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "508f7a363a85e9cd"
-          },
-          "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
-            "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
-          },
-          "SeveritySource": "ubuntu",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3784",
-          "DataSource": {
-            "ID": "ubuntu",
-            "Name": "Ubuntu CVE Tracker",
-            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
-          },
-          "Fingerprint": "sha256:a5a032b694bfcd4f69e726c45835bc598f1e471e05c78b8755cf4fc2ccbd16c6",
-          "Description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a\nserver, even if the new request uses different credentials for the HTTP proxy.\nThe proper behavior is to create or use a separate connection.",
-          "Severity": "LOW",
-          "CweIDs": [
-            "CWE-305"
-          ],
-          "VendorSeverity": {
-            "ubuntu": 1
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/03/11/3",
-            "https://curl.se/docs/CVE-2026-3784.html",
-            "https://curl.se/docs/CVE-2026-3784.json",
-            "https://curl.se/docs/CVE-2026-proxy.html",
-            "https://hackerone.com/reports/3584903",
-            "https://www.cve.org/CVERecord?id=CVE-2026-3784"
-          ],
-          "PublishedDate": "2026-03-11T11:16:00.437Z",
-          "LastModifiedDate": "2026-03-11T16:16:46.583Z"
-        },
-        {
           "VulnerabilityID": "CVE-2025-68972",
           "PkgID": "gpgv@2.4.4-2ubuntu17.4",
           "PkgName": "gpgv",
@@ -10586,7 +10437,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:a166e01adbdfca1c8d1f5a8353ae0add1597a1584457cab3305c41e2406dd1a0",
+          "Fingerprint": "sha256:fe94dd95a5bcac27e51e268826dc98534c41c950da9424088ddc47dcda02cb27",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -10641,7 +10492,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:67e1593fa9016b34bef7586aeef94ecec42f0a140b9cc066606edf25ce3693bf",
+          "Fingerprint": "sha256:057fa1bdbf2bac22a1186b937b6540aff18383d67367c84627f1716e312f531b",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -10682,7 +10533,7 @@
           "PkgName": "libbpf1",
           "PkgIdentifier": {
             "PURL": "pkg:deb/ubuntu/libbpf1@1.3.0-2build2?arch=amd64\u0026distro=ubuntu-24.04\u0026epoch=1",
-            "UID": "7346d917b4b86fe1"
+            "UID": "163a3e8bc22dc6b7"
           },
           "InstalledVersion": "1:1.3.0-2build2",
           "Status": "affected",
@@ -10697,7 +10548,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:995b5b9fff5b05775a9f4a725476347c24623e11302cac1cf1e6ab91f04cb8b0",
+          "Fingerprint": "sha256:78a57eb19e8ad14427ded5d8dfe452a746b80421ed36e84c513be16191efd6c0",
           "Title": "libbpf: Heap Buffer Overflow in libbpf",
           "Description": "Buffer Overflow vulnerability in libbpf 1.5.0 allows a local attacker to execute arbitrary code via the bpf_object__init_prog` function of libbpf. This has been disputed by third parties who assert that \"no one in their sane mind should be passing untrusted ELF files into libbpf while running under root.\"",
           "Severity": "LOW",
@@ -10731,174 +10582,12 @@
           "LastModifiedDate": "2026-02-25T08:16:18.86Z"
         },
         {
-          "VulnerabilityID": "CVE-2026-1965",
-          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.7",
-          "PkgName": "libcurl4t64",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "2127607ae96d830c"
-          },
-          "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
-            "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
-          },
-          "SeveritySource": "ubuntu",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-1965",
-          "DataSource": {
-            "ID": "ubuntu",
-            "Name": "Ubuntu CVE Tracker",
-            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
-          },
-          "Fingerprint": "sha256:b2bdfc72819c33187edadba886b2581010e0439d35f2e618ad07d3f65aee3016",
-          "Description": "libcurl can in some circumstances reuse the wrong connection when asked to do\nan Negotiate-authenticated HTTP or HTTPS request.\n\nlibcurl features a pool of recent connections so that subsequent requests can\nreuse an existing connection to avoid overhead.\n\nWhen reusing a connection a range of criterion must first be met. Due to a\nlogical error in the code, a request that was issued by an application could\nwrongfully reuse an existing connection to the same server that was\nauthenticated using different credentials. One underlying reason being that\nNegotiate sometimes authenticates *connections* and not *requests*, contrary\nto how HTTP is designed to work.\n\nAn application that allows Negotiate authentication to a server (that responds\nwanting Negotiate) with `user1:password1` and then does another operation to\nthe same server also using Negotiate but with `user2:password2` (while the\nprevious connection is still alive) - the second request wrongly reused the\nsame connection and since it then sees that the Negotiate negotiation is\nalready made, it just sends the request over that connection thinking it uses\nthe user2 credentials when it is in fact still using the connection\nauthenticated for user1...\n\nThe set of authentication methods to use is set with  `CURLOPT_HTTPAUTH`.\n\nApplications can disable libcurl's reuse of connections and thus mitigate this\nproblem, by using one of the following libcurl options to alter how\nconnections are or are not reused: `CURLOPT_FRESH_CONNECT`,\n`CURLOPT_MAXCONNECTS` and `CURLMOPT_MAX_HOST_CONNECTIONS` (if using the\ncurl_multi API).",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-305"
-          ],
-          "VendorSeverity": {
-            "ubuntu": 2
-          },
-          "References": [
-            "https://curl.se/docs/CVE-2026-1965.html",
-            "https://curl.se/docs/CVE-2026-1965.json",
-            "https://www.cve.org/CVERecord?id=CVE-2026-1965"
-          ],
-          "PublishedDate": "2026-03-11T11:15:59.177Z",
-          "LastModifiedDate": "2026-03-11T15:16:25.763Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-3783",
-          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.7",
-          "PkgName": "libcurl4t64",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "2127607ae96d830c"
-          },
-          "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
-            "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
-          },
-          "SeveritySource": "ubuntu",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3783",
-          "DataSource": {
-            "ID": "ubuntu",
-            "Name": "Ubuntu CVE Tracker",
-            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
-          },
-          "Fingerprint": "sha256:9a38ed5c7cad1e36594e5d570aa73340c3399c2bfce7fd04eb5d12f75981d5ab",
-          "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a redirect to a second URL, curl could leak that token to the second\nhostname under some circumstances.\n\nIf the hostname that the first request is redirected to has information in the\nused .netrc file, with either of the `machine` or `default` keywords, curl\nwould pass on the bearer token set for the first host also to the second one.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-522"
-          ],
-          "VendorSeverity": {
-            "ubuntu": 2
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/03/11/2",
-            "https://curl.se/docs/CVE-2026-3783.html",
-            "https://curl.se/docs/CVE-2026-3783.json",
-            "https://hackerone.com/reports/3583983",
-            "https://www.cve.org/CVERecord?id=CVE-2026-3783"
-          ],
-          "PublishedDate": "2026-03-11T11:16:00.08Z",
-          "LastModifiedDate": "2026-03-11T15:16:33.117Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2025-0167",
-          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.7",
-          "PkgName": "libcurl4t64",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "2127607ae96d830c"
-          },
-          "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
-            "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
-          },
-          "SeveritySource": "ubuntu",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-0167",
-          "DataSource": {
-            "ID": "ubuntu",
-            "Name": "Ubuntu CVE Tracker",
-            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
-          },
-          "Fingerprint": "sha256:8ca7f0cd5f173d2a7ad8d4b51a333b7fde1860db42c2047fac13480ed7d4faa7",
-          "Title": "When asked to use a `.netrc` file for credentials **and** to follow HT ...",
-          "Description": "When asked to use a `.netrc` file for credentials **and** to follow HTTP\nredirects, curl could leak the password used for the first host to the\nfollowed-to host under certain circumstances.\n\nThis flaw only manifests itself if the netrc file has a `default` entry that\nomits both login and password. A rare circumstance.",
-          "Severity": "LOW",
-          "VendorSeverity": {
-            "amazon": 2,
-            "azure": 1,
-            "cbl-mariner": 1,
-            "photon": 1,
-            "ubuntu": 1
-          },
-          "References": [
-            "https://curl.se/docs/CVE-2025-0167.html",
-            "https://curl.se/docs/CVE-2025-0167.json",
-            "https://hackerone.com/reports/2917232",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-0167",
-            "https://security.netapp.com/advisory/ntap-20250306-0008/",
-            "https://www.cve.org/CVERecord?id=CVE-2025-0167"
-          ],
-          "PublishedDate": "2025-02-05T10:15:22.71Z",
-          "LastModifiedDate": "2025-07-30T19:41:45.08Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-3784",
-          "PkgID": "libcurl4t64@8.5.0-2ubuntu10.7",
-          "PkgName": "libcurl4t64",
-          "PkgIdentifier": {
-            "PURL": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.7?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "2127607ae96d830c"
-          },
-          "InstalledVersion": "8.5.0-2ubuntu10.7",
-          "Status": "affected",
-          "Layer": {
-            "Digest": "sha256:90f3d12715f9af278edfc5bed10c7b6894fe28efb385f3050ac6129a97e847bd",
-            "DiffID": "sha256:8cb50fd2ecf9c6dfd551d4424481974a21518ff1b15727c139a7adebb1e43456"
-          },
-          "SeveritySource": "ubuntu",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-3784",
-          "DataSource": {
-            "ID": "ubuntu",
-            "Name": "Ubuntu CVE Tracker",
-            "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
-          },
-          "Fingerprint": "sha256:59f4d3ac6d0d5de1f57a2784da6cc2f3737396693c6efa71fc4fe2b2e6edb5cb",
-          "Description": "curl would wrongly reuse an existing HTTP proxy connection doing CONNECT to a\nserver, even if the new request uses different credentials for the HTTP proxy.\nThe proper behavior is to create or use a separate connection.",
-          "Severity": "LOW",
-          "CweIDs": [
-            "CWE-305"
-          ],
-          "VendorSeverity": {
-            "ubuntu": 1
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/03/11/3",
-            "https://curl.se/docs/CVE-2026-3784.html",
-            "https://curl.se/docs/CVE-2026-3784.json",
-            "https://curl.se/docs/CVE-2026-proxy.html",
-            "https://hackerone.com/reports/3584903",
-            "https://www.cve.org/CVERecord?id=CVE-2026-3784"
-          ],
-          "PublishedDate": "2026-03-11T11:16:00.437Z",
-          "LastModifiedDate": "2026-03-11T16:16:46.583Z"
-        },
-        {
           "VulnerabilityID": "CVE-2025-1352",
           "PkgID": "libelf1t64@0.190-1.1ubuntu0.1",
           "PkgName": "libelf1t64",
           "PkgIdentifier": {
             "PURL": "pkg:deb/ubuntu/libelf1t64@0.190-1.1ubuntu0.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "df43921c24cf8d3"
+            "UID": "87535bcdf14a3ea6"
           },
           "InstalledVersion": "0.190-1.1ubuntu0.1",
           "Status": "affected",
@@ -10913,7 +10602,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:82c07627c00074da2ac7205515b8f6d392fcd4f03a0cdb48e593ab01e726b77c",
+          "Fingerprint": "sha256:1b0fdead47f5138b0805e7b2db817a5514a76b864bf97dcd5b16e085e0e60371",
           "Title": "elfutils: GNU elfutils eu-readelf libdw_alloc.c __libdw_thread_tail memory corruption",
           "Description": "A vulnerability has been found in GNU elfutils 0.192 and classified as critical. This vulnerability affects the function __libdw_thread_tail in the library libdw_alloc.c of the component eu-readelf. The manipulation of the argument w leads to memory corruption. The attack can be initiated remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is 2636426a091bd6c6f7f02e49ab20d4cdc6bfc753. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -10959,7 +10648,7 @@
           "PkgName": "libelf1t64",
           "PkgIdentifier": {
             "PURL": "pkg:deb/ubuntu/libelf1t64@0.190-1.1ubuntu0.1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "df43921c24cf8d3"
+            "UID": "87535bcdf14a3ea6"
           },
           "InstalledVersion": "0.190-1.1ubuntu0.1",
           "Status": "affected",
@@ -10974,7 +10663,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:25ba9d79d2d6c1168fde8b0f2d536f622919eab95b0bc0074409381ca13128ad",
+          "Fingerprint": "sha256:ed3734acd00c27ab56eef465d8d45e845a8b3cdc8c2d4d2aba2e6b5b3a90a7e8",
           "Title": "elfutils: GNU elfutils eu-strip elf_strptr.c elf_strptr denial of service",
           "Description": "A vulnerability classified as problematic was found in GNU elfutils 0.192. This vulnerability affects the function elf_strptr in the library /libelf/elf_strptr.c of the component eu-strip. The manipulation leads to denial of service. It is possible to launch the attack on the local host. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is b16f441cca0a4841050e3215a9f120a6d8aea918. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -11034,7 +10723,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:3e1a883cdfb5103ae86f925c1eda7d47b4501445249cadc57f079d1db96f9b7c",
+          "Fingerprint": "sha256:cdedda1524f9c540a9f508d9e0212a04783f0dfcef38bb27a4e5f46e5b5c3078",
           "Title": "libgcrypt: vulnerable to Marvin Attack",
           "Description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
           "Severity": "LOW",
@@ -11084,7 +10773,7 @@
           "PkgName": "liblmdb0",
           "PkgIdentifier": {
             "PURL": "pkg:deb/ubuntu/liblmdb0@0.9.31-1build1?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "16b5f8c40d7ec7fc"
+            "UID": "76580b3806348f57"
           },
           "InstalledVersion": "0.9.31-1build1",
           "Status": "affected",
@@ -11099,7 +10788,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:f64553f82c43b25f8f84d1e19cb64f94f44915a1937dc315a38e24cec06a46d1",
+          "Fingerprint": "sha256:9aa48f59449bd459e3f2aed0221c72b142c60ce0a267e6d583c980d3def7be76",
           "Title": "OpenLDAP: OpenLDAP LMDB: Denial of Service and Information Disclosure via Heap Buffer Underflow",
           "Description": "OpenLDAP Lightning Memory-Mapped Database (LMDB) versions up to and including 0.9.14, prior to commit 8e1fda8, contain a heap buffer underflow in the readline() function of mdb_load. When processing malformed input containing an embedded NUL byte, an unsigned offset calculation can underflow and cause an out-of-bounds read of one byte before the allocated heap buffer. This can cause mdb_load to crash, leading to a limited denial-of-service condition.",
           "Severity": "MEDIUM",
@@ -11151,7 +10840,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:bb45bbe90d396270d9b1bd8ea84fd39ec472dd830a17f0b9fa298e884e840c76",
+          "Fingerprint": "sha256:40eabdd4a2bdfec5de4d2768f9beb95b2df698d009403b70cf803b8a8cae7e84",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -11228,7 +10917,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:8b94f7ef523c3d2c1a0bfc13991a3761e137197b35168ff522892d7b479b15be",
+          "Fingerprint": "sha256:e8530c2bcb986f1ddb91978961bdcda2448ee13542defbc93a7229c68eb6e3e1",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -11305,7 +10994,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:7a8693de9e65cbf19f233fcbebd212927113dcb836722d41495eaeb3a03790b7",
+          "Fingerprint": "sha256:210ea1a2f0c4dc84a650f95768f34092e54ad5d9ba431f9bb43e05f8227bf879",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -11382,7 +11071,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:a815ba204f9a35664c3ea33faba846cd4993e5db957d6730e32d9cc250082bf9",
+          "Fingerprint": "sha256:52d160deea110ec2906b0587d805b5128852fdeb20eee5778678872229cc8d7d",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -11444,7 +11133,7 @@
           "PkgName": "libssh-4",
           "PkgIdentifier": {
             "PURL": "pkg:deb/ubuntu/libssh-4@0.10.6-2ubuntu0.3?arch=amd64\u0026distro=ubuntu-24.04",
-            "UID": "5eaabefa80e694dc"
+            "UID": "601e9f074faf9d70"
           },
           "InstalledVersion": "0.10.6-2ubuntu0.3",
           "Status": "affected",
@@ -11459,7 +11148,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:79f30ca0ab3ef11ca7d725f2bf816b90412b3510101225fe30b1a5461e7a1cb7",
+          "Fingerprint": "sha256:d35549bb03b18bab1838c2e825c5c6a93abcf33083723d0512c474360cf2d87a",
           "Title": "libssh: libssh: Denial of Service via out-of-bounds read in SFTP extension name handler",
           "Description": "A weakness has been identified in libssh up to 0.11.3. The impacted element is the function sftp_extensions_get_name/sftp_extensions_get_data of the file src/sftp.c of the component SFTP Extension Name Handler. Executing a manipulation of the argument idx can lead to out-of-bounds read. The attack may be performed from remote. Upgrading to version 0.11.4 and 0.12.0 is sufficient to resolve this issue. This patch is called 855a0853ad3abd4a6cd85ce06fce6d8d4c7a0b60. You should upgrade the affected component.",
           "Severity": "MEDIUM",
@@ -11468,14 +11157,14 @@
             "CWE-125"
           ],
           "VendorSeverity": {
-            "nvd": 4,
+            "nvd": 3,
             "redhat": 2,
             "ubuntu": 2
           },
           "CVSS": {
             "nvd": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 9.8
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
             },
             "redhat": {
               "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
@@ -11494,7 +11183,7 @@
             "https://www.libssh.org/security/advisories/libssh-2026-sftp-extensions.txt"
           ],
           "PublishedDate": "2026-03-08T11:15:50.307Z",
-          "LastModifiedDate": "2026-03-09T18:36:33.48Z"
+          "LastModifiedDate": "2026-03-12T19:02:31.637Z"
         },
         {
           "VulnerabilityID": "CVE-2024-56433",
@@ -11517,7 +11206,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:2c25afca85e9917128a5f79bc9058a0c0c2130372e776b03ccfee2835fd2afe0",
+          "Fingerprint": "sha256:9199ae7d811532ceb89f17eac072d41fd57207d2a06be8ad7fa0ee0d539403c6",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -11578,7 +11267,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:c585efc7c38e1d0a13260f670683c3cf53c3994aadad0a7caa53a00bd8f07d00",
+          "Fingerprint": "sha256:7898259f925db94389123f5f4bad1a5ca76f842da8c4b8a2e19dfaa2f663609e",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -11639,7 +11328,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:57ae15eaa2728728373a9630f5e700da07d710e8d40104250140a42548632086",
+          "Fingerprint": "sha256:172cc74c34d80536a6075f2fe04fd93e875bcdf2e23a33a52d47454994b33c9b",
           "Title": "tar: Tar path traversal",
           "Description": "GNU Tar through 1.35 allows file overwrite via directory traversal in crafted TAR archives, with a certain two-step process. First, the victim must extract an archive that contains a ../ symlink to a critical directory. Second, the victim must extract an archive that contains a critical file, specified via a relative pathname that begins with the symlink name and ends with that critical file's name. Here, the extraction follows the symlink and overwrites the critical file. This bypasses the protection mechanism of \"Member name contains '..'\" that would occur for a single TAR archive that attempted to specify the critical file via a ../ approach. For example, the first archive can contain \"x -\u003e ../../../../../home/victim/.ssh\" and the second archive can contain x/authorized_keys. This can affect server applications that automatically extract any number of user-supplied TAR archives, and were relying on the blocking of traversal. This can also affect software installation processes in which \"tar xf\" is run more than once (e.g., when installing a package can automatically install two dependencies that are set up as untrusted tarballs instead of official packages). NOTE: the official GNU Tar manual has an otherwise-empty directory for each \"tar xf\" in its Security Rules of Thumb; however, third-party advice leads users to run \"tar xf\" more than once into the same directory.",
           "Severity": "MEDIUM",
@@ -13444,7 +13133,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:49b39b88859122e66f10efe65babde6e6e88dc7d7cf19ebc5db8026b5f277117",
+          "Fingerprint": "sha256:663970fd44b56cb09c526dddedd7fc626ce23c9269e005b1169092663240f8b2",
           "Title": "CNI portmap plugin: github.com/containernetworking/plugins/plugins/meta/portmap: CNI portmap plugin: HostPort forwarding vulnerability allows traffic interception",
           "Description": "The CNI portmap plugin allows containers to emulate opening a host port, forwarding that traffic to the container. Versions 1.6.0 through 1.8.0  inadvertently forward all traffic with the same destination port as the host port when the portmap plugin is configured with the nftables backend, thus ignoring the destination IP. This includes traffic not intended for the node itself, i.e. traffic to containers hosted on the node. Containers that request HostPort forwarding can intercept all traffic destined for that port. This requires that the portmap plugin be explicitly configured to use the nftables backend. This issue is fixed in version 1.9.0. To workaround, configure the portmap plugin to use the iptables backend. It does not have this vulnerability.",
           "Severity": "MEDIUM",
@@ -13503,7 +13192,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:5b24142032f946978e80c1ca2c3a2c4007ba9fe1fae002ae8076a7388ec2fc34",
+          "Fingerprint": "sha256:c8e61403af3cea9f71bcbc34d21175707ce901f89a17919bfcccb07c028f09b7",
           "Title": "OpenTelemetry Go SDK Vulnerable to Arbitrary Code Execution via PATH Hijacking",
           "Description": "OpenTelemetry-Go is the Go implementation of OpenTelemetry. The OpenTelemetry Go SDK in version v1.20.0-1.39.0 is vulnerable to Path Hijacking (Untrusted Search Paths) on macOS/Darwin systems. The resource detection code in sdk/resource/host_id.go executes the ioreg system command using a search path. An attacker with the ability to locally modify the PATH environment variable can achieve Arbitrary Code Execution (ACE) within the context of the application. A fix was released with v1.40.0.",
           "Severity": "HIGH",
@@ -13554,7 +13243,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:8db9d5aa0d31a10adc8b8ebcccc2e729098e8068e4dbe0450f3f252eacf49e77",
+          "Fingerprint": "sha256:dbac66e03526e9f36f5cd66164df75601f466e35558869dbae825f9b460b16dc",
           "Title": "istio/envoy: mishandling regular expressions for long URIs leading to DoS",
           "Description": "Istio before 1.1.13 and 1.2.x before 1.2.4 mishandles regular expressions for long URIs, leading to a denial of service during use of the JWT, VirtualService, HTTPAPISpecBinding, or QuotaSpecBinding API.",
           "Severity": "HIGH",
@@ -13621,7 +13310,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:95414c2039d195df6ece6a38fc9aad47f83811105bd43578b130964acb57291b",
+          "Fingerprint": "sha256:4fa3540bdf46cebcc1a6d8fccacdd42b54457aa2f7653faef9803129ea6057fb",
           "Title": "istio/istio: HTTP request can bypass authorization mechanisms due to case insensitive host comparison",
           "Description": "Istio is an open source platform for providing a uniform way to integrate microservices, manage traffic flow across microservices, enforce policies and aggregate telemetry data. According to [RFC 4343](https://datatracker.ietf.org/doc/html/rfc4343), Istio authorization policy should compare the hostname in the HTTP Host header in a case insensitive way, but currently the comparison is case sensitive. The proxy will route the request hostname in a case-insensitive way which means the authorization policy could be bypassed. As an example, the user may have an authorization policy that rejects request with hostname \"httpbin.foo\" for some source IPs, but the attacker can bypass this by sending the request with hostname \"Httpbin.Foo\". Patches are available in Istio 1.11.1, Istio 1.10.4 and Istio 1.9.8. As a work around a Lua filter may be written to normalize Host header before the authorization check. This is similar to the Path normalization presented in the [Security Best Practices](https://istio.io/latest/docs/ops/best-practices/security/#case-normalization) guide.",
           "Severity": "HIGH",
@@ -13690,7 +13379,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:b57fb120ea5d913640ab6ec837ca1874d0b85b777d5e10c750ff44605e9f3aa2",
+          "Fingerprint": "sha256:c7102fd3eab91148fc06f87167dea1258353281366ba18f02396e1f048e09ab6",
           "Title": "istio/istio: HTTP request with fragment in URI can bypass authorization mechanisms",
           "Description": "Istio is an open source platform for providing a uniform way to integrate microservices, manage traffic flow across microservices, enforce policies and aggregate telemetry data. Istio 1.11.0, 1.10.3 and below, and 1.9.7 and below contain a remotely exploitable vulnerability where an HTTP request with `#fragment` in the path may bypass Istio’s URI path based authorization policies. Patches are available in Istio 1.11.1, Istio 1.10.4 and Istio 1.9.8. As a work around a Lua filter may be written to normalize the path.",
           "Severity": "HIGH",
@@ -13756,7 +13445,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:1c2517fa6ea1aac0535c2f759d26006c93e899ae46ba2b3b54a4efba3ea88e77",
+          "Fingerprint": "sha256:587835e9522b127b2cb293d93737a87a29534449f814bf0807f0ff7658f46475",
           "Title": "istio: unauthenticated control plane denial of service attack",
           "Description": "Istio is an open platform to connect, manage, and secure microservices. In affected versions the Istio control plane, `istiod`, is vulnerable to a request processing error, allowing a malicious attacker that sends a specially crafted message which results in the control plane crashing. This endpoint is served over TLS port 15012, but does not require any authentication from the attacker. For simple installations, Istiod is typically only reachable from within the cluster, limiting the blast radius. However, for some deployments, especially [multicluster](https://istio.io/latest/docs/setup/install/multicluster/primary-remote/) topologies, this port is exposed over the public internet. There are no effective workarounds, beyond upgrading. Limiting network access to Istiod to the minimal set of clients can help lessen the scope of the vulnerability to some extent.",
           "Severity": "HIGH",
@@ -13822,7 +13511,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:a96061bc00982c2bb55b142b785356bddb93108bfdd7dd1f59a8c438941e46bf",
+          "Fingerprint": "sha256:c996b4abf6ed69c44f5a55eca371292053fcb756d95dcbc1c2cf5dca72c94712",
           "Title": "Istio: Unsafe memory access in metadata exchange.",
           "Description": "Istio is an open platform to connect, manage, and secure microservices. In affected versions ill-formed headers sent to Envoy in certain configurations can lead to unexpected memory access resulting in undefined behavior or crashing. Users are most likely at risk if they have an Istio ingress Gateway exposed to external traffic. This vulnerability has been resolved in versions 1.12.8, 1.13.5, and 1.14.1. Users are advised to upgrade. There are no known workarounds for this issue.",
           "Severity": "MEDIUM",
@@ -15837,7 +15526,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:0686200246810939f720d6598ff05f5dc0198dc3b07f7fbe9ad0a76d3b9e028b",
+          "Fingerprint": "sha256:251b803fd5f3507db7f9999e8b0a335980a8dc5eeaca07157e17f704fb0ad2fc",
           "Title": "CNI portmap plugin: github.com/containernetworking/plugins/plugins/meta/portmap: CNI portmap plugin: HostPort forwarding vulnerability allows traffic interception",
           "Description": "The CNI portmap plugin allows containers to emulate opening a host port, forwarding that traffic to the container. Versions 1.6.0 through 1.8.0  inadvertently forward all traffic with the same destination port as the host port when the portmap plugin is configured with the nftables backend, thus ignoring the destination IP. This includes traffic not intended for the node itself, i.e. traffic to containers hosted on the node. Containers that request HostPort forwarding can intercept all traffic destined for that port. This requires that the portmap plugin be explicitly configured to use the nftables backend. This issue is fixed in version 1.9.0. To workaround, configure the portmap plugin to use the iptables backend. It does not have this vulnerability.",
           "Severity": "MEDIUM",
@@ -15896,7 +15585,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:3e1a230db9202777855cd9b9763505ef37a6537bfc15b66bd4ade5ae1980d46f",
+          "Fingerprint": "sha256:287b6404d0ffbe2f7991fa87e42c2ba55ce511fdd176d75285363e592133fe1d",
           "Title": "OpenTelemetry Go SDK Vulnerable to Arbitrary Code Execution via PATH Hijacking",
           "Description": "OpenTelemetry-Go is the Go implementation of OpenTelemetry. The OpenTelemetry Go SDK in version v1.20.0-1.39.0 is vulnerable to Path Hijacking (Untrusted Search Paths) on macOS/Darwin systems. The resource detection code in sdk/resource/host_id.go executes the ioreg system command using a search path. An attacker with the ability to locally modify the PATH environment variable can achieve Arbitrary Code Execution (ACE) within the context of the application. A fix was released with v1.40.0.",
           "Severity": "HIGH",
@@ -15947,7 +15636,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:9c594ed4b8409c83bdda6281fcfd5aace87948fd1a26eb2944c00f4a8bf7dde7",
+          "Fingerprint": "sha256:1e6ac40765ae1ee756c9e30e3c89ecb8577de08fb1300fa1504e258f3f8bf8dd",
           "Title": "istio/envoy: mishandling regular expressions for long URIs leading to DoS",
           "Description": "Istio before 1.1.13 and 1.2.x before 1.2.4 mishandles regular expressions for long URIs, leading to a denial of service during use of the JWT, VirtualService, HTTPAPISpecBinding, or QuotaSpecBinding API.",
           "Severity": "HIGH",
@@ -16014,7 +15703,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:bf6fb26413ef3fc270faeed53f0d6ab6ac02e32512dda431ea0808a810ec9dd1",
+          "Fingerprint": "sha256:2f7931505f7a24d0a5924c5e0660fa679cd4bea6fd2c2d7427a6724d38721df7",
           "Title": "istio/istio: HTTP request can bypass authorization mechanisms due to case insensitive host comparison",
           "Description": "Istio is an open source platform for providing a uniform way to integrate microservices, manage traffic flow across microservices, enforce policies and aggregate telemetry data. According to [RFC 4343](https://datatracker.ietf.org/doc/html/rfc4343), Istio authorization policy should compare the hostname in the HTTP Host header in a case insensitive way, but currently the comparison is case sensitive. The proxy will route the request hostname in a case-insensitive way which means the authorization policy could be bypassed. As an example, the user may have an authorization policy that rejects request with hostname \"httpbin.foo\" for some source IPs, but the attacker can bypass this by sending the request with hostname \"Httpbin.Foo\". Patches are available in Istio 1.11.1, Istio 1.10.4 and Istio 1.9.8. As a work around a Lua filter may be written to normalize Host header before the authorization check. This is similar to the Path normalization presented in the [Security Best Practices](https://istio.io/latest/docs/ops/best-practices/security/#case-normalization) guide.",
           "Severity": "HIGH",
@@ -16083,7 +15772,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:8401b417e9c710582bc734e4b15277a8544600c92e15c172b02aa2c54ee6732c",
+          "Fingerprint": "sha256:133a0b042c05fe21e49f1c3c9ff56b801c19b501844f8a9e454046b44c07a0d1",
           "Title": "istio/istio: HTTP request with fragment in URI can bypass authorization mechanisms",
           "Description": "Istio is an open source platform for providing a uniform way to integrate microservices, manage traffic flow across microservices, enforce policies and aggregate telemetry data. Istio 1.11.0, 1.10.3 and below, and 1.9.7 and below contain a remotely exploitable vulnerability where an HTTP request with `#fragment` in the path may bypass Istio’s URI path based authorization policies. Patches are available in Istio 1.11.1, Istio 1.10.4 and Istio 1.9.8. As a work around a Lua filter may be written to normalize the path.",
           "Severity": "HIGH",
@@ -16149,7 +15838,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:0eaffdf4064e368c9b518c4224aed05b1a3e1f1f77732edee9f30bb23f610def",
+          "Fingerprint": "sha256:7b256935adc20a31979359da024abd2567c36be88388f1befa8de6dde658ab3d",
           "Title": "istio: unauthenticated control plane denial of service attack",
           "Description": "Istio is an open platform to connect, manage, and secure microservices. In affected versions the Istio control plane, `istiod`, is vulnerable to a request processing error, allowing a malicious attacker that sends a specially crafted message which results in the control plane crashing. This endpoint is served over TLS port 15012, but does not require any authentication from the attacker. For simple installations, Istiod is typically only reachable from within the cluster, limiting the blast radius. However, for some deployments, especially [multicluster](https://istio.io/latest/docs/setup/install/multicluster/primary-remote/) topologies, this port is exposed over the public internet. There are no effective workarounds, beyond upgrading. Limiting network access to Istiod to the minimal set of clients can help lessen the scope of the vulnerability to some extent.",
           "Severity": "HIGH",
@@ -16215,7 +15904,7 @@
             "Name": "GitHub Security Advisory Go",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Ago"
           },
-          "Fingerprint": "sha256:3d3aebbfc039ee7ed7bda4d055f18d82934c4300db990b059b96d1bd10f66b48",
+          "Fingerprint": "sha256:a6d5632e2543803528eb56b45c1a452e50d056d495f3eb2ea20dcc349d27fb5e",
           "Title": "Istio: Unsafe memory access in metadata exchange.",
           "Description": "Istio is an open platform to connect, manage, and secure microservices. In affected versions ill-formed headers sent to Envoy in certain configurations can lead to unexpected memory access resulting in undefined behavior or crashing. Users are most likely at risk if they have an Istio ingress Gateway exposed to external traffic. This vulnerability has been resolved in versions 1.12.8, 1.13.5, and 1.14.1. Users are advised to upgrade. There are no known workarounds for this issue.",
           "Severity": "MEDIUM",
