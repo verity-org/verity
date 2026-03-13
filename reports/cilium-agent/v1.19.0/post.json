@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.69.2"
   },
-  "ReportID": "019ce0b6-a725-7393-bdc5-86dc108be95f",
-  "CreatedAt": "2026-03-12T06:23:12.677236416Z",
-  "ArtifactID": "sha256:ac391a94114ba78671b56cdb8b56fdbb2a7bfb175c5fea343be4ff2db2c48004",
+  "ReportID": "019ce6ac-6e9c-7624-a50d-e9b2ca60fc1b",
+  "CreatedAt": "2026-03-13T10:09:46.140404183Z",
+  "ArtifactID": "sha256:64f37e1a4aa9447b1b59e11be4677791951241c282fa8af3a42365187dfec0c3",
   "ArtifactName": "ghcr.io/verity-org/cache:cilium-agent-v1.19.0-patched",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -14,7 +14,7 @@
       "Family": "ubuntu",
       "Name": "24.04"
     },
-    "ImageID": "sha256:a61f2e40cbf8c44aff2824c1d20022c453730b62932692bbda8c2595c6f291ec",
+    "ImageID": "sha256:9e3d7910850de6d5fcb3e4f091318b4ee5369963c4e1153dfd3b7fdbd3d4442c",
     "DiffIDs": [
       "sha256:1aa9e9e2b3094d6ad14860424390e6e90dc91d219a79c32e21ce2c36ae884cb5",
       "sha256:d2dc7560ff2132dccf79a3546d4319c564e4100416a214213c05860ddf8bbe7c",
@@ -22,13 +22,13 @@
       "sha256:bd666415591f325dec2d1b47de348d26fb15352c5d3cdf29291517b13b87d3fa",
       "sha256:ce752761af98fe4d7c6465f1b59a5996ce8a75c889336864f71ec88286440ec0",
       "sha256:7c2a16ebed8b6a46eed244f770b560e3fd238e8cae3b57d3dd4c65379b513b20",
-      "sha256:206c75cc23e18c7d41693cb335a28dca84fe617c013ff20088cd3d4717019a1b"
+      "sha256:54d859c0efc347748a7a444dc0513083f3b93194a090ea9777335d4d56da5e96"
     ],
     "RepoTags": [
       "ghcr.io/verity-org/cache:cilium-agent-v1.19.0-patched"
     ],
     "RepoDigests": [
-      "ghcr.io/verity-org/cache@sha256:8c865f3bf517c2a06b8747c8eb5d895111b9becf86bdedb6e802f5c8af85acff"
+      "ghcr.io/verity-org/cache@sha256:ab61410d4df0196758dc60819a238bec14a68396cd79d81ae179618f296df41e"
     ],
     "Reference": "ghcr.io/verity-org/cache:cilium-agent-v1.19.0-patched",
     "ImageConfig": {
@@ -108,7 +108,7 @@
           "empty_layer": true
         },
         {
-          "created": "2026-03-12T06:22:13.565135349Z",
+          "created": "2026-03-13T09:55:38.854169379Z",
           "created_by": "mount / from exec sh -c apt-get -o Acquire::Retries=3 install --no-install-recommends -y libc-bin libc6 libgnutls30t64 libssl3t64 openssl \u0026\u0026 apt-get clean -y",
           "comment": "buildkit.exporter.image.v0"
         }
@@ -123,7 +123,7 @@
           "sha256:bd666415591f325dec2d1b47de348d26fb15352c5d3cdf29291517b13b87d3fa",
           "sha256:ce752761af98fe4d7c6465f1b59a5996ce8a75c889336864f71ec88286440ec0",
           "sha256:7c2a16ebed8b6a46eed244f770b560e3fd238e8cae3b57d3dd4c65379b513b20",
-          "sha256:206c75cc23e18c7d41693cb335a28dca84fe617c013ff20088cd3d4717019a1b"
+          "sha256:54d859c0efc347748a7a444dc0513083f3b93194a090ea9777335d4d56da5e96"
         ]
       },
       "config": {
@@ -176,8 +176,8 @@
       },
       {
         "Size": 27028992,
-        "Digest": "sha256:29362c36d69b9f2a8f3a3fc8e3b12ec38e5b420756f4a87361213da37e6690ce",
-        "DiffID": "sha256:206c75cc23e18c7d41693cb335a28dca84fe617c013ff20088cd3d4717019a1b"
+        "Digest": "sha256:e63709af0804e2f9ee6610181212ee881891ae8423d7053b1df9acd1057bff98",
+        "DiffID": "sha256:54d859c0efc347748a7a444dc0513083f3b93194a090ea9777335d4d56da5e96"
       }
     ]
   },
@@ -3588,8 +3588,8 @@
             "libc6@2.39-0ubuntu8.7"
           ],
           "Layer": {
-            "Digest": "sha256:29362c36d69b9f2a8f3a3fc8e3b12ec38e5b420756f4a87361213da37e6690ce",
-            "DiffID": "sha256:206c75cc23e18c7d41693cb335a28dca84fe617c013ff20088cd3d4717019a1b"
+            "Digest": "sha256:e63709af0804e2f9ee6610181212ee881891ae8423d7053b1df9acd1057bff98",
+            "DiffID": "sha256:54d859c0efc347748a7a444dc0513083f3b93194a090ea9777335d4d56da5e96"
           },
           "InstalledFiles": [
             "/usr/bin/getconf",
@@ -3651,8 +3651,8 @@
             "libgcc-s1@14.2.0-4ubuntu2~24.04"
           ],
           "Layer": {
-            "Digest": "sha256:29362c36d69b9f2a8f3a3fc8e3b12ec38e5b420756f4a87361213da37e6690ce",
-            "DiffID": "sha256:206c75cc23e18c7d41693cb335a28dca84fe617c013ff20088cd3d4717019a1b"
+            "Digest": "sha256:e63709af0804e2f9ee6610181212ee881891ae8423d7053b1df9acd1057bff98",
+            "DiffID": "sha256:54d859c0efc347748a7a444dc0513083f3b93194a090ea9777335d4d56da5e96"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/gconv/ANSI_X3.110.so",
@@ -4513,8 +4513,8 @@
             "libunistring5@1.1-2build1.1"
           ],
           "Layer": {
-            "Digest": "sha256:29362c36d69b9f2a8f3a3fc8e3b12ec38e5b420756f4a87361213da37e6690ce",
-            "DiffID": "sha256:206c75cc23e18c7d41693cb335a28dca84fe617c013ff20088cd3d4717019a1b"
+            "Digest": "sha256:e63709af0804e2f9ee6610181212ee881891ae8423d7053b1df9acd1057bff98",
+            "DiffID": "sha256:54d859c0efc347748a7a444dc0513083f3b93194a090ea9777335d4d56da5e96"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/libgnutls.so.30.37.1",
@@ -6235,8 +6235,8 @@
             "libc6@2.39-0ubuntu8.7"
           ],
           "Layer": {
-            "Digest": "sha256:29362c36d69b9f2a8f3a3fc8e3b12ec38e5b420756f4a87361213da37e6690ce",
-            "DiffID": "sha256:206c75cc23e18c7d41693cb335a28dca84fe617c013ff20088cd3d4717019a1b"
+            "Digest": "sha256:e63709af0804e2f9ee6610181212ee881891ae8423d7053b1df9acd1057bff98",
+            "DiffID": "sha256:54d859c0efc347748a7a444dc0513083f3b93194a090ea9777335d4d56da5e96"
           },
           "InstalledFiles": [
             "/usr/lib/x86_64-linux-gnu/engines-3/afalg.so",
@@ -7169,8 +7169,8 @@
             "libssl3t64@3.0.13-0ubuntu3.7"
           ],
           "Layer": {
-            "Digest": "sha256:29362c36d69b9f2a8f3a3fc8e3b12ec38e5b420756f4a87361213da37e6690ce",
-            "DiffID": "sha256:206c75cc23e18c7d41693cb335a28dca84fe617c013ff20088cd3d4717019a1b"
+            "Digest": "sha256:e63709af0804e2f9ee6610181212ee881891ae8423d7053b1df9acd1057bff98",
+            "DiffID": "sha256:54d859c0efc347748a7a444dc0513083f3b93194a090ea9777335d4d56da5e96"
           },
           "InstalledFiles": [
             "/usr/bin/c_rehash",
@@ -9237,7 +9237,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:ca60005c6c236549e01d2d646162deadc07bc3f847a586d65398022e41b9e78d",
+          "Fingerprint": "sha256:4daca7fd82f2457c1c7d5aa7d4cd4abd5ce96c0ae4cc74eeb2a7f56feaa65919",
           "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
           "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
           "Severity": "LOW",
@@ -9300,7 +9300,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:6585d804adc3c361749009a1dcaccf69710eb46308309076927ebb6d513736a0",
+          "Fingerprint": "sha256:1341bddf183633989d156072ef22bdded9d5e72942bcb6419ff252bdf05dfb3b",
           "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
           "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line.",
           "Severity": "MEDIUM",
@@ -9355,7 +9355,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:a39923612a344c58e3063a51444dcf8064a086021cb8c3461d85346a89db1c4a",
+          "Fingerprint": "sha256:99639031f7c50b8bb87db7ef094d985a398325fc17901815235937bea07edfc9",
           "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
           "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
           "Severity": "LOW",
@@ -9411,7 +9411,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:71db955213b5d0fe6f80d7c8c2baa2f4eeeb2856c530caa578fd514fc41688a7",
+          "Fingerprint": "sha256:dd84c75393f8f300c0a4de5e4971479dcde7763349165cdb0f58669db807b182",
           "Title": "libbpf: Heap Buffer Overflow in libbpf",
           "Description": "Buffer Overflow vulnerability in libbpf 1.5.0 allows a local attacker to execute arbitrary code via the bpf_object__init_prog` function of libbpf. This has been disputed by third parties who assert that \"no one in their sane mind should be passing untrusted ELF files into libbpf while running under root.\"",
           "Severity": "LOW",
@@ -9465,7 +9465,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:7a85a5e533c7fbe79b80a2c09b2d53f153260bba0ea0463c2908f89a3475368c",
+          "Fingerprint": "sha256:96e95a6595c7534a40e9c91b05e58f8d035168b9a81f4cf6a6c48c73a1bc1a3f",
           "Title": "elfutils: GNU elfutils eu-readelf libdw_alloc.c __libdw_thread_tail memory corruption",
           "Description": "A vulnerability has been found in GNU elfutils 0.192 and classified as critical. This vulnerability affects the function __libdw_thread_tail in the library libdw_alloc.c of the component eu-readelf. The manipulation of the argument w leads to memory corruption. The attack can be initiated remotely. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is 2636426a091bd6c6f7f02e49ab20d4cdc6bfc753. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -9526,7 +9526,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:0b4f7ff1b5699ef12dcd099dd2d51b5b243ab2fc3497daa323fad808895e98d2",
+          "Fingerprint": "sha256:46a57dcb2ac0652fe3a0c12b792a790c4a575e51cbc85319abcc6a4e6e7a08b2",
           "Title": "elfutils: GNU elfutils eu-strip elf_strptr.c elf_strptr denial of service",
           "Description": "A vulnerability classified as problematic was found in GNU elfutils 0.192. This vulnerability affects the function elf_strptr in the library /libelf/elf_strptr.c of the component eu-strip. The manipulation leads to denial of service. It is possible to launch the attack on the local host. The complexity of an attack is rather high. The exploitation appears to be difficult. The exploit has been disclosed to the public and may be used. The name of the patch is b16f441cca0a4841050e3215a9f120a6d8aea918. It is recommended to apply a patch to fix this issue.",
           "Severity": "LOW",
@@ -9586,7 +9586,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:407359f161186d63790708e5baea0183da242694b8ca08677f97378f2254fa90",
+          "Fingerprint": "sha256:2f0d5c704959c16af76f7eb2d24cc6e0fdd856778154c59da9666ef19d083175",
           "Title": "libgcrypt: vulnerable to Marvin Attack",
           "Description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts.",
           "Severity": "LOW",
@@ -9651,7 +9651,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:e7ed24c4a53bf22b0c1ae01dedaa97a4ad623efcbd7bee8d53f209a1a63061d7",
+          "Fingerprint": "sha256:0220674f7b38ecbf61eb7b093f7896eb418d040deed677569b8fc150ff5422c2",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9728,7 +9728,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:375be7c07e263d625d97ccdb9ab2db32366c77e46be0c998f54fed3d60a660b0",
+          "Fingerprint": "sha256:8673f6102891d8c27b6c6e7f38b0e7c91fcf5478fa7a928b6e2c8c19bc9bb5ae",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9805,7 +9805,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:c30051635b846e9cfc5325ce4537d9211c45523207a688d3786dd4d588c0c771",
+          "Fingerprint": "sha256:f46a43babf3f22ce08342a2ef3545b134effda72749219d0aa5170a2cd94e246",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9882,7 +9882,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:f016f68b1533f43ef122bc5b1f2d118e9b1fd34e11f2e12bc24e556875c4b6e4",
+          "Fingerprint": "sha256:4eba3b089efc5a8e0ce3c645772b5f7c0588f1d93f7f800e3123bc867a8fb0ac",
           "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
           "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020.",
           "Severity": "MEDIUM",
@@ -9959,7 +9959,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:6e8d9188199bd9edd25f80f4471fa148a2a28f519bc5c2b8c871ce7c669d135a",
+          "Fingerprint": "sha256:23f5ebb3d678c9491fd059238939718e1f0e69e6ccf023d58f38c9d101e2d76e",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -10020,7 +10020,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:77a236c60e21e3f1c36e09d35b278b43b1765728468a58127952114c4b085669",
+          "Fingerprint": "sha256:c17981f4688ceaffcd4377dad10839a6d29d088c74c726976255cc97ecee2ff7",
           "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
           "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid.",
           "Severity": "LOW",
@@ -10081,7 +10081,7 @@
             "Name": "Ubuntu CVE Tracker",
             "URL": "https://git.launchpad.net/ubuntu-cve-tracker"
           },
-          "Fingerprint": "sha256:01d140f97745edb238c7da37359baaec2745815cb3a57252e52fbd365abfbfef",
+          "Fingerprint": "sha256:fc5e650316ec01637e776cccb9c0e3c66a6bf97222d75a35409e05ced2c61778",
           "Title": "tar: Tar path traversal",
           "Description": "GNU Tar through 1.35 allows file overwrite via directory traversal in crafted TAR archives, with a certain two-step process. First, the victim must extract an archive that contains a ../ symlink to a critical directory. Second, the victim must extract an archive that contains a critical file, specified via a relative pathname that begins with the symlink name and ends with that critical file's name. Here, the extraction follows the symlink and overwrites the critical file. This bypasses the protection mechanism of \"Member name contains '..'\" that would occur for a single TAR archive that attempted to specify the critical file via a ../ approach. For example, the first archive can contain \"x -\u003e ../../../../../home/victim/.ssh\" and the second archive can contain x/authorized_keys. This can affect server applications that automatically extract any number of user-supplied TAR archives, and were relying on the blocking of traversal. This can also affect software installation processes in which \"tar xf\" is run more than once (e.g., when installing a package can automatically install two dependencies that are set up as untrusted tarballs instead of official packages). NOTE: the official GNU Tar manual has an otherwise-empty directory for each \"tar xf\" in its Security Rules of Thumb; however, third-party advice leads users to run \"tar xf\" more than once into the same directory.",
           "Severity": "MEDIUM",
@@ -10266,7 +10266,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f1d41ced7823a516f431611307c3ef5cc1b7c7998f417bbc89bd5139bbd1bdab",
+          "Fingerprint": "sha256:6a4b364533509e90b54da4c7db6ff33bec8c99d62fce076e1de609a09ecab8bb",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -10305,14 +10305,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -10349,7 +10347,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:27bdeca1b4b0fd343aa7545cd270626559a695f9f4921999f2b53fc5760a8ee6",
+          "Fingerprint": "sha256:34eb4212713ea2ba647ee3c922c7d2e4c3aa9ee56fb53574d664920d9b35adf2",
           "Title": "golang: net/url: Memory exhaustion in query parameter parsing in net/url",
           "Description": "The net/url package does not set a limit on the number of query parameters in a query. While the maximum size of query parameters in URLs is generally limited by the maximum request header size, the net/http.Request.ParseForm method can parse large URL-encoded forms. Parsing a large form containing many unique query parameters can cause excessive memory consumption.",
           "Severity": "HIGH",
@@ -10359,7 +10357,7 @@
           "VendorSeverity": {
             "alma": 3,
             "amazon": 2,
-            "azure": 3,
+            "azure": 2,
             "bitnami": 3,
             "cbl-mariner": 2,
             "oracle-oval": 3,
@@ -10383,14 +10381,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/736712",
             "https://go.dev/issue/77101",
             "https://groups.google.com/g/golang-announce/c/Vd2tYVM8eUc",
@@ -10427,7 +10423,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:833348f6bf32646747bab4deff19db0b1cf9ee02c3ab68a59616ebee4d4a47dd",
+          "Fingerprint": "sha256:9b570f077a44dae0b9d20f3bd92d99ac24d79ec3492471b26a3158489d4877d9",
           "Title": "golang: archive/zip: Excessive CPU consumption when building archive index in archive/zip",
           "Description": "archive/zip uses a super-linear file name indexing algorithm that is invoked the first time a file in an archive is opened. This can lead to a denial of service when consuming a maliciously constructed ZIP archive.",
           "Severity": "HIGH",
@@ -10508,7 +10504,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:769e9f1d6ab4e266b920437014cbc2fb0d99f04432235d51cea08896431b9b13",
+          "Fingerprint": "sha256:adc0f421ef3721725f867c43e76957e262d1e5be02bec2203aa3ee086fa7e744",
           "Title": "crypto/x509: golang: Denial of Service due to excessive resource consumption via crafted certificate",
           "Description": "Within HostnameError.Error(), when constructing an error string, there is no limit to the number of hosts that will be printed out. Furthermore, the error string is constructed by repeated string concatenation, leading to quadratic runtime. Therefore, a certificate provided by a malicious actor can result in excessive resource consumption.",
           "Severity": "HIGH",
@@ -10585,7 +10581,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:fd69701b1df822a5b98b79707a08462550dcecefe8c5e4bb0b12e928da81e453",
+          "Fingerprint": "sha256:0f351af3081507c751ad870e788c5f2f3280ef019f415da6738b501b3a2195f3",
           "Title": "golang: crypto/x509: excluded subdomain constraint does not restrict wildcard SANs",
           "Description": "An excluded subdomain constraint in a certificate chain does not restrict the usage of wildcard SANs in the leaf certificate. For example a constraint that excludes the subdomain test.example.com does not prevent a leaf certificate from claiming the SAN *.example.com.",
           "Severity": "MEDIUM",
@@ -10644,13 +10640,13 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0bab1143b41d2ecc454fe0bb12e1ae6eb25fd63fb5bed7b66e6e0a0725a28f31",
+          "Fingerprint": "sha256:aec2bf2695dcf2b14bac477c09bf878a90d25f986d84f3b94e1dadb2904f1c75",
           "Title": "During the TLS 1.3 handshake if multiple messages are sent in records  ...",
           "Description": "During the TLS 1.3 handshake if multiple messages are sent in records that span encryption level boundaries (for instance the Client Hello and Encrypted Extensions messages), the subsequent messages may be processed before the encryption level changes. This can cause some minor information disclosure if a network-local attacker can inject messages during the handshake.",
           "Severity": "MEDIUM",
           "VendorSeverity": {
             "amazon": 2,
-            "azure": 2,
+            "azure": 1,
             "bitnami": 2,
             "cbl-mariner": 1,
             "photon": 2
@@ -10695,7 +10691,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:fe2d372585ec70e8b42306b02a5c1f8067624dc56c757157ec4bd9736c7ef7ac",
+          "Fingerprint": "sha256:e62b2089658451ed690524a437051ce4b976c5861ce2fad3a2080aa5089962d6",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -10749,7 +10745,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:a2d528254cc663a78015ed5fe37269ce74826b9c37b1899b99b444871a0bde7e",
+          "Fingerprint": "sha256:514ce929ab7765fc243ac2cb867b79a47f648f332ad015b302e48e2ecbc9bd8c",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -10803,7 +10799,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:5d4d746b28e2fde886b3d7a62552dde9d2c9e4ac03912c44fe9c70900f209549",
+          "Fingerprint": "sha256:54d5871cb80461e15115fbd5e38c0c8e76ae8285e22e1cb946fc72cb66264999",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -12940,7 +12936,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:c7e175a63b675bc3cb8258ae77c5a0caf11d10682c1a8a3cb75793af7fbe2794",
+          "Fingerprint": "sha256:a4c3baabacce38de2716e0492ce26721c2f16ef40078d4e3f12630776709f523",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -12979,14 +12975,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -13023,7 +13017,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:ac9c49013108cb5b53086376854cd0eeb19a00fef74d3976d17ac2c2b1c7442a",
+          "Fingerprint": "sha256:320a1b29119316fa4af36dec64eb6aa5df5686416288d7492ca29fee55314a62",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -13077,7 +13071,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:4e895392795e66a9b5b2484529dac62dc543877cb4a1d42b7800c54107169b28",
+          "Fingerprint": "sha256:94627d29fc18bb878c82c1b7a4dc03bdbce1b8d5a3db48f32417fd349836f3b4",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -13131,7 +13125,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:74e60ea939d9126fbb91ef576646a9137a65e5492c09271a88e97d7da4ce26f8",
+          "Fingerprint": "sha256:1582504146cf2cd1d3940e79e355e935a6fe8159acbd41ec9c90a7cfe45cd354",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -16018,7 +16012,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:a402f332e43961a3602b8555eedd4319baa30cfa9b250cc3cd50a48297ebfb2d",
+          "Fingerprint": "sha256:3a40641aada54fcdb2ed14298fabd87678bcb7d82f8bd5c09b9c8c4a5e64498e",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -16057,14 +16051,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -16101,7 +16093,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0a71dc761ed328989046b6ec3fdd898b6e01ada2de6f2c33e83a319a562848ce",
+          "Fingerprint": "sha256:292cd82a4bcbbb36ab3a690e578c4cb0a95a864b2d78b911a10b372ebba26332",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -16155,7 +16147,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:72b54e2eba76e68031f0236c745ff657b2b0074862cf1656e80172447aaca5bb",
+          "Fingerprint": "sha256:522f4a2e3dfd093b2c5430ad239ec6c4e2d858c13041f3d694cacf6dd63edc19",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -16209,7 +16201,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:973f279d364828742a1a64e7a844e82a90c4781d74ebfbdc8be2f6e9ee80d707",
+          "Fingerprint": "sha256:f48f951e3027d3e8ae52469e7d49afef8a3915387925f128267817286427f74b",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -17416,7 +17408,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:016a879ab7ad5d6f7b6fc6e7601a0aca6ae77124471aadec3df2465ebf0209ef",
+          "Fingerprint": "sha256:a4ecfefcd548d61e09a446e2370a7a43d15b0b9a2c155081f9f2e34d49265d66",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -17455,14 +17447,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -17499,7 +17489,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:619aac483b2cdba16b9cc575ad7f90ba378353734bc327e0c92a6cd2d2c34fe1",
+          "Fingerprint": "sha256:3b854d8c52d0c5e3a1612d5f5ccb6ede7ad069d2b612da63e558ca2d9554ce91",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -17553,7 +17543,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:c95ca3aff7be0be52a80215585f6a81f2f697bd6ce04af5382b4e19cf042e8cc",
+          "Fingerprint": "sha256:811dce8c9a735df54d556c37bf1fdea971bde495ddbeff423e9e38e1b0bd0b9a",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -17607,7 +17597,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0588d06b58fdfa898f5867008f6ac2ca2ab43ef14d426a1df54fe357478e383e",
+          "Fingerprint": "sha256:90f3b38adf5fc1e41293c8f8b37fad962f7141c77ab437cc73ef3510ec757163",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -19999,7 +19989,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:d1dd79dd75aa18d8824093bb82d905cc26fd4856bf1d4c04bfc9c477b7cfadb5",
+          "Fingerprint": "sha256:fabb3c5a508f1a8155e5b6e8bab6a899548d3c31af7d647db6c815ef690224dd",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -20038,14 +20028,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -20082,7 +20070,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:345b6d2beeb90961bf043090b08776389360158b8c51ef8dcb48fc79b259fcd9",
+          "Fingerprint": "sha256:946538391021ed6703cb18b149d2162cc7fb2539f853b9c19bbd30d9c8271005",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -20136,7 +20124,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:a5ee39062086dbd5a6a0293caa6f4a6c422e29cd2f6bcb3a5ca00927490231da",
+          "Fingerprint": "sha256:f7f01126e9d334330a682d4f6b3981d1878f0ea2d652cbdea3cffb2caf4e6850",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -20190,7 +20178,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:7eb978902ce61c0eaded6b3d6c1a90b0b129051776b3fe7679df7a6b37d8a1f4",
+          "Fingerprint": "sha256:9bc6d5afab01c82ffa9a143ecb2d24dd0d95141c622d8564ef8a7c8180c76401",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -21307,7 +21295,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:cff338241e000509055d0bccdf12f3ffd66cc304ced52ce358616b8b0880070c",
+          "Fingerprint": "sha256:44629276ff0fc12d067cb0049fb4d0039023821bd93b010bac214e34f65efc13",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -21346,14 +21334,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -21390,7 +21376,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0b8b53ecd6aadfe4aeacbba74e22be593fc4ecbd3058b1841082dd5cba4b4a09",
+          "Fingerprint": "sha256:c7a3a516ca5ee360d7bc44902bc6be436bff8773cc808caa15e07a13304e0346",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -21444,7 +21430,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:13d60cc21ba4588fe47a9f3b39ead8ca3451a131aa8a64c30465aaebb645b00f",
+          "Fingerprint": "sha256:e35c1b12b1a6234414c37e58aee2bb319b63975bcecfee0c9cdfe0e37b0c774a",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -21498,7 +21484,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:c882a45e78805c05db2876047b50ce5730776cacd74a5332a108cd51be798868",
+          "Fingerprint": "sha256:7f68cc57fc08316ea9d651b80822bdb43ff49d28b50c767b14c2a21166ffdb8f",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -21655,7 +21641,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:896095d35dd299ac3d3f37374a9c9b0245a69b14fccc3e5a03564eb1fccc1a83",
+          "Fingerprint": "sha256:b41ceb1a8b08ba2d2bbe83137734789fd346e87b88180b3d494aef665c7b40d6",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -21694,14 +21680,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -21738,7 +21722,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:2f1153556a8bad1d2a25b7a11088d80a9d2770cedc6fd0fc4d994906e1346bce",
+          "Fingerprint": "sha256:b5875c0229f0a8771c73f55a48f55cd49e8e2c0a3cfa6e79dc6be048c3c8b0ab",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -21792,7 +21776,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:8633fa19f664922e612bd6a159e93f34cbc8da0a633cdeca88376d3d26ead309",
+          "Fingerprint": "sha256:c7b01360803572f5071f2ac90e2c22fb04455744109be45802afbe2e9ea36acc",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -21846,7 +21830,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e91addd001efa782e1ed081f2e5356603b7732631055691f7a17c44b12480c20",
+          "Fingerprint": "sha256:7a0d7280ccbc4afa313c39bb6fa7b3a5b593a7eda88e51164305b9e447870c2a",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -22078,7 +22062,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:0dc3a0469479aa6bfffde698b7e67f69e2ca6b40995d59e87497b4fec03c7e4f",
+          "Fingerprint": "sha256:84b58453f7f7eb203bb1496b07241e2b2d1ffe4a6516a45d48b58f4d915f2908",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -22117,14 +22101,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -22161,7 +22143,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:256951a1f77db9b2b4665a6719fffac7fb4913e8eb0440257f02dd047bac3b8e",
+          "Fingerprint": "sha256:035bfd0a60a039b2e35afbd381358940cbb4f4aaf9ae569f92ba92097a4b5445",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -22215,7 +22197,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e44384dd0dc4e7e4b9135ea98a8f393b2f8513dae6e92578cf46fa7fbe82a5ed",
+          "Fingerprint": "sha256:e365e9cc63947d886b1fa628d47f7198fd0e722ed8b04309ffc30b5121fc70a9",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -22269,7 +22251,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:bb6b5149cb6659e29b962c4fec04ef67a0a895ff5ba31c8d4133ed862702d99d",
+          "Fingerprint": "sha256:a64aea281048368e567a2f1877207700acccc67027cfa65e9b86e472bb1b3ea1",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -22411,7 +22393,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:8c66591897a6d2fed7ed76b8fb2429809a6551f1b9d802e6531f439c89c09d41",
+          "Fingerprint": "sha256:09c7a8d52588c506f90fec1b176873c377e5cf5fa1f2a6f6e423e3628fe4df6c",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -22450,14 +22432,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -22494,7 +22474,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:ae5aa47051b3925656d2c64d7aa0353fd7490651598b09ea86913dae4bc2d081",
+          "Fingerprint": "sha256:515d25d02042821d2bbf30345a58c4bdb8e794fb9d8f0d2d70bf6767119624a1",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -22548,7 +22528,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:d043ba0c91d3c0314c24d53f2e2c16060c31d91dc523a5e5eb464741c9d38c4f",
+          "Fingerprint": "sha256:f41f4a0874b9cab3486184f30c413c8b0bb8f169a9d7c640a29d9a49d00e29d4",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -22602,7 +22582,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e9f839e8a879e8813d989275881cb1d1c72d56c65cb02a9dd6badf845873b07d",
+          "Fingerprint": "sha256:b22e5dd3e3cc4031a716a72c75123009ca52067a44d0b829c3380b962c5e331b",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -22804,7 +22784,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:de8b348b9d13ca1f7c5b9bb0da5e39f77f163c1b1236d6a130ca6f792d686e1a",
+          "Fingerprint": "sha256:1e3a322fa63d71b2d45985aa490518ad093b192320030344d211613539790cfc",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -22843,14 +22823,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -22887,7 +22865,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:d14f6397baa8069c8acde097599518e5244030d3d73e807e2731e611784b1567",
+          "Fingerprint": "sha256:200867c943284a07e9dbbd832bbee107ce036f11c715b0a43ac90906d20a98a5",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -22941,7 +22919,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:5cda075bc491b033296cdf5e9c83fa868959a391329f7d97c6c9d686c254ab91",
+          "Fingerprint": "sha256:9c755b348412ee4fe8d81e3d884e4c15d0c7887054618b48508d61843b8c0e19",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -22995,7 +22973,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:ebe68c72e1ae00fa90892b2331acfceb66d491a66fe3fec1e20e070ede025609",
+          "Fingerprint": "sha256:2fb033082411a1984a55d25cd751e6f2362535e8bcf9e2427ff6aeb0e6daaa98",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
@@ -25192,7 +25170,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:e6c6610b1a3fd897323707c8a754d2cfdbd3bb6e72d9d6e9cdcc26feb10a225e",
+          "Fingerprint": "sha256:76cc2a9e74a4fb84e9770f48bd369c0c5932a47515c6e1e93b4e98bc3a699e30",
           "Title": "crypto/tls: Unexpected session resumption in crypto/tls",
           "Description": "During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed. This may happen when a user calls Config.Clone and mutates the returned Config, or uses Config.GetConfigForClient. This can cause a client to resume a session with a server that it would not have resumed with during the initial handshake, or cause a server to resume a session with a client that it would not have resumed with during the initial handshake.",
           "Severity": "CRITICAL",
@@ -25231,14 +25209,12 @@
             "https://bugzilla.redhat.com/2418462",
             "https://bugzilla.redhat.com/2434432",
             "https://bugzilla.redhat.com/2437111",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2418462",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2434432",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2437111",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61726",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-61729",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68121",
             "https://errata.almalinux.org/9/ALSA-2026-3928.html",
-            "https://errata.rockylinux.org/RLSA-2026:3928",
+            "https://errata.rockylinux.org/RLSA-2026:4177",
             "https://go.dev/cl/737700",
             "https://go.dev/issue/77217",
             "https://groups.google.com/g/golang-announce/c/K09ubi9FQFk",
@@ -25275,7 +25251,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:f0aee7efdf79ef8b56f208228d7db16442b3f10e9f4f779a6de87a3c6722c73a",
+          "Fingerprint": "sha256:455d2f6535b25202848df75310d978d806399698741961dbe5c140d7560eec76",
           "Title": "net/url: Incorrect parsing of IPv6 host literals in net/url",
           "Description": "url.Parse insufficiently validated the host/authority component and accepted some invalid URLs.",
           "Severity": "MEDIUM",
@@ -25329,7 +25305,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:60d515db7f9f9116056eb2f516c43b0c2d88d86a70edf07f20dc610cd62ebd9e",
+          "Fingerprint": "sha256:9070141b23070814e3551fa8ce1fb39657595467de833ec6824bf8c01a3d62e9",
           "Title": "html/template: URLs in meta content attribute actions are not escaped in html/template",
           "Description": "Actions which insert URLs into the content attribute of HTML meta tags are not escaped. This can allow XSS if the meta tag also has an http-equiv attribute with the value \"refresh\". A new GODEBUG setting has been added, htmlmetacontenturlescape, which can be used to disable escaping URLs in actions in the meta content attribute which follow \"url=\" by setting htmlmetacontenturlescape=0.",
           "Severity": "MEDIUM",
@@ -25383,7 +25359,7 @@
             "Name": "The Go Vulnerability Database",
             "URL": "https://pkg.go.dev/vuln/"
           },
-          "Fingerprint": "sha256:3324b09a7dd65e8d92cf482b05f00ad84017b142fad5547fa53180e15085cfd8",
+          "Fingerprint": "sha256:a385da6663062bc49a815b0e5b820c0b96bdac9479e7f4330a035f9b3433c753",
           "Title": "os: FileInfo can escape from a Root in golang os module",
           "Description": "On Unix platforms, when listing the contents of a directory using File.ReadDir or File.Readdir the returned FileInfo could reference a file outside of the Root in which the File was opened. The impact of this escape is limited to reading metadata provided by lstat from arbitrary locations on the filesystem without permitting reading or writing files outside the root.",
           "Severity": "LOW",
