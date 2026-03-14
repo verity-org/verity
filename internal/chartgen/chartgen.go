@@ -3,6 +3,7 @@ package chartgen
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/verity-org/verity/internal/config"
 	"github.com/verity-org/verity/internal/discovery"
@@ -22,13 +23,16 @@ type ChartResult struct {
 	Version        string          `json:"version"`
 	WrapperName    string          `json:"wrapperName"`
 	WrapperVersion string          `json:"wrapperVersion"`
+	Repository     string          `json:"repository"`
 	Registry       string          `json:"registry"`
 	ImageMappings  []ImageMapping  `json:"imageMappings"`
 	ValueOverrides []ValueOverride `json:"valueOverrides"`
 }
 
 type DryRunResult struct {
-	Charts []ChartResult `json:"charts"`
+	GeneratedAt   string        `json:"generatedAt"`
+	ChartRegistry string        `json:"chartRegistry"`
+	Charts        []ChartResult `json:"charts"`
 }
 
 func Run(cfg *Config) (*DryRunResult, error) {
@@ -42,7 +46,11 @@ func Run(cfg *Config) (*DryRunResult, error) {
 		return nil, fmt.Errorf("load verity config: %w", err)
 	}
 
-	result := &DryRunResult{Charts: make([]ChartResult, 0, len(charts))}
+	result := &DryRunResult{
+		GeneratedAt:   time.Now().UTC().Format(time.RFC3339),
+		ChartRegistry: cfg.ChartRegistry,
+		Charts:        make([]ChartResult, 0, len(charts)),
+	}
 
 	for _, chart := range charts {
 		chartResult, include, err := processChart(cfg, chart, vc)
@@ -95,6 +103,7 @@ func processChart(cfg *Config, chart config.ChartSpec, vc *config.VerityConfig) 
 		Version:        chart.Version,
 		WrapperName:    wrapper.Name,
 		WrapperVersion: wrapper.Version,
+		Repository:     chart.Repository,
 		Registry:       cfg.ChartRegistry,
 		ImageMappings:  mappings,
 		ValueOverrides: valueOverrides,

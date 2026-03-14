@@ -9,7 +9,7 @@ const catalog = getChartsCatalog();
 const charts = catalog.charts;
 const totalOverrides = charts.reduce(
   (sum, c) => sum + c.imageMappings.length + c.valueOverrides.length,
-  0,
+  0
 );
 ---
 
@@ -23,9 +23,8 @@ const totalOverrides = charts.reduce(
   <div class="mb-10">
     <h1 class="text-3xl font-bold mb-2 text-verity-text-primary">Helm Charts</h1>
     <p class="text-verity-text-muted text-lg">
-      Pre-patched wrapper Helm charts that override upstream image references with
-      Verity's security-patched equivalents. Install a chart and every container
-      image is already patched.
+      Pre-patched wrapper Helm charts that override upstream image references with Verity's
+      security-patched equivalents. Install a chart and every container image is already patched.
     </p>
   </div>
 
@@ -45,14 +44,16 @@ const totalOverrides = charts.reduce(
     </div>
   </div>
 
-  {charts.length === 0 && (
-    <div class="bg-verity-surface border border-verity-border rounded-lg p-8 text-center">
-      <p class="text-verity-text-muted">
-        No wrapper charts have been generated yet. Charts are generated daily at
-        04:00 UTC after the patching pipeline completes.
-      </p>
-    </div>
-  )}
+  {
+    charts.length === 0 && (
+      <div class="bg-verity-surface border border-verity-border rounded-lg p-8 text-center">
+        <p class="text-verity-text-muted">
+          No wrapper charts have been generated yet. Charts are generated daily at 04:00 UTC after
+          the patching pipeline completes.
+        </p>
+      </div>
+    )
+  }
 
   <!-- How it works -->
   <section class="mb-10">
@@ -61,24 +62,27 @@ const totalOverrides = charts.reduce(
       <div class="bg-verity-surface border border-verity-border rounded-lg p-4">
         <div class="text-verity-nucleus font-bold mb-1">1. Wrapper chart</div>
         <p class="text-verity-text-secondary">
-          A thin Helm chart that declares the original chart as a dependency and
-          overrides <code class="text-xs">values.yaml</code> to point image
-          references at patched versions.
+          A thin Helm chart that declares the original chart as a dependency and overrides <code
+            class="text-xs">values.yaml</code
+          > to point image references at patched versions.
         </p>
       </div>
       <div class="bg-verity-surface border border-verity-border rounded-lg p-4">
         <div class="text-verity-nucleus font-bold mb-1">2. OCI registry</div>
         <p class="text-verity-text-secondary">
           Wrapper charts are pushed to
-          <code class="text-xs">{catalog.chartRegistry}</code> and can be installed
-          directly via <code class="text-xs">helm install</code>.
+          <code class="text-xs"
+            >{
+              catalog.chartRegistry || charts[0]?.registry || "oci://ghcr.io/verity-org/charts"
+            }</code
+          > and can be installed directly via <code class="text-xs">helm install</code>.
         </p>
       </div>
       <div class="bg-verity-surface border border-verity-border rounded-lg p-4">
         <div class="text-verity-nucleus font-bold mb-1">3. Drop-in replace</div>
         <p class="text-verity-text-secondary">
-          Install the wrapper chart instead of the original. Helm resolves the
-          dependency and applies all patched image overrides automatically.
+          Install the wrapper chart instead of the original. Helm resolves the dependency and
+          applies all patched image overrides automatically.
         </p>
       </div>
     </div>
@@ -88,86 +92,113 @@ const totalOverrides = charts.reduce(
   <section>
     <h2 class="text-xl font-semibold mb-4 text-verity-text-primary">Available Charts</h2>
     <div class="space-y-6">
-      {charts.map((chart: ChartEntry, idx: number) => {
-        const installCmd = `helm install ${chart.wrapperName} ${chart.registry}/${chart.wrapperName} --version ${chart.wrapperVersion}`;
-        const mappingCount = chart.imageMappings.length + chart.valueOverrides.length;
-        return (
-          <div class="bg-verity-surface border border-verity-border rounded-lg overflow-hidden">
-            {/* Header */}
-            <div class="px-5 py-4 border-b border-verity-border/50">
-              <div class="flex items-center justify-between gap-4 flex-wrap">
-                <div class="flex items-center gap-3">
-                  <h3 class="text-lg font-semibold text-verity-text-primary">{chart.name}</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-verity-void border border-verity-border text-verity-text-muted font-mono">
-                    v{chart.version}
+      {
+        charts.map((chart: ChartEntry, idx: number) => {
+          const installCmd = `helm install ${chart.wrapperName} ${chart.registry}/${chart.wrapperName} --version ${chart.wrapperVersion}`;
+          const mappingCount = chart.imageMappings.length + chart.valueOverrides.length;
+          return (
+            <div class="bg-verity-surface border border-verity-border rounded-lg overflow-hidden">
+              {/* Header */}
+              <div class="px-5 py-4 border-b border-verity-border/50">
+                <div class="flex items-center justify-between gap-4 flex-wrap">
+                  <div class="flex items-center gap-3">
+                    <h3 class="text-lg font-semibold text-verity-text-primary">{chart.name}</h3>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-verity-void border border-verity-border text-verity-text-muted font-mono">
+                      v{chart.version}
+                    </span>
+                  </div>
+                  <span class="text-xs text-verity-text-muted">
+                    {mappingCount} image {mappingCount === 1 ? "override" : "overrides"}
                   </span>
                 </div>
-                <span class="text-xs text-verity-text-muted">
-                  {mappingCount} image {mappingCount === 1 ? "override" : "overrides"}
-                </span>
+                {chart.repository && (
+                  <div class="mt-1 text-xs text-verity-text-secondary font-mono truncate">
+                    Source: {chart.repository}
+                  </div>
+                )}
               </div>
-              <div class="mt-1 text-xs text-verity-text-secondary font-mono truncate">
-                Source: {chart.repository}
-              </div>
-            </div>
 
-            {/* Install command */}
-            <div class="px-5 py-4 border-b border-verity-border/50">
-              <div class="text-xs text-verity-text-muted uppercase tracking-wider mb-2 font-semibold">Install</div>
-              <div class="relative">
-                <pre class="font-mono text-xs bg-verity-void border border-verity-border rounded px-3 py-2 pr-10 overflow-x-auto text-verity-text-primary">{installCmd}</pre>
-                <div class="absolute top-1.5 right-1.5">
-                  <CopyButton text={installCmd} />
+              {/* Install command */}
+              <div class="px-5 py-4 border-b border-verity-border/50">
+                <div class="text-xs text-verity-text-muted uppercase tracking-wider mb-2 font-semibold">
+                  Install
+                </div>
+                <div class="relative">
+                  <pre class="font-mono text-xs bg-verity-void border border-verity-border rounded px-3 py-2 pr-10 overflow-x-auto text-verity-text-primary">
+                    {installCmd}
+                  </pre>
+                  <div class="absolute top-1.5 right-1.5">
+                    <CopyButton text={installCmd} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Image overrides (collapsible) */}
+              <div class="chart-overrides" data-chart-idx={idx}>
+                <button
+                  class="chart-toggle w-full px-5 py-3 text-left text-sm text-verity-text-secondary hover:text-verity-text-primary hover:bg-verity-void/50 transition-colors flex items-center gap-2"
+                  data-target={`overrides-${idx}`}
+                  aria-controls={`overrides-${idx}`}
+                  aria-expanded="false"
+                >
+                  <svg
+                    class="w-3.5 h-3.5 transition-transform chart-chevron"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
+                  Image Overrides ({mappingCount})
+                </button>
+                <div id={`overrides-${idx}`} class="overrides-content hidden px-5 pb-4">
+                  <div class="overflow-x-auto">
+                    <table class="w-full text-xs">
+                      <thead>
+                        <tr class="text-verity-text-muted uppercase tracking-wider border-b border-verity-border/50">
+                          <th class="text-left py-2 pr-4 font-semibold">Original</th>
+                          <th class="text-left py-2 font-semibold">Patched</th>
+                        </tr>
+                      </thead>
+                      <tbody class="font-mono">
+                        {chart.imageMappings.map((m) => (
+                          <tr class="border-b border-verity-border/30">
+                            <td class="py-1.5 pr-4 text-verity-text-secondary">
+                              {m.originalRepo}:{m.originalTag}
+                            </td>
+                            <td class="py-1.5 text-verity-nucleus">
+                              {m.patchedRepo}:{m.patchedTag}
+                            </td>
+                          </tr>
+                        ))}
+                        {chart.valueOverrides.map((v) => (
+                          <tr class="border-b border-verity-border/30">
+                            <td class="py-1.5 pr-4 text-verity-text-secondary">{v.path}</td>
+                            <td class="py-1.5 text-verity-nucleus">{v.value}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Image overrides (collapsible) */}
-            <div class="chart-overrides" data-chart-idx={idx}>
-              <button
-                class="chart-toggle w-full px-5 py-3 text-left text-sm text-verity-text-secondary hover:text-verity-text-primary hover:bg-verity-void/50 transition-colors flex items-center gap-2"
-                data-target={`overrides-${idx}`}
-              >
-                <svg class="w-3.5 h-3.5 transition-transform chart-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-                Image Overrides ({mappingCount})
-              </button>
-              <div id={`overrides-${idx}`} class="overrides-content hidden px-5 pb-4">
-                <div class="overflow-x-auto">
-                  <table class="w-full text-xs">
-                    <thead>
-                      <tr class="text-verity-text-muted uppercase tracking-wider border-b border-verity-border/50">
-                        <th class="text-left py-2 pr-4 font-semibold">Original</th>
-                        <th class="text-left py-2 font-semibold">Patched</th>
-                      </tr>
-                    </thead>
-                    <tbody class="font-mono">
-                      {chart.imageMappings.map((m) => (
-                        <tr class="border-b border-verity-border/30">
-                          <td class="py-1.5 pr-4 text-verity-text-secondary">{m.originalRepo}:{m.originalTag}</td>
-                          <td class="py-1.5 text-verity-nucleus">{m.patchedRepo}:{m.patchedTag}</td>
-                        </tr>
-                      ))}
-                      {chart.valueOverrides.map((v) => (
-                        <tr class="border-b border-verity-border/30">
-                          <td class="py-1.5 pr-4 text-verity-text-secondary">{v.path}</td>
-                          <td class="py-1.5 text-verity-nucleus">{v.value}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })
+      }
     </div>
   </section>
 
   <div class="mt-12 text-center text-xs text-verity-text-muted">
-    Charts generated daily at 04:00 UTC. Powered by <a href="https://github.com/verity-org/verity" class="underline hover:text-verity-nucleus">Verity</a> chart-gen.
+    Charts generated daily at 04:00 UTC. Powered by <a
+      href="https://github.com/verity-org/verity"
+      class="underline hover:text-verity-nucleus">Verity</a
+    > chart-gen.
   </div>
 </BaseLayout>
 
@@ -181,6 +212,7 @@ const totalOverrides = charts.reduce(
       const chevron = btn.querySelector(".chart-chevron");
       const isHidden = content.classList.contains("hidden");
       content.classList.toggle("hidden");
+      btn.setAttribute("aria-expanded", String(isHidden));
       if (chevron) {
         chevron.classList.toggle("rotate-90", isHidden);
       }
