@@ -71,6 +71,7 @@ jobs:
       source-tag: ${{ steps.parse.outputs.source-tag }}
       staging-registry: ${{ steps.parse.outputs.staging-registry }}
       prev-report-exists: ${{ steps.prev-report.outputs.exists }}
+      safe-name: ${{ steps.parse.outputs.safe-name }}
 
     steps:
       - name: Harden the runner (Audit all outbound calls)
@@ -104,6 +105,7 @@ jobs:
           SOURCE_REF="${{ inputs.source-ref }}"
           SOURCE_TAG="${SOURCE_REF##*:}"
           echo "source-tag=${SOURCE_TAG}" >> "$GITHUB_OUTPUT"
+          echo "safe-name=$(echo '${{ inputs.image-name }}' | tr '/: ' '---')" >> "$GITHUB_OUTPUT"
 
           TARGET_REGISTRY="${{ inputs.target-registry }}"
           STAGING_REGISTRY="${TARGET_REGISTRY}/cache"
@@ -196,7 +198,7 @@ jobs:
         if: steps.check.outputs.needs-patch == 'true'
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
-          name: scan-${{ inputs.image-name }}-${{ steps.parse.outputs.source-tag }}${{ inputs.artifact-suffix }}
+          name: scan-${{ steps.parse.outputs.safe-name }}-${{ steps.parse.outputs.source-tag }}${{ inputs.artifact-suffix }}
           path: |
             pre.json
             prev-post.json
@@ -286,7 +288,7 @@ jobs:
         if: steps.platform-check.outputs.enabled == 'true'
         uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
         with:
-          name: scan-${{ inputs.image-name }}-${{ needs.scan.outputs.source-tag }}${{ inputs.artifact-suffix }}
+          name: scan-${{ needs.scan.outputs.safe-name }}-${{ needs.scan.outputs.source-tag }}${{ inputs.artifact-suffix }}
           path: .
 
       - name: Setup binaries
@@ -351,7 +353,7 @@ jobs:
       - name: Download scan artifacts
         uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
         with:
-          name: scan-${{ inputs.image-name }}-${{ needs.scan.outputs.source-tag }}${{ inputs.artifact-suffix }}
+          name: scan-${{ needs.scan.outputs.safe-name }}-${{ needs.scan.outputs.source-tag }}${{ inputs.artifact-suffix }}
           path: .
 
       - name: Create multi-arch manifest
@@ -530,7 +532,7 @@ jobs:
         if: inputs.is-pr == true
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
-          name: pr-patch-${{ inputs.image-name }}-${{ needs.scan.outputs.source-tag }}${{ inputs.artifact-suffix }}
+          name: pr-patch-${{ needs.scan.outputs.safe-name }}-${{ needs.scan.outputs.source-tag }}${{ inputs.artifact-suffix }}
           path: |
             pre.json
             post.json
