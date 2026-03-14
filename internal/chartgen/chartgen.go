@@ -3,6 +3,7 @@ package chartgen
 import (
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/verity-org/verity/internal/config"
@@ -73,12 +74,17 @@ func processChart(cfg *Config, chart config.ChartSpec, vc *config.VerityConfig) 
 		return ChartResult{}, false, fmt.Errorf("extract images for chart %s: %w", chart.Name, err)
 	}
 
-	mappings, err := BuildImageMappings(imageRefs, cfg.TargetRegistry, cfg.ExcludeNames)
+	remainingRefs, replacementMappings := applyReplacements(imageRefs, vc)
+
+	mappings, err := BuildImageMappings(remainingRefs, cfg.TargetRegistry, cfg.ExcludeNames)
 	if err != nil {
 		return ChartResult{}, false, fmt.Errorf("build image mappings for chart %s: %w", chart.Name, err)
 	}
+	allMappings := make([]ImageMapping, 0, len(replacementMappings)+len(mappings))
+	allMappings = append(allMappings, replacementMappings...)
+	allMappings = append(allMappings, mappings...)
 
-	if len(mappings) == 0 {
+	if len(allMappings) == 0 {
 		fmt.Fprintf(os.Stderr, "warning: no patched image mappings for chart %s@%s; skipping\n", chart.Name, chart.Version)
 		return ChartResult{}, false, nil
 	}
@@ -88,7 +94,7 @@ func processChart(cfg *Config, chart config.ChartSpec, vc *config.VerityConfig) 
 		return ChartResult{}, false, fmt.Errorf("get chart values for %s: %w", chart.Name, err)
 	}
 
-	valueOverrides, err := ResolveValuePaths(valuesYAML, mappings, vc.Overrides)
+	valueOverrides, err := ResolveValuePaths(valuesYAML, allMappings, vc.Overrides)
 	if err != nil {
 		return ChartResult{}, false, fmt.Errorf("resolve value paths for %s: %w", chart.Name, err)
 	}
@@ -105,7 +111,7 @@ func processChart(cfg *Config, chart config.ChartSpec, vc *config.VerityConfig) 
 		WrapperVersion: wrapper.Version,
 		Repository:     chart.Repository,
 		Registry:       cfg.ChartRegistry,
-		ImageMappings:  mappings,
+		ImageMappings:  allMappings,
 		ValueOverrides: valueOverrides,
 	}
 
@@ -129,4 +135,43 @@ func processChart(cfg *Config, chart config.ChartSpec, vc *config.VerityConfig) 
 	}
 
 	return chartResult, true, nil
+}
+
+func applyReplacements(imageRefs []string, vc *config.VerityConfig) ([]string, []ImageMapping) {
+	remainingRefs := make([]string, 0, len(imageRefs))
+	replacementMappings := make([]ImageMapping, 0, len(imageRefs))
+
+	for _, imageRef := range imageRefs {
+		name := repoPath(imageRef)
+		sourceRepo, sourceTag := splitRef(imageRef)
+
+		if vc == nil || vc.Replacements == nil {
+			remainingRefs = append(remainingRefs, imageRef)
+			continue
+		}
+
+		matched := false
+		for pattern, replacement := range vc.Replacements {
+			if !strings.Contains(name, pattern) && name != pattern {
+				continue
+			}
+
+			patchedRepo := replacement.Registry + "/" + replacement.Image
+			replacementMappings = append(replacementMappings, ImageMapping{
+				OriginalRepo: sourceRepo,
+				OriginalTag:  sourceTag,
+				PatchedRepo:  patchedRepo,
+				PatchedTag:   sourceTag,
+			})
+			fmt.Fprintf(os.Stderr, "info: replacing %q with Integer image %s:%s\n", imageRef, patchedRepo, sourceTag)
+			matched = true
+			break
+		}
+
+		if !matched {
+			remainingRefs = append(remainingRefs, imageRef)
+		}
+	}
+
+	return remainingRefs, replacementMappings
 }
