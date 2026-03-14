@@ -112,43 +112,43 @@ const exampleRef = exampleImage?.patchedRef ?? "ghcr.io/verity-org/prometheus/pr
           >
         </div>
       </div>
+    </div>
 
-      <div class="bg-verity-surface border border-verity-border rounded-lg p-5">
-        <h2 class="text-sm font-semibold text-verity-text-primary tracking-wider uppercase mb-4">
-          Use a patched image
-        </h2>
-        <p class="text-sm text-verity-text-muted mb-3">Replace your image reference. That's it.</p>
-        <div
-          class="bg-verity-void border border-verity-border rounded p-3 font-mono text-xs text-verity-text-primary overflow-x-auto mb-3"
+    <div class="bg-verity-surface border border-verity-border rounded-lg p-5">
+      <h2 class="text-sm font-semibold text-verity-text-primary tracking-wider uppercase mb-4">
+        Use a patched image
+      </h2>
+      <p class="text-sm text-verity-text-muted mb-3">Replace your image reference. That's it.</p>
+      <div
+        class="bg-verity-void border border-verity-border rounded p-3 font-mono text-xs text-verity-text-primary overflow-x-auto mb-3"
+      >
+        <div class="text-verity-text-muted"># Pull a patched image</div>
+        <div>docker pull {exampleRef}</div>
+      </div>
+      <div class="flex items-center gap-2">
+        <CopyButton text={`docker pull ${exampleRef}`} />
+      </div>
+      <div class="mt-4 pt-3 border-t border-verity-border flex items-center justify-between">
+        <span class="text-xs text-verity-text-muted"> Every image is signed and attested. </span>
+        <a
+          href={`${base}compliance/`}
+          class="text-xs text-verity-orbit hover:text-verity-nucleus transition-colors underline"
         >
-          <div class="text-verity-text-muted"># Pull a patched image</div>
-          <div>docker pull {exampleRef}</div>
-        </div>
-        <div class="flex items-center gap-2">
-          <CopyButton text={`docker pull ${exampleRef}`} />
-        </div>
-        <div class="mt-4 pt-3 border-t border-verity-border flex items-center justify-between">
-          <span class="text-xs text-verity-text-muted"> Every image is signed and attested. </span>
-          <a
-            href={`${base}compliance/`}
-            class="text-xs text-verity-orbit hover:text-verity-nucleus transition-colors underline"
-          >
-            Compliance details
-          </a>
-        </div>
+          Compliance details
+        </a>
       </div>
     </div>
+  </div>
 
-    <div
-      class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-6 text-xs text-verity-text-muted"
-    >
-      <span>{copaCount} Copa-patched upstream images</span>
-      <span class="text-verity-border">|</span>
-      <span>{integerCount} Wolfi-based hardened images</span>
-      <span class="text-verity-border">|</span>
-      <span>{chartCount} Helm wrapper charts</span>
-      <span class="text-verity-border">|</span>
-      <span>cosign signed + SLSA L3 + CycloneDX SBOM</span>
-    </div>
+  <div
+    class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-6 text-xs text-verity-text-muted"
+  >
+    <span>{copaCount} Copa-patched upstream images</span>
+    <span class="text-verity-border">|</span>
+    <span>{integerCount} Wolfi-based hardened images</span>
+    <span class="text-verity-border">|</span>
+    <span>{chartCount} Helm wrapper {chartCount === 1 ? "chart" : "charts"}</span>
+    <span class="text-verity-border">|</span>
+    <span>cosign signed + SLSA L3 + CycloneDX SBOM</span>
   </div>
 </div>
