@@ -19,6 +19,11 @@ function patchedRefRepoPath(ref: string | undefined): string {
   const lastColon = value.lastIndexOf(":");
   if (lastColon > lastSlash) value = value.slice(0, lastColon);
 
+  const prefix = REGISTRY + "/";
+  if (value.startsWith(prefix)) {
+    return value.slice(prefix.length);
+  }
+
   const parts = value.split("/");
   if (parts.length >= 2) {
     const first = parts[0] ?? "";

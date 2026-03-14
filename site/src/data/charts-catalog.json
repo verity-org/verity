@@ -13,20 +13,20 @@
         {
           "originalRepo": "ghcr.io/kiwigrid/k8s-sidecar",
           "originalTag": "1.28.0",
-          "patchedRepo": "ghcr.io/verity-org/k8s-sidecar",
+          "patchedRepo": "ghcr.io/verity-org/kiwigrid/k8s-sidecar",
           "patchedTag": "1.28.0"
         },
         {
           "originalRepo": "ghcr.io/jimmidyson/configmap-reload",
           "originalTag": "v0.14.0",
-          "patchedRepo": "ghcr.io/verity-org/configmap-reload",
+          "patchedRepo": "ghcr.io/verity-org/jimmidyson/configmap-reload",
           "patchedTag": "v0.14.0"
         }
       ],
       "valueOverrides": [
         {
           "path": "kube-state-metrics.image.repository",
-          "value": "ghcr.io/verity-org/kube-state-metrics"
+          "value": "ghcr.io/verity-org/kubernetes/kube-state-metrics/kube-state-metrics"
         },
         {
           "path": "kube-state-metrics.image.tag",

@@ -159,7 +159,6 @@ jobs:
         run: |
           EXCLUDE_NAMES=$(find images -maxdepth 1 -name '*.yaml' -printf '%f\n' 2>/dev/null | sed 's/\.yaml$//' | paste -sd, || true)
           ./verity chart-gen \
-            --config copa-config.yaml \
             --charts-file Chart.yaml \
             --verity-config verity.yaml \
             --target-registry "${TARGET_REGISTRY}" \
