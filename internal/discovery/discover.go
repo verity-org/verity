@@ -73,9 +73,6 @@ func Discover(cfg *config.CopaConfig, targetRegistry string, overrides map[strin
 }
 
 // isExcluded checks whether a chart-discovered image should be skipped.
-// It matches the derived name (from nameFromRef) AND the raw basename of
-// the source ref against the exclude set, so that e.g. both "library-rabbitmq"
-// and "rabbitmq" are checked when the source is docker.io/library/rabbitmq.
 func isExcluded(img DiscoveredImage, excludeNames map[string]struct{}) bool {
 	if len(excludeNames) == 0 {
 		return false
@@ -83,10 +80,7 @@ func isExcluded(img DiscoveredImage, excludeNames map[string]struct{}) bool {
 	if _, ok := excludeNames[img.Name]; ok {
 		return true
 	}
-	// Also check the raw last path component of the source ref, since
-	// nameFromRef may produce org-prefixed names (e.g. library-rabbitmq)
-	// while the exclude set uses simple names (e.g. rabbitmq).
-	baseName := nameBasename(img.Source)
+	baseName := nameBasename(img.Name)
 	if baseName != img.Name {
 		if _, ok := excludeNames[baseName]; ok {
 			return true
@@ -192,7 +186,7 @@ func discoverChartImages(chart config.ChartSpec, overrides map[string]config.Ove
 	result := make([]DiscoveredImage, 0, len(images))
 	for _, imageRef := range images {
 		result = append(result, DiscoveredImage{
-			Name:           nameFromRef(imageRef),
+			Name:           repoPath(imageRef),
 			Source:         imageRef,
 			TargetRegistry: registry,
 			Platforms:      DefaultPlatforms,
@@ -201,41 +195,36 @@ func discoverChartImages(chart config.ChartSpec, overrides map[string]config.Ove
 	return result, nil
 }
 
-// nameFromRef derives a safe, unique image name from a full image reference.
-// For images with a registry and org (3+ path components), joins the org and
-// name with "-" to prevent collisions between images with the same basename
-// from different registries/orgs. When org and name are identical (e.g.,
-// prometheus/prometheus), the duplicate is dropped. Single-component and
-// two-component refs return the last component directly.
+// repoPath extracts the repository path from a full image reference by
+// stripping the registry host, tag, and digest. The result preserves the
+// upstream layout so patched images mirror their source structure under
+// the target registry.
 // e.g.:
 //
-//	"quay.io/prometheus/prometheus:v3.2.1" → "prometheus"
-//	"quay.io/some-org/nginx:1.29"          → "some-org-nginx"
-//	"ghcr.io/kiwigrid/k8s-sidecar:1.28.0" → "kiwigrid-k8s-sidecar"
-//	"nginx:1.25"                           → "nginx"
-func nameFromRef(ref string) string {
+//	"ghcr.io/kiwigrid/k8s-sidecar:1.28.0"                          → "kiwigrid/k8s-sidecar"
+//	"mirror.gcr.io/library/redis:7.0"                               → "library/redis"
+//	"quay.io/prometheus/prometheus:v3.2.1"                           → "prometheus/prometheus"
+//	"ghcr.io/kubernetes/kube-state-metrics/kube-state-metrics:v2.10" → "kubernetes/kube-state-metrics/kube-state-metrics"
+//	"nginx:1.25"                                                     → "nginx"
+func repoPath(ref string) string {
 	// Strip digest
 	if idx := strings.Index(ref, "@"); idx != -1 {
 		ref = ref[:idx]
 	}
-	// Strip tag: last ":" must come after the last "/"
+	// Strip tag
 	lastSlash := strings.LastIndex(ref, "/")
 	if lastColon := strings.LastIndex(ref, ":"); lastColon > lastSlash {
 		ref = ref[:lastColon]
 	}
-	// Split into path components (hostname/org/name)
+	// Strip registry host: first component is a host if it contains "." or ":" or is "localhost"
 	parts := strings.Split(ref, "/")
-	// 3+ parts: hostname/org/name — include org to prevent collisions
-	if len(parts) >= 3 {
-		org := parts[len(parts)-2]
-		name := parts[len(parts)-1]
-		if org == name {
-			return name
+	if len(parts) >= 2 {
+		first := parts[0]
+		if strings.ContainsAny(first, ".:") || first == "localhost" {
+			return strings.Join(parts[1:], "/")
 		}
-		return org + "-" + name
 	}
-	// 1-2 parts: no org or no hostname — use last component
-	return parts[len(parts)-1]
+	return ref
 }
 
 // joinPlatforms returns a comma-joined platform string, defaulting to DefaultPlatforms.

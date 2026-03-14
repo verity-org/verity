@@ -12,22 +12,22 @@ func TestDryRunResultJSON(t *testing.T) {
 			{
 				Name:           "prometheus",
 				Version:        "28.9.1",
-				WrapperName:    "prometheus-patched",
-				WrapperVersion: "28.9.1-patched.1",
+				WrapperName:    "prometheus",
+				WrapperVersion: "28.9.1",
 				Registry:       "oci://ghcr.io/verity-org/charts",
 				ImageMappings: []ImageMapping{
 					{
 						OriginalRepo: "quay.io/prometheus/prometheus",
 						OriginalTag:  "v3.2.1",
 						PatchedRepo:  "ghcr.io/verity-org/prometheus/prometheus",
-						PatchedTag:   "v3.2.1-patched",
+						PatchedTag:   "v3.2.1",
 					},
 				},
 				ValueOverrides: []ValueOverride{
 					{
 						Path:       "server.image",
 						Repository: "ghcr.io/verity-org/prometheus/prometheus",
-						Tag:        "v3.2.1-patched",
+						Tag:        "v3.2.1",
 					},
 				},
 			},

@@ -8,14 +8,9 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"regexp"
-	"strconv"
 	"strings"
 	"sync"
 
-	"github.com/google/go-containerregistry/pkg/authn"
-	"github.com/google/go-containerregistry/pkg/name"
-	"github.com/google/go-containerregistry/pkg/v1/remote"
 	"github.com/urfave/cli/v2"
 
 	"github.com/verity-org/verity/internal/discovery"
@@ -95,21 +90,6 @@ var ScanCommand = &cli.Command{
 				continue
 			}
 
-			var existingPatchedTags []string
-			if targetRegistry != "" && len(tags) > 0 {
-				repo, repoErr := name.NewRepository(fmt.Sprintf("%s/%s", targetRegistry, imageSpec.Name))
-				if repoErr != nil {
-					fmt.Fprintf(os.Stderr, "Warning: failed to parse target repo for %q: %v; falling back to <tag>-patched\n", imageSpec.Name, repoErr)
-				} else {
-					listed, listErr := remote.List(repo, remote.WithAuthFromKeychain(authn.DefaultKeychain))
-					if listErr != nil {
-						fmt.Fprintf(os.Stderr, "Warning: failed to list patched tags for %q: %v; falling back to <tag>-patched\n", imageSpec.Name, listErr)
-					} else {
-						existingPatchedTags = listed
-					}
-				}
-			}
-
 			for _, tag := range tags {
 				if !patchedOnly {
 					sourceRef := fmt.Sprintf("%s:%s", imageSpec.Image, tag)
@@ -123,11 +103,7 @@ var ScanCommand = &cli.Command{
 				}
 
 				if targetRegistry != "" {
-					patchedTag := latestPatchedTagFromList(existingPatchedTags, tag)
-					if patchedTag == "" {
-						patchedTag = tag + "-patched"
-					}
-					patchedRef := fmt.Sprintf("%s/%s:%s", targetRegistry, imageSpec.Name, patchedTag)
+					patchedRef := fmt.Sprintf("%s/%s:%s", targetRegistry, imageSpec.Name, tag)
 					patchedFile := filepath.Join(outputDir, sanitizeFilename(patchedRef)+".json")
 					jobs = append(jobs, scanJob{
 						name:       imageSpec.Name,
@@ -221,60 +197,6 @@ func scanImage(imageRef, outputFile string, isPatched bool, trivyServer string) 
 	}
 
 	return os.WriteFile(outputFile, output, 0o644)
-}
-
-// highestPatchedN returns the highest numeric suffix N from tags matching
-// "<sourceTag>-patched" (N=0) or "<sourceTag>-patched-N".
-// Returns -1 if no matching tag is found.
-func highestPatchedN(tags []string, sourceTag string) int {
-	base := regexp.QuoteMeta(sourceTag) + `-patched`
-	pattern := regexp.MustCompile(`^` + base + `(-(\d+))?$`)
-
-	best := -1
-	for _, t := range tags {
-		m := pattern.FindStringSubmatch(t)
-		if m == nil {
-			continue
-		}
-		n := 0
-		if m[2] != "" {
-			parsed, err := strconv.Atoi(m[2])
-			if err != nil {
-				continue
-			}
-			n = parsed
-		}
-		if n > best {
-			best = n
-		}
-	}
-	return best
-}
-
-// latestPatchedTagFromList finds the highest-versioned patched tag matching
-// "<sourceTag>-patched" or "<sourceTag>-patched-N" from a list of tags.
-func latestPatchedTagFromList(tags []string, sourceTag string) string {
-	n := highestPatchedN(tags, sourceTag)
-	if n < 0 {
-		return ""
-	}
-	if n == 0 {
-		return sourceTag + "-patched"
-	}
-	return sourceTag + "-patched-" + strconv.Itoa(n)
-}
-
-// nextPatchedTag returns the tag to use when publishing a newly patched image.
-// It finds the current highest-versioned patched tag and increments:
-//   - no existing patched tag        → "<sourceTag>-patched"
-//   - existing "<sourceTag>-patched" → "<sourceTag>-patched-1"
-//   - existing "<sourceTag>-patched-N" → "<sourceTag>-patched-<N+1>"
-func nextPatchedTag(tags []string, sourceTag string) string {
-	n := highestPatchedN(tags, sourceTag)
-	if n < 0 {
-		return sourceTag + "-patched"
-	}
-	return sourceTag + "-patched-" + strconv.Itoa(n+1)
 }
 
 func sanitizeFilename(filename string) string {

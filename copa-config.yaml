@@ -17,7 +17,7 @@ images:
   #  BASE / STATIC IMAGES
   # ============================================================================
 
-  - name: "static-distroless"
+  - name: "distroless/static"
     image: "gcr.io/distroless/static"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -29,7 +29,7 @@ images:
   #  LANGUAGE RUNTIMES & SDKs
   # ============================================================================
 
-  - name: "graalvm-native-image"
+  - name: "graalvm/native-image"
     image: "ghcr.io/graalvm/native-image"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -41,7 +41,7 @@ images:
   #  WEB SERVERS & PROXIES
   # ============================================================================
 
-  - name: "nginx-s3-gateway"
+  - name: "nginxinc/nginx-s3-gateway"
     image: "ghcr.io/nginxinc/nginx-s3-gateway"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -49,7 +49,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "haproxy-ingress"
+  - name: "jcmoraisjr/haproxy-ingress"
     image: "quay.io/jcmoraisjr/haproxy-ingress"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -57,7 +57,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "ingress-nginx-controller"
+  - name: "kubernetes/ingress-nginx/controller"
     image: "ghcr.io/kubernetes/ingress-nginx/controller"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -65,7 +65,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "kube-webhook-certgen"
+  - name: "kubernetes/ingress-nginx/kube-webhook-certgen"
     image: "ghcr.io/kubernetes/ingress-nginx/kube-webhook-certgen"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -73,7 +73,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "kubernetes-ingress-defaultbackend"
+  - name: "kubernetes/ingress-nginx/defaultbackend"
     image: "ghcr.io/kubernetes/ingress-nginx/defaultbackend"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -85,7 +85,7 @@ images:
   #  DATABASES
   # ============================================================================
 
-  - name: "redis"
+  - name: "library/redis"
     image: "mirror.gcr.io/library/redis"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -93,7 +93,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "mongodb"
+  - name: "library/mongo"
     image: "mirror.gcr.io/library/mongo"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -101,7 +101,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "cockroach"
+  - name: "cockroachdb/cockroach"
     image: "mirror.gcr.io/cockroachdb/cockroach"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -109,7 +109,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "elasticsearch"
+  - name: "library/elasticsearch"
     image: "mirror.gcr.io/library/elasticsearch"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -117,7 +117,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "eck-operator"
+  - name: "elastic/eck-operator"
     image: "mirror.gcr.io/elastic/eck-operator"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -125,7 +125,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "redisinsight"
+  - name: "redis/redisinsight"
     image: "mirror.gcr.io/redis/redisinsight"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -134,7 +134,7 @@ images:
       maxTags: 3
 
   # -- Redis Operator (opstree) --
-  - name: "redis-opstree"
+  - name: "opstree/redis"
     image: "quay.io/opstree/redis"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -142,7 +142,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "redis-sentinel-opstree"
+  - name: "opstree/redis-sentinel"
     image: "quay.io/opstree/redis-sentinel"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -154,7 +154,7 @@ images:
   #  MESSAGING & STREAMING
   # ============================================================================
 
-  - name: "rabbitmq-cluster-operator"
+  - name: "rabbitmqoperator/cluster-operator"
     image: "mirror.gcr.io/rabbitmqoperator/cluster-operator"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -162,7 +162,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "rabbitmq-messaging-topology-operator"
+  - name: "rabbitmqoperator/messaging-topology-operator"
     image: "mirror.gcr.io/rabbitmqoperator/messaging-topology-operator"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -170,7 +170,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "strimzi-kafka"
+  - name: "strimzi/kafka"
     image: "quay.io/strimzi/kafka"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -182,7 +182,7 @@ images:
   #  KUBERNETES TOOLS
   # ============================================================================
 
-  - name: "karpenter"
+  - name: "aws/karpenter"
     image: "ghcr.io/aws/karpenter"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -190,7 +190,7 @@ images:
       pattern: '^v?\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "cluster-autoscaler"
+  - name: "kubernetes/autoscaler/cluster-autoscaler"
     image: "ghcr.io/kubernetes/autoscaler/cluster-autoscaler"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -198,7 +198,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "external-dns"
+  - name: "kubernetes-sigs/external-dns"
     image: "ghcr.io/kubernetes-sigs/external-dns"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -206,7 +206,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "kube-state-metrics"
+  - name: "kubernetes/kube-state-metrics/kube-state-metrics"
     image: "ghcr.io/kubernetes/kube-state-metrics/kube-state-metrics"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -214,7 +214,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "kubernetes-reflector"
+  - name: "emberstack/kubernetes-reflector"
     image: "ghcr.io/emberstack/kubernetes-reflector"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -222,7 +222,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "secrets-store-csi-driver"
+  - name: "kubernetes-sigs/secrets-store-csi-driver"
     image: "ghcr.io/kubernetes-sigs/secrets-store-csi-driver"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -230,7 +230,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "secrets-store-csi-driver-provider-gcp"
+  - name: "googlecloudplatform/secrets-store-csi-driver-provider-gcp"
     image: "ghcr.io/googlecloudplatform/secrets-store-csi-driver-provider-gcp"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -238,7 +238,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "k8s-sidecar"
+  - name: "kiwigrid/k8s-sidecar"
     image: "ghcr.io/kiwigrid/k8s-sidecar"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -246,7 +246,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "configmap-reload"
+  - name: "jimmidyson/configmap-reload"
     image: "ghcr.io/jimmidyson/configmap-reload"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -254,7 +254,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "node-feature-discovery"
+  - name: "kubernetes-sigs/node-feature-discovery"
     image: "ghcr.io/kubernetes-sigs/node-feature-discovery"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -262,7 +262,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "k3s"
+  - name: "rancher/k3s"
     image: "mirror.gcr.io/rancher/k3s"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -274,7 +274,7 @@ images:
   #  EKS DISTRO
   # ============================================================================
 
-  - name: "eks-distro-coredns"
+  - name: "aws/eks-distro/coredns/coredns"
     image: "ghcr.io/aws/eks-distro/coredns/coredns"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -282,7 +282,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+-eks-.*$'
       maxTags: 3
 
-  - name: "eks-distro-kube-apiserver"
+  - name: "aws/eks-distro/kubernetes/kube-apiserver"
     image: "ghcr.io/aws/eks-distro/kubernetes/kube-apiserver"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -290,7 +290,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+-eks-.*$'
       maxTags: 3
 
-  - name: "eks-distro-kube-scheduler"
+  - name: "aws/eks-distro/kubernetes/kube-scheduler"
     image: "ghcr.io/aws/eks-distro/kubernetes/kube-scheduler"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -298,7 +298,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+-eks-.*$'
       maxTags: 3
 
-  - name: "eks-distro-kube-proxy"
+  - name: "aws/eks-distro/kubernetes/kube-proxy"
     image: "ghcr.io/aws/eks-distro/kubernetes/kube-proxy"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -306,7 +306,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+-eks-.*$'
       maxTags: 3
 
-  - name: "eks-distro-csi-node-driver-registrar"
+  - name: "aws/eks-distro/kubernetes-csi/node-driver-registrar"
     image: "ghcr.io/aws/eks-distro/kubernetes-csi/node-driver-registrar"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -319,7 +319,7 @@ images:
   # ============================================================================
 
   # -- Istio --
-  - name: "istio-proxy"
+  - name: "istio/proxyv2"
     image: "mirror.gcr.io/istio/proxyv2"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -327,7 +327,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "istio-pilot"
+  - name: "istio/pilot"
     image: "mirror.gcr.io/istio/pilot"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -335,7 +335,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "istio-install-cni"
+  - name: "istio/install-cni"
     image: "mirror.gcr.io/istio/install-cni"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -344,7 +344,7 @@ images:
       maxTags: 3
 
   # -- Cilium --
-  - name: "cilium-agent"
+  - name: "cilium/cilium"
     image: "quay.io/cilium/cilium"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -352,7 +352,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "cilium-envoy"
+  - name: "cilium/cilium-envoy"
     image: "quay.io/cilium/cilium-envoy"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -360,7 +360,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+.*$'
       maxTags: 3
 
-  - name: "cilium-operator-generic"
+  - name: "cilium/operator-generic"
     image: "quay.io/cilium/operator-generic"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -368,7 +368,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "cilium-hubble-ui"
+  - name: "cilium/hubble-ui"
     image: "quay.io/cilium/hubble-ui"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -377,7 +377,7 @@ images:
       maxTags: 3
 
   # -- Calico --
-  - name: "calico-node"
+  - name: "calico/node"
     image: "quay.io/calico/node"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -385,7 +385,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "calico-cni"
+  - name: "calico/cni"
     image: "quay.io/calico/cni"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -393,7 +393,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "calico-kube-controllers"
+  - name: "calico/kube-controllers"
     image: "quay.io/calico/kube-controllers"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -401,7 +401,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "calico-typha"
+  - name: "calico/typha"
     image: "quay.io/calico/typha"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -409,7 +409,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "calico-apiserver"
+  - name: "calico/apiserver"
     image: "quay.io/calico/apiserver"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -417,7 +417,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "calico-csi"
+  - name: "calico/csi"
     image: "quay.io/calico/csi"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -425,7 +425,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "calico-calicoctl"
+  - name: "calico/ctl"
     image: "quay.io/calico/ctl"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -433,7 +433,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "calico-node-driver-registrar"
+  - name: "calico/node-driver-registrar"
     image: "quay.io/calico/node-driver-registrar"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -441,7 +441,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "calico-key-cert-provisioner"
+  - name: "calico/key-cert-provisioner"
     image: "quay.io/calico/key-cert-provisioner"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -456,7 +456,7 @@ images:
   # -- Prometheus ecosystem --
   # NOTE: Default Prometheus tags are busybox-based → NOT patchable.
   # Use -distroless suffixed tags (Copa patches dpkg-distroless via tooling container).
-  - name: "prometheus-node-exporter"
+  - name: "prometheus/node-exporter"
     image: "quay.io/prometheus/node-exporter"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -464,7 +464,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+-distroless$'
       maxTags: 3
 
-  - name: "prometheus-mysqld-exporter"
+  - name: "prometheus/mysqld-exporter"
     image: "quay.io/prometheus/mysqld-exporter"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -472,7 +472,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+-distroless$'
       maxTags: 3
 
-  - name: "prometheus-elasticsearch-exporter"
+  - name: "prometheuscommunity/elasticsearch-exporter"
     image: "quay.io/prometheuscommunity/elasticsearch-exporter"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -481,7 +481,7 @@ images:
       maxTags: 3
 
   # -- Grafana ecosystem --
-  - name: "grafana-operator"
+  - name: "grafana/grafana-operator"
     image: "ghcr.io/grafana/grafana-operator"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -489,7 +489,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "promtail"
+  - name: "grafana/promtail"
     image: "mirror.gcr.io/grafana/promtail"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -498,7 +498,7 @@ images:
       maxTags: 3
 
   # -- Agents --
-  - name: "datadog-agent"
+  - name: "datadog/agent"
     image: "ghcr.io/datadog/agent"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -506,7 +506,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "datadog-cluster-agent"
+  - name: "datadog/cluster-agent"
     image: "ghcr.io/datadog/cluster-agent"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -514,7 +514,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "newrelic-infrastructure-bundle"
+  - name: "newrelic/infrastructure-bundle"
     image: "mirror.gcr.io/newrelic/infrastructure-bundle"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -526,7 +526,7 @@ images:
   #  LOGGING
   # ============================================================================
 
-  - name: "fluentd"
+  - name: "fluent/fluentd"
     image: "mirror.gcr.io/fluent/fluentd"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -534,7 +534,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+-debian.*$'
       maxTags: 3
 
-  - name: "fluentd-kubernetes-daemonset"
+  - name: "fluent/fluentd-kubernetes-daemonset"
     image: "mirror.gcr.io/fluent/fluentd-kubernetes-daemonset"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -542,7 +542,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+-debian.*$'
       maxTags: 3
 
-  - name: "fluent-operator"
+  - name: "fluent/fluent-operator"
     image: "ghcr.io/fluent/fluent-operator"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -550,7 +550,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "logstash-oss-with-opensearch"
+  - name: "opensearchproject/logstash-oss-with-opensearch-output-plugin"
     image: "mirror.gcr.io/opensearchproject/logstash-oss-with-opensearch-output-plugin"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -562,7 +562,7 @@ images:
   #  CI/CD & GITOPS
   # ============================================================================
 
-  - name: "tekton-cli"
+  - name: "tektoncd/cli"
     image: "ghcr.io/tektoncd/cli"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -574,7 +574,7 @@ images:
   #  SECURITY & IDENTITY
   # ============================================================================
 
-  - name: "vault-k8s"
+  - name: "hashicorp/vault-k8s"
     image: "mirror.gcr.io/hashicorp/vault-k8s"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -582,7 +582,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "consul"
+  - name: "hashicorp/consul"
     image: "mirror.gcr.io/hashicorp/consul"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -590,7 +590,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "keycloak-operator"
+  - name: "keycloak/keycloak-operator"
     image: "quay.io/keycloak/keycloak-operator"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -600,7 +600,7 @@ images:
 
   # ⚠ SPIRE images are scratch-based since ~v1.8+. Copa CANNOT patch these.
   # Kept for tracking; Copa will no-op on them.
-  - name: "spire-server"
+  - name: "spiffe/spire-server"
     image: "ghcr.io/spiffe/spire-server"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -608,7 +608,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "spire-agent"
+  - name: "spiffe/spire-agent"
     image: "ghcr.io/spiffe/spire-agent"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -616,7 +616,7 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "spiffe-helper"
+  - name: "spiffe/spiffe-helper"
     image: "ghcr.io/spiffe/spiffe-helper"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -628,7 +628,7 @@ images:
   #  POLICY & COMPLIANCE
   # ============================================================================
 
-  - name: "kyverno"
+  - name: "kyverno/kyverno"
     image: "ghcr.io/kyverno/kyverno"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -636,7 +636,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "kyverno-cli"
+  - name: "kyverno/kyverno-cli"
     image: "ghcr.io/kyverno/kyverno-cli"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -644,7 +644,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "kyverno-background-controller"
+  - name: "kyverno/background-controller"
     image: "ghcr.io/kyverno/background-controller"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -652,7 +652,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "kyverno-reports-controller"
+  - name: "kyverno/reports-controller"
     image: "ghcr.io/kyverno/reports-controller"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -660,7 +660,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "kyverno-policy-reporter-ui"
+  - name: "kyverno/policy-reporter-ui"
     image: "ghcr.io/kyverno/policy-reporter-ui"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -668,7 +668,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "gatekeeper"
+  - name: "openpolicyagent/gatekeeper"
     image: "mirror.gcr.io/openpolicyagent/gatekeeper"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -680,7 +680,7 @@ images:
   #  INFRASTRUCTURE & IaC
   # ============================================================================
 
-  - name: "crossplane"
+  - name: "crossplane/crossplane"
     image: "mirror.gcr.io/crossplane/crossplane"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -692,7 +692,7 @@ images:
   #  CONTAINER REGISTRIES
   # ============================================================================
 
-  - name: "harbor-registry"
+  - name: "goharbor/registry-photon"
     image: "ghcr.io/goharbor/registry-photon"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -700,7 +700,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "harbor-portal"
+  - name: "goharbor/harbor-portal"
     image: "ghcr.io/goharbor/harbor-portal"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -708,7 +708,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "zot"
+  - name: "project-zot/zot-linux-amd64"
     image: "ghcr.io/project-zot/zot-linux-amd64"
     platforms: ["linux/amd64"]
     tags:
@@ -720,7 +720,7 @@ images:
   #  CERT MANAGEMENT
   # ============================================================================
 
-  - name: "cert-manager-controller"
+  - name: "jetstack/cert-manager-controller"
     image: "quay.io/jetstack/cert-manager-controller"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -728,7 +728,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "cert-manager-cainjector"
+  - name: "jetstack/cert-manager-cainjector"
     image: "quay.io/jetstack/cert-manager-cainjector"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -736,7 +736,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "cert-manager-acmesolver"
+  - name: "jetstack/cert-manager-acmesolver"
     image: "quay.io/jetstack/cert-manager-acmesolver"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -744,7 +744,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "cert-manager-cmctl"
+  - name: "jetstack/cert-manager-cmctl"
     image: "quay.io/jetstack/cert-manager-cmctl"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -752,7 +752,7 @@ images:
       pattern: '^v\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "cert-manager-openshift-routes"
+  - name: "cert-manager/cert-manager-openshift-routes"
     image: "ghcr.io/cert-manager/cert-manager-openshift-routes"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
@@ -764,7 +764,7 @@ images:
   #  DATA / ML
   # ============================================================================
 
-  - name: "spark-operator"
+  - name: "kubeflow/spark-operator"
     image: "ghcr.io/kubeflow/spark-operator"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:

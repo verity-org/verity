@@ -101,23 +101,9 @@ jobs:
             TAG="${SOURCE##*:}"
             REGISTRY=$(echo "$img" | jq -r '."target-registry"')
 
-            # Find the latest patched image in target registry
             REPO="${REGISTRY}/${NAME}"
-            PATCHED_TAG=$(crane ls "${REPO}" 2>/dev/null \
-              | awk -v src="${TAG}-patched" '
-                  length($0) >= length(src) && substr($0,1,length(src)) == src {
-                    suffix = substr($0, length(src)+1)
-                    if (suffix == "" || suffix ~ /^-[0-9]+$/) {
-                      n = (suffix ~ /^-[0-9]+$/) ? substr(suffix,2)+0 : 0
-                      print n, $0
-                    }
-                  }' \
-              | sort -k1 -n \
-              | awk '{print $2}' \
-              | tail -1 || true)
-
-            if [ -n "$PATCHED_TAG" ]; then
-              PATCHED_REF="${REPO}:${PATCHED_TAG}"
+            if crane digest "${REPO}:${TAG}" > /dev/null 2>&1; then
+              PATCHED_REF="${REPO}:${TAG}"
             else
               PATCHED_REF=""
             fi
@@ -168,6 +154,19 @@ jobs:
           [ -f integer-catalog.json ] && args+=(--integer-catalog integer-catalog.json)
           ./verity catalog "${args[@]}"
           echo "✓ Catalog generated"
+
+      - name: Generate charts catalog
+        run: |
+          EXCLUDE_NAMES=$(find images -maxdepth 1 -name '*.yaml' -printf '%f\n' 2>/dev/null | sed 's/\.yaml$//' | paste -sd, || true)
+          ./verity chart-gen \
+            --charts-file Chart.yaml \
+            --verity-config verity.yaml \
+            --target-registry "${TARGET_REGISTRY}" \
+            --chart-registry "oci://ghcr.io/verity-org/charts" \
+            --exclude-names "${EXCLUDE_NAMES}" \
+            --dry-run \
+            > site/src/data/charts-catalog.json
+          echo "✓ Generated charts catalog ($(jq '.charts | length' site/src/data/charts-catalog.json) charts)"
 
       - name: Build site
         working-directory: site

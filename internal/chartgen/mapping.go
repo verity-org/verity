@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -28,7 +27,7 @@ func BuildImageMappings(imageRefs []string, targetRegistry string, excludeNames 
 
 	for _, imageRef := range imageRefs {
 		sourceRepo, sourceTag := splitRef(imageRef)
-		name := nameFromRef(imageRef)
+		name := repoPath(imageRef)
 
 		if isExcluded(name, imageRef, excludeNames) {
 			fmt.Fprintf(os.Stderr, "warning: skipping excluded image %q (%s)\n", name, imageRef)
@@ -43,9 +42,16 @@ func BuildImageMappings(imageRefs []string, targetRegistry string, excludeNames 
 			continue
 		}
 
-		patchedTag := FindLatestPatchedTag(lsOutput, sourceTag)
-		if patchedTag == "" {
-			fmt.Fprintf(os.Stderr, "warning: no patched tag found for %s (%s)\n", imageRef, patchedRepo)
+		tags := strings.Split(strings.TrimSpace(lsOutput), "\n")
+		found := false
+		for _, tag := range tags {
+			if strings.TrimSpace(tag) == sourceTag {
+				found = true
+				break
+			}
+		}
+		if !found {
+			fmt.Fprintf(os.Stderr, "warning: tag %s not found in %s\n", sourceTag, patchedRepo)
 			continue
 		}
 
@@ -53,59 +59,14 @@ func BuildImageMappings(imageRefs []string, targetRegistry string, excludeNames 
 			OriginalRepo: sourceRepo,
 			OriginalTag:  sourceTag,
 			PatchedRepo:  patchedRepo,
-			PatchedTag:   patchedTag,
+			PatchedTag:   sourceTag,
 		})
 	}
 
 	return mappings, nil
 }
 
-// FindLatestPatchedTag finds the latest patched tag from crane ls output.
-// Returns "" if no patched tag matches the source tag.
-func FindLatestPatchedTag(craneLsOutput, sourceTag string) string {
-	if sourceTag == "" {
-		return ""
-	}
-
-	base := sourceTag + "-patched"
-	bestTag := ""
-	bestVersion := -1
-
-	for line := range strings.SplitSeq(craneLsOutput, "\n") {
-		tag := strings.TrimSpace(line)
-		if tag == "" {
-			continue
-		}
-
-		if tag == base {
-			if bestVersion < 0 {
-				bestVersion = 0
-				bestTag = tag
-			}
-			continue
-		}
-
-		rest, found := strings.CutPrefix(tag, base+"-")
-		if !found {
-			continue
-		}
-
-		n, err := strconv.Atoi(rest)
-		if err != nil || n <= 0 {
-			continue
-		}
-		if n > bestVersion {
-			bestVersion = n
-			bestTag = tag
-		}
-	}
-
-	return bestTag
-}
-
 // isExcluded checks whether a chart-discovered image should be skipped.
-// It matches the derived name (from nameFromRef) AND the raw basename of
-// the source ref against the exclude set, consistent with discovery.isExcluded.
 func isExcluded(name, imageRef string, excludeNames map[string]struct{}) bool {
 	if len(excludeNames) == 0 {
 		return false
@@ -113,7 +74,7 @@ func isExcluded(name, imageRef string, excludeNames map[string]struct{}) bool {
 	if _, ok := excludeNames[name]; ok {
 		return true
 	}
-	baseName := nameBasename(imageRef)
+	baseName := nameBasename(name)
 	if baseName != name {
 		if _, ok := excludeNames[baseName]; ok {
 			return true
@@ -122,9 +83,7 @@ func isExcluded(name, imageRef string, excludeNames map[string]struct{}) bool {
 	return false
 }
 
-// nameFromRef derives a short image name from an image reference.
-// Duplicated from internal/discovery for package isolation.
-func nameFromRef(ref string) string {
+func repoPath(ref string) string {
 	if idx := strings.Index(ref, "@"); idx != -1 {
 		ref = ref[:idx]
 	}
@@ -135,22 +94,16 @@ func nameFromRef(ref string) string {
 	}
 
 	parts := strings.Split(ref, "/")
-
-	if len(parts) >= 3 {
-		org := parts[len(parts)-2]
-		name := parts[len(parts)-1]
-		if org == name {
-			return name
+	if len(parts) >= 2 {
+		first := parts[0]
+		if strings.ContainsAny(first, ".:") || first == "localhost" {
+			return strings.Join(parts[1:], "/")
 		}
-		return org + "-" + name
 	}
 
-	return parts[len(parts)-1]
+	return ref
 }
 
-// nameBasename returns the last path component of an image ref with tag/digest stripped.
-// e.g. "docker.io/library/rabbitmq:4.2.3" → "rabbitmq".
-// Duplicated from internal/discovery for package isolation.
 func nameBasename(ref string) string {
 	if idx := strings.Index(ref, "@"); idx != -1 {
 		ref = ref[:idx]
