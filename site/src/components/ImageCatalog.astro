@@ -5,39 +5,13 @@ import SourceBadge from "./SourceBadge.astro";
 import SeverityBadges from "./SeverityBadges.astro";
 import { catalog } from "../lib/catalog";
 import type { SiteImage, VulnSummary } from "../lib/catalog";
+import { patchedRefToName } from "../lib/refs";
 
 const base = import.meta.env.BASE_URL;
 
-function patchedRefRepoPath(ref: string | undefined): string {
-  if (!ref) return "";
-
-  let value = ref;
-  const atIndex = value.indexOf("@");
-  if (atIndex !== -1) value = value.slice(0, atIndex);
-
-  const lastSlash = value.lastIndexOf("/");
-  const lastColon = value.lastIndexOf(":");
-  if (lastColon > lastSlash) value = value.slice(0, lastColon);
-
-  const prefix = REGISTRY + "/";
-  if (value.startsWith(prefix)) {
-    return value.slice(prefix.length);
-  }
-
-  const parts = value.split("/");
-  if (parts.length >= 2) {
-    const first = parts[0] ?? "";
-    if (/[.:]/.test(first) || first === "localhost") {
-      return parts.slice(1).join("/");
-    }
-  }
-
-  return value;
-}
-
 const scanDataMap = new Map<string, SiteImage>();
 for (const img of catalog.images ?? []) {
-  const name = patchedRefRepoPath(img.patchedRef);
+  const name = patchedRefToName(img.patchedRef);
   if (name) scanDataMap.set(name, img);
 }
 

@@ -1,12 +1,15 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import CopyButton from "../../components/CopyButton.astro";
+import SeverityBadges from "../../components/SeverityBadges.astro";
 import { getChartsCatalog } from "../../lib/charts";
-import type { ChartEntry } from "../../lib/charts";
+import type { ChartEntry, ChartImageMapping } from "../../lib/charts";
+import { getImageVulns, getChartVulns } from "../../lib/chart-vulns";
+import { patchedRefToName } from "../../lib/refs";
 
 const base = import.meta.env.BASE_URL;
-const catalog = getChartsCatalog();
-const charts = catalog.charts;
+const chartsCatalog = getChartsCatalog();
+const charts = chartsCatalog.charts;
 const totalOverrides = charts.reduce(
   (sum, c) => sum + c.imageMappings.length + c.valueOverrides.length,
   0
@@ -73,7 +76,9 @@ const totalOverrides = charts.reduce(
           Wrapper charts are pushed to
           <code class="text-xs"
             >{
-              catalog.chartRegistry || charts[0]?.registry || "oci://ghcr.io/verity-org/charts"
+              chartsCatalog.chartRegistry ||
+                charts[0]?.registry ||
+                "oci://ghcr.io/verity-org/charts"
             }</code
           > and can be installed directly via <code class="text-xs">helm install</code>.
         </p>
@@ -96,6 +101,7 @@ const totalOverrides = charts.reduce(
         charts.map((chart: ChartEntry, idx: number) => {
           const installCmd = `helm install ${chart.wrapperName} ${chart.registry}/${chart.wrapperName} --version ${chart.wrapperVersion}`;
           const mappingCount = chart.imageMappings.length + chart.valueOverrides.length;
+          const chartVulns = getChartVulns(chart);
           return (
             <div class="bg-verity-surface border border-verity-border rounded-lg overflow-hidden">
               {/* Header */}
@@ -107,9 +113,12 @@ const totalOverrides = charts.reduce(
                       v{chart.version}
                     </span>
                   </div>
-                  <span class="text-xs text-verity-text-muted">
-                    {mappingCount} image {mappingCount === 1 ? "override" : "overrides"}
-                  </span>
+                  <div class="flex items-center gap-3">
+                    <SeverityBadges summary={chartVulns} />
+                    <span class="text-xs text-verity-text-muted">
+                      {mappingCount} image {mappingCount === 1 ? "override" : "overrides"}
+                    </span>
+                  </div>
                 </div>
                 {chart.repository && (
                   <div class="mt-1 text-xs text-verity-text-secondary font-mono truncate">
@@ -162,24 +171,39 @@ const totalOverrides = charts.reduce(
                       <thead>
                         <tr class="text-verity-text-muted uppercase tracking-wider border-b border-verity-border/50">
                           <th class="text-left py-2 pr-4 font-semibold">Original</th>
-                          <th class="text-left py-2 font-semibold">Patched</th>
+                          <th class="text-left py-2 pr-4 font-semibold">Patched</th>
+                          <th class="text-left py-2 font-semibold">CVEs</th>
                         </tr>
                       </thead>
                       <tbody class="font-mono">
-                        {chart.imageMappings.map((m) => (
-                          <tr class="border-b border-verity-border/30">
-                            <td class="py-1.5 pr-4 text-verity-text-secondary">
-                              {m.originalRepo}:{m.originalTag}
-                            </td>
-                            <td class="py-1.5 text-verity-nucleus">
-                              {m.patchedRepo}:{m.patchedTag}
-                            </td>
-                          </tr>
-                        ))}
+                        {chart.imageMappings.map((m: ChartImageMapping) => {
+                          const imgName = patchedRefToName(m.patchedRepo);
+                          const imgVulns = getImageVulns(m.patchedRepo, m.patchedTag);
+                          return (
+                            <tr class="border-b border-verity-border/30">
+                              <td class="py-1.5 pr-4 text-verity-text-secondary">
+                                {m.originalRepo}:{m.originalTag}
+                              </td>
+                              <td class="py-1.5 pr-4">
+                                <a
+                                  href={`${base}catalog/${imgName}/`}
+                                  class="text-verity-nucleus hover:underline"
+                                >
+                                  {m.patchedRepo}:{m.patchedTag}
+                                </a>
+                              </td>
+                              <td class="py-1.5">
+                                <SeverityBadges summary={imgVulns} />
+                              </td>
+                            </tr>
+                          );
+                        })}
                         {chart.valueOverrides.map((v) => (
                           <tr class="border-b border-verity-border/30">
                             <td class="py-1.5 pr-4 text-verity-text-secondary">{v.path}</td>
-                            <td class="py-1.5 text-verity-nucleus">{v.value}</td>
+                            <td class="py-1.5 text-verity-nucleus" colspan="2">
+                              {v.value}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
