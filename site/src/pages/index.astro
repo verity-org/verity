@@ -2,11 +2,37 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSection from "../components/HeroSection.astro";
 import ImageCatalog from "../components/ImageCatalog.astro";
+import SeverityBadges from "../components/SeverityBadges.astro";
 import { getChartsCatalog } from "../lib/charts";
+import type { ChartEntry } from "../lib/charts";
+import { catalog } from "../lib/catalog";
+import type { VulnSummary } from "../lib/catalog";
 
 const base = import.meta.env.BASE_URL;
 const chartsCatalog = getChartsCatalog();
 const charts = chartsCatalog.charts;
+
+function getImageVulns(patchedRepo: string, patchedTag: string): VulnSummary {
+  const ref = `${patchedRepo}:${patchedTag}`;
+  const img = catalog.images?.find((i) => i.patchedRef === ref);
+  if (img) return img.afterVulns;
+  const byRepo = catalog.images?.find((i) => i.patchedRef.startsWith(patchedRepo + ":"));
+  if (byRepo) return byRepo.afterVulns;
+  return { total: 0, severityCounts: {} };
+}
+
+function getChartVulns(chart: ChartEntry): VulnSummary {
+  const merged: Record<string, number> = {};
+  let total = 0;
+  for (const m of chart.imageMappings) {
+    const v = getImageVulns(m.patchedRepo, m.patchedTag);
+    total += v.total;
+    for (const [sev, count] of Object.entries(v.severityCounts)) {
+      merged[sev] = (merged[sev] ?? 0) + count;
+    }
+  }
+  return { total, severityCounts: merged };
+}
 ---
 
 <BaseLayout title="Verity — Security-Patched Container Registry">
@@ -31,6 +57,7 @@ const charts = chartsCatalog.charts;
           {charts.slice(0, 3).map((chart) => {
             const installCmd = `helm install ${chart.wrapperName} ${chart.registry}/${chart.wrapperName} --version ${chart.wrapperVersion}`;
             const overrideCount = chart.imageMappings.length + chart.valueOverrides.length;
+            const chartVulns = getChartVulns(chart);
             return (
               <a
                 href={`${base}charts/`}
@@ -45,8 +72,11 @@ const charts = chartsCatalog.charts;
                 <div class="font-mono text-xs bg-verity-void border border-verity-border rounded px-2 py-1.5 mb-3 truncate text-verity-text-primary">
                   {installCmd}
                 </div>
-                <div class="text-xs text-verity-text-muted">
-                  {overrideCount} patched image {overrideCount === 1 ? "override" : "overrides"}
+                <div class="flex items-center justify-between text-xs text-verity-text-muted">
+                  <span>
+                    {overrideCount} patched image {overrideCount === 1 ? "override" : "overrides"}
+                  </span>
+                  <SeverityBadges summary={chartVulns} />
                 </div>
               </a>
             );
@@ -69,4 +99,4 @@ const charts = chartsCatalog.charts;
     </div>
     <ImageCatalog />
   </section>
-</BaseLayout>
+</BaseLayout>; ---
