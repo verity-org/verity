@@ -28,7 +28,9 @@ echo "Using report file: $REPORT_FILE"
 # Copa patches the native platform of this runner (amd64 or arm64).
 # --pkg-types os,library patches both OS packages and app-level deps (pip, npm)
 # --library-patch-level major allows major version bumps for library fixes
-OUTPUT=$(copa patch \
+COPA_LOG=$(mktemp)
+set +e
+copa patch \
   --image "$SOURCE" \
   --tag "$PLATFORM_TAG" \
   --report "$REPORT_FILE" \
@@ -36,15 +38,19 @@ OUTPUT=$(copa patch \
   --library-patch-level major \
   --push \
   --addr buildx://copa-builder \
-  --timeout 30m 2>&1) || {
-  # If Copa failed, check if it's because of no package updates
-  if echo "$OUTPUT" | grep -q "no package updates found"; then
-    echo "No package updates found — copying source image to staging tag"
+  --timeout 30m 2>&1 | tee "$COPA_LOG"
+COPA_EXIT=${PIPESTATUS[0]}
+set -e
+
+if [ "$COPA_EXIT" -ne 0 ]; then
+  if grep -q 'no package updates found' "$COPA_LOG"; then
+    echo "No package updates found — image is already clean"
   else
-    echo "Copa patch failed: $OUTPUT"
-    exit 1
+    rm -f "$COPA_LOG"
+    exit "$COPA_EXIT"
   fi
-}
+fi
+rm -f "$COPA_LOG"
 
 # When Copa finds no OS package updates it exits 0 but does not push.
 # Copy the source image to the staging tag so the combine step can build
