@@ -4,6 +4,8 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/verity-org/verity/internal/config"
 )
 
 func TestFindLatestPatchedTag(t *testing.T) {
@@ -193,7 +195,7 @@ esac
 		"kiwigrid-k8s-sidecar": {},
 	}
 
-	got, err := BuildImageMappings(imageRefs, "ghcr.io/verity-org", excludeNames)
+	got, err := BuildImageMappings(imageRefs, "ghcr.io/verity-org", excludeNames, nil)
 	if err != nil {
 		t.Fatalf("BuildImageMappings() error = %v", err)
 	}
@@ -211,6 +213,58 @@ esac
 
 	if got[0] != want {
 		t.Errorf("BuildImageMappings()[0] = %+v, want %+v", got[0], want)
+	}
+}
+
+func TestBuildCopaNameMap(t *testing.T) {
+	images := []config.ImageSpec{
+		{Name: "k8s-sidecar", Image: "ghcr.io/kiwigrid/k8s-sidecar"},
+		{Name: "redis", Image: "mirror.gcr.io/library/redis"},
+		{Name: "prometheus-node-exporter", Image: "quay.io/prometheus/node-exporter"},
+		{Name: "kube-state-metrics", Image: "ghcr.io/kubernetes/kube-state-metrics/kube-state-metrics"},
+	}
+	m := BuildCopaNameMap(images)
+
+	tests := []struct {
+		repo string
+		want string
+	}{
+		{repo: "kiwigrid/k8s-sidecar", want: "k8s-sidecar"},
+		{repo: "library/redis", want: "redis"},
+		{repo: "prometheus/node-exporter", want: "prometheus-node-exporter"},
+		{repo: "kubernetes/kube-state-metrics/kube-state-metrics", want: "kube-state-metrics"},
+	}
+
+	for _, tt := range tests {
+		if got := m[tt.repo]; got != tt.want {
+			t.Errorf("copaNames[%q] = %q, want %q", tt.repo, got, tt.want)
+		}
+	}
+}
+
+func TestResolveImageName(t *testing.T) {
+	copaNames := map[string]string{
+		"kiwigrid/k8s-sidecar": "k8s-sidecar",
+		"library/redis":        "redis",
+		"kubernetes/kube-state-metrics/kube-state-metrics": "kube-state-metrics",
+	}
+
+	tests := []struct {
+		ref  string
+		want string
+	}{
+		{ref: "ghcr.io/kiwigrid/k8s-sidecar:1.28.0", want: "k8s-sidecar"},
+		{ref: "mirror.gcr.io/library/redis:7.0.5", want: "redis"},
+		{ref: "ghcr.io/kubernetes/kube-state-metrics/kube-state-metrics:v2.10.0", want: "kube-state-metrics"},
+		{ref: "quay.io/some-unknown/thing:1.0", want: "some-unknown-thing"},
+		{ref: "nginx:1.25", want: "nginx"},
+	}
+
+	for _, tt := range tests {
+		got := resolveImageName(tt.ref, copaNames)
+		if got != tt.want {
+			t.Errorf("resolveImageName(%q) = %q, want %q", tt.ref, got, tt.want)
+		}
 	}
 }
 

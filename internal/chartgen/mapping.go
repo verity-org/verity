@@ -10,6 +10,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/verity-org/verity/internal/config"
 )
 
 // ImageMapping represents the mapping from an original image to its patched replacement.
@@ -22,13 +24,13 @@ type ImageMapping struct {
 
 // BuildImageMappings queries the target registry for patched versions of each image
 // and returns mappings for images that have been successfully patched.
-func BuildImageMappings(imageRefs []string, targetRegistry string, excludeNames map[string]struct{}) ([]ImageMapping, error) {
+func BuildImageMappings(imageRefs []string, targetRegistry string, excludeNames map[string]struct{}, copaNames map[string]string) ([]ImageMapping, error) {
 	ctx := context.Background()
 	mappings := make([]ImageMapping, 0, len(imageRefs))
 
 	for _, imageRef := range imageRefs {
 		sourceRepo, sourceTag := splitRef(imageRef)
-		name := nameFromRef(imageRef)
+		name := resolveImageName(imageRef, copaNames)
 
 		if isExcluded(name, imageRef, excludeNames) {
 			fmt.Fprintf(os.Stderr, "warning: skipping excluded image %q (%s)\n", name, imageRef)
@@ -58,6 +60,35 @@ func BuildImageMappings(imageRefs []string, targetRegistry string, excludeNames 
 	}
 
 	return mappings, nil
+}
+
+// BuildCopaNameMap builds a lookup map from normalized image repository path
+// (without host/tag/digest) to the configured Copa image name.
+func BuildCopaNameMap(images []config.ImageSpec) map[string]string {
+	if len(images) == 0 {
+		return nil
+	}
+
+	names := make(map[string]string, len(images))
+	for i := range images {
+		repo := normalizeRepo(images[i].Image)
+		if repo == "" || images[i].Name == "" {
+			continue
+		}
+		names[repo] = images[i].Name
+	}
+
+	return names
+}
+
+func resolveImageName(imageRef string, copaNames map[string]string) string {
+	if len(copaNames) > 0 {
+		if name, ok := copaNames[normalizeRepo(imageRef)]; ok {
+			return name
+		}
+	}
+
+	return nameFromRef(imageRef)
 }
 
 // FindLatestPatchedTag finds the latest patched tag from crane ls output.
@@ -163,6 +194,23 @@ func nameBasename(ref string) string {
 		return ref[lastSlash+1:]
 	}
 	return ref
+}
+
+func normalizeRepo(ref string) string {
+	ref, _ = splitRef(ref)
+	if ref == "" {
+		return ""
+	}
+
+	parts := strings.Split(ref, "/")
+	if len(parts) > 1 {
+		first := parts[0]
+		if strings.Contains(first, ".") || strings.Contains(first, ":") || first == "localhost" {
+			parts = parts[1:]
+		}
+	}
+
+	return strings.Join(parts, "/")
 }
 
 // splitRef splits an image reference into its name and tag components.

@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/verity-org/verity/internal/config"
 	"github.com/verity-org/verity/internal/discovery"
 )
 
 type Config struct {
 	ChartsFile     string
 	VerityConfig   string
+	CopaConfig     string
 	TargetRegistry string
 	ChartRegistry  string
 	ExcludeNames   map[string]struct{}
@@ -41,71 +43,100 @@ func Run(cfg *Config) (*DryRunResult, error) {
 		return nil, fmt.Errorf("load verity config: %w", err)
 	}
 
+	copaNames, err := loadCopaNames(cfg.CopaConfig)
+	if err != nil {
+		return nil, err
+	}
+
 	result := &DryRunResult{Charts: make([]ChartResult, 0, len(charts))}
 
 	for _, chart := range charts {
-		fmt.Fprintf(os.Stderr, "info: processing chart %s@%s\n", chart.Name, chart.Version)
-
-		imageRefs, err := discovery.ExtractChartImages(chart, vc.Overrides)
+		chartResult, include, err := processChart(cfg, chart, vc, copaNames)
 		if err != nil {
-			return nil, fmt.Errorf("extract images for chart %s: %w", chart.Name, err)
+			return nil, err
 		}
-
-		mappings, err := BuildImageMappings(imageRefs, cfg.TargetRegistry, cfg.ExcludeNames)
-		if err != nil {
-			return nil, fmt.Errorf("build image mappings for chart %s: %w", chart.Name, err)
-		}
-
-		if len(mappings) == 0 {
-			fmt.Fprintf(os.Stderr, "warning: no patched image mappings for chart %s@%s; skipping\n", chart.Name, chart.Version)
-			continue
-		}
-
-		valuesYAML, err := GetChartValues(chart)
-		if err != nil {
-			return nil, fmt.Errorf("get chart values for %s: %w", chart.Name, err)
-		}
-
-		valueOverrides, err := ResolveValuePaths(valuesYAML, mappings, vc.Overrides)
-		if err != nil {
-			return nil, fmt.Errorf("resolve value paths for %s: %w", chart.Name, err)
-		}
-
-		wrapper, err := BuildWrapperChart(chart, valueOverrides)
-		if err != nil {
-			return nil, fmt.Errorf("build wrapper chart for %s: %w", chart.Name, err)
-		}
-
-		chartResult := ChartResult{
-			Name:           chart.Name,
-			Version:        chart.Version,
-			WrapperName:    wrapper.Name,
-			WrapperVersion: wrapper.Version,
-			Registry:       cfg.ChartRegistry,
-			ImageMappings:  mappings,
-			ValueOverrides: valueOverrides,
-		}
-		result.Charts = append(result.Charts, chartResult)
-
-		if cfg.DryRun {
-			fmt.Fprintf(os.Stderr, "info: dry-run enabled; skipping package/push for %s\n", wrapper.Name)
-			continue
-		}
-
-		tgzPath, err := PackageChart(wrapper)
-		if err != nil {
-			return nil, fmt.Errorf("package wrapper chart %s: %w", wrapper.Name, err)
-		}
-
-		if err := PushChart(tgzPath, cfg.ChartRegistry); err != nil {
-			_ = os.Remove(tgzPath)
-			return nil, fmt.Errorf("push wrapper chart %s: %w", wrapper.Name, err)
-		}
-
-		if err := os.Remove(tgzPath); err != nil {
-			fmt.Fprintf(os.Stderr, "warning: failed to remove packaged chart %s: %v\n", tgzPath, err)
+		if include {
+			result.Charts = append(result.Charts, chartResult)
 		}
 	}
 
 	return result, nil
+}
+
+func loadCopaNames(copaConfigPath string) (map[string]string, error) {
+	if copaConfigPath == "" {
+		return map[string]string{}, nil
+	}
+
+	copaCfg, err := discovery.LoadConfig(copaConfigPath)
+	if err != nil {
+		return nil, fmt.Errorf("load copa config: %w", err)
+	}
+
+	return BuildCopaNameMap(copaCfg.Images), nil
+}
+
+func processChart(cfg *Config, chart config.ChartSpec, vc *config.VerityConfig, copaNames map[string]string) (ChartResult, bool, error) {
+	fmt.Fprintf(os.Stderr, "info: processing chart %s@%s\n", chart.Name, chart.Version)
+
+	imageRefs, err := discovery.ExtractChartImages(chart, vc.Overrides)
+	if err != nil {
+		return ChartResult{}, false, fmt.Errorf("extract images for chart %s: %w", chart.Name, err)
+	}
+
+	mappings, err := BuildImageMappings(imageRefs, cfg.TargetRegistry, cfg.ExcludeNames, copaNames)
+	if err != nil {
+		return ChartResult{}, false, fmt.Errorf("build image mappings for chart %s: %w", chart.Name, err)
+	}
+
+	if len(mappings) == 0 {
+		fmt.Fprintf(os.Stderr, "warning: no patched image mappings for chart %s@%s; skipping\n", chart.Name, chart.Version)
+		return ChartResult{}, false, nil
+	}
+
+	valuesYAML, err := GetChartValues(chart)
+	if err != nil {
+		return ChartResult{}, false, fmt.Errorf("get chart values for %s: %w", chart.Name, err)
+	}
+
+	valueOverrides, err := ResolveValuePaths(valuesYAML, mappings, vc.Overrides)
+	if err != nil {
+		return ChartResult{}, false, fmt.Errorf("resolve value paths for %s: %w", chart.Name, err)
+	}
+
+	wrapper, err := BuildWrapperChart(chart, valueOverrides)
+	if err != nil {
+		return ChartResult{}, false, fmt.Errorf("build wrapper chart for %s: %w", chart.Name, err)
+	}
+
+	chartResult := ChartResult{
+		Name:           chart.Name,
+		Version:        chart.Version,
+		WrapperName:    wrapper.Name,
+		WrapperVersion: wrapper.Version,
+		Registry:       cfg.ChartRegistry,
+		ImageMappings:  mappings,
+		ValueOverrides: valueOverrides,
+	}
+
+	if cfg.DryRun {
+		fmt.Fprintf(os.Stderr, "info: dry-run enabled; skipping package/push for %s\n", wrapper.Name)
+		return chartResult, true, nil
+	}
+
+	tgzPath, err := PackageChart(wrapper)
+	if err != nil {
+		return ChartResult{}, false, fmt.Errorf("package wrapper chart %s: %w", wrapper.Name, err)
+	}
+
+	if err := PushChart(tgzPath, cfg.ChartRegistry); err != nil {
+		_ = os.Remove(tgzPath)
+		return ChartResult{}, false, fmt.Errorf("push wrapper chart %s: %w", wrapper.Name, err)
+	}
+
+	if err := os.Remove(tgzPath); err != nil {
+		fmt.Fprintf(os.Stderr, "warning: failed to remove packaged chart %s: %v\n", tgzPath, err)
+	}
+
+	return chartResult, true, nil
 }

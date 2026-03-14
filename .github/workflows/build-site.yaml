@@ -169,6 +169,20 @@ jobs:
           ./verity catalog "${args[@]}"
           echo "✓ Catalog generated"
 
+      - name: Generate charts catalog
+        run: |
+          EXCLUDE_NAMES=$(find images -maxdepth 1 -name '*.yaml' -printf '%f\n' 2>/dev/null | sed 's/\.yaml$//' | paste -sd, || true)
+          ./verity chart-gen \
+            --config copa-config.yaml \
+            --charts-file Chart.yaml \
+            --verity-config verity.yaml \
+            --target-registry "${TARGET_REGISTRY}" \
+            --chart-registry "oci://ghcr.io/verity-org/charts" \
+            --exclude-names "${EXCLUDE_NAMES}" \
+            --dry-run \
+            > site/src/data/charts-catalog.json
+          echo "✓ Generated charts catalog ($(jq '.charts | length' site/src/data/charts-catalog.json) charts)"
+
       - name: Build site
         working-directory: site
         run: npm ci && npm run build
