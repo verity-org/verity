@@ -152,7 +152,13 @@ function getVulnSummary(image: FullCatalogImage): VulnSummary {
                   </div>
 
                   <div class="text-xs text-verity-text-secondary font-mono truncate">
-                    {REGISTRY}/{upstreamPath(image)}
+                    {image.source === "incompatible" && image.note ? (
+                      <span class="text-red-400/70 not-italic">{image.note}</span>
+                    ) : (
+                      <>
+                        {REGISTRY}/{upstreamPath(image)}
+                      </>
+                    )}
                   </div>
                 </a>
               );

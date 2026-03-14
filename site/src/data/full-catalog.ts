@@ -1,6 +1,6 @@
 export const REGISTRY = "ghcr.io/verity-org";
 
-export type ImageSource = "copa" | "integer";
+export type ImageSource = "copa" | "integer" | "incompatible";
 
 export interface FullCatalogImage {
   name: string;
@@ -8,6 +8,7 @@ export interface FullCatalogImage {
   source: ImageSource;
   upstream?: string;
   variants?: string[];
+  note?: string;
 }
 
 /** Extract the path portion after the registry host from an upstream ref. */
@@ -52,8 +53,8 @@ export const fullCatalog: FullCatalogCategory[] = [
       {
         name: "graalvm/native-image",
         label: "graalvm-native-image",
-        source: "copa",
-        upstream: "ghcr.io/graalvm/native-image",
+        source: "incompatible",
+        note: "Oracle Linux — unsupported by Copa",
       },
       {
         name: "library/gradle",
@@ -135,10 +136,10 @@ export const fullCatalog: FullCatalogCategory[] = [
       },
       { name: "valkey", source: "integer" },
       {
-        name: "library/mongo",
+        name: "mongodb/mongodb-community-server",
         label: "mongodb",
         source: "copa",
-        upstream: "mirror.gcr.io/library/mongo",
+        upstream: "docker.io/mongodb/mongodb-community-server",
       },
       { name: "mariadb", source: "integer" },
       {
@@ -401,8 +402,8 @@ export const fullCatalog: FullCatalogCategory[] = [
       {
         name: "calico/node",
         label: "calico-node",
-        source: "copa",
-        upstream: "quay.io/calico/node",
+        source: "incompatible",
+        note: "Stripped image — no package managers",
       },
       { name: "calico/cni", label: "calico-cni", source: "copa", upstream: "quay.io/calico/cni" },
       {
@@ -427,8 +428,8 @@ export const fullCatalog: FullCatalogCategory[] = [
       {
         name: "calico/ctl",
         label: "calico-calicoctl",
-        source: "copa",
-        upstream: "quay.io/calico/ctl",
+        source: "incompatible",
+        note: "Stripped image — no package managers",
       },
       {
         name: "calico/node-driver-registrar",
@@ -592,8 +593,8 @@ export const fullCatalog: FullCatalogCategory[] = [
       {
         name: "keycloak/keycloak-operator",
         label: "keycloak-operator",
-        source: "copa",
-        upstream: "quay.io/keycloak/keycloak-operator",
+        source: "incompatible",
+        note: "Stripped image — no package managers",
       },
       {
         name: "spiffe/spire-server",
@@ -709,20 +710,19 @@ export const fullCatalog: FullCatalogCategory[] = [
     images: [
       {
         name: "goharbor/registry-photon",
-        source: "copa",
-        upstream: "ghcr.io/goharbor/registry-photon",
+        source: "incompatible",
+        note: "Photon OS — unsupported by Copa",
       },
       {
         name: "goharbor/harbor-portal",
-        label: "harbor-portal",
-        source: "copa",
-        upstream: "ghcr.io/goharbor/harbor-portal",
+        source: "incompatible",
+        note: "Photon OS — unsupported by Copa",
       },
       {
         name: "project-zot/zot-linux-amd64",
         label: "zot",
-        source: "copa",
-        upstream: "ghcr.io/project-zot/zot-linux-amd64",
+        source: "incompatible",
+        note: "Broken Debian repos — libssl3 unpatchable",
       },
     ],
   },
