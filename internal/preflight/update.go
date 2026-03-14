@@ -68,7 +68,7 @@ func fetchManifestWithSHA(repo, branch, token string) (Manifest, string, error) 
 	req.Header.Set("Authorization", "token "+token)
 	req.Header.Set("Accept", "application/vnd.github.v3+json")
 
-	resp, err := httpClient.Do(req) // #nosec G107 -- URL built from fixed GitHub API host plus repo/branch inputs.
+	resp, err := httpClient.Do(req) // #nosec G704 -- URL built from fixed GitHub API host plus repo/branch inputs.
 	if err != nil {
 		return nil, "", err
 	}
@@ -140,7 +140,7 @@ func pushManifest(repo, branch, token, sha string, manifest Manifest, key string
 	req.Header.Set("Accept", "application/vnd.github.v3+json")
 	req.Header.Set("Content-Type", "application/json")
 
-	resp, err := httpClient.Do(req) // #nosec G107 -- URL built from fixed GitHub API host plus repo/branch inputs.
+	resp, err := httpClient.Do(req) // #nosec G704 -- URL built from fixed GitHub API host plus repo/branch inputs.
 	if err != nil {
 		return fmt.Errorf("pushing manifest: %w", err)
 	}
