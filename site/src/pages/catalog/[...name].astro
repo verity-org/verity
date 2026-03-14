@@ -10,6 +10,7 @@ import SourceBadge from "../../components/SourceBadge.astro";
 import { catalog } from "../../lib/catalog";
 import type { SiteImage, IntegerImage, IntegerVersion, IntegerVariant } from "../../lib/catalog";
 import { getIntegerImage } from "../../data/integer-catalog";
+import { patchedRefToName } from "../../lib/refs";
 
 interface IntegerDataWithRegistry extends IntegerImage {
   registry: string;
@@ -21,28 +22,6 @@ interface CatalogPageProps {
   scanData?: SiteImage;
   integerData?: IntegerDataWithRegistry;
   hardenedEquivalent?: string;
-}
-
-function patchedRefRepoPath(ref: string | undefined): string {
-  if (!ref) return "";
-
-  let value = ref;
-  const atIndex = value.indexOf("@");
-  if (atIndex !== -1) value = value.slice(0, atIndex);
-
-  const lastSlash = value.lastIndexOf("/");
-  const lastColon = value.lastIndexOf(":");
-  if (lastColon > lastSlash) value = value.slice(0, lastColon);
-
-  const parts = value.split("/");
-  if (parts.length >= 2) {
-    const first = parts[0] ?? "";
-    if (/[.:]/.test(first) || first === "localhost") {
-      return parts.slice(1).join("/");
-    }
-  }
-
-  return value;
 }
 
 function isEolPassed(eolDateStr: string): boolean {
@@ -70,28 +49,6 @@ function getUniqueVariantTypes(variants: IntegerVariant[]): string[] {
 }
 
 export async function getStaticPaths() {
-  const patchedRefRepoPath = (ref: string | undefined): string => {
-    if (!ref) return "";
-
-    let value = ref;
-    const atIndex = value.indexOf("@");
-    if (atIndex !== -1) value = value.slice(0, atIndex);
-
-    const lastSlash = value.lastIndexOf("/");
-    const lastColon = value.lastIndexOf(":");
-    if (lastColon > lastSlash) value = value.slice(0, lastColon);
-
-    const parts = value.split("/");
-    if (parts.length >= 2) {
-      const first = parts[0] ?? "";
-      if (/[.:]/.test(first) || first === "localhost") {
-        return parts.slice(1).join("/");
-      }
-    }
-
-    return value;
-  };
-
   const paths: { params: { name: string }; props: CatalogPageProps }[] = [];
 
   // Pre-compute set of integer image names for upgrade banner logic
@@ -104,7 +61,7 @@ export async function getStaticPaths() {
   for (const category of fullCatalog) {
     for (const image of category.images) {
       const scanData = catalog.images?.find((ci) => {
-        const name = patchedRefRepoPath(ci.patchedRef);
+        const name = patchedRefToName(ci.patchedRef);
         return name === image.name;
       });
 

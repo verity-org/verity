@@ -4,9 +4,8 @@ import CopyButton from "../../components/CopyButton.astro";
 import SeverityBadges from "../../components/SeverityBadges.astro";
 import { getChartsCatalog } from "../../lib/charts";
 import type { ChartEntry, ChartImageMapping } from "../../lib/charts";
-import { catalog } from "../../lib/catalog";
-import type { VulnSummary } from "../../lib/catalog";
-import { REGISTRY } from "../../data/full-catalog";
+import { getImageVulns, getChartVulns } from "../../lib/chart-vulns";
+import { patchedRefToName } from "../../lib/refs";
 
 const base = import.meta.env.BASE_URL;
 const chartsCatalog = getChartsCatalog();
@@ -15,41 +14,6 @@ const totalOverrides = charts.reduce(
   (sum, c) => sum + c.imageMappings.length + c.valueOverrides.length,
   0
 );
-
-const registryPrefix = REGISTRY + "/";
-
-function patchedRefToName(ref: string): string {
-  let v = ref;
-  const at = v.indexOf("@");
-  if (at !== -1) v = v.slice(0, at);
-  const lastSlash = v.lastIndexOf("/");
-  const lastColon = v.lastIndexOf(":");
-  if (lastColon > lastSlash) v = v.slice(0, lastColon);
-  if (v.startsWith(registryPrefix)) return v.slice(registryPrefix.length);
-  return v;
-}
-
-function getImageVulns(patchedRepo: string, patchedTag: string): VulnSummary {
-  const ref = `${patchedRepo}:${patchedTag}`;
-  const img = catalog.images?.find((i) => i.patchedRef === ref);
-  if (img) return img.afterVulns;
-  const byRepo = catalog.images?.find((i) => i.patchedRef.startsWith(patchedRepo + ":"));
-  if (byRepo) return byRepo.afterVulns;
-  return { total: 0, severityCounts: {} };
-}
-
-function getChartVulns(chart: ChartEntry): VulnSummary {
-  const merged: Record<string, number> = {};
-  let total = 0;
-  for (const m of chart.imageMappings) {
-    const v = getImageVulns(m.patchedRepo, m.patchedTag);
-    total += v.total;
-    for (const [sev, count] of Object.entries(v.severityCounts)) {
-      merged[sev] = (merged[sev] ?? 0) + count;
-    }
-  }
-  return { total, severityCounts: merged };
-}
 ---
 
 <BaseLayout title="Helm Charts — Verity">
@@ -112,7 +76,9 @@ function getChartVulns(chart: ChartEntry): VulnSummary {
           Wrapper charts are pushed to
           <code class="text-xs"
             >{
-              catalog.chartRegistry || charts[0]?.registry || "oci://ghcr.io/verity-org/charts"
+              chartsCatalog.chartRegistry ||
+                charts[0]?.registry ||
+                "oci://ghcr.io/verity-org/charts"
             }</code
           > and can be installed directly via <code class="text-xs">helm install</code>.
         </p>
