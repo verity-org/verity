@@ -29,14 +29,6 @@ images:
   #  LANGUAGE RUNTIMES & SDKs
   # ============================================================================
 
-  - name: "graalvm/native-image"
-    image: "ghcr.io/graalvm/native-image"
-    platforms: ["linux/amd64", "linux/arm64"]
-    tags:
-      strategy: "pattern"
-      pattern: '^\d+\.\d+\.\d+$'
-      maxTags: 3
-
   # ============================================================================
   #  WEB SERVERS & PROXIES
   # ============================================================================
@@ -93,8 +85,8 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "library/mongo"
-    image: "mirror.gcr.io/library/mongo"
+  - name: "mongodb/mongodb-community-server"
+    image: "docker.io/mongodb/mongodb-community-server"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
       strategy: "pattern"
@@ -377,14 +369,6 @@ images:
       maxTags: 3
 
   # -- Calico --
-  - name: "calico/node"
-    image: "quay.io/calico/node"
-    platforms: ["linux/amd64", "linux/arm64"]
-    tags:
-      strategy: "pattern"
-      pattern: '^v\d+\.\d+\.\d+$'
-      maxTags: 3
-
   - name: "calico/cni"
     image: "quay.io/calico/cni"
     platforms: ["linux/amd64", "linux/arm64"]
@@ -419,14 +403,6 @@ images:
 
   - name: "calico/csi"
     image: "quay.io/calico/csi"
-    platforms: ["linux/amd64", "linux/arm64"]
-    tags:
-      strategy: "pattern"
-      pattern: '^v\d+\.\d+\.\d+$'
-      maxTags: 3
-
-  - name: "calico/ctl"
-    image: "quay.io/calico/ctl"
     platforms: ["linux/amd64", "linux/arm64"]
     tags:
       strategy: "pattern"
@@ -590,14 +566,6 @@ images:
       pattern: '^\d+\.\d+\.\d+$'
       maxTags: 3
 
-  - name: "keycloak/keycloak-operator"
-    image: "quay.io/keycloak/keycloak-operator"
-    platforms: ["linux/amd64", "linux/arm64"]
-    tags:
-      strategy: "pattern"
-      pattern: '^\d+\.\d+\.\d+$'
-      maxTags: 3
-
   # ⚠ SPIRE images are scratch-based since ~v1.8+. Copa CANNOT patch these.
   # Kept for tracking; Copa will no-op on them.
   - name: "spiffe/spire-server"
@@ -691,30 +659,6 @@ images:
   # ============================================================================
   #  CONTAINER REGISTRIES
   # ============================================================================
-
-  - name: "goharbor/registry-photon"
-    image: "ghcr.io/goharbor/registry-photon"
-    platforms: ["linux/amd64", "linux/arm64"]
-    tags:
-      strategy: "pattern"
-      pattern: '^v\d+\.\d+\.\d+$'
-      maxTags: 3
-
-  - name: "goharbor/harbor-portal"
-    image: "ghcr.io/goharbor/harbor-portal"
-    platforms: ["linux/amd64", "linux/arm64"]
-    tags:
-      strategy: "pattern"
-      pattern: '^v\d+\.\d+\.\d+$'
-      maxTags: 3
-
-  - name: "project-zot/zot-linux-amd64"
-    image: "ghcr.io/project-zot/zot-linux-amd64"
-    platforms: ["linux/amd64"]
-    tags:
-      strategy: "pattern"
-      pattern: '^v\d+\.\d+\.\d+$'
-      maxTags: 3
 
   # ============================================================================
   #  CERT MANAGEMENT
