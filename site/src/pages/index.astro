@@ -2,10 +2,60 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSection from "../components/HeroSection.astro";
 import ImageCatalog from "../components/ImageCatalog.astro";
+import CopyButton from "../components/CopyButton.astro";
+import { getChartsCatalog } from "../lib/charts";
+
+const base = import.meta.env.BASE_URL;
+const chartsCatalog = getChartsCatalog();
+const charts = chartsCatalog.charts;
 ---
 
 <BaseLayout title="Verity — Security-Patched Container Registry">
   <HeroSection />
+
+  {
+    charts.length > 0 && (
+      <section class="mb-12">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold text-verity-text-primary tracking-wider">Helm Charts</h2>
+          <a
+            href={`${base}charts/`}
+            class="text-sm text-verity-orbit hover:text-verity-nucleus transition-colors"
+          >
+            View all &rarr;
+          </a>
+        </div>
+        <p class="text-sm text-verity-text-secondary mb-4">
+          Drop-in Helm wrapper charts with all image references pre-patched.
+        </p>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {charts.slice(0, 3).map((chart) => {
+            const installCmd = `helm install ${chart.wrapperName} ${chart.registry}/${chart.wrapperName} --version ${chart.wrapperVersion}`;
+            const overrideCount = chart.imageMappings.length + chart.valueOverrides.length;
+            return (
+              <a
+                href={`${base}charts/`}
+                class="bg-verity-surface border border-verity-border rounded-lg p-4 hover:border-verity-orbit transition-colors block"
+              >
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-semibold text-verity-text-primary">{chart.name}</span>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-verity-void border border-verity-border text-verity-text-muted font-mono">
+                    v{chart.version}
+                  </span>
+                </div>
+                <div class="font-mono text-xs bg-verity-void border border-verity-border rounded px-2 py-1.5 mb-3 truncate text-verity-text-primary">
+                  {installCmd}
+                </div>
+                <div class="text-xs text-verity-text-muted">
+                  {overrideCount} patched image {overrideCount === 1 ? "override" : "overrides"}
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )
+  }
 
   <section>
     <div class="mb-6">
