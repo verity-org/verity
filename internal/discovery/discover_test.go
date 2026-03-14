@@ -10,21 +10,21 @@ import (
 
 const testNginxName = "nginx"
 
-func TestNameFromRef(t *testing.T) {
+func TestRepoPath(t *testing.T) {
 	tests := []struct {
 		name string
 		ref  string
 		want string
 	}{
 		{
-			name: "org equals name: deduplicated",
+			name: "org equals name",
 			ref:  "quay.io/prometheus/prometheus:v3.2.1",
-			want: "prometheus",
+			want: "prometheus/prometheus",
 		},
 		{
-			name: "org equals name with digest: deduplicated",
+			name: "org equals name with digest",
 			ref:  "quay.io/prometheus/prometheus@sha256:abc123",
-			want: "prometheus",
+			want: "prometheus/prometheus",
 		},
 		{
 			name: "simple image with no org",
@@ -32,27 +32,37 @@ func TestNameFromRef(t *testing.T) {
 			want: testNginxName,
 		},
 		{
-			name: "org differs from name: org-name joined",
+			name: "org differs from name",
 			ref:  "ghcr.io/kiwigrid/k8s-sidecar:1.28.0",
-			want: "kiwigrid-k8s-sidecar",
+			want: "kiwigrid/k8s-sidecar",
 		},
 		{
-			name: "collision safety: different registry same basename",
+			name: "different registry same basename",
 			ref:  "quay.io/some-org/nginx:1.29",
-			want: "some-org-nginx",
+			want: "some-org/nginx",
 		},
 		{
 			name: "registry.k8s.io with repeated component",
 			ref:  "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.10.0",
-			want: "kube-state-metrics",
+			want: "kube-state-metrics/kube-state-metrics",
+		},
+		{
+			name: "mirror gcr library image",
+			ref:  "mirror.gcr.io/library/redis:7.0",
+			want: "library/redis",
+		},
+		{
+			name: "gcr org image",
+			ref:  "gcr.io/distroless/static:latest",
+			want: "distroless/static",
 		},
 	}
 
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			got := nameFromRef(tc.ref)
+			got := repoPath(tc.ref)
 			if got != tc.want {
-				t.Errorf("nameFromRef(%q) = %q, want %q", tc.ref, got, tc.want)
+				t.Errorf("repoPath(%q) = %q, want %q", tc.ref, got, tc.want)
 			}
 		})
 	}
@@ -489,8 +499,6 @@ YAML
 	}
 
 	// Exclude "prometheus" and "rabbitmq" — both should be filtered from chart images.
-	// "prometheus" matches via nameFromRef (org==name deduplicated).
-	// "rabbitmq" matches via nameBasename (nameFromRef returns "library-rabbitmq").
 	exclude := map[string]struct{}{"prometheus": {}, "rabbitmq": {}}
 
 	got, err := Discover(cfg, "", nil, exclude)
@@ -500,26 +508,22 @@ YAML
 
 	// Expect:
 	// - standalone "prometheus" (NOT excluded — standalone images are never filtered)
-	// - chart "kiwigrid-k8s-sidecar" (not in exclude set)
 	// Excluded:
-	// - chart "prometheus" (in exclude set, nameFromRef match)
-	// - chart "library-rabbitmq" (in exclude set via basename "rabbitmq")
 	names := make([]string, 0, len(got))
 	for _, img := range got {
 		names = append(names, img.Name)
 	}
 
 	if len(got) != 2 {
-		t.Fatalf("Discover() returned %d images %v, want 2 [prometheus, kiwigrid-k8s-sidecar]", len(got), names)
+		t.Fatalf("Discover() returned %d images %v, want 2 [prometheus, kiwigrid/k8s-sidecar]", len(got), names)
 	}
 
 	// Standalone prometheus must survive (standalone images are never excluded).
 	if got[0].Name != "prometheus" || got[0].Source != "mirror.gcr.io/library/prometheus:v3.0.0" {
 		t.Errorf("got[0] = %+v, want standalone prometheus", got[0])
 	}
-	// Chart kiwigrid-k8s-sidecar must survive (not in exclude set).
-	if got[1].Name != "kiwigrid-k8s-sidecar" {
-		t.Errorf("got[1].Name = %q, want kiwigrid-k8s-sidecar", got[1].Name)
+	if got[1].Name != "kiwigrid/k8s-sidecar" {
+		t.Errorf("got[1].Name = %q, want kiwigrid/k8s-sidecar", got[1].Name)
 	}
 }
 
@@ -577,18 +581,18 @@ func TestIsExcluded(t *testing.T) {
 		want bool
 	}{
 		{
-			name: "exact nameFromRef match",
-			img:  DiscoveredImage{Name: "prometheus", Source: "quay.io/prometheus/prometheus:v3"},
+			name: "basename fallback match for prometheus path",
+			img:  DiscoveredImage{Name: "prometheus/prometheus", Source: "quay.io/prometheus/prometheus:v3"},
 			want: true,
 		},
 		{
 			name: "basename fallback match",
-			img:  DiscoveredImage{Name: "library-rabbitmq", Source: "docker.io/library/rabbitmq:4.2.3"},
+			img:  DiscoveredImage{Name: "library/rabbitmq", Source: "docker.io/library/rabbitmq:4.2.3"},
 			want: true,
 		},
 		{
 			name: "no match",
-			img:  DiscoveredImage{Name: "kiwigrid-k8s-sidecar", Source: "ghcr.io/kiwigrid/k8s-sidecar:1.28.0"},
+			img:  DiscoveredImage{Name: "kiwigrid/k8s-sidecar", Source: "ghcr.io/kiwigrid/k8s-sidecar:1.28.0"},
 			want: false,
 		},
 		{

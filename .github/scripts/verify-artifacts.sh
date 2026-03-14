@@ -9,10 +9,10 @@ set -euo pipefail
 #   - gh CLI   (https://cli.github.com/) with attestation extension
 #
 # Usage:
-#   ./verify-artifacts.sh <registry>/<org>  [image:tag-patched]
+#   ./verify-artifacts.sh <registry>/<org>  [image:tag]
 #
 # Examples:
-#   ./verify-artifacts.sh ghcr.io/verity-org grafana/grafana:11.6.0-patched
+#   ./verify-artifacts.sh ghcr.io/verity-org grafana/grafana:11.6.0
 
 REGISTRY_ORG="${1:-}"
 ARTIFACT="${2:-}"
@@ -22,7 +22,7 @@ if [ -z "$REGISTRY_ORG" ]; then
   echo "Usage: $0 <registry/org> [artifact-ref]"
   echo ""
   echo "Examples:"
-  echo "  $0 ghcr.io/verity-org grafana/grafana:11.6.0-patched"
+  echo "  $0 ghcr.io/verity-org grafana/grafana:11.6.0"
   exit 1
 fi
 
@@ -75,7 +75,7 @@ else
   echo "No specific artifact given — provide an image or chart ref to verify."
   echo ""
   echo "Examples:"
-  echo "  $0 ${REGISTRY_ORG} grafana/grafana:11.6.0-patched"
+  echo "  $0 ${REGISTRY_ORG} grafana/grafana:11.6.0"
   exit 0
 fi
 

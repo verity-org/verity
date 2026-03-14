@@ -32,8 +32,8 @@ func BuildWrapperChart(original config.ChartSpec, overrides []ValueOverride) (*W
 		return nil, fmt.Errorf("validate chart spec: %w", err)
 	}
 
-	wrapperName := original.Name + "-patched"
-	wrapperVersion := original.Version + "-patched.1"
+	wrapperName := original.Name
+	wrapperVersion := original.Version
 
 	chartDoc := map[string]any{
 		"apiVersion":  "v2",

@@ -8,12 +8,31 @@ import type { SiteImage, VulnSummary } from "../lib/catalog";
 
 const base = import.meta.env.BASE_URL;
 
-// Build a map of image name -> scan data for quick lookups.
-// The name is extracted from patchedRef (ghcr.io/verity-org/{name}:{tag} -> {name})
-// which matches the `name` field in full-catalog.ts.
+function patchedRefRepoPath(ref: string | undefined): string {
+  if (!ref) return "";
+
+  let value = ref;
+  const atIndex = value.indexOf("@");
+  if (atIndex !== -1) value = value.slice(0, atIndex);
+
+  const lastSlash = value.lastIndexOf("/");
+  const lastColon = value.lastIndexOf(":");
+  if (lastColon > lastSlash) value = value.slice(0, lastColon);
+
+  const parts = value.split("/");
+  if (parts.length >= 2) {
+    const first = parts[0] ?? "";
+    if (/[.:]/.test(first) || first === "localhost") {
+      return parts.slice(1).join("/");
+    }
+  }
+
+  return value;
+}
+
 const scanDataMap = new Map<string, SiteImage>();
 for (const img of catalog.images ?? []) {
-  const name = img.patchedRef?.split("/").pop()?.split(":")[0] ?? "";
+  const name = patchedRefRepoPath(img.patchedRef);
   if (name) scanDataMap.set(name, img);
 }
 

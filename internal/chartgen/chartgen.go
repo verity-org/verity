@@ -11,7 +11,6 @@ import (
 type Config struct {
 	ChartsFile     string
 	VerityConfig   string
-	CopaConfig     string
 	TargetRegistry string
 	ChartRegistry  string
 	ExcludeNames   map[string]struct{}
@@ -43,15 +42,10 @@ func Run(cfg *Config) (*DryRunResult, error) {
 		return nil, fmt.Errorf("load verity config: %w", err)
 	}
 
-	copaNames, err := loadCopaNames(cfg.CopaConfig)
-	if err != nil {
-		return nil, err
-	}
-
 	result := &DryRunResult{Charts: make([]ChartResult, 0, len(charts))}
 
 	for _, chart := range charts {
-		chartResult, include, err := processChart(cfg, chart, vc, copaNames)
+		chartResult, include, err := processChart(cfg, chart, vc)
 		if err != nil {
 			return nil, err
 		}
@@ -63,20 +57,7 @@ func Run(cfg *Config) (*DryRunResult, error) {
 	return result, nil
 }
 
-func loadCopaNames(copaConfigPath string) (map[string]string, error) {
-	if copaConfigPath == "" {
-		return map[string]string{}, nil
-	}
-
-	copaCfg, err := discovery.LoadConfig(copaConfigPath)
-	if err != nil {
-		return nil, fmt.Errorf("load copa config: %w", err)
-	}
-
-	return BuildCopaNameMap(copaCfg.Images), nil
-}
-
-func processChart(cfg *Config, chart config.ChartSpec, vc *config.VerityConfig, copaNames map[string]string) (ChartResult, bool, error) {
+func processChart(cfg *Config, chart config.ChartSpec, vc *config.VerityConfig) (ChartResult, bool, error) {
 	fmt.Fprintf(os.Stderr, "info: processing chart %s@%s\n", chart.Name, chart.Version)
 
 	imageRefs, err := discovery.ExtractChartImages(chart, vc.Overrides)
@@ -84,7 +65,7 @@ func processChart(cfg *Config, chart config.ChartSpec, vc *config.VerityConfig, 
 		return ChartResult{}, false, fmt.Errorf("extract images for chart %s: %w", chart.Name, err)
 	}
 
-	mappings, err := BuildImageMappings(imageRefs, cfg.TargetRegistry, cfg.ExcludeNames, copaNames)
+	mappings, err := BuildImageMappings(imageRefs, cfg.TargetRegistry, cfg.ExcludeNames)
 	if err != nil {
 		return ChartResult{}, false, fmt.Errorf("build image mappings for chart %s: %w", chart.Name, err)
 	}

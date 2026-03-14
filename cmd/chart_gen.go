@@ -27,11 +27,6 @@ var ChartGenCommand = &cli.Command{
 			Value: "verity.yaml",
 		},
 		&cli.StringFlag{
-			Name:  "config",
-			Usage: "Path to copa-config.yaml (for Copa image name resolution)",
-			Value: "copa-config.yaml",
-		},
-		&cli.StringFlag{
 			Name:     "target-registry",
 			Usage:    "Registry where patched images live (e.g., ghcr.io/verity-org)",
 			Required: true,
@@ -54,7 +49,6 @@ var ChartGenCommand = &cli.Command{
 		cfg := &chartgen.Config{
 			ChartsFile:     c.String("charts-file"),
 			VerityConfig:   c.String("verity-config"),
-			CopaConfig:     c.String("config"),
 			TargetRegistry: c.String("target-registry"),
 			ChartRegistry:  c.String("chart-registry"),
 			ExcludeNames:   parseNameSet(c.String("exclude-names")),

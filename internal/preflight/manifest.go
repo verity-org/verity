@@ -51,7 +51,7 @@ func FetchManifest(repo, branch, token string) (Manifest, error) {
 	}
 	req.Header.Set("Accept", "application/vnd.github.v3+json")
 
-	resp, err := httpClient.Do(req) //nolint:gosec // URL built from repo/branch inputs
+	resp, err := httpClient.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("fetching manifest: %w", err)
 	}

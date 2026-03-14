@@ -28,13 +28,13 @@ func TestResolveValuePaths(t *testing.T) {
 				{
 					OriginalRepo: "quay.io/prometheus/prometheus",
 					PatchedRepo:  "ghcr.io/verity-org/prometheus/prometheus",
-					PatchedTag:   "v3.2.1-patched",
+					PatchedTag:   "v3.2.1",
 				},
 			},
 			want: []ValueOverride{{
 				Path:       "image",
 				Repository: "ghcr.io/verity-org/prometheus/prometheus",
-				Tag:        "v3.2.1-patched",
+				Tag:        "v3.2.1",
 			}},
 		},
 		{
@@ -47,12 +47,12 @@ func TestResolveValuePaths(t *testing.T) {
 			mappings: []ImageMapping{{
 				OriginalRepo: "nginx",
 				PatchedRepo:  "ghcr.io/verity-org/library/nginx",
-				PatchedTag:   "1.25-patched",
+				PatchedTag:   "1.25",
 			}},
 			want: []ValueOverride{{
 				Path:       "server.image",
 				Repository: "ghcr.io/verity-org/library/nginx",
-				Tag:        "1.25-patched",
+				Tag:        "1.25",
 			}},
 		},
 		{
@@ -64,7 +64,7 @@ func TestResolveValuePaths(t *testing.T) {
 			mappings: []ImageMapping{{
 				OriginalRepo: "redis",
 				PatchedRepo:  "ghcr.io/verity-org/library/redis",
-				PatchedTag:   "7.0-patched",
+				PatchedTag:   "7.0",
 			}},
 			want: []ValueOverride{},
 		},
@@ -83,24 +83,24 @@ metrics:
 				{
 					OriginalRepo: "nginx",
 					PatchedRepo:  "ghcr.io/verity-org/library/nginx",
-					PatchedTag:   "1.25-patched",
+					PatchedTag:   "1.25",
 				},
 				{
 					OriginalRepo: "redis",
 					PatchedRepo:  "ghcr.io/verity-org/library/redis",
-					PatchedTag:   "7.2-patched",
+					PatchedTag:   "7.2",
 				},
 			},
 			want: []ValueOverride{
 				{
 					Path:       "controller.image",
 					Repository: "ghcr.io/verity-org/library/nginx",
-					Tag:        "1.25-patched",
+					Tag:        "1.25",
 				},
 				{
 					Path:       "metrics.image",
 					Repository: "ghcr.io/verity-org/library/redis",
-					Tag:        "7.2-patched",
+					Tag:        "7.2",
 				},
 			},
 		},
@@ -113,7 +113,7 @@ metrics:
 			mappings: []ImageMapping{{
 				OriginalRepo: "nginx",
 				PatchedRepo:  "ghcr.io/verity-org/library/nginx",
-				PatchedTag:   "1.25-patched",
+				PatchedTag:   "1.25",
 			}},
 			overrides: map[string]config.Override{
 				"nginx": {ValuePath: "custom.image"},
@@ -121,7 +121,7 @@ metrics:
 			want: []ValueOverride{{
 				Path:       "custom.image",
 				Repository: "ghcr.io/verity-org/library/nginx",
-				Tag:        "1.25-patched",
+				Tag:        "1.25",
 			}},
 		},
 		{
@@ -133,7 +133,7 @@ metrics:
 			mappings: []ImageMapping{{
 				OriginalRepo: "docker.io/timberio/vector",
 				PatchedRepo:  "ghcr.io/verity-org/timberio/vector",
-				PatchedTag:   "0.40-patched",
+				PatchedTag:   "0.40",
 			}},
 			overrides: map[string]config.Override{
 				"timberio/vector": {ValuePath: "custom.vectorImage"},
@@ -141,7 +141,7 @@ metrics:
 			want: []ValueOverride{{
 				Path:       "custom.vectorImage",
 				Repository: "ghcr.io/verity-org/timberio/vector",
-				Tag:        "0.40-patched",
+				Tag:        "0.40",
 			}},
 		},
 	}

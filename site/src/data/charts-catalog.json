@@ -5,8 +5,8 @@
     {
       "name": "prometheus",
       "version": "28.9.1",
-      "wrapperName": "prometheus-patched",
-      "wrapperVersion": "28.9.1-patched-1",
+      "wrapperName": "prometheus",
+      "wrapperVersion": "28.9.1",
       "repository": "oci://ghcr.io/prometheus-community/charts",
       "registry": "oci://ghcr.io/verity-org/charts",
       "imageMappings": [
@@ -14,13 +14,13 @@
           "originalRepo": "ghcr.io/kiwigrid/k8s-sidecar",
           "originalTag": "1.28.0",
           "patchedRepo": "ghcr.io/verity-org/k8s-sidecar",
-          "patchedTag": "1.28.0-patched-1"
+          "patchedTag": "1.28.0"
         },
         {
           "originalRepo": "ghcr.io/jimmidyson/configmap-reload",
           "originalTag": "v0.14.0",
           "patchedRepo": "ghcr.io/verity-org/configmap-reload",
-          "patchedTag": "v0.14.0-patched-1"
+          "patchedTag": "v0.14.0"
         }
       ],
       "valueOverrides": [
@@ -30,7 +30,7 @@
         },
         {
           "path": "kube-state-metrics.image.tag",
-          "value": "v2.14.0-patched-1"
+          "value": "v2.14.0"
         }
       ]
     }

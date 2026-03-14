@@ -4,86 +4,28 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
-
-	"github.com/verity-org/verity/internal/config"
 )
 
-func TestFindLatestPatchedTag(t *testing.T) {
-	tests := []struct {
-		name      string
-		output    string
-		sourceTag string
-		want      string
-	}{
-		{
-			name:      "no matching tags",
-			output:    "latest\nv3.3.0\nv3.3.0-patched",
-			sourceTag: "v3.2.1",
-			want:      "",
-		},
-		{
-			name:      "single patched tag",
-			output:    "v3.2.1-patched",
-			sourceTag: "v3.2.1",
-			want:      "v3.2.1-patched",
-		},
-		{
-			name:      "multiple versions choose highest",
-			output:    "v3.2.1-patched\nv3.2.1-patched-1\nv3.2.1-patched-2",
-			sourceTag: "v3.2.1",
-			want:      "v3.2.1-patched-2",
-		},
-		{
-			name:      "filter unrelated tags",
-			output:    "v3.2.1\nv3.3.0-patched\nlatest\nv3.2.1-patched-1",
-			sourceTag: "v3.2.1",
-			want:      "v3.2.1-patched-1",
-		},
-		{
-			name:      "empty input",
-			output:    "",
-			sourceTag: "v3.2.1",
-			want:      "",
-		},
-		{
-			name:      "non numeric suffix skipped",
-			output:    "v3.2.1-patched-abc\nv3.2.1-patched-1",
-			sourceTag: "v3.2.1",
-			want:      "v3.2.1-patched-1",
-		},
-		{
-			name:      "only base patched tag",
-			output:    "v3.2.1-patched",
-			sourceTag: "v3.2.1",
-			want:      "v3.2.1-patched",
-		},
-	}
-
-	for _, tc := range tests {
-		t.Run(tc.name, func(t *testing.T) {
-			got := FindLatestPatchedTag(tc.output, tc.sourceTag)
-			if got != tc.want {
-				t.Errorf("FindLatestPatchedTag(%q, %q) = %q, want %q", tc.output, tc.sourceTag, got, tc.want)
-			}
-		})
-	}
-}
-
-func TestNameFromRef(t *testing.T) {
+func TestRepoPath(t *testing.T) {
 	tests := []struct {
 		name string
 		ref  string
 		want string
 	}{
 		{
-			name: "org equals name deduplicated",
+			name: "org equals name",
 			ref:  "quay.io/prometheus/prometheus:v3.2.1",
-			want: "prometheus",
+			want: "prometheus/prometheus",
 		},
 		{
-			name: "org name joined",
+			name: "org equals name with digest",
+			ref:  "quay.io/prometheus/prometheus@sha256:abc123",
+			want: "prometheus/prometheus",
+		},
+		{
+			name: "org differs from name",
 			ref:  "ghcr.io/kiwigrid/k8s-sidecar:1.28.0",
-			want: "kiwigrid-k8s-sidecar",
+			want: "kiwigrid/k8s-sidecar",
 		},
 		{
 			name: "simple image",
@@ -91,22 +33,32 @@ func TestNameFromRef(t *testing.T) {
 			want: "nginx",
 		},
 		{
-			name: "collision safety",
+			name: "different registry same basename",
 			ref:  "quay.io/some-org/nginx:1.29",
-			want: "some-org-nginx",
+			want: "some-org/nginx",
 		},
 		{
 			name: "repeated component",
 			ref:  "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.10.0",
-			want: "kube-state-metrics",
+			want: "kube-state-metrics/kube-state-metrics",
+		},
+		{
+			name: "mirror gcr library image",
+			ref:  "mirror.gcr.io/library/redis:7.0",
+			want: "library/redis",
+		},
+		{
+			name: "gcr org image",
+			ref:  "gcr.io/distroless/static:latest",
+			want: "distroless/static",
 		},
 	}
 
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			got := nameFromRef(tc.ref)
+			got := repoPath(tc.ref)
 			if got != tc.want {
-				t.Errorf("nameFromRef(%q) = %q, want %q", tc.ref, got, tc.want)
+				t.Errorf("repoPath(%q) = %q, want %q", tc.ref, got, tc.want)
 			}
 		})
 	}
@@ -164,14 +116,14 @@ if [ "$1" != "ls" ]; then
 fi
 
 case "$2" in
-  "ghcr.io/verity-org/prometheus")
-    printf "v3.2.1\nv3.2.1-patched\nv3.2.1-patched-2\n"
+  "ghcr.io/verity-org/prometheus/prometheus")
+    printf "v3.2.1\nlatest\n"
     ;;
-  "ghcr.io/verity-org/kiwigrid-k8s-sidecar")
-    printf "1.28.0\n1.28.0-patched\n"
+  "ghcr.io/verity-org/kiwigrid/k8s-sidecar")
+    printf "1.28.0\n"
     ;;
-  "ghcr.io/verity-org/no-patch")
-    printf "latest\n1.0.0\n"
+  "ghcr.io/verity-org/library/no-patch")
+    printf "latest\n"
     ;;
   *)
     printf "\n"
@@ -192,10 +144,10 @@ esac
 	}
 
 	excludeNames := map[string]struct{}{
-		"kiwigrid-k8s-sidecar": {},
+		"k8s-sidecar": {},
 	}
 
-	got, err := BuildImageMappings(imageRefs, "ghcr.io/verity-org", excludeNames, nil)
+	got, err := BuildImageMappings(imageRefs, "ghcr.io/verity-org", excludeNames)
 	if err != nil {
 		t.Fatalf("BuildImageMappings() error = %v", err)
 	}
@@ -207,8 +159,8 @@ esac
 	want := ImageMapping{
 		OriginalRepo: "quay.io/prometheus/prometheus",
 		OriginalTag:  "v3.2.1",
-		PatchedRepo:  "ghcr.io/verity-org/prometheus",
-		PatchedTag:   "v3.2.1-patched-2",
+		PatchedRepo:  "ghcr.io/verity-org/prometheus/prometheus",
+		PatchedTag:   "v3.2.1",
 	}
 
 	if got[0] != want {
@@ -216,60 +168,8 @@ esac
 	}
 }
 
-func TestBuildCopaNameMap(t *testing.T) {
-	images := []config.ImageSpec{
-		{Name: "k8s-sidecar", Image: "ghcr.io/kiwigrid/k8s-sidecar"},
-		{Name: "redis", Image: "mirror.gcr.io/library/redis"},
-		{Name: "prometheus-node-exporter", Image: "quay.io/prometheus/node-exporter"},
-		{Name: "kube-state-metrics", Image: "ghcr.io/kubernetes/kube-state-metrics/kube-state-metrics"},
-	}
-	m := BuildCopaNameMap(images)
-
-	tests := []struct {
-		repo string
-		want string
-	}{
-		{repo: "kiwigrid/k8s-sidecar", want: "k8s-sidecar"},
-		{repo: "library/redis", want: "redis"},
-		{repo: "prometheus/node-exporter", want: "prometheus-node-exporter"},
-		{repo: "kubernetes/kube-state-metrics/kube-state-metrics", want: "kube-state-metrics"},
-	}
-
-	for _, tt := range tests {
-		if got := m[tt.repo]; got != tt.want {
-			t.Errorf("copaNames[%q] = %q, want %q", tt.repo, got, tt.want)
-		}
-	}
-}
-
-func TestResolveImageName(t *testing.T) {
-	copaNames := map[string]string{
-		"kiwigrid/k8s-sidecar": "k8s-sidecar",
-		"library/redis":        "redis",
-		"kubernetes/kube-state-metrics/kube-state-metrics": "kube-state-metrics",
-	}
-
-	tests := []struct {
-		ref  string
-		want string
-	}{
-		{ref: "ghcr.io/kiwigrid/k8s-sidecar:1.28.0", want: "k8s-sidecar"},
-		{ref: "mirror.gcr.io/library/redis:7.0.5", want: "redis"},
-		{ref: "ghcr.io/kubernetes/kube-state-metrics/kube-state-metrics:v2.10.0", want: "kube-state-metrics"},
-		{ref: "quay.io/some-unknown/thing:1.0", want: "some-unknown-thing"},
-		{ref: "nginx:1.25", want: "nginx"},
-	}
-
-	for _, tt := range tests {
-		got := resolveImageName(tt.ref, copaNames)
-		if got != tt.want {
-			t.Errorf("resolveImageName(%q) = %q, want %q", tt.ref, got, tt.want)
-		}
-	}
-}
-
 func TestIsExcluded(t *testing.T) {
-	exclude := map[string]struct{}{"rabbitmq": {}, "kiwigrid-k8s-sidecar": {}}
+	exclude := map[string]struct{}{"rabbitmq": {}, "k8s-sidecar": {}}
 
 	tests := []struct {
 		name     string
@@ -278,20 +178,20 @@ func TestIsExcluded(t *testing.T) {
 		want     bool
 	}{
 		{
-			name:     "exact nameFromRef match",
-			imgName:  "kiwigrid-k8s-sidecar",
+			name:     "basename fallback match for path-preserving name",
+			imgName:  "kiwigrid/k8s-sidecar",
 			imageRef: "ghcr.io/kiwigrid/k8s-sidecar:1.28.0",
 			want:     true,
 		},
 		{
 			name:     "basename fallback match",
-			imgName:  "library-rabbitmq",
+			imgName:  "library/rabbitmq",
 			imageRef: "docker.io/library/rabbitmq:4.2.3",
 			want:     true,
 		},
 		{
 			name:     "no match",
-			imgName:  "prometheus",
+			imgName:  "prometheus/prometheus",
 			imageRef: "quay.io/prometheus/prometheus:v3",
 			want:     false,
 		},
@@ -314,12 +214,5 @@ func TestIsExcluded(t *testing.T) {
 				t.Errorf("isExcluded(%q, %q) = %v, want %v", tc.imgName, tc.imageRef, got, tc.want)
 			}
 		})
-	}
-}
-
-func TestFindLatestPatchedTagEmptySource(t *testing.T) {
-	got := FindLatestPatchedTag("v1-patched\nv2-patched", "")
-	if got != "" {
-		t.Errorf("FindLatestPatchedTag with empty sourceTag = %q, want empty", got)
 	}
 }

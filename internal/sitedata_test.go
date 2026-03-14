@@ -61,7 +61,7 @@ func TestGenerateSiteData_WithReportsDir(t *testing.T) {
 	images := []ImageEntry{
 		{
 			Original: "docker.io/library/nginx:1.27.3",
-			Patched:  "ghcr.io/verity-org/nginx:1.27.3-patched",
+			Patched:  "ghcr.io/verity-org/nginx:1.27.3",
 			Report:   reportName,
 		},
 	}
@@ -123,7 +123,7 @@ func TestGenerateSiteData_BeforeAfter(t *testing.T) {
 
 	// Pre-patch report named after source ref; post-patch report named after patched ref.
 	preReportName := "docker.io_library_nginx_1.27.3.json"
-	postReportName := "ghcr.io_verity-org_nginx_1.27.3-patched.json" // sanitize("ghcr.io/verity-org/nginx:1.27.3-patched")
+	postReportName := "ghcr.io_verity-org_nginx_1.27.3.json"
 
 	// Pre-patch: 3 vulns
 	preReport := map[string]any{
@@ -166,7 +166,7 @@ func TestGenerateSiteData_BeforeAfter(t *testing.T) {
 	imagesJSON := filepath.Join(tmpDir, "images.json")
 	images := []ImageEntry{{
 		Original: "docker.io/library/nginx:1.27.3",
-		Patched:  "ghcr.io/verity-org/nginx:1.27.3-patched",
+		Patched:  "ghcr.io/verity-org/nginx:1.27.3",
 		Report:   preReportName,
 	}}
 	d, err := json.Marshal(images)
@@ -216,7 +216,7 @@ func TestGenerateSiteData_FallbackWithoutReportsDir(t *testing.T) {
 	images := []ImageEntry{
 		{
 			Original: "docker.io/library/nginx:1.27.3",
-			Patched:  "ghcr.io/verity-org/nginx:1.27.3-patched",
+			Patched:  "ghcr.io/verity-org/nginx:1.27.3",
 			Report:   "",
 		},
 	}
@@ -255,7 +255,7 @@ func TestGenerateSiteData_FallbackWithoutReportsDir(t *testing.T) {
 	if img.OriginalRef != "docker.io/library/nginx:1.27.3" {
 		t.Errorf("wrong original ref: %s", img.OriginalRef)
 	}
-	if img.PatchedRef != "ghcr.io/verity-org/nginx:1.27.3-patched" {
+	if img.PatchedRef != "ghcr.io/verity-org/nginx:1.27.3" {
 		t.Errorf("wrong patched ref: %s", img.PatchedRef)
 	}
 }

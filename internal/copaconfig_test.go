@@ -16,10 +16,10 @@ func TestParseImageRef(t *testing.T) {
 	}{
 		{
 			name:           "full reference with tag",
-			ref:            "ghcr.io/verity-org/library/nginx:1.25.3-patched",
+			ref:            "ghcr.io/verity-org/library/nginx:1.25.3",
 			wantRegistry:   "ghcr.io",
 			wantRepository: "verity-org/library/nginx",
-			wantTag:        "1.25.3-patched",
+			wantTag:        "1.25.3",
 		},
 		{
 			name:           "docker hub with library",
@@ -159,14 +159,14 @@ func TestParseCopaOutput(t *testing.T) {
       "name": "nginx",
       "status": "Patched",
       "source_image": "docker.io/library/nginx:1.25.3",
-      "patched_image": "ghcr.io/verity-org/library/nginx:1.25.3-patched",
+      "patched_image": "ghcr.io/verity-org/library/nginx:1.25.3",
       "details": "OK"
     },
     {
       "name": "prometheus",
       "status": "Skipped",
       "source_image": "quay.io/prometheus/prometheus:v3.9.1",
-      "patched_image": "ghcr.io/verity-org/prometheus/prometheus:v3.9.1-patched",
+      "patched_image": "ghcr.io/verity-org/prometheus/prometheus:v3.9.1",
       "details": "no fixable vulnerabilities"
     }
   ]

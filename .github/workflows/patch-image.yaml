@@ -136,35 +136,22 @@ jobs:
           SOURCE_TAG: ${{ steps.parse.outputs.source-tag }}
           TARGET_REGISTRY: ${{ inputs.target-registry }}
         run: |
-          # Find the latest patched tag for this source tag
           REPO="${TARGET_REGISTRY}/${IMAGE_NAME}"
-          PATCHED_TAG=$(crane ls "${REPO}" 2>/dev/null \
-            | awk -v src="${SOURCE_TAG}-patched" '
-                length($0) >= length(src) && substr($0,1,length(src)) == src {
-                  suffix = substr($0, length(src)+1)
-                  if (suffix == "" || suffix ~ /^-[0-9]+$/) {
-                    n = (suffix ~ /^-[0-9]+$/) ? substr(suffix,2)+0 : 0
-                    print n, $0
-                  }
-                }' \
-            | sort -k1 -n \
-            | awk '{print $2}' \
-            | tail -1 || true)
-
-          if [ -z "$PATCHED_TAG" ]; then
+          EXISTING_TAG="${SOURCE_TAG}"
+          if crane digest "${REPO}:${EXISTING_TAG}" > /dev/null 2>&1; then
+            echo "Found existing image: ${REPO}:${EXISTING_TAG}"
+          else
             echo "No existing patched image found — needs patching"
             echo "needs-patch=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-
-          echo "Found existing patched image: ${REPO}:${PATCHED_TAG}"
 
           # Scan existing patched image
           if ! trivy image \
             --vuln-type os,library \
             --format json \
             --quiet \
-            "${REPO}:${PATCHED_TAG}" > patched-existing.json 2>/dev/null; then
+            "${REPO}:${EXISTING_TAG}" > patched-existing.json 2>/dev/null; then
             echo "Trivy scan failed — treating as needs-patch to be safe"
             echo "needs-patch=true" >> "$GITHUB_OUTPUT"
             exit 0
@@ -382,7 +369,7 @@ jobs:
           IFS=',' read -ra PLATS <<< "$PLATFORMS"
           for plat in "${PLATS[@]}"; do
             arch=$(echo "$plat" | cut -d/ -f2)
-            tag="${STAGING_REGISTRY}:${SAFE_IMAGE}-${SOURCE_TAG}-patched-${arch}"
+            tag="${STAGING_REGISTRY}:${SAFE_IMAGE}-${SOURCE_TAG}-${arch}"
             if crane digest "$tag" > /dev/null 2>&1; then
               SOURCE_TAGS="${SOURCE_TAGS} ${tag}"
             else
@@ -391,10 +378,10 @@ jobs:
             fi
           done
 
-          # Always stage the manifest — non-PR runs promote to target (with
-          # the correct versioned tag) only after the compare step confirms
+          # Always stage the manifest — non-PR runs promote to target
+          # only after the compare step confirms
           # the vuln set changed. This prevents target registry writes on no-ops.
-          MANIFEST_TAG="${STAGING_REGISTRY}:${SAFE_IMAGE}-${SOURCE_TAG}-patched"
+          MANIFEST_TAG="${STAGING_REGISTRY}:${SAFE_IMAGE}-${SOURCE_TAG}"
 
           # shellcheck disable=SC2086
           docker buildx imagetools create --tag "${MANIFEST_TAG}" ${SOURCE_TAGS}
@@ -440,25 +427,8 @@ jobs:
           TARGET_REGISTRY: ${{ inputs.target-registry }}
           MANIFEST_TAG: ${{ steps.manifest.outputs.manifest-tag }}
         run: |
-          # Promote from staging to target with the next versioned patched tag.
-          # Scheme: {tag}-patched (first), {tag}-patched-1, -2, … (re-patches).
           FINAL_REPO="${TARGET_REGISTRY}/${IMAGE_NAME}"
-          LATEST_N=$(crane ls "${FINAL_REPO}" 2>/dev/null \
-            | awk -v src="${SOURCE_TAG}-patched" '
-                length($0) >= length(src) && substr($0,1,length(src)) == src {
-                  suffix = substr($0, length(src)+1)
-                  if (suffix == "" || suffix ~ /^-[0-9]{1,9}$/) {
-                    n = (suffix ~ /^-[0-9]{1,9}$/) ? substr(suffix,2)+0 : 0
-                    print n
-                  }
-                }' \
-            | sort -n \
-            | tail -1 || true)
-          if [ -z "$LATEST_N" ]; then
-            FINAL_TAG="${FINAL_REPO}:${SOURCE_TAG}-patched"
-          else
-            FINAL_TAG="${FINAL_REPO}:${SOURCE_TAG}-patched-$((LATEST_N + 1))"
-          fi
+          FINAL_TAG="${FINAL_REPO}:${SOURCE_TAG}"
           crane copy "${MANIFEST_TAG}" "${FINAL_TAG}"
           DIGEST=$(crane digest "${FINAL_TAG}")
           echo "✓ Pushed to target: ${FINAL_TAG} (${DIGEST})"
