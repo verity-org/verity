@@ -36,24 +36,24 @@ pipeline:
   - uses: go/bump
     with:
       deps: |-
-        go.opentelemetry.io/otel/sdk@v1.44.0
+        go.opentelemetry.io/otel/sdk@v1.45.0
       modroot: tests
 
   - uses: go/bump
     with:
       deps: |-
-        go.opentelemetry.io/otel/sdk@v1.44.0
+        go.opentelemetry.io/otel/sdk@v1.45.0
       modroot: server
 
   - uses: go/bump
     with:
       deps: |-
-        go.opentelemetry.io/otel/sdk@v1.44.0
+        go.opentelemetry.io/otel/sdk@v1.45.0
 
   - uses: go/bump
     with:
       deps: |-
-        go.opentelemetry.io/otel/sdk@v1.44.0
+        go.opentelemetry.io/otel/sdk@v1.45.0
       modroot: etcdutl
 
   - uses: go/build
